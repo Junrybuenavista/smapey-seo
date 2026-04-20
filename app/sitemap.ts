@@ -2,7 +2,7 @@ import { MetadataRoute } from "next"
 import fs from "fs"
 import path from "path"
 
-const baseUrl = "https://smapeyinvoicingsoftware.com"
+const baseUrl = "https://smapey.com"
 
 // Recursively get all page routes
 function getRoutes(dir: string, basePath = ""): string[] {

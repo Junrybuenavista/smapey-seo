@@ -7,7 +7,7 @@ export const metadata: Metadata = {
     "Read the terms and conditions for using Smapey invoicing software, including user responsibilities, limitations, and service terms.",
   alternates: {
     canonical:
-      "https://smapeyinvoicingsoftware.com/terms-and-conditions",
+      "https://smapey.com/terms-and-conditions",
   },
 }
 

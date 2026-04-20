@@ -35,22 +35,22 @@ export default function Footer() {
       <h4 className="font-semibold mb-4">Product</h4>
       <ul className="space-y-2 text-sm text-gray-600">
         <li>
-          <Link href="/" className="hover:text-blue-600 transition">
+          <Link href="invoice/" className="hover:text-blue-600 transition">
             Invoicing Software
           </Link>
         </li>
         <li>
-          <Link href="/how-it-works" className="hover:text-blue-600 transition">
+          <Link href="invoice/how-it-works" className="hover:text-blue-600 transition">
             How It Works
           </Link>
         </li>
         <li>
-          <Link href="/industry" className="hover:text-blue-600 transition">
+          <Link href="invoice/industry" className="hover:text-blue-600 transition">
             Industries
           </Link>
         </li>
         <li>
-          <Link href="/faq" className="hover:text-blue-600 transition">
+          <Link href="invoice/faq" className="hover:text-blue-600 transition">
             FAQ
           </Link>
         </li>
@@ -62,17 +62,17 @@ export default function Footer() {
       <h4 className="font-semibold mb-4">Company</h4>
       <ul className="space-y-2 text-sm text-gray-600">
         <li>
-          <Link href="/customers" className="hover:text-blue-600 transition">
+          <Link href="invoice/customers" className="hover:text-blue-600 transition">
             Customers
           </Link>
         </li>
         <li>
-          <Link href="https://app.smapey.com/invoicing-app" className="hover:text-blue-600 transition">
+          <Link href="invoice/how-it-works" className="hover:text-blue-600 transition">
             Pricing
           </Link>
         </li>
         <li>
-          <Link href="/contact" className="hover:text-blue-600 transition">
+          <Link href="invoice/contact" className="hover:text-blue-600 transition">
             Contact
           </Link>
         </li>

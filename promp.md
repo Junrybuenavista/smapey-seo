@@ -46,7 +46,7 @@ Generate:
 
 * Title (max 60 chars, include "best" or strong CTR word)
 * Meta description (max 155 chars, conversion-focused, include keyword)
-* Canonical URL (SEO-friendly slug) and use this domain "smapeyinvoicingsoftware.com"
+* Canonical URL (SEO-friendly slug) and use this domain "smapey.com"
 
 ---
 
@@ -104,7 +104,7 @@ CTA:
   👉 "View Invoicing App →"
   👉 yellow button
   👉 shadow + hover + slight lift
-  👉 link here. "https://app.smapey.com/invoicing-app"
+  👉 link here. "how-it-works"
 
 * Secondary:
   👉 "Start Free" - 
@@ -456,7 +456,7 @@ Generate:
 - Canonical URL (slug from primary keyword)
 
 Use domain:
-👉 https://smapeyinvoicingsoftware.com
+👉 https://smapey.com
 
 ---
 
@@ -514,7 +514,7 @@ Design:
 
 Primary:
 👉 "View Invoicing App →"  
-👉 https://app.smapey.com/invoicing-app  
+👉 /invoice/how-it-works  
 
 Secondary:
 👉 "Start Free"  

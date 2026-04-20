@@ -8,6 +8,6 @@ export default function robots(): MetadataRoute.Robots {
         allow: "/",
       },
     ],
-    sitemap: "https://smapeyinvoicingsoftware.com/sitemap.xml",
+    sitemap: "https://smapey.com/sitemap.xml",
   }
 }

@@ -7,7 +7,7 @@ export const metadata: Metadata = {
     "Learn how Smapey collects, uses, and protects your personal data when using our invoicing software.",
   alternates: {
     canonical:
-      "https://smapeyinvoicingsoftware.com/privacy-policy",
+      "https://smapey.com/privacy-policy",
   },
 }
 
