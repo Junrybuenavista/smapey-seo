@@ -2,7 +2,7 @@ export const metadata = {
   title: "Invoicing Software for Plumbers",
   description: "Create plumbing invoices, track payments, and get paid faster with Smapey. Built for plumbers and service professionals.",
   alternates: {
-    canonical: "https://smapey.com/invoicing-software-for-plumbers",
+    canonical: "https://smapey.com/invoice/invoicing-software-for-plumbers",
   },
 }
 

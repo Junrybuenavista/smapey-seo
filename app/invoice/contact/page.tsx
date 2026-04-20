@@ -3,7 +3,7 @@ export const metadata = {
   description:
     "Get in touch with Smapey. Contact our team for support, questions, or business inquiries. We’re here to help you streamline your invoicing.",
   alternates: {
-    canonical: "https://smapey.com/contact",
+    canonical: "https://smapey.com/invoice/contact",
   },
 }
 

@@ -3,7 +3,7 @@ export const metadata = {
   description:
     "Find the best invoicing software for freelancers, contractors, consultants, and more. Create invoices, track payments, and get paid faster with Smapey.",
   alternates: {
-    canonical: "https://smapey.com/industry",
+    canonical: "https://smapey.com/invoice/industry",
   },
 };
 

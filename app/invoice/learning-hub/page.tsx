@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     "invoice examples",
   ],
   alternates: {
-    canonical: "https://smapey.com/learning-hub",
+    canonical: "https://smapey.com/invoice/learning-hub",
   },
   openGraph: {
     title: "Invoicing Blog | Guides, Templates & Tips",

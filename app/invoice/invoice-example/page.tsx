@@ -2,7 +2,7 @@ export const metadata = {
   title: "Invoice Example (Simple Format & Template)",
   description: "View a real invoice example with proper structure. Learn how to format invoices professionally and get paid faster.",
   alternates: {
-    canonical: "https://smapey.com/invoice-example",
+    canonical: "https://smapey.com/invoice/invoice-example",
   },
 }
 

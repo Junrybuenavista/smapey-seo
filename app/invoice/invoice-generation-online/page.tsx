@@ -2,7 +2,7 @@ export const metadata = {
   title: "Free Invoice Generator | Create Invoices Online",
   description: "Generate professional invoices online for free. Customize, download, and send invoices instantly with Smapey.",
   alternates: {
-    canonical: "https://smapey.com/invoice-generation-online",
+    canonical: "https://smapey.com/invoice/invoice-generation-online",
   },
 }
 

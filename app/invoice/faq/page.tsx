@@ -3,7 +3,7 @@ export const metadata = {
   description:
     "Get answers to common questions about switching to Smapey invoicing software, payments, automation, and more.",
   alternates: {
-    canonical: "https://smapey.com/faq",
+    canonical: "https://smapey.com/invoice/faq",
   },
 };
 

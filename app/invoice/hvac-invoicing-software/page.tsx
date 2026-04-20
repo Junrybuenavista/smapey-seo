@@ -2,7 +2,7 @@ export const metadata = {
   title: "HVAC Invoicing Software for Contractors",
   description: "Simplify billing and get paid faster with Smapey HVAC invoicing software. Create invoices and track payments بسهولة.",
   alternates: {
-    canonical: "https://smapey.com/hvac-invoicing-software",
+    canonical: "https://smapey.com/invoice/hvac-invoicing-software",
   },
 }
 

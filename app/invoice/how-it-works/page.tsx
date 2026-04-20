@@ -3,7 +3,7 @@ export const metadata = {
   description:
     "Learn how Smapey works. Create invoices, send them to clients, and get paid faster with simple and powerful invoicing tools.",
   alternates: {
-    canonical: "https://smapey.com/how-it-works",
+    canonical: "https://smapey.com/invoice/how-it-works",
   },
 };
 
