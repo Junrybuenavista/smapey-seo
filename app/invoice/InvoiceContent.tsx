@@ -162,7 +162,7 @@ export default function InvoicingContent() {
       <div className="absolute -inset-8 bg-red-500/10 blur-3xl rounded-2xl"></div>
 
       <img
-        src="/-problem.webp"
+        src="/invoice-problem.webp"
         alt="Delayed invoices problem"
         className="relative rounded-2xl shadow-2xl w-full max-w-xl"
       />

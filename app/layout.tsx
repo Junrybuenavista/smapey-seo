@@ -1,6 +1,5 @@
 import "./globals.css"
 import Script from "next/script"
-import Navbar from "./Navbar"
 
 export const metadata = {
   title: "Smapey",
@@ -15,7 +14,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <Navbar /> {/* ✅ This is fine */}
 
         {/* Google Analytics */}
         <Script
