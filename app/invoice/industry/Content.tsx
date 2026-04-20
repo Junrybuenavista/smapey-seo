@@ -99,7 +99,7 @@ export default function Content() {
 
       {/* CTA */}
       <div className="pt-4 space-y-3">
-        <Link href="/invoice/https://app.smapey.com/register?product=INVOICE&plan=FREE">
+        <Link href="https://app.smapey.com/register?product=INVOICE&plan=FREE">
           <button className="px-8 py-4 bg-white text-black rounded-xl font-medium hover:scale-105 transition shadow-lg">
             Start Free →
           </button>

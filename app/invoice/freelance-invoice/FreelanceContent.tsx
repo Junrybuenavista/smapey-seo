@@ -173,7 +173,7 @@ export default function FreelanceInvoiceGuide() {
 
         <div className="mt-6">
           <a
-            href="/invoice/https://app.smapey.com/register?product=INVOICE&plan=FREE"
+            href="https://app.smapey.com/register?product=INVOICE&plan=FREE"
             className="bg-blue-600 text-white px-6 py-3 rounded-lg"
           >
             Create Invoice in Seconds →
@@ -239,7 +239,7 @@ export default function FreelanceInvoiceGuide() {
         </p>
 
         <a
-          href="/invoice/https://app.smapey.com/register?product=INVOICE&plan=FREE"
+          href="https://app.smapey.com/register?product=INVOICE&plan=FREE"
           className="inline-block mt-6 bg-white text-blue-600 px-6 py-3 rounded-lg font-semibold"
         >
           Try Smapey Free

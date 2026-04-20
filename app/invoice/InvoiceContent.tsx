@@ -607,7 +607,7 @@ export default function InvoicingContent() {
 
           {/* CTA BUTTON */}
           <div className="pt-4">
-            <Link href="/invoice/https://app.smapey.com/register?product=INVOICE&plan=FREE">
+            <Link href="https://app.smapey.com/register?product=INVOICE&plan=FREE">
               <button className="group relative px-10 py-4 rounded-xl text-lg font-semibold bg-white text-black overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-2xl">
 
                 {/* glow hover */}

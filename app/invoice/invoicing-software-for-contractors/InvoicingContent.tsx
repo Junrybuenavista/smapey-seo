@@ -72,7 +72,7 @@ const faqs = [
         </a>
 
         <a
-          href="/invoice/https://app.smapey.com/register?product=INVOICE&plan=FREE"
+          href="https://app.smapey.com/register?product=INVOICE&plan=FREE"
           className="border border-gray-300 px-6 py-3 rounded-xl font-semibold text-gray-700 hover:border-yellow-500 hover:text-yellow-600 transition-all duration-300"
         >
           Start Free
@@ -150,7 +150,7 @@ const faqs = [
         </h2>
 
         <a
-          href="/invoice/https://app.smapey.com/register?product=INVOICE&plan=FREE"
+          href="https://app.smapey.com/register?product=INVOICE&plan=FREE"
           className="inline-block mt-6 bg-white text-black px-6 py-3 rounded-xl hover:scale-105 transition"
         >
           Start Free Trial

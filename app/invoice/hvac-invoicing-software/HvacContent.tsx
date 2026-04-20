@@ -69,7 +69,7 @@ export default function InvoicingContent() {
               </Link>
 
               <Link
-                href="/invoice/https://app.smapey.com/register?product=INVOICE&plan=FREE"
+                href="https://app.smapey.com/register?product=INVOICE&plan=FREE"
                 className="border px-6 py-3 rounded-xl hover:border-yellow-500 hover:text-yellow-600 transition"
               >
                 Start Free
@@ -132,7 +132,7 @@ export default function InvoicingContent() {
           </h2>
 
           <Link
-            href="/invoice/https://app.smapey.com/register?product=INVOICE&plan=FREE"
+            href="https://app.smapey.com/register?product=INVOICE&plan=FREE"
             className="inline-block mt-6 bg-yellow-500 px-6 py-3 rounded-xl shadow hover:shadow-lg hover:-translate-y-1 transition"
           >
             Start Free Trial

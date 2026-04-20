@@ -147,7 +147,7 @@ export default function Navbar() {
 
             {!token && (
               <Link
-                href="/invoice/https://app.smapey.com/register?product=INVOICE&plan=FREE"
+                href="https://app.smapey.com/register?product=INVOICE&plan=FREE"
                 className="px-5 py-2 text-sm font-semibold text-white bg-gradient-to-r from-blue-600 to-blue-500 rounded-lg"
               >
                 Get Started
@@ -232,7 +232,7 @@ export default function Navbar() {
 
             {!token && (
               <Link
-                href="/invoice/https://app.smapey.com/register?product=INVOICE&plan=FREE"
+                href="https://app.smapey.com/register?product=INVOICE&plan=FREE"
                 className="w-full text-center py-2 rounded-lg text-white bg-blue-600"
               >
                 Get Started

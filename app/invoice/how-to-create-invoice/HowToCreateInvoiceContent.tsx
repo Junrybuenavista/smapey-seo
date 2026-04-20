@@ -194,7 +194,7 @@ export default function HowToCreateInvoicePage() {
           <h2 className="text-3xl font-bold mb-4">Create Your Invoice Now</h2>
           <p className="text-blue-100 mb-6">Generate, send, and track invoices in seconds.</p>
 
-          <Link href="/invoice/https://app.smapey.com/register?product=INVOICE&plan=FREE">
+          <Link href="https://app.smapey.com/register?product=INVOICE&plan=FREE">
             <button className="bg-white text-blue-600 px-8 py-3 rounded-xl font-semibold shadow hover:scale-105 transition">
               Try Our Smapey App
             </button>
