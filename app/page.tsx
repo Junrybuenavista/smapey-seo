@@ -1,5 +1,5 @@
 export const metadata = {
-  title: "Smapey | All-in-One Business Software (Invoice & Gym Management)",
+  title: "Smapey | All-in-One Business Software.",
   description:
     "Smapey helps you run your business smarter with tools for invoicing and gym management. Create invoices, manage members, and grow faster.",
   alternates: {
