@@ -104,12 +104,12 @@ CTA:
   👉 "View Invoicing App →"
   👉 yellow button
   👉 shadow + hover + slight lift
-  👉 link here. "https://smapey.com/invoicing-app"
+  👉 link here. "https://app.smapey.com/invoicing-app"
 
 * Secondary:
   👉 "Start Free" - 
   👉 outline button
-  👉 link here. "https://smapey.com/register?product=INVOICE&plan=FREE"
+  👉 link here. "https://app.smapey.com/register?product=INVOICE&plan=FREE"
 
 Responsive:
 
@@ -202,7 +202,7 @@ CTA:
 
 * "Start Free Trial"
 * Yellow button with hover + shadow
-* link here. "https://smapey.com/register?product=INVOICE&plan=FREE"
+* link here. "https://app.smapey.com/register?product=INVOICE&plan=FREE"
 
 ---
 
@@ -514,11 +514,11 @@ Design:
 
 Primary:
 👉 "View Invoicing App →"  
-👉 https://smapey.com/invoicing-app  
+👉 https://app.smapey.com/invoicing-app  
 
 Secondary:
 👉 "Start Free"  
-👉 https://smapey.com/register?product=INVOICE&plan=FREE  
+👉 https://app.smapey.com/register?product=INVOICE&plan=FREE  
 
 ---
 
@@ -582,7 +582,7 @@ Headline:
 
 CTA:
 👉 Start Free Trial  
-👉 https://smapey.com/register?product=INVOICE&plan=FREE  
+👉 https://app.smapey.com/register?product=INVOICE&plan=FREE  
 
 ---
 

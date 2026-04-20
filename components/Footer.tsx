@@ -23,7 +23,7 @@ export default function Footer() {
 
       {/* CTA */}
       <Link
-        href="https://smapey.com/register?product=INVOICE&plan=FREE"
+        href="https://app.smapey.com/register?product=INVOICE&plan=FREE"
         className="inline-block mt-5 px-5 py-2 text-sm font-semibold text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition"
       >
         Get Started Free
@@ -67,7 +67,7 @@ export default function Footer() {
           </Link>
         </li>
         <li>
-          <Link href="https://smapey.com/invoicing-app" className="hover:text-blue-600 transition">
+          <Link href="https://app.smapey.com/invoicing-app" className="hover:text-blue-600 transition">
             Pricing
           </Link>
         </li>

@@ -182,7 +182,7 @@ Thanks,
           <h2 className="text-3xl font-bold mb-4">Create & Send Your Invoice Now</h2>
           <p className="text-blue-100 mb-6">Start sending professional invoices in minutes.</p>
 
-          <Link href="https://smapey.com/invoicing-app">
+          <Link href="https://app.smapey.com/invoicing-app">
             <button className="bg-white text-blue-600 px-8 py-3 rounded-xl font-semibold shadow hover:scale-105 transition">
               Try Our Smapey App
             </button>

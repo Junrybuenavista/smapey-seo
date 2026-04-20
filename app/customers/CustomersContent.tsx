@@ -83,7 +83,7 @@ export default function CustomersContent() {
 
         {/* CTA */}
         <div className="mt-8">
-          <Link href="https://smapey.com/register?product=INVOICE&plan=FREE">
+          <Link href="https://app.smapey.com/register?product=INVOICE&plan=FREE">
             <button className="px-8 py-4 bg-white text-black rounded-xl font-medium hover:scale-105 transition shadow-lg">
               Start Free →
             </button>
@@ -140,7 +140,7 @@ export default function CustomersContent() {
           Join thousands of freelancers getting paid faster.
         </p>
 
-        <Link href="https://smapey.com/register?product=INVOICE&plan=FREE">
+        <Link href="https://app.smapey.com/register?product=INVOICE&plan=FREE">
           <button className="mt-6 bg-white text-blue-600 px-6 py-3 rounded-full font-semibold hover:scale-105 transition">
             Get Started Free
           </button>

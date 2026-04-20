@@ -67,7 +67,7 @@ export default function InvoicingContent() {
 
       {/* CTA */}
       <div className="pt-6 space-y-3">
-        <Link href="https://smapey.com/invoicing-app">
+        <Link href="https://app.smapey.com/invoicing-app">
           <button className="px-8 py-4 bg-white text-black rounded-xl text-lg font-medium hover:scale-105 transition shadow-lg">
             View Invoicing App →
           </button>
@@ -545,7 +545,7 @@ export default function InvoicingContent() {
 
       {/* CTA */}
       <div className="pt-4">
-        <Link href="https://smapey.com/invoicing-app">
+        <Link href="https://app.smapey.com/invoicing-app">
           <button className="px-10 py-4 bg-black text-white rounded-xl text-lg hover:scale-105 transition shadow-lg">
             View Pricing
           </button>
@@ -607,7 +607,7 @@ export default function InvoicingContent() {
 
           {/* CTA BUTTON */}
           <div className="pt-4">
-            <Link href="https://smapey.com/register?product=INVOICE&plan=FREE">
+            <Link href="https://app.smapey.com/register?product=INVOICE&plan=FREE">
               <button className="group relative px-10 py-4 rounded-xl text-lg font-semibold bg-white text-black overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-2xl">
 
                 {/* glow hover */}

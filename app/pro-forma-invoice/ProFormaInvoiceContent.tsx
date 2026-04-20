@@ -130,7 +130,7 @@ export default function ProFormaInvoiceContent() {
           <p className="text-gray-600 mb-6">
             Save time and improve accuracy with modern invoicing tools.
           </p>
-          <Link href="https://smapey.com/invoicing-app">
+          <Link href="https://app.smapey.com/invoicing-app">
              <button className="bg-blue-600 hover:bg-blue-700 transition text-white px-6 py-3 rounded-xl">
             Start Free
           </button>

@@ -44,7 +44,7 @@ export default function InvoiceExamplePage() {
         <div className="flex justify-between mb-6">
           <div>
             <p className="font-bold text-lg">Smapey Solutions</p>
-            <p className="text-sm text-gray-500">hello@smapey.com</p>
+            <p className="text-sm text-gray-500">hello@app.smapey.com</p>
             <p className="text-sm text-gray-500">Davao City, Philippines</p>
           </div>
 
@@ -108,7 +108,7 @@ export default function InvoiceExamplePage() {
         <div className="mt-8 border-t pt-6 text-sm">
           <p className="font-semibold mb-2">Payment Methods:</p>
           <p>GCash: 09123456789</p>
-          <p>PayPal: paypal@smapey.com</p>
+          <p>PayPal: paypal@app.smapey.com</p>
           <p>Bank: BPI - 1234 5678 90</p>
 
           <p className="mt-4 text-gray-600">
@@ -313,7 +313,7 @@ export default function InvoiceExamplePage() {
         </p>
 
         <a
-          href="https://smapey.com/register?product=INVOICE&plan=FREE"
+          href="https://app.smapey.com/register?product=INVOICE&plan=FREE"
           className="inline-block mt-6 bg-white text-blue-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition"
         >
           Try Smapey Free

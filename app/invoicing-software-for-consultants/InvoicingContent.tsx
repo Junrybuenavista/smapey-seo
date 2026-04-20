@@ -68,14 +68,14 @@ export default function InvoicingContent() {
 
          <div className="mt-6 flex gap-4">
   <Link
-    href="https://smapey.com/invoicing-app"
+    href="https://app.smapey.com/invoicing-app"
     className="bg-yellow-500 text-white px-6 py-3 rounded-xl shadow hover:shadow-lg hover:-translate-y-1 transition inline-block"
   >
     View Invoicing App →
   </Link>
 
   <Link
-    href="https://smapey.com/register?product=INVOICE&plan=FREE"
+    href="https://app.smapey.com/register?product=INVOICE&plan=FREE"
     className="border px-6 py-3 rounded-xl hover:bg-gray-50 inline-block"
   >
     Start Free
@@ -120,7 +120,7 @@ export default function InvoicingContent() {
             Get Paid Faster with Smarter Invoicing
           </h2>
 
-      <Link href="https://smapey.com/register?product=INVOICE&plan=FREE">
+      <Link href="https://app.smapey.com/register?product=INVOICE&plan=FREE">
   <button className="mt-6 bg-yellow-500 px-6 py-3 rounded-xl shadow hover:shadow-lg hover:-translate-y-1 transition">
     Start Free Trial
   </button>
