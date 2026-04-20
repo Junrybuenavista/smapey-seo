@@ -7,7 +7,7 @@ export const metadata: Metadata = {
     "Invoicing software for contractors to create invoices, track payments, and get paid faster. Simple billing, automation, and estimates in one tool.",
   alternates: {
     canonical:
-      "https://smapey.com/invoicing-software-for-contractors",
+      "https://smapey.com/invoice/invoicing-software-for-contractors",
   },
 }
 

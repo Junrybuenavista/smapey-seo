@@ -7,7 +7,7 @@ export const metadata: Metadata = {
     "Understand what a pro forma invoice is, when to use it, and how to create one. Includes examples and free templates for businesses.",
   alternates: {
     canonical:
-      "https://smapey.com/pro-forma-invoice",
+      "https://smapey.com/invoice/pro-forma-invoice",
   },
 }
 

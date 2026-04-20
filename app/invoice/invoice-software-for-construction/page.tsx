@@ -4,7 +4,7 @@ export const metadata = {
     "Best invoice software for construction companies. Manage estimates, progress billing, and payments in one place. Built for contractors.",
   alternates: {
     canonical:
-      "https://smapey.com/invoice-software-for-construction",
+      "https://smapey.com/invoice/invoice-software-for-construction",
   },
 }
 

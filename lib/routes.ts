@@ -7,7 +7,7 @@ export const SEO_ROUTES = [
   "how-to-create-invoice",
   "how-to-send-invoice",
   "how-to-make-invoice",
-  "-example",
+  "invoice-example",
   "free-invoice-template",
   "invoicing-software-for-contractors",
 ]

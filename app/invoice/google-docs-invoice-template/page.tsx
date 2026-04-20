@@ -7,7 +7,7 @@ export const metadata: Metadata = {
     "Download a free Google Docs invoice template and learn how to create invoices بسهولة. Or switch to automated invoicing software.",
   alternates: {
     canonical:
-      "https://smapey.com/google-docs-invoice-template",
+      "https://smapey.com/invoice/google-docs-invoice-template",
   },
 }
 

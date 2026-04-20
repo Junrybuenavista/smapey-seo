@@ -7,7 +7,7 @@ export const metadata: Metadata = {
     "Discover the best invoicing software for freelancers. Automate invoices, track payments, and get paid faster with Smapey.",
   alternates: {
     canonical:
-      "https://smapey.com/invoicing-software-for-freelancers",
+      "https://smapey.com/invoice/invoicing-software-for-freelancers",
   },
 }
 

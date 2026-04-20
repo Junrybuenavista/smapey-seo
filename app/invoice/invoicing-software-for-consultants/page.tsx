@@ -7,7 +7,7 @@ export const metadata: Metadata = {
     "Discover the best invoicing software for consultants. Automate billing, track payments, and get paid faster with simple tools.",
   alternates: {
     canonical:
-      "https://smapey.com/invoicing-software-for-consultants",
+      "https://smapey.com/invoice/invoicing-software-for-consultants",
   },
 }
 

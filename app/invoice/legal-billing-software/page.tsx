@@ -7,7 +7,7 @@ export const metadata: Metadata = {
     "Automate invoices, track billable hours, and get paid faster with the best legal billing software for lawyers and law firms.",
   alternates: {
     canonical:
-      "https://smapey.com/legal-billing-software",
+      "https://smapey.com/invoice/legal-billing-software",
   },
 }
 

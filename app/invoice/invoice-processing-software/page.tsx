@@ -7,7 +7,7 @@ export const metadata: Metadata = {
     "Automate billing with invoice processing software. Save time, reduce errors, and get paid faster with Smapey.",
   alternates: {
     canonical:
-      "https://smapey.com/invoice-processing-software",
+      "https://smapey.com/invoice/invoice-processing-software",
   },
 }
 

@@ -7,7 +7,7 @@ export const metadata: Metadata = {
     "Learn what an invoice is, how it works, what to include, and how to create professional invoices using modern invoicing software.",
   alternates: {
     canonical:
-      "https://smapey.com/what-is-an-invoice",
+      "https://smapey.com/invoice/what-is-an-invoice",
   },
 }
 

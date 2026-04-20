@@ -10,13 +10,13 @@ export const metadata = {
     "download invoice pdf free",
   ],
   alternates: {
-    canonical: "https://smapey.com/invoice/invoice/invoice-free-tool",
+    canonical: "https://smapey.cominvoice/invoice-free-tool",
   },
   openGraph: {
     title: "Invoice Free Tool – Free Online Invoice Generator",
     description:
       "Create professional invoices instantly. 100% free, no signup required.",
-    url: "https://smapey.com/invoice/invoice-free-tool",
+    url: "https://smapey.com/invoice-free-tool",
     siteName: "Smapey",
     type: "website",
   },
