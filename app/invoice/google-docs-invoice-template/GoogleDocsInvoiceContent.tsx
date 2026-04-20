@@ -28,7 +28,7 @@ export default function GoogleDocsInvoiceContent() {
             <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-xl shadow-sm">
               Download Free Template
             </button>
-            <Link href="how-it-works">
+            <Link href="/invoice/how-it-works">
             <button className="bg-white border hover:bg-gray-50 px-6 py-3 rounded-xl">
                 Try Smapey Free
             </button>
@@ -142,7 +142,7 @@ export default function GoogleDocsInvoiceContent() {
           <p className="text-gray-600 mb-6">
             Save time, reduce errors, and get paid faster with smart invoicing software.
           </p>
-          <Link href="how-it-works">
+          <Link href="/invoice/how-it-works">
           <button className="bg-blue-600 hover:bg-blue-700 transition text-white px-6 py-3 rounded-xl">
             Try Smapey Free
           </button>

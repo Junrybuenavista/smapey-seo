@@ -37,14 +37,14 @@ export default function HowToMakeInvoicePage() {
           {/* CTA */}
           <div className="mt-10 flex justify-center gap-4 flex-wrap">
             <Link
-              href="invoice-generation-online"
+              href="/invoice/invoice-generation-online"
               className="bg-blue-600 text-white px-8 py-4 rounded-2xl shadow-lg hover:bg-blue-700 transition font-semibold"
             >
               Create Free Invoice
             </Link>
 
             <Link
-              href="how-to-create-invoice"
+              href="/invoice/how-to-create-invoice"
               className="px-8 py-4 rounded-2xl border border-gray-300 hover:bg-gray-100 transition"
             >
               Learn Step-by-Step
@@ -181,7 +181,7 @@ export default function HowToMakeInvoicePage() {
         </p>
 
         <Link
-          href="invoice-generation-online"
+          href="/invoice/invoice-generation-online"
           className="bg-white text-blue-600 px-8 py-4 rounded-2xl font-semibold shadow hover:bg-gray-100"
         >
           Generate Invoice Now
@@ -330,7 +330,7 @@ export default function HowToMakeInvoicePage() {
           </p>
 
           <a
-            href="invoice-generation-online"
+            href="/invoice/invoice-generation-online"
             className="inline-block mt-8 bg-white text-blue-600 px-8 py-4 rounded-xl font-semibold hover:bg-gray-100"
           >
             Create Free Invoice →

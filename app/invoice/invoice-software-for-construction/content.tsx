@@ -32,7 +32,7 @@ export default function ConstructionInvoiceContent() {
 
             <div className="mt-8 flex gap-4">
               <Link
-                href="how-it-works"
+                href="/invoice/how-it-works"
                 className="px-8 py-4 bg-black text-white rounded-xl text-lg hover:scale-105 transition shadow-lg"
               >
                 View Invoicing App →
@@ -125,7 +125,7 @@ export default function ConstructionInvoiceContent() {
 
           <div className="mt-8">
             <Link
-              href="https://app.smapey.com/register?product=INVOICE&plan=FREE"
+              href="/invoice/https://app.smapey.com/register?product=INVOICE&plan=FREE"
               className="px-10 py-4 bg-white text-black rounded-xl text-lg hover:scale-105 transition shadow-lg"
             >
               Start Free Trial

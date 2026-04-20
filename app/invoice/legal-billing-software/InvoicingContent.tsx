@@ -40,14 +40,14 @@ export default function InvoicingContent() {
 
           <div className="flex gap-4 mt-6">
             <Link
-              href="how-it-works"
+              href="/invoice/how-it-works"
               className="bg-black text-white px-6 py-3 rounded-lg"
             >
               View Invoicing App →
             </Link>
 
             <Link
-              href="https://app.smapey.com/register?product=INVOICE&plan=FREE"
+              href="/invoice/https://app.smapey.com/register?product=INVOICE&plan=FREE"
               className="border px-6 py-3 rounded-lg"
             >
               Start Free
@@ -204,7 +204,7 @@ export default function InvoicingContent() {
           </p>
 
           <Link
-            href="https://app.smapey.com/register?product=INVOICE&plan=FREE"
+            href="/invoice/https://app.smapey.com/register?product=INVOICE&plan=FREE"
             className="inline-block mt-6 bg-white text-black px-6 py-3 rounded-lg"
           >
             Start Free Trial

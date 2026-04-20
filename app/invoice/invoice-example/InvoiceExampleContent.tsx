@@ -18,14 +18,14 @@ export default function InvoiceExamplePage() {
 
         <div className="mt-8 flex justify-center gap-4 flex-wrap">
           <a
-            href="invoice-generation-online"
+            href="/invoice/invoice-generation-online"
             className="bg-blue-600 text-white px-6 py-3 rounded-lg shadow hover:bg-blue-700 transition font-semibold"
           >
             Free Genarator
           </a>
 
           <a
-            href="free-invoice-template"
+            href="/invoice/free-invoice-template"
             className="border px-6 py-3 rounded-lg hover:bg-gray-100 transition"
           >
             Free Templates
@@ -289,13 +289,13 @@ export default function InvoiceExamplePage() {
   </h2>
 
   <div className="mt-6 flex flex-wrap justify-center gap-4 text-blue-600">
-    <a href="free-invoice-template" className="hover:underline">
+    <a href="/invoice/free-invoice-template" className="hover:underline">
       Free Invoice Templates
     </a>
-    <a href="invoice-generation-online" className="hover:underline">
+    <a href="/invoice/invoice-generation-online" className="hover:underline">
       Invoice Generator
     </a>
-    <a href="how-to-send-invoice" className="hover:underline">
+    <a href="/invoice/how-to-send-invoice" className="hover:underline">
       How to send Invoice
     </a>
   </div>
@@ -313,7 +313,7 @@ export default function InvoiceExamplePage() {
         </p>
 
         <a
-          href="https://app.smapey.com/register?product=INVOICE&plan=FREE"
+          href="/invoice/https://app.smapey.com/register?product=INVOICE&plan=FREE"
           className="inline-block mt-6 bg-white text-blue-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition"
         >
           Try Smapey Free

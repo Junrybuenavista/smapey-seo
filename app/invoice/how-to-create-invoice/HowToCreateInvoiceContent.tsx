@@ -20,12 +20,12 @@ export default function HowToCreateInvoicePage() {
           </p>
 
           <div className="flex flex-col md:flex-row gap-4 justify-center">
-            <Link href="invoice-generation-online">
+            <Link href="/invoice/invoice-generation-online">
               <button className="bg-white text-blue-600 px-6 py-3 rounded-xl font-semibold shadow hover:scale-105 transition">
                 Create Invoice Free
               </button>
             </Link>
-            <Link href="free-invoice-template">
+            <Link href="/invoice/free-invoice-template">
               <button className="border border-white px-6 py-3 rounded-xl font-semibold hover:bg-white hover:text-blue-600 transition">
                 Download Templates
               </button>
@@ -194,7 +194,7 @@ export default function HowToCreateInvoicePage() {
           <h2 className="text-3xl font-bold mb-4">Create Your Invoice Now</h2>
           <p className="text-blue-100 mb-6">Generate, send, and track invoices in seconds.</p>
 
-          <Link href="https://app.smapey.com/register?product=INVOICE&plan=FREE">
+          <Link href="/invoice/https://app.smapey.com/register?product=INVOICE&plan=FREE">
             <button className="bg-white text-blue-600 px-8 py-3 rounded-xl font-semibold shadow hover:scale-105 transition">
               Try Our Smapey App
             </button>

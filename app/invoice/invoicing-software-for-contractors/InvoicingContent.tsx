@@ -65,14 +65,14 @@ const faqs = [
       {/* CTA */}
       <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
         <a
-          href="how-it-works"
+          href="/invoice/how-it-works"
           className="bg-yellow-500 text-black px-6 py-3 rounded-xl font-semibold shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300"
         >
           View Invoicing App →
         </a>
 
         <a
-          href="https://app.smapey.com/register?product=INVOICE&plan=FREE"
+          href="/invoice/https://app.smapey.com/register?product=INVOICE&plan=FREE"
           className="border border-gray-300 px-6 py-3 rounded-xl font-semibold text-gray-700 hover:border-yellow-500 hover:text-yellow-600 transition-all duration-300"
         >
           Start Free
@@ -150,7 +150,7 @@ const faqs = [
         </h2>
 
         <a
-          href="https://app.smapey.com/register?product=INVOICE&plan=FREE"
+          href="/invoice/https://app.smapey.com/register?product=INVOICE&plan=FREE"
           className="inline-block mt-6 bg-white text-black px-6 py-3 rounded-xl hover:scale-105 transition"
         >
           Start Free Trial

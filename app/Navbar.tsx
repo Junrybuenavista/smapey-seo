@@ -48,7 +48,7 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
 
         {/* LOGO */}
-        <Link href="" className="flex items-center gap-2 text-xl font-extrabold tracking-wide text-blue-600">
+        <Link href="/invoice/" className="flex items-center gap-2 text-xl font-extrabold tracking-wide text-blue-600">
           <img src="/logo.svg" alt="Smapey" className="h-9 w-auto" />
           SMAPEY
         </Link>
@@ -58,7 +58,7 @@ export default function Navbar() {
 
           <div className="flex items-center gap-6 text-sm font-medium">
 
-            <Link href="invoice-free-tool" className="text-gray-600 hover:text-blue-600">
+            <Link href="/invoice/invoice-free-tool" className="text-gray-600 hover:text-blue-600">
               Free Tools
             </Link>
 
@@ -79,7 +79,7 @@ export default function Navbar() {
                 <div className="absolute left-0 mt-4 w-64 bg-white border border-gray-200 rounded-2xl shadow-xl p-2 z-50">
 
                   <Link
-                    href=""
+                    href="/invoice/"
                     onClick={() => setProductOpen(false)}
                     className="flex gap-3 px-4 py-3 rounded-xl hover:bg-blue-50"
                   >
@@ -91,7 +91,7 @@ export default function Navbar() {
                   </Link>
 
                   <Link
-                    href="industry"
+                    href="/invoice/industry"
                     onClick={() => setProductOpen(false)}
                     className="flex gap-3 px-4 py-3 rounded-xl hover:bg-blue-50"
                   >
@@ -103,7 +103,7 @@ export default function Navbar() {
                   </Link>
 
                       <Link
-                    href="customers"
+                    href="/invoice/customers"
                     onClick={() => setProductOpen(false)}
                     className="flex gap-3 px-4 py-3 rounded-xl hover:bg-blue-50"
                   >
@@ -115,7 +115,7 @@ export default function Navbar() {
                   </Link>
 
                   <Link
-                    href="faq"
+                    href="/invoice/faq"
                     onClick={() => setProductOpen(false)}
                     className="flex gap-3 px-4 py-3 rounded-xl hover:bg-blue-50"
                   >
@@ -130,10 +130,10 @@ export default function Navbar() {
               )}
             </div>
 
-            <Link href="how-it-works" className="text-gray-600 hover:text-blue-600">
+            <Link href="/invoice/how-it-works" className="text-gray-600 hover:text-blue-600">
               How it works
             </Link>
-            <Link href="how-it-works" className="text-gray-600 hover:text-blue-600">
+            <Link href="/invoice/how-it-works" className="text-gray-600 hover:text-blue-600">
               Learning Hub
             </Link>
 
@@ -147,7 +147,7 @@ export default function Navbar() {
 
             {!token && (
               <Link
-                href="https://app.smapey.com/register?product=INVOICE&plan=FREE"
+                href="/invoice/https://app.smapey.com/register?product=INVOICE&plan=FREE"
                 className="px-5 py-2 text-sm font-semibold text-white bg-gradient-to-r from-blue-600 to-blue-500 rounded-lg"
               >
                 Get Started
@@ -169,7 +169,7 @@ export default function Navbar() {
       {menuOpen && (
         <div className="md:hidden px-6 pb-6 space-y-4 bg-white border-t">
 
-          <Link href="customers" className="block text-gray-700">
+          <Link href="/invoice/customers" className="block text-gray-700">
             Customers
           </Link>
 
@@ -190,7 +190,7 @@ export default function Navbar() {
               <div className="mt-2 space-y-2 pl-2">
 
                 <Link
-                  href=""
+                  href="/invoice/"
                   onClick={() => setMobileProductOpen(false)}
                   className="flex gap-2 text-sm"
                 >
@@ -199,7 +199,7 @@ export default function Navbar() {
                 </Link>
 
                 <Link
-                  href="industry"
+                  href="/invoice/industry"
                   onClick={() => setMobileProductOpen(false)}
                   className="flex gap-2 text-sm"
                 >
@@ -208,7 +208,7 @@ export default function Navbar() {
                 </Link>
 
                 <Link
-                  href="faq"
+                  href="/invoice/faq"
                   onClick={() => setMobileProductOpen(false)}
                   className="flex gap-2 text-sm"
                 >
@@ -220,7 +220,7 @@ export default function Navbar() {
             )}
           </div>
 
-          <Link href="how-it-works" className="block text-gray-700">
+          <Link href="/invoice/how-it-works" className="block text-gray-700">
             How it works
           </Link>
 
@@ -232,7 +232,7 @@ export default function Navbar() {
 
             {!token && (
               <Link
-                href="https://app.smapey.com/register?product=INVOICE&plan=FREE"
+                href="/invoice/https://app.smapey.com/register?product=INVOICE&plan=FREE"
                 className="w-full text-center py-2 rounded-lg text-white bg-blue-600"
               >
                 Get Started

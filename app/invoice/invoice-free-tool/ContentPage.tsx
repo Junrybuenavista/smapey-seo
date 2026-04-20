@@ -35,7 +35,7 @@ export default function InvoiceFreeToolPage() {
 
           <div className="flex justify-center gap-4 mt-8 flex-wrap">
             <Link
-              href="invoice-generation-online"
+              href="/invoice/invoice-generation-online"
               className="bg-black text-white px-7 py-3.5 rounded-xl flex items-center gap-2 hover:scale-105 transition"
             >
               <Wand2 size={18} />
@@ -43,7 +43,7 @@ export default function InvoiceFreeToolPage() {
             </Link>
 
             <Link
-              href="free-invoice-template"
+              href="/invoice/free-invoice-template"
               className="border px-7 py-3.5 rounded-xl flex items-center gap-2 hover:bg-gray-100 transition"
             >
               <LayoutTemplate size={18} />
@@ -102,7 +102,7 @@ export default function InvoiceFreeToolPage() {
               </p>
 
               <Link
-                href="invoice-generation-online"
+                href="/invoice/invoice-generation-online"
                 className="flex items-center gap-2 font-medium group-hover:gap-3 transition"
               >
                 Start Generating <ArrowRight size={16} />
@@ -119,7 +119,7 @@ export default function InvoiceFreeToolPage() {
               </p>
 
               <Link
-                href="free-invoice-template"
+                href="/invoice/free-invoice-template"
                 className="flex items-center gap-2 font-medium group-hover:gap-3 transition"
               >
                 View Templates <ArrowRight size={16} />
@@ -170,7 +170,7 @@ export default function InvoiceFreeToolPage() {
             </p>
 
             <Link
-              href="invoice-generation-online"
+              href="/invoice/invoice-generation-online"
               className="bg-white text-black px-8 py-3 rounded-xl inline-flex items-center gap-2 hover:opacity-90"
             >
               Create Invoice Now

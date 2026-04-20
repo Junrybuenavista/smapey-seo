@@ -20,7 +20,7 @@ export default function WhatIsInvoicePage() {
           </p>
 
           <Link
-            href="invoice-generation-online"
+            href="/invoice/invoice-generation-online"
             className="bg-white text-blue-600 px-6 py-3 rounded-xl font-semibold shadow hover:bg-gray-100 transition"
           >
             Create Free Invoice →
@@ -226,7 +226,7 @@ export default function WhatIsInvoicePage() {
           </p>
 
           <Link
-            href="invoice-generation-online"
+            href="/invoice/invoice-generation-online"
             className="bg-white text-blue-600 px-6 py-3 rounded-xl font-semibold shadow hover:bg-gray-100 transition"
           >
             Start Free →

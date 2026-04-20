@@ -82,7 +82,7 @@ relative left-1/2 right-1/2 -mx-[50vw] w-screen px-6 lg:px-20 text-white">
 
   {/* CTA */}
   <div className="pt-6 space-y-3">
-    <Link href="https://app.smapey.com/register?product=INVOICE&plan=FREE">
+    <Link href="/invoice/https://app.smapey.com/register?product=INVOICE&plan=FREE">
       <button className="px-8 py-4 bg-white text-black rounded-xl text-lg font-medium hover:scale-105 transition shadow-lg">
         Start Free & Try It →
       </button>

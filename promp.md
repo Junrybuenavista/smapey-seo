@@ -315,7 +315,7 @@ OUTPUT FORMAT:
 DO NOT MODIFY STRUCTURE:
 
 <Link
-  href="{{slug}}"
+  href="/invoice/{{slug}}"
   className="group border rounded-xl p-5 bg-white transition-all duration-300 hover:shadow-xl hover:-translate-y-1 hover:border-yellow-500"
 >
   <h3 className="font-semibold text-lg transition-colors group-hover:text-yellow-600">

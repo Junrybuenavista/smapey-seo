@@ -16,12 +16,12 @@ export default function HowToSendInvoicePage() {
           </p>
 
           <div className="flex gap-4 justify-center flex-col md:flex-row">
-            <Link href="invoice-generation-online">
+            <Link href="/invoice/invoice-generation-online">
               <button className="bg-white text-blue-600 px-6 py-3 rounded-xl font-semibold shadow hover:scale-105 transition">
                 Create & Send Invoice Free
               </button>
             </Link>
-            <Link href="free-invoice-template">
+            <Link href="/invoice/free-invoice-template">
               <button className="border border-white px-6 py-3 rounded-xl font-semibold hover:bg-white hover:text-blue-600 transition">
                 Download Template
               </button>
@@ -40,7 +40,7 @@ export default function HowToSendInvoicePage() {
 
         <p className="mt-4 text-gray-600">
           If you haven’t created one yet, check our guide on{" "}
-          <Link href="how-to-create-invoice" className="text-blue-600 font-medium underline">
+          <Link href="/invoice/how-to-create-invoice" className="text-blue-600 font-medium underline">
             how to create an invoice
           </Link>
           .
@@ -110,7 +110,7 @@ export default function HowToSendInvoicePage() {
 
           <p className="text-center mt-8 text-gray-600">
             Want to compare tools? See our guide on{" "}
-            <Link href="invoice-processing-software" className="text-blue-600 underline">
+            <Link href="/invoice/invoice-processing-software" className="text-blue-600 underline">
               invoice processing software
             </Link>
             .
@@ -168,10 +168,10 @@ Thanks,
           <h2 className="text-3xl font-bold mb-6">Learn More About Invoicing</h2>
 
           <div className="flex flex-wrap gap-4 justify-center">
-            <Link href="invoice-example" className="text-blue-600 underline">Invoice Example</Link>
-            <Link href="free-invoice-template" className="text-blue-600 underline">Free Invoice Templates</Link>
-            <Link href="how-to-create-invoice" className="text-blue-600 underline">Create Invoice Guide</Link>
-            <Link href="invoice-free-tool" className="text-blue-600 underline">Free Invoice Tool</Link>
+            <Link href="/invoice/invoice-example" className="text-blue-600 underline">Invoice Example</Link>
+            <Link href="/invoice/free-invoice-template" className="text-blue-600 underline">Free Invoice Templates</Link>
+            <Link href="/invoice/how-to-create-invoice" className="text-blue-600 underline">Create Invoice Guide</Link>
+            <Link href="/invoice/invoice-free-tool" className="text-blue-600 underline">Free Invoice Tool</Link>
           </div>
         </div>
       </section>
@@ -182,7 +182,7 @@ Thanks,
           <h2 className="text-3xl font-bold mb-4">Create & Send Your Invoice Now</h2>
           <p className="text-blue-100 mb-6">Start sending professional invoices in minutes.</p>
 
-          <Link href="https://app.smapey.com/register?product=INVOICE&plan=FREE">
+          <Link href="/invoice/https://app.smapey.com/register?product=INVOICE&plan=FREE">
             <button className="bg-white text-blue-600 px-8 py-3 rounded-xl font-semibold shadow hover:scale-105 transition">
               Try Our Smapey App
             </button>

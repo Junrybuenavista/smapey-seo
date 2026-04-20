@@ -19,14 +19,14 @@ export default function FreelanceInvoiceGuide() {
 
         <div className="mt-8 flex justify-center gap-4 flex-wrap">
           <a
-            href="invoice-generation-online"
+            href="/invoice/invoice-generation-online"
             className="bg-blue-600 text-white px-6 py-3 rounded-lg shadow hover:bg-blue-700 transition font-semibold"
           >
             Free Invoice Generator
           </a>
 
           <a
-            href="free-invoice-template"
+            href="/invoice/free-invoice-template"
             className="border px-6 py-3 rounded-lg hover:bg-gray-100 transition"
           >
             Free Invoice Template
@@ -173,7 +173,7 @@ export default function FreelanceInvoiceGuide() {
 
         <div className="mt-6">
           <a
-            href="https://app.smapey.com/register?product=INVOICE&plan=FREE"
+            href="/invoice/https://app.smapey.com/register?product=INVOICE&plan=FREE"
             className="bg-blue-600 text-white px-6 py-3 rounded-lg"
           >
             Create Invoice in Seconds →
@@ -239,7 +239,7 @@ export default function FreelanceInvoiceGuide() {
         </p>
 
         <a
-          href="https://app.smapey.com/register?product=INVOICE&plan=FREE"
+          href="/invoice/https://app.smapey.com/register?product=INVOICE&plan=FREE"
           className="inline-block mt-6 bg-white text-blue-600 px-6 py-3 rounded-lg font-semibold"
         >
           Try Smapey Free

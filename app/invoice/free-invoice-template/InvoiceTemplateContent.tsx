@@ -682,7 +682,7 @@ const downloadHTML = async (html: string) => {
             </p>
 
             <Link
-          href="https://app.smapey.com/register?product=INVOICE&plan=FREE"
+          href="/invoice/https://app.smapey.com/register?product=INVOICE&plan=FREE"
           className="inline-block bg-white text-blue-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition"
         >
           Create Free Account
