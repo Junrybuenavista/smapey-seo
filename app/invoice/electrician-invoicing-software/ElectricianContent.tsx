@@ -1,196 +1,174 @@
 "use client"
 
 import Link from "next/link"
-import InternalLinks from "@/components/InternalLinks"
 import Image from "next/image"
-import {
-  FileText,
-  CreditCard,
-  BarChart,
-  Zap,
-} from "lucide-react"
+import { FileText, CreditCard, BarChart3, Zap, CheckCircle2, ArrowRight, ChevronDown } from "lucide-react"
 import { useState } from "react"
+import InternalLinks from "@/components/InternalLinks"
 
 const faqs = [
-  {
-    q: "What should an electrician invoice include?",
-    a: "An electrician invoice should include your business details, client information, services provided, labor and material costs, total amount, and payment terms. Using an electrician invoice template ensures consistency and professionalism.",
-  },
-  {
-    q: "Is there a free electrician invoice template?",
-    a: "Yes, you can use a free electrician invoice template, but most lack automation. With Smapey, you get a free invoicing tool plus automation, tracking, and online payments.",
-  },
-  {
-    q: "Can I create electrician invoices online?",
-    a: "Yes, Smapey allows electricians to create invoices online instantly. You can generate, send, and manage invoices from anywhere.",
-  },
-  {
-    q: "How do electricians track payments?",
-    a: "Electricians can track payments using invoicing software that shows paid, pending, and overdue invoices in one dashboard.",
-  },
-  {
-    q: "What is the best invoicing software for electricians?",
-    a: "The best invoicing software for electricians includes automation, payment tracking, and estimate-to-invoice workflow—like Smapey.",
-  },
-  {
-    q: "Can I convert estimates into invoices?",
-    a: "Yes, Smapey lets you convert estimates into invoices in one click, making your workflow faster and more efficient.",
-  },
+  { q: "What should an electrician invoice include?", a: "An electrician invoice should include your business details, client information, services provided, labor and material costs, total amount, and payment terms. Using an electrician invoice template ensures consistency and professionalism." },
+  { q: "Is there a free electrician invoice template?", a: "Yes, you can use a free electrician invoice template, but most lack automation. With Smapey, you get a free invoicing tool plus automation, tracking, and online payments." },
+  { q: "Can I create electrician invoices online?", a: "Yes, Smapey allows electricians to create invoices online instantly. You can generate, send, and manage invoices from anywhere." },
+  { q: "How do electricians track payments?", a: "Electricians can track payments using invoicing software that shows paid, pending, and overdue invoices in one dashboard." },
+  { q: "What is the best invoicing software for electricians?", a: "The best invoicing software for electricians includes automation, payment tracking, and estimate-to-invoice workflow—like Smapey." },
+  { q: "Can I convert estimates into invoices?", a: "Yes, Smapey lets you convert estimates into invoices in one click, making your workflow faster and more efficient." },
 ]
 
-export default function InvoicingContent() {
+export default function ElectricianContent() {
   const [openIndex, setOpenIndex] = useState<number | null>(null)
 
   return (
     <>
     <main>
-
       {/* HERO */}
-      <section className="py-20 bg-gradient-to-b from-yellow-50 to-white">
-        <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-10 items-center">
+      <section className="relative bg-[#060D1F] text-white overflow-hidden">
+        <div className="absolute inset-0 opacity-[0.04]" style={{ backgroundImage: "linear-gradient(#fff 1px,transparent 1px),linear-gradient(90deg,#fff 1px,transparent 1px)", backgroundSize: "60px 60px" }} />
+        <div className="absolute top-0 left-1/3 w-[500px] h-[500px] bg-yellow-500/10 blur-[140px] rounded-full pointer-events-none" />
 
-          {/* LEFT */}
-          <div>
-            <span className="bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-sm font-medium">
-              Built for Freelancers 🚀
-            </span>
-
-            <h1 className="text-4xl md:text-5xl font-bold mt-4">
-              Electrician Invoice Template That Gets You Paid Faster
+        <div className="relative max-w-7xl mx-auto px-6 lg:px-12 py-24 lg:py-32 grid lg:grid-cols-2 gap-14 items-center">
+          <div className="space-y-7">
+            <div className="inline-flex items-center gap-2 bg-yellow-500/10 border border-yellow-500/20 text-yellow-300 text-sm font-medium px-4 py-1.5 rounded-full">
+              <Zap size={13} /> Built for Electricians
+            </div>
+            <h1 className="text-4xl lg:text-5xl font-bold leading-tight">
+              Electrician Invoicing Software That Gets You{" "}
+              <span className="bg-gradient-to-r from-yellow-400 to-orange-400 bg-clip-text text-transparent">Paid Faster</span>
             </h1>
-
-            <p className="text-lg text-gray-600 mt-4">
-              Stop using spreadsheets and outdated electrician invoice templates. 
-              Create, send, and track invoices in seconds with our smart invoicing app.
+            <p className="text-gray-400 text-lg leading-relaxed max-w-xl">
+              Stop using spreadsheets and outdated templates. Create, send, and track electrician invoices in seconds — with online payments built in.
             </p>
-
-            <p className="text-gray-600 mt-3">
-              Smapey helps electricians manage billing software, automate invoices, 
-              and streamline estimate and invoice workflow for faster payments.
-            </p>
-
-            <div className="flex gap-4 mt-6 flex-wrap">
-              <Link
-                href="/invoice/how-it-works"
-                className="bg-yellow-500 text-white px-6 py-3 rounded-xl shadow-md hover:shadow-lg hover:-translate-y-1 transition"
-              >
-                View Invoicing App →
+            <div className="flex flex-col sm:flex-row gap-4 pt-2">
+              <Link href="https://app.smapey.com/register?product=INVOICE&plan=FREE">
+                <button className="group flex items-center gap-2 px-7 py-3.5 bg-yellow-500 hover:bg-yellow-400 text-black rounded-xl font-semibold transition-all shadow-lg shadow-yellow-500/20 hover:scale-[1.02]">
+                  Start Free Trial <ArrowRight size={16} className="group-hover:translate-x-0.5 transition-transform" />
+                </button>
               </Link>
-
-              <Link
-                href="https://app.smapey.com/register?product=INVOICE&plan=FREE"
-                className="border border-gray-300 px-6 py-3 rounded-xl hover:border-yellow-500 hover:text-yellow-600 transition"
-              >
-                Start Free
+              <Link href="/invoice/how-it-works">
+                <button className="px-7 py-3.5 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl font-medium transition-all">
+                  View Invoicing App
+                </button>
               </Link>
+            </div>
+            <div className="flex flex-wrap gap-5 text-sm text-gray-500 pt-1">
+              {["No credit card required", "Cancel anytime", "Setup in minutes"].map(t => (
+                <span key={t} className="flex items-center gap-1.5"><CheckCircle2 size={13} className="text-green-400" />{t}</span>
+              ))}
             </div>
           </div>
 
-          {/* RIGHT */}
-          <div className="relative">
-            <div className="absolute inset-0 bg-yellow-300 blur-3xl opacity-20"></div>
-            <Image
-              src="/images/electrician.png"
-              alt="electrician invoice template dashboard UI"
-              width={600}
-              height={400}
-              className="rounded-2xl shadow-xl border relative"
-            />
+          <div className="relative hidden lg:flex items-center justify-end">
+            <div className="absolute inset-0 bg-yellow-500/5 blur-3xl rounded-3xl" />
+            <div className="relative bg-white/5 border border-white/10 rounded-2xl p-8 w-full max-w-md space-y-5">
+              <p className="text-xs text-gray-500 uppercase tracking-widest">Invoice Dashboard</p>
+              {[
+                { label: "Job #E-042 — Panel upgrade", amount: "$1,800", status: "Paid", color: "text-green-400 bg-green-500/10" },
+                { label: "Job #E-043 — Wiring repair", amount: "$450", status: "Pending", color: "text-yellow-400 bg-yellow-500/10" },
+                { label: "Job #E-044 — EV charger install", amount: "$2,200", status: "Sent", color: "text-blue-400 bg-blue-500/10" },
+              ].map(item => (
+                <div key={item.label} className="flex items-center justify-between py-3 border-b border-white/5 last:border-0">
+                  <div>
+                    <p className="text-sm font-medium">{item.label}</p>
+                    <p className="text-xs text-gray-500 mt-0.5">{item.amount}</p>
+                  </div>
+                  <span className={`text-xs font-semibold px-2.5 py-1 rounded-full ${item.color}`}>{item.status}</span>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
       {/* FEATURES */}
-      <section className="py-20 max-w-6xl mx-auto px-6">
-        <div className="grid md:grid-cols-2 gap-8">
+      <section className="bg-white py-24 px-6">
+        <div className="max-w-7xl mx-auto space-y-14">
+          <div className="text-center max-w-2xl mx-auto space-y-4">
+            <span className="text-sm font-semibold text-blue-600 uppercase tracking-widest">Features</span>
+            <h2 className="text-4xl font-bold text-gray-900">Everything Electricians Need to Get Paid</h2>
+          </div>
 
-          <Feature
-            icon={<Zap />}
-            title="Invoice Automation"
-            desc="Automatically generate invoices for electrical jobs and recurring clients."
-          />
-
-          <Feature
-            icon={<CreditCard />}
-            title="Online Payments"
-            desc="Accept payments online and reduce delays with fast checkout options."
-          />
-
-          <Feature
-            icon={<BarChart />}
-            title="Payment Tracking"
-            desc="Track paid, pending, and overdue invoices in real-time."
-          />
-
-          <Feature
-            icon={<FileText />}
-            title="Reporting & Insights"
-            desc="Get financial insights and improve your billing workflow."
-          />
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              { icon: <Zap size={22} />, title: "Invoice Automation", desc: "Automatically generate invoices for electrical jobs and recurring clients.", color: "bg-yellow-50 text-yellow-600" },
+              { icon: <CreditCard size={22} />, title: "Online Payments", desc: "Accept payments online and reduce delays with fast checkout options.", color: "bg-blue-50 text-blue-600" },
+              { icon: <BarChart3 size={22} />, title: "Payment Tracking", desc: "Track paid, pending, and overdue invoices in real-time.", color: "bg-green-50 text-green-600" },
+              { icon: <FileText size={22} />, title: "Reporting & Insights", desc: "Get financial insights and improve your billing workflow.", color: "bg-purple-50 text-purple-600" },
+            ].map(({ icon, title, desc, color }) => (
+              <div key={title} className="p-6 bg-white border border-gray-100 rounded-2xl shadow-sm hover:shadow-md hover:-translate-y-1 transition-all">
+                <div className={`w-10 h-10 rounded-xl flex items-center justify-center mb-4 ${color}`}>{icon}</div>
+                <h3 className="font-semibold text-gray-900 mb-2">{title}</h3>
+                <p className="text-sm text-gray-500 leading-relaxed">{desc}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* SEO CONTENT */}
-      <section className="py-16 max-w-3xl mx-auto px-6 text-center">
-        <p className="text-gray-600 leading-relaxed">
-          Smapey is more than just an electrician invoice template—it’s a complete contractor invoicing app.
-          Whether you're an electrician, plumber, or construction professional, our billing software helps you
-          manage your estimate and invoice workflow efficiently. Create professional invoices, track payments,
-          and grow your business with ease.
-        </p>
+      {/* WHY SMAPEY */}
+      <section className="bg-gray-50 py-24 px-6">
+        <div className="max-w-5xl mx-auto space-y-10">
+          <div className="text-center space-y-4">
+            <span className="text-sm font-semibold text-blue-600 uppercase tracking-widest">Why Smapey</span>
+            <h2 className="text-4xl font-bold text-gray-900">More Than Just an Invoice Template</h2>
+            <p className="text-gray-500 text-lg max-w-2xl mx-auto">
+              Smapey is a complete electrician billing software — manage your estimate and invoice workflow, automate billing, and get paid without chasing clients.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-5">
+            {[
+              "Create and send invoices in under 2 minutes",
+              "Convert estimates into invoices in one click",
+              "Accept online payments via Stripe & PayPal",
+              "Track which invoices are paid, pending, or overdue",
+              "Automate payment reminders — stop chasing clients",
+              "Professional invoice templates built for electricians",
+            ].map(item => (
+              <div key={item} className="flex items-center gap-3 bg-white border border-gray-100 rounded-xl px-4 py-3 shadow-sm text-sm text-gray-700">
+                <CheckCircle2 size={15} className="text-green-500 flex-shrink-0" />
+                {item}
+              </div>
+            ))}
+          </div>
+        </div>
       </section>
 
       {/* CTA */}
-      <section className="py-16">
-        <div className="max-w-4xl mx-auto bg-gray-900 text-white rounded-2xl text-center py-16 px-6">
-          <h2 className="text-3xl font-bold">
-            Get Paid Faster with Smarter Invoicing
-          </h2>
-
-          <Link
-            href="https://app.smapey.com/register?product=INVOICE&plan=FREE"
-            className="inline-block mt-6 bg-yellow-500 px-6 py-3 rounded-xl font-medium shadow-lg hover:shadow-xl hover:-translate-y-1 transition"
-          >
-            Start Free Trial
+      <section className="bg-[#060D1F] py-20 px-6">
+        <div className="max-w-3xl mx-auto text-center text-white space-y-6">
+          <h2 className="text-4xl font-bold">Get Paid Faster with Smarter Invoicing</h2>
+          <p className="text-gray-400 text-lg">Start sending professional electrician invoices in minutes.</p>
+          <Link href="https://app.smapey.com/register?product=INVOICE&plan=FREE">
+            <button className="group flex items-center gap-2 mx-auto px-8 py-4 bg-yellow-500 hover:bg-yellow-400 text-black rounded-xl font-semibold transition-all shadow-lg hover:scale-[1.02]">
+              Start Free Trial <ArrowRight size={16} className="group-hover:translate-x-0.5 transition-transform" />
+            </button>
           </Link>
+          <p className="text-sm text-gray-500">No credit card required</p>
         </div>
       </section>
 
       {/* FAQ */}
-      <section className="py-20 max-w-4xl mx-auto px-6">
-        <h2 className="text-3xl font-bold text-center mb-10">
-          Frequently Asked Questions
-        </h2>
-
-        <div className="space-y-4">
-          {faqs.map((faq, i) => (
-            <div
-              key={i}
-              className="border rounded-xl p-5 hover:shadow-md hover:border-yellow-500 transition cursor-pointer"
-              onClick={() =>
-                setOpenIndex(openIndex === i ? null : i)
-              }
-            >
-              <h3 className="font-semibold">{faq.q}</h3>
-              {openIndex === i && (
-                <p className="text-gray-600 mt-2">{faq.a}</p>
-              )}
-            </div>
-          ))}
+      <section className="bg-white py-24 px-6">
+        <div className="max-w-3xl mx-auto space-y-8">
+          <div className="text-center space-y-3">
+            <span className="text-sm font-semibold text-blue-600 uppercase tracking-widest">FAQ</span>
+            <h2 className="text-4xl font-bold text-gray-900">Frequently Asked Questions</h2>
+          </div>
+          <div className="space-y-3">
+            {faqs.map((faq, i) => (
+              <div key={i} className="border border-gray-100 rounded-xl bg-white shadow-sm overflow-hidden">
+                <button onClick={() => setOpenIndex(openIndex === i ? null : i)} className="w-full flex justify-between items-center p-5 text-left">
+                  <span className="font-medium text-gray-900">{faq.q}</span>
+                  <ChevronDown size={18} className={`text-gray-400 transition-transform ${openIndex === i ? "rotate-180" : ""}`} />
+                </button>
+                {openIndex === i && <div className="px-5 pb-5 text-sm text-gray-600 leading-relaxed">{faq.a}</div>}
+              </div>
+            ))}
+          </div>
         </div>
       </section>
     </main>
-       <InternalLinks />
-        </>
-  )
-}
-
-function Feature({ icon, title, desc }: any) {
-  return (
-    <div className="border rounded-xl p-6 hover:shadow-lg transition">
-      <div className="text-yellow-500 mb-3">{icon}</div>
-      <h3 className="font-semibold text-lg">{title}</h3>
-      <p className="text-gray-600 mt-2">{desc}</p>
-    </div>
+    <InternalLinks />
+    </>
   )
 }

@@ -1,665 +1,597 @@
 "use client"
-import { useState } from "react"
 import {
   Send,
   CreditCard,
-  BarChart,
+  BarChart3,
   Globe,
   Repeat,
   FileText,
+  CheckCircle2,
+  ArrowRight,
+  Zap,
+  Bell,
+  TrendingUp,
+  Shield,
 } from "lucide-react"
 import Link from "next/link"
 import Footer from "@/components/Footer"
 
-
-
 export default function InvoicingContent() {
-  const [previewImage, setPreviewImage] = useState<string | null>(null)
-
-  function Feature({
-  icon,
-  title,
-  children,
-}: {
-  icon: React.ReactNode
-  title: string
-  children: React.ReactNode
-}) {
   return (
-    <div className="p-5 border rounded-xl flex gap-4 items-start hover:shadow-lg hover:-translate-y-1 transition bg-white">
-      
-      {/* ICON */}
-      <div className="p-2 rounded-lg bg-gray-100">
-        {icon}
-      </div>
-
-      {/* CONTENT */}
-      <div>
-        <h3 className="font-semibold">{title}</h3>
-        <p className="text-sm text-gray-600 mt-1">{children}</p>
-      </div>
-
-    </div>
-  )
-}
-
-  return (
-
     <>
- <div className="max-w-5xl mx-auto px-6 py-20 space-y-12">
-<section className="py-32 bg-gradient-to-br from-[#0B1220] via-[#0F172A] to-black 
-  relative left-1/2 right-1/2 -mx-[50vw] w-screen px-6 lg:px-20 text-white">
-
-  <div className="max-w-[1400px] mx-auto grid md:grid-cols-2 gap-20 items-center">
-
-    {/* LEFT CONTENT */}
-    <div className="space-y-6">
-
-      <h1 className="text-5xl md:text-6xl font-bold leading-tight">
-        Invoicing Software That Helps You Get Paid Faster
-      </h1>
-
-      <p className="text-gray-300 text-lg max-w-xl">
-        Create invoices in minutes, send them instantly, and accept online payments without friction.
-        Smapey is invoicing software built for freelancers, agencies, startups, and small businesses
-        that need speed, simplicity, and reliable support.
-      </p>
-
-      {/* CTA */}
-      <div className="pt-6 space-y-3">
-        <Link href="/invoice/how-it-works">
-          <button className="px-8 py-4 bg-white text-black rounded-xl text-lg font-medium hover:scale-105 transition shadow-lg">
-            View Invoicing App →
-          </button>
-        </Link>
-
-        <p className="text-sm text-gray-400">
-          Start free trials and send your first invoice today.
-        </p>
-      </div>
-
-      {/* TRUST / FEATURES */}
-      <div className="flex flex-wrap gap-6 text-sm text-gray-400 pt-6">
-        <span>✔ Stripe, PayPal, Apple Pay, ACH</span>
-        <span>✔ Invoice automation</span>
-        <span>✔ Real-time tracking</span>
-      </div>
-
-    </div>
-
-    {/* RIGHT VISUAL */}
-    <div className="relative flex justify-center">
-
-      {/* glow */}
-      <div className="absolute w-[500px] h-[500px] bg-blue-500/20 blur-[120px] rounded-full"></div>
-
-      {/* CARD 1 */}
-      <div className="relative rotate-6">
-        <div className="bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl p-6 shadow-2xl w-[320px]">
-          <p className="text-sm text-gray-300">Invoice</p>
-          <p className="text-lg font-semibold mt-2">USD 1,200.00</p>
-          <p className="text-green-400 mt-2 text-sm">✔ Paid</p>
-        </div>
-      </div>
-
-      {/* CARD 2 */}
-      <div className="absolute -bottom-10 -right-10 -rotate-6">
-        <div className="bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl p-6 shadow-2xl w-[320px]">
-          <p className="text-sm text-gray-300">Invoice</p>
-          <p className="text-lg font-semibold mt-2">USD 850.00</p>
-          <p className="text-yellow-400 mt-2 text-sm">⏳ Pending</p>
-        </div>
-      </div>
-
-    </div>
-
-  </div>
-</section>
-      {/* PROBLEM */}
-<section className="py-16 px-6 bg-white">
-  <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-16 items-center">
-
-    {/* LEFT: TEXT */}
-    <div className="space-y-6">
-      <h2 className="text-4xl font-bold leading-tight">
-        Send Invoices Faster and Stop Delaying Revenue
-      </h2>
-
-      <p className="text-gray-600">
-        Most businesses do not struggle with invoicing because it is hard —
-        they struggle because it is slow.
-      </p>
-
-      <p className="text-gray-600">
-        Manual invoice templates, spreadsheets, and scattered tools lead to delayed invoices,
-        missed payments, and unstable cash flow.
-      </p>
-
-      <p className="text-gray-600">
-        Tools like QuickBooks, Xero, and Sage try to do everything — which creates complexity.
-        Meanwhile, free tools like Wave or Zoho Invoice limit features and flexibility.
-      </p>
-
-      {/* STRONG STATEMENT */}
-      <div className="bg-red-50 border border-red-100 rounded-xl p-4">
-        <p className="text-red-600 font-semibold">
-          You send invoices late — and you get paid late.
-        </p>
-      </div>
-
-      {/* BULLETS */}
-      <ul className="space-y-2 text-sm text-gray-700 pt-2">
-        <li className="flex gap-2">❌ Manual invoice creation</li>
-        <li className="flex gap-2">❌ Late payments and follow-ups</li>
-        <li className="flex gap-2">❌ Poor cash flow visibility</li>
-      </ul>
-    </div>
-
-    {/* RIGHT: IMAGE */}
-    <div className="relative flex justify-center">
-
-      {/* glow effect */}
-      <div className="absolute -inset-8 bg-red-500/10 blur-3xl rounded-2xl"></div>
-
-      <img
-        src="/invoice-problem.webp"
-        alt="Delayed invoices problem"
-        className="relative rounded-2xl shadow-2xl w-full max-w-xl"
-      />
-
-      {/* floating badge */}
-      <div className="absolute bottom-6 right-6 bg-white border rounded-lg px-4 py-2 shadow text-sm">
-        ⚠️ Invoice overdue: 14 days
-      </div>
-
-    </div>
-
-  </div>
-</section>
-<section className="py-16 px-6 bg-gray-50">
-  <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-center">
-
-    {/* LEFT: IMAGE / PRODUCT */}
-    <div className="relative flex justify-center">
-
-      {/* glow */}
-      <div className="absolute -inset-8 bg-green-500/10 blur-3xl rounded-2xl"></div>
-
-      <img
-        src="/public-invoice.png"
-        alt="Smapey invoicing dashboard"
-        className="relative rounded-2xl shadow-2xl w-full max-w-xl"
-      />
-
-      {/* floating success badge */}
-      <div className="absolute top-6 left-6 bg-white border rounded-lg px-4 py-2 shadow text-sm">
-        ✅ Paid instantly
-      </div>
-
-    </div>
-
-    {/* RIGHT: CONTENT */}
-    <div className="space-y-6">
-
-     <h2 className="text-3xl md:text-4xl font-bold leading-tight">
-        Simple Invoicing Software Built for Speed and Payments
-      </h2>
-
-      <p className="text-gray-600 text-lg">
-        Smapey is invoice automation software designed to remove friction from the entire invoicing process.
-      </p>
-
-      <p className="text-gray-600 text-lg">
-        Create customizable invoices using ready invoice templates. Deliver invoices instantly through email
-        or shareable links, and accept online payments through integrated payment gateways.
-      </p>
-
-      <p className="text-gray-600 text-lg">
-        Track invoice status in real time. Send automated reminders and payment reminders without manual follow-up.
-      </p>
-
-      {/* BENEFITS */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4 text-sm">
-
-        <div className="flex items-center gap-2">
-          <span>⚡</span> Fast invoice creation
-        </div>
-
-        <div className="flex items-center gap-2">
-          <span>💳</span> Online payments built-in
-        </div>
-
-        <div className="flex items-center gap-2">
-          <span>📊</span> Real-time tracking
-        </div>
-
-        <div className="flex items-center gap-2">
-          <span>🔔</span> Automated reminders
-        </div>
-
-      </div>
-
-      {/* FINAL LINE */}
-      <p className="text-gray-800 font-semibold pt-4">
-        This is invoicing software for small businesses that need to move fast and get paid without delay.
-      </p>
-
-    </div>
-
-  </div>
-</section>
-
-
-      {/* FEATURES FULL SEO */}
-<section className="space-y-8 ">
-  <h2 className="text-3xl md:text-4xl font-bold leading-tight text-center">
-    Everything You Need to Manage Invoices and Get Paid
-  </h2>
-
-  <div className="grid md:grid-cols-2 gap-6">
-
-    <Feature
-      icon={<FileText size={20} />}
-      title="Invoice Creation & Templates"
-    >
-      Create professional invoices instantly using customizable templates.
-    </Feature>
-
-    <Feature
-      icon={<Send size={20} />}
-      title="Send & Deliver Invoices"
-    >
-      Send invoices via email or shareable links with full control over payment terms.
-    </Feature>
-
-    <Feature
-      icon={<CreditCard size={20} />}
-      title="Online Payments"
-    >
-      Accept payments through Stripe, PayPal, Apple Pay, and more.
-    </Feature>
-
-    <Feature
-      icon={<BarChart size={20} />}
-      title="Invoice Tracking"
-    >
-      Track invoice status, overdue payments, and cash flow in real time.
-    </Feature>
-
-    <Feature
-      icon={<Repeat size={20} />}
-      title="Automation & Recurring Billing"
-    >
-      Automate reminders and recurring invoices for subscriptions and retainers.
-    </Feature>
-
-    <Feature
-      icon={<Globe size={20} />}
-      title="Multi-Currency & Team Access"
-    >
-      Work with global clients and manage invoices with your team.
-    </Feature>
-
-  </div>
-</section>
-
-
-      {/* TARGET USERS */}
-<section className="py-16 px-6 bg-white">
-  <div className="max-w-6xl mx-auto space-y-16">
-
-    {/* 🔥 HEADER */}
-    <div className="text-center max-w-3xl mx-auto space-y-4">
-     <h2 className="text-3xl md:text-4xl font-bold leading-tight">
-        Built for Freelancers, Agencies, and Small Businesses
-      </h2>
-
-      <p className="text-gray-600 text-lg">
-        Smapey works as invoicing software for freelancers who need fast invoice generation and online payments.
-        It works for agencies managing recurring invoices, team workflows, and client billing.
-        It also supports small businesses and startups that need invoice automation, payment tracking,
-        and better cash flow visibility — without the complexity of tools like QuickBooks, Xero, or Sage.
-      </p>
-    </div>
-
-    {/* 🧱 CARDS */}
-    <div className="grid md:grid-cols-3 gap-8">
-
-      {/* FREELANCERS */}
-      <div className="bg-white p-6 rounded-2xl border shadow-sm hover:shadow-lg transition space-y-4">
-        <h3 className="font-semibold text-lg">Freelancers</h3>
-        <p className="text-gray-600 text-sm">
-          Create invoices in seconds, send them instantly, and accept online payments without hassle.
-        </p>
-
-        <ul className="text-sm text-gray-500 space-y-1 pt-2">
-          <li>⚡ Fast invoice generation</li>
-          <li>💳 Online payments</li>
-          <li>📄 Ready-to-use templates</li>
-        </ul>
-      </div>
-
-      {/* AGENCIES */}
-      <div className="bg-white p-6 rounded-2xl border shadow-sm hover:shadow-lg transition space-y-4">
-        <h3 className="font-semibold text-lg">Agencies</h3>
-        <p className="text-gray-600 text-sm">
-          Manage recurring invoices, multiple clients, and billing workflows in one place.
-        </p>
-
-        <ul className="text-sm text-gray-500 space-y-1 pt-2">
-          <li>🔁 Recurring invoices</li>
-          <li>👥 Client management</li>
-          <li>📊 Workflow tracking</li>
-        </ul>
-      </div>
-
-      {/* SMALL BUSINESSES */}
-      <div className="bg-white p-6 rounded-2xl border shadow-sm hover:shadow-lg transition space-y-4">
-        <h3 className="font-semibold text-lg">Small Businesses</h3>
-        <p className="text-gray-600 text-sm">
-          Automate invoicing, track payments, and gain full visibility of your cash flow.
-        </p>
-
-        <ul className="text-sm text-gray-500 space-y-1 pt-2">
-          <li>🤖 Invoice automation</li>
-          <li>📈 Payment tracking</li>
-          <li>💰 Cash flow insights</li>
-        </ul>
-      </div>
-
-    </div>
-
-  </div>
-</section>
-<div className="my-16 h-px w-full bg-gradient-to-r from-transparent via-gray-300 to-transparent" />
-      {/* WHY SWITCH */}
-   <section className="max-w-6xl mx-auto px-6 py-16 space-y-12 ">
-
-  {/* 🔥 SECTION 1 */}
-<div className="py-10 px-6 bg-white">
-  <div className="max-w-6xl mx-auto space-y-12">
-
-    {/* 🔥 HEADER */}
-    <div className="space-y-4 max-w-3xl">
-     <h2 className="text-3xl md:text-4xl font-bold leading-tight">
-        Why Businesses Switch from Other Invoicing Software
-      </h2>
-
-      <p className="text-gray-600 text-lg">
-        Many users start with tools like FreshBooks, Square Invoices, or Wave Financial.
-        They switch because of limits, complexity, or poor support.
-      </p>
-
-      <p className="text-gray-600 text-lg">
-        QuickBooks and Xero become too complex and expensive as you grow.
-        FreshBooks introduces pricing based on clients and additional users.
-        Zoho Invoice applies limits even in free plans, while Wave adds transaction fees
-        and support limitations. Square and Stripe focus on payments but lack full invoice workflows.
-      </p>
-    </div>
-
-    {/* 💡 BENEFIT CARD */}
-    <div className="bg-white p-8 rounded-2xl shadow-md border">
-
-      <p className="text-gray-700 mb-6 font-medium">
-        Smapey removes these constraints — no complexity, no surprises, just invoicing that works.
-      </p>
-
-      <ul className="grid md:grid-cols-2 gap-4 text-gray-700">
-
-        <li className="flex items-center gap-3">
-          <span className="text-green-500 text-xl">✔</span>
-          No forced upgrades based on clients
-        </li>
-
-        <li className="flex items-center gap-3">
-          <span className="text-green-500 text-xl">✔</span>
-          No hidden transaction fee surprises
-        </li>
-
-        <li className="flex items-center gap-3">
-          <span className="text-green-500 text-xl">✔</span>
-          No complex accounting system to learn
-        </li>
-
-        <li className="flex items-center gap-3">
-          <span className="text-green-500 text-xl">✔</span>
-          No waiting for support when something breaks
-        </li>
-
-      </ul>
-
-      {/* 🔥 STRONG CLOSE */}
-      <div className="mt-6 text-green-600 font-semibold">
-        Just invoicing software that works.
-      </div>
-
-    </div>
-
-  </div>
-</div>
-
-  {/* ⚡ SECTION 2 */}
-<div className=" px-6 bg-white">
-  <div className="max-w-6xl mx-auto space-y-12">
-
-    {/* 🔥 HEADER */}
-    <div className="space-y-4 max-w-3xl">
-     <h2 className="text-3xl md:text-4xl font-bold leading-tight">
-        Improve Cash Flow with Better Invoicing and Payments
-      </h2>
-
-      <p className="text-gray-600 text-lg">
-        Cash flow is not just about revenue — it is about timing.
-      </p>
-
-      <p className="text-gray-600 text-lg">
-        Late invoice delivery leads to late payments. Lack of reminders leads to overdue invoices.
-        Poor visibility leads to missed follow-ups.
-      </p>
-
-      <p className="text-gray-600 text-lg font-medium">
-        Smapey improves cash flow by simplifying and automating your invoicing workflow.
-      </p>
-    </div>
-
-    {/* 💡 BENEFITS CARD */}
-    <div className="bg-white p-8 rounded-2xl shadow-md border hover:shadow-xl transition">
-
-      <ul className="grid md:grid-cols-2 gap-5 text-gray-700">
-
-        <li className="flex items-center gap-3">
-          <span className="text-blue-500 text-xl">⚡</span>
-          Send invoices faster
-        </li>
-
-        <li className="flex items-center gap-3">
-          <span className="text-blue-500 text-xl">💳</span>
-          Provide multiple payment options
-        </li>
-
-        <li className="flex items-center gap-3">
-          <span className="text-blue-500 text-xl">🔔</span>
-          Automate invoice reminders
-        </li>
-
-        <li className="flex items-center gap-3">
-          <span className="text-blue-500 text-xl">📊</span>
-          Track invoice status in real time
-        </li>
-
-        <li className="flex items-center gap-3">
-          <span className="text-blue-500 text-xl">📉</span>
-          Reduce overdue invoices
-        </li>
-
-      </ul>
-
-      {/* 🔥 STRONG CLOSE */}
-      <div className="mt-6 text-blue-600 font-semibold">
-        This is how modern invoicing software should work.
-      </div>
-
-    </div>
-
-  </div>
-</div>
-
-</section>
-<div className="my-16 h-px w-full bg-gradient-to-r from-transparent via-gray-300 to-transparent" />
-<section className="py-16 px-6 bg-white">
-  <div className="max-w-5xl mx-auto">
-
-    <div className="bg-white border rounded-3xl shadow-xl p-12 text-center space-y-8 bg-gray-50">
-
-      {/* HEADLINE */}
-      <h2 className="text-3xl md:text-4xl font-bold">
-        Pricing That Does Not Punish Growth
-      </h2>
-
-      {/* SEO / CONTEXT */}
-      <div className="space-y-4 text-gray-600 max-w-2xl mx-auto text-base">
-        <p>
-          Most invoicing and billing software introduces limits as you grow.
-          FreshBooks charges based on clients, Zoho Invoice limits invoice volume,
-          and Invoice Ninja restricts free plans. Wave applies transaction fees.
-        </p>
-
-        <p className="font-medium text-gray-700">
-          Smapey focuses on simple pricing with no growth penalties.
-        </p>
-
-        <p>
-          Start with free trials and upgrade based on usage — not restrictions.
-          No forced upgrades based on the number of clients.
-        </p>
-      </div>
-
-      {/* FEATURES */}
-      <div className="flex flex-wrap justify-center gap-6 text-sm text-gray-700 pt-4">
-        <span className="flex items-center gap-2">✔ No client limits</span>
-        <span className="flex items-center gap-2">✔ No hidden fees</span>
-        <span className="flex items-center gap-2">✔ Upgrade when you need</span>
-        <span className="flex items-center gap-2">✔ Cancel anytime</span>
-      </div>
-
-      {/* CTA */}
-      <div className="pt-4">
-        <Link href="/invoice/how-it-works">
-          <button className="px-10 py-4 bg-black text-white rounded-xl text-lg hover:scale-105 transition shadow-lg">
-            View Pricing
-          </button>
-        </Link>
-      </div>
-
-      {/* TRUST */}
-      <p className="text-sm text-gray-500">
-        Start your free trial today — no credit card required
-      </p>
-
-      {/* 🔥 CLOSE */}
-      <p className="text-green-600 font-semibold">
-        Built for businesses that want to grow without limits.
-      </p>
-
-    </div>
-
-  </div>
-</section>
- 
-
-<div className="my-20 flex items-center gap-4">
-  <div className="flex-1 h-px bg-gray-200"></div>
-
-  <div className="flex items-center gap-2 px-4 py-1 rounded-full bg-gray-100 text-gray-600 text-sm font-medium">
-    START FREE TRIAL
-  </div>
-
-  <div className="flex-1 h-px bg-gray-200"></div>
-</div>
-
-
-
-      {/* CTA */}
-<section className="py-20 px-6">
-  <div className="max-w-5xl mx-auto">
-
-    <div className="relative rounded-3xl p-[1px] bg-gradient-to-r from-blue-500/30 via-purple-500/30 to-blue-500/30">
-
-      {/* INNER CARD */}
-      <div className="relative bg-[#0B1220] text-white rounded-3xl p-12 text-center overflow-hidden">
-
-        {/* 🔥 BACKGROUND GLOW */}
-        <div className="absolute -top-20 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-blue-500/20 blur-[120px] rounded-full"></div>
-
-        {/* CONTENT */}
-        <div className="relative space-y-8">
-
-          {/* HEADLINE */}
-          <h2 className="text-4xl md:text-5xl font-bold leading-tight max-w-3xl mx-auto">
-            Get Paid Faster with Smarter Invoicing
-          </h2>
-
-          {/* SUBTEXT */}
-          <p className="text-gray-300 text-lg max-w-xl mx-auto">
-            Create invoices, accept payments, and track everything in one place — without the hassle.
-          </p>
-
-          {/* CTA BUTTON */}
-          <div className="pt-4">
-            <Link href="https://app.smapey.com/register?product=INVOICE&plan=FREE">
-              <button className="group relative px-10 py-4 rounded-xl text-lg font-semibold bg-white text-black overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-2xl">
-
-                {/* glow hover */}
-                <span className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-purple-500/20 opacity-0 group-hover:opacity-100 transition"></span>
-
-                <span className="relative flex items-center gap-2 justify-center">
+      {/* ── HERO ─────────────────────────────────────────────── */}
+      <section className="relative bg-[#060D1F] text-white overflow-hidden">
+        {/* grid overlay */}
+        <div
+          className="absolute inset-0 opacity-[0.04]"
+          style={{
+            backgroundImage:
+              "linear-gradient(#fff 1px,transparent 1px),linear-gradient(90deg,#fff 1px,transparent 1px)",
+            backgroundSize: "60px 60px",
+          }}
+        />
+        {/* glow orbs */}
+        <div className="absolute top-0 left-1/3 w-[600px] h-[600px] bg-blue-600/20 blur-[140px] rounded-full pointer-events-none" />
+        <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-indigo-600/15 blur-[120px] rounded-full pointer-events-none" />
+
+        <div className="relative max-w-7xl mx-auto px-6 lg:px-12 py-28 lg:py-36 grid lg:grid-cols-2 gap-16 items-center">
+          {/* LEFT */}
+          <div className="space-y-8">
+            {/* badge */}
+            <div className="inline-flex items-center gap-2 bg-blue-500/10 border border-blue-500/25 text-blue-300 text-sm font-medium px-4 py-1.5 rounded-full">
+              <span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse" />
+              Trusted by 10,000+ freelancers &amp; businesses
+            </div>
+
+            <h1 className="text-5xl lg:text-6xl font-bold leading-[1.1] tracking-tight">
+              Invoicing Software{" "}
+              <span className="bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent">
+                That Gets You Paid
+              </span>{" "}
+              Faster
+            </h1>
+
+            <p className="text-gray-400 text-lg leading-relaxed max-w-xl">
+              Create invoices in minutes, send them instantly, and accept online
+              payments without friction. Built for freelancers, agencies, and
+              small businesses.
+            </p>
+
+            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 pt-2">
+              <Link href="https://app.smapey.com/register?product=INVOICE&plan=FREE">
+                <button className="group flex items-center gap-2 px-8 py-4 bg-blue-600 hover:bg-blue-500 rounded-xl text-base font-semibold transition-all duration-200 shadow-lg shadow-blue-600/25 hover:shadow-blue-500/40 hover:scale-[1.02]">
                   Start Free Trial
-                  <span className="group-hover:translate-x-1 transition">→</span>
-                </span>
+                  <ArrowRight size={16} className="group-hover:translate-x-0.5 transition-transform" />
+                </button>
+              </Link>
+              <Link href="/invoice/how-it-works" className="text-gray-400 hover:text-white text-sm font-medium transition-colors underline underline-offset-4">
+                See how it works
+              </Link>
+            </div>
 
+            <div className="flex flex-wrap gap-5 text-sm text-gray-500 pt-2">
+              {["No credit card required", "Cancel anytime", "Setup in minutes"].map((t) => (
+                <span key={t} className="flex items-center gap-1.5">
+                  <CheckCircle2 size={14} className="text-green-400" />
+                  {t}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          {/* RIGHT — invoice card stack */}
+          <div className="relative flex items-center justify-center lg:justify-end h-[380px]">
+            {/* card 1 — back */}
+            <div className="absolute right-0 top-4 rotate-6 w-[300px] bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-sm shadow-2xl">
+              <p className="text-xs text-gray-500 uppercase tracking-widest mb-3">Invoice #1041</p>
+              <p className="text-2xl font-bold">USD 4,500.00</p>
+              <div className="mt-3 flex items-center gap-2 text-sm">
+                <span className="w-2 h-2 rounded-full bg-yellow-400" />
+                <span className="text-yellow-400">Awaiting payment</span>
+              </div>
+              <div className="mt-4 h-1.5 bg-white/10 rounded-full">
+                <div className="h-full w-1/3 bg-yellow-400/60 rounded-full" />
+              </div>
+            </div>
+
+            {/* card 2 — front */}
+            <div className="relative -rotate-2 w-[300px] bg-gradient-to-br from-white/10 to-white/5 border border-white/15 rounded-2xl p-6 backdrop-blur-md shadow-2xl">
+              <div className="flex items-center justify-between mb-4">
+                <p className="text-xs text-gray-400 uppercase tracking-widest">Invoice #1042</p>
+                <span className="text-xs bg-green-500/15 text-green-400 border border-green-500/20 px-2 py-0.5 rounded-full font-medium">Paid</span>
+              </div>
+              <p className="text-3xl font-bold">USD 1,200.00</p>
+              <p className="text-sm text-gray-400 mt-1">Acme Corp • Web Design</p>
+              <div className="mt-5 flex items-center gap-3">
+                <div className="flex-1 h-1.5 bg-white/10 rounded-full">
+                  <div className="h-full w-full bg-green-400/70 rounded-full" />
+                </div>
+                <span className="text-xs text-green-400">100%</span>
+              </div>
+              {/* payment pill */}
+              <div className="mt-4 flex items-center gap-2 bg-white/5 rounded-lg px-3 py-2 text-xs text-gray-300">
+                <CreditCard size={12} className="text-blue-400" />
+                Paid via Stripe · 2 mins ago
+              </div>
+            </div>
+
+            {/* floating stat */}
+            <div className="absolute -bottom-2 -left-4 lg:left-0 bg-white text-gray-900 rounded-xl px-4 py-3 shadow-xl text-sm font-medium flex items-center gap-2">
+              <TrendingUp size={14} className="text-green-500" />
+              <span>Avg. paid in <strong>2.4 days</strong></span>
+            </div>
+          </div>
+        </div>
+
+        {/* payment badges bar */}
+        <div className="relative border-t border-white/[0.06] bg-white/[0.02]">
+          <div className="max-w-7xl mx-auto px-6 lg:px-12 py-5 flex flex-wrap items-center justify-center gap-8 text-sm text-gray-500">
+            {["Stripe", "PayPal", "Apple Pay", "ACH", "Bank Transfer"].map((p) => (
+              <span key={p} className="font-medium tracking-wide">{p}</span>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── STATS ────────────────────────────────────────────── */}
+      <section className="bg-gray-50 border-b border-gray-100">
+        <div className="max-w-7xl mx-auto px-6 lg:px-12 py-14 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+          {[
+            { value: "10,000+", label: "Invoices sent monthly" },
+            { value: "2.4 days", label: "Average payment time" },
+            { value: "99.9%", label: "Platform uptime" },
+            { value: "50+", label: "Currencies supported" },
+          ].map(({ value, label }) => (
+            <div key={label}>
+              <p className="text-3xl font-bold text-gray-900">{value}</p>
+              <p className="text-sm text-gray-500 mt-1">{label}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ── PROBLEM ──────────────────────────────────────────── */}
+      <section className="bg-white py-24 px-6">
+        <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-16 items-center">
+          <div className="space-y-6">
+            <span className="text-sm font-semibold text-red-500 uppercase tracking-widest">The Problem</span>
+            <h2 className="text-4xl font-bold leading-tight text-gray-900">
+              Slow Invoicing Kills Your Cash Flow
+            </h2>
+            <p className="text-gray-600 text-lg">
+              Most businesses don't struggle because invoicing is hard — they struggle because it's slow. Manual templates, scattered tools, and missed follow-ups lead to late payments and unpredictable revenue.
+            </p>
+
+            <div className="bg-red-50 border-l-4 border-red-400 rounded-r-xl p-4">
+              <p className="text-red-700 font-semibold text-sm">You send invoices late — you get paid late.</p>
+            </div>
+
+            <ul className="space-y-3 text-sm text-gray-600">
+              {[
+                "Manual invoice creation wastes hours every week",
+                "Late payments disrupt your cash flow",
+                "No visibility into who owes you what",
+              ].map((item) => (
+                <li key={item} className="flex items-start gap-3">
+                  <span className="mt-0.5 w-5 h-5 rounded-full bg-red-100 text-red-500 flex items-center justify-center flex-shrink-0 text-xs font-bold">✕</span>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="relative">
+            <div className="absolute -inset-6 bg-red-500/8 blur-3xl rounded-3xl" />
+            <div className="relative bg-gradient-to-br from-gray-50 to-white border border-gray-200 rounded-2xl p-8 shadow-lg space-y-4">
+              <p className="text-sm font-semibold text-gray-400 uppercase tracking-widest">Cash Flow Pain Points</p>
+              {[
+                { label: "Invoice delivery time", value: "3–5 days", color: "bg-red-400" },
+                { label: "Average payment delay", value: "21 days", color: "bg-orange-400" },
+                { label: "Overdue follow-ups", value: "Manual", color: "bg-yellow-400" },
+                { label: "Payment visibility", value: "None", color: "bg-red-400" },
+              ].map(({ label, value, color }) => (
+                <div key={label} className="flex items-center justify-between py-3 border-b border-gray-100 last:border-0">
+                  <span className="text-gray-600 text-sm">{label}</span>
+                  <span className={`text-xs font-semibold text-white px-2.5 py-1 rounded-full ${color}`}>{value}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── SOLUTION ─────────────────────────────────────────── */}
+      <section className="bg-gray-50 py-24 px-6">
+        <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-16 items-center">
+          {/* visual */}
+          <div className="relative order-2 md:order-1">
+            <div className="absolute -inset-6 bg-green-500/8 blur-3xl rounded-3xl" />
+            <div className="relative bg-gradient-to-br from-white to-gray-50 border border-gray-200 rounded-2xl p-8 shadow-lg space-y-4">
+              <p className="text-sm font-semibold text-gray-400 uppercase tracking-widest">With Smapey</p>
+              {[
+                { label: "Invoice delivery time", value: "Instant", color: "bg-green-500" },
+                { label: "Average payment time", value: "2.4 days", color: "bg-green-500" },
+                { label: "Overdue follow-ups", value: "Automated", color: "bg-blue-500" },
+                { label: "Payment visibility", value: "Real-time", color: "bg-blue-500" },
+              ].map(({ label, value, color }) => (
+                <div key={label} className="flex items-center justify-between py-3 border-b border-gray-100 last:border-0">
+                  <span className="text-gray-600 text-sm">{label}</span>
+                  <span className={`text-xs font-semibold text-white px-2.5 py-1 rounded-full ${color}`}>{value}</span>
+                </div>
+              ))}
+              <div className="mt-2 flex items-center gap-2 text-sm text-green-600 font-medium">
+                <CheckCircle2 size={16} />
+                Paid instantly · no chasing required
+              </div>
+            </div>
+          </div>
+
+          {/* text */}
+          <div className="space-y-6 order-1 md:order-2">
+            <span className="text-sm font-semibold text-green-600 uppercase tracking-widest">The Solution</span>
+            <h2 className="text-4xl font-bold leading-tight text-gray-900">
+              Invoicing Software Built for Speed and Payments
+            </h2>
+            <p className="text-gray-600 text-lg">
+              Smapey removes every friction point from your invoicing workflow. Create professional invoices from templates, deliver them instantly, and accept payments through Stripe, PayPal, Apple Pay, and more.
+            </p>
+            <div className="grid grid-cols-2 gap-3 pt-2">
+              {[
+                { icon: <Zap size={14} />, text: "Fast invoice creation" },
+                { icon: <CreditCard size={14} />, text: "Built-in online payments" },
+                { icon: <BarChart3 size={14} />, text: "Real-time tracking" },
+                { icon: <Bell size={14} />, text: "Automated reminders" },
+              ].map(({ icon, text }) => (
+                <div key={text} className="flex items-center gap-2 text-sm text-gray-700 bg-white border border-gray-100 rounded-lg px-3 py-2.5 shadow-sm">
+                  <span className="text-blue-500">{icon}</span>
+                  {text}
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── FEATURES ─────────────────────────────────────────── */}
+      <section className="bg-white py-24 px-6">
+        <div className="max-w-7xl mx-auto space-y-14">
+          <div className="text-center max-w-2xl mx-auto space-y-4">
+            <span className="text-sm font-semibold text-blue-600 uppercase tracking-widest">Features</span>
+            <h2 className="text-4xl font-bold text-gray-900">Everything You Need to Get Paid</h2>
+            <p className="text-gray-500 text-lg">One platform to create, send, and track invoices — no extra tools needed.</p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[
+              {
+                icon: <FileText size={22} />,
+                title: "Invoice Creation & Templates",
+                desc: "Create professional invoices instantly using 10+ customizable templates.",
+                color: "bg-blue-50 text-blue-600",
+              },
+              {
+                icon: <Send size={22} />,
+                title: "Send & Deliver Invoices",
+                desc: "Deliver via email or shareable links with full control over payment terms.",
+                color: "bg-indigo-50 text-indigo-600",
+              },
+              {
+                icon: <CreditCard size={22} />,
+                title: "Online Payments",
+                desc: "Accept payments through Stripe, PayPal, Apple Pay, ACH, and more.",
+                color: "bg-purple-50 text-purple-600",
+              },
+              {
+                icon: <BarChart3 size={22} />,
+                title: "Invoice Tracking",
+                desc: "Track status, overdue payments, and cash flow in real time from one dashboard.",
+                color: "bg-green-50 text-green-600",
+              },
+              {
+                icon: <Repeat size={22} />,
+                title: "Recurring Billing",
+                desc: "Automate reminders and recurring invoices for subscriptions and retainers.",
+                color: "bg-yellow-50 text-yellow-600",
+              },
+              {
+                icon: <Globe size={22} />,
+                title: "Multi-Currency & Teams",
+                desc: "Work with global clients and manage invoices across your entire team.",
+                color: "bg-rose-50 text-rose-600",
+              },
+            ].map(({ icon, title, desc, color }) => (
+              <div
+                key={title}
+                className="group p-6 bg-white border border-gray-100 rounded-2xl shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200"
+              >
+                <div className={`w-10 h-10 rounded-xl flex items-center justify-center mb-4 ${color}`}>
+                  {icon}
+                </div>
+                <h3 className="font-semibold text-gray-900 mb-2">{title}</h3>
+                <p className="text-sm text-gray-500 leading-relaxed">{desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── HOW IT WORKS ─────────────────────────────────────── */}
+      <section className="bg-[#060D1F] text-white py-24 px-6">
+        <div className="max-w-7xl mx-auto space-y-14">
+          <div className="text-center max-w-2xl mx-auto space-y-4">
+            <span className="text-sm font-semibold text-blue-400 uppercase tracking-widest">How It Works</span>
+            <h2 className="text-4xl font-bold">Get Paid in 3 Simple Steps</h2>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {[
+              {
+                step: "01",
+                title: "Create Your Invoice",
+                desc: "Pick a template, fill in client details and line items — done in under 2 minutes.",
+                icon: <FileText size={24} />,
+              },
+              {
+                step: "02",
+                title: "Send Instantly",
+                desc: "Email your invoice or share a payment link directly with your client.",
+                icon: <Send size={24} />,
+              },
+              {
+                step: "03",
+                title: "Get Paid Online",
+                desc: "Clients pay via Stripe, PayPal, or Apple Pay. You get notified instantly.",
+                icon: <CreditCard size={24} />,
+              },
+            ].map(({ step, title, desc, icon }, i) => (
+              <div key={step} className="relative">
+                {i < 2 && (
+                  <div className="hidden md:block absolute top-8 left-full w-full h-px border-t border-dashed border-white/10 z-0" style={{ width: "calc(100% - 2rem)", left: "calc(100% - 1rem)" }} />
+                )}
+                <div className="relative bg-white/5 border border-white/10 rounded-2xl p-7 space-y-4 hover:bg-white/8 transition-colors">
+                  <div className="flex items-center justify-between">
+                    <span className="text-4xl font-bold text-white/10">{step}</span>
+                    <div className="w-10 h-10 rounded-xl bg-blue-600/20 text-blue-400 flex items-center justify-center">
+                      {icon}
+                    </div>
+                  </div>
+                  <h3 className="font-semibold text-lg">{title}</h3>
+                  <p className="text-gray-400 text-sm leading-relaxed">{desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── WHO IT'S FOR ─────────────────────────────────────── */}
+      <section className="bg-gray-50 py-24 px-6">
+        <div className="max-w-7xl mx-auto space-y-14">
+          <div className="text-center max-w-2xl mx-auto space-y-4">
+            <span className="text-sm font-semibold text-blue-600 uppercase tracking-widest">Who It's For</span>
+            <h2 className="text-4xl font-bold text-gray-900">Built for the Way You Work</h2>
+            <p className="text-gray-500 text-lg">
+              Whether you're a solo freelancer or growing agency, Smapey fits your workflow.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {[
+              {
+                title: "Freelancers",
+                desc: "Create invoices in seconds, send them instantly, and accept online payments without hassle.",
+                items: ["Fast invoice generation", "Online payments", "Ready-to-use templates"],
+                gradient: "from-blue-500 to-indigo-600",
+              },
+              {
+                title: "Agencies",
+                desc: "Manage recurring invoices, multiple clients, and billing workflows in one place.",
+                items: ["Recurring invoices", "Client management", "Workflow tracking"],
+                gradient: "from-indigo-500 to-purple-600",
+              },
+              {
+                title: "Small Businesses",
+                desc: "Automate invoicing, track payments, and gain full visibility of your cash flow.",
+                items: ["Invoice automation", "Payment tracking", "Cash flow insights"],
+                gradient: "from-purple-500 to-rose-600",
+              },
+            ].map(({ title, desc, items, gradient }) => (
+              <div key={title} className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden hover:shadow-md transition-shadow">
+                <div className={`h-1.5 bg-gradient-to-r ${gradient}`} />
+                <div className="p-7 space-y-5">
+                  <h3 className="font-bold text-xl text-gray-900">{title}</h3>
+                  <p className="text-gray-500 text-sm leading-relaxed">{desc}</p>
+                  <ul className="space-y-2.5">
+                    {items.map((item) => (
+                      <li key={item} className="flex items-center gap-2.5 text-sm text-gray-700">
+                        <CheckCircle2 size={14} className="text-green-500 flex-shrink-0" />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── WHY SWITCH ───────────────────────────────────────── */}
+      <section className="bg-white py-24 px-6">
+        <div className="max-w-7xl mx-auto space-y-14">
+          <div className="max-w-3xl space-y-4">
+            <span className="text-sm font-semibold text-blue-600 uppercase tracking-widest">Why Smapey</span>
+            <h2 className="text-4xl font-bold text-gray-900">
+              Why Businesses Switch from QuickBooks, FreshBooks & Wave
+            </h2>
+            <p className="text-gray-600 text-lg">
+              Complex tools built for accountants — not for the way you actually work. Smapey is focused, fast, and simple.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-8">
+            {/* Competitors */}
+            <div className="bg-red-50 border border-red-100 rounded-2xl p-8 space-y-5">
+              <h3 className="font-bold text-gray-900 text-lg">Other Tools</h3>
+              {[
+                "Charge more as your client list grows",
+                "Hidden transaction fees eat your revenue",
+                "Complex accounting systems to learn",
+                "Slow or unhelpful support",
+                "Features you'll never use",
+              ].map((item) => (
+                <div key={item} className="flex items-start gap-3 text-sm text-gray-600">
+                  <span className="mt-0.5 w-5 h-5 rounded-full bg-red-100 text-red-500 flex items-center justify-center flex-shrink-0 text-xs font-bold">✕</span>
+                  {item}
+                </div>
+              ))}
+            </div>
+
+            {/* Smapey */}
+            <div className="bg-green-50 border border-green-100 rounded-2xl p-8 space-y-5">
+              <h3 className="font-bold text-gray-900 text-lg">Smapey</h3>
+              {[
+                "No forced upgrades based on clients",
+                "No hidden transaction fee surprises",
+                "No complex accounting system to learn",
+                "Fast, responsive support when you need it",
+                "Just invoicing — done right",
+              ].map((item) => (
+                <div key={item} className="flex items-start gap-3 text-sm text-gray-700">
+                  <CheckCircle2 size={16} className="mt-0.5 text-green-500 flex-shrink-0" />
+                  {item}
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── CASH FLOW ────────────────────────────────────────── */}
+      <section className="bg-gray-50 py-24 px-6">
+        <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-16 items-center">
+          <div className="space-y-6">
+            <span className="text-sm font-semibold text-blue-600 uppercase tracking-widest">Cash Flow</span>
+            <h2 className="text-4xl font-bold text-gray-900">
+              Improve Cash Flow with Better Invoicing
+            </h2>
+            <p className="text-gray-600 text-lg">
+              Cash flow is about timing. Late delivery leads to late payments. Smapey automates and accelerates every step.
+            </p>
+            <div className="grid grid-cols-1 gap-4 pt-2">
+              {[
+                { icon: <Zap size={16} />, text: "Send invoices the moment work is done" },
+                { icon: <CreditCard size={16} />, text: "Offer multiple payment options to clients" },
+                { icon: <Bell size={16} />, text: "Automate payment reminders — no chasing" },
+                { icon: <BarChart3 size={16} />, text: "Track invoice status in real time" },
+                { icon: <Shield size={16} />, text: "Reduce overdue invoices significantly" },
+              ].map(({ icon, text }) => (
+                <div key={text} className="flex items-center gap-3 text-sm text-gray-700 bg-white border border-gray-100 rounded-xl px-4 py-3 shadow-sm">
+                  <span className="text-blue-500">{icon}</span>
+                  {text}
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="bg-white border border-gray-100 rounded-2xl p-8 shadow-lg space-y-6">
+            <h3 className="font-bold text-gray-900">Payment Timeline</h3>
+            {[
+              { label: "Invoice sent", time: "Day 0", active: true },
+              { label: "Client views invoice", time: "Day 0", active: true },
+              { label: "Payment received", time: "Day 2.4 avg", active: true },
+              { label: "Automated reminder (if needed)", time: "Day 7", active: false },
+            ].map(({ label, time, active }) => (
+              <div key={label} className="flex items-center gap-4">
+                <div className={`w-3 h-3 rounded-full flex-shrink-0 ${active ? "bg-green-500" : "bg-gray-200"}`} />
+                <div className="flex-1 flex items-center justify-between">
+                  <span className="text-sm text-gray-700">{label}</span>
+                  <span className={`text-xs font-medium px-2 py-0.5 rounded-full ${active ? "bg-green-50 text-green-600" : "bg-gray-50 text-gray-400"}`}>
+                    {time}
+                  </span>
+                </div>
+              </div>
+            ))}
+            <p className="text-xs text-gray-400 pt-2 border-t border-gray-50">
+              vs industry average of 21+ days with manual invoicing
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* ── PRICING ──────────────────────────────────────────── */}
+      <section className="bg-white py-24 px-6">
+        <div className="max-w-3xl mx-auto text-center space-y-8">
+          <div className="space-y-4">
+            <span className="text-sm font-semibold text-blue-600 uppercase tracking-widest">Pricing</span>
+            <h2 className="text-4xl font-bold text-gray-900">Pricing That Doesn't Punish Growth</h2>
+            <p className="text-gray-500 text-lg max-w-xl mx-auto">
+              No client limits. No hidden fees. No forced upgrades. Start free and scale without restrictions.
+            </p>
+          </div>
+
+          <div className="flex flex-wrap justify-center gap-4 text-sm">
+            {[
+              "No client limits",
+              "No hidden fees",
+              "Upgrade when you need",
+              "Cancel anytime",
+            ].map((item) => (
+              <span key={item} className="flex items-center gap-2 bg-green-50 text-green-700 border border-green-100 px-4 py-2 rounded-full font-medium">
+                <CheckCircle2 size={14} />
+                {item}
+              </span>
+            ))}
+          </div>
+
+          <Link href="/invoice/how-it-works">
+            <button className="px-10 py-4 bg-gray-900 text-white rounded-xl text-base font-semibold hover:bg-gray-800 transition-colors shadow-lg hover:shadow-xl hover:scale-[1.02] transition-all">
+              View Pricing Plans
+            </button>
+          </Link>
+
+          <p className="text-sm text-gray-400">Start your free trial today — no credit card required</p>
+        </div>
+      </section>
+
+      {/* ── FINAL CTA ────────────────────────────────────────── */}
+      <section className="bg-[#060D1F] py-28 px-6 relative overflow-hidden">
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[400px] bg-blue-600/20 blur-[140px] rounded-full pointer-events-none" />
+        <div className="relative max-w-3xl mx-auto text-center text-white space-y-8">
+          <h2 className="text-4xl md:text-5xl font-bold leading-tight">
+            Get Paid Faster with{" "}
+            <span className="bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent">
+              Smarter Invoicing
+            </span>
+          </h2>
+          <p className="text-gray-400 text-lg max-w-xl mx-auto">
+            Create invoices, accept payments, and track everything in one place — without the complexity.
+          </p>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">
+            <Link href="https://app.smapey.com/register?product=INVOICE&plan=FREE">
+              <button className="group flex items-center gap-2 px-10 py-4 bg-blue-600 hover:bg-blue-500 rounded-xl text-base font-semibold transition-all duration-200 shadow-lg shadow-blue-600/30 hover:scale-[1.02]">
+                Start Free Trial
+                <ArrowRight size={16} className="group-hover:translate-x-0.5 transition-transform" />
+              </button>
+            </Link>
+            <Link href="/invoice/how-it-works">
+              <button className="px-10 py-4 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl text-base font-medium transition-all duration-200">
+                Learn More
               </button>
             </Link>
           </div>
-
-          {/* TRUST BADGES */}
-          <div className="flex flex-wrap justify-center gap-6 text-sm text-gray-400 pt-4">
-            <span>✔ No credit card required</span>
-            <span>✔ Cancel anytime</span>
-            <span>✔ Setup in minutes</span>
+          <div className="flex flex-wrap justify-center gap-6 text-sm text-gray-500 pt-2">
+            {["No credit card required", "Cancel anytime", "Setup in minutes"].map((t) => (
+              <span key={t} className="flex items-center gap-1.5">
+                <CheckCircle2 size={13} className="text-green-400" />
+                {t}
+              </span>
+            ))}
           </div>
-
         </div>
+      </section>
 
-      </div>
-
-    </div>
-
-  </div>
-</section>
-
-    </div>
-     <Footer />
+      <Footer />
     </>
-  )
-}
-
-/* COMPONENTS */
-
-function Feature({ title, children }: any) {
-  return (
-    <div className="border rounded-xl p-5">
-      <h3 className="font-semibold mb-1">{title}</h3>
-      <p className="text-gray-600 text-sm">{children}</p>
-    </div>
-  )
-}
-
-function Faq({ q, a }: any) {
-  return (
-    <div className="border rounded-xl p-4">
-      <p className="font-medium">{q}</p>
-      <p className="text-sm text-gray-600 mt-1">{a}</p>
-    </div>
   )
 }

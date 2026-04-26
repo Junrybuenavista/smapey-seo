@@ -1,200 +1,168 @@
 "use client"
 
 import Link from "next/link"
-import {
-  Mail,
-  CreditCard,
-  Users,
-  BarChart,
-} from "lucide-react"
+import { FileText, CreditCard, BarChart3, RefreshCcw, CheckCircle2, ArrowRight, ChevronDown } from "lucide-react"
+import { useState } from "react"
 import InternalLinks from "@/components/InternalLinks"
 
+const faqs = [
+  { q: "What is invoice processing software?", a: "Invoice processing software automates the creation, sending, tracking, and approval of invoices. It reduces manual work, speeds up billing cycles, and helps businesses get paid faster." },
+  { q: "How does invoice processing software work?", a: "It automates the full invoice lifecycle — from creation and delivery to payment tracking and reminders. Smapey handles each step so your team can focus on higher-value work." },
+  { q: "What are the benefits of automated invoice processing?", a: "Automated invoice processing reduces errors, speeds up payment cycles, improves cash flow visibility, and eliminates manual data entry — saving businesses significant time and money." },
+  { q: "Is invoice processing software good for small businesses?", a: "Yes, invoice processing software scales to any size. Smapey is particularly useful for small businesses wanting to automate billing without complex setup or high cost." },
+  { q: "Does invoice processing software integrate with payments?", a: "Yes, most invoice processing platforms integrate with payment providers like Stripe and PayPal so customers can pay directly from the invoice." },
+]
+
 export default function InvoicingContent() {
+  const [openIndex, setOpenIndex] = useState<number | null>(null)
+
   return (
-    <main>
-
+    <>
+    <div className="bg-white">
       {/* HERO */}
-      <section className="bg-gradient-to-br from-yellow-50 to-white py-20 px-6">
-        <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-10 items-center">
+      <section className="relative bg-[#060D1F] text-white overflow-hidden">
+        <div className="absolute inset-0 opacity-[0.04]" style={{ backgroundImage: "linear-gradient(#fff 1px,transparent 1px),linear-gradient(90deg,#fff 1px,transparent 1px)", backgroundSize: "60px 60px" }} />
+        <div className="absolute top-0 right-1/3 w-[500px] h-[500px] bg-teal-500/15 blur-[140px] rounded-full pointer-events-none" />
 
-          {/* LEFT */}
-          <div>
-            <span className="inline-block bg-yellow-100 text-yellow-700 px-4 py-1 rounded-full text-sm mb-4">
-              Built for software 🚀
-            </span>
-
-            <h1 className="text-4xl font-bold leading-tight">
-              Invoice Processing Software for Faster Payments
+        <div className="relative max-w-7xl mx-auto px-6 lg:px-12 py-24 lg:py-32 grid lg:grid-cols-2 gap-14 items-center">
+          <div className="space-y-7">
+            <div className="inline-flex items-center gap-2 bg-teal-500/10 border border-teal-500/20 text-teal-300 text-sm font-medium px-4 py-1.5 rounded-full">
+              <RefreshCcw size={13} /> Automate Invoice Processing
+            </div>
+            <h1 className="text-4xl lg:text-5xl font-bold leading-tight">
+              Invoice Processing Software —{" "}
+              <span className="bg-gradient-to-r from-teal-400 to-cyan-400 bg-clip-text text-transparent">Automate Your Billing</span>
             </h1>
-
-            <p className="mt-4 text-gray-600 text-lg">
-              Stop wasting time on manual invoicing, spreadsheets, and delayed payments.
-              Smapey helps you automate your invoice processing workflow with powerful
-              invoice processing automation software designed for modern teams.
+            <p className="text-gray-400 text-lg leading-relaxed max-w-xl">
+              Replace manual invoice handling with automated processing. Send, track, and collect payments faster with Smapey's end-to-end invoice automation.
             </p>
-
-            <p className="mt-3 text-gray-500">
-              With the best automated invoice processing software, you can send invoices,
-              track payments, and manage billing all in one place—so you get paid faster.
-            </p>
-
-            <div className="mt-6 flex gap-4">
-              <Link
-                href="/invoice/how-it-works"
-                className="bg-black text-white px-6 py-3 rounded-lg"
-              >
-                View Invoicing App →
+            <div className="flex flex-col sm:flex-row gap-4 pt-2">
+              <Link href="https://app.smapey.com/register?product=INVOICE&plan=FREE">
+                <button className="group flex items-center gap-2 px-7 py-3.5 bg-blue-600 hover:bg-blue-500 text-white rounded-xl font-semibold transition-all shadow-lg shadow-blue-600/25 hover:scale-[1.02]">
+                  Start Free Trial <ArrowRight size={16} className="group-hover:translate-x-0.5 transition-transform" />
+                </button>
               </Link>
-
-              <Link
-                href="https://app.smapey.com/register?product=INVOICE&plan=FREE"
-                className="border px-6 py-3 rounded-lg"
-              >
-                Start Free
+              <Link href="/invoice/how-it-works">
+                <button className="px-7 py-3.5 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl font-medium transition-all">
+                  View Invoicing App
+                </button>
               </Link>
+            </div>
+            <div className="flex flex-wrap gap-5 text-sm text-gray-500 pt-1">
+              {["No credit card required", "Cancel anytime", "Setup in minutes"].map(t => (
+                <span key={t} className="flex items-center gap-1.5"><CheckCircle2 size={13} className="text-green-400" />{t}</span>
+              ))}
             </div>
           </div>
 
-          {/* RIGHT */}
-          <div className="rounded-2xl shadow-xl bg-white p-4">
-            <img
-              src="/images/invoice-dashboard.png"
-              alt="invoice processing software dashboard"
-              className="rounded-xl"
-            />
+          <div className="relative hidden lg:flex items-center justify-end">
+            <div className="relative bg-white/5 border border-white/10 rounded-2xl p-8 w-full max-w-md space-y-5">
+              <p className="text-xs text-gray-500 uppercase tracking-widest">Processed Invoices</p>
+              {[
+                { label: "SaaS subscription — Enterprise", amount: "$12,000", status: "Paid", color: "text-green-400 bg-green-500/10" },
+                { label: "Professional services — Q2", amount: "$6,400", status: "Pending", color: "text-yellow-400 bg-yellow-500/10" },
+                { label: "Support contract renewal", amount: "$2,800", status: "Sent", color: "text-blue-400 bg-blue-500/10" },
+              ].map(item => (
+                <div key={item.label} className="flex items-center justify-between py-3 border-b border-white/5 last:border-0">
+                  <div>
+                    <p className="text-sm font-medium">{item.label}</p>
+                    <p className="text-xs text-gray-500 mt-0.5">{item.amount}</p>
+                  </div>
+                  <span className={`text-xs font-semibold px-2.5 py-1 rounded-full ${item.color}`}>{item.status}</span>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
       {/* FEATURES */}
-      <section className="py-20 max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-10">
-
-        <div className="flex gap-4">
-          <Mail />
-          <div>
-            <h3 className="font-semibold text-lg">Email Templates</h3>
-            <p className="text-gray-600">
-              Send professional invoices instantly using customizable templates and automated workflows.
-            </p>
+      <section className="bg-white py-24 px-6">
+        <div className="max-w-7xl mx-auto space-y-14">
+          <div className="text-center max-w-2xl mx-auto space-y-4">
+            <span className="text-sm font-semibold text-blue-600 uppercase tracking-widest">Features</span>
+            <h2 className="text-4xl font-bold text-gray-900">End-to-End Invoice Processing</h2>
+          </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              { icon: <RefreshCcw size={22} />, title: "Invoice Automation", desc: "Automatically generate, send, and follow up on invoices without manual effort.", color: "bg-teal-50 text-teal-600" },
+              { icon: <BarChart3 size={22} />, title: "Payment Tracking", desc: "Monitor invoice status in real time and see what's paid, pending, or overdue.", color: "bg-blue-50 text-blue-600" },
+              { icon: <CreditCard size={22} />, title: "Online Payments", desc: "Accept payments online and eliminate manual collection steps.", color: "bg-green-50 text-green-600" },
+              { icon: <FileText size={22} />, title: "Reporting", desc: "Generate reports on billing performance, cash flow, and client payment history.", color: "bg-purple-50 text-purple-600" },
+            ].map(({ icon, title, desc, color }) => (
+              <div key={title} className="p-6 bg-white border border-gray-100 rounded-2xl shadow-sm hover:shadow-md hover:-translate-y-1 transition-all">
+                <div className={`w-10 h-10 rounded-xl flex items-center justify-center mb-4 ${color}`}>{icon}</div>
+                <h3 className="font-semibold text-gray-900 mb-2">{title}</h3>
+                <p className="text-sm text-gray-500 leading-relaxed">{desc}</p>
+              </div>
+            ))}
           </div>
         </div>
-
-        <div className="flex gap-4">
-          <CreditCard />
-          <div>
-            <h3 className="font-semibold text-lg">Payment Tracking</h3>
-            <p className="text-gray-600">
-              Track invoice payments in real-time and reduce delays with smart billing software tools.
-            </p>
-          </div>
-        </div>
-
-        <div className="flex gap-4">
-          <Users />
-          <div>
-            <h3 className="font-semibold text-lg">Collaborate With Your Team</h3>
-            <p className="text-gray-600">
-              Manage invoices together with your team using shared access and workflow automation.
-            </p>
-          </div>
-        </div>
-
-        <div className="flex gap-4">
-          <BarChart />
-          <div>
-            <h3 className="font-semibold text-lg">Reporting</h3>
-            <p className="text-gray-600">
-              Gain insights with reporting tools that help optimize your invoice processing system.
-            </p>
-          </div>
-        </div>
-
       </section>
 
-      {/* SEO BLOCK */}
-      <section className="max-w-4xl mx-auto px-6 text-center pb-20">
-        <p className="text-gray-600 leading-relaxed">
-          Smapey is more than just an invoice processing software—it’s a complete contractor invoicing app,
-          billing software, and estimate + invoice workflow solution. Built for software teams,
-          it simplifies billing operations, reduces manual work, and ensures accurate invoicing from
-          estimates to final payments.
-        </p>
+      {/* WHY */}
+      <section className="bg-gray-50 py-24 px-6">
+        <div className="max-w-5xl mx-auto space-y-10">
+          <div className="text-center space-y-4">
+            <span className="text-sm font-semibold text-blue-600 uppercase tracking-widest">Why Smapey</span>
+            <h2 className="text-4xl font-bold text-gray-900">Smarter Invoice Processing for Every Business</h2>
+            <p className="text-gray-500 text-lg max-w-2xl mx-auto">
+              Smapey automates the entire invoice processing workflow — from creation to payment collection — so your team spends less time on admin and more time on growth.
+            </p>
+          </div>
+          <div className="grid md:grid-cols-2 gap-5">
+            {[
+              "Create and send invoices in under 2 minutes",
+              "Automated payment reminders and follow-ups",
+              "Accept multiple online payment methods",
+              "Real-time visibility across all invoices",
+              "Reduce errors with automated data handling",
+              "Scales from solopreneurs to growing teams",
+            ].map(item => (
+              <div key={item} className="flex items-center gap-3 bg-white border border-gray-100 rounded-xl px-4 py-3 shadow-sm text-sm text-gray-700">
+                <CheckCircle2 size={15} className="text-green-500 flex-shrink-0" />{item}
+              </div>
+            ))}
+          </div>
+        </div>
       </section>
 
       {/* CTA */}
-      <section className="py-16 px-6">
-        <div className="max-w-4xl mx-auto bg-black text-white rounded-xl text-center py-16 px-6">
-          <h2 className="text-3xl font-bold">
-            Get Paid Faster with Smarter Invoicing
-          </h2>
-
-          <Link
-            href="https://app.smapey.com/register?product=INVOICE&plan=FREE"
-            className="inline-block mt-6 bg-white text-black px-6 py-3 rounded-lg"
-          >
-            Start Free Trial
+      <section className="bg-[#060D1F] py-20 px-6">
+        <div className="max-w-3xl mx-auto text-center text-white space-y-6">
+          <h2 className="text-4xl font-bold">Automate Your Invoice Processing Today</h2>
+          <p className="text-gray-400 text-lg">Start processing invoices smarter with Smapey.</p>
+          <Link href="https://app.smapey.com/register?product=INVOICE&plan=FREE">
+            <button className="group flex items-center gap-2 mx-auto px-8 py-4 bg-blue-600 hover:bg-blue-500 text-white rounded-xl font-semibold transition-all shadow-lg hover:scale-[1.02]">
+              Start Free Trial <ArrowRight size={16} className="group-hover:translate-x-0.5 transition-transform" />
+            </button>
           </Link>
+          <p className="text-sm text-gray-500">No credit card required</p>
         </div>
       </section>
 
       {/* FAQ */}
-      <section className="py-20 max-w-4xl mx-auto px-6">
-        <h2 className="text-3xl font-bold text-center mb-10">
-          Frequently Asked Questions
-        </h2>
-
-        <div className="space-y-6">
-
-          <div>
-            <h3 className="font-semibold">
-              What is the best invoice processing software for software companies?
-            </h3>
-            <p className="text-gray-600">
-              The best invoice processing software automates billing, tracks payments, and integrates with your workflow.
-              Smapey is designed specifically for software teams needing efficient automation.
-            </p>
+      <section className="bg-white py-24 px-6">
+        <div className="max-w-3xl mx-auto space-y-8">
+          <div className="text-center space-y-3">
+            <span className="text-sm font-semibold text-blue-600 uppercase tracking-widest">FAQ</span>
+            <h2 className="text-4xl font-bold text-gray-900">Frequently Asked Questions</h2>
           </div>
-
-          <div>
-            <h3 className="font-semibold">
-              How to automate invoice processing in a SaaS business?
-            </h3>
-            <p className="text-gray-600">
-              You can automate invoice processing by using software that generates invoices, sends them automatically,
-              and tracks payments in real time like Smapey.
-            </p>
+          <div className="space-y-3">
+            {faqs.map((faq, i) => (
+              <div key={i} className="border border-gray-100 rounded-xl bg-white shadow-sm overflow-hidden">
+                <button onClick={() => setOpenIndex(openIndex === i ? null : i)} className="w-full flex justify-between items-center p-5 text-left">
+                  <span className="font-medium text-gray-900">{faq.q}</span>
+                  <ChevronDown size={18} className={`text-gray-400 transition-transform ${openIndex === i ? "rotate-180" : ""}`} />
+                </button>
+                {openIndex === i && <div className="px-5 pb-5 text-sm text-gray-600 leading-relaxed">{faq.a}</div>}
+              </div>
+            ))}
           </div>
-
-          <div>
-            <h3 className="font-semibold">
-              How does invoice processing automation software work?
-            </h3>
-            <p className="text-gray-600">
-              It digitizes invoice creation, approval, and payment tracking, reducing manual tasks and improving accuracy.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="font-semibold">
-              How to create an invoice using automated software?
-            </h3>
-            <p className="text-gray-600">
-              Simply input your details, choose a template, and the system generates and sends invoices automatically.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="font-semibold">
-              How can I get an invoice from an invoicing system?
-            </h3>
-            <p className="text-gray-600">
-              Most systems allow you to download or receive invoices via email instantly after generation.
-            </p>
-          </div>
-
         </div>
       </section>
-       <InternalLinks />
-    </main>
+    </div>
+    <InternalLinks />
+    </>
   )
 }
