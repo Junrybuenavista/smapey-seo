@@ -1,7 +1,7 @@
 "use client"
 
 import Link from "next/link"
-import { FileText, Dumbbell, Layers, Sparkles, TrendingUp, Clock, ShieldCheck, Puzzle, User, Briefcase } from "lucide-react"
+import { FileText, Dumbbell, Layers, Sparkles, TrendingUp, Clock, ShieldCheck, Puzzle, User, Briefcase, CheckCircle2, ArrowRight } from "lucide-react"
 
 const floatStyle = `
   @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
@@ -12,27 +12,55 @@ const floatStyle = `
 const apps = [
   {
     name: "Invoice Software",
-    desc: "Create invoices, send instantly, and get paid faster.",
+    desc: "Create professional invoices, send them instantly, and get paid faster — no accounting background needed.",
     href: "/invoice",
-    register: "https://app.smapey.com/register?product=INVOICE&plan=FREE",
+    register: `${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=INVOICE&plan=FREE`,
     tag: "Finance",
     tagColor: "bg-blue-50 text-blue-700",
     iconBg: "bg-blue-50",
     iconColor: "text-blue-600",
+    accentColor: "border-blue-500",
+    statColor: "text-blue-600",
     Icon: FileText,
-    features: ["Create & send invoices", "Track payment status", "Download PDF receipts"],
+    features: [
+      "Create & send professional invoices",
+      "Track payment status in real time",
+      "Download & email PDF receipts",
+      "Multi-currency support",
+      "Automated overdue reminders",
+      "Revenue analytics dashboard",
+    ],
+    stats: [
+      { label: "Avg. time to create invoice", value: "< 2 min" },
+      { label: "Payment collection rate",     value: "94%"     },
+    ],
+    highlight: "Used by 1,200+ freelancers & small businesses",
   },
   {
     name: "Gym Management",
-    desc: "Manage members, attendance, and subscriptions.",
+    desc: "Run your gym smarter — manage members, automate billing, and track attendance all from one dashboard.",
     href: "/gym",
-    register: "https://app.smapey.com/register?product=GYM&plan=FREE",
+    register: `${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=GYM&plan=FREE`,
     tag: "Fitness",
     tagColor: "bg-emerald-50 text-emerald-700",
     iconBg: "bg-emerald-50",
     iconColor: "text-emerald-600",
+    accentColor: "border-emerald-500",
+    statColor: "text-emerald-600",
     Icon: Dumbbell,
-    features: ["Member tracking", "QR check-in", "Subscription billing"],
+    features: [
+      "Member registration & profiles",
+      "QR code check-in (PRO & Enterprise)",
+      "Subscription & renewal billing",
+      "Walk-in tracking with limits",
+      "Trainer assignment & management",
+      "Attendance & revenue analytics",
+    ],
+    stats: [
+      { label: "Members managed per gym", value: "500+"  },
+      { label: "Check-ins processed daily", value: "10k+" },
+    ],
+    highlight: "Trusted by gym owners across 12 countries",
   },
 ]
 
@@ -58,7 +86,10 @@ export default function MainContent() {
 
       {/* NAV */}
       <nav className="fixed top-0 inset-x-0 z-50 flex items-center justify-between px-6 md:px-14 h-16 bg-white/80 backdrop-blur-md border-b border-gray-100">
-        <span className="text-lg font-semibold tracking-tight text-gray-900">Smapey</span>
+        <div className="flex items-center gap-2">
+          <img src="/logo.png" alt="Smapey" className="h-7 w-7 object-contain" />
+          <span className="text-lg font-semibold tracking-tight text-gray-900">Smapey</span>
+        </div>
         <div className="hidden md:flex items-center gap-8">
           <a href="#apps"    className="text-sm text-gray-500 hover:text-gray-900 transition-colors">Products</a>
           <a href="#why"     className="text-sm text-gray-500 hover:text-gray-900 transition-colors">Why us</a>
@@ -173,30 +204,58 @@ export default function MainContent() {
           </h2>
           <div className="mt-12 grid md:grid-cols-2 gap-6">
             {apps.map(app => (
-              <div key={app.name} className="bg-white border border-gray-200 rounded-3xl p-8 flex flex-col hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
-                <div className="flex items-center gap-3 mb-6">
-                  <div className={`w-11 h-11 rounded-2xl flex items-center justify-center ${app.iconBg}`}>
-                    <app.Icon size={20} className={app.iconColor} />
+              <div key={app.name} className={`bg-white border border-gray-200 rounded-3xl flex flex-col hover:shadow-xl hover:-translate-y-1 transition-all duration-300 overflow-hidden`}>
+
+                {/* TOP ACCENT */}
+                <div className={`h-1 w-full border-t-4 ${app.accentColor}`} />
+
+                <div className="p-8 flex flex-col flex-1">
+                  {/* HEADER */}
+                  <div className="flex items-center gap-3 mb-5">
+                    <div className={`w-11 h-11 rounded-2xl flex items-center justify-center ${app.iconBg}`}>
+                      <app.Icon size={20} className={app.iconColor} />
+                    </div>
+                    <span className={`text-xs font-semibold px-3 py-1 rounded-full ${app.tagColor}`}>{app.tag}</span>
                   </div>
-                  <span className={`text-xs font-semibold px-3 py-1 rounded-full ${app.tagColor}`}>{app.tag}</span>
-                </div>
-                <h3 className="text-2xl font-semibold text-gray-900 mb-2">{app.name}</h3>
-                <p className="text-sm text-gray-500 leading-relaxed mb-6">{app.desc}</p>
-                <ul className="flex flex-col gap-2.5 mb-8 flex-1">
-                  {app.features.map(f => (
-                    <li key={f} className="flex items-center gap-2.5 text-sm text-gray-600">
-                      <span className="w-1.5 h-1.5 rounded-full bg-blue-400 flex-shrink-0" />
-                      {f}
-                    </li>
-                  ))}
-                </ul>
-                <div className="flex gap-3 mt-auto">
-                  <Link href={app.register} className="flex-1 text-center bg-gray-900 text-white text-sm font-medium py-2.5 rounded-full hover:bg-gray-700 transition-colors">
-                    Try free
-                  </Link>
-                  <Link href={app.href} className="flex-1 text-center border border-gray-200 text-gray-700 text-sm font-medium py-2.5 rounded-full hover:border-gray-400 transition-colors">
-                    Learn more
-                  </Link>
+
+                  <h3 className="text-2xl font-semibold text-gray-900 mb-2">{app.name}</h3>
+                  <p className="text-sm text-gray-500 leading-relaxed mb-6">{app.desc}</p>
+
+                  {/* STATS */}
+                  <div className="grid grid-cols-2 gap-3 mb-6">
+                    {app.stats.map(s => (
+                      <div key={s.label} className="bg-gray-50 rounded-2xl px-4 py-3">
+                        <p className={`text-xl font-bold ${app.statColor}`}>{s.value}</p>
+                        <p className="text-xs text-gray-400 mt-0.5 leading-tight">{s.label}</p>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* FEATURES */}
+                  <ul className="grid grid-cols-2 gap-x-4 gap-y-2.5 mb-6 flex-1">
+                    {app.features.map(f => (
+                      <li key={f} className="flex items-start gap-2 text-sm text-gray-600">
+                        <CheckCircle2 size={14} className={`${app.iconColor} shrink-0 mt-0.5`} />
+                        {f}
+                      </li>
+                    ))}
+                  </ul>
+
+                  {/* HIGHLIGHT */}
+                  <p className="text-xs text-gray-400 mb-5 flex items-center gap-1.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 shrink-0" />
+                    {app.highlight}
+                  </p>
+
+                  {/* ACTIONS */}
+                  <div className="flex gap-3 mt-auto">
+                    <Link href={app.register} className="flex-1 text-center bg-gray-900 text-white text-sm font-medium py-2.5 rounded-full hover:bg-gray-700 transition-colors">
+                      Try free
+                    </Link>
+                    <Link href={app.href} className="flex items-center gap-1.5 justify-center border border-gray-200 text-gray-700 text-sm font-medium px-5 py-2.5 rounded-full hover:border-gray-400 transition-colors">
+                      Learn more <ArrowRight size={13} />
+                    </Link>
+                  </div>
                 </div>
               </div>
             ))}
@@ -268,14 +327,12 @@ export default function MainContent() {
             Join businesses using Smapey to invoice faster, manage members, and take back their time.
           </p>
           <div className="mt-10 flex flex-wrap gap-3 justify-center">
-            <Link href="https://app.smapey.com/register?product=INVOICE&plan=FREE">
+            <Link href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=GYM&plan=FREE`}>
               <button className="bg-gray-900 text-white text-base font-medium px-8 py-3.5 rounded-full hover:bg-gray-700 hover:-translate-y-0.5 transition-all">
                 Start free trial →
               </button>
             </Link>
-            <button className="border border-gray-200 text-gray-700 text-base font-medium px-8 py-3.5 rounded-full hover:border-gray-400 transition-colors">
-              View pricing
-            </button>
+         
           </div>
           <p className="mt-6 text-sm text-gray-400">
             No credit card required · Cancel anytime · Setup in minutes
@@ -285,7 +342,10 @@ export default function MainContent() {
 
       {/* FOOTER */}
       <footer className="border-t border-gray-100 px-6 md:px-14 py-8 flex flex-wrap items-center justify-between gap-4 bg-white">
-        <span className="text-base font-semibold text-gray-900">Smapey</span>
+        <div className="flex items-center gap-2">
+          <img src="/logo.png" alt="Smapey" className="h-6 w-6 object-contain" />
+          <span className="text-base font-semibold text-gray-900">Smapey</span>
+        </div>
         <div className="flex gap-6">
           {["Invoice", "Gym", "Privacy", "Terms"].map(l => (
             <a key={l} href="#" className="text-sm text-gray-400 hover:text-gray-600 transition-colors">{l}</a>

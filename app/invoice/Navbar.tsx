@@ -133,6 +133,9 @@ export default function Navbar() {
             <Link href="/invoice/how-it-works" className="text-gray-600 hover:text-blue-600">
               How it works
             </Link>
+            <Link href="/invoice/pricing" className="text-gray-600 hover:text-blue-600">
+              Pricing
+            </Link>
             <Link href="/invoice/learning-hub" className="text-gray-600 hover:text-blue-600">
               Learning Hub
             </Link>
