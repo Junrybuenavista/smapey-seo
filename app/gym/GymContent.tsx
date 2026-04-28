@@ -665,12 +665,13 @@ function PaymentModal({
       })
 
       const data = await res.json()
+      if (!res.ok) throw new Error(data.message || JSON.stringify(data))
       const redirectUrl = data.approveUrl || data.checkoutUrl
-      if (!redirectUrl) throw new Error("No redirect URL")
+      if (!redirectUrl) throw new Error("No redirect URL returned")
       window.location.href = redirectUrl
-    } catch (err) {
+    } catch (err: any) {
       console.error(err)
-      alert("Checkout failed. Please try again.")
+      alert(err?.message || "Checkout failed. Please try again.")
     } finally {
       setLoading(null)
     }
