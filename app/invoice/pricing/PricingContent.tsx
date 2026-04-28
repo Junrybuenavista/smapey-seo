@@ -24,7 +24,7 @@ const PLANS = {
     description: "For teams & scaling companies",
     features: ["Unlimited invoices", "Unlimited team members", "Everything in Pro", "Priority support"],
     usdPrice: "$10",
-    phpPrice: "₱599",
+    phpPrice: "₱499",
   },
 }
 

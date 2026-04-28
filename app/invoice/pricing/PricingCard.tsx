@@ -81,7 +81,7 @@ export default function PricingCard({
 
   const handleClick = () => {
     if (plan === "FREE") {
-      window.location.href = `/register?product=${product}&plan=FREE`
+      window.location.href = `${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=INVOICE&plan=FREE`
       return
     }
     if (!isPhilippines) {
