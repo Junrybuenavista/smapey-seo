@@ -1,8 +1,48 @@
 "use client"
 
+import { useEffect, useState } from "react"
 import PricingCard from "./PricingCard"
 
+const PLANS = {
+  FREE: {
+    title: "Free",
+    description: "For freelancers getting started",
+    features: ["10 invoices / month", "2 team members", "Basic templates"],
+    usdPrice: "$0",
+    phpPrice: "₱0",
+  },
+  PRO: {
+    title: "Pro",
+    description: "Best for growing businesses",
+    features: ["500 invoices / month", "5 team members", "Advanced templates"],
+    usdPrice: "$5",
+    phpPrice: "₱299",
+    popular: true,
+  },
+  ENTERPRISE: {
+    title: "Enterprise",
+    description: "For teams & scaling companies",
+    features: ["Unlimited invoices", "Unlimited team members", "Everything in Pro", "Priority support"],
+    usdPrice: "$10",
+    phpPrice: "₱599",
+  },
+}
+
 export default function PricingContent() {
+  const [isPhilippines, setIsPhilippines] = useState<boolean | null>(null)
+
+  useEffect(() => {
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/billing/geo`)
+      .then(r => r.json())
+      .then(d => setIsPhilippines(d.isPhilippines !== false))
+      .catch(() => setIsPhilippines(false))
+  }, [])
+
+  const price = (plan: keyof typeof PLANS) => {
+    if (isPhilippines === null) return "..."
+    return isPhilippines ? PLANS[plan].phpPrice : PLANS[plan].usdPrice
+  }
+
   return (
     <div className="min-h-screen bg-slate-50 py-24 px-6">
 
@@ -14,52 +54,35 @@ export default function PricingContent() {
         <p className="text-slate-500">
           Clean invoicing. No hidden fees.
         </p>
+
+        {/* currency badge */}
+        {isPhilippines !== null && (
+          <div className="inline-flex items-center gap-1.5 mt-4 px-3 py-1 rounded-full bg-white border border-slate-200 text-xs text-slate-500 shadow-sm">
+            <span>{isPhilippines ? "🇵🇭" : "🌍"}</span>
+            <span>Showing prices in <span className="font-semibold text-slate-700">{isPhilippines ? "Philippine Peso (₱)" : "US Dollar ($)"}</span></span>
+          </div>
+        )}
       </div>
 
       {/* CARDS */}
       <div className="flex justify-center gap-6 flex-wrap">
 
-        <PricingCard
-          title="Free"
-          price="$0 /month"
-          description="For freelancers getting started"
-          features={[
-            "10 invoices / month",
-            "Basic templates",
-            "Manual tracking",
-          ]}
-          plan="FREE"
-          product="INVOICE"
-        />
-
-        <PricingCard
-          title="Pro"
-          price="$15 /month"
-          description="Best for growing businesses"
-          features={[
-            "Unlimited invoices",
-            "Client management",
-            "Payment tracking",
-            "Analytics dashboard",
-          ]}
-          plan="PRO"
-          product="INVOICE"
-          popular
-        />
-
-        <PricingCard
-          title="Enterprise"
-          price="$25 /month"
-          description="For teams & scaling companies"
-          features={[
-            "Everything in Pro",
-            "Team access",
-            "Advanced reports",
-            "Priority support",
-          ]}
-          plan="ENTERPRISE"
-          product="INVOICE"
-        />
+        {(Object.keys(PLANS) as (keyof typeof PLANS)[]).map(key => {
+          const plan = PLANS[key]
+          return (
+            <PricingCard
+              key={key}
+              title={plan.title}
+              price={`${price(key)} /mo`}
+              description={plan.description}
+              features={plan.features}
+              plan={key}
+              product="INVOICE"
+              popular={"popular" in plan ? plan.popular : false}
+              isPhilippines={isPhilippines ?? false}
+            />
+          )
+        })}
 
       </div>
 

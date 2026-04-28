@@ -84,35 +84,38 @@ const STEPS = [
 const PLANS = [
   {
     name: "Free",
-    price: "₱0",
+    phpPrice: "₱0",
+    usdPrice: "$0",
     period: "/mo",
     planKey: "FREE",
     product: "GYM",
     desc: "Perfect for small gyms just getting started.",
-    features: ["Up to 10 members", "Up to 50 walk-ins/mo", "QR check-in", "Basic dashboard", "1 trainer"],
+    features: ["Up to 10 members", "10 walk-in visits / month", "2 team members", "Manual check-in"],
     cta: "Get started free",
     highlight: false,
   },
   {
     name: "Pro",
-    price: "₱999",
+    phpPrice: "₱899",
+    usdPrice: "$15",
     period: "/mo",
     planKey: "PRO",
     product: "GYM",
     desc: "For growing gyms that need more power.",
-    features: ["Up to 500 members", "Unlimited walk-ins", "Revenue analytics", "Trainer management", "Priority support"],
-    cta: "Start Pro trial",
+    features: ["Up to 100 members", "Unlimited walk-in visits", "5 team members", "QR code check-in"],
+    cta: "Start Pro",
     highlight: true,
   },
   {
-    name: "Business",
-    price: "₱2,499",
+    name: "Enterprise",
+    phpPrice: "₱1,699",
+    usdPrice: "$29",
     period: "/mo",
     planKey: "ENTERPRISE",
     product: "GYM",
     desc: "For large gyms and multi-branch operations.",
-    features: ["Unlimited members", "Unlimited walk-ins", "Advanced analytics", "Multi-trainer support", "Dedicated support"],
-    cta: "Contact sales",
+    features: ["Unlimited members", "Unlimited walk-in visits", "Unlimited team members", "Everything in Pro", "Advanced analytics", "Priority support"],
+    cta: "Get Enterprise",
     highlight: false,
   },
 ]
@@ -405,6 +408,14 @@ function HowItWorks() {
 //////////////////////////////////////////////////////
 function Pricing() {
   const [selectedPlan, setSelectedPlan] = useState<typeof PLANS[0] | null>(null)
+  const [isPhilippines, setIsPhilippines] = useState<boolean | null>(null)
+
+  useEffect(() => {
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/billing/geo`)
+      .then(r => r.json())
+      .then(d => setIsPhilippines(d.isPhilippines !== false))
+      .catch(() => setIsPhilippines(false))
+  }, [])
 
   const handleSelect = (p: typeof PLANS[0]) => {
     if (p.planKey === "FREE") {
@@ -423,57 +434,68 @@ function Pricing() {
             Simple, transparent pricing
           </h2>
           <p className="text-slate-500 mt-4">Start free. Scale as you grow.</p>
+
+          {isPhilippines !== null && (
+            <div className="inline-flex items-center gap-1.5 mt-4 px-3 py-1 rounded-full bg-white border border-slate-200 text-xs text-slate-500 shadow-sm">
+              <span>{isPhilippines ? "🇵🇭" : "🌍"}</span>
+              <span>Prices in <span className="font-semibold text-slate-700">{isPhilippines ? "Philippine Peso (₱)" : "US Dollar ($)"}</span></span>
+            </div>
+          )}
         </Animate>
 
         <div className="grid md:grid-cols-3 gap-6 items-center">
-          {PLANS.map((p, i) => (
-            <Animate key={p.name} delay={i * 100}>
-              <div className={`rounded-2xl p-8 border transition-all duration-300 hover:-translate-y-1 ${
-                p.highlight
-                  ? "bg-gradient-to-b from-blue-700 to-blue-900 border-blue-500/30 shadow-2xl shadow-blue-600/20 scale-105"
-                  : "bg-white border-slate-200 shadow-sm hover:shadow-md"
-              }`}>
-                {p.highlight && (
-                  <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-amber-400/20 text-amber-300 text-xs font-semibold mb-4">
-                    <Zap className="w-3 h-3" /> Most popular
-                  </span>
-                )}
-                <p className={`font-bold text-lg mb-1 ${p.highlight ? "text-white" : "text-slate-800"}`}>{p.name}</p>
-                <p className={`text-sm mb-4 ${p.highlight ? "text-blue-200/60" : "text-slate-400"}`}>{p.desc}</p>
-                <div className="flex items-end gap-1 mb-6">
-                  <span className={`text-4xl font-extrabold tracking-tight ${p.highlight ? "text-white" : "text-slate-800"}`}>
-                    {p.price}
-                  </span>
-                  <span className={`text-sm mb-1 ${p.highlight ? "text-blue-200/50" : "text-slate-400"}`}>{p.period}</span>
+          {PLANS.map((p, i) => {
+            const displayPrice = isPhilippines === null ? "..." : isPhilippines ? p.phpPrice : p.usdPrice
+            return (
+              <Animate key={p.name} delay={i * 100}>
+                <div className={`rounded-2xl p-8 border transition-all duration-300 hover:-translate-y-1 ${
+                  p.highlight
+                    ? "bg-gradient-to-b from-blue-700 to-blue-900 border-blue-500/30 shadow-2xl shadow-blue-600/20 scale-105"
+                    : "bg-white border-slate-200 shadow-sm hover:shadow-md"
+                }`}>
+                  {p.highlight && (
+                    <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-amber-400/20 text-amber-300 text-xs font-semibold mb-4">
+                      <Zap className="w-3 h-3" /> Most popular
+                    </span>
+                  )}
+                  <p className={`font-bold text-lg mb-1 ${p.highlight ? "text-white" : "text-slate-800"}`}>{p.name}</p>
+                  <p className={`text-sm mb-4 ${p.highlight ? "text-blue-200/60" : "text-slate-400"}`}>{p.desc}</p>
+                  <div className="flex items-end gap-1 mb-6">
+                    <span className={`text-4xl font-extrabold tracking-tight ${p.highlight ? "text-white" : "text-slate-800"}`}>
+                      {displayPrice}
+                    </span>
+                    <span className={`text-sm mb-1 ${p.highlight ? "text-blue-200/50" : "text-slate-400"}`}>{p.period}</span>
+                  </div>
+
+                  <ul className="space-y-3 mb-8">
+                    {p.features.map((f) => (
+                      <li key={f} className="flex items-center gap-2.5 text-sm">
+                        <CheckCircle2 className={`w-4 h-4 shrink-0 ${p.highlight ? "text-amber-400" : "text-blue-500"}`} />
+                        <span className={p.highlight ? "text-blue-100/80" : "text-slate-600"}>{f}</span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  <button
+                    onClick={() => handleSelect(p)}
+                    className={`w-full text-center py-2.5 rounded-xl text-sm font-semibold transition-all ${
+                      p.highlight
+                        ? "bg-amber-400 hover:bg-amber-300 text-amber-900 shadow-lg shadow-amber-400/25"
+                        : "bg-blue-600 hover:bg-blue-500 text-white shadow-md shadow-blue-600/20"
+                    }`}>
+                    {p.cta}
+                  </button>
                 </div>
-
-                <ul className="space-y-3 mb-8">
-                  {p.features.map((f) => (
-                    <li key={f} className="flex items-center gap-2.5 text-sm">
-                      <CheckCircle2 className={`w-4 h-4 shrink-0 ${p.highlight ? "text-amber-400" : "text-blue-500"}`} />
-                      <span className={p.highlight ? "text-blue-100/80" : "text-slate-600"}>{f}</span>
-                    </li>
-                  ))}
-                </ul>
-
-                <button
-                  onClick={() => handleSelect(p)}
-                  className={`w-full text-center py-2.5 rounded-xl text-sm font-semibold transition-all ${
-                    p.highlight
-                      ? "bg-amber-400 hover:bg-amber-300 text-amber-900 shadow-lg shadow-amber-400/25"
-                      : "bg-blue-600 hover:bg-blue-500 text-white shadow-md shadow-blue-600/20"
-                  }`}>
-                  {p.cta}
-                </button>
-              </div>
-            </Animate>
-          ))}
+              </Animate>
+            )
+          })}
         </div>
       </div>
 
       {selectedPlan && (
         <PaymentModal
           plan={selectedPlan}
+          isPhilippines={isPhilippines ?? false}
           onClose={() => setSelectedPlan(null)}
         />
       )}
@@ -578,7 +600,7 @@ function Footer() {
 //////////////////////////////////////////////////////
 // PAYMENT MODAL
 //////////////////////////////////////////////////////
-type PaymentMethod = "paypal" | "card" | "gcash" | null
+type CheckoutMethod = "paypal" | "paymongo"
 
 const Spinner = () => (
   <svg className="w-4 h-4 animate-spin" viewBox="0 0 24 24" fill="none">
@@ -589,47 +611,46 @@ const Spinner = () => (
 
 function PaymentModal({
   plan,
+  isPhilippines,
   onClose,
 }: {
-  plan: { name: string; price: string; period: string; planKey: string; product: string } | null
+  plan: { name: string; phpPrice: string; usdPrice: string; period: string; planKey: string; product: string } | null
+  isPhilippines: boolean
   onClose: () => void
 }) {
-  const [method, setMethod] = useState<PaymentMethod>(null)
+  const [step, setStep] = useState<"details" | "payment">("details")
   const [name, setName] = useState("")
   const [email, setEmail] = useState("")
-  const [cardForm, setCardForm] = useState({ name: "", number: "", expiry: "", cvv: "" })
-  const [gcashNumber, setGcashNumber] = useState("")
-  const [loading, setLoading] = useState(false)
-  const [done, setDone] = useState(false)
+  const [loading, setLoading] = useState<CheckoutMethod | null>(null)
+  const [token, setToken] = useState<string | null>(null)
+
+  useEffect(() => {
+    const t = localStorage.getItem("accessToken")
+    setToken(t)
+    // logged-in users skip details step
+    if (t) setStep("payment")
+    // international logged-out users go straight to PayPal on open
+  }, [])
 
   if (!plan) return null
 
-  const token = typeof window !== "undefined" ? localStorage.getItem("accessToken") : null
+  const displayPrice = isPhilippines ? plan.phpPrice : plan.usdPrice
 
-  const formatCard = (val: string) =>
-    val.replace(/\D/g, "").slice(0, 16).replace(/(.{4})/g, "$1 ").trim()
-
-  const formatExpiry = (val: string) =>
-    val.replace(/\D/g, "").slice(0, 4).replace(/(.{2})(.+)/, "$1/$2")
-
-  //////////////////////////////////////////////////////
-  // PAYPAL — real implementation
-  //////////////////////////////////////////////////////
-  const checkoutPayPal = async () => {
+  const checkout = async (method: CheckoutMethod) => {
     try {
-      setLoading(true)
+      setLoading(method)
       let endpoint = ""
       let payload: any = {}
 
       if (token) {
-        endpoint = "/api/billing/subscribe/paypal"
+        endpoint = method === "paypal"
+          ? "/api/billing/subscribe/paypal"
+          : "/api/billing/subscribe/paymongo"
         payload = { product: plan.product, plan: plan.planKey }
       } else {
-        if (!name.trim() || !email.trim()) {
-          alert("Name and email are required")
-          return
-        }
-        endpoint = "/api/billing/newaccount/paypal"
+        endpoint = method === "paypal"
+          ? "/api/billing/newaccount/paypal"
+          : "/api/billing/newaccount/paymongo"
         payload = { name, email, product: plan.product, plan: plan.planKey }
       }
 
@@ -650,56 +671,18 @@ function PaymentModal({
       console.error(err)
       alert("Checkout failed. Please try again.")
     } finally {
-      setLoading(false)
+      setLoading(null)
     }
   }
 
-  //////////////////////////////////////////////////////
-  // CARD / GCASH — wire to your own endpoints
-  //////////////////////////////////////////////////////
-  const checkoutOther = async () => {
-    setLoading(true)
-    await new Promise((r) => setTimeout(r, 1800))
-    setLoading(false)
-    setDone(true)
+  const handleContinue = () => {
+    if (!name.trim() || !email.trim()) { alert("Name and email are required"); return }
+    if (!isPhilippines) {
+      checkout("paypal")
+    } else {
+      setStep("payment")
+    }
   }
-
-  const METHODS = [
-    {
-      id: "paypal" as PaymentMethod,
-      label: "PayPal",
-      icon: (
-        <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M7.076 21.337H2.47a.641.641 0 0 1-.633-.74L4.944.901C5.026.382 5.474 0 5.998 0h7.46c2.57 0 4.578.543 5.69 1.81 1.01 1.15 1.304 2.42 1.012 4.287-.023.143-.047.288-.077.437-.983 5.05-4.349 6.797-8.647 6.797h-2.19c-.524 0-.968.382-1.05.9l-1.12 7.106zm14.146-14.42a3.35 3.35 0 0 0-.607-.541c-.013.076-.026.175-.041.254-.59 3.025-2.566 6.082-8.558 6.082H9.825l-1.43 9.083h3.89c.524 0 .968-.383 1.05-.9l.326-2.07.503-3.189c.083-.517.527-.9 1.05-.9h.67c3.865 0 6.542-1.57 7.383-6.114.31-1.67.153-3.07-.645-4.705z" />
-        </svg>
-      ),
-      bg: "bg-sky-50 border-sky-200 text-sky-700",
-      active: "bg-sky-500 border-sky-500 text-white",
-    },
-    {
-      id: "card" as PaymentMethod,
-      label: "Card",
-      icon: (
-        <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}>
-          <rect x="1" y="4" width="22" height="16" rx="2" />
-          <line x1="1" y1="10" x2="23" y2="10" />
-        </svg>
-      ),
-      bg: "bg-blue-50 border-blue-200 text-blue-700",
-      active: "bg-blue-600 border-blue-600 text-white",
-    },
-    {
-      id: "gcash" as PaymentMethod,
-      label: "GCash",
-      icon: (
-        <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z" />
-        </svg>
-      ),
-      bg: "bg-blue-50 border-blue-200 text-blue-800",
-      active: "bg-[#007DFF] border-[#007DFF] text-white",
-    },
-  ]
 
   return (
     <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4">
@@ -707,135 +690,102 @@ function PaymentModal({
 
         {/* Header */}
         <div className="bg-gradient-to-r from-blue-700 to-blue-500 px-6 py-5 flex items-center justify-between">
-          <div>
-            <h2 className="text-white font-bold text-lg">Complete your order</h2>
-            <p className="text-blue-100 text-sm mt-0.5">
-              {plan.name} plan — <span className="font-semibold">{plan.price}</span>{plan.period}
-            </p>
+          <div className="flex items-center gap-3">
+            {step === "payment" && !token && (
+              <button onClick={() => setStep("details")} className="text-white/60 hover:text-white transition">
+                <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+              </button>
+            )}
+            <div>
+              <h2 className="text-white font-bold text-lg">
+                {step === "details" ? "Create your account" : "Choose payment method"}
+              </h2>
+              <p className="text-blue-100 text-sm mt-0.5">
+                {plan.name} plan — <span className="font-semibold">{displayPrice}</span>{plan.period}
+              </p>
+            </div>
           </div>
           <button onClick={onClose} className="text-white/70 hover:text-white transition-colors">
             <X className="w-5 h-5" />
           </button>
         </div>
 
-        <div className="p-6">
-          {done ? (
-            <div className="text-center py-8">
-              <div className="w-16 h-16 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-4">
-                <CheckCircle2 className="w-8 h-8 text-green-500" />
-              </div>
-              <h3 className="text-slate-800 font-bold text-lg mb-1">Payment successful!</h3>
-              <p className="text-slate-500 text-sm mb-6">
-                You're now on the <span className="font-semibold text-blue-600">{plan.name}</span> plan.
-              </p>
-              <a href="/dashboard"
-                className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-semibold text-sm transition-all">
-                Go to dashboard <ChevronRight className="w-4 h-4" />
-              </a>
-            </div>
-          ) : (
+        <div className="p-6 flex flex-col gap-4">
+
+          {/* STEP 1: details (new users only) */}
+          {step === "details" && (
             <>
-              {/* METHOD SELECTOR */}
-              <p className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-3">
-                Select payment method
-              </p>
-              <div className="grid grid-cols-3 gap-2 mb-5">
-                {METHODS.map((m) => (
-                  <button key={m.id} onClick={() => setMethod(m.id)}
-                    className={`flex flex-col items-center gap-1.5 py-3 px-2 rounded-xl border text-xs font-semibold transition-all ${
-                      method === m.id ? m.active : m.bg
-                    }`}>
-                    {m.icon}
-                    {m.label}
-                  </button>
-                ))}
-              </div>
-
-              {/* ── PAYPAL ── */}
-              {method === "paypal" && (
-                <div className="flex flex-col gap-3">
-                  {token ? (
-                    <div className="bg-sky-50 border border-sky-100 rounded-xl p-4 text-center text-sm text-slate-500">
-                      You'll be redirected to PayPal to complete your payment securely.
-                    </div>
-                  ) : (
-                    <>
-                      <p className="text-xs text-slate-500 text-center">
-                        Enter your details to create an account and continue to PayPal.
-                      </p>
-                      <input
-                        placeholder="Full name"
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
-                        className="w-full border border-slate-200 rounded-xl px-4 py-2.5 text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-400"
-                      />
-                      <input
-                        type="email"
-                        placeholder="Email address"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        className="w-full border border-slate-200 rounded-xl px-4 py-2.5 text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-400"
-                      />
-                    </>
-                  )}
-                  <button onClick={checkoutPayPal} disabled={loading}
-                    className="w-full mt-1 py-3 rounded-xl bg-gradient-to-r from-orange-500 to-orange-400 hover:from-orange-600 hover:to-orange-500 text-white font-semibold text-sm flex items-center justify-center gap-2 transition-all shadow-lg shadow-orange-500/20 disabled:opacity-70">
-                    {loading ? <><Spinner /> Redirecting…</> : <>Continue to PayPal <ChevronRight className="w-4 h-4" /></>}
-                  </button>
-                </div>
-              )}
-
-              {/* ── CARD ── */}
-              {method === "card" && (
-                <div className="flex flex-col gap-3">
-                  <input placeholder="Cardholder name" value={cardForm.name}
-                    onChange={(e) => setCardForm({ ...cardForm, name: e.target.value })}
-                    className="w-full border border-slate-200 rounded-xl px-4 py-2.5 text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-400" />
-                  <input placeholder="Card number" value={cardForm.number}
-                    onChange={(e) => setCardForm({ ...cardForm, number: formatCard(e.target.value) })}
-                    className="w-full border border-slate-200 rounded-xl px-4 py-2.5 text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-400 tracking-widest" />
-                  <div className="grid grid-cols-2 gap-3">
-                    <input placeholder="MM/YY" value={cardForm.expiry}
-                      onChange={(e) => setCardForm({ ...cardForm, expiry: formatExpiry(e.target.value) })}
-                      className="w-full border border-slate-200 rounded-xl px-4 py-2.5 text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-400" />
-                    <input placeholder="CVV" maxLength={4} value={cardForm.cvv}
-                      onChange={(e) => setCardForm({ ...cardForm, cvv: e.target.value.replace(/\D/g, "") })}
-                      className="w-full border border-slate-200 rounded-xl px-4 py-2.5 text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-400" />
-                  </div>
-                  <button onClick={checkoutOther} disabled={loading}
-                    className="w-full mt-1 py-3 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-semibold text-sm flex items-center justify-center gap-2 transition-all disabled:opacity-70">
-                    {loading ? <><Spinner /> Processing…</> : <>Pay {plan.price} <ChevronRight className="w-4 h-4" /></>}
-                  </button>
-                </div>
-              )}
-
-              {/* ── GCASH ── */}
-              {method === "gcash" && (
-                <div className="flex flex-col gap-3">
-                  <div className="bg-blue-50 border border-blue-100 rounded-xl p-4 text-center">
-                    <p className="text-xs text-slate-500 mb-3">Enter your GCash mobile number</p>
-                    <input placeholder="09XX XXX XXXX" value={gcashNumber} maxLength={11}
-                      onChange={(e) => setGcashNumber(e.target.value.replace(/\D/g, ""))}
-                      className="w-full border border-blue-200 rounded-xl px-4 py-2.5 text-sm text-slate-700 text-center tracking-widest focus:outline-none focus:ring-2 focus:ring-blue-500/30 bg-white" />
-                    <p className="text-xs text-slate-400 mt-2">
-                      You'll receive a GCash payment request on this number.
-                    </p>
-                  </div>
-                  <button onClick={checkoutOther} disabled={loading}
-                    className="w-full py-3 rounded-xl bg-[#007DFF] hover:bg-blue-600 text-white font-semibold text-sm flex items-center justify-center gap-2 transition-all disabled:opacity-70">
-                    {loading ? <><Spinner /> Processing…</> : <>Pay via GCash <ChevronRight className="w-4 h-4" /></>}
-                  </button>
-                </div>
-              )}
-
-              <p className="text-center text-xs text-slate-400 mt-4 flex items-center justify-center gap-1">
-                <svg className="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}>
-                  <rect x="3" y="11" width="18" height="11" rx="2" /><path d="M7 11V7a5 5 0 0 1 10 0v4" />
-                </svg>
-                Secure checkout · Cancel anytime · No hidden fees
-              </p>
+              <input
+                placeholder="Full name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                className="w-full border border-slate-200 rounded-xl px-4 py-2.5 text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-400"
+              />
+              <input
+                type="email"
+                placeholder="Email address"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="w-full border border-slate-200 rounded-xl px-4 py-2.5 text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-400"
+              />
+              <button
+                onClick={handleContinue}
+                disabled={loading !== null}
+                className="w-full py-3 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-semibold text-sm flex items-center justify-center gap-2 transition-all disabled:opacity-60"
+              >
+                {loading ? <><Spinner /> Redirecting…</> : <>Continue <ChevronRight className="w-4 h-4" /></>}
+              </button>
             </>
           )}
+
+          {/* STEP 2: payment picker (PH only, or all logged-in users) */}
+          {step === "payment" && (
+            <>
+              {/* PayMongo — PH first */}
+              {isPhilippines && (
+                <button
+                  onClick={() => checkout("paymongo")}
+                  disabled={loading !== null}
+                  className="w-full flex items-center gap-4 px-5 py-4 border-2 border-slate-200 rounded-2xl hover:border-green-500 hover:bg-green-50 transition-all group"
+                >
+                  <div className="w-10 h-10 rounded-xl bg-green-600 flex items-center justify-center shrink-0">
+                    <svg viewBox="0 0 24 24" className="w-5 h-5 fill-white"><path d="M3 3h7v7H3zm0 11h7v7H3zm11-11h7v7h-7zm0 11h7v7h-7z"/></svg>
+                  </div>
+                  <div className="flex-1 text-left">
+                    <p className="text-sm font-semibold text-slate-800 group-hover:text-green-700">QR Ph / GCash / Card</p>
+                    <p className="text-xs text-slate-400">Philippine payment methods</p>
+                  </div>
+                  {loading === "paymongo" ? <Spinner /> : <ChevronRight className="w-4 h-4 text-slate-300 group-hover:text-green-500" />}
+                </button>
+              )}
+
+              {/* PayPal */}
+              <button
+                onClick={() => checkout("paypal")}
+                disabled={loading !== null}
+                className="w-full flex items-center gap-4 px-5 py-4 border-2 border-slate-200 rounded-2xl hover:border-blue-500 hover:bg-blue-50 transition-all group"
+              >
+                <div className="w-10 h-10 rounded-xl bg-[#003087] flex items-center justify-center shrink-0">
+                  <svg viewBox="0 0 24 24" className="w-5 h-5 fill-white">
+                    <path d="M7.076 21.337H2.47a.641.641 0 0 1-.633-.74L4.944.901C5.026.382 5.474 0 5.998 0h7.46c2.57 0 4.578.543 5.69 1.81 1.01 1.15 1.304 2.42 1.012 4.287-.023.143-.047.288-.077.437-.983 5.05-4.349 6.797-8.647 6.797h-2.19c-.524 0-.968.382-1.05.9l-1.12 7.106zm14.146-14.42a3.35 3.35 0 0 0-.607-.541c1.379 8.883-5.43 11.61-10.377 11.61H8.23l-1.133 7.184h3.78c.458 0 .848-.332.92-.783l.038-.196.728-4.617.047-.252a.93.93 0 0 1 .919-.784h.578c3.746 0 6.678-1.522 7.534-5.927.358-1.833.173-3.363-.42-4.494z"/>
+                  </svg>
+                </div>
+                <div className="flex-1 text-left">
+                  <p className="text-sm font-semibold text-slate-800 group-hover:text-blue-700">PayPal</p>
+                  <p className="text-xs text-slate-400">Pay with your PayPal account</p>
+                </div>
+                {loading === "paypal" ? <Spinner /> : <ChevronRight className="w-4 h-4 text-slate-300 group-hover:text-blue-500" />}
+              </button>
+            </>
+          )}
+
+          <p className="text-center text-xs text-slate-400 flex items-center justify-center gap-1">
+            <svg className="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}>
+              <rect x="3" y="11" width="18" height="11" rx="2" /><path d="M7 11V7a5 5 0 0 1 10 0v4" />
+            </svg>
+            Secure checkout · Cancel anytime · No hidden fees
+          </p>
+
         </div>
       </div>
     </div>
