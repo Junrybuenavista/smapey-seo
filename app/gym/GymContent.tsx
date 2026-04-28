@@ -411,10 +411,11 @@ function Pricing() {
   const [isPhilippines, setIsPhilippines] = useState<boolean | null>(null)
 
   useEffect(() => {
+    const tzFallback = Intl.DateTimeFormat().resolvedOptions().timeZone === "Asia/Manila"
     fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/billing/geo`)
       .then(r => r.json())
-      .then(d => setIsPhilippines(d.isPhilippines !== false))
-      .catch(() => setIsPhilippines(false))
+      .then(d => setIsPhilippines(d.isPhilippines ?? tzFallback))
+      .catch(() => setIsPhilippines(tzFallback))
   }, [])
 
   const handleSelect = (p: typeof PLANS[0]) => {
