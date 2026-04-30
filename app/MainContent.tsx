@@ -1,7 +1,7 @@
 "use client"
 
 import Link from "next/link"
-import { FileText, Dumbbell, Layers, Sparkles, TrendingUp, Clock, ShieldCheck, Puzzle, User, Briefcase, CheckCircle2, ArrowRight } from "lucide-react"
+import { FileText, Dumbbell, BookOpen, Layers, Sparkles, TrendingUp, Clock, ShieldCheck, Puzzle, User, Briefcase, CheckCircle2, ArrowRight } from "lucide-react"
 
 const floatStyle = `
   @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
@@ -62,6 +62,32 @@ const apps = [
     ],
     highlight: "Trusted by gym owners across 12 countries",
   },
+  {
+    name: "Essay Feedback",
+    desc: "Grade student essays instantly with AI — get rubric-based scores, structured feedback, and writing improvement tips.",
+    href: "/essay",
+    register: `${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=ESSAY&plan=FREE`,
+    tag: "Education",
+    tagColor: "bg-indigo-50 text-indigo-700",
+    iconBg: "bg-indigo-50",
+    iconColor: "text-indigo-600",
+    accentColor: "border-indigo-500",
+    statColor: "text-indigo-600",
+    Icon: BookOpen,
+    features: [
+      "AI essay grading in seconds",
+      "Camera OCR for handwritten essays",
+      "Rubric-based multi-dimension scoring",
+      "Assignment creation & management",
+      "Student progress tracking",
+      "Class analytics & score distribution",
+    ],
+    stats: [
+      { label: "Avg. grading time per essay", value: "< 10s" },
+      { label: "Student improvement rate",    value: "87%"   },
+    ],
+    highlight: "Used by teachers across 8+ countries",
+  },
 ]
 
 const whyItems = [
@@ -77,6 +103,7 @@ const whoItems = [
   { Icon: User,      title: "Freelancers",      desc: "Invoice clients in seconds, accept payments online, and track every project without a spreadsheet.", features: ["Fast invoice creation", "Online payment links", "Client history"] },
   { Icon: Briefcase, title: "Small businesses", desc: "Automate invoicing, manage cash flow, and run daily operations — all in one place.",                  features: ["Invoice automation", "Payment tracking", "Business overview"] },
   { Icon: Dumbbell,  title: "Gym owners",       desc: "Keep members organized, automate billing, and track attendance — so you can focus on your members.",   features: ["Member management", "QR check-in", "Subscription billing"] },
+  { Icon: BookOpen,  title: "Educators",        desc: "Grade essays in seconds, deliver structured AI feedback, and track student progress without hours of manual marking.", features: ["AI essay grading", "Camera OCR upload", "Progress tracking"] },
 ]
 
 export default function MainContent() {
@@ -200,9 +227,9 @@ export default function MainContent() {
         <div className="max-w-6xl mx-auto">
           <span className="text-xs font-semibold tracking-widest uppercase text-gray-400">Our products</span>
           <h2 className="mt-3 text-4xl md:text-5xl font-semibold tracking-tight text-gray-900">
-            Two tools, every workflow covered.
+            Three tools, every workflow covered.
           </h2>
-          <div className="mt-12 grid md:grid-cols-2 gap-6">
+          <div className="mt-12 grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {apps.map(app => (
               <div key={app.name} className={`bg-white border border-gray-200 rounded-3xl flex flex-col hover:shadow-xl hover:-translate-y-1 transition-all duration-300 overflow-hidden`}>
 
@@ -270,7 +297,7 @@ export default function MainContent() {
           <h2 className="mt-3 text-4xl md:text-5xl font-semibold tracking-tight text-gray-900">
             Who uses Smapey.
           </h2>
-          <div className="mt-12 grid md:grid-cols-3 gap-6">
+          <div className="mt-12 grid sm:grid-cols-2 md:grid-cols-4 gap-6">
             {whoItems.map((w, i) => (
               <div key={w.title} className="border border-gray-100 rounded-3xl p-7 hover:shadow-lg hover:-translate-y-1 transition-all duration-200">
                 <span className="text-5xl font-bold text-gray-100 leading-none block mb-5">
@@ -347,7 +374,7 @@ export default function MainContent() {
           <span className="text-base font-semibold text-gray-900">Smapey</span>
         </div>
         <div className="flex gap-6">
-          {["Invoice", "Gym", "Privacy", "Terms"].map(l => (
+          {["Invoice", "Gym", "Essay", "Privacy", "Terms"].map(l => (
             <a key={l} href="#" className="text-sm text-gray-400 hover:text-gray-600 transition-colors">{l}</a>
           ))}
         </div>
