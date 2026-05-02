@@ -7,6 +7,9 @@ import {
   Building2,
   MessageCircleQuestionMark,
   HandCoins,
+  CalendarDays,
+  Dumbbell,
+  BookOpen,
   Menu,
   X,
   Users
@@ -76,55 +79,51 @@ export default function Navbar() {
               </button>
 
               {productOpen && (
-                <div className="absolute left-0 mt-4 w-64 bg-white border border-gray-200 rounded-2xl shadow-xl p-2 z-50">
+                <div className="absolute left-0 mt-4 w-72 bg-white border border-gray-200 rounded-2xl shadow-xl p-2 z-50">
 
-                  <Link
-                    href="/invoice/"
-                    onClick={() => setProductOpen(false)}
-                    className="flex gap-3 px-4 py-3 rounded-xl hover:bg-blue-50"
-                  >
+                  <p className="px-4 pt-2 pb-1 text-[10px] font-semibold uppercase tracking-widest text-gray-400">Products</p>
+
+                  <Link href="/invoice/" onClick={() => setProductOpen(false)} className="flex gap-3 px-4 py-3 rounded-xl hover:bg-blue-50">
                     <HandCoins size={18} className="text-blue-600" />
                     <div>
-                      <p className="font-medium">Features</p>
-                      <p className="text-xs text-gray-500">Get Paid Faster</p>
+                      <p className="font-medium">Invoice Manager</p>
+                      <p className="text-xs text-gray-500">Create invoices & get paid faster</p>
                     </div>
                   </Link>
 
-                  <Link
-                    href="/invoice/industry"
-                    onClick={() => setProductOpen(false)}
-                    className="flex gap-3 px-4 py-3 rounded-xl hover:bg-blue-50"
-                  >
-                    <Building2 size={18} className="text-blue-600" />
+                  <Link href="/gym/" onClick={() => setProductOpen(false)} className="flex gap-3 px-4 py-3 rounded-xl hover:bg-emerald-50">
+                    <Dumbbell size={18} className="text-emerald-600" />
                     <div>
-                      <p className="font-medium">Industries</p>
-                      <p className="text-xs text-gray-500">Solutions for every business</p>
+                      <p className="font-medium">Gym Management</p>
+                      <p className="text-xs text-gray-500">Members, billing & attendance</p>
                     </div>
                   </Link>
 
-                      <Link
-                    href="/invoice/customers"
-                    onClick={() => setProductOpen(false)}
-                    className="flex gap-3 px-4 py-3 rounded-xl hover:bg-blue-50"
-                  >
-                    <Users size={18} className="text-blue-600" />
+                  <Link href="/essay/" onClick={() => setProductOpen(false)} className="flex gap-3 px-4 py-3 rounded-xl hover:bg-indigo-50">
+                    <BookOpen size={18} className="text-indigo-600" />
                     <div>
-                      <p className="font-medium">Customers</p>
-                      <p className="text-xs text-gray-500">Customet's freedback</p>
+                      <p className="font-medium">Essay Feedback</p>
+                      <p className="text-xs text-gray-500">AI grading & student feedback</p>
                     </div>
                   </Link>
 
-                  <Link
-                    href="/invoice/faq"
-                    onClick={() => setProductOpen(false)}
-                    className="flex gap-3 px-4 py-3 rounded-xl hover:bg-blue-50"
-                  >
-                    <MessageCircleQuestionMark size={18} className="text-blue-600" />
+                  <Link href="/booking/" onClick={() => setProductOpen(false)} className="flex gap-3 px-4 py-3 rounded-xl hover:bg-teal-50">
+                    <CalendarDays size={18} className="text-teal-600" />
                     <div>
-                      <p className="font-medium">FAQ</p>
-                      <p className="text-xs text-gray-500">Frequently asked questions</p>
+                      <p className="font-medium">Booking & Appointments</p>
+                      <p className="text-xs text-gray-500">Schedule clients & manage staff</p>
                     </div>
                   </Link>
+
+                  <div className="border-t border-gray-100 mt-1 pt-1">
+                    <Link href="/invoice/faq" onClick={() => setProductOpen(false)} className="flex gap-3 px-4 py-3 rounded-xl hover:bg-gray-50">
+                      <MessageCircleQuestionMark size={18} className="text-gray-500" />
+                      <div>
+                        <p className="font-medium">FAQ</p>
+                        <p className="text-xs text-gray-500">Frequently asked questions</p>
+                      </div>
+                    </Link>
+                  </div>
 
                 </div>
               )}
@@ -189,31 +188,24 @@ export default function Navbar() {
             {mobileProductOpen && (
               <div className="mt-2 space-y-2 pl-2">
 
-                <Link
-                  href="/invoice/"
-                  onClick={() => setMobileProductOpen(false)}
-                  className="flex gap-2 text-sm"
-                >
-                  <HandCoins size={16} />
-                  Features
+                <Link href="/invoice/" onClick={() => setMobileProductOpen(false)} className="flex gap-2 items-center text-sm text-gray-700">
+                  <HandCoins size={16} className="text-blue-600" /> Invoice Manager
                 </Link>
 
-                <Link
-                  href="/invoice/industry"
-                  onClick={() => setMobileProductOpen(false)}
-                  className="flex gap-2 text-sm"
-                >
-                  <Building2 size={16} />
-                  Industries
+                <Link href="/gym/" onClick={() => setMobileProductOpen(false)} className="flex gap-2 items-center text-sm text-gray-700">
+                  <Dumbbell size={16} className="text-emerald-600" /> Gym Management
                 </Link>
 
-                <Link
-                  href="/invoice/faq"
-                  onClick={() => setMobileProductOpen(false)}
-                  className="flex gap-2 text-sm"
-                >
-                  <MessageCircleQuestionMark size={16} />
-                  FAQ
+                <Link href="/essay/" onClick={() => setMobileProductOpen(false)} className="flex gap-2 items-center text-sm text-gray-700">
+                  <BookOpen size={16} className="text-indigo-600" /> Essay Feedback
+                </Link>
+
+                <Link href="/booking/" onClick={() => setMobileProductOpen(false)} className="flex gap-2 items-center text-sm text-gray-700">
+                  <CalendarDays size={16} className="text-teal-600" /> Booking & Appointments
+                </Link>
+
+                <Link href="/invoice/faq" onClick={() => setMobileProductOpen(false)} className="flex gap-2 items-center text-sm text-gray-700">
+                  <MessageCircleQuestionMark size={16} className="text-gray-500" /> FAQ
                 </Link>
 
               </div>

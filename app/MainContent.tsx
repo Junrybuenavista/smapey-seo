@@ -1,385 +1,526 @@
 "use client"
 
+import { useState, useEffect, useRef } from "react"
 import Link from "next/link"
-import { FileText, Dumbbell, BookOpen, Layers, Sparkles, TrendingUp, Clock, ShieldCheck, Puzzle, User, Briefcase, CheckCircle2, ArrowRight } from "lucide-react"
+import {
+  FileText, Dumbbell, BookOpen, CalendarDays,
+  ArrowRight, CheckCircle2, Zap, Shield, TrendingUp,
+  Clock, ChevronDown, Menu, X,
+} from "lucide-react"
 
-const floatStyle = `
-  @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
-  .animate-float   { animation: float 3.5s ease-in-out infinite }
-  .animate-float-2 { animation: float 3.5s ease-in-out infinite; animation-delay:-1.8s }
-`
+//////////////////////////////////////////////////////
+// DATA
+//////////////////////////////////////////////////////
 
-const apps = [
+const PRODUCTS = [
   {
-    name: "Invoice Software",
-    desc: "Create professional invoices, send them instantly, and get paid faster — no accounting background needed.",
+    key: "INVOICE",
+    name: "Invoice Manager",
+    tagline: "Get paid faster.",
+    desc: "Create professional invoices, track payments, and send PDF receipts — all in under 2 minutes.",
     href: "/invoice",
     register: `${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=INVOICE&plan=FREE`,
-    tag: "Finance",
-    tagColor: "bg-blue-50 text-blue-700",
-    iconBg: "bg-blue-50",
-    iconColor: "text-blue-600",
-    accentColor: "border-blue-500",
-    statColor: "text-blue-600",
+    accent: "#2563eb",
+    accentLight: "#eff6ff",
     Icon: FileText,
-    features: [
-      "Create & send professional invoices",
-      "Track payment status in real time",
-      "Download & email PDF receipts",
-      "Multi-currency support",
-      "Automated overdue reminders",
-      "Revenue analytics dashboard",
-    ],
-    stats: [
-      { label: "Avg. time to create invoice", value: "< 2 min" },
-      { label: "Payment collection rate",     value: "94%"     },
-    ],
-    highlight: "Used by 1,200+ freelancers & small businesses",
+    features: ["Professional PDF invoices", "Real-time payment tracking", "Multi-currency support", "Automated reminders"],
+    stat: { value: "< 2 min", label: "to create an invoice" },
+    col: "md:col-span-1",
   },
   {
+    key: "GYM",
     name: "Gym Management",
-    desc: "Run your gym smarter — manage members, automate billing, and track attendance all from one dashboard.",
+    tagline: "Run your gym smarter.",
+    desc: "Manage members, automate billing, track attendance, and assign trainers — one dashboard, zero chaos.",
     href: "/gym",
     register: `${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=GYM&plan=FREE`,
-    tag: "Fitness",
-    tagColor: "bg-emerald-50 text-emerald-700",
-    iconBg: "bg-emerald-50",
-    iconColor: "text-emerald-600",
-    accentColor: "border-emerald-500",
-    statColor: "text-emerald-600",
+    accent: "#059669",
+    accentLight: "#ecfdf5",
     Icon: Dumbbell,
-    features: [
-      "Member registration & profiles",
-      "QR code check-in (PRO & Enterprise)",
-      "Subscription & renewal billing",
-      "Walk-in tracking with limits",
-      "Trainer assignment & management",
-      "Attendance & revenue analytics",
-    ],
-    stats: [
-      { label: "Members managed per gym", value: "500+"  },
-      { label: "Check-ins processed daily", value: "10k+" },
-    ],
-    highlight: "Trusted by gym owners across 12 countries",
+    features: ["Member profiles & QR check-in", "Subscription & renewal billing", "Walk-in tracking", "Trainer management"],
+    stat: { value: "500+", label: "members per gym" },
+    col: "md:col-span-1",
   },
   {
+    key: "ESSAY",
     name: "Essay Feedback",
-    desc: "Grade student essays instantly with AI — get rubric-based scores, structured feedback, and writing improvement tips.",
+    tagline: "Grade smarter, teach better.",
+    desc: "AI-powered essay grading with rubric scores, structured feedback, and handwritten OCR support.",
     href: "/essay",
     register: `${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=ESSAY&plan=FREE`,
-    tag: "Education",
-    tagColor: "bg-indigo-50 text-indigo-700",
-    iconBg: "bg-indigo-50",
-    iconColor: "text-indigo-600",
-    accentColor: "border-indigo-500",
-    statColor: "text-indigo-600",
+    accent: "#7c3aed",
+    accentLight: "#f5f3ff",
     Icon: BookOpen,
-    features: [
-      "AI essay grading in seconds",
-      "Camera OCR for handwritten essays",
-      "Rubric-based multi-dimension scoring",
-      "Assignment creation & management",
-      "Student progress tracking",
-      "Class analytics & score distribution",
-    ],
-    stats: [
-      { label: "Avg. grading time per essay", value: "< 10s" },
-      { label: "Student improvement rate",    value: "87%"   },
-    ],
-    highlight: "Used by teachers across 8+ countries",
+    features: ["AI grading in seconds", "Camera OCR support", "Rubric-based scoring", "Student progress tracking"],
+    stat: { value: "< 10s", label: "per essay graded" },
+    col: "md:col-span-1",
+  },
+  {
+    key: "BOOKING",
+    name: "Booking & Appointments",
+    tagline: "Zero scheduling stress.",
+    desc: "Manage client appointments, staff availability, and deposits — built for clinics, salons & studios.",
+    href: "/booking",
+    register: `${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=BOOKING&plan=FREE`,
+    accent: "#0d9488",
+    accentLight: "#f0fdfa",
+    Icon: CalendarDays,
+    features: ["Appointment scheduling", "Staff & availability config", "Service catalog", "Deposit tracking"],
+    stat: { value: "60%", label: "fewer no-shows" },
+    col: "md:col-span-1",
   },
 ]
 
-const whyItems = [
-  { Icon: Layers,      title: "All-in-one platform",  desc: "Invoices, gym, payments — one dashboard. No app switching." },
-  { Icon: Sparkles,    title: "Simple & clean",        desc: "No clutter. No learning curve. Tools that work as expected." },
-  { Icon: TrendingUp,  title: "Built to scale",        desc: "Start simple. Add more tools as your business grows." },
-  { Icon: Clock,       title: "Save time daily",       desc: "Automate repetitive tasks. Real-time updates. Less manual work." },
-  { Icon: ShieldCheck, title: "Secure & reliable",     desc: "Modern data protection. Stable infrastructure. Always on." },
-  { Icon: Puzzle,      title: "Modular apps",          desc: "Use only what you need. Plug in new tools at any time." },
+const STATS = [
+  { value: "2,400+", label: "businesses" },
+  { value: "180k+",  label: "invoices sent" },
+  { value: "95k+",   label: "members managed" },
+  { value: "50k+",   label: "essays graded" },
 ]
 
-const whoItems = [
-  { Icon: User,      title: "Freelancers",      desc: "Invoice clients in seconds, accept payments online, and track every project without a spreadsheet.", features: ["Fast invoice creation", "Online payment links", "Client history"] },
-  { Icon: Briefcase, title: "Small businesses", desc: "Automate invoicing, manage cash flow, and run daily operations — all in one place.",                  features: ["Invoice automation", "Payment tracking", "Business overview"] },
-  { Icon: Dumbbell,  title: "Gym owners",       desc: "Keep members organized, automate billing, and track attendance — so you can focus on your members.",   features: ["Member management", "QR check-in", "Subscription billing"] },
-  { Icon: BookOpen,  title: "Educators",        desc: "Grade essays in seconds, deliver structured AI feedback, and track student progress without hours of manual marking.", features: ["AI essay grading", "Camera OCR upload", "Progress tracking"] },
+const WHY = [
+  { Icon: Zap,        title: "Instant setup",      desc: "Start using any tool in minutes. No training, no complexity." },
+  { Icon: Shield,     title: "Secure by default",  desc: "Modern encryption and reliable infrastructure — always on." },
+  { Icon: TrendingUp, title: "Built to grow",       desc: "Start free, upgrade when you're ready. Tools that scale with you." },
+  { Icon: Clock,      title: "Save hours weekly",   desc: "Automate repetitive tasks and focus on what actually matters." },
 ]
 
-export default function MainContent() {
+//////////////////////////////////////////////////////
+// ANIMATE ON SCROLL
+//////////////////////////////////////////////////////
+
+function useInView(threshold = 0.15) {
+  const ref = useRef<HTMLDivElement>(null)
+  const [visible, setVisible] = useState(false)
+  useEffect(() => {
+    const el = ref.current
+    if (!el) return
+    const obs = new IntersectionObserver(([e]) => { if (e.isIntersecting) { setVisible(true); obs.disconnect() } }, { threshold })
+    obs.observe(el)
+    return () => obs.disconnect()
+  }, [threshold])
+  return { ref, visible }
+}
+
+function Reveal({ children, delay = 0, className = "" }: { children: React.ReactNode; delay?: number; className?: string }) {
+  const { ref, visible } = useInView()
   return (
-    <>
-      <style>{floatStyle}</style>
+    <div
+      ref={ref}
+      className={className}
+      style={{
+        opacity: visible ? 1 : 0,
+        transform: visible ? "translateY(0)" : "translateY(28px)",
+        transition: `opacity 0.6s ease ${delay}ms, transform 0.6s ease ${delay}ms`,
+      }}
+    >
+      {children}
+    </div>
+  )
+}
 
-      {/* NAV */}
-      <nav className="fixed top-0 inset-x-0 z-50 flex items-center justify-between px-6 md:px-14 h-16 bg-white/80 backdrop-blur-md border-b border-gray-100">
-        <div className="flex items-center gap-2">
-          <img src="/logo.png" alt="Smapey" className="h-7 w-7 object-contain" />
-          <span className="text-lg font-semibold tracking-tight text-gray-900">Smapey</span>
-        </div>
-        <div className="hidden md:flex items-center gap-8">
-          <a href="#apps"    className="text-sm text-gray-500 hover:text-gray-900 transition-colors">Products</a>
-          <a href="#why"     className="text-sm text-gray-500 hover:text-gray-900 transition-colors">Why us</a>
-          <a href="#pricing" className="text-sm text-gray-500 hover:text-gray-900 transition-colors">Pricing</a>
-        </div>
-        <Link href="https://app.smapey.com/register?product=INVOICE&plan=FREE">
-          <button className="bg-gray-900 text-white text-sm font-medium px-5 py-2.5 rounded-full hover:bg-gray-700 transition-colors">
-            Get started →
-          </button>
+//////////////////////////////////////////////////////
+// NAVBAR
+//////////////////////////////////////////////////////
+
+function Navbar() {
+  const [open, setOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
+
+  useEffect(() => {
+    const fn = () => setScrolled(window.scrollY > 20)
+    window.addEventListener("scroll", fn)
+    return () => window.removeEventListener("scroll", fn)
+  }, [])
+
+  return (
+    <nav className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${scrolled ? "bg-white/95 backdrop-blur-md shadow-sm" : "bg-transparent"}`}>
+      <div className="max-w-7xl mx-auto px-6 md:px-12 h-16 flex items-center justify-between">
+
+        {/* LOGO */}
+        <Link href="/" className="flex items-center gap-2.5">
+          <img src="/logo.png" alt="Smapey" className="h-8 w-8 object-contain" />
+          <span className={`text-lg font-bold tracking-tight transition-colors ${scrolled ? "text-gray-900" : "text-white"}`}>Smapey</span>
         </Link>
-      </nav>
 
-      {/* HERO */}
-      <section className="min-h-screen pt-16 bg-white">
-        <div className="max-w-7xl mx-auto px-6 md:px-14 py-24 grid md:grid-cols-2 gap-16 items-center">
-
-          <div>
-            <span className="inline-flex items-center gap-2 text-xs font-semibold tracking-widest uppercase text-gray-400 mb-6">
-              <span className="w-5 h-px bg-gray-200 inline-block" />
-              Business tools, simplified
-            </span>
-            <h1 className="text-5xl md:text-6xl font-semibold tracking-tight leading-[1.07] text-gray-900">
-              Simple tools for{" "}
-              <span className="text-blue-600">modern businesses</span>
-            </h1>
-            <p className="mt-6 text-lg text-gray-500 leading-relaxed max-w-md">
-              Manage invoicing, members, and daily operations without complexity. One platform, built for clarity.
-            </p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Link href="https://app.smapey.com/register?product=INVOICE&plan=FREE">
-                <button className="bg-gray-900 text-white text-sm font-medium px-6 py-3 rounded-full hover:bg-gray-700 hover:-translate-y-0.5 transition-all">
-                  Start free trial →
-                </button>
-              </Link>
-              <button className="text-sm font-medium px-6 py-3 rounded-full border border-gray-200 text-gray-700 hover:border-gray-400 transition-colors">
-                See how it works
-              </button>
-            </div>
-            <div className="mt-8 flex flex-wrap gap-5">
-              {["No credit card needed", "Setup in minutes", "Cancel anytime"].map(t => (
-                <span key={t} className="flex items-center gap-2 text-xs text-gray-400">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 inline-block" />
-                  {t}
-                </span>
-              ))}
-            </div>
-          </div>
-
-          {/* Dashboard mockup */}
-          <div className="relative hidden md:flex items-center justify-center h-[480px]">
-            <div className="animate-float absolute top-10 -left-4 bg-white border border-gray-100 rounded-2xl px-4 py-3 shadow-lg z-10">
-              <p className="text-[10px] font-semibold text-gray-400 uppercase tracking-wider">Invoice</p>
-              <p className="text-base font-semibold text-gray-900 mt-0.5">$320 paid</p>
-            </div>
-            <div className="animate-float-2 absolute bottom-14 -right-4 bg-white border border-gray-100 rounded-2xl px-4 py-3 shadow-lg z-10">
-              <p className="text-[10px] font-semibold text-gray-400 uppercase tracking-wider">Members</p>
-              <p className="text-base font-semibold text-gray-900 mt-0.5">85 active</p>
-            </div>
-
-            <div className="bg-white border border-gray-200 rounded-3xl shadow-2xl p-7 w-[340px]">
-              <div className="flex items-center justify-between mb-5">
-                <span className="text-sm font-semibold text-gray-800">Business overview</span>
-                <span className="text-[11px] font-semibold bg-emerald-50 text-emerald-700 px-2.5 py-1 rounded-full">Live</span>
-              </div>
-              <div className="grid grid-cols-2 gap-3 mb-5">
-                {[
-                  { label: "Revenue", value: "$1,200", fill: "72%", bar: "bg-emerald-500" },
-                  { label: "Members", value: "85",     fill: "55%", bar: "bg-blue-500"    },
-                ].map(m => (
-                  <div key={m.label} className="bg-gray-50 rounded-2xl p-3.5">
-                    <p className="text-[11px] text-gray-400 font-medium">{m.label}</p>
-                    <p className="text-xl font-bold text-gray-900 mt-1">{m.value}</p>
-                    <div className="h-1.5 bg-gray-200 rounded-full mt-2">
-                      <div className={`h-full rounded-full ${m.bar}`} style={{ width: m.fill }} />
-                    </div>
-                  </div>
-                ))}
-              </div>
-              <div className="flex flex-col gap-2">
-                {[
-                  { label: "Invoice #042", badge: "Paid",    cls: "bg-emerald-50 text-emerald-700" },
-                  { label: "Invoice #041", badge: "Pending", cls: "bg-amber-50 text-amber-700"     },
-                  { label: "Invoice #040", badge: "Sent",    cls: "bg-blue-50 text-blue-700"       },
-                ].map(r => (
-                  <div key={r.label} className="flex items-center justify-between bg-gray-50 rounded-xl px-3 py-2.5">
-                    <span className="text-sm font-medium text-gray-600">{r.label}</span>
-                    <span className={`text-[11px] font-semibold px-2.5 py-1 rounded-full ${r.cls}`}>{r.badge}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
+        {/* DESKTOP LINKS */}
+        <div className="hidden md:flex items-center gap-8">
+          {[["#products", "Products"], ["#why", "Why Smapey"], ["#cta", "Pricing"]].map(([href, label]) => (
+            <a key={label} href={href} className={`text-sm font-medium transition-colors ${scrolled ? "text-gray-600 hover:text-gray-900" : "text-white/80 hover:text-white"}`}>
+              {label}
+            </a>
+          ))}
         </div>
-      </section>
 
-      {/* PAYMENT METHODS STRIPE */}
-      <div className="bg-gray-900 py-4 px-6 flex items-center justify-center flex-wrap gap-x-10 gap-y-2">
-        {["Stripe", "PayPal", "Apple Pay", "ACH", "Bank transfer"].map((t, i, arr) => (
-          <div key={t} className="flex items-center gap-10">
-            <span className="text-xs font-semibold tracking-widest uppercase text-gray-500">{t}</span>
-            {i < arr.length - 1 && <span className="hidden md:block w-px h-4 bg-gray-700" />}
-          </div>
-        ))}
+        {/* CTA */}
+        <div className="hidden md:flex items-center gap-3">
+          <Link href="https://app.smapey.com/login" className={`text-sm font-medium transition-colors ${scrolled ? "text-gray-600 hover:text-gray-900" : "text-white/80 hover:text-white"}`}>
+            Sign in
+          </Link>
+          <Link href="https://app.smapey.com/register" className="bg-white text-gray-900 text-sm font-semibold px-5 py-2.5 rounded-full hover:bg-gray-100 transition-colors shadow-sm">
+            Get started free
+          </Link>
+        </div>
+
+        {/* MOBILE TOGGLE */}
+        <button onClick={() => setOpen(!open)} className={`md:hidden ${scrolled ? "text-gray-700" : "text-white"}`}>
+          {open ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+        </button>
       </div>
 
-      {/* APPS */}
-      <section className="bg-gray-50 py-24 px-6 md:px-14" id="apps">
-        <div className="max-w-6xl mx-auto">
-          <span className="text-xs font-semibold tracking-widest uppercase text-gray-400">Our products</span>
-          <h2 className="mt-3 text-4xl md:text-5xl font-semibold tracking-tight text-gray-900">
-            Three tools, every workflow covered.
-          </h2>
-          <div className="mt-12 grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {apps.map(app => (
-              <div key={app.name} className={`bg-white border border-gray-200 rounded-3xl flex flex-col hover:shadow-xl hover:-translate-y-1 transition-all duration-300 overflow-hidden`}>
+      {/* MOBILE MENU */}
+      {open && (
+        <div className="md:hidden bg-white border-t border-gray-100 px-6 py-5 space-y-4 shadow-lg">
+          {PRODUCTS.map(p => (
+            <Link key={p.key} href={p.href} onClick={() => setOpen(false)} className="flex items-center gap-3 py-2">
+              <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ background: p.accentLight }}>
+                <p.Icon className="w-4 h-4" style={{ color: p.accent }} />
+              </div>
+              <span className="text-sm font-medium text-gray-800">{p.name}</span>
+            </Link>
+          ))}
+          <div className="pt-3 border-t border-gray-100 flex flex-col gap-2">
+            <Link href="https://app.smapey.com/login" className="text-center text-sm font-medium text-gray-600 py-2.5 border border-gray-200 rounded-full">Sign in</Link>
+            <Link href="https://app.smapey.com/register" className="text-center text-sm font-semibold text-white py-2.5 bg-gray-900 rounded-full">Get started free</Link>
+          </div>
+        </div>
+      )}
+    </nav>
+  )
+}
 
-                {/* TOP ACCENT */}
-                <div className={`h-1 w-full border-t-4 ${app.accentColor}`} />
+//////////////////////////////////////////////////////
+// HERO
+//////////////////////////////////////////////////////
+
+function Hero() {
+  return (
+    <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-[#0a0f1e] px-6 pt-16">
+
+      {/* GRID BACKGROUND */}
+      <div className="absolute inset-0 pointer-events-none" style={{
+        backgroundImage: "linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px)",
+        backgroundSize: "60px 60px",
+      }} />
+
+      {/* GLOW BLOBS */}
+      <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] rounded-full pointer-events-none"
+        style={{ background: "radial-gradient(circle, rgba(37,99,235,0.15) 0%, transparent 70%)" }} />
+      <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] rounded-full pointer-events-none"
+        style={{ background: "radial-gradient(circle, rgba(124,58,237,0.12) 0%, transparent 70%)" }} />
+
+      <div className="relative z-10 max-w-5xl mx-auto text-center">
+
+        {/* BADGE */}
+        <div className="inline-flex items-center gap-2 bg-white/5 border border-white/10 rounded-full px-4 py-2 mb-8">
+          <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+          <span className="text-xs font-medium text-white/70 tracking-wide">4 powerful tools — one platform</span>
+        </div>
+
+        {/* HEADLINE */}
+        <h1 className="text-5xl md:text-7xl font-bold text-white leading-[1.05] tracking-tight">
+          The business platform
+          <br />
+          <span className="bg-gradient-to-r from-blue-400 via-violet-400 to-teal-400 bg-clip-text text-transparent">
+            built to save you time.
+          </span>
+        </h1>
+
+        <p className="mt-6 text-lg md:text-xl text-white/50 max-w-2xl mx-auto leading-relaxed">
+          Invoicing, gym management, essay grading, and appointment scheduling — everything your business needs in one clean, fast platform.
+        </p>
+
+        {/* ACTIONS */}
+        <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
+          <Link href="https://app.smapey.com/register" className="group flex items-center gap-2 bg-white text-gray-900 font-semibold text-sm px-8 py-3.5 rounded-full hover:bg-gray-100 transition-all shadow-lg hover:-translate-y-0.5">
+            Start for free
+            <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+          </Link>
+          <a href="#products" className="flex items-center gap-2 text-white/60 font-medium text-sm px-6 py-3.5 rounded-full border border-white/10 hover:border-white/30 hover:text-white/80 transition-all">
+            See all products
+            <ChevronDown className="w-4 h-4" />
+          </a>
+        </div>
+
+        {/* TRUST BADGES */}
+        <div className="mt-10 flex flex-wrap items-center justify-center gap-6">
+          {["No credit card required", "Setup in minutes", "Cancel anytime"].map(t => (
+            <span key={t} className="flex items-center gap-2 text-xs text-white/40">
+              <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500" />
+              {t}
+            </span>
+          ))}
+        </div>
+
+        {/* FLOATING PRODUCT PILLS */}
+        <div className="mt-16 flex flex-wrap justify-center gap-3">
+          {PRODUCTS.map(p => (
+            <Link key={p.key} href={p.href} className="flex items-center gap-2.5 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 rounded-2xl px-4 py-3 transition-all group">
+              <div className="w-7 h-7 rounded-lg flex items-center justify-center" style={{ background: `${p.accent}25` }}>
+                <p.Icon className="w-4 h-4" style={{ color: p.accent }} />
+              </div>
+              <span className="text-sm font-medium text-white/70 group-hover:text-white/90 transition-colors">{p.name}</span>
+              <ArrowRight className="w-3.5 h-3.5 text-white/20 group-hover:text-white/50 group-hover:translate-x-0.5 transition-all" />
+            </Link>
+          ))}
+        </div>
+      </div>
+
+      {/* SCROLL INDICATOR */}
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/20 animate-bounce">
+        <ChevronDown className="w-5 h-5" />
+      </div>
+    </section>
+  )
+}
+
+//////////////////////////////////////////////////////
+// STATS BAR
+//////////////////////////////////////////////////////
+
+function StatsBar() {
+  return (
+    <div className="bg-gray-900 border-y border-white/5">
+      <div className="max-w-5xl mx-auto px-6 py-8 grid grid-cols-2 md:grid-cols-4 gap-8">
+        {STATS.map((s, i) => (
+          <Reveal key={s.label} delay={i * 80} className="text-center">
+            <p className="text-3xl font-bold text-white">{s.value}</p>
+            <p className="text-sm text-white/40 mt-1">{s.label}</p>
+          </Reveal>
+        ))}
+      </div>
+    </div>
+  )
+}
+
+//////////////////////////////////////////////////////
+// PRODUCTS SECTION
+//////////////////////////////////////////////////////
+
+function Products() {
+  return (
+    <section id="products" className="bg-gray-50 py-28 px-6 md:px-12">
+      <div className="max-w-7xl mx-auto">
+
+        <Reveal>
+          <p className="text-xs font-bold tracking-widest uppercase text-gray-400 mb-3">Our products</p>
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 tracking-tight leading-tight max-w-2xl">
+            Four tools. Every workflow covered.
+          </h2>
+          <p className="mt-4 text-lg text-gray-500 max-w-xl">
+            Pick one to start. Add more as you grow. Each product is fully standalone — no bundles, no bloat.
+          </p>
+        </Reveal>
+
+        <div className="mt-14 grid md:grid-cols-2 gap-6">
+          {PRODUCTS.map((p, i) => (
+            <Reveal key={p.key} delay={i * 80}>
+              <div className="group bg-white rounded-3xl border border-gray-200 overflow-hidden hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 flex flex-col h-full">
+
+                {/* ACCENT BAR */}
+                <div className="h-1 w-full" style={{ background: `linear-gradient(90deg, ${p.accent}, ${p.accent}88)` }} />
 
                 <div className="p-8 flex flex-col flex-1">
+
                   {/* HEADER */}
-                  <div className="flex items-center gap-3 mb-5">
-                    <div className={`w-11 h-11 rounded-2xl flex items-center justify-center ${app.iconBg}`}>
-                      <app.Icon size={20} className={app.iconColor} />
-                    </div>
-                    <span className={`text-xs font-semibold px-3 py-1 rounded-full ${app.tagColor}`}>{app.tag}</span>
-                  </div>
-
-                  <h3 className="text-2xl font-semibold text-gray-900 mb-2">{app.name}</h3>
-                  <p className="text-sm text-gray-500 leading-relaxed mb-6">{app.desc}</p>
-
-                  {/* STATS */}
-                  <div className="grid grid-cols-2 gap-3 mb-6">
-                    {app.stats.map(s => (
-                      <div key={s.label} className="bg-gray-50 rounded-2xl px-4 py-3">
-                        <p className={`text-xl font-bold ${app.statColor}`}>{s.value}</p>
-                        <p className="text-xs text-gray-400 mt-0.5 leading-tight">{s.label}</p>
+                  <div className="flex items-start justify-between mb-6">
+                    <div className="flex items-center gap-3">
+                      <div className="w-12 h-12 rounded-2xl flex items-center justify-center" style={{ background: p.accentLight }}>
+                        <p.Icon className="w-6 h-6" style={{ color: p.accent }} />
                       </div>
-                    ))}
+                      <div>
+                        <p className="text-xs font-semibold uppercase tracking-widest" style={{ color: p.accent }}>{p.key}</p>
+                        <h3 className="text-xl font-bold text-gray-900 leading-tight">{p.name}</h3>
+                      </div>
+                    </div>
+                    <div className="text-right shrink-0">
+                      <p className="text-2xl font-bold text-gray-900">{p.stat.value}</p>
+                      <p className="text-xs text-gray-400">{p.stat.label}</p>
+                    </div>
                   </div>
+
+                  {/* TAGLINE + DESC */}
+                  <p className="text-xl font-semibold text-gray-800 mb-2">{p.tagline}</p>
+                  <p className="text-sm text-gray-500 leading-relaxed mb-6">{p.desc}</p>
 
                   {/* FEATURES */}
-                  <ul className="grid grid-cols-2 gap-x-4 gap-y-2.5 mb-6 flex-1">
-                    {app.features.map(f => (
-                      <li key={f} className="flex items-start gap-2 text-sm text-gray-600">
-                        <CheckCircle2 size={14} className={`${app.iconColor} shrink-0 mt-0.5`} />
+                  <ul className="grid grid-cols-2 gap-2.5 mb-8 flex-1">
+                    {p.features.map(f => (
+                      <li key={f} className="flex items-center gap-2 text-sm text-gray-600">
+                        <CheckCircle2 className="w-3.5 h-3.5 shrink-0" style={{ color: p.accent }} />
                         {f}
                       </li>
                     ))}
                   </ul>
 
-                  {/* HIGHLIGHT */}
-                  <p className="text-xs text-gray-400 mb-5 flex items-center gap-1.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 shrink-0" />
-                    {app.highlight}
-                  </p>
-
                   {/* ACTIONS */}
                   <div className="flex gap-3 mt-auto">
-                    <Link href={app.register} className="flex-1 text-center bg-gray-900 text-white text-sm font-medium py-2.5 rounded-full hover:bg-gray-700 transition-colors">
+                    <Link href={p.register} className="flex-1 text-center text-sm font-semibold text-white py-3 rounded-2xl transition-all hover:opacity-90 hover:-translate-y-0.5"
+                      style={{ background: p.accent }}>
                       Try free
                     </Link>
-                    <Link href={app.href} className="flex items-center gap-1.5 justify-center border border-gray-200 text-gray-700 text-sm font-medium px-5 py-2.5 rounded-full hover:border-gray-400 transition-colors">
-                      Learn more <ArrowRight size={13} />
+                    <Link href={p.href} className="flex items-center gap-1.5 justify-center text-sm font-semibold text-gray-700 px-5 py-3 rounded-2xl border border-gray-200 hover:border-gray-400 transition-colors group-hover:border-gray-300">
+                      Learn more <ArrowRight className="w-3.5 h-3.5" />
                     </Link>
                   </div>
                 </div>
               </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* WHO IT'S FOR */}
-      <section className="py-24 px-6 md:px-14 bg-white">
-        <div className="max-w-6xl mx-auto">
-          <span className="text-xs font-semibold tracking-widest uppercase text-gray-400">Built for</span>
-          <h2 className="mt-3 text-4xl md:text-5xl font-semibold tracking-tight text-gray-900">
-            Who uses Smapey.
-          </h2>
-          <div className="mt-12 grid sm:grid-cols-2 md:grid-cols-4 gap-6">
-            {whoItems.map((w, i) => (
-              <div key={w.title} className="border border-gray-100 rounded-3xl p-7 hover:shadow-lg hover:-translate-y-1 transition-all duration-200">
-                <span className="text-5xl font-bold text-gray-100 leading-none block mb-5">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <div className="w-10 h-10 rounded-xl bg-gray-100 flex items-center justify-center mb-4">
-                  <w.Icon size={18} className="text-gray-500" />
-                </div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">{w.title}</h3>
-                <p className="text-sm text-gray-500 leading-relaxed mb-5">{w.desc}</p>
-                <ul className="flex flex-col gap-2">
-                  {w.features.map(f => (
-                    <li key={f} className="flex items-center gap-2 text-sm text-gray-500">
-                      <span className="w-1.5 h-1.5 rounded-full bg-gray-300 flex-shrink-0" />
-                      {f}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* WHY SMAPEY */}
-      <section className="bg-gray-900 py-24 px-6 md:px-14" id="why">
-        <div className="max-w-6xl mx-auto">
-          <span className="text-xs font-semibold tracking-widest uppercase text-gray-500">Why Smapey</span>
-          <h2 className="mt-3 text-4xl md:text-5xl font-semibold tracking-tight text-white max-w-xl">
-            Everything you need. Nothing you don't.
-          </h2>
-          <div className="mt-12 grid sm:grid-cols-2 md:grid-cols-3 gap-px bg-gray-800 rounded-3xl overflow-hidden">
-            {whyItems.map(w => (
-              <div key={w.title} className="bg-gray-900 p-8 hover:bg-gray-800 transition-colors">
-                <div className="w-10 h-10 rounded-xl bg-gray-800 flex items-center justify-center mb-5">
-                  <w.Icon size={18} className="text-gray-400" />
-                </div>
-                <h3 className="text-base font-semibold text-white mb-2">{w.title}</h3>
-                <p className="text-sm text-gray-500 leading-relaxed">{w.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section className="py-28 px-6 text-center bg-white" id="pricing">
-        <div className="max-w-2xl mx-auto">
-          <span className="text-xs font-semibold tracking-widest uppercase text-gray-400">Get started</span>
-          <h2 className="mt-4 text-4xl md:text-5xl font-semibold tracking-tight text-gray-900">
-            Ready to grow without the complexity?
-          </h2>
-          <p className="mt-5 text-lg text-gray-500 leading-relaxed">
-            Join businesses using Smapey to invoice faster, manage members, and take back their time.
-          </p>
-          <div className="mt-10 flex flex-wrap gap-3 justify-center">
-            <Link href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=GYM&plan=FREE`}>
-              <button className="bg-gray-900 text-white text-base font-medium px-8 py-3.5 rounded-full hover:bg-gray-700 hover:-translate-y-0.5 transition-all">
-                Start free trial →
-              </button>
-            </Link>
-         
-          </div>
-          <p className="mt-6 text-sm text-gray-400">
-            No credit card required · Cancel anytime · Setup in minutes
-          </p>
-        </div>
-      </section>
-
-      {/* FOOTER */}
-      <footer className="border-t border-gray-100 px-6 md:px-14 py-8 flex flex-wrap items-center justify-between gap-4 bg-white">
-        <div className="flex items-center gap-2">
-          <img src="/logo.png" alt="Smapey" className="h-6 w-6 object-contain" />
-          <span className="text-base font-semibold text-gray-900">Smapey</span>
-        </div>
-        <div className="flex gap-6">
-          {["Invoice", "Gym", "Essay", "Privacy", "Terms"].map(l => (
-            <a key={l} href="#" className="text-sm text-gray-400 hover:text-gray-600 transition-colors">{l}</a>
+            </Reveal>
           ))}
         </div>
-        <span className="text-sm text-gray-300">© 2025 Smapey</span>
-      </footer>
+      </div>
+    </section>
+  )
+}
+
+//////////////////////////////////////////////////////
+// WHY SMAPEY
+//////////////////////////////////////////////////////
+
+function Why() {
+  return (
+    <section id="why" className="bg-[#0a0f1e] py-28 px-6 md:px-12">
+      <div className="max-w-7xl mx-auto">
+
+        <Reveal>
+          <p className="text-xs font-bold tracking-widest uppercase text-white/30 mb-3">Why Smapey</p>
+          <h2 className="text-4xl md:text-5xl font-bold text-white tracking-tight leading-tight max-w-2xl">
+            Everything you need.<br />
+            <span className="text-white/40">Nothing you don't.</span>
+          </h2>
+        </Reveal>
+
+        <div className="mt-14 grid sm:grid-cols-2 md:grid-cols-4 gap-4">
+          {WHY.map((w, i) => (
+            <Reveal key={w.title} delay={i * 80}>
+              <div className="bg-white/5 hover:bg-white/8 border border-white/8 rounded-3xl p-7 transition-colors h-full">
+                <div className="w-11 h-11 rounded-2xl bg-white/10 flex items-center justify-center mb-5">
+                  <w.Icon className="w-5 h-5 text-white/60" />
+                </div>
+                <h3 className="text-base font-semibold text-white mb-2">{w.title}</h3>
+                <p className="text-sm text-white/40 leading-relaxed">{w.desc}</p>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+
+        {/* COMPARISON TABLE */}
+        <Reveal delay={200}>
+          <div className="mt-10 bg-white/5 border border-white/8 rounded-3xl p-8">
+            <p className="text-sm font-semibold text-white/50 mb-6 uppercase tracking-widest">Smapey vs. managing tools separately</p>
+            <div className="grid md:grid-cols-2 gap-6">
+              <div>
+                <p className="text-xs font-bold text-red-400 uppercase tracking-widest mb-4">Without Smapey</p>
+                {["5+ different apps & subscriptions", "Manual data entry across tools", "No unified analytics", "Expensive per-app pricing"].map(t => (
+                  <div key={t} className="flex items-center gap-3 py-2.5 border-b border-white/5">
+                    <X className="w-4 h-4 text-red-400 shrink-0" />
+                    <span className="text-sm text-white/40">{t}</span>
+                  </div>
+                ))}
+              </div>
+              <div>
+                <p className="text-xs font-bold text-emerald-400 uppercase tracking-widest mb-4">With Smapey</p>
+                {["One platform for every workflow", "Unified dashboard & analytics", "Use only what you need", "Start free, scale affordably"].map(t => (
+                  <div key={t} className="flex items-center gap-3 py-2.5 border-b border-white/5">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
+                    <span className="text-sm text-white/70">{t}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </Reveal>
+      </div>
+    </section>
+  )
+}
+
+//////////////////////////////////////////////////////
+// CTA
+//////////////////////////////////////////////////////
+
+function CTA() {
+  return (
+    <section id="cta" className="bg-white py-28 px-6 text-center">
+      <div className="max-w-3xl mx-auto">
+
+        <Reveal>
+          <div className="inline-flex items-center gap-2 bg-blue-50 text-blue-700 rounded-full px-4 py-2 text-xs font-semibold mb-6">
+            <Zap className="w-3.5 h-3.5" /> Free to start — no card required
+          </div>
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 tracking-tight leading-tight">
+            Ready to run your business<br />without the chaos?
+          </h2>
+          <p className="mt-5 text-lg text-gray-500 max-w-lg mx-auto">
+            Join thousands of businesses using Smapey to save time, stay organised, and grow faster.
+          </p>
+        </Reveal>
+
+        <Reveal delay={100}>
+          <div className="mt-10 flex flex-wrap gap-3 justify-center">
+            {PRODUCTS.map(p => (
+              <Link key={p.key} href={p.register} className="flex items-center gap-2 text-sm font-semibold px-5 py-3 rounded-2xl border-2 transition-all hover:-translate-y-0.5"
+                style={{ borderColor: p.accent, color: p.accent }}>
+                <p.Icon className="w-4 h-4" />
+                {p.name}
+              </Link>
+            ))}
+          </div>
+          <p className="mt-8 text-sm text-gray-400">
+            No credit card required · Cancel anytime · Setup in minutes
+          </p>
+        </Reveal>
+      </div>
+    </section>
+  )
+}
+
+//////////////////////////////////////////////////////
+// FOOTER
+//////////////////////////////////////////////////////
+
+function Footer() {
+  return (
+    <footer className="bg-gray-50 border-t border-gray-200 px-6 md:px-12 py-10">
+      <div className="max-w-7xl mx-auto">
+        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
+
+          {/* BRAND */}
+          <div className="flex items-center gap-2.5">
+            <img src="/logo.png" alt="Smapey" className="h-7 w-7 object-contain" />
+            <span className="text-base font-bold text-gray-900">Smapey</span>
+          </div>
+
+          {/* PRODUCT LINKS */}
+          <div className="flex flex-wrap gap-x-8 gap-y-2">
+            {PRODUCTS.map(p => (
+              <Link key={p.key} href={p.href} className="text-sm text-gray-500 hover:text-gray-900 transition-colors">{p.name}</Link>
+            ))}
+            <Link href="/privacy-policy" className="text-sm text-gray-500 hover:text-gray-900 transition-colors">Privacy</Link>
+            <Link href="/terms-and-conditions" className="text-sm text-gray-500 hover:text-gray-900 transition-colors">Terms</Link>
+          </div>
+
+          <span className="text-sm text-gray-300">© {new Date().getFullYear()} Smapey</span>
+        </div>
+      </div>
+    </footer>
+  )
+}
+
+//////////////////////////////////////////////////////
+// PAGE
+//////////////////////////////////////////////////////
+
+export default function MainContent() {
+  return (
+    <>
+      <Navbar />
+      <Hero />
+      <StatsBar />
+      <Products />
+      <Why />
+      <CTA />
+      <Footer />
     </>
   )
 }
