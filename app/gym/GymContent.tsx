@@ -90,7 +90,7 @@ const PLANS = [
     planKey: "FREE",
     product: "GYM",
     desc: "Perfect for small gyms just getting started.",
-    features: ["Up to 10 members", "10 walk-in visits / month", "2 team members", "Manual check-in"],
+    features: ["Up to 50 members", "50 walk-in visits / month", "2 team members", "Manual check-in"],
     cta: "Get started free",
     highlight: false,
   },
