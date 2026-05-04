@@ -7,7 +7,7 @@ import {
   DollarSign, Globe, UserPlus,
 } from "lucide-react"
 
-const NAV_LINKS = ["Features", "How it Works", "Pricing", "FAQ"]
+const NAV_LINKS = ["Features", "How it Works", "Pricing", "FAQ", "Guide"]
 
 const FEATURES = [
   {
@@ -225,14 +225,23 @@ function Navbar() {
 </div>
 
         <div className="hidden md:flex items-center gap-8">
-          {NAV_LINKS.map((l) => (
-            <a key={l}
-              href={`#${l.toLowerCase().replace(/\s+/g, "-")}`}
-              onClick={(e) => scrollTo(e, l.toLowerCase().replace(/\s+/g, "-"))}
-              className="text-sm text-white/60 hover:text-white transition-colors">
-              {l}
-            </a>
-          ))}
+          {NAV_LINKS.map((l) => {
+            if (l === "Guide") {
+              return (
+                <a key={l} href="/gym/guide" className="text-sm text-white/60 hover:text-white transition-colors">
+                  {l}
+                </a>
+              )
+            }
+            return (
+              <a key={l}
+                href={`#${l.toLowerCase().replace(/\s+/g, "-")}`}
+                onClick={(e) => scrollTo(e, l.toLowerCase().replace(/\s+/g, "-"))}
+                className="text-sm text-white/60 hover:text-white transition-colors">
+                {l}
+              </a>
+            )
+          })}
         </div>
 
         <div className="hidden md:flex items-center gap-3">
@@ -252,14 +261,23 @@ function Navbar() {
 
       {open && (
         <div className="md:hidden bg-[#0a0f1e] border-t border-white/5 px-6 py-4 flex flex-col gap-4">
-          {NAV_LINKS.map((l) => (
-            <a key={l}
-              href={`#${l.toLowerCase().replace(/\s+/g, "-")}`}
-              onClick={(e) => scrollTo(e, l.toLowerCase().replace(/\s+/g, "-"))}
-              className="text-sm text-white/60 hover:text-white transition-colors">
-              {l}
-            </a>
-          ))}
+          {NAV_LINKS.map((l) => {
+            if (l === "Guide") {
+              return (
+                <a key={l} href="/gym/guide" className="text-sm text-white/60 hover:text-white transition-colors">
+                  {l}
+                </a>
+              )
+            }
+            return (
+              <a key={l}
+                href={`#${l.toLowerCase().replace(/\s+/g, "-")}`}
+                onClick={(e) => scrollTo(e, l.toLowerCase().replace(/\s+/g, "-"))}
+                className="text-sm text-white/60 hover:text-white transition-colors">
+                {l}
+              </a>
+            )
+          })}
           <a href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=GYM&plan=FREE`}
             className="text-sm font-semibold px-4 py-2 rounded-lg bg-blue-600 text-white text-center">
             Get started

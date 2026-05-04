@@ -8,6 +8,7 @@ import {
 } from "lucide-react"
 
 const NAV_LINKS = ["Features", "How it Works", "Pricing", "FAQ"]
+const NAV_LINK_GUIDE = "/essay/guide"
 
 const FEATURES = [
   {
@@ -237,6 +238,9 @@ function Navbar() {
               {l}
             </a>
           ))}
+          <a href={NAV_LINK_GUIDE} className="text-sm text-indigo-400 hover:text-indigo-300 font-medium transition-colors">
+            Guide
+          </a>
         </div>
 
         <div className="hidden md:flex items-center gap-3">
@@ -264,6 +268,9 @@ function Navbar() {
               {l}
             </a>
           ))}
+          <a href={NAV_LINK_GUIDE} className="text-sm text-indigo-400 font-medium">
+            Guide
+          </a>
           <a href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=ESSAY&plan=FREE`}
             className="text-sm font-semibold px-4 py-2 rounded-lg bg-indigo-600 text-white text-center">
             Get started

@@ -1,13 +1,20 @@
 "use client"
 
 import { useState, useEffect, useRef } from "react"
+import Link from "next/link"
 import {
   CalendarDays, Clock, Users, CheckCircle2, ChevronRight,
   Menu, X, Star, Briefcase, Bell, CreditCard, BarChart3,
-  Shield, Zap, CalendarCheck, UserCheck,
+  Shield, Zap, CalendarCheck, UserCheck, BookOpen,
 } from "lucide-react"
 
 const NAV_LINKS = ["Features", "How it Works", "Pricing", "FAQ"]
+const NAV_SCROLL_IDS: Record<string, string> = {
+  "Features": "features",
+  "How it Works": "how-it-works",
+  "Pricing": "pricing",
+  "FAQ": "faq",
+}
 
 const FEATURES = [
   {
@@ -230,12 +237,16 @@ function Navbar() {
         <div className="hidden md:flex items-center gap-8">
           {NAV_LINKS.map((l) => (
             <a key={l}
-              href={`#${l.toLowerCase().replace(/\s+/g, "-")}`}
-              onClick={(e) => scrollTo(e, l.toLowerCase().replace(/\s+/g, "-"))}
+              href={`#${NAV_SCROLL_IDS[l]}`}
+              onClick={(e) => scrollTo(e, NAV_SCROLL_IDS[l])}
               className="text-sm text-white/60 hover:text-white transition-colors">
               {l}
             </a>
           ))}
+          <Link href="/booking/guide" className="flex items-center gap-1.5 text-sm text-white/60 hover:text-white transition-colors">
+            <BookOpen className="w-3.5 h-3.5" />
+            Guide
+          </Link>
         </div>
 
         <div className="hidden md:flex items-center gap-3">
@@ -257,12 +268,16 @@ function Navbar() {
         <div className="md:hidden bg-[#0a1a1a] border-t border-white/5 px-6 py-4 flex flex-col gap-4">
           {NAV_LINKS.map((l) => (
             <a key={l}
-              href={`#${l.toLowerCase().replace(/\s+/g, "-")}`}
-              onClick={(e) => scrollTo(e, l.toLowerCase().replace(/\s+/g, "-"))}
+              href={`#${NAV_SCROLL_IDS[l]}`}
+              onClick={(e) => scrollTo(e, NAV_SCROLL_IDS[l])}
               className="text-sm text-white/60 hover:text-white transition-colors">
               {l}
             </a>
           ))}
+          <Link href="/booking/guide" onClick={() => setOpen(false)} className="flex items-center gap-1.5 text-sm text-white/60 hover:text-white transition-colors">
+            <BookOpen className="w-3.5 h-3.5" />
+            Guide
+          </Link>
           <a href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=BOOKING&plan=FREE`}
             className="text-sm font-semibold px-4 py-2 rounded-lg bg-teal-600 text-white text-center">
             Get started
