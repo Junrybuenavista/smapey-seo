@@ -1,6 +1,6 @@
 export const metadata = {
-  title: "Appointment Scheduling Software for Small Businesses | Smapey",
-  description: "Manage bookings, appointments, and staff schedules in one place. Track deposits, confirm clients, and run your clinic, salon, or studio stress-free. Start free.",
+  title: "Appointment Scheduling Software for Small Business | Smapey Booking",
+  description: "Smapey Booking is appointment scheduling software for small business — manage appointments, track deposits, assign staff, and confirm clients. Free plan available.",
   alternates: {
     canonical: "https://smapey.com/booking",
   },
