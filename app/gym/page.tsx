@@ -1,7 +1,7 @@
 export const metadata = {
-  title: "Simple Invoicing Software for Small Business | Smapey",
-  description: "Create invoices, send them instantly, and get paid faster with Smapey. Simple invoicing software for freelancers and small businesses. Start free.",
-    alternates: {
+  title: "Gym Management Software | Free & Pro Plans | Smapey GymOS",
+  description: "Smapey GymOS is gym management software that handles member tracking, QR check-ins, subscription plans, and revenue reporting. Start free — no credit card required.",
+  alternates: {
     canonical: "https://smapey.com/gym",
   },
 }
