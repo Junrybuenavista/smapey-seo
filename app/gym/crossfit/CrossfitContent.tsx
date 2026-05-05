@@ -95,7 +95,7 @@ const PLANS = [
   {
     name: "Pro",
     phpPrice: "₱999",
-    usdPrice: "$15",
+    usdPrice: "$19",
     period: "/mo",
     planKey: "PRO",
     product: "GYM",

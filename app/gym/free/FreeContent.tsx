@@ -245,7 +245,7 @@ function ComparisonTable() {
                 <tr className="border-b border-slate-200">
                   <th className="text-left px-6 py-4 text-slate-500 font-medium">Feature</th>
                   <th className="text-center px-6 py-4 text-slate-800 font-bold">Free</th>
-                  <th className="text-center px-6 py-4 text-blue-700 font-bold bg-blue-50">Pro <span className="text-xs text-blue-400 font-normal">$15/mo</span></th>
+                  <th className="text-center px-6 py-4 text-blue-700 font-bold bg-blue-50">Pro <span className="text-xs text-blue-400 font-normal">$19/mo</span></th>
                   <th className="text-center px-6 py-4 text-slate-800 font-bold">Enterprise <span className="text-xs text-slate-400 font-normal">$29/mo</span></th>
                 </tr>
               </thead>
