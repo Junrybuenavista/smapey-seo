@@ -165,7 +165,7 @@ function Navbar() {
         </div>
         <div className="hidden md:flex items-center gap-8">
           <a href="/gym" className="text-sm text-white/60 hover:text-white transition-colors">Home</a>
-          <a href="/gym/pricing" className="text-sm text-white/60 hover:text-white transition-colors">Pricing</a>
+          <a href="/gym/gym-management-software-price" className="text-sm text-white/60 hover:text-white transition-colors">Pricing</a>
           <a href="/gym/guide" className="text-sm text-white/60 hover:text-white transition-colors">Guide</a>
         </div>
         <div className="hidden md:flex items-center gap-3">
