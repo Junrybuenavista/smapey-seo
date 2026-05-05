@@ -100,7 +100,7 @@ const PLANS = [
     planKey: "PRO",
     product: "GYM",
     desc: "For growing boxes that need more power.",
-    features: ["Up to 100 members", "Unlimited drop-in visits", "5 team members", "QR code check-in"],
+    features: ["Up to 200 members", "Unlimited drop-in visits", "5 team members", "QR code check-in"],
     cta: "Start Pro",
     highlight: true,
   },

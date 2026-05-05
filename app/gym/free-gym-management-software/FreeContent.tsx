@@ -27,7 +27,7 @@ const PLANS = [
     planKey: "PRO",
     product: "GYM",
     desc: "For growing gyms that need more power.",
-    features: ["Up to 100 members", "Unlimited walk-in visits", "5 team members", "QR code check-in"],
+    features: ["Up to 200 members", "Unlimited walk-in visits", "5 team members", "QR code check-in"],
     cta: "Start Pro",
     highlight: true,
   },

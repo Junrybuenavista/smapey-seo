@@ -35,7 +35,7 @@ const PLANS = [
     product: "GYM",
     desc: "For growing gyms that need more power.",
     features: [
-      { text: "Up to 100 members", included: true },
+      { text: "Up to 200 members", included: true },
       { text: "Unlimited walk-in visits", included: true },
       { text: "5 team members", included: true },
       { text: "Manual check-in", included: true },
