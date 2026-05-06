@@ -4,6 +4,7 @@ import { useState, useEffect } from "react"
 import {
   Car, UserPlus, Key, CreditCard, AlertCircle, BarChart3,
   ChevronRight, Zap, BookOpen, ArrowLeft,
+  Globe, Palette, MessageSquare, ArrowRightCircle,
 } from "lucide-react"
 
 //////////////////////////////////////////////////////
@@ -232,6 +233,143 @@ const GUIDES = [
       },
     ],
     tip: "If monthly revenue is flat but rental count is up, check your daily rates — vehicles might be underpriced relative to demand.",
+  },
+  {
+    id: "public-booking-page",
+    icon: Globe,
+    title: "Set Up Your Public Booking Page",
+    badge: "All Plans",
+    badgeColor: "bg-green-50 text-green-600 border border-green-100",
+    accentColor: "from-orange-500 to-amber-400",
+    description:
+      "Create a public page where customers can browse your fleet and submit booking inquiries — no login required on their end.",
+    steps: [
+      {
+        title: "Open Public Page settings",
+        detail:
+          "In your car rental dashboard sidebar, click Public Page. This is where you configure your public-facing booking URL and design.",
+      },
+      {
+        title: "Set your unique slug",
+        detail:
+          "Enter a short, memorable slug (e.g. your business name). Your public page will be live at smapey.com/rent/your-slug. Slugs must be unique across all Smapey accounts.",
+      },
+      {
+        title: "Save the slug",
+        detail:
+          "Click Save Slug. Once saved, the public page is immediately live. Anyone with the link can browse your vehicles and submit an inquiry.",
+      },
+      {
+        title: "Share your booking link",
+        detail:
+          "Copy the public page URL and add it to your Google Maps listing, Facebook page, Instagram bio, or wherever customers contact you. This is your 24/7 online booking intake.",
+      },
+    ],
+    tip: "Put your public page link in your Google Maps Business profile under the website or booking URL field — customers searching nearby will see it directly in Google Maps.",
+  },
+  {
+    id: "page-design",
+    icon: Palette,
+    title: "Choose a Page Design",
+    badge: "PRO / ENTERPRISE",
+    badgeColor: "bg-purple-50 text-purple-600 border border-purple-100",
+    accentColor: "from-purple-600 to-violet-500",
+    description:
+      "Pick from 5 unique page designs to match your brand. PRO unlocks 3 designs; ENTERPRISE unlocks all 5.",
+    steps: [
+      {
+        title: "Open Public Page settings",
+        detail:
+          "Go to Public Page in the sidebar. Below the slug field you'll find the Page Design section with a visual preview of each available theme.",
+      },
+      {
+        title: "Preview the available designs",
+        detail:
+          "Five designs are shown: Midnight (dark, orange), Clean (minimal white), Ocean (navy glassmorphism), Forest (dark green angular), and Luxury (gold editorial). Locked designs show a lock icon with your required plan.",
+      },
+      {
+        title: "Click a design to apply it",
+        detail:
+          "Clicking an unlocked design saves it immediately — your public page updates live. No separate save button needed.",
+      },
+      {
+        title: "Upgrade to unlock more designs",
+        detail:
+          "FREE plan includes Midnight only. PRO adds Clean and Ocean. ENTERPRISE unlocks Forest and Luxury. Upgrade in Settings → Billing.",
+      },
+    ],
+    tip: "Choose a design that matches your target market. Midnight and Ocean work well for premium fleets; Clean is ideal if most customers find you via Google Maps on mobile.",
+  },
+  {
+    id: "manage-inquiries",
+    icon: MessageSquare,
+    title: "Manage Booking Inquiries",
+    badge: "All Plans",
+    badgeColor: "bg-green-50 text-green-600 border border-green-100",
+    accentColor: "from-orange-600 to-red-500",
+    description:
+      "Review and respond to booking requests submitted through your public page. Approve to proceed, reject to decline with a record kept.",
+    steps: [
+      {
+        title: "Open the Inquiries tab",
+        detail:
+          "Click Inquiries in the sidebar. All submissions from your public page appear here sorted by date, showing customer name, vehicle, dates, and status.",
+      },
+      {
+        title: "Read the inquiry details",
+        detail:
+          "Each row shows the customer's name, phone, requested vehicle, pickup/return dates, and any notes they left. Click a row to expand full details.",
+      },
+      {
+        title: "Approve or Reject",
+        detail:
+          "Hit Approve to confirm the request or Reject to decline it. Both actions update the inquiry status immediately. Rejected inquiries stay on record but are visually marked.",
+      },
+      {
+        title: "Follow up with the customer",
+        detail:
+          "After approving, use the customer's phone number shown in the inquiry to confirm details directly. The customer isn't notified automatically — outreach is manual.",
+      },
+    ],
+    tip: "FREE plan supports up to 15 inquiries per month. PRO supports 200. ENTERPRISE is unlimited. Check your plan limit in Public Page settings if inquiries stop coming through.",
+  },
+  {
+    id: "convert-to-rental",
+    icon: ArrowRightCircle,
+    title: "Convert an Inquiry to a Rental",
+    badge: "All Plans",
+    badgeColor: "bg-green-50 text-green-600 border border-green-100",
+    accentColor: "from-amber-600 to-orange-500",
+    description:
+      "Turn an approved inquiry into a live rental reservation in one click. Customer records are created automatically if the customer is new.",
+    steps: [
+      {
+        title: "Find an approved inquiry",
+        detail:
+          "Go to Inquiries and filter by Approved, or look for the green Approved badge. Only approved inquiries can be converted.",
+      },
+      {
+        title: 'Click "Convert to Rental"',
+        detail:
+          "The Convert to Rental button appears on every approved inquiry that hasn't been converted yet. Click it to start the conversion.",
+      },
+      {
+        title: "Customer is created automatically",
+        detail:
+          "If the customer's phone number isn't already in your system, a new customer profile is created using the name and phone from the inquiry. No manual data entry needed.",
+      },
+      {
+        title: "Rental is created and you're redirected",
+        detail:
+          "A new rental reservation is created with the vehicle, customer, and dates from the inquiry. You're taken to the Rentals tab automatically to review and activate it.",
+      },
+      {
+        title: "Inquiry is marked as converted",
+        detail:
+          "The original inquiry shows a Rental Created badge. The Convert button disappears — each inquiry can only produce one rental to prevent duplicates.",
+      },
+    ],
+    tip: "Converting an inquiry doesn't automatically mark the rental Active. Review the rental record, confirm any deposit details, then change the status to Active when the customer picks up the car.",
   },
 ]
 

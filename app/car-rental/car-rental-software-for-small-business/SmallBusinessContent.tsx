@@ -13,9 +13,9 @@ const FEATURES = [
 ]
 
 const PLANS = [
-  { name: "Free", phpPrice: "₱0", usdPrice: "$0", period: "/mo", planKey: "FREE", product: "CAR_RENTAL", desc: "Perfect for starting your rental business.", features: ["Up to 5 vehicles", "20 rentals / month", "Customer records", "2 team members"], cta: "Get started free", highlight: false },
-  { name: "Pro", phpPrice: "₱599", usdPrice: "$12", period: "/mo", planKey: "PRO", product: "CAR_RENTAL", desc: "When your small business starts growing.", features: ["Up to 30 vehicles", "Unlimited rentals", "Overdue tracking", "Revenue dashboard", "5 team members"], cta: "Start Pro", highlight: true },
-  { name: "Enterprise", phpPrice: "₱999", usdPrice: "$20", period: "/mo", planKey: "ENTERPRISE", product: "CAR_RENTAL", desc: "For established rental businesses.", features: ["Unlimited vehicles", "Unlimited rentals", "Everything in Pro", "Unlimited team members", "Priority support"], cta: "Get Enterprise", highlight: false },
+  { name: "Free", phpPrice: "₱0", usdPrice: "$0", period: "/mo", planKey: "FREE", product: "CAR_RENTAL", desc: "Perfect for starting your rental business.", features: ["Up to 5 vehicles", "20 rentals / month", "Customer records", "2 team members", "Public booking page", "15 inquiries / month", "1 page design"], cta: "Get started free", highlight: false },
+  { name: "Pro", phpPrice: "₱999", usdPrice: "$19", period: "/mo", planKey: "PRO", product: "CAR_RENTAL", desc: "When your small business starts growing.", features: ["Up to 30 vehicles", "Unlimited rentals", "Overdue tracking", "Revenue dashboard", "5 team members", "200 inquiries / month", "3 page designs"], cta: "Start Pro", highlight: true },
+  { name: "Enterprise", phpPrice: "₱1,499", usdPrice: "$29", period: "/mo", planKey: "ENTERPRISE", product: "CAR_RENTAL", desc: "For established rental businesses.", features: ["Unlimited vehicles", "Unlimited rentals", "Everything in Pro", "Unlimited team members", "Priority support", "Unlimited inquiries", "All 5 page designs"], cta: "Get Enterprise", highlight: false },
 ]
 
 const FAQS = [

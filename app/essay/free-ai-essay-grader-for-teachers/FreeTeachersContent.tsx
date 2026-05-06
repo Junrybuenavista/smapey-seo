@@ -22,8 +22,8 @@ const PLANS = [
   },
   {
     name: "Pro",
-    phpPrice: "₱399",
-    usdPrice: "$7",
+    phpPrice: "₱999",
+    usdPrice: "$19",
     period: "/mo",
     planKey: "PRO",
     product: "ESSAY",
@@ -34,8 +34,8 @@ const PLANS = [
   },
   {
     name: "Enterprise",
-    phpPrice: "₱799",
-    usdPrice: "$14",
+    phpPrice: "₱1,499",
+    usdPrice: "$29",
     period: "/mo",
     planKey: "ENTERPRISE",
     product: "ESSAY",
