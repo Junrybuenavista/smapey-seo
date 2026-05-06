@@ -189,6 +189,7 @@ function Navbar() {
           <a href="/car-rental" className="text-sm text-white/60 hover:text-white transition-colors">Home</a>
           <a href="#features" className="text-sm text-white/60 hover:text-white transition-colors">Features</a>
           <a href="#pricing" className="text-sm text-white/60 hover:text-white transition-colors">Pricing</a>
+          <a href="/car-rental/guide" className="text-sm text-white/60 hover:text-white transition-colors">Guide</a>
         </div>
         <div className="hidden md:flex items-center gap-3">
           <a href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/login`} className="text-sm text-white/60 hover:text-white transition-colors px-4 py-2">Sign in</a>
