@@ -132,7 +132,12 @@ const GUIDES = [
       {
         title: "Assign a plan to a member",
         detail:
-          "When adding a member or editing their profile, select a plan from the dropdown and set the start date.",
+          "From the Members Overview, click Subscribe next to a member. Select a plan from the dropdown — the subscription starts from today.",
+      },
+      {
+        title: "Adjust for days already consumed (optional)",
+        detail:
+          "If a member started using a plan before you set up the app, enter how many days they've already used in the \"Days already consumed\" field. The system recalculates the expiry automatically — for example, 8 days used on a 12-day plan means 4 days remaining from today. The same field is available in the Renew modal.",
       },
       {
         title: "Monitor expiring memberships",
@@ -142,10 +147,10 @@ const GUIDES = [
       {
         title: "Renew with one click",
         detail:
-          "From a member's profile, click Renew. The new end date is calculated automatically from their current expiry date.",
+          "From a member's row, click Renew when a subscription has expired. Pick a plan and optionally adjust consumed days before confirming.",
       },
     ],
-    tip: "Create separate plans for different durations — weekly, monthly, quarterly — so members can choose what works best for them.",
+    tip: "Use the \"Days already consumed\" field when migrating existing members into the app — it prevents them from getting a full reset and keeps expiry dates accurate from day one.",
   },
   {
     id: "trainers",
