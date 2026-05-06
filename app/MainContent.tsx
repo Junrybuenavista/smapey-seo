@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from "react"
 import Link from "next/link"
 import {
-  FileText, Dumbbell, BookOpen, CalendarDays,
+  FileText, Dumbbell, BookOpen, CalendarDays, Car,
   ArrowRight, CheckCircle2, Zap, Shield, TrendingUp,
   Clock, ChevronDown, Menu, X,
 } from "lucide-react"
@@ -67,6 +67,20 @@ const PRODUCTS = [
     Icon: CalendarDays,
     features: ["Appointment scheduling", "Staff & availability config", "Service catalog", "Deposit tracking"],
     stat: { value: "60%", label: "fewer no-shows" },
+    col: "md:col-span-1",
+  },
+  {
+    key: "CAR_RENTAL",
+    name: "Car Rental",
+    tagline: "Keep your fleet moving.",
+    desc: "Manage vehicles, reservations, deposits, and overdue alerts — everything a rental business needs in one dashboard.",
+    href: "/car-rental",
+    register: `${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=CAR_RENTAL&plan=FREE`,
+    accent: "#ea580c",
+    accentLight: "#fff7ed",
+    Icon: Car,
+    features: ["Fleet status tracking", "Reservation management", "Overdue detection", "Revenue dashboard"],
+    stat: { value: "76%", label: "avg fleet utilization" },
     col: "md:col-span-1",
   },
 ]
