@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect, useRef } from "react"
-import { Car, CheckCircle2, ChevronRight, Menu, X, Star, BarChart3, Users, Shield, Key, Wrench, CreditCard } from "lucide-react"
+import { Car, CheckCircle2, ChevronRight, Menu, X, Star, BarChart3, Users, Shield, Key, Wrench, CreditCard, Globe, MessageSquare, Palette } from "lucide-react"
 
 const FEATURES = [
   { icon: Car, title: "Simple fleet tracking", desc: "Add your vehicles, set their status, and see your whole fleet at a glance. No training required — you'll be running in under 10 minutes.", color: "from-orange-600 to-amber-500", shadow: "shadow-orange-500/20" },
@@ -9,7 +9,10 @@ const FEATURES = [
   { icon: CreditCard, title: "Deposit tracking", desc: "Record and track deposits without a separate spreadsheet. Know what's been collected before a vehicle leaves.", color: "from-orange-500 to-yellow-500", shadow: "shadow-orange-400/20" },
   { icon: BarChart3, title: "Revenue at a glance", desc: "See your monthly revenue, rental count, and fleet utilization on one dashboard. Know if your business is growing — without a finance degree.", color: "from-amber-500 to-orange-400", shadow: "shadow-amber-400/20" },
   { icon: Wrench, title: "Maintenance flags", desc: "Mark a car as under maintenance with one click. It disappears from available inventory until you're ready to rent it again.", color: "from-orange-700 to-amber-600", shadow: "shadow-orange-600/20" },
-  { icon: Shield, title: "Affordable pricing", desc: "Start free with 5 vehicles. Upgrade to Pro for under $12/month when your fleet grows. No enterprise contracts, no hidden fees.", color: "from-orange-600 to-yellow-400", shadow: "shadow-orange-500/20" },
+  { icon: Shield, title: "Affordable pricing", desc: "Start free with 5 vehicles. Upgrade to Pro for $19/month when your fleet grows. No enterprise contracts, no hidden fees.", color: "from-orange-600 to-yellow-400", shadow: "shadow-orange-500/20" },
+  { icon: Globe, title: "Public Booking Page", desc: "Share a public link where customers can browse your fleet and submit booking inquiries 24/7 — no login required on their end.", color: "from-orange-600 to-amber-500", shadow: "shadow-orange-500/20" },
+  { icon: MessageSquare, title: "Booking Inquiries", desc: "Review incoming booking requests from your public page. Approve or reject each inquiry and convert approved ones to rentals in one click.", color: "from-amber-600 to-orange-500", shadow: "shadow-amber-500/20" },
+  { icon: Palette, title: "Page Designs", desc: "Choose from 5 unique page designs — Midnight, Clean, Ocean, Forest, and Luxury — to match your brand. PRO and Enterprise unlock more.", color: "from-orange-500 to-yellow-500", shadow: "shadow-orange-400/20" },
 ]
 
 const PLANS = [

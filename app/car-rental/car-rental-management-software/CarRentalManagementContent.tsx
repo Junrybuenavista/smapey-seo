@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect, useRef } from "react"
-import { Car, CheckCircle2, ChevronRight, Menu, X, Star, BarChart3, Wrench, AlertCircle, Calendar, Key, Users } from "lucide-react"
+import { Car, CheckCircle2, ChevronRight, Menu, X, Star, BarChart3, Wrench, AlertCircle, Calendar, Key, Users, Globe, MessageSquare, Palette } from "lucide-react"
 
 const FEATURES = [
   { icon: Car, title: "Fleet status board", desc: "Every vehicle shows its current status — Available, Rented, or Maintenance. Change status with one click. Never lose track of a car.", color: "from-orange-600 to-amber-500", shadow: "shadow-orange-500/20" },
@@ -10,6 +10,9 @@ const FEATURES = [
   { icon: AlertCircle, title: "Overdue management", desc: "Rentals past their return date are auto-flagged as Overdue. See them immediately on your dashboard and take action before it becomes a problem.", color: "from-orange-700 to-amber-600", shadow: "shadow-orange-600/20" },
   { icon: BarChart3, title: "Revenue & utilization", desc: "See monthly revenue, rental counts, and fleet utilization side by side. Identify your highest-earning vehicles and your idle ones.", color: "from-amber-500 to-orange-400", shadow: "shadow-amber-400/20" },
   { icon: Key, title: "Upcoming returns", desc: "View all active rentals sorted by return date. Know exactly who's coming back today and this week — no manual calendar tracking needed.", color: "from-orange-600 to-yellow-400", shadow: "shadow-orange-500/20" },
+  { icon: Globe, title: "Public Booking Page", desc: "Share a public link where customers can browse your fleet and submit booking inquiries 24/7 — no login required on their end.", color: "from-orange-600 to-amber-500", shadow: "shadow-orange-500/20" },
+  { icon: MessageSquare, title: "Booking Inquiries", desc: "Review incoming booking requests from your public page. Approve or reject each inquiry and convert approved ones to rentals in one click.", color: "from-amber-600 to-orange-500", shadow: "shadow-amber-500/20" },
+  { icon: Palette, title: "Page Designs", desc: "Choose from 5 unique page designs — Midnight, Clean, Ocean, Forest, and Luxury — to match your brand. PRO and Enterprise unlock more.", color: "from-orange-500 to-yellow-500", shadow: "shadow-orange-400/20" },
 ]
 
 const PLANS = [
