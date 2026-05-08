@@ -15,16 +15,16 @@ const PLANS = {
     title: "Pro",
     description: "Best for growing businesses",
     features: ["500 invoices / month", "5 team members", "Advanced templates", "Custom branding", "Multi currency"],
-    usdPrice: "$19",
-    phpPrice: "₱999",
+    usdPrice: "$5",
+    phpPrice: "₱249",
     popular: true,
   },
   ENTERPRISE: {
     title: "Enterprise",
     description: "For teams & scaling companies",
     features: ["Unlimited invoices", "Unlimited team members", "Everything in Pro", "Priority support", "Advanced reporting"],
-    usdPrice: "$29",
-    phpPrice: "₱1,499",
+    usdPrice: "$10",
+    phpPrice: "499",
   },
 }
 
