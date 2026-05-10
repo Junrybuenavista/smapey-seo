@@ -125,9 +125,14 @@ const GUIDES = [
       "Create flexible membership plans, assign them to members, and handle renewals when subscriptions expire.",
     steps: [
       {
+        title: "Choose a plan type: By Days or By Sessions",
+        detail:
+          "When creating a plan, select how it expires. \"By Days\" plans expire after a set number of calendar days (e.g. 30-day monthly). \"By Sessions\" plans expire after a set number of check-ins regardless of how many days pass — perfect for punch-card style memberships like \"10 visits\".",
+      },
+      {
         title: "Create a plan",
         detail:
-          'Go to Plans → click Create Plan. Set a name (e.g. "Monthly"), duration in days, and price.',
+          "Go to Plans → click Add Plan. Select the plan type (By Days or By Sessions), set a name, the number of days or sessions, and the price. Walk-in plans are only available for day-based plans.",
       },
       {
         title: "Assign a plan to a member",
@@ -135,22 +140,22 @@ const GUIDES = [
           "From the Members Overview, click Subscribe next to a member. Select a plan from the dropdown — the subscription starts from today.",
       },
       {
-        title: "Adjust for days already consumed (optional)",
+        title: "Adjust for already consumed days or sessions (optional)",
         detail:
-          "If a member started using a plan before you set up the app, enter how many days they've already used in the \"Days already consumed\" field. The system recalculates the expiry automatically — for example, 8 days used on a 12-day plan means 4 days remaining from today. The same field is available in the Renew modal.",
+          "If a member started using a plan before you set up the app, enter how many days or sessions they've already used. For day-based plans, the expiry is recalculated from today (e.g. 8 days used on a 12-day plan = 4 days remaining). For session-based plans, the sessions counter starts at the number you enter (e.g. 3 sessions used on a 10-session plan = 7 remaining). The same field is available in the Renew modal.",
       },
       {
         title: "Monitor expiring memberships",
         detail:
-          "Your dashboard automatically flags members whose subscriptions are nearing expiry or have already lapsed.",
+          "Your dashboard automatically flags members whose subscriptions are nearing expiry or have already lapsed. Session-based plans show sessions used vs. total directly on the member row.",
       },
       {
         title: "Renew with one click",
         detail:
-          "From a member's row, click Renew when a subscription has expired. Pick a plan and optionally adjust consumed days before confirming.",
+          "From a member's row, click Renew when a subscription has expired. Pick a plan and optionally adjust consumed days or sessions before confirming.",
       },
     ],
-    tip: "Use the \"Days already consumed\" field when migrating existing members into the app — it prevents them from getting a full reset and keeps expiry dates accurate from day one.",
+    tip: "Use \"By Sessions\" plans for punch-card style memberships where members buy a block of visits and use them at their own pace. Use \"By Days\" for standard time-based memberships. Both support the consumed adjustment field when migrating existing members into the app.",
   },
   {
     id: "trainers",
