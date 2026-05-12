@@ -131,7 +131,7 @@ export default function BestCarRentalContent() {
         <div className="relative max-w-6xl mx-auto px-6 py-24 text-center">
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-orange-500/10 border border-orange-500/20 text-orange-400 text-xs font-semibold mb-6"><Car className="w-3 h-3" />Best car rental software</div>
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight tracking-tight mb-6">
-            The best car rental software{" "}<span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 via-amber-400 to-yellow-400">built for real operators</span>
+            The best car rental software test{" "}<span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 via-amber-400 to-yellow-400">built for real operators</span>
           </h1>
           <p className="text-lg text-white/50 max-w-2xl mx-auto mb-10 leading-relaxed">Smapey gives you everything you need to manage your fleet, track rentals, and grow your car rental business — without paying for features you'll never use.</p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
