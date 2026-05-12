@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from "react"
 import { Car, CheckCircle2, ChevronRight, Menu, X, Star, BarChart3, Wrench, AlertCircle, Calendar, Key, Users, Globe, MessageSquare, Palette } from "lucide-react"
 
 import { usePricing, type Plan } from "@/lib/usePricing"
+import InternalLinks from "@/components/InternalLinks"
 const FEATURES = [
   { icon: Car, title: "Fleet status board", desc: "Every vehicle shows its current status — Available, Rented, or Maintenance. Change status with one click. Never lose track of a car.", color: "from-orange-600 to-amber-500", shadow: "shadow-orange-500/20" },
   { icon: Wrench, title: "Maintenance tracking", desc: "Flag vehicles under maintenance so they can't be booked. Mark them available when the work is done. Keep your operable fleet clearly visible.", color: "from-amber-600 to-orange-500", shadow: "shadow-amber-500/20" },
@@ -129,6 +130,7 @@ export default function CarRentalManagementContent() {
         <Animate className="relative max-w-2xl mx-auto px-6 text-center"><h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight mb-4">Start managing your fleet today</h2><p className="text-white/40 mb-8">Free plan, no credit card, up and running in minutes.</p><a href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=CAR_RENTAL&plan=FREE`} className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-400 hover:to-amber-400 text-white font-semibold shadow-xl shadow-orange-600/20">Get started for free <ChevronRight className="w-4 h-4" /></a></Animate>
       </section>
 
+      <InternalLinks cluster="car-rental" currentPath="/car-rental/car-rental-management-software" />
       <footer className="bg-[#0f0500] border-t border-white/5 px-6 py-8"><div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4"><div className="flex items-center gap-2"><img src="/logo.png" alt="Smapey" className="w-6 h-6 rounded-md object-cover" /><span className="text-white/60 text-sm font-semibold">Smapey Car Rental</span></div><p className="text-white/20 text-xs">© {new Date().getFullYear()} Smapey. All rights reserved.</p></div></footer>
     </main>
   )

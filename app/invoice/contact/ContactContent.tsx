@@ -1,5 +1,6 @@
 "use client";
 import Footer from "@/components/Footer"
+import InternalLinks from "@/components/InternalLinks"
 import { useState } from "react";
 import { Mail, Phone, MapPin, Send, Clock, ShieldCheck, Sparkles } from "lucide-react";
 
@@ -217,7 +218,8 @@ export default function ContactPage() {
         </div>
       </div>
     </div>
-    <Footer/>
+    <InternalLinks cluster="invoice" currentPath="/invoice/contact" />
+      <Footer/>
     </>
   );
 }

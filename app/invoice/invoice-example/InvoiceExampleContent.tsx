@@ -1,5 +1,6 @@
 "use client"
 import Footer from "@/components/Footer"
+import InternalLinks from "@/components/InternalLinks"
 
 export default function InvoiceExamplePage() {
   return (
@@ -320,7 +321,8 @@ export default function InvoiceExamplePage() {
         </a>
       </section>
     </div>
-    <Footer /></>
+    <InternalLinks cluster="invoice" currentPath="/invoice/invoice-example" />
+      <Footer /></>
   )
 }
 

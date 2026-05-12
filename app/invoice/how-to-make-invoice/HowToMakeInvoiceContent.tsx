@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
 import Footer from "@/components/Footer"
+import InternalLinks from "@/components/InternalLinks"
 
 export default function HowToMakeInvoicePage() {
   return (
@@ -186,7 +187,8 @@ export default function HowToMakeInvoicePage() {
       </section>
 
     </div>
-    <Footer />
+    <InternalLinks cluster="invoice" currentPath="/invoice/how-to-make-invoice" />
+      <Footer />
     </>
   );
 }

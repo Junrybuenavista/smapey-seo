@@ -1,6 +1,7 @@
 "use client"
 import Link from "next/link" 
 import Footer from "@/components/Footer"
+import InternalLinks from "@/components/InternalLinks"
 import { useState, useEffect } from "react"
 export default function HowItWorks() {
    const [activeImage, setActiveImage] = useState<string | null>(null)
@@ -330,7 +331,8 @@ relative left-1/2 right-1/2 -mx-[50vw] w-screen px-6 lg:px-20 text-white">
       )}
     </section>
     </div>
-        <Footer />
+        <InternalLinks cluster="invoice" currentPath="/invoice/how-it-works" />
+      <Footer />
         </>
         
   );

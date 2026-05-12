@@ -7,6 +7,7 @@ import {
   DollarSign, Globe, UserPlus,
 } from "lucide-react"
 import { usePricing, type Plan } from "@/lib/usePricing"
+import InternalLinks from "@/components/InternalLinks"
 
 const NAV_LINKS = ["Features", "How it Works", "Pricing", "FAQ", "Guide"]
 
@@ -779,6 +780,7 @@ export default function LandingPage() {
       <Pricing />
       <FAQ />
       <CTA />
+      <InternalLinks cluster="gym" currentPath="/gym" />
       <Footer />
     </main>
   )

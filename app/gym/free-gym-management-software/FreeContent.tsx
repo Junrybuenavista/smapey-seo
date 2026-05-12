@@ -7,6 +7,7 @@ import {
 } from "lucide-react"
 
 import { usePricing, type Plan } from "@/lib/usePricing"
+import InternalLinks from "@/components/InternalLinks"
 const FREE_FEATURES = [
   {
     icon: Users,
@@ -494,6 +495,7 @@ export default function FreeContent() {
       <Pricing />
       <FAQ />
       <CTA />
+      <InternalLinks cluster="gym" currentPath="/gym/free-gym-management-software" />
       <Footer />
     </main>
   )

@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from "react"
 import { usePricing, type Plan } from "@/lib/usePricing"
+import InternalLinks from "@/components/InternalLinks"
 import {
   Car, Users, BarChart3, CheckCircle2, ChevronRight,
   Menu, X, Star, CreditCard, Shield, FileText,
@@ -521,6 +522,7 @@ export default function CarRentalContent() {
       <Pricing />
       <FAQ />
       <CTA />
+      <InternalLinks cluster="car-rental" currentPath="/car-rental" />
       <Footer />
     </main>
   )

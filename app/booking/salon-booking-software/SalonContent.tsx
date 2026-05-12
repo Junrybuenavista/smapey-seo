@@ -8,6 +8,7 @@ import {
 } from "lucide-react"
 
 import { usePricing, type Plan } from "@/lib/usePricing"
+import InternalLinks from "@/components/InternalLinks"
 const FEATURES = [
   {
     icon: CalendarDays,
@@ -496,6 +497,7 @@ export default function SalonContent() {
       <Pricing />
       <FAQ />
       <CTA />
+      <InternalLinks cluster="booking" currentPath="/booking/salon-booking-software" />
       <Footer />
     </main>
   )

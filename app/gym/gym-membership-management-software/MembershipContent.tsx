@@ -7,6 +7,7 @@ import {
 } from "lucide-react"
 
 import { usePricing, type Plan } from "@/lib/usePricing"
+import InternalLinks from "@/components/InternalLinks"
 const FEATURES = [
   {
     icon: UserPlus,
@@ -478,6 +479,7 @@ export default function MembershipContent() {
       <Pricing />
       <FAQ />
       <CTA />
+      <InternalLinks cluster="gym" currentPath="/gym/gym-membership-management-software" />
       <Footer />
     </main>
   )

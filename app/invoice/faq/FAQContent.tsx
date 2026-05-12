@@ -10,6 +10,7 @@ import {
   LifeBuoy,
 } from "lucide-react"
 import Footer from "@/components/Footer"
+import InternalLinks from "@/components/InternalLinks"
 
 export default function FAQContent() {
   return (
@@ -192,7 +193,8 @@ export default function FAQContent() {
       </section>
 
     </div>
-     <Footer />
+     <InternalLinks cluster="invoice" currentPath="/invoice/faq" />
+      <Footer />
         </>
   )
 }

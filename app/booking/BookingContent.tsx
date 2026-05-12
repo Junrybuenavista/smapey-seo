@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from "react"
 import { usePricing, type Plan } from "@/lib/usePricing"
 import Link from "next/link"
+import InternalLinks from "@/components/InternalLinks"
 import {
   CalendarDays, Clock, Users, CheckCircle2, ChevronRight,
   Menu, X, Star, Briefcase, Bell, CreditCard, BarChart3,
@@ -768,6 +769,7 @@ export default function BookingLandingPage() {
       <Pricing />
       <FAQ />
       <CTA />
+      <InternalLinks cluster="booking" currentPath="/booking" />
       <Footer />
     </main>
   )

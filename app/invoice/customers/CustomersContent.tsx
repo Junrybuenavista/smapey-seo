@@ -1,5 +1,6 @@
 "use client"
 import Footer from "@/components/Footer"
+import InternalLinks from "@/components/InternalLinks"
 import Link from "next/link"
 
 const testimonials = [
@@ -148,7 +149,8 @@ export default function CustomersContent() {
       </section>
 
     </div>
-     <Footer />
+     <InternalLinks cluster="invoice" currentPath="/invoice/customers" />
+      <Footer />
         </>
   )
 }

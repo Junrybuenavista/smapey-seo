@@ -6,6 +6,7 @@ import {
 } from "lucide-react"
 
 import { usePricing, type Plan } from "@/lib/usePricing"
+import InternalLinks from "@/components/InternalLinks"
 const FAQS = [
   {
     q: "Is the free plan really free forever?",
@@ -462,6 +463,7 @@ export default function GymPricingContent() {
       <PricingTable />
       <FAQ />
       <CTA />
+      <InternalLinks cluster="gym" currentPath="/gym/gym-management-software-price" />
       <Footer />
     </main>
   )

@@ -15,6 +15,7 @@ import {
 } from "lucide-react"
 import Link from "next/link"
 import Footer from "@/components/Footer"
+import InternalLinks from "@/components/InternalLinks"
 
 export default function InvoicingContent() {
   return (
@@ -591,6 +592,7 @@ export default function InvoicingContent() {
         </div>
       </section>
 
+      <InternalLinks cluster="invoice" currentPath="/invoice" limit={9} />
       <Footer />
     </>
   )

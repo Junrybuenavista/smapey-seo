@@ -5,6 +5,7 @@ import {
   UserPlus, QrCode, UserCheck, CreditCard, Dumbbell, BarChart3,
   ChevronRight, Zap, BookOpen, ArrowLeft,
 } from "lucide-react"
+import InternalLinks from "@/components/InternalLinks"
 
 //////////////////////////////////////////////////////
 // DATA
@@ -482,6 +483,7 @@ export default function GymGuideContent() {
       </section>
 
       <CTA />
+      <InternalLinks cluster="gym" currentPath="/gym/guide" />
       <Footer />
     </main>
   )

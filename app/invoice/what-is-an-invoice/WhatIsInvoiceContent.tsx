@@ -2,6 +2,7 @@
 
 import Link from "next/link"
 import Footer from "@/components/Footer"
+import InternalLinks from "@/components/InternalLinks"
 
 
 export default function WhatIsInvoicePage() {
@@ -235,6 +236,7 @@ export default function WhatIsInvoicePage() {
       </section>
 
     </main>
-    <Footer/></>
+    <InternalLinks cluster="invoice" currentPath="/invoice/what-is-an-invoice" />
+      <Footer/></>
   )
 }

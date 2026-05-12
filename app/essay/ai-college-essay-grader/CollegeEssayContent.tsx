@@ -8,6 +8,7 @@ import {
 } from "lucide-react"
 
 import { usePricing, type Plan } from "@/lib/usePricing"
+import InternalLinks from "@/components/InternalLinks"
 const COLLEGE_CRITERIA = [
   {
     icon: Target,
@@ -426,6 +427,7 @@ export default function CollegeEssayLandingPage() {
       <Pricing />
       <FAQ />
       <CTA />
+      <InternalLinks cluster="essay" currentPath="/essay/ai-college-essay-grader" />
       <Footer />
     </main>
   )

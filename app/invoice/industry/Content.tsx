@@ -2,6 +2,7 @@
 
 import Link from "next/link"
 import Footer from "@/components/Footer"
+import InternalLinks from "@/components/InternalLinks"
 
 const industries = [
   {
@@ -156,7 +157,8 @@ export default function Content() {
 
 
     </div>
-    <Footer />
+    <InternalLinks cluster="invoice" currentPath="/invoice/industry" />
+      <Footer />
     </>
     
   )

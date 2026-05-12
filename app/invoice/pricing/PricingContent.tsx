@@ -2,6 +2,8 @@
 
 import PricingCard from "./PricingCard"
 import { usePricing } from "@/lib/usePricing"
+import InternalLinks from "@/components/InternalLinks"
+import Footer from "@/components/Footer"
 
 export default function PricingContent() {
   const { plans, isPhilippines } = usePricing("INVOICE")
@@ -55,6 +57,8 @@ export default function PricingContent() {
         Trusted by modern businesses worldwide
       </div>
 
+      <InternalLinks cluster="invoice" currentPath="/invoice/pricing" limit={6} />
+      <Footer />
     </div>
   )
 }

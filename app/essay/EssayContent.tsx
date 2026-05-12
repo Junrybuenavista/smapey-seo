@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from "react"
 import { usePricing, type Plan } from "@/lib/usePricing"
+import InternalLinks from "@/components/InternalLinks"
 import {
   BookOpen, Camera, Star, ClipboardList, BarChart3,
   Users, Zap, CheckCircle2, ChevronRight, Menu, X,
@@ -770,6 +771,7 @@ export default function EssayLandingPage() {
       <Pricing />
       <FAQ />
       <CTA />
+      <InternalLinks cluster="essay" currentPath="/essay" />
       <Footer />
     </main>
   )

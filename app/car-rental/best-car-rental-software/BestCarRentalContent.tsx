@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from "react"
 import { Car, CheckCircle2, ChevronRight, Menu, X, Star, BarChart3, Users, Shield, Key, AlertCircle, Globe, MessageSquare, Palette } from "lucide-react"
 
 import { usePricing, type Plan } from "@/lib/usePricing"
+import InternalLinks from "@/components/InternalLinks"
 const FEATURES = [
   { icon: Car, title: "Fleet at a glance", desc: "See every vehicle's status — available, rented, or in maintenance — from one screen. No spreadsheets, no guessing.", color: "from-orange-600 to-amber-500", shadow: "shadow-orange-500/20" },
   { icon: Key, title: "Reservation management", desc: "Create rentals with pickup dates, return dates, locations, and deposit tracking. Activate, return, or cancel with a single click.", color: "from-amber-600 to-orange-500", shadow: "shadow-amber-500/20" },
@@ -220,6 +221,8 @@ export default function BestCarRentalContent() {
           <a href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=CAR_RENTAL&plan=FREE`} className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-400 hover:to-amber-400 text-white font-semibold transition-all shadow-xl shadow-orange-600/20">Get started for free <ChevronRight className="w-4 h-4" /></a>
         </Animate>
       </section>
+
+      <InternalLinks cluster="car-rental" currentPath="/car-rental/best-car-rental-software" />
 
       <footer className="bg-[#0f0500] border-t border-white/5 px-6 py-8">
         <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">

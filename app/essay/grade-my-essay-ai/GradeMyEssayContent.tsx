@@ -8,6 +8,7 @@ import {
 } from "lucide-react"
 
 import { usePricing, type Plan } from "@/lib/usePricing"
+import InternalLinks from "@/components/InternalLinks"
 const WHAT_YOU_GET = [
   {
     icon: Target,
@@ -426,6 +427,7 @@ export default function GradeMyEssayLandingPage() {
       <Pricing />
       <FAQ />
       <CTA />
+      <InternalLinks cluster="essay" currentPath="/essay/grade-my-essay-ai" />
       <Footer />
     </main>
   )

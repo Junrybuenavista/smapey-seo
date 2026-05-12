@@ -1,6 +1,7 @@
 import Link from "next/link"
 import { Mail, Link as LinkIcon, FileText, Clock, CreditCard, CheckCircle, AlertCircle, Send } from "lucide-react"
 import Footer from "@/components/Footer"
+import InternalLinks from "@/components/InternalLinks"
 
 export default function HowToSendInvoicePage() {
   return (
@@ -191,6 +192,7 @@ Thanks,
       </section>
 
     </div>
-    <Footer/></>
+    <InternalLinks cluster="invoice" currentPath="/invoice/how-to-send-invoice" />
+      <Footer/></>
   )
 }

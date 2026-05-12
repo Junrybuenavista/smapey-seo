@@ -8,6 +8,7 @@ import {
 } from "lucide-react"
 
 import { usePricing, type Plan } from "@/lib/usePricing"
+import InternalLinks from "@/components/InternalLinks"
 const FEATURES = [
   {
     icon: Zap,
@@ -448,6 +449,7 @@ export default function TeachersLandingPage() {
       <Pricing />
       <FAQ />
       <CTA />
+      <InternalLinks cluster="essay" currentPath="/essay/ai-essay-grader-for-teachers" />
       <Footer />
     </main>
   )

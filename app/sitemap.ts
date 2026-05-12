@@ -13,10 +13,11 @@ function getRoutes(dir: string, basePath = ""): string[] {
   for (const entry of entries) {
     const fullPath = path.join(dir, entry.name)
 
-    // Skip special folders/files
+    // Skip special folders/files and dynamic route segments
     if (
       entry.name.startsWith("_") ||
       entry.name.startsWith("(") ||
+      entry.name.startsWith("[") ||
       entry.name === "api"
     ) {
       continue

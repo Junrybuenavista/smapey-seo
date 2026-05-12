@@ -1,13 +1,141 @@
-export const SEO_ROUTES = [
-  "invoice-generation-online",
-  "invoicing-software-for-plumbers",
-  "electrician-invoicing-software",
-  "hvac-invoicing-software",
-  "freelance-invoice",
-  "how-to-create-invoice",
-  "how-to-send-invoice",
-  "how-to-make-invoice",
-  "invoice-example",
-  "free-invoice-template",
-  "invoicing-software-for-contractors",
+export type RouteInfo = {
+  path: string
+  title: string
+  desc: string
+}
+
+export type ClusterKey = "invoice" | "booking" | "gym" | "essay" | "car-rental"
+
+export type RouteCluster = {
+  label: string
+  hub: RouteInfo
+  pages: RouteInfo[]
+}
+
+export const CLUSTERS: Record<ClusterKey, RouteCluster> = {
+  invoice: {
+    label: "Invoicing",
+    hub: {
+      path: "/invoice",
+      title: "Invoicing Software",
+      desc: "Create professional invoices, track payments, and get paid faster.",
+    },
+    pages: [
+      { path: "/invoice/how-it-works", title: "How It Works", desc: "See how Smapey Invoice fits into your daily billing workflow." },
+      { path: "/invoice/pricing", title: "Pricing", desc: "Simple plans for solo operators, freelancers, and growing teams." },
+      { path: "/invoice/free-invoice-template", title: "Free Invoice Template", desc: "Download a free, ready-to-fill invoice template you can use today." },
+      { path: "/invoice/invoice-example", title: "Invoice Example", desc: "Real invoice examples that show what to include and how to format them." },
+      { path: "/invoice/how-to-make-invoice", title: "How to Make an Invoice", desc: "Step-by-step walkthrough of writing a professional invoice from scratch." },
+      { path: "/invoice/how-to-create-invoice", title: "How to Create an Invoice", desc: "Build a complete invoice in minutes, including taxes and terms." },
+      { path: "/invoice/how-to-send-invoice", title: "How to Send an Invoice", desc: "Best practices for delivering invoices and getting paid on time." },
+      { path: "/invoice/invoice-generation-online", title: "Online Invoice Generator", desc: "Generate downloadable PDF invoices online without installing anything." },
+      { path: "/invoice/invoice-free-tool", title: "Free Invoice Tool", desc: "A free browser-based tool for creating and downloading invoices." },
+      { path: "/invoice/google-docs-invoice-template", title: "Google Docs Invoice Template", desc: "Copy-and-edit Google Docs invoice templates for quick billing." },
+      { path: "/invoice/pro-forma-invoice", title: "Pro Forma Invoice", desc: "What a pro forma invoice is, when to use it, and how to format one." },
+      { path: "/invoice/what-is-an-invoice", title: "What Is an Invoice?", desc: "A plain-English explanation of invoices and how they work." },
+      { path: "/invoice/freelance-invoice", title: "Freelance Invoice", desc: "Invoicing built around the way freelancers actually get paid." },
+      { path: "/invoice/invoicing-software-for-freelancers", title: "Invoicing Software for Freelancers", desc: "Lightweight invoicing tools designed for solo freelancers." },
+      { path: "/invoice/invoicing-software-for-consultants", title: "Invoicing Software for Consultants", desc: "Hourly, retainer, and milestone billing for consultants." },
+      { path: "/invoice/invoicing-software-for-contractors", title: "Invoicing Software for Contractors", desc: "Job-based invoicing for independent contractors." },
+      { path: "/invoice/invoicing-software-for-plumbers", title: "Invoicing Software for Plumbers", desc: "Fast on-site invoicing for plumbing businesses." },
+      { path: "/invoice/electrician-invoicing-software", title: "Electrician Invoicing Software", desc: "Invoicing for electricians — labor, parts, and service calls." },
+      { path: "/invoice/hvac-invoicing-software", title: "HVAC Invoicing Software", desc: "Invoicing built for HVAC installation and maintenance jobs." },
+      { path: "/invoice/invoicing-software-for-auto-repair", title: "Auto Repair Invoicing Software", desc: "Invoicing for auto shops — parts, labor, and customer history." },
+      { path: "/invoice/invoice-software-for-construction", title: "Construction Invoice Software", desc: "Progress billing and job costing for construction projects." },
+      { path: "/invoice/legal-billing-software", title: "Legal Billing Software", desc: "Time tracking and billing for law firms and solo attorneys." },
+      { path: "/invoice/invoice-processing-software", title: "Invoice Processing Software", desc: "Streamline accounts-payable and inbound invoice processing." },
+      { path: "/invoice/customers", title: "Customers", desc: "Real businesses using Smapey to manage their invoicing." },
+      { path: "/invoice/industry", title: "Industries We Serve", desc: "Smapey Invoice across freelancers, trades, and service businesses." },
+      { path: "/invoice/learning-hub", title: "Learning Hub", desc: "Guides and articles on invoicing, getting paid, and small business finance." },
+      { path: "/invoice/faq", title: "FAQ", desc: "Common questions about Smapey Invoice answered." },
+      { path: "/invoice/contact", title: "Contact", desc: "Get in touch with the Smapey team." },
+    ],
+  },
+
+  booking: {
+    label: "Booking & Appointments",
+    hub: {
+      path: "/booking",
+      title: "Booking & Appointments",
+      desc: "Manage client appointments, staff availability, and deposits.",
+    },
+    pages: [
+      { path: "/booking/guide", title: "Booking Software Guide", desc: "How appointment scheduling software works and what to look for." },
+      { path: "/booking/salon-booking-software", title: "Salon Booking Software", desc: "Appointment booking, stylist assignment, and deposits for salons." },
+      { path: "/booking/salon-appointment-scheduling-software", title: "Salon Appointment Scheduling Software", desc: "Multi-stylist scheduling, working hours, and deposit tracking." },
+      { path: "/booking/nail-salon-booking-software", title: "Nail Salon Booking Software", desc: "Booking and technician assignment built for nail salons." },
+      { path: "/booking/clinic-appointment-scheduling-software", title: "Clinic Appointment Scheduling Software", desc: "Patient appointments, provider availability, and reminders for clinics." },
+    ],
+  },
+
+  gym: {
+    label: "Gym Management",
+    hub: {
+      path: "/gym",
+      title: "Gym Management",
+      desc: "Manage members, automate billing, and track attendance.",
+    },
+    pages: [
+      { path: "/gym/guide", title: "Gym Management Guide", desc: "How modern gym management software works end-to-end." },
+      { path: "/gym/gym-membership-management-software", title: "Gym Membership Management Software", desc: "Member profiles, renewals, and subscription billing." },
+      { path: "/gym/crossfit-gym-management-software", title: "CrossFit Gym Management Software", desc: "Class scheduling and member tracking for CrossFit boxes." },
+      { path: "/gym/free-gym-management-software", title: "Free Gym Management Software", desc: "Run your gym on a free plan — upgrade only when you grow." },
+      { path: "/gym/gym-management-software-price", title: "Gym Management Software Price", desc: "Transparent pricing for Smapey's gym management plans." },
+    ],
+  },
+
+  essay: {
+    label: "Essay Feedback",
+    hub: {
+      path: "/essay",
+      title: "Essay Feedback",
+      desc: "AI-powered essay grading with rubric scores and structured feedback.",
+    },
+    pages: [
+      { path: "/essay/guide", title: "Essay Grading Guide", desc: "How AI essay grading works and how teachers use it." },
+      { path: "/essay/grade-my-essay-ai", title: "Grade My Essay AI", desc: "Get instant AI feedback and a score on any essay you submit." },
+      { path: "/essay/ai-essay-grader-for-teachers", title: "AI Essay Grader for Teachers", desc: "Grade student essays in seconds with rubric-aligned feedback." },
+      { path: "/essay/free-ai-essay-grader-for-teachers", title: "Free AI Essay Grader for Teachers", desc: "A free AI grading tool teachers can use without a credit card." },
+      { path: "/essay/ai-college-essay-grader", title: "AI College Essay Grader", desc: "Score and improve college application essays with AI feedback." },
+    ],
+  },
+
+  "car-rental": {
+    label: "Car Rental",
+    hub: {
+      path: "/car-rental",
+      title: "Car Rental",
+      desc: "Manage vehicles, reservations, deposits, and overdue alerts.",
+    },
+    pages: [
+      { path: "/car-rental/guide", title: "Car Rental Software Guide", desc: "What car rental software does and what features matter most." },
+      { path: "/car-rental/best-car-rental-software", title: "Best Car Rental Software", desc: "What to look for and how Smapey compares." },
+      { path: "/car-rental/car-rental-management-software", title: "Car Rental Management Software", desc: "Fleet, reservation, and revenue management in one dashboard." },
+      { path: "/car-rental/car-rental-booking-software", title: "Car Rental Booking Software", desc: "Reservation flows that let customers book vehicles online." },
+      { path: "/car-rental/car-rental-software-for-small-business", title: "Car Rental Software for Small Business", desc: "Built for small rental fleets — affordable, simple, complete." },
+    ],
+  },
+}
+
+// Back-compat: existing usages of SEO_ROUTES expect bare invoice slugs.
+export const SEO_ROUTES: string[] = CLUSTERS.invoice.pages.map((p) =>
+  p.path.replace(/^\/invoice\//, "")
+)
+
+export const ALL_CLUSTERS: ClusterKey[] = [
+  "invoice",
+  "booking",
+  "gym",
+  "essay",
+  "car-rental",
 ]
+
+export function clusterForPath(pathname: string): ClusterKey | null {
+  for (const key of ALL_CLUSTERS) {
+    const cluster = CLUSTERS[key]
+    if (pathname === cluster.hub.path || pathname.startsWith(cluster.hub.path + "/")) {
+      return key
+    }
+  }
+  return null
+}

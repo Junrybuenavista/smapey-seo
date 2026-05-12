@@ -8,6 +8,7 @@ import {
 } from "lucide-react"
 
 import { usePricing, type Plan } from "@/lib/usePricing"
+import InternalLinks from "@/components/InternalLinks"
 const FREE_INCLUDES = [
   { icon: ClipboardList, label: "Up to 5 assignments per month" },
   { icon: FileText, label: "30 essay submissions per month" },
@@ -411,6 +412,7 @@ export default function FreeTeachersLandingPage() {
       <Pricing />
       <FAQ />
       <CTA />
+      <InternalLinks cluster="essay" currentPath="/essay/free-ai-essay-grader-for-teachers" />
       <Footer />
     </main>
   )

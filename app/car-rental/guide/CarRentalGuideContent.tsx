@@ -6,6 +6,7 @@ import {
   ChevronRight, Zap, BookOpen, ArrowLeft,
   Globe, Palette, MessageSquare, ArrowRightCircle,
 } from "lucide-react"
+import InternalLinks from "@/components/InternalLinks"
 
 //////////////////////////////////////////////////////
 // DATA
@@ -615,6 +616,7 @@ export default function CarRentalGuideContent() {
       </section>
 
       <CTA />
+      <InternalLinks cluster="car-rental" currentPath="/car-rental/guide" />
       <Footer />
     </main>
   )
