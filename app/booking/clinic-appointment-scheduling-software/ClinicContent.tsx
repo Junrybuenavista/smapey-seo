@@ -7,6 +7,7 @@ import {
   UserCheck, Stethoscope, ClipboardList, HeartPulse,
 } from "lucide-react"
 
+import { usePricing, type Plan } from "@/lib/usePricing"
 const FEATURES = [
   {
     icon: CalendarDays,
@@ -77,45 +78,6 @@ const STEPS = [
   { step: "01", title: "Set up your clinic", desc: "Create your clinic profile, add your services, and configure your available hours in minutes." },
   { step: "02", title: "Add staff & book patients", desc: "Invite your team, then start booking patient appointments and assigning them to the right doctor." },
   { step: "03", title: "Track everything live", desc: "Confirm appointments, mark completions, and monitor your full schedule from one dashboard." },
-]
-
-const PLANS = [
-  {
-    name: "Free",
-    phpPrice: "₱0",
-    usdPrice: "$0",
-    period: "/mo",
-    planKey: "FREE",
-    product: "BOOKING",
-    desc: "Perfect for solo practitioners just starting out.",
-    features: ["Up to 10 appointments / month", "2 services", "Manual confirmation", "2 team members"],
-    cta: "Get started free",
-    highlight: false,
-  },
-  {
-    name: "Pro",
-    phpPrice: "₱999",
-    usdPrice: "$19",
-    period: "/mo",
-    planKey: "PRO",
-    product: "BOOKING",
-    desc: "For busy clinics with multiple doctors and staff.",
-    features: ["500 appointments / month", "Unlimited services", "Deposit tracking", "Staff assignment", "5 team members"],
-    cta: "Start Pro",
-    highlight: true,
-  },
-  {
-    name: "Enterprise",
-    phpPrice: "₱1,499",
-    usdPrice: "$29",
-    period: "/mo",
-    planKey: "ENTERPRISE",
-    product: "BOOKING",
-    desc: "For multi-doctor clinics that need full control.",
-    features: ["Unlimited appointments", "Everything in Pro", "Unlimited team members", "Priority support"],
-    cta: "Get Enterprise",
-    highlight: false,
-  },
 ]
 
 const FAQS = [
@@ -314,16 +276,10 @@ function HowItWorks() {
 }
 
 function Pricing() {
-  const [selectedPlan, setSelectedPlan] = useState<typeof PLANS[0] | null>(null)
-  const [isPhilippines, setIsPhilippines] = useState<boolean | null>(null)
-  useEffect(() => {
-    const tzFallback = Intl.DateTimeFormat().resolvedOptions().timeZone === "Asia/Manila"
-    fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/billing/geo`)
-      .then(r => r.json()).then(d => setIsPhilippines(d.isPhilippines ?? tzFallback))
-      .catch(() => setIsPhilippines(tzFallback))
-  }, [])
+  const [selectedPlan, setSelectedPlan] = useState<Plan | null>(null)
+  const { plans, isPhilippines } = usePricing("BOOKING")
 
-  const handleSelect = (p: typeof PLANS[0]) => {
+  const handleSelect = (p: Plan) => {
     if (p.planKey === "FREE") {
       window.location.href = `${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=${p.product}&plan=FREE`
       return
@@ -346,7 +302,7 @@ function Pricing() {
           )}
         </Animate>
         <div className="grid md:grid-cols-3 gap-6 items-center">
-          {PLANS.map((p, i) => {
+          {plans.map((p, i) => {
             const displayPrice = isPhilippines === null ? "..." : isPhilippines ? p.phpPrice : p.usdPrice
             return (
               <Animate key={p.name} delay={i * 100}>

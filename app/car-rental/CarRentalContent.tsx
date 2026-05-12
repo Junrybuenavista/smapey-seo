@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect, useRef } from "react"
+import { usePricing, type Plan } from "@/lib/usePricing"
 import {
   Car, Users, BarChart3, CheckCircle2, ChevronRight,
   Menu, X, Star, CreditCard, Shield, FileText,
@@ -98,45 +99,6 @@ const STEPS = [
   { step: "01", title: "Add your vehicles", desc: "Enter your fleet — make, model, plate number, and daily rate. Set each vehicle's status and you're ready to rent." },
   { step: "02", title: "Register your customers", desc: "Add customer profiles with contact details and license numbers. Their full rental history builds automatically over time." },
   { step: "03", title: "Create and track rentals", desc: "Book a rental, set pickup and return dates, track deposits, and manage the full lifecycle from reserved to returned." },
-]
-
-const PLANS = [
-  {
-    name: "Free",
-    phpPrice: "₱0",
-    usdPrice: "$0",
-    period: "/mo",
-    planKey: "FREE",
-    product: "CAR_RENTAL",
-    desc: "Perfect for small operators just getting started.",
-    features: ["Up to 5 vehicles", "20 rentals / month", "Customer records", "2 team members", "Public booking page", "15 inquiries / month", "1 page design"],
-    cta: "Get started free",
-    highlight: false,
-  },
-  {
-    name: "Pro",
-    phpPrice: "₱999",
-    usdPrice: "$19",
-    period: "/mo",
-    planKey: "PRO",
-    product: "CAR_RENTAL",
-    desc: "For growing rental businesses with a real fleet.",
-    features: ["Up to 30 vehicles", "Unlimited rentals", "Overdue tracking", "Revenue dashboard", "5 team members", "200 inquiries / month", "3 page designs (Midnight, Clean, Ocean)"],
-    cta: "Start Pro",
-    highlight: true,
-  },
-  {
-    name: "Enterprise",
-    phpPrice: "₱1,499",
-    usdPrice: "$29",
-    period: "/mo",
-    planKey: "ENTERPRISE",
-    product: "CAR_RENTAL",
-    desc: "For large fleets that need no limits.",
-    features: ["Unlimited vehicles", "Unlimited rentals", "Everything in Pro", "Unlimited team members", "Priority support", "Unlimited inquiries", "All 5 page designs"],
-    cta: "Get Enterprise",
-    highlight: false,
-  },
 ]
 
 const FAQS = [
@@ -337,15 +299,9 @@ function HowItWorks() {
 }
 
 function Pricing() {
-  const [selectedPlan, setSelectedPlan] = useState<typeof PLANS[0] | null>(null)
-  const [isPhilippines, setIsPhilippines] = useState<boolean | null>(null)
-  useEffect(() => {
-    const tzFallback = Intl.DateTimeFormat().resolvedOptions().timeZone === "Asia/Manila"
-    fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/billing/geo`)
-      .then(r => r.json()).then(d => setIsPhilippines(d.isPhilippines ?? tzFallback))
-      .catch(() => setIsPhilippines(tzFallback))
-  }, [])
-  const handleSelect = (p: typeof PLANS[0]) => {
+  const [selectedPlan, setSelectedPlan] = useState<Plan | null>(null)
+  const { plans, isPhilippines } = usePricing("CAR_RENTAL")
+  const handleSelect = (p: Plan) => {
     if (p.planKey === "FREE") { window.location.href = `${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=${p.product}&plan=FREE`; return }
     setSelectedPlan(p)
   }
@@ -364,7 +320,7 @@ function Pricing() {
           )}
         </Animate>
         <div className="grid md:grid-cols-3 gap-6 items-center">
-          {PLANS.map((p, i) => {
+          {plans.map((p, i) => {
             const displayPrice = isPhilippines === null ? "..." : isPhilippines ? p.phpPrice : p.usdPrice
             return (
               <Animate key={p.name} delay={i * 100}>

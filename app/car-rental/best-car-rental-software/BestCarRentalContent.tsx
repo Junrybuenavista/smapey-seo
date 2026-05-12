@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from "react"
 import { Car, CheckCircle2, ChevronRight, Menu, X, Star, BarChart3, Users, Shield, Key, AlertCircle, Globe, MessageSquare, Palette } from "lucide-react"
 
+import { usePricing, type Plan } from "@/lib/usePricing"
 const FEATURES = [
   { icon: Car, title: "Fleet at a glance", desc: "See every vehicle's status — available, rented, or in maintenance — from one screen. No spreadsheets, no guessing.", color: "from-orange-600 to-amber-500", shadow: "shadow-orange-500/20" },
   { icon: Key, title: "Reservation management", desc: "Create rentals with pickup dates, return dates, locations, and deposit tracking. Activate, return, or cancel with a single click.", color: "from-amber-600 to-orange-500", shadow: "shadow-amber-500/20" },
@@ -13,12 +14,6 @@ const FEATURES = [
   { icon: Globe, title: "Public Booking Page", desc: "Share a public link where customers can browse your fleet and submit booking inquiries 24/7 — no login required on their end.", color: "from-orange-600 to-amber-500", shadow: "shadow-orange-500/20" },
   { icon: MessageSquare, title: "Booking Inquiries", desc: "Review incoming booking requests from your public page. Approve or reject each inquiry and convert approved ones to rentals in one click.", color: "from-amber-600 to-orange-500", shadow: "shadow-amber-500/20" },
   { icon: Palette, title: "Page Designs", desc: "Choose from 5 unique page designs — Midnight, Clean, Ocean, Forest, and Luxury — to match your brand. PRO and Enterprise unlock more.", color: "from-orange-500 to-yellow-500", shadow: "shadow-orange-400/20" },
-]
-
-const PLANS = [
-  { name: "Free", phpPrice: "₱0", usdPrice: "$0", period: "/mo", planKey: "FREE", product: "CAR_RENTAL", desc: "Great for operators just starting out.", features: ["Up to 5 vehicles", "20 rentals / month", "Customer records", "2 team members", "Public booking page", "15 inquiries / month", "1 page design"], cta: "Get started free", highlight: false },
-  { name: "Pro", phpPrice: "₱999", usdPrice: "$19", period: "/mo", planKey: "PRO", product: "CAR_RENTAL", desc: "For growing fleets.", features: ["Up to 30 vehicles", "Unlimited rentals", "Overdue tracking", "Revenue dashboard", "5 team members", "200 inquiries / month", "3 page designs"], cta: "Start Pro", highlight: true },
-  { name: "Enterprise", phpPrice: "₱1,499", usdPrice: "$29", period: "/mo", planKey: "ENTERPRISE", product: "CAR_RENTAL", desc: "No limits, full control.", features: ["Unlimited vehicles", "Unlimited rentals", "Everything in Pro", "Unlimited team members", "Priority support", "Unlimited inquiries", "All 5 page designs"], cta: "Get Enterprise", highlight: false },
 ]
 
 const FAQS = [
@@ -51,7 +46,7 @@ function Animate({ children, className = "", delay = 0 }: { children: React.Reac
 type CheckoutMethod = "paypal" | "paymongo"
 const Spinner = () => (<svg className="w-4 h-4 animate-spin" viewBox="0 0 24 24" fill="none"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" /><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z" /></svg>)
 
-function PaymentModal({ plan, isPhilippines, onClose }: { plan: typeof PLANS[0] | null; isPhilippines: boolean; onClose: () => void }) {
+function PaymentModal({ plan, isPhilippines, onClose }: { plan: Plan | null; isPhilippines: boolean; onClose: () => void }) {
   const [step, setStep] = useState<"details" | "payment">("details")
   const [name, setName] = useState(""); const [email, setEmail] = useState("")
   const [loading, setLoading] = useState<CheckoutMethod | null>(null)
@@ -101,16 +96,12 @@ export default function BestCarRentalContent() {
   const [open, setOpen] = useState<number | null>(null)
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
-  const [selectedPlan, setSelectedPlan] = useState<typeof PLANS[0] | null>(null)
-  const [isPhilippines, setIsPhilippines] = useState<boolean | null>(null)
+  const [selectedPlan, setSelectedPlan] = useState<Plan | null>(null)
+  const { plans, isPhilippines } = usePricing("CAR_RENTAL")
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20); window.addEventListener("scroll", onScroll); return () => window.removeEventListener("scroll", onScroll)
   }, [])
-  useEffect(() => {
-    const tzFallback = Intl.DateTimeFormat().resolvedOptions().timeZone === "Asia/Manila"
-    fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/billing/geo`).then(r => r.json()).then(d => setIsPhilippines(d.isPhilippines ?? tzFallback)).catch(() => setIsPhilippines(tzFallback))
-  }, [])
-  const handleSelect = (p: typeof PLANS[0]) => { if (p.planKey === "FREE") { window.location.href = `${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=${p.product}&plan=FREE`; return } setSelectedPlan(p) }
+  const handleSelect = (p: Plan) => { if (p.planKey === "FREE") { window.location.href = `${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=${p.product}&plan=FREE`; return } setSelectedPlan(p) }
 
   return (
     <main>
@@ -184,7 +175,7 @@ export default function BestCarRentalContent() {
             {isPhilippines !== null && (<div className="inline-flex items-center gap-1.5 mt-4 px-3 py-1 rounded-full bg-slate-100 border border-slate-200 text-xs text-slate-500"><span>{isPhilippines ? "🇵🇭" : "🌍"}</span><span>Prices in <span className="font-semibold text-slate-700">{isPhilippines ? "Philippine Peso (₱)" : "US Dollar ($)"}</span></span></div>)}
           </Animate>
           <div className="grid md:grid-cols-3 gap-6 items-center">
-            {PLANS.map((p, i) => {
+            {plans.map((p, i) => {
               const displayPrice = isPhilippines === null ? "..." : isPhilippines ? p.phpPrice : p.usdPrice
               return (
                 <Animate key={p.name} delay={i * 100}>

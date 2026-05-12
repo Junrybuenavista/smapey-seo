@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect, useRef } from "react"
+import { usePricing, type Plan } from "@/lib/usePricing"
 import {
   BookOpen, Camera, Star, ClipboardList, BarChart3,
   Users, Zap, CheckCircle2, ChevronRight, Menu, X,
@@ -80,45 +81,6 @@ const STEPS = [
   { step: "01", title: "Create an assignment", desc: "Set a topic, deadline, and any special grading instructions for your class." },
   { step: "02", title: "Students submit essays", desc: "They type their essay, upload a photo, or use the camera to capture handwritten work." },
   { step: "03", title: "Get instant AI feedback", desc: "Each submission is graded immediately with a score and structured improvement notes." },
-]
-
-const PLANS = [
-  {
-    name: "Free",
-    phpPrice: "₱0",
-    usdPrice: "$0",
-    period: "/mo",
-    planKey: "FREE",
-    product: "ESSAY",
-    desc: "Perfect for teachers just getting started.",
-    features: ["Up to 5 assignments", "30 submissions / month", "2 team members", "Basic AI feedback"],
-    cta: "Get started free",
-    highlight: false,
-  },
-  {
-    name: "Pro",
-    phpPrice: "₱399",
-    usdPrice: "$8",
-    period: "/mo",
-    planKey: "PRO",
-    product: "ESSAY",
-    desc: "For active classrooms and growing schools.",
-    features: ["Unlimited assignments", "Unlimited submissions", "5 team members", "Camera OCR grading", "Detailed rubric scores"],
-    cta: "Start Pro",
-    highlight: true,
-  },
-  {
-    name: "Enterprise",
-    phpPrice: "₱749",
-    usdPrice: "$15",
-    period: "/mo",
-    planKey: "ENTERPRISE",
-    product: "ESSAY",
-    desc: "For schools, departments, and large institutions.",
-    features: ["Everything in Pro", "Unlimited team members", "Class analytics dashboard", "Priority support", "Custom rubric templates"],
-    cta: "Get Enterprise",
-    highlight: false,
-  },
 ]
 
 const FAQS = [
@@ -418,18 +380,10 @@ function HowItWorks() {
 // PRICING
 //////////////////////////////////////////////////////
 function Pricing() {
-  const [selectedPlan, setSelectedPlan] = useState<typeof PLANS[0] | null>(null)
-  const [isPhilippines, setIsPhilippines] = useState<boolean | null>(null)
+  const [selectedPlan, setSelectedPlan] = useState<Plan | null>(null)
+  const { plans, isPhilippines } = usePricing("ESSAY")
 
-  useEffect(() => {
-    const tzFallback = Intl.DateTimeFormat().resolvedOptions().timeZone === "Asia/Manila"
-    fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/billing/geo`)
-      .then(r => r.json())
-      .then(d => setIsPhilippines(d.isPhilippines ?? tzFallback))
-      .catch(() => setIsPhilippines(tzFallback))
-  }, [])
-
-  const handleSelect = (p: typeof PLANS[0]) => {
+  const handleSelect = (p: Plan) => {
     if (p.planKey === "FREE") {
       window.location.href = `${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=${p.product}&plan=FREE`
       return
@@ -456,7 +410,7 @@ function Pricing() {
         </Animate>
 
         <div className="grid md:grid-cols-3 gap-6 items-center">
-          {PLANS.map((p, i) => {
+          {plans.map((p, i) => {
             const displayPrice = isPhilippines === null ? "..." : isPhilippines ? p.phpPrice : p.usdPrice
             return (
               <Animate key={p.name} delay={i * 100}>

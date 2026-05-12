@@ -5,69 +5,7 @@ import {
   CheckCircle2, ChevronRight, Menu, X, Zap, XCircle,
 } from "lucide-react"
 
-const PLANS = [
-  {
-    name: "Free",
-    phpPrice: "₱0",
-    usdPrice: "$0",
-    period: "/mo",
-    planKey: "FREE",
-    product: "GYM",
-    desc: "Perfect for small gyms just getting started.",
-    features: [
-      { text: "Up to 50 members", included: true },
-      { text: "50 walk-in visits / month", included: true },
-      { text: "2 team members", included: true },
-      { text: "Manual check-in", included: true },
-      { text: "QR code check-in", included: false },
-      { text: "Advanced analytics", included: false },
-      { text: "Priority support", included: false },
-    ],
-    cta: "Get started free",
-    highlight: false,
-  },
-  {
-    name: "Pro",
-    phpPrice: "₱999",
-    usdPrice: "$19",
-    period: "/mo",
-    planKey: "PRO",
-    product: "GYM",
-    desc: "For growing gyms that need more power.",
-    features: [
-      { text: "Up to 200 members", included: true },
-      { text: "Unlimited walk-in visits", included: true },
-      { text: "5 team members", included: true },
-      { text: "Manual check-in", included: true },
-      { text: "QR code check-in", included: true },
-      { text: "Advanced analytics", included: false },
-      { text: "Priority support", included: false },
-    ],
-    cta: "Start Pro",
-    highlight: true,
-  },
-  {
-    name: "Enterprise",
-    phpPrice: "₱1,499",
-    usdPrice: "$29",
-    period: "/mo",
-    planKey: "ENTERPRISE",
-    product: "GYM",
-    desc: "For large gyms and multi-branch operations.",
-    features: [
-      { text: "Unlimited members", included: true },
-      { text: "Unlimited walk-in visits", included: true },
-      { text: "Unlimited team members", included: true },
-      { text: "Manual check-in", included: true },
-      { text: "QR code check-in", included: true },
-      { text: "Advanced analytics", included: true },
-      { text: "Priority support", included: true },
-    ],
-    cta: "Get Enterprise",
-    highlight: false,
-  },
-]
-
+import { usePricing, type Plan } from "@/lib/usePricing"
 const FAQS = [
   {
     q: "Is the free plan really free forever?",
@@ -200,16 +138,10 @@ function Hero() {
 }
 
 function PricingTable() {
-  const [selectedPlan, setSelectedPlan] = useState<typeof PLANS[0] | null>(null)
-  const [isPhilippines, setIsPhilippines] = useState<boolean | null>(null)
-  useEffect(() => {
-    const tzFallback = Intl.DateTimeFormat().resolvedOptions().timeZone === "Asia/Manila"
-    fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/billing/geo`)
-      .then(r => r.json()).then(d => setIsPhilippines(d.isPhilippines ?? tzFallback))
-      .catch(() => setIsPhilippines(tzFallback))
-  }, [])
+  const [selectedPlan, setSelectedPlan] = useState<Plan | null>(null)
+  const { plans, isPhilippines } = usePricing("GYM")
 
-  const handleSelect = (p: typeof PLANS[0]) => {
+  const handleSelect = (p: Plan) => {
     if (p.planKey === "FREE") {
       window.location.href = `${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=${p.product}&plan=FREE`
       return
@@ -229,7 +161,7 @@ function PricingTable() {
           </div>
         )}
         <div className="grid md:grid-cols-3 gap-6 items-start">
-          {PLANS.map((p, i) => {
+          {plans.map((p, i) => {
             const displayPrice = isPhilippines === null ? "..." : isPhilippines ? p.phpPrice : p.usdPrice
             return (
               <Animate key={p.name} delay={i * 100}>
@@ -247,11 +179,9 @@ function PricingTable() {
                   </div>
                   <ul className="space-y-3 mb-8">
                     {p.features.map((f) => (
-                      <li key={f.text} className="flex items-center gap-2.5 text-sm">
-                        {f.included
-                          ? <CheckCircle2 className={`w-4 h-4 shrink-0 ${p.highlight ? "text-amber-400" : "text-blue-500"}`} />
-                          : <XCircle className="w-4 h-4 shrink-0 text-slate-300" />}
-                        <span className={f.included ? (p.highlight ? "text-blue-100/80" : "text-slate-600") : "text-slate-400 line-through"}>{f.text}</span>
+                      <li key={f} className="flex items-center gap-2.5 text-sm">
+                        <CheckCircle2 className={`w-4 h-4 shrink-0 ${p.highlight ? "text-amber-400" : "text-blue-500"}`} />
+                        <span className={p.highlight ? "text-blue-100/80" : "text-slate-600"}>{f}</span>
                       </li>
                     ))}
                   </ul>

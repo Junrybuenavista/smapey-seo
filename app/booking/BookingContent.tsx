@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect, useRef } from "react"
+import { usePricing, type Plan } from "@/lib/usePricing"
 import Link from "next/link"
 import {
   CalendarDays, Clock, Users, CheckCircle2, ChevronRight,
@@ -86,45 +87,6 @@ const STEPS = [
   { step: "01", title: "Set up your services", desc: "Add the services you offer — like a 30-min consultation or haircut — with duration, price, and capacity." },
   { step: "02", title: "Define your availability", desc: "Set which days and hours you're open. Assign staff names to specific time slots if needed." },
   { step: "03", title: "Book and manage clients", desc: "Create appointments, track deposits, confirm bookings, and mark them complete when done." },
-]
-
-const PLANS = [
-  {
-    name: "Free",
-    phpPrice: "₱0",
-    usdPrice: "$0",
-    period: "/mo",
-    planKey: "FREE",
-    product: "BOOKING",
-    desc: "Perfect for solo practitioners just starting out.",
-    features: ["Up to 10 appointments / month", "2 services", "Manual confirmation", "2 team members"],
-    cta: "Get started free",
-    highlight: false,
-  },
-  {
-    name: "Pro",
-    phpPrice: "₱999",
-    usdPrice: "$19",
-    period: "/mo",
-    planKey: "PRO",
-    product: "BOOKING",
-    desc: "For busy clinics, salons, and studios.",
-    features: ["500 appointments / month", "Unlimited services", "Deposit tracking", "Staff assignment", "5 team members"],
-    cta: "Start Pro",
-    highlight: true,
-  },
-  {
-    name: "Enterprise",
-    phpPrice: "₱1,499",
-    usdPrice: "$29",
-    period: "/mo",
-    planKey: "ENTERPRISE",
-    product: "BOOKING",
-    desc: "For multi-staff businesses that need full control.",
-    features: ["Unlimited appointments", "Everything in Pro", "Unlimited team members", "Priority support"],
-    cta: "Get Enterprise",
-    highlight: false,
-  },
 ]
 
 const FAQS = [
@@ -423,18 +385,10 @@ function HowItWorks() {
 // PRICING
 //////////////////////////////////////////////////////
 function Pricing() {
-  const [selectedPlan, setSelectedPlan] = useState<typeof PLANS[0] | null>(null)
-  const [isPhilippines, setIsPhilippines] = useState<boolean | null>(null)
+  const [selectedPlan, setSelectedPlan] = useState<Plan | null>(null)
+  const { plans, isPhilippines } = usePricing("BOOKING")
 
-  useEffect(() => {
-    const tzFallback = Intl.DateTimeFormat().resolvedOptions().timeZone === "Asia/Manila"
-    fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/billing/geo`)
-      .then(r => r.json())
-      .then(d => setIsPhilippines(d.isPhilippines ?? tzFallback))
-      .catch(() => setIsPhilippines(tzFallback))
-  }, [])
-
-  const handleSelect = (p: typeof PLANS[0]) => {
+  const handleSelect = (p: Plan) => {
     if (p.planKey === "FREE") {
       window.location.href = `${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=${p.product}&plan=FREE`
       return
@@ -461,7 +415,7 @@ function Pricing() {
         </Animate>
 
         <div className="grid md:grid-cols-3 gap-6 items-center">
-          {PLANS.map((p, i) => {
+          {plans.map((p, i) => {
             const displayPrice = isPhilippines === null ? "..." : isPhilippines ? p.phpPrice : p.usdPrice
             return (
               <Animate key={p.name} delay={i * 100}>

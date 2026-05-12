@@ -7,45 +7,7 @@ import {
   FileText, MessageSquare, Target, Shield, GraduationCap,
 } from "lucide-react"
 
-const PLANS = [
-  {
-    name: "Free",
-    phpPrice: "₱0",
-    usdPrice: "$0",
-    period: "/mo",
-    planKey: "FREE",
-    product: "ESSAY",
-    desc: "Perfect for teachers just getting started.",
-    features: ["Up to 5 assignments", "30 submissions / month", "2 team members", "Basic AI feedback"],
-    cta: "Get started free",
-    highlight: false,
-  },
-  {
-    name: "Pro",
-    phpPrice: "₱399",
-    usdPrice: "$8",
-    period: "/mo",
-    planKey: "PRO",
-    product: "ESSAY",
-    desc: "For active classrooms and growing schools.",
-    features: ["Unlimited assignments", "Unlimited submissions", "5 team members", "Camera OCR grading", "Detailed rubric scores"],
-    cta: "Start Pro",
-    highlight: true,
-  },
-  {
-    name: "Enterprise",
-    phpPrice: "₱749",
-    usdPrice: "$15",
-    period: "/mo",
-    planKey: "ENTERPRISE",
-    product: "ESSAY",
-    desc: "For schools, departments, and large institutions.",
-    features: ["Everything in Pro", "Unlimited team members", "Class analytics dashboard", "Priority support", "Custom rubric templates"],
-    cta: "Get Enterprise",
-    highlight: false,
-  },
-]
-
+import { usePricing, type Plan } from "@/lib/usePricing"
 const FEATURES = [
   {
     icon: Zap,
@@ -279,13 +241,9 @@ function HowItWorks() {
 }
 
 function Pricing() {
-  const [selectedPlan, setSelectedPlan] = useState<typeof PLANS[0] | null>(null)
-  const [isPhilippines, setIsPhilippines] = useState<boolean | null>(null)
-  useEffect(() => {
-    const tzFallback = Intl.DateTimeFormat().resolvedOptions().timeZone === "Asia/Manila"
-    fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/billing/geo`).then(r => r.json()).then(d => setIsPhilippines(d.isPhilippines ?? tzFallback)).catch(() => setIsPhilippines(tzFallback))
-  }, [])
-  const handleSelect = (p: typeof PLANS[0]) => {
+  const [selectedPlan, setSelectedPlan] = useState<Plan | null>(null)
+  const { plans, isPhilippines } = usePricing("ESSAY")
+  const handleSelect = (p: Plan) => {
     if (p.planKey === "FREE") { window.location.href = `${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=${p.product}&plan=FREE`; return }
     setSelectedPlan(p)
   }
@@ -304,7 +262,7 @@ function Pricing() {
           )}
         </Animate>
         <div className="grid md:grid-cols-3 gap-6 items-center">
-          {PLANS.map((p, i) => {
+          {plans.map((p, i) => {
             const displayPrice = isPhilippines === null ? "..." : isPhilippines ? p.phpPrice : p.usdPrice
             return (
               <Animate key={p.name} delay={i * 100}>

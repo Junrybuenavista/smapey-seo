@@ -7,6 +7,7 @@ import {
   Target, Clock, Trophy,
 } from "lucide-react"
 
+import { usePricing, type Plan } from "@/lib/usePricing"
 const FEATURES = [
   {
     icon: Users,
@@ -77,45 +78,6 @@ const STEPS = [
   { step: "01", title: "Set up your box", desc: "Sign up and configure your CrossFit gym profile in under 2 minutes." },
   { step: "02", title: "Add athletes & plans", desc: "Register members and create the membership plans your box offers." },
   { step: "03", title: "Track every class", desc: "Athletes scan QR codes, check-ins are logged, and you see it all in real time." },
-]
-
-const PLANS = [
-  {
-    name: "Free",
-    phpPrice: "₱0",
-    usdPrice: "$0",
-    period: "/mo",
-    planKey: "FREE",
-    product: "GYM",
-    desc: "Perfect for small boxes just getting started.",
-    features: ["Up to 50 members", "50 drop-in visits / month", "2 team members", "Manual check-in"],
-    cta: "Get started free",
-    highlight: false,
-  },
-  {
-    name: "Pro",
-    phpPrice: "₱999",
-    usdPrice: "$19",
-    period: "/mo",
-    planKey: "PRO",
-    product: "GYM",
-    desc: "For growing boxes that need more power.",
-    features: ["Up to 200 members", "Unlimited drop-in visits", "5 team members", "QR code check-in"],
-    cta: "Start Pro",
-    highlight: true,
-  },
-  {
-    name: "Enterprise",
-    phpPrice: "₱1,499",
-    usdPrice: "$29",
-    period: "/mo",
-    planKey: "ENTERPRISE",
-    product: "GYM",
-    desc: "For large boxes and multi-location operations.",
-    features: ["Unlimited members", "Unlimited drop-in visits", "Unlimited team members", "Everything in Pro", "Advanced analytics", "Priority support"],
-    cta: "Get Enterprise",
-    highlight: false,
-  },
 ]
 
 const FAQS = [
@@ -314,16 +276,10 @@ function HowItWorks() {
 }
 
 function Pricing() {
-  const [selectedPlan, setSelectedPlan] = useState<typeof PLANS[0] | null>(null)
-  const [isPhilippines, setIsPhilippines] = useState<boolean | null>(null)
-  useEffect(() => {
-    const tzFallback = Intl.DateTimeFormat().resolvedOptions().timeZone === "Asia/Manila"
-    fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/billing/geo`)
-      .then(r => r.json()).then(d => setIsPhilippines(d.isPhilippines ?? tzFallback))
-      .catch(() => setIsPhilippines(tzFallback))
-  }, [])
+  const [selectedPlan, setSelectedPlan] = useState<Plan | null>(null)
+  const { plans, isPhilippines } = usePricing("GYM")
 
-  const handleSelect = (p: typeof PLANS[0]) => {
+  const handleSelect = (p: Plan) => {
     if (p.planKey === "FREE") {
       window.location.href = `${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=${p.product}&plan=FREE`
       return
@@ -346,7 +302,7 @@ function Pricing() {
           )}
         </Animate>
         <div className="grid md:grid-cols-3 gap-6 items-center">
-          {PLANS.map((p, i) => {
+          {plans.map((p, i) => {
             const displayPrice = isPhilippines === null ? "..." : isPhilippines ? p.phpPrice : p.usdPrice
             return (
               <Animate key={p.name} delay={i * 100}>

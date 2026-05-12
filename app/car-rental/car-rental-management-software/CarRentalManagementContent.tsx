@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from "react"
 import { Car, CheckCircle2, ChevronRight, Menu, X, Star, BarChart3, Wrench, AlertCircle, Calendar, Key, Users, Globe, MessageSquare, Palette } from "lucide-react"
 
+import { usePricing, type Plan } from "@/lib/usePricing"
 const FEATURES = [
   { icon: Car, title: "Fleet status board", desc: "Every vehicle shows its current status — Available, Rented, or Maintenance. Change status with one click. Never lose track of a car.", color: "from-orange-600 to-amber-500", shadow: "shadow-orange-500/20" },
   { icon: Wrench, title: "Maintenance tracking", desc: "Flag vehicles under maintenance so they can't be booked. Mark them available when the work is done. Keep your operable fleet clearly visible.", color: "from-amber-600 to-orange-500", shadow: "shadow-amber-500/20" },
@@ -13,12 +14,6 @@ const FEATURES = [
   { icon: Globe, title: "Public Booking Page", desc: "Share a public link where customers can browse your fleet and submit booking inquiries 24/7 — no login required on their end.", color: "from-orange-600 to-amber-500", shadow: "shadow-orange-500/20" },
   { icon: MessageSquare, title: "Booking Inquiries", desc: "Review incoming booking requests from your public page. Approve or reject each inquiry and convert approved ones to rentals in one click.", color: "from-amber-600 to-orange-500", shadow: "shadow-amber-500/20" },
   { icon: Palette, title: "Page Designs", desc: "Choose from 5 unique page designs — Midnight, Clean, Ocean, Forest, and Luxury — to match your brand. PRO and Enterprise unlock more.", color: "from-orange-500 to-yellow-500", shadow: "shadow-orange-400/20" },
-]
-
-const PLANS = [
-  { name: "Free", phpPrice: "₱0", usdPrice: "$0", period: "/mo", planKey: "FREE", product: "CAR_RENTAL", desc: "For operators just getting started.", features: ["Up to 5 vehicles", "20 rentals / month", "Customer records", "2 team members", "Public booking page", "15 inquiries / month", "1 page design"], cta: "Get started free", highlight: false },
-  { name: "Pro", phpPrice: "₱999", usdPrice: "$19", period: "/mo", planKey: "PRO", product: "CAR_RENTAL", desc: "For growing rental operations.", features: ["Up to 30 vehicles", "Unlimited rentals", "Overdue tracking", "Revenue dashboard", "5 team members", "200 inquiries / month", "3 page designs"], cta: "Start Pro", highlight: true },
-  { name: "Enterprise", phpPrice: "₱1,499", usdPrice: "$29", period: "/mo", planKey: "ENTERPRISE", product: "CAR_RENTAL", desc: "For large fleets with no limits.", features: ["Unlimited vehicles", "Unlimited rentals", "Everything in Pro", "Unlimited team members", "Priority support", "Unlimited inquiries", "All 5 page designs"], cta: "Get Enterprise", highlight: false },
 ]
 
 const FAQS = [
@@ -46,7 +41,7 @@ function Animate({ children, className = "", delay = 0 }: { children: React.Reac
 type CheckoutMethod = "paypal" | "paymongo"
 const Spinner = () => (<svg className="w-4 h-4 animate-spin" viewBox="0 0 24 24" fill="none"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" /><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z" /></svg>)
 
-function PaymentModal({ plan, isPhilippines, onClose }: { plan: typeof PLANS[0] | null; isPhilippines: boolean; onClose: () => void }) {
+function PaymentModal({ plan, isPhilippines, onClose }: { plan: Plan | null; isPhilippines: boolean; onClose: () => void }) {
   const [step, setStep] = useState<"details" | "payment">("details")
   const [name, setName] = useState(""); const [email, setEmail] = useState("")
   const [loading, setLoading] = useState<CheckoutMethod | null>(null); const [token, setToken] = useState<string | null>(null)
@@ -82,10 +77,10 @@ function PaymentModal({ plan, isPhilippines, onClose }: { plan: typeof PLANS[0] 
 export default function CarRentalManagementContent() {
   const [faqOpen, setFaqOpen] = useState<number | null>(null)
   const [scrolled, setScrolled] = useState(false); const [mobileOpen, setMobileOpen] = useState(false)
-  const [selectedPlan, setSelectedPlan] = useState<typeof PLANS[0] | null>(null); const [isPhilippines, setIsPhilippines] = useState<boolean | null>(null)
+  const [selectedPlan, setSelectedPlan] = useState<Plan | null>(null)
+  const { plans, isPhilippines } = usePricing("CAR_RENTAL")
   useEffect(() => { const s = () => setScrolled(window.scrollY > 20); window.addEventListener("scroll", s); return () => window.removeEventListener("scroll", s) }, [])
-  useEffect(() => { const tz = Intl.DateTimeFormat().resolvedOptions().timeZone === "Asia/Manila"; fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/billing/geo`).then(r => r.json()).then(d => setIsPhilippines(d.isPhilippines ?? tz)).catch(() => setIsPhilippines(tz)) }, [])
-  const handleSelect = (p: typeof PLANS[0]) => { if (p.planKey === "FREE") { window.location.href = `${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=${p.product}&plan=FREE`; return } setSelectedPlan(p) }
+  const handleSelect = (p: Plan) => { if (p.planKey === "FREE") { window.location.href = `${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=${p.product}&plan=FREE`; return } setSelectedPlan(p) }
 
   return (
     <main>
@@ -123,7 +118,7 @@ export default function CarRentalManagementContent() {
       <section id="pricing" className="py-24 bg-white">
         <div className="max-w-6xl mx-auto px-6">
           <Animate className="text-center mb-16"><p className="text-orange-600 text-sm font-semibold uppercase tracking-widest mb-3">Pricing</p><h2 className="text-3xl sm:text-4xl font-extrabold text-slate-800 tracking-tight">Plans for every fleet size</h2><p className="text-slate-500 mt-4">Free for small fleets. Affordable as you grow.</p>{isPhilippines !== null && (<div className="inline-flex items-center gap-1.5 mt-4 px-3 py-1 rounded-full bg-slate-100 border border-slate-200 text-xs text-slate-500"><span>{isPhilippines ? "🇵🇭" : "🌍"}</span><span>Prices in <span className="font-semibold text-slate-700">{isPhilippines ? "Philippine Peso (₱)" : "US Dollar ($)"}</span></span></div>)}</Animate>
-          <div className="grid md:grid-cols-3 gap-6 items-center">{PLANS.map((p, i) => { const dp = isPhilippines === null ? "..." : isPhilippines ? p.phpPrice : p.usdPrice; return (<Animate key={p.name} delay={i * 100}><div className={`rounded-2xl p-8 border transition-all duration-300 hover:-translate-y-1 ${p.highlight ? "bg-gradient-to-b from-orange-700 to-orange-900 border-orange-500/30 shadow-2xl shadow-orange-600/20 scale-105" : "bg-white border-slate-200 shadow-sm hover:shadow-md"}`}>{p.highlight && <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-amber-400/20 text-amber-300 text-xs font-semibold mb-4"><Star className="w-3 h-3" /> Most popular</span>}<p className={`font-bold text-lg mb-1 ${p.highlight ? "text-white" : "text-slate-800"}`}>{p.name}</p><p className={`text-sm mb-4 ${p.highlight ? "text-orange-200/60" : "text-slate-400"}`}>{p.desc}</p><div className="flex items-end gap-1 mb-6"><span className={`text-4xl font-extrabold ${p.highlight ? "text-white" : "text-slate-800"}`}>{dp}</span><span className={`text-sm mb-1 ${p.highlight ? "text-orange-200/50" : "text-slate-400"}`}>{p.period}</span></div><ul className="space-y-3 mb-8">{p.features.map(f => (<li key={f} className="flex items-center gap-2.5 text-sm"><CheckCircle2 className={`w-4 h-4 shrink-0 ${p.highlight ? "text-amber-300" : "text-orange-500"}`} /><span className={p.highlight ? "text-orange-100/80" : "text-slate-600"}>{f}</span></li>))}</ul><button onClick={() => handleSelect(p)} className={`w-full text-center py-2.5 rounded-xl text-sm font-semibold transition-all ${p.highlight ? "bg-amber-400 hover:bg-amber-300 text-amber-900" : "bg-orange-600 hover:bg-orange-500 text-white"}`}>{p.cta}</button></div></Animate>) })}</div>
+          <div className="grid md:grid-cols-3 gap-6 items-center">{plans.map((p, i) => { const dp = isPhilippines === null ? "..." : isPhilippines ? p.phpPrice : p.usdPrice; return (<Animate key={p.name} delay={i * 100}><div className={`rounded-2xl p-8 border transition-all duration-300 hover:-translate-y-1 ${p.highlight ? "bg-gradient-to-b from-orange-700 to-orange-900 border-orange-500/30 shadow-2xl shadow-orange-600/20 scale-105" : "bg-white border-slate-200 shadow-sm hover:shadow-md"}`}>{p.highlight && <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-amber-400/20 text-amber-300 text-xs font-semibold mb-4"><Star className="w-3 h-3" /> Most popular</span>}<p className={`font-bold text-lg mb-1 ${p.highlight ? "text-white" : "text-slate-800"}`}>{p.name}</p><p className={`text-sm mb-4 ${p.highlight ? "text-orange-200/60" : "text-slate-400"}`}>{p.desc}</p><div className="flex items-end gap-1 mb-6"><span className={`text-4xl font-extrabold ${p.highlight ? "text-white" : "text-slate-800"}`}>{dp}</span><span className={`text-sm mb-1 ${p.highlight ? "text-orange-200/50" : "text-slate-400"}`}>{p.period}</span></div><ul className="space-y-3 mb-8">{p.features.map(f => (<li key={f} className="flex items-center gap-2.5 text-sm"><CheckCircle2 className={`w-4 h-4 shrink-0 ${p.highlight ? "text-amber-300" : "text-orange-500"}`} /><span className={p.highlight ? "text-orange-100/80" : "text-slate-600"}>{f}</span></li>))}</ul><button onClick={() => handleSelect(p)} className={`w-full text-center py-2.5 rounded-xl text-sm font-semibold transition-all ${p.highlight ? "bg-amber-400 hover:bg-amber-300 text-amber-900" : "bg-orange-600 hover:bg-orange-500 text-white"}`}>{p.cta}</button></div></Animate>) })}</div>
         </div>
         {selectedPlan && <PaymentModal plan={selectedPlan} isPhilippines={isPhilippines ?? false} onClose={() => setSelectedPlan(null)} />}
       </section>

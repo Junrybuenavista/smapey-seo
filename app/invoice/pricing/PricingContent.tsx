@@ -1,47 +1,14 @@
 "use client"
 
-import { useEffect, useState } from "react"
 import PricingCard from "./PricingCard"
-
-const PLANS = {
-  FREE: {
-    title: "Free",
-    description: "For freelancers getting started",
-    features: ["10 invoices / month", "2 team members", "Basic templates"],
-    usdPrice: "$0",
-    phpPrice: "₱0",
-  },
-  PRO: {
-    title: "Pro",
-    description: "Best for growing businesses",
-    features: ["500 invoices / month", "5 team members", "Advanced templates", "Custom branding", "Multi currency"],
-    usdPrice: "$5",
-    phpPrice: "₱249",
-    popular: true,
-  },
-  ENTERPRISE: {
-    title: "Enterprise",
-    description: "For teams & scaling companies",
-    features: ["Unlimited invoices", "Unlimited team members", "Everything in Pro", "Priority support", "Advanced reporting"],
-    usdPrice: "$10",
-    phpPrice: "499",
-  },
-}
+import { usePricing } from "@/lib/usePricing"
 
 export default function PricingContent() {
-  const [isPhilippines, setIsPhilippines] = useState<boolean | null>(null)
+  const { plans, isPhilippines } = usePricing("INVOICE")
 
-  useEffect(() => {
-    const tzFallback = Intl.DateTimeFormat().resolvedOptions().timeZone === "Asia/Manila"
-    fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/billing/geo`)
-      .then(r => r.json())
-      .then(d => setIsPhilippines(d.isPhilippines ?? tzFallback))
-      .catch(() => setIsPhilippines(tzFallback))
-  }, [])
-
-  const price = (plan: keyof typeof PLANS) => {
+  const priceFor = (phpPrice: string, usdPrice: string) => {
     if (isPhilippines === null) return "..."
-    return isPhilippines ? PLANS[plan].phpPrice : PLANS[plan].usdPrice
+    return isPhilippines ? phpPrice : usdPrice
   }
 
   return (
@@ -68,22 +35,19 @@ export default function PricingContent() {
       {/* CARDS */}
       <div className="flex justify-center gap-6 flex-wrap">
 
-        {(Object.keys(PLANS) as (keyof typeof PLANS)[]).map(key => {
-          const plan = PLANS[key]
-          return (
-            <PricingCard
-              key={key}
-              title={plan.title}
-              price={`${price(key)} /mo`}
-              description={plan.description}
-              features={plan.features}
-              plan={key}
-              product="INVOICE"
-              popular={"popular" in plan ? plan.popular : false}
-              isPhilippines={isPhilippines ?? false}
-            />
-          )
-        })}
+        {plans.map(plan => (
+          <PricingCard
+            key={plan.planKey}
+            title={plan.name}
+            price={`${priceFor(plan.phpPrice, plan.usdPrice)} /mo`}
+            description={plan.desc}
+            features={plan.features}
+            plan={plan.planKey}
+            product={plan.product}
+            popular={plan.highlight}
+            isPhilippines={isPhilippines ?? false}
+          />
+        ))}
 
       </div>
 
