@@ -1029,8 +1029,14 @@ export default function RentPageContent({ slug }: { slug: string }) {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setError("")
-    if (!form.vehicleId || !form.customerName || !form.customerPhone || !form.pickupDate || !form.returnDate) {
-      setError("Please fill in all required fields."); return
+    const missing: string[] = []
+    if (!form.vehicleId)      missing.push("Vehicle selection")
+    if (!form.customerName)   missing.push("Full name")
+    if (!form.customerPhone)  missing.push("Phone number")
+    if (!form.pickupDate)     missing.push("Pickup date")
+    if (!form.returnDate)     missing.push("Return date")
+    if (missing.length > 0) {
+      setError(`Please fill in the following: ${missing.join(", ")}.`); return
     }
     if (dayjs(form.returnDate).isBefore(dayjs(form.pickupDate))) {
       setError("Return date must be after pickup date."); return
