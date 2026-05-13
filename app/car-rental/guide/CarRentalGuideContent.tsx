@@ -4,7 +4,7 @@ import { useState, useEffect } from "react"
 import {
   Car, UserPlus, Key, CreditCard, AlertCircle, BarChart3,
   ChevronRight, Zap, BookOpen, ArrowLeft,
-  Globe, Palette, MessageSquare, ArrowRightCircle,
+  Globe, Palette, MessageSquare, ArrowRightCircle, QrCode, Bell, ImagePlus,
 } from "lucide-react"
 import InternalLinks from "@/components/InternalLinks"
 
@@ -269,14 +269,47 @@ const GUIDES = [
     tip: "Put your public page link in your Google Maps Business profile under the website or booking URL field — customers searching nearby will see it directly in Google Maps.",
   },
   {
+    id: "deposit-qr",
+    icon: QrCode,
+    title: "Set Up a Deposit QR Code",
+    badge: "All Plans",
+    badgeColor: "bg-green-50 text-green-600 border border-green-100",
+    accentColor: "from-orange-500 to-amber-400",
+    description:
+      "Upload a QR code to your public booking page so customers can scan and pay their deposit directly — no manual payment link sharing needed.",
+    steps: [
+      {
+        title: "Open Public Page settings",
+        detail:
+          "Go to Public Page in the sidebar. Scroll down to the Deposit section below the page design selector.",
+      },
+      {
+        title: "Upload your QR code image",
+        detail:
+          "Click the QR code upload area and select your payment QR image — typically your GCash, Maya, or bank QR code. PNG or JPG files both work.",
+      },
+      {
+        title: "Your QR appears on your booking page",
+        detail:
+          "Once uploaded, a Deposit Required section appears on your public booking page. Customers can scan the QR code to pay their deposit before pickup — without any back-and-forth messaging.",
+      },
+      {
+        title: "Update or remove the QR code",
+        detail:
+          "To swap it out, upload a new image — the old one is replaced immediately. To remove it entirely, click the remove button next to the uploaded QR image.",
+      },
+    ],
+    tip: "Use your GCash or Maya QR code for the fastest customer experience. Displaying it directly on your booking page cuts the number of messages you receive asking for payment details.",
+  },
+  {
     id: "page-design",
     icon: Palette,
-    title: "Choose a Page Design",
+    title: "Choose & Personalize Your Page Design",
     badge: "PRO / ENTERPRISE",
     badgeColor: "bg-purple-50 text-purple-600 border border-purple-100",
     accentColor: "from-purple-600 to-violet-500",
     description:
-      "Pick from 5 unique page designs to match your brand. PRO unlocks 3 designs; ENTERPRISE unlocks all 5.",
+      "Pick from 5 unique page designs to match your brand, then personalize any theme with a cover photo, tagline, and accent color. PRO unlocks 3 designs; ENTERPRISE unlocks all 5.",
     steps: [
       {
         title: "Open Public Page settings",
@@ -294,12 +327,27 @@ const GUIDES = [
           "Clicking an unlocked design saves it immediately — your public page updates live. No separate save button needed.",
       },
       {
+        title: "Set a cover photo",
+        detail:
+          "In the Personalize section below the theme selector, upload a cover photo. It displays as a full-width hero image at the top of your public page. Works on all 5 themes.",
+      },
+      {
+        title: "Add a tagline",
+        detail:
+          "Enter a short tagline (e.g. \"Affordable rides across the city\"). It appears below your business name on the public page — a quick way to set your brand tone.",
+      },
+      {
+        title: "Pick an accent color",
+        detail:
+          "Choose a hex color for your accent. Buttons, borders, and highlights on your public page will use this color. Works on all themes so your brand color always comes through.",
+      },
+      {
         title: "Upgrade to unlock more designs",
         detail:
           "FREE plan includes Midnight only. PRO adds Clean and Ocean. ENTERPRISE unlocks Forest and Luxury. Upgrade in Settings → Billing.",
       },
     ],
-    tip: "Choose a design that matches your target market. Midnight and Ocean work well for premium fleets; Clean is ideal if most customers find you via Google Maps on mobile.",
+    tip: "Midnight and Ocean work well for premium fleets; Clean is ideal if most customers find you on mobile. Set your accent color to match your logo for a fully branded booking page.",
   },
   {
     id: "manage-inquiries",
@@ -371,6 +419,77 @@ const GUIDES = [
       },
     ],
     tip: "Converting an inquiry doesn't automatically mark the rental Active. Review the rental record, confirm any deposit details, then change the status to Active when the customer picks up the car.",
+  },
+  {
+    id: "booking-notifications",
+    icon: Bell,
+    title: "Get Notified of New Inquiries",
+    badge: "All Plans",
+    badgeColor: "bg-green-50 text-green-600 border border-green-100",
+    accentColor: "from-amber-500 to-orange-400",
+    description:
+      "Smapey notifies you instantly when a customer submits a booking inquiry from your public page — no manual refreshing needed.",
+    steps: [
+      {
+        title: "A customer submits an inquiry",
+        detail:
+          "When someone fills out and submits the booking form on your public page, the system creates the inquiry and immediately sends a notification to your account.",
+      },
+      {
+        title: "The bell badge lights up",
+        detail:
+          "A red badge with a count appears on the notification bell in your dashboard header. You'll see it the next time you're on any page in the dashboard — no refresh needed.",
+      },
+      {
+        title: "Click the bell to see the notification",
+        detail:
+          "Click the bell icon to open the notification panel. You'll see a card that shows the customer's name, vehicle, and dates — along with a \"Tap to view inquiries →\" hint.",
+      },
+      {
+        title: "Click the notification to go directly to inquiries",
+        detail:
+          "Clicking the notification closes the panel, navigates you to the Booking Inquiries page, and refreshes the list automatically — so the new inquiry is always at the top.",
+      },
+    ],
+    tip: "Notifications are delivered to all OWNER and ADMIN accounts in your organization, so your whole team stays in the loop when a new booking request comes in.",
+  },
+  {
+    id: "vehicle-photos",
+    icon: ImagePlus,
+    title: "Upload Vehicle Photos",
+    badge: "All Plans",
+    badgeColor: "bg-green-50 text-green-600 border border-green-100",
+    accentColor: "from-orange-500 to-amber-400",
+    description:
+      "Add a photo to each vehicle so customers can see exactly what they're renting on your public booking page — before they submit an inquiry.",
+    steps: [
+      {
+        title: "Open the Fleet tab",
+        detail:
+          "Go to Fleet in the sidebar. Your registered vehicles are listed here with their current status and a thumbnail if a photo has been uploaded.",
+      },
+      {
+        title: "Open Add Vehicle or Edit an existing one",
+        detail:
+          "Click Add Vehicle to create a new one, or click the edit icon on any existing vehicle. The vehicle form includes a photo upload area at the top.",
+      },
+      {
+        title: "Upload a vehicle photo",
+        detail:
+          "Click the photo upload zone and select an image file from your device. You'll see a preview of the photo immediately inside the form before saving.",
+      },
+      {
+        title: "Save the vehicle",
+        detail:
+          "Click Save. The photo is uploaded to the cloud and linked to that vehicle. It now shows as a thumbnail in the fleet list and as a full image on your public booking page.",
+      },
+      {
+        title: "Replace or remove a photo",
+        detail:
+          "To replace a photo, open the vehicle edit form and upload a new image — the old one is overwritten. To remove it entirely, click the remove button that appears on the photo preview.",
+      },
+    ],
+    tip: "Use clean, well-lit photos taken from the front or 3/4 angle — customers decide faster when they can clearly see the car. Photos display at full width on your public booking page across all 5 themes.",
   },
 ]
 

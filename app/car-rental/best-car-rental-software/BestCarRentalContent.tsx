@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect, useRef } from "react"
-import { Car, CheckCircle2, ChevronRight, Menu, X, Star, BarChart3, Users, Shield, Key, AlertCircle, Globe, MessageSquare, Palette } from "lucide-react"
+import { Car, CheckCircle2, ChevronRight, Menu, X, Star, BarChart3, Users, Shield, Key, AlertCircle, Globe, MessageSquare, Palette, QrCode, Bell, ImagePlus } from "lucide-react"
 
 import { usePricing, type Plan } from "@/lib/usePricing"
 import InternalLinks from "@/components/InternalLinks"
@@ -14,7 +14,10 @@ const FEATURES = [
   { icon: Shield, title: "Secure & isolated", desc: "Your data is fully isolated per business. Nothing is shared across accounts. Your fleet stays yours.", color: "from-orange-600 to-yellow-400", shadow: "shadow-orange-500/20" },
   { icon: Globe, title: "Public Booking Page", desc: "Share a public link where customers can browse your fleet and submit booking inquiries 24/7 — no login required on their end.", color: "from-orange-600 to-amber-500", shadow: "shadow-orange-500/20" },
   { icon: MessageSquare, title: "Booking Inquiries", desc: "Review incoming booking requests from your public page. Approve or reject each inquiry and convert approved ones to rentals in one click.", color: "from-amber-600 to-orange-500", shadow: "shadow-amber-500/20" },
-  { icon: Palette, title: "Page Designs", desc: "Choose from 5 unique page designs — Midnight, Clean, Ocean, Forest, and Luxury — to match your brand. PRO and Enterprise unlock more.", color: "from-orange-500 to-yellow-500", shadow: "shadow-orange-400/20" },
+  { icon: QrCode, title: "Deposit QR Code", desc: "Upload your GCash, Maya, or bank QR code to your booking page so customers can scan and pay their deposit instantly — no back-and-forth messaging.", color: "from-orange-600 to-amber-500", shadow: "shadow-orange-500/20" },
+  { icon: Palette, title: "Page Personalization", desc: "Choose from 5 themes — Midnight, Clean, Ocean, Forest, Luxury — then personalize any theme with a cover photo, tagline, and accent color to match your brand.", color: "from-orange-500 to-yellow-500", shadow: "shadow-orange-400/20" },
+  { icon: Bell, title: "Instant Booking Alerts", desc: "Get notified the moment a customer submits a booking inquiry. A badge appears on your notification bell — click it to jump straight to the inquiry.", color: "from-amber-500 to-orange-400", shadow: "shadow-amber-400/20" },
+  { icon: ImagePlus, title: "Vehicle Photos", desc: "Upload a photo for each vehicle in your fleet. Photos display on your public booking page so customers see exactly what they're renting before they inquire.", color: "from-orange-600 to-amber-500", shadow: "shadow-orange-500/20" },
 ]
 
 const FAQS = [

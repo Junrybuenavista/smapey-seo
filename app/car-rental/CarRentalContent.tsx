@@ -6,7 +6,7 @@ import InternalLinks from "@/components/InternalLinks"
 import {
   Car, Users, BarChart3, CheckCircle2, ChevronRight,
   Menu, X, Star, CreditCard, Shield, FileText,
-  AlertCircle, Calendar, Wrench, Key, Globe, MessageSquare, Palette,
+  AlertCircle, Calendar, Wrench, Key, Globe, MessageSquare, Palette, QrCode, Bell, ImagePlus,
 } from "lucide-react"
 
 const FEATURES = [
@@ -88,11 +88,32 @@ const FEATURES = [
     shadow: "shadow-amber-500/20",
   },
   {
+    icon: QrCode,
+    title: "Deposit QR Code",
+    desc: "Upload your GCash, Maya, or bank QR code to your booking page so customers can scan and pay their deposit instantly — no back-and-forth messaging.",
+    color: "from-orange-600 to-amber-500",
+    shadow: "shadow-orange-500/20",
+  },
+  {
     icon: Palette,
-    title: "Page Designs",
-    desc: "Choose from 5 unique page designs — Midnight, Clean, Ocean, Forest, and Luxury — to match your brand. PRO and Enterprise unlock more.",
+    title: "Page Personalization",
+    desc: "Choose from 5 themes — Midnight, Clean, Ocean, Forest, Luxury — then personalize any theme with a cover photo, tagline, and accent color to match your brand.",
     color: "from-orange-500 to-yellow-500",
     shadow: "shadow-orange-400/20",
+  },
+  {
+    icon: Bell,
+    title: "Instant Booking Alerts",
+    desc: "Get notified the moment a customer submits a booking inquiry. A badge appears on your notification bell — click it to jump straight to the inquiry.",
+    color: "from-amber-500 to-orange-400",
+    shadow: "shadow-amber-400/20",
+  },
+  {
+    icon: ImagePlus,
+    title: "Vehicle Photos",
+    desc: "Upload a photo for each vehicle in your fleet. Photos display on your public booking page so customers see exactly what they're renting before they inquire.",
+    color: "from-orange-600 to-amber-500",
+    shadow: "shadow-orange-500/20",
   },
 ]
 
