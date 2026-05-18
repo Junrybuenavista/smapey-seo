@@ -62,11 +62,17 @@ export function usePricing(product: string) {
   }, [product])
 
   useEffect(() => {
-    const tzFallback = Intl.DateTimeFormat().resolvedOptions().timeZone === "Asia/Manila"
+    const tz = Intl.DateTimeFormat().resolvedOptions().timeZone
+    const lang = (typeof navigator !== "undefined" ? navigator.language : "").toLowerCase()
+    const localPH =
+      tz === "Asia/Manila" ||
+      lang.includes("-ph") ||
+      lang.startsWith("fil")
+
     fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/billing/geo`)
       .then(r => r.json())
-      .then(d => setIsPhilippines(d.isPhilippines ?? tzFallback))
-      .catch(() => setIsPhilippines(tzFallback))
+      .then(d => setIsPhilippines(Boolean(d.isPhilippines) || localPH))
+      .catch(() => setIsPhilippines(localPH))
   }, [])
 
   return { plans, loading, isPhilippines }
