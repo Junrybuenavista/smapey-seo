@@ -62,12 +62,19 @@ export function usePricing(product: string) {
   }, [product])
 
   useEffect(() => {
-    const tz = Intl.DateTimeFormat().resolvedOptions().timeZone
+    const override = typeof localStorage !== "undefined" ? localStorage.getItem("smapey_currency") : null
+    if (override === "PHP") { setIsPhilippines(true); return }
+    if (override === "USD") { setIsPhilippines(false); return }
+
+    const tz = Intl.DateTimeFormat().resolvedOptions().timeZone || ""
     const lang = (typeof navigator !== "undefined" ? navigator.language : "").toLowerCase()
+    const offsetHours = -new Date().getTimezoneOffset() / 60
+
     const localPH =
       tz === "Asia/Manila" ||
       lang.includes("-ph") ||
-      lang.startsWith("fil")
+      lang.startsWith("fil") ||
+      (offsetHours === 8 && tz.startsWith("Asia/"))
 
     fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/billing/geo`)
       .then(r => r.json())
