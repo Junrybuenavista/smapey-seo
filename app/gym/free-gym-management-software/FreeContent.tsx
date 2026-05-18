@@ -232,6 +232,12 @@ function WhatsIncluded() {
 }
 
 function ComparisonTable() {
+  const { plans, isPhilippines } = usePricing("GYM")
+  const proPlan = plans.find(p => p.planKey === "PRO")
+  const entPlan = plans.find(p => p.planKey === "ENTERPRISE")
+  const proPrice = isPhilippines === null ? "…" : isPhilippines ? proPlan?.phpPrice : proPlan?.usdPrice
+  const entPrice = isPhilippines === null ? "…" : isPhilippines ? entPlan?.phpPrice : entPlan?.usdPrice
+
   return (
     <section className="py-24 bg-white">
       <div className="max-w-4xl mx-auto px-6">
@@ -247,8 +253,8 @@ function ComparisonTable() {
                 <tr className="border-b border-slate-200">
                   <th className="text-left px-6 py-4 text-slate-500 font-medium">Feature</th>
                   <th className="text-center px-6 py-4 text-slate-800 font-bold">Free</th>
-                  <th className="text-center px-6 py-4 text-blue-700 font-bold bg-blue-50">Pro <span className="text-xs text-blue-400 font-normal">$19/mo</span></th>
-                  <th className="text-center px-6 py-4 text-slate-800 font-bold">Enterprise <span className="text-xs text-slate-400 font-normal">$29/mo</span></th>
+                  <th className="text-center px-6 py-4 text-blue-700 font-bold bg-blue-50">Pro <span className="text-xs text-blue-400 font-normal">{proPrice}/mo</span></th>
+                  <th className="text-center px-6 py-4 text-slate-800 font-bold">Enterprise <span className="text-xs text-slate-400 font-normal">{entPrice}/mo</span></th>
                 </tr>
               </thead>
               <tbody>
