@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from "react"
 import Link from "next/link"
 import {
-  FileText, Dumbbell, BookOpen, CalendarDays, Car,
+  FileText, Dumbbell, BookOpen, CalendarDays, Car, Shirt,
   ArrowRight, CheckCircle2, Zap, Shield, TrendingUp,
   Clock, ChevronDown, Menu, X, Users, Sparkles,
   MousePointerClick, LayoutDashboard, Star,
@@ -79,6 +79,19 @@ const PRODUCTS = [
     features: ["Fleet status tracking", "Reservation management", "Overdue detection", "Revenue dashboard"],
     stat: { value: "76%", label: "avg fleet utilization" },
   },
+  {
+    key: "LAUNDRY",
+    name: "Laundry Shop",
+    tagline: "Run every order smoothly.",
+    desc: "Track laundry orders by ticket, notify customers by SMS, and accept GCash or cash — built for small laundry shops.",
+    href: "/laundry",
+    register: `${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=LAUNDRY&plan=FREE`,
+    accent: "#0284c7",
+    accentLight: "#f0f9ff",
+    Icon: Shirt,
+    features: ["Auto ticket numbering", "Customer SMS notifications", "GCash & cash payments", "7-day revenue dashboard"],
+    stat: { value: "< 1 min", label: "to create an order" },
+  },
 ]
 
 const STATS = [
@@ -97,6 +110,7 @@ const FOR_WHO = [
   { emoji: "📚", label: "Teachers & Tutors" },
   { emoji: "🔧", label: "Service Businesses" },
   { emoji: "🏪", label: "Small Retailers" },
+  { emoji: "🧺", label: "Laundry Shop Owners" },
 ]
 
 const STEPS = [
@@ -484,7 +498,7 @@ function Products() {
         <Reveal>
           <p className="text-xs font-bold tracking-widest uppercase text-gray-400 mb-3">Our products</p>
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 tracking-tight leading-tight max-w-2xl">
-            Five tools. Every small business covered.
+            Six tools. Every small business covered.
           </h2>
           <p className="mt-4 text-lg text-gray-500 max-w-xl">
             Pick the one you need today. Each product is fully standalone — no bundles, no bloat, no paying for things you don't use.

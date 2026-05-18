@@ -4,7 +4,7 @@ export type RouteInfo = {
   desc: string
 }
 
-export type ClusterKey = "invoice" | "booking" | "gym" | "essay" | "car-rental"
+export type ClusterKey = "invoice" | "booking" | "gym" | "essay" | "car-rental" | "laundry"
 
 export type RouteCluster = {
   label: string
@@ -115,6 +115,22 @@ export const CLUSTERS: Record<ClusterKey, RouteCluster> = {
       { path: "/car-rental/car-rental-software-for-small-business", title: "Car Rental Software for Small Business", desc: "Built for small rental fleets — affordable, simple, complete." },
     ],
   },
+
+  laundry: {
+    label: "Laundry Management",
+    hub: {
+      path: "/laundry",
+      title: "Laundry Shop App",
+      desc: "Manage laundry orders, customers, and SMS notifications.",
+    },
+    pages: [
+      { path: "/laundry/guide", title: "Laundry App Guide", desc: "How laundry shop management software works end-to-end." },
+      { path: "/laundry/laundry-service-app", title: "Laundry Service App", desc: "Manage orders, customers, and payments for your laundry service." },
+      { path: "/laundry/free-laundry-app", title: "Free Laundry App", desc: "Run your laundry shop for free — no credit card required." },
+      { path: "/laundry/laundry-app-near-me", title: "Laundry App Near Me", desc: "Software for local laundry shops to manage orders and notify customers." },
+      { path: "/laundry/on-demand-laundry-service-app", title: "On-Demand Laundry Service App", desc: "Accept and track on-demand laundry orders with auto SMS notifications." },
+    ],
+  },
 }
 
 // Back-compat: existing usages of SEO_ROUTES expect bare invoice slugs.
@@ -128,6 +144,7 @@ export const ALL_CLUSTERS: ClusterKey[] = [
   "gym",
   "essay",
   "car-rental",
+  "laundry",
 ]
 
 export function clusterForPath(pathname: string): ClusterKey | null {
