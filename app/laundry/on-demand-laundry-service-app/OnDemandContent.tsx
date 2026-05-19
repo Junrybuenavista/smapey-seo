@@ -7,6 +7,7 @@ import {
 } from "lucide-react"
 import { usePricing, type Plan } from "@/lib/usePricing"
 import InternalLinks from "@/components/InternalLinks"
+import LaundryVideo from "@/components/LaundryVideo"
 
 const ON_DEMAND_FEATURES = [
   {
@@ -426,6 +427,7 @@ export default function OnDemandContent() {
     <main>
       <Navbar />
       <Hero />
+      <LaundryVideo />
       <OnDemandFeatures />
       <Pricing />
       <FAQ />

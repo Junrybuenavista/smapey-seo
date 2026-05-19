@@ -7,6 +7,7 @@ import {
 } from "lucide-react"
 import { usePricing, type Plan } from "@/lib/usePricing"
 import InternalLinks from "@/components/InternalLinks"
+import LaundryVideo from "@/components/LaundryVideo"
 
 const SERVICE_FEATURES = [
   {
@@ -494,6 +495,7 @@ export default function LaundryServiceAppContent() {
     <main>
       <Navbar />
       <Hero />
+      <LaundryVideo />
       <ServiceFeatures />
       <ComparisonTable />
       <Pricing />
