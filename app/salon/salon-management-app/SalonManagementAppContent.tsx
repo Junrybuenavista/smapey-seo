@@ -7,6 +7,7 @@ import {
 } from "lucide-react"
 import { usePricing, type Plan } from "@/lib/usePricing"
 import InternalLinks from "@/components/InternalLinks"
+import SalonVideo from "@/components/SalonVideo"
 
 const FEATURES = [
   {
@@ -488,31 +489,12 @@ function PaymentModal({ plan, isPhilippines, onClose }: { plan: { name: string; 
   )
 }
 
-function VideoSection() {
-  return (
-    <section className="bg-[#120a18] py-12">
-      <div className="max-w-4xl mx-auto px-6">
-        <div className="relative rounded-2xl overflow-hidden shadow-2xl shadow-pink-500/20 border border-white/10">
-          <video
-            src="https://res.cloudinary.com/dxhwfv0jo/video/upload/v1779305096/Smapey-Salon_vr8xcj.mp4"
-            autoPlay
-            muted
-            loop
-            playsInline
-            className="w-full h-auto"
-          />
-        </div>
-      </div>
-    </section>
-  )
-}
-
 export default function SalonManagementAppContent() {
   return (
     <main>
       <Navbar />
       <Hero />
-      <VideoSection />
+      <SalonVideo />
       <SalonFeatures />
       <ComparisonTable />
       <Pricing />
