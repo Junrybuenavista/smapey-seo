@@ -6,7 +6,6 @@ import {
   ChevronRight, Zap, BookOpen, ArrowLeft,
 } from "lucide-react"
 import InternalLinks from "@/components/InternalLinks"
-import SalonVideo from "@/components/SalonVideo"
 
 //////////////////////////////////////////////////////
 // DATA
@@ -375,7 +374,6 @@ export default function GuideContent() {
   return (
     <main>
       <Hero />
-      <SalonVideo />
 
       <section className="bg-white py-16">
         <div className="max-w-6xl mx-auto px-6 flex gap-12">
