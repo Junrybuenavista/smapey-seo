@@ -4,7 +4,7 @@ export type RouteInfo = {
   desc: string
 }
 
-export type ClusterKey = "invoice" | "booking" | "gym" | "essay" | "car-rental" | "laundry"
+export type ClusterKey = "invoice" | "booking" | "gym" | "essay" | "car-rental" | "laundry" | "salon"
 
 export type RouteCluster = {
   label: string
@@ -131,6 +131,19 @@ export const CLUSTERS: Record<ClusterKey, RouteCluster> = {
       { path: "/laundry/on-demand-laundry-service-app", title: "On-Demand Laundry Service App", desc: "Accept and track on-demand laundry orders with auto SMS notifications." },
     ],
   },
+
+  salon: {
+    label: "Salon Management",
+    hub: { path: "/salon", title: "Salon Management App", desc: "Manage appointments, clients, and your public booking page." },
+    pages: [
+      { path: "/salon/guide", title: "Salon App Guide", desc: "How salon management software works end-to-end." },
+      { path: "/salon/salon-management-app", title: "Salon Management App", desc: "The all-in-one app to manage your salon appointments, clients, and services." },
+      { path: "/salon/beauty-salon-management-app", title: "Beauty Salon Management App", desc: "Built for beauty salons — appointments, staff, and client history in one place." },
+      { path: "/salon/nail-salon-management-app", title: "Nail Salon Management App", desc: "Appointment scheduling and client management for nail salons." },
+      { path: "/salon/salon-appointment-manager-app", title: "Salon Appointment Manager App", desc: "Schedule, track, and manage all your salon appointments from one dashboard." },
+      { path: "/salon/salon-inventory-management-app", title: "Salon Inventory Management App", desc: "Track services, pricing, and staff assignments alongside your inventory." },
+    ],
+  },
 }
 
 // Back-compat: existing usages of SEO_ROUTES expect bare invoice slugs.
@@ -145,6 +158,7 @@ export const ALL_CLUSTERS: ClusterKey[] = [
   "essay",
   "car-rental",
   "laundry",
+  "salon",
 ]
 
 export function clusterForPath(pathname: string): ClusterKey | null {

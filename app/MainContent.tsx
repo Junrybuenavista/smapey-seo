@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from "react"
 import Link from "next/link"
 import {
-  FileText, Dumbbell, BookOpen, CalendarDays, Car, Shirt,
+  FileText, Dumbbell, BookOpen, CalendarDays, Car, Shirt, Scissors,
   ArrowRight, CheckCircle2, Zap, Shield, TrendingUp,
   Clock, ChevronDown, Menu, X, Users, Sparkles,
   MousePointerClick, LayoutDashboard, Star,
@@ -91,6 +91,19 @@ const PRODUCTS = [
     Icon: Shirt,
     features: ["Auto ticket numbering", "Customer SMS notifications", "GCash & cash payments", "7-day revenue dashboard"],
     stat: { value: "< 1 min", label: "to create an order" },
+  },
+  {
+    key: "SALON",
+    name: "Salon Manager",
+    tagline: "Book clients, grow your salon.",
+    desc: "Manage appointments, clients, and services — with a public booking page your clients can use to send inquiries directly.",
+    href: "/salon",
+    register: `${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=SALON&plan=FREE`,
+    accent: "#ec4899",
+    accentLight: "#fdf2f8",
+    Icon: Scissors,
+    features: ["Appointment scheduling", "Client profiles & history", "Public booking page", "Revenue dashboard"],
+    stat: { value: "50%", label: "less time on admin" },
   },
 ]
 
@@ -498,7 +511,7 @@ function Products() {
         <Reveal>
           <p className="text-xs font-bold tracking-widest uppercase text-gray-400 mb-3">Our products</p>
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 tracking-tight leading-tight max-w-2xl">
-            Six tools. Every small business covered.
+            Seven tools. Every small business covered.
           </h2>
           <p className="mt-4 text-lg text-gray-500 max-w-xl">
             Pick the one you need today. Each product is fully standalone — no bundles, no bloat, no paying for things you don't use.
