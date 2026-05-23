@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect, useRef } from "react"
+import GymVideoSection from "../GymVideoSection"
 import {
   Dumbbell, QrCode, Users, BarChart3, CreditCard,
   Zap, CheckCircle2, ChevronRight, Menu, X, UserCheck,
@@ -603,6 +604,7 @@ export default function CrossfitContent() {
     <main>
       <Navbar />
       <Hero />
+      <GymVideoSection />
       <Features />
       <HowItWorks />
       <Pricing />

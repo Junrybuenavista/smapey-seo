@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect, useRef } from "react"
+import GymVideoSection from "../GymVideoSection"
 import {
   Users, CreditCard, Bell, Search, BarChart3, Shield,
   CheckCircle2, ChevronRight, Menu, X, Zap, UserPlus, RefreshCw, Star,
@@ -474,6 +475,7 @@ export default function MembershipContent() {
     <main>
       <Navbar />
       <Hero />
+      <GymVideoSection />
       <Features />
       <HowItWorks />
       <Pricing />

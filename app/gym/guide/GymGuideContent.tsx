@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
+import GymVideoSection from "../GymVideoSection"
 import {
   UserPlus, QrCode, UserCheck, CreditCard, Dumbbell, BarChart3,
   ChevronRight, Zap, BookOpen, ArrowLeft,
@@ -482,6 +483,7 @@ export default function GymGuideContent() {
         </div>
       </section>
 
+      <GymVideoSection />
       <CTA />
       <InternalLinks cluster="gym" currentPath="/gym/guide" />
       <Footer />

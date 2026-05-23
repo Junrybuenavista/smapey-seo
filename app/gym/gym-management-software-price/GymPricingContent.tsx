@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect, useRef } from "react"
+import GymVideoSection from "../GymVideoSection"
 import {
   CheckCircle2, ChevronRight, Menu, X, Zap, XCircle,
 } from "lucide-react"
@@ -460,6 +461,7 @@ export default function GymPricingContent() {
     <main>
       <Navbar />
       <Hero />
+      <GymVideoSection />
       <PricingTable />
       <FAQ />
       <CTA />
