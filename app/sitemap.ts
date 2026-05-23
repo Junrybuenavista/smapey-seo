@@ -2,6 +2,9 @@ import { MetadataRoute } from "next"
 import fs from "fs"
 import path from "path"
 
+// Regenerate the sitemap at most every 12 hours (ISR)
+export const revalidate = 43200
+
 const baseUrl = "https://smapey.com"
 const API = process.env.NEXT_PUBLIC_API_URL
 
@@ -39,7 +42,7 @@ function getRoutes(dir: string, basePath = ""): string[] {
 async function getPublishedBlogSlugs(): Promise<{ slug: string; publishedAt: string }[]> {
   try {
     const res = await fetch(`${API}/api/blog/posts?limit=1000`, {
-      next: { revalidate: 3600 },
+      cache: "no-store",
     })
     if (!res.ok) return []
     const data = await res.json()
