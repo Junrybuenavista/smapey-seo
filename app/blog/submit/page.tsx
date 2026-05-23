@@ -5,6 +5,10 @@ export const metadata = {
   alternates: {
     canonical: "https://smapey.com/blog/submit",
   },
+  robots: {
+    index: false,
+    follow: false,
+  },
 }
 
 import BlogSubmitContent from "./BlogSubmitContent"

@@ -3,17 +3,18 @@ import fs from "fs"
 import path from "path"
 
 const baseUrl = "https://smapey.com"
+const API = process.env.NEXT_PUBLIC_API_URL
 
-// Recursively get all page routes
+// Static routes to exclude from the sitemap (forms, utility pages)
+const EXCLUDED = new Set(["/blog/submit"])
+
 function getRoutes(dir: string, basePath = ""): string[] {
   const entries = fs.readdirSync(dir, { withFileTypes: true })
-
   let routes: string[] = []
 
   for (const entry of entries) {
     const fullPath = path.join(dir, entry.name)
 
-    // Skip special folders/files and dynamic route segments
     if (
       entry.name.startsWith("_") ||
       entry.name.startsWith("(") ||
@@ -24,12 +25,9 @@ function getRoutes(dir: string, basePath = ""): string[] {
     }
 
     if (entry.isDirectory()) {
-      routes = routes.concat(
-        getRoutes(fullPath, `${basePath}/${entry.name}`)
-      )
+      routes = routes.concat(getRoutes(fullPath, `${basePath}/${entry.name}`))
     }
 
-    // Detect page.tsx
     if (entry.isFile() && entry.name === "page.tsx") {
       routes.push(basePath || "")
     }
@@ -38,15 +36,42 @@ function getRoutes(dir: string, basePath = ""): string[] {
   return routes
 }
 
-export default function sitemap(): MetadataRoute.Sitemap {
+async function getPublishedBlogSlugs(): Promise<{ slug: string; publishedAt: string }[]> {
+  try {
+    const res = await fetch(`${API}/api/blog/posts?limit=1000`, {
+      next: { revalidate: 3600 },
+    })
+    if (!res.ok) return []
+    const data = await res.json()
+    return (data.posts || []).map((p: any) => ({
+      slug: p.slug,
+      publishedAt: p.publishedAt || p.createdAt,
+    }))
+  } catch {
+    return []
+  }
+}
+
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const appDir = path.join(process.cwd(), "app")
 
-  const routes = getRoutes(appDir)
+  const staticRoutes = getRoutes(appDir).filter(r => !EXCLUDED.has(r))
 
-  return routes.map((route) => ({
+  const blogPosts = await getPublishedBlogSlugs()
+
+  const staticEntries: MetadataRoute.Sitemap = staticRoutes.map(route => ({
     url: `${baseUrl}${route}`,
     lastModified: new Date(),
     changeFrequency: "weekly",
-    priority: route === "" ? 1 : 0.8,
+    priority: route === "" ? 1 : route === "/blog" ? 0.9 : 0.8,
   }))
+
+  const blogEntries: MetadataRoute.Sitemap = blogPosts.map(post => ({
+    url: `${baseUrl}/blog/${post.slug}`,
+    lastModified: new Date(post.publishedAt),
+    changeFrequency: "monthly",
+    priority: 0.7,
+  }))
+
+  return [...staticEntries, ...blogEntries]
 }
