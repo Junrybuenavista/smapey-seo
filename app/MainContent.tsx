@@ -240,6 +240,9 @@ function Navbar() {
               {label}
             </a>
           ))}
+          <Link href="/blog" className={`text-sm font-medium transition-colors ${scrolled ? "text-gray-600 hover:text-gray-900" : "text-white/80 hover:text-white"}`}>
+            Blog
+          </Link>
         </div>
 
         <div className="hidden md:flex items-center gap-3">
@@ -267,6 +270,7 @@ function Navbar() {
             </Link>
           ))}
           <div className="pt-3 border-t border-gray-100 flex flex-col gap-2">
+            <Link href="/blog" onClick={() => setOpen(false)} className="text-center text-sm font-medium text-gray-600 py-2.5 hover:text-gray-900 transition-colors">Blog</Link>
             <Link href="https://app.smapey.com/login" className="text-center text-sm font-medium text-gray-600 py-2.5 border border-gray-200 rounded-full">Sign in</Link>
             <Link href="https://app.smapey.com/register" className="text-center text-sm font-semibold text-white py-2.5 bg-gray-900 rounded-full">Get started free</Link>
           </div>
@@ -763,6 +767,7 @@ function Footer() {
             {PRODUCTS.map(p => (
               <Link key={p.key} href={p.href} className="text-sm text-gray-500 hover:text-gray-900 transition-colors">{p.name}</Link>
             ))}
+            <Link href="/blog" className="text-sm text-gray-500 hover:text-gray-900 transition-colors">Blog</Link>
             <Link href="/privacy-policy" className="text-sm text-gray-500 hover:text-gray-900 transition-colors">Privacy</Link>
             <Link href="/terms-and-conditions" className="text-sm text-gray-500 hover:text-gray-900 transition-colors">Terms</Link>
           </div>
