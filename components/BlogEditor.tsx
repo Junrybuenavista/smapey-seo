@@ -48,9 +48,9 @@ export default function BlogEditor({ value, onChange }: Props) {
   const applyLink = useCallback(() => {
     if (!editor) return
     if (!linkUrl.trim()) {
-      editor.chain().focus().extendMarkToLink().unsetLink().run()
+      editor.chain().focus().unsetLink().run()
     } else {
-      editor.chain().focus().extendMarkToLink().setLink({ href: linkUrl.trim() }).run()
+      editor.chain().focus().setLink({ href: linkUrl.trim() }).run()
     }
     setLinkPopup(false)
     setLinkUrl("")
