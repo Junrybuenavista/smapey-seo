@@ -7,7 +7,6 @@ import TextAlign from "@tiptap/extension-text-align"
 import Underline from "@tiptap/extension-underline"
 import Placeholder from "@tiptap/extension-placeholder"
 import { useCallback, useState, useRef } from "react"
-import type { EditorState } from "@tiptap/pm/state"
 import {
   Bold, Italic, Underline as UnderlineIcon, List, ListOrdered,
   Quote, Link2, AlignLeft, AlignCenter, AlignRight, Minus,
@@ -20,9 +19,9 @@ interface Props {
 }
 
 export default function BlogEditor({ value, onChange }: Props) {
-  const [linkPopup, setLinkPopup]       = useState(false)
-  const [linkUrl, setLinkUrl]           = useState("")
-  const savedSelection = useRef<EditorState | null>(null)
+  const [linkPopup, setLinkPopup] = useState(false)
+  const [linkUrl, setLinkUrl]     = useState("")
+  const savedRange = useRef<{ from: number; to: number } | null>(null)
 
   const editor = useEditor({
     extensions: [
@@ -44,29 +43,29 @@ export default function BlogEditor({ value, onChange }: Props) {
 
   const openLinkPopup = useCallback(() => {
     if (!editor) return
-    // Save current selection state before popup steals focus
-    savedSelection.current = editor.state
-    const prev = editor.getAttributes("link").href || ""
-    setLinkUrl(prev)
+    const { from, to } = editor.state.selection
+    savedRange.current = { from, to }
+    setLinkUrl(editor.getAttributes("link").href || "")
     setLinkPopup(true)
   }, [editor])
 
   const applyLink = useCallback(() => {
-    if (!editor) return
-    // Restore the saved selection, then apply the link
-    if (savedSelection.current) {
-      editor.view.dispatch(
-        savedSelection.current.tr.setSelection(savedSelection.current.selection)
-      )
+    try {
+      if (editor && linkUrl.trim()) {
+        const range = savedRange.current
+        if (range) {
+          editor.chain().focus().setTextSelection(range).setLink({ href: linkUrl.trim() }).run()
+        } else {
+          editor.chain().focus().setLink({ href: linkUrl.trim() }).run()
+        }
+      } else if (editor && !linkUrl.trim()) {
+        editor.chain().focus().unsetLink().run()
+      }
+    } finally {
+      setLinkPopup(false)
+      setLinkUrl("")
+      savedRange.current = null
     }
-    if (!linkUrl.trim()) {
-      editor.chain().focus().unsetLink().run()
-    } else {
-      editor.chain().focus().setLink({ href: linkUrl.trim() }).run()
-    }
-    setLinkPopup(false)
-    setLinkUrl("")
-    savedSelection.current = null
   }, [editor, linkUrl])
 
   if (!editor) return null
