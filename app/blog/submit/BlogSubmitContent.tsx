@@ -3,7 +3,7 @@
 import { useState, useRef } from "react"
 import Link from "next/link"
 import {
-  PenLine, ImagePlus, X, Loader2, CheckCircle2, ArrowLeft, Upload,
+  PenLine, ImagePlus, X, Loader2, CheckCircle2, ArrowLeft, Upload, Link2, Check,
 } from "lucide-react"
 import SiteNavbar from "@/components/SiteNavbar"
 
@@ -37,7 +37,49 @@ export default function BlogSubmitContent() {
   const [submitting, setSubmitting]     = useState(false)
   const [error, setError]               = useState("")
   const [done, setDone]                 = useState(false)
-  const fileRef = useRef<HTMLInputElement>(null)
+  const fileRef    = useRef<HTMLInputElement>(null)
+  const contentRef = useRef<HTMLTextAreaElement>(null)
+
+  // Link insertion state
+  const [linkPopup, setLinkPopup]     = useState(false)
+  const [linkUrl, setLinkUrl]         = useState("")
+  const [linkLabel, setLinkLabel]     = useState("")
+  const [savedSel, setSavedSel]       = useState<{ start: number; end: number } | null>(null)
+
+  const openLinkPopup = () => {
+    const ta = contentRef.current
+    if (!ta) return
+    const start = ta.selectionStart
+    const end   = ta.selectionEnd
+    setSavedSel({ start, end })
+    setLinkLabel(start !== end ? ta.value.slice(start, end) : "")
+    setLinkUrl("")
+    setLinkPopup(true)
+  }
+
+  const insertLink = () => {
+    if (!linkUrl.trim()) return
+    const label = linkLabel.trim() || linkUrl
+    const markdown = `[${label}](${linkUrl.trim()})`
+    const ta = contentRef.current
+    if (!ta || !savedSel) {
+      set("content", form.content + markdown)
+      setLinkPopup(false)
+      return
+    }
+    const { start, end } = savedSel
+    const before = form.content.slice(0, start)
+    const after  = form.content.slice(end)
+    const newContent = before + markdown + after
+    set("content", newContent)
+    setLinkPopup(false)
+    // Restore focus
+    setTimeout(() => {
+      ta.focus()
+      const pos = start + markdown.length
+      ta.setSelectionRange(pos, pos)
+    }, 0)
+  }
 
   const set = (field: string, value: string) =>
     setForm(prev => ({ ...prev, [field]: value }))
@@ -259,14 +301,70 @@ export default function BlogSubmitContent() {
               <label className="block text-sm font-semibold text-gray-700 mb-1.5">
                 Your post <span className="text-red-400">*</span>
               </label>
+
+              {/* Toolbar */}
+              <div className="flex items-center gap-1 px-3 py-2 bg-gray-50 border border-gray-200 border-b-0 rounded-t-xl">
+                <div className="relative">
+                  <button
+                    type="button"
+                    onClick={openLinkPopup}
+                    className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-medium text-gray-500 hover:bg-white hover:text-blue-600 hover:shadow-sm transition border border-transparent hover:border-gray-200"
+                  >
+                    <Link2 className="w-3.5 h-3.5" /> Insert link
+                  </button>
+
+                  {/* Link popup */}
+                  {linkPopup && (
+                    <div className="absolute top-9 left-0 z-20 bg-white border border-gray-200 rounded-xl shadow-lg p-3 w-72 space-y-2">
+                      <p className="text-xs font-semibold text-gray-700">Insert link</p>
+                      <input
+                        autoFocus
+                        type="text"
+                        placeholder="Link label (optional)"
+                        value={linkLabel}
+                        onChange={e => setLinkLabel(e.target.value)}
+                        className="w-full px-3 py-2 text-xs border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+                      />
+                      <input
+                        type="url"
+                        placeholder="https://example.com"
+                        value={linkUrl}
+                        onChange={e => setLinkUrl(e.target.value)}
+                        onKeyDown={e => e.key === "Enter" && (e.preventDefault(), insertLink())}
+                        className="w-full px-3 py-2 text-xs border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+                      />
+                      <div className="flex gap-2 justify-end">
+                        <button
+                          type="button"
+                          onClick={() => setLinkPopup(false)}
+                          className="text-xs px-3 py-1.5 rounded-lg border border-gray-200 text-gray-500 hover:bg-gray-50 transition"
+                        >
+                          Cancel
+                        </button>
+                        <button
+                          type="button"
+                          onClick={insertLink}
+                          disabled={!linkUrl.trim()}
+                          className="flex items-center gap-1 text-xs px-3 py-1.5 rounded-lg bg-blue-600 text-white font-semibold hover:bg-blue-700 transition disabled:opacity-40"
+                        >
+                          <Check className="w-3 h-3" /> Insert
+                        </button>
+                      </div>
+                    </div>
+                  )}
+                </div>
+                <span className="text-[10px] text-gray-300 ml-1">Select text first to use it as the link label</span>
+              </div>
+
               <textarea
+                ref={contentRef}
                 rows={14}
                 placeholder={`Write your post here...\n\nTip: Use blank lines to separate paragraphs. Be specific — real numbers, real lessons, and honest experiences make the best posts.`}
                 value={form.content}
                 onChange={e => set("content", e.target.value)}
-                className="w-full px-4 py-3 text-sm border border-gray-200 rounded-xl resize-y focus:outline-none focus:ring-2 focus:ring-blue-400 bg-white font-mono leading-relaxed"
+                className="w-full px-4 py-3 text-sm border border-gray-200 rounded-b-xl resize-y focus:outline-none focus:ring-2 focus:ring-blue-400 bg-white font-mono leading-relaxed"
               />
-              <p className="text-xs text-gray-400 mt-1">{form.content.length} characters</p>
+              <p className="text-xs text-gray-400 mt-1">{form.content.length} characters · Links show as <code className="bg-gray-100 px-1 rounded">[label](url)</code> in the editor</p>
             </div>
 
             {error && (

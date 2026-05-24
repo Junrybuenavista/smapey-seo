@@ -32,6 +32,31 @@ interface Comment {
 }
 
 
+// Parses [label](url) markdown links within a line into <a> elements
+function renderLine(line: string, key: number) {
+  const parts: React.ReactNode[] = []
+  const regex = /\[([^\]]+)\]\((https?:\/\/[^)]+)\)/g
+  let last = 0
+  let match
+  while ((match = regex.exec(line)) !== null) {
+    if (match.index > last) parts.push(line.slice(last, match.index))
+    parts.push(
+      <a
+        key={`${key}-${match.index}`}
+        href={match[2]}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="text-blue-600 underline underline-offset-2 hover:text-blue-800 transition-colors"
+      >
+        {match[1]}
+      </a>
+    )
+    last = match.index + match[0].length
+  }
+  if (last < line.length) parts.push(line.slice(last))
+  return parts
+}
+
 function renderContent(content: string) {
   return content.split(/\n\n+/).map((para, i) => {
     const trimmed = para.trim()
@@ -41,7 +66,7 @@ function renderContent(content: string) {
       <p key={i} className="text-gray-700 leading-[1.85] text-[1.0625rem]">
         {lines.map((line, j) => (
           <span key={j}>
-            {line}
+            {renderLine(line, j)}
             {j < lines.length - 1 && <br />}
           </span>
         ))}
