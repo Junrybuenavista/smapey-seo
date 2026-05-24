@@ -32,22 +32,26 @@ interface Comment {
 }
 
 
-// Parses [label](url) markdown links within a line into <a> elements
+// Render HTML content (new posts from rich editor)
+function RichContent({ html }: { html: string }) {
+  return (
+    <div
+      className="blog-content text-gray-700 leading-[1.85] text-[1.0625rem]"
+      dangerouslySetInnerHTML={{ __html: html }}
+    />
+  )
+}
+
+// Render plain-text content (legacy posts) with [label](url) link support
 function renderLine(line: string, key: number) {
   const parts: React.ReactNode[] = []
   const regex = /\[([^\]]+)\]\((https?:\/\/[^)]+)\)/g
-  let last = 0
-  let match
+  let last = 0, match
   while ((match = regex.exec(line)) !== null) {
     if (match.index > last) parts.push(line.slice(last, match.index))
     parts.push(
-      <a
-        key={`${key}-${match.index}`}
-        href={match[2]}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="text-blue-600 underline underline-offset-2 hover:text-blue-800 transition-colors"
-      >
+      <a key={`${key}-${match.index}`} href={match[2]} target="_blank" rel="noopener noreferrer"
+        className="text-blue-600 underline underline-offset-2 hover:text-blue-800 transition-colors">
         {match[1]}
       </a>
     )
@@ -57,22 +61,31 @@ function renderLine(line: string, key: number) {
   return parts
 }
 
+function PlainContent({ content }: { content: string }) {
+  return (
+    <>
+      {content.split(/\n\n+/).map((para, i) => {
+        const trimmed = para.trim()
+        if (!trimmed) return null
+        const lines = trimmed.split("\n")
+        return (
+          <p key={i} className="text-gray-700 leading-[1.85] text-[1.0625rem]">
+            {lines.map((line, j) => (
+              <span key={j}>
+                {renderLine(line, j)}
+                {j < lines.length - 1 && <br />}
+              </span>
+            ))}
+          </p>
+        )
+      })}
+    </>
+  )
+}
+
 function renderContent(content: string) {
-  return content.split(/\n\n+/).map((para, i) => {
-    const trimmed = para.trim()
-    if (!trimmed) return null
-    const lines = trimmed.split("\n")
-    return (
-      <p key={i} className="text-gray-700 leading-[1.85] text-[1.0625rem]">
-        {lines.map((line, j) => (
-          <span key={j}>
-            {renderLine(line, j)}
-            {j < lines.length - 1 && <br />}
-          </span>
-        ))}
-      </p>
-    )
-  })
+  const isHtml = /^<[a-z][\s\S]*>/i.test(content.trimStart())
+  return isHtml ? <RichContent html={content} /> : <PlainContent content={content} />
 }
 
 export default function BlogPostContent({ post }: { post: Post }) {
