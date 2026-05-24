@@ -142,8 +142,8 @@ export default function BlogPostContent({ post }: { post: Post }) {
       {/* HERO */}
       <div className="pt-16">
         {post.coverImage ? (
-          <div className="relative h-72 md:h-96 overflow-hidden">
-            <img src={post.coverImage} alt={post.title} className="w-full h-full object-cover" />
+          <div className="relative w-full">
+            <img src={post.coverImage} alt={post.title} className="w-full h-auto block" />
             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
             <div className="absolute bottom-0 left-0 right-0 px-6 md:px-12 pb-8 max-w-4xl mx-auto w-full">
               {post.category && (
