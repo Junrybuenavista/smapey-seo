@@ -12,19 +12,28 @@ export default function GymVideoSection() {
   const [isPhilippines, setIsPhilippines] = useState<boolean | null>(null)
 
   useEffect(() => {
-    const tzFallback =
-      Intl.DateTimeFormat().resolvedOptions().timeZone === "Asia/Manila"
+    const tz = Intl.DateTimeFormat().resolvedOptions().timeZone || ""
+    const lang = (typeof navigator !== "undefined" ? navigator.language : "").toLowerCase()
+    const offsetHours = -new Date().getTimezoneOffset() / 60
+
+    // Same multi-signal local detection as usePricing — catches Windows users
+    const localPH =
+      tz === "Asia/Manila" ||
+      lang.includes("-ph") ||
+      lang.startsWith("fil") ||
+      (offsetHours === 8 && tz.startsWith("Asia/"))
 
     fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/billing/geo`)
       .then((r) => r.json())
       .then((d) => {
-        const ph = d.isPhilippines ?? tzFallback
+        // Use || so local signals can still catch PH even if API returns false
+        const ph = Boolean(d.isPhilippines) || localPH
         setIsPhilippines(ph)
         setVideoUrl(ph ? PH_VIDEO : EN_VIDEO)
       })
       .catch(() => {
-        setIsPhilippines(tzFallback)
-        setVideoUrl(tzFallback ? PH_VIDEO : EN_VIDEO)
+        setIsPhilippines(localPH)
+        setVideoUrl(localPH ? PH_VIDEO : EN_VIDEO)
       })
   }, [])
 
