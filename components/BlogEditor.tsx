@@ -88,10 +88,10 @@ export default function BlogEditor({ value, onChange }: Props) {
   const sep = () => <span className="w-px h-5 bg-gray-200 mx-0.5 self-center" />
 
   return (
-    <div className="rounded-xl border border-gray-200 overflow-visible bg-white">
+    <div className="rounded-xl border border-gray-200 bg-white" style={{ overflow: "visible" }}>
 
       {/* ── Toolbar ── */}
-      <div className="flex flex-wrap items-center gap-0.5 px-3 py-2 border-b border-gray-200 bg-gray-50 rounded-t-xl">
+      <div className="relative flex flex-wrap items-center gap-0.5 px-3 py-2 border-b border-gray-200 bg-gray-50 rounded-t-xl" style={{ zIndex: 100 }}>
 
         {/* Paragraph / Heading */}
         <select
@@ -183,7 +183,9 @@ export default function BlogEditor({ value, onChange }: Props) {
       </div>
 
       {/* ── Editor area ── */}
-      <EditorContent editor={editor} />
+      <div style={{ pointerEvents: linkPopup ? "none" : "auto" }}>
+        <EditorContent editor={editor} />
+      </div>
 
       {/* ── Editor styles ── */}
       <style>{`
