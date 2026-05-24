@@ -7,6 +7,7 @@ import TextAlign from "@tiptap/extension-text-align"
 import Underline from "@tiptap/extension-underline"
 import Placeholder from "@tiptap/extension-placeholder"
 import { useCallback, useState, useRef } from "react"
+import { TextSelection } from "@tiptap/pm/state"
 import {
   Bold, Italic, Underline as UnderlineIcon, List, ListOrdered,
   Quote, Link2, AlignLeft, AlignCenter, AlignRight, Minus,
@@ -51,14 +52,25 @@ export default function BlogEditor({ value, onChange }: Props) {
 
   const applyLink = useCallback(() => {
     try {
-      if (editor && linkUrl.trim()) {
-        const range = savedRange.current
+      if (!editor) return
+      const range = savedRange.current
+      if (linkUrl.trim()) {
+        // Apply link to the saved selection range
+        editor.chain().focus()
+          .setTextSelection(range ?? editor.state.selection)
+          .setLink({ href: linkUrl.trim() })
+          .run()
+        // Move cursor to AFTER the link and remove the link from stored marks
+        // so the next typed character is NOT part of the link
         if (range) {
-          editor.chain().focus().setTextSelection(range).setLink({ href: linkUrl.trim() }).run()
-        } else {
-          editor.chain().focus().setLink({ href: linkUrl.trim() }).run()
+          const { state, view } = editor
+          view.dispatch(
+            state.tr
+              .setSelection(TextSelection.create(state.doc, range.to))
+              .removeStoredMark(state.schema.marks.link)
+          )
         }
-      } else if (editor && !linkUrl.trim()) {
+      } else {
         editor.chain().focus().unsetLink().run()
       }
     } finally {
