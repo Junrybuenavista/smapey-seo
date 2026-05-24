@@ -28,7 +28,12 @@ export default function BlogEditor({ value, onChange }: Props) {
     extensions: [
       StarterKit.configure({ heading: { levels: [2, 3] } }),
       Underline,
-      Link.configure({ openOnClick: false, HTMLAttributes: { class: "text-blue-600 underline underline-offset-2 hover:text-blue-800" } }),
+      Link.configure({
+        openOnClick: false,
+        autolink: true,
+        linkOnPaste: true,
+        HTMLAttributes: { class: "text-blue-600 underline underline-offset-2 hover:text-blue-800" },
+      }),
       TextAlign.configure({ types: ["heading", "paragraph"] }),
       Placeholder.configure({ placeholder: "Write your post here…" }),
     ],
@@ -38,6 +43,23 @@ export default function BlogEditor({ value, onChange }: Props) {
       attributes: {
         class: "px-5 py-4 text-sm text-gray-800 leading-relaxed focus:outline-none",
         style: "min-height: 560px",
+      },
+      handleKeyDown(view, event) {
+        // When Space or Enter is pressed while cursor is inside a link, exit the link mark
+        if (event.key === " " || event.key === "Enter") {
+          const { state, dispatch } = view
+          const { schema, selection, storedMarks, doc } = state
+          const linkMark = schema.marks.link
+          if (!linkMark) return false
+          // Check if cursor is currently in a link (via storedMarks or node marks at cursor)
+          const $pos = selection.$from
+          const hasLinkStored = storedMarks?.some(m => m.type === linkMark)
+          const hasLinkAtCursor = linkMark.isInSet($pos.marks())
+          if (hasLinkStored || hasLinkAtCursor) {
+            dispatch(state.tr.removeStoredMark(linkMark))
+          }
+        }
+        return false
       },
     },
   })
