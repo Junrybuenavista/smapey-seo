@@ -28,13 +28,13 @@ export default function BlogEditor({ value, onChange }: Props) {
       Underline,
       Link.configure({ openOnClick: false, HTMLAttributes: { class: "text-blue-600 underline underline-offset-2 hover:text-blue-800" } }),
       TextAlign.configure({ types: ["heading", "paragraph"] }),
-      Placeholder.configure({ placeholder: "Write your post here…\n\nTip: Use blank lines to separate paragraphs. Real numbers, real lessons, and honest experiences make the best posts." }),
+      Placeholder.configure({ placeholder: "Write your post here…" }),
     ],
     content: value || "",
     onUpdate: ({ editor }) => onChange(editor.getHTML()),
     editorProps: {
       attributes: {
-        class: "min-h-[320px] px-4 py-3 text-sm text-gray-800 leading-relaxed focus:outline-none",
+        class: "min-h-[380px] px-5 py-4 text-sm text-gray-800 leading-relaxed focus:outline-none",
       },
     },
   })
@@ -175,15 +175,15 @@ export default function BlogEditor({ value, onChange }: Props) {
 
       {/* ── Editor styles ── */}
       <style>{`
-        .tiptap h2 { font-size: 1.25rem; font-weight: 700; color: #111827; margin: 1rem 0 0.5rem; }
-        .tiptap h3 { font-size: 1.05rem; font-weight: 600; color: #1f2937; margin: 0.75rem 0 0.4rem; }
-        .tiptap p  { margin: 0.4rem 0; }
+        .tiptap h2 { font-size: 1.25rem; font-weight: 700; color: #111827; margin: 1.25rem 0 0.5rem; }
+        .tiptap h3 { font-size: 1.05rem; font-weight: 600; color: #1f2937; margin: 1rem 0 0.4rem; }
+        .tiptap p  { margin: 0.5rem 0; }
         .tiptap ul { list-style: disc;    padding-left: 1.5rem; margin: 0.5rem 0; }
         .tiptap ol { list-style: decimal; padding-left: 1.5rem; margin: 0.5rem 0; }
         .tiptap li { margin: 0.25rem 0; }
         .tiptap blockquote { border-left: 3px solid #d1d5db; padding-left: 1rem; color: #6b7280; font-style: italic; margin: 0.75rem 0; }
         .tiptap hr { border: none; border-top: 1px solid #e5e7eb; margin: 1rem 0; }
-        .tiptap p.is-editor-empty:first-child::before { color: #9ca3af; content: attr(data-placeholder); float: left; height: 0; pointer-events: none; white-space: pre-line; }
+        .tiptap p.is-editor-empty:first-child::before { color: #9ca3af; content: attr(data-placeholder); float: left; height: 0; pointer-events: none; white-space: nowrap; }
       `}</style>
     </div>
   )

@@ -264,6 +264,9 @@ export default function BlogSubmitContent() {
                 value={form.content}
                 onChange={html => set("content", html)}
               />
+              <p className="text-xs text-gray-400 mt-2">
+                Tip: Use <strong>H2/H3</strong> for section headings · Select text then click 🔗 to add a link · Use <strong>"</strong> for quotes
+              </p>
             </div>
 
             {error && (
