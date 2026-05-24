@@ -7,7 +7,7 @@ const SITE = "https://smapey.com"
 
 async function getPost(slug: string) {
   try {
-    const res = await fetch(`${API}/api/blog/posts/${slug}`, { next: { revalidate: 300 } })
+    const res = await fetch(`${API}/api/blog/posts/${slug}`, { next: { tags: ["blog-posts"] } })
     if (!res.ok) return null
     const data = await res.json()
     return data.post ?? null
