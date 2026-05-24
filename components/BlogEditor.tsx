@@ -34,7 +34,7 @@ export default function BlogEditor({ value, onChange }: Props) {
     onUpdate: ({ editor }) => onChange(editor.getHTML()),
     editorProps: {
       attributes: {
-        class: "min-h-[380px] px-5 py-4 text-sm text-gray-800 leading-relaxed focus:outline-none",
+        class: "min-h-[560px] px-5 py-4 text-sm text-gray-800 leading-relaxed focus:outline-none",
       },
     },
   })
