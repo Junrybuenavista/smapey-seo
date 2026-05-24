@@ -6,7 +6,8 @@ import Link from "@tiptap/extension-link"
 import TextAlign from "@tiptap/extension-text-align"
 import Underline from "@tiptap/extension-underline"
 import Placeholder from "@tiptap/extension-placeholder"
-import { useCallback, useState } from "react"
+import { useCallback, useState, useRef } from "react"
+import type { EditorState } from "@tiptap/pm/state"
 import {
   Bold, Italic, Underline as UnderlineIcon, List, ListOrdered,
   Quote, Link2, AlignLeft, AlignCenter, AlignRight, Minus,
@@ -19,8 +20,9 @@ interface Props {
 }
 
 export default function BlogEditor({ value, onChange }: Props) {
-  const [linkPopup, setLinkPopup] = useState(false)
-  const [linkUrl, setLinkUrl]     = useState("")
+  const [linkPopup, setLinkPopup]       = useState(false)
+  const [linkUrl, setLinkUrl]           = useState("")
+  const savedSelection = useRef<EditorState | null>(null)
 
   const editor = useEditor({
     extensions: [
@@ -41,13 +43,22 @@ export default function BlogEditor({ value, onChange }: Props) {
   })
 
   const openLinkPopup = useCallback(() => {
-    const prev = editor?.getAttributes("link").href || ""
+    if (!editor) return
+    // Save current selection state before popup steals focus
+    savedSelection.current = editor.state
+    const prev = editor.getAttributes("link").href || ""
     setLinkUrl(prev)
     setLinkPopup(true)
   }, [editor])
 
   const applyLink = useCallback(() => {
     if (!editor) return
+    // Restore the saved selection, then apply the link
+    if (savedSelection.current) {
+      editor.view.dispatch(
+        savedSelection.current.tr.setSelection(savedSelection.current.selection)
+      )
+    }
     if (!linkUrl.trim()) {
       editor.chain().focus().unsetLink().run()
     } else {
@@ -55,6 +66,7 @@ export default function BlogEditor({ value, onChange }: Props) {
     }
     setLinkPopup(false)
     setLinkUrl("")
+    savedSelection.current = null
   }, [editor, linkUrl])
 
   if (!editor) return null
@@ -63,7 +75,7 @@ export default function BlogEditor({ value, onChange }: Props) {
     <button
       type="button"
       title={title}
-      onClick={onClick}
+      onMouseDown={e => { e.preventDefault(); onClick() }}
       className={`p-1.5 rounded-md transition ${
         active
           ? "bg-gray-900 text-white"
