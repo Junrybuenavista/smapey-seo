@@ -8,6 +8,7 @@ import Underline from "@tiptap/extension-underline"
 import Placeholder from "@tiptap/extension-placeholder"
 import { useCallback, useState, useRef } from "react"
 import { TextSelection } from "@tiptap/pm/state"
+import { DOMParser as ProseDOMParser } from "@tiptap/pm/model"
 import {
   Bold, Italic, Underline as UnderlineIcon, List, ListOrdered,
   Quote, Link2, AlignLeft, AlignCenter, AlignRight, Minus,
@@ -61,6 +62,19 @@ export default function BlogEditor({ value, onChange, minHeight = "560px", place
       attributes: {
         class: "px-5 py-4 text-sm text-gray-800 leading-relaxed focus:outline-none",
         style: `min-height: ${minHeight}`,
+      },
+      handlePaste(view, event) {
+        const text = event.clipboardData?.getData("text/plain") ?? ""
+        // If pasted plain text looks like HTML, parse and insert it as rich content
+        if (/^<[a-z][\s\S]*>/i.test(text.trim())) {
+          event.preventDefault()
+          const div = document.createElement("div")
+          div.innerHTML = text
+          const slice = ProseDOMParser.fromSchema(view.state.schema).parseSlice(div)
+          view.dispatch(view.state.tr.replaceSelection(slice).scrollIntoView())
+          return true
+        }
+        return false
       },
       handleKeyDown(view, event) {
         // When Space or Enter is pressed while cursor is inside a link, exit the link mark
