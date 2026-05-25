@@ -137,7 +137,7 @@ export default function BlogPostContent({ post }: { post: Post }) {
 
   return (
     <>
-      <SiteNavbar />
+      <SiteNavbar alwaysLight />
 
       {/* HERO */}
       <div className="pt-16">
