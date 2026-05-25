@@ -2,6 +2,7 @@ import "./globals.css"
 import Script from "next/script"
 
 export const metadata = {
+  metadataBase: new URL("https://smapey.com"),
   title: "Smapey",
   description: "Invoicing software that helps you get paid faster",
 }

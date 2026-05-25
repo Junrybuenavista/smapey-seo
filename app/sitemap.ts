@@ -20,6 +20,7 @@ function getRoutes(dir: string, basePath = ""): string[] {
 
     if (
       entry.name.startsWith("_") ||
+      entry.name.startsWith(".") ||
       entry.name.startsWith("(") ||
       entry.name.startsWith("[") ||
       entry.name === "api"

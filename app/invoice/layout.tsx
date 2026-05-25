@@ -7,34 +7,32 @@ export const metadata = {
   description: "Invoicing software that helps you get paid faster",
 }
 
-export default function RootLayout({
+export default function InvoiceLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
-      <body>
-        <Navbar /> {/* ✅ This is fine */}
+    <>
+      <Navbar />
 
-        {/* Google Analytics */}
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-QN3CFDFYNB"
-          strategy="afterInteractive"
-        />
+      {/* Google Analytics */}
+      <Script
+        src="https://www.googletagmanager.com/gtag/js?id=G-QN3CFDFYNB"
+        strategy="afterInteractive"
+      />
 
-        <Script id="google-analytics" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
+      <Script id="google-analytics" strategy="afterInteractive">
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
 
-            gtag('config', 'G-QN3CFDFYNB');
-          `}
-        </Script>
+          gtag('config', 'G-QN3CFDFYNB');
+        `}
+      </Script>
 
-        {children}
-      </body>
-    </html>
+      {children}
+    </>
   )
 }
