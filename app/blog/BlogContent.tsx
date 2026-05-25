@@ -15,7 +15,7 @@ function normalizeHtml(html: string): string {
   const decoded = html
     .replace(/&lt;/g, "<").replace(/&gt;/g, ">")
     .replace(/&amp;/g, "&").replace(/&quot;/g, '"').replace(/&#39;/g, "'")
-  return decoded.replace(/^<p>([\s\S]*)<\/p>$/s, "$1")
+  return decoded.replace(/^<p>([\s\S]*)<\/p>$/, "$1")
 }
 
 interface Post {

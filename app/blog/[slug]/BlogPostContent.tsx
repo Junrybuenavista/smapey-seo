@@ -94,7 +94,7 @@ function normalizeHtml(html: string): string {
     .replace(/&quot;/g, '"')
     .replace(/&#39;/g, "'")
   // Strip the single outer <p>…</p> wrapper TipTap added
-  return decoded.replace(/^<p>([\s\S]*)<\/p>$/s, "$1")
+  return decoded.replace(/^<p>([\s\S]*)<\/p>$/, "$1")
 }
 
 function renderContent(content: string) {
