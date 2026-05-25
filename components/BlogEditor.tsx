@@ -36,7 +36,7 @@ export default function BlogEditor({ value, onChange, minHeight = "560px", place
       setSourceMode(true)
     } else {
       // leaving source mode — push raw HTML into editor
-      editor.commands.setContent(sourceHtml, false)
+      editor.commands.setContent(sourceHtml, { emitUpdate: false })
       onChange(sourceHtml)
       setSourceMode(false)
     }
