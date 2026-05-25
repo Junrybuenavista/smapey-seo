@@ -17,9 +17,11 @@ import {
 interface Props {
   value: string
   onChange: (html: string) => void
+  minHeight?: string
+  placeholder?: string
 }
 
-export default function BlogEditor({ value, onChange }: Props) {
+export default function BlogEditor({ value, onChange, minHeight = "560px", placeholder = "Write your post here…" }: Props) {
   const [linkPopup, setLinkPopup] = useState(false)
   const [linkUrl, setLinkUrl]     = useState("")
   const savedRange = useRef<{ from: number; to: number } | null>(null)
@@ -35,14 +37,14 @@ export default function BlogEditor({ value, onChange }: Props) {
         HTMLAttributes: { class: "text-blue-600 underline underline-offset-2 hover:text-blue-800" },
       }),
       TextAlign.configure({ types: ["heading", "paragraph"] }),
-      Placeholder.configure({ placeholder: "Write your post here…" }),
+      Placeholder.configure({ placeholder }),
     ],
     content: value || "",
     onUpdate: ({ editor }) => onChange(editor.getHTML()),
     editorProps: {
       attributes: {
         class: "px-5 py-4 text-sm text-gray-800 leading-relaxed focus:outline-none",
-        style: "min-height: 560px",
+        style: `min-height: ${minHeight}`,
       },
       handleKeyDown(view, event) {
         // When Space or Enter is pressed while cursor is inside a link, exit the link mark

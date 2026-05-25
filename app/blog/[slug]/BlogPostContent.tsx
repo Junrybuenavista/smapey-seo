@@ -173,7 +173,7 @@ export default function BlogPostContent({ post }: { post: Post }) {
                 {post.title}
               </h1>
               {post.excerpt && (
-                <p className="mt-4 text-white/50 text-lg leading-relaxed">{post.excerpt}</p>
+                <div className="mt-4 text-white/50 text-lg leading-relaxed blog-content" dangerouslySetInnerHTML={{ __html: post.excerpt }} />
               )}
               <div className="flex flex-wrap items-center gap-4 mt-6 text-white/50 text-sm">
                 <span className="flex items-center gap-1.5"><User className="w-3.5 h-3.5" /> {post.authorName}</span>
@@ -200,9 +200,10 @@ export default function BlogPostContent({ post }: { post: Post }) {
       <article className="bg-white py-12 px-6">
         <div className="max-w-3xl mx-auto">
           {post.excerpt && post.coverImage && (
-            <p className="text-xl text-gray-500 leading-relaxed mb-8 pb-8 border-b border-gray-100 font-light">
-              {post.excerpt}
-            </p>
+            <div
+              className="text-xl text-gray-500 leading-relaxed mb-8 pb-8 border-b border-gray-100 font-light blog-content"
+              dangerouslySetInnerHTML={{ __html: post.excerpt }}
+            />
           )}
           <div className="space-y-5">
             {renderContent(post.content)}

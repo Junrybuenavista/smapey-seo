@@ -245,13 +245,11 @@ export default function BlogSubmitContent() {
                 Short summary
                 <span className="ml-1 text-xs text-gray-400 font-normal">(shows in the blog feed)</span>
               </label>
-              <textarea
-                rows={2}
-                placeholder="One or two sentences summarising what your post is about."
+              <BlogEditor
                 value={form.excerpt}
-                onChange={e => set("excerpt", e.target.value)}
-                className="w-full px-4 py-3 text-sm border border-gray-200 rounded-xl resize-none focus:outline-none focus:ring-2 focus:ring-blue-400 bg-white"
-                maxLength={300}
+                onChange={html => set("excerpt", html)}
+                minHeight="120px"
+                placeholder="One or two sentences summarising what your post is about."
               />
             </div>
 

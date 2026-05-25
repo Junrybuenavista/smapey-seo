@@ -201,9 +201,10 @@ export default function BlogContent() {
                           {post.title}
                         </h2>
                         {post.excerpt && (
-                          <p className="text-sm text-gray-500 leading-relaxed mb-4 line-clamp-3 flex-1">
-                            {post.excerpt}
-                          </p>
+                          <div
+                            className="text-sm text-gray-500 leading-relaxed mb-4 line-clamp-3 flex-1 blog-content"
+                            dangerouslySetInnerHTML={{ __html: post.excerpt }}
+                          />
                         )}
                         <div className="flex items-center justify-between mt-auto pt-4 border-t border-gray-100">
                           <div className="flex items-center gap-3 text-xs text-gray-400">
