@@ -11,7 +11,7 @@ import { TextSelection } from "@tiptap/pm/state"
 import {
   Bold, Italic, Underline as UnderlineIcon, List, ListOrdered,
   Quote, Link2, AlignLeft, AlignCenter, AlignRight, Minus,
-  Heading2, Heading3, Unlink, Check, X,
+  Heading2, Heading3, Unlink, Check, X, Code2,
 } from "lucide-react"
 
 interface Props {
@@ -22,9 +22,25 @@ interface Props {
 }
 
 export default function BlogEditor({ value, onChange, minHeight = "560px", placeholder = "Write your post here…" }: Props) {
-  const [linkPopup, setLinkPopup] = useState(false)
-  const [linkUrl, setLinkUrl]     = useState("")
+  const [linkPopup, setLinkPopup]   = useState(false)
+  const [linkUrl, setLinkUrl]       = useState("")
+  const [sourceMode, setSourceMode] = useState(false)
+  const [sourceHtml, setSourceHtml] = useState("")
   const savedRange = useRef<{ from: number; to: number } | null>(null)
+
+  const toggleSource = () => {
+    if (!editor) return
+    if (!sourceMode) {
+      // entering source mode — snapshot current HTML
+      setSourceHtml(editor.getHTML())
+      setSourceMode(true)
+    } else {
+      // leaving source mode — push raw HTML into editor
+      editor.commands.setContent(sourceHtml, false)
+      onChange(sourceHtml)
+      setSourceMode(false)
+    }
+  }
 
   const editor = useEditor({
     extensions: [
@@ -216,12 +232,39 @@ export default function BlogEditor({ value, onChange, minHeight = "560px", place
 
         {/* Horizontal rule */}
         {btn(false, () => editor.chain().focus().setHorizontalRule().run(), <Minus className="w-3.5 h-3.5" />, "Horizontal rule")}
+
+        {sep()}
+
+        {/* HTML source toggle */}
+        <button
+          type="button"
+          title="Toggle HTML source"
+          onMouseDown={e => { e.preventDefault(); toggleSource() }}
+          className={`p-1.5 rounded-md transition text-xs font-mono font-bold ${
+            sourceMode
+              ? "bg-gray-900 text-white"
+              : "text-gray-500 hover:bg-gray-100 hover:text-gray-800"
+          }`}
+        >
+          <Code2 className="w-3.5 h-3.5" />
+        </button>
       </div>
 
       {/* ── Editor area ── */}
-      <div style={{ pointerEvents: linkPopup ? "none" : "auto" }}>
-        <EditorContent editor={editor} />
-      </div>
+      {sourceMode ? (
+        <textarea
+          value={sourceHtml}
+          onChange={e => setSourceHtml(e.target.value)}
+          className="w-full px-5 py-4 text-xs font-mono text-gray-700 bg-gray-50 border-0 focus:outline-none resize-none"
+          style={{ minHeight: minHeight }}
+          placeholder="Paste or edit raw HTML here, then click </> again to switch back to visual mode."
+          spellCheck={false}
+        />
+      ) : (
+        <div style={{ pointerEvents: linkPopup ? "none" : "auto" }}>
+          <EditorContent editor={editor} />
+        </div>
+      )}
 
       {/* ── Editor styles ── */}
       <style>{`
