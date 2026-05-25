@@ -8,6 +8,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: `Book a Car — ${slug} | Smapey`,
     description: `Browse available vehicles and send a booking request to ${slug}.`,
+    robots: { index: false, follow: false },
   }
 }
 
