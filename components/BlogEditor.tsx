@@ -254,7 +254,7 @@ export default function BlogEditor({ value, onChange, minHeight = "560px", place
       {sourceMode ? (
         <textarea
           value={sourceHtml}
-          onChange={e => setSourceHtml(e.target.value)}
+          onChange={e => { setSourceHtml(e.target.value); onChange(e.target.value) }}
           className="w-full px-5 py-4 text-xs font-mono text-gray-700 bg-gray-50 border-0 focus:outline-none resize-none"
           style={{ minHeight: minHeight }}
           placeholder="Paste or edit raw HTML here, then click </> again to switch back to visual mode."
