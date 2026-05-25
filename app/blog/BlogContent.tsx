@@ -10,6 +10,14 @@ import SiteNavbar from "@/components/SiteNavbar"
 
 const API = process.env.NEXT_PUBLIC_API_URL
 
+function normalizeHtml(html: string): string {
+  if (!html.includes("&lt;")) return html
+  const decoded = html
+    .replace(/&lt;/g, "<").replace(/&gt;/g, ">")
+    .replace(/&amp;/g, "&").replace(/&quot;/g, '"').replace(/&#39;/g, "'")
+  return decoded.replace(/^<p>([\s\S]*)<\/p>$/s, "$1")
+}
+
 interface Post {
   id: string
   title: string
@@ -203,7 +211,7 @@ export default function BlogContent() {
                         {post.excerpt && (
                           <div
                             className="text-sm text-gray-500 leading-relaxed mb-4 line-clamp-3 flex-1 blog-content"
-                            dangerouslySetInnerHTML={{ __html: post.excerpt }}
+                            dangerouslySetInnerHTML={{ __html: normalizeHtml(post.excerpt) }}
                           />
                         )}
                         <div className="flex items-center justify-between mt-auto pt-4 border-t border-gray-100">

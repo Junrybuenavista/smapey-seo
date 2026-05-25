@@ -83,9 +83,24 @@ function PlainContent({ content }: { content: string }) {
   )
 }
 
+// If someone typed raw HTML into the visual editor, TipTap stores the tags
+// as escaped entities (e.g. &lt;p&gt;). Decode and unwrap so it renders correctly.
+function normalizeHtml(html: string): string {
+  if (!html.includes("&lt;")) return html
+  const decoded = html
+    .replace(/&lt;/g, "<")
+    .replace(/&gt;/g, ">")
+    .replace(/&amp;/g, "&")
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;/g, "'")
+  // Strip the single outer <p>…</p> wrapper TipTap added
+  return decoded.replace(/^<p>([\s\S]*)<\/p>$/s, "$1")
+}
+
 function renderContent(content: string) {
-  const isHtml = /^<[a-z][\s\S]*>/i.test(content.trimStart())
-  return isHtml ? <RichContent html={content} /> : <PlainContent content={content} />
+  const normalized = normalizeHtml(content)
+  const isHtml = /^<[a-z][\s\S]*>/i.test(normalized.trimStart())
+  return isHtml ? <RichContent html={normalized} /> : <PlainContent content={normalized} />
 }
 
 export default function BlogPostContent({ post }: { post: Post }) {
@@ -173,7 +188,7 @@ export default function BlogPostContent({ post }: { post: Post }) {
                 {post.title}
               </h1>
               {post.excerpt && (
-                <div className="mt-4 text-white/50 text-lg leading-relaxed blog-content" dangerouslySetInnerHTML={{ __html: post.excerpt }} />
+                <div className="mt-4 text-white/50 text-lg leading-relaxed blog-content" dangerouslySetInnerHTML={{ __html: normalizeHtml(post.excerpt) }} />
               )}
               <div className="flex flex-wrap items-center gap-4 mt-6 text-white/50 text-sm">
                 <span className="flex items-center gap-1.5"><User className="w-3.5 h-3.5" /> {post.authorName}</span>
@@ -202,7 +217,7 @@ export default function BlogPostContent({ post }: { post: Post }) {
           {post.excerpt && post.coverImage && (
             <div
               className="text-xl text-gray-500 leading-relaxed mb-8 pb-8 border-b border-gray-100 font-light blog-content"
-              dangerouslySetInnerHTML={{ __html: post.excerpt }}
+              dangerouslySetInnerHTML={{ __html: normalizeHtml(post.excerpt) }}
             />
           )}
           <div className="space-y-5">
