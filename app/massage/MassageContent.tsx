@@ -1,7 +1,10 @@
 "use client"
 
+import { useState, useEffect } from "react"
 import Link from "next/link"
-import { Calendar, Users, Flower2, Globe, Inbox, BarChart3, HandHelping, HeartPulse, CheckCircle2, ChevronRight, Zap } from "lucide-react"
+import { Calendar, Users, Flower2, Globe, Inbox, BarChart3, HandHelping, HeartPulse, CheckCircle2, ChevronRight, Zap, X } from "lucide-react"
+import { usePricing, type Plan } from "@/lib/usePricing"
+import InternalLinks from "@/components/InternalLinks"
 
 const FEATURES = [
   {
@@ -48,12 +51,6 @@ const STEPS = [
   { num: "4", title: "Accept inquiries", desc: "Approve booking requests from your public page and convert them to confirmed appointments." },
 ]
 
-const PLANS = [
-  { name: "FREE", price: "Free", features: ["10 services", "30 appointments/mo", "2 team members", "Client intake forms", "Public booking page", "1 page design"] },
-  { name: "PRO", price: "$6/mo", features: ["50 services", "Unlimited appointments", "5 team members", "Therapist filters", "Deposit tracking", "Revenue reports", "3 page designs"], highlighted: true },
-  { name: "ENTERPRISE", price: "$14/mo", features: ["Unlimited everything", "Unlimited inquiries", "All 5 page designs", "Priority support"] },
-]
-
 const FAQ = [
   {
     q: "Is there a free plan?",
@@ -76,6 +73,209 @@ const FAQ = [
     a: "On the Pro plan and above, you can upload a payment QR (GCash, Maya, bank) and require a reference number before clients can submit a booking request.",
   },
 ]
+
+function Pricing() {
+  const [selectedPlan, setSelectedPlan] = useState<Plan | null>(null)
+  const { plans, isPhilippines } = usePricing("MASSAGE")
+
+  const handleSelect = (p: Plan) => {
+    if (p.planKey === "FREE") {
+      window.location.href = `${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=${p.product}&plan=FREE`
+      return
+    }
+    setSelectedPlan(p)
+  }
+
+  return (
+    <section id="pricing" className="max-w-6xl mx-auto px-6 py-20">
+      <div className="text-center mb-12">
+        <p className="text-xs uppercase tracking-widest font-bold text-emerald-600 mb-2">Pricing</p>
+        <h2 className="text-3xl md:text-4xl font-black text-slate-800 tracking-tight">Start free. Upgrade when you grow.</h2>
+        <p className="text-slate-500 mt-4">The free plan stays free forever.</p>
+
+        {isPhilippines !== null && (
+          <div className="inline-flex items-center gap-1.5 mt-4 px-3 py-1 rounded-full bg-white border border-slate-200 text-xs text-slate-500 shadow-sm">
+            <span>{isPhilippines ? "🇵🇭" : "🌍"}</span>
+            <span>Prices in <span className="font-semibold text-slate-700">{isPhilippines ? "Philippine Peso (₱)" : "US Dollar ($)"}</span></span>
+          </div>
+        )}
+      </div>
+
+      <div className="grid md:grid-cols-3 gap-6 items-center">
+        {plans.map((p) => {
+          const displayPrice = isPhilippines === null ? "..." : isPhilippines ? p.phpPrice : p.usdPrice
+          return (
+            <div key={p.name} className={`rounded-2xl p-8 border transition-all duration-300 hover:-translate-y-1 ${
+              p.highlight
+                ? "bg-gradient-to-b from-emerald-700 to-teal-900 border-emerald-500/30 shadow-2xl shadow-emerald-500/20 scale-105"
+                : "bg-white border-slate-200 shadow-sm hover:shadow-md"
+            }`}>
+              {p.highlight && (
+                <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-teal-400/20 text-teal-200 text-xs font-semibold mb-4">
+                  <Zap className="w-3 h-3" /> Most popular
+                </span>
+              )}
+              <p className={`font-bold text-lg mb-1 ${p.highlight ? "text-white" : "text-slate-800"}`}>{p.name}</p>
+              <p className={`text-sm mb-4 ${p.highlight ? "text-emerald-200/60" : "text-slate-400"}`}>{p.desc}</p>
+              <div className="flex items-end gap-1 mb-6">
+                <span className={`text-4xl font-extrabold tracking-tight ${p.highlight ? "text-white" : "text-slate-800"}`}>
+                  {displayPrice}
+                </span>
+                <span className={`text-sm mb-1 ${p.highlight ? "text-emerald-200/50" : "text-slate-400"}`}>{p.period}</span>
+              </div>
+
+              <ul className="space-y-3 mb-8">
+                {p.features.map((f) => (
+                  <li key={f} className="flex items-center gap-2.5 text-sm">
+                    <CheckCircle2 className={`w-4 h-4 shrink-0 ${p.highlight ? "text-teal-300" : "text-emerald-500"}`} />
+                    <span className={p.highlight ? "text-emerald-100/80" : "text-slate-600"}>{f}</span>
+                  </li>
+                ))}
+              </ul>
+
+              <button
+                onClick={() => handleSelect(p)}
+                className={`w-full text-center py-2.5 rounded-xl text-sm font-semibold transition-all ${
+                  p.highlight
+                    ? "bg-teal-400 hover:bg-teal-300 text-teal-900 shadow-lg shadow-teal-400/25"
+                    : "bg-emerald-600 hover:bg-emerald-500 text-white shadow-md shadow-emerald-500/20"
+                }`}
+              >
+                {p.cta}
+              </button>
+            </div>
+          )
+        })}
+      </div>
+
+      {selectedPlan && (
+        <PaymentModal
+          plan={selectedPlan}
+          isPhilippines={isPhilippines ?? false}
+          onClose={() => setSelectedPlan(null)}
+        />
+      )}
+    </section>
+  )
+}
+
+type CheckoutMethod = "paypal" | "paymongo"
+const Spinner = () => (
+  <svg className="w-4 h-4 animate-spin" viewBox="0 0 24 24" fill="none">
+    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z" />
+  </svg>
+)
+
+function PaymentModal({ plan, isPhilippines, onClose }: { plan: Plan | null; isPhilippines: boolean; onClose: () => void }) {
+  const [step, setStep] = useState<"details" | "payment">("details")
+  const [name, setName] = useState("")
+  const [email, setEmail] = useState("")
+  const [loading, setLoading] = useState<CheckoutMethod | null>(null)
+  const [token, setToken] = useState<string | null>(null)
+
+  useEffect(() => {
+    const t = localStorage.getItem("accessToken")
+    setToken(t)
+    if (t) setStep("payment")
+  }, [])
+
+  if (!plan) return null
+  const displayPrice = isPhilippines ? plan.phpPrice : plan.usdPrice
+
+  const checkout = async (method: CheckoutMethod) => {
+    try {
+      setLoading(method)
+      const endpoint = token
+        ? (method === "paypal" ? "/api/billing/subscribe/paypal" : "/api/billing/subscribe/paymongo")
+        : (method === "paypal" ? "/api/billing/newaccount/paypal" : "/api/billing/newaccount/paymongo")
+      const payload = token
+        ? { product: plan.product, plan: plan.planKey }
+        : { name, email, product: plan.product, plan: plan.planKey }
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}${endpoint}`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", ...(token ? { Authorization: `Bearer ${token}` } : {}) },
+        body: JSON.stringify(payload),
+      })
+      const data = await res.json()
+      if (!res.ok) throw new Error(data.message || JSON.stringify(data))
+      const redirectUrl = data.approveUrl || data.checkoutUrl
+      if (!redirectUrl) throw new Error("No redirect URL returned")
+      window.location.href = redirectUrl
+    } catch (err: any) {
+      alert(err?.message || "Checkout failed. Please try again.")
+    } finally {
+      setLoading(null)
+    }
+  }
+
+  const handleContinue = () => {
+    if (!name.trim() || !email.trim()) { alert("Name and email are required"); return }
+    if (!isPhilippines) { checkout("paypal") } else { setStep("payment") }
+  }
+
+  return (
+    <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+      <div className="bg-white rounded-2xl w-full max-w-md shadow-2xl overflow-hidden">
+        <div className="bg-gradient-to-r from-emerald-700 to-teal-500 px-6 py-5 flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            {step === "payment" && !token && (
+              <button onClick={() => setStep("details")} className="text-white/60 hover:text-white transition">
+                <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+              </button>
+            )}
+            <div>
+              <h2 className="text-white font-bold text-lg">{step === "details" ? "Create your account" : "Choose payment method"}</h2>
+              <p className="text-emerald-100 text-sm mt-0.5">{plan.name} plan — <span className="font-semibold">{displayPrice}</span>{plan.period}</p>
+            </div>
+          </div>
+          <button onClick={onClose} className="text-white/70 hover:text-white transition-colors"><X className="w-5 h-5" /></button>
+        </div>
+        <div className="p-6 flex flex-col gap-4">
+          {step === "details" && (
+            <>
+              <input placeholder="Full name" value={name} onChange={(e) => setName(e.target.value)} className="w-full border border-slate-200 rounded-xl px-4 py-2.5 text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-emerald-500/30 focus:border-emerald-400" />
+              <input type="email" placeholder="Email address" value={email} onChange={(e) => setEmail(e.target.value)} className="w-full border border-slate-200 rounded-xl px-4 py-2.5 text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-emerald-500/30 focus:border-emerald-400" />
+              <button onClick={handleContinue} disabled={loading !== null} className="w-full py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-sm flex items-center justify-center gap-2 transition-all disabled:opacity-60">
+                {loading ? <><Spinner /> Redirecting…</> : <>Continue <ChevronRight className="w-4 h-4" /></>}
+              </button>
+            </>
+          )}
+          {step === "payment" && (
+            <>
+              {isPhilippines && (
+                <button onClick={() => checkout("paymongo")} disabled={loading !== null} className="w-full flex items-center gap-4 px-5 py-4 border-2 border-slate-200 rounded-2xl hover:border-green-500 hover:bg-green-50 transition-all group">
+                  <div className="w-10 h-10 rounded-xl bg-green-600 flex items-center justify-center shrink-0">
+                    <svg viewBox="0 0 24 24" className="w-5 h-5 fill-white"><path d="M3 3h7v7H3zm0 11h7v7H3zm11-11h7v7h-7zm0 11h7v7h-7z"/></svg>
+                  </div>
+                  <div className="flex-1 text-left">
+                    <p className="text-sm font-semibold text-slate-800 group-hover:text-green-700">QR Ph / GCash / Card</p>
+                    <p className="text-xs text-slate-400">Philippine payment methods</p>
+                  </div>
+                  {loading === "paymongo" ? <Spinner /> : <ChevronRight className="w-4 h-4 text-slate-300 group-hover:text-green-500" />}
+                </button>
+              )}
+              <button onClick={() => checkout("paypal")} disabled={loading !== null} className="w-full flex items-center gap-4 px-5 py-4 border-2 border-slate-200 rounded-2xl hover:border-blue-500 hover:bg-blue-50 transition-all group">
+                <div className="w-10 h-10 rounded-xl bg-[#003087] flex items-center justify-center shrink-0">
+                  <svg viewBox="0 0 24 24" className="w-5 h-5 fill-white"><path d="M7.076 21.337H2.47a.641.641 0 0 1-.633-.74L4.944.901C5.026.382 5.474 0 5.998 0h7.46c2.57 0 4.578.543 5.69 1.81 1.01 1.15 1.304 2.42 1.012 4.287-.023.143-.047.288-.077.437-.983 5.05-4.349 6.797-8.647 6.797h-2.19c-.524 0-.968.382-1.05.9l-1.12 7.106zm14.146-14.42a3.35 3.35 0 0 0-.607-.541c1.379 8.883-5.43 11.61-10.377 11.61H8.23l-1.133 7.184h3.78c.458 0 .848-.332.92-.783l.038-.196.728-4.617.047-.252a.93.93 0 0 1 .919-.784h.578c3.746 0 6.678-1.522 7.534-5.927.358-1.833.173-3.363-.42-4.494z"/></svg>
+                </div>
+                <div className="flex-1 text-left">
+                  <p className="text-sm font-semibold text-slate-800 group-hover:text-blue-700">PayPal</p>
+                  <p className="text-xs text-slate-400">Pay with your PayPal account</p>
+                </div>
+                {loading === "paypal" ? <Spinner /> : <ChevronRight className="w-4 h-4 text-slate-300 group-hover:text-blue-500" />}
+              </button>
+            </>
+          )}
+          <p className="text-center text-xs text-slate-400 flex items-center justify-center gap-1">
+            <svg className="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}><rect x="3" y="11" width="18" height="11" rx="2" /><path d="M7 11V7a5 5 0 0 1 10 0v4" /></svg>
+            Secure checkout · Cancel anytime · No hidden fees
+          </p>
+        </div>
+      </div>
+    </div>
+  )
+}
 
 export default function MassageContent() {
   return (
@@ -153,35 +353,7 @@ export default function MassageContent() {
       </section>
 
       {/* PRICING */}
-      <section className="max-w-6xl mx-auto px-6 py-20">
-        <div className="text-center mb-12">
-          <p className="text-xs uppercase tracking-widest font-bold text-emerald-600 mb-2">Pricing</p>
-          <h2 className="text-3xl md:text-4xl font-black text-slate-800 tracking-tight">Start free. Upgrade when you grow.</h2>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-          {PLANS.map(p => (
-            <div key={p.name}
-              className={`rounded-2xl border p-6 ${p.highlighted ? "border-emerald-500 shadow-xl shadow-emerald-500/10" : "border-slate-200"}`}>
-              <div className="flex items-center gap-2 mb-3">
-                <p className="font-bold text-xs uppercase tracking-widest text-slate-500">{p.name}</p>
-                {p.highlighted && <span className="px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-600 text-[10px] font-bold border border-emerald-200">POPULAR</span>}
-              </div>
-              <p className="text-3xl font-black text-slate-800 mb-4">{p.price}<span className="text-sm font-normal text-slate-400">{p.price === "Free" ? "" : ""}</span></p>
-              <ul className="space-y-2 mb-6">
-                {p.features.map(f => (
-                  <li key={f} className="flex items-start gap-2 text-sm text-slate-600">
-                    <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" /> {f}
-                  </li>
-                ))}
-              </ul>
-              <Link href="/register"
-                className={`block text-center py-2.5 rounded-xl font-semibold text-sm transition ${p.highlighted ? "bg-gradient-to-tr from-emerald-500 to-teal-400 text-white shadow-md shadow-emerald-500/30 hover:opacity-90" : "border border-slate-200 text-slate-600 hover:bg-slate-50"}`}>
-                Get started
-              </Link>
-            </div>
-          ))}
-        </div>
-      </section>
+      <Pricing />
 
       {/* FAQ */}
       <section className="bg-slate-50 border-y border-slate-100">
@@ -220,6 +392,9 @@ export default function MassageContent() {
           Start Free <ChevronRight className="w-4 h-4" />
         </Link>
       </section>
+
+      {/* INTERNAL LINKS */}
+      <InternalLinks cluster="massage" currentPath="/massage" />
 
       {/* FOOTER */}
       <footer className="border-t border-slate-100 py-8">

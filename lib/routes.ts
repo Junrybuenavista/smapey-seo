@@ -4,7 +4,7 @@ export type RouteInfo = {
   desc: string
 }
 
-export type ClusterKey = "invoice" | "booking" | "gym" | "essay" | "car-rental" | "laundry" | "salon"
+export type ClusterKey = "invoice" | "booking" | "gym" | "essay" | "car-rental" | "laundry" | "salon" | "massage"
 
 export type RouteCluster = {
   label: string
@@ -144,6 +144,19 @@ export const CLUSTERS: Record<ClusterKey, RouteCluster> = {
       { path: "/salon/salon-inventory-management-app", title: "Salon Inventory Management App", desc: "Track services, pricing, and staff assignments alongside your inventory." },
     ],
   },
+
+  massage: {
+    label: "Massage & Spa",
+    hub: { path: "/massage", title: "Massage and Spa App", desc: "Manage therapists, treatments, clients, and a public booking page." },
+    pages: [
+      { path: "/massage/guide", title: "Massage App Guide", desc: "How massage and spa management software works end-to-end." },
+      { path: "/massage/massage-booking-app", title: "Massage Booking App", desc: "A simple booking app for massage businesses — therapists, services, and a branded booking page." },
+      { path: "/massage/book-a-massage-app", title: "Book a Massage App", desc: "Let your clients book a massage online — pick a therapist, time, and confirm with a deposit." },
+      { path: "/massage/massage-book-app", title: "Massage Book App", desc: "Replace your paper appointment book with a digital massage book that runs in the cloud." },
+      { path: "/massage/spa-management-app", title: "Spa Management App", desc: "Run your spa — treatments, therapists, deposits, and analytics — from one clean dashboard." },
+      { path: "/massage/massage-therapist-booking-app", title: "Massage Therapist Booking App", desc: "Per-therapist booking with specialties, schedules, and client requests." },
+    ],
+  },
 }
 
 // Back-compat: existing usages of SEO_ROUTES expect bare invoice slugs.
@@ -159,6 +172,7 @@ export const ALL_CLUSTERS: ClusterKey[] = [
   "car-rental",
   "laundry",
   "salon",
+  "massage",
 ]
 
 export function clusterForPath(pathname: string): ClusterKey | null {
