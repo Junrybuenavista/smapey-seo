@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from "react"
 import Link from "next/link"
 import {
   FileText, Dumbbell, BookOpen, CalendarDays, Car, Shirt, Scissors,
+  CalendarPlus,
   ArrowRight, CheckCircle2, Zap, Shield, TrendingUp,
   Clock, ChevronDown, Menu, X, Users, Sparkles,
   MousePointerClick, LayoutDashboard, Star,
@@ -104,6 +105,19 @@ const PRODUCTS = [
     Icon: Scissors,
     features: ["Appointment scheduling", "Client profiles & history", "Public booking page", "Revenue dashboard"],
     stat: { value: "50%", label: "less time on admin" },
+  },
+  {
+    key: "MASSAGE",
+    name: "Massage and Spa",
+    tagline: "Relax your clients. Run your spa.",
+    desc: "Manage therapists, treatments, intake forms, and deposits — with a public booking page where clients can request their favorite therapist.",
+    href: "/massage",
+    register: `${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=MASSAGE&plan=FREE`,
+    accent: "#10b981",
+    accentLight: "#ecfdf5",
+    Icon: CalendarPlus,
+    features: ["Therapist assignment", "Client intake & health notes", "Deposit QR codes", "Public booking page"],
+    stat: { value: "30%", label: "more repeat clients" },
   },
 ]
 
@@ -515,7 +529,7 @@ function Products() {
         <Reveal>
           <p className="text-xs font-bold tracking-widest uppercase text-gray-400 mb-3">Our products</p>
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 tracking-tight leading-tight max-w-2xl">
-            Seven tools. Every small business covered.
+            Eight tools. Every small business covered.
           </h2>
           <p className="mt-4 text-lg text-gray-500 max-w-xl">
             Pick the one you need today. Each product is fully standalone — no bundles, no bloat, no paying for things you don't use.
