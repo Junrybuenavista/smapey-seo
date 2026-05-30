@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from "react"
 import Link from "next/link"
 import {
   FileText, Dumbbell, BookOpen, CalendarDays, Car, Shirt, Scissors,
-  CalendarPlus, Home, Landmark,
+  CalendarPlus, Home, Landmark, UtensilsCrossed,
   ArrowRight, CheckCircle2, Zap, Shield, TrendingUp,
   Clock, ChevronDown, Menu, X, Users, Sparkles,
   MousePointerClick, LayoutDashboard, Star,
@@ -145,6 +145,19 @@ const PRODUCTS = [
     features: ["Borrower profiles & history", "Auto amortization schedules", "Cash / GCash / bank payments", "Overdue & collections analytics"],
     stat: { value: "0", label: "missed dues" },
   },
+  {
+    key: "RESTAURANT",
+    name: "Food Ordering Manager",
+    tagline: "Serve every table, track every order.",
+    desc: "Build your menu, take dine-in and takeaway orders, manage the kitchen queue, and review daily sales — all in one clean dashboard built for small restaurants and cafés.",
+    href: "/restaurant",
+    register: `${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=RESTAURANT&plan=FREE`,
+    accent: "#f97316",
+    accentLight: "#fff7ed",
+    Icon: UtensilsCrossed,
+    features: ["Menu builder with categories", "Dine-in & takeaway orders", "Kitchen order queue", "Daily sales summary"],
+    stat: { value: "< 1 min", label: "to place an order" },
+  },
 ]
 
 const STATS = [
@@ -165,6 +178,7 @@ const FOR_WHO = [
   { emoji: "🏪", label: "Small Retailers" },
   { emoji: "🧺", label: "Laundry Shop Owners" },
   { emoji: "🏠", label: "Airbnb Hosts" },
+  { emoji: "🍽️", label: "Food & Café Owners" },
 ]
 
 const STEPS = [
@@ -350,7 +364,7 @@ function Hero() {
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
             <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400" />
           </span>
-          <span className="text-xs font-medium text-white/70 tracking-wide">9 tools live · built for small businesses</span>
+          <span className="text-xs font-medium text-white/70 tracking-wide">10 tools live · built for small businesses</span>
         </div>
 
         {/* HEADLINE */}
@@ -563,7 +577,7 @@ function Products() {
         <Reveal>
           <p className="text-xs font-bold tracking-widest uppercase text-gray-400 mb-3">Our products</p>
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 tracking-tight leading-tight max-w-2xl">
-            Nine tools. Every small business covered.
+            Ten tools. Every small business covered.
           </h2>
           <p className="mt-4 text-lg text-gray-500 max-w-xl">
             Pick the one you need today. Each product is fully standalone — no bundles, no bloat, no paying for things you don't use.

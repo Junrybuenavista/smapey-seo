@@ -4,7 +4,7 @@ export type RouteInfo = {
   desc: string
 }
 
-export type ClusterKey = "invoice" | "booking" | "gym" | "essay" | "car-rental" | "laundry" | "salon" | "massage" | "airbnb" | "lending"
+export type ClusterKey = "invoice" | "booking" | "gym" | "essay" | "car-rental" | "laundry" | "salon" | "massage" | "airbnb" | "lending" | "restaurant"
 
 export type RouteCluster = {
   label: string
@@ -183,6 +183,19 @@ export const CLUSTERS: Record<ClusterKey, RouteCluster> = {
       { path: "/lending/online-lending-apps-philippines", title: "Online Lending Apps Philippines", desc: "Run your online lending business in the Philippines — borrowers, amortization, and collections online." },
     ],
   },
+
+  restaurant: {
+    label: "Food Ordering",
+    hub: { path: "/restaurant", title: "Food Ordering Manager", desc: "Manage your menu, orders, kitchen queue, and daily sales — everything a small restaurant or café needs in one dashboard." },
+    pages: [
+      { path: "/restaurant/guide", title: "Restaurant Software Guide", desc: "How restaurant management software works — menu setup, order flow, kitchen view, and daily reporting end to end." },
+      { path: "/restaurant/restaurant-management-software", title: "Restaurant Management Software", desc: "All-in-one software to run your restaurant — menu, orders, kitchen queue, and sales summary in one clean dashboard." },
+      { path: "/restaurant/food-ordering-system", title: "Food Ordering System", desc: "A simple food ordering system for small restaurants and cafés — dine-in, takeaway, and QR table ordering." },
+      { path: "/restaurant/restaurant-pos-system", title: "Restaurant POS System", desc: "A lightweight POS system for restaurants that handles orders, payments, and daily sales without the enterprise price tag." },
+      { path: "/restaurant/online-ordering-system", title: "Online Ordering System for Restaurants", desc: "Let customers order online via a QR code or link — no third-party app, no commission fees, just direct orders." },
+      { path: "/restaurant/free-restaurant-management-software", title: "Free Restaurant Management Software", desc: "Run your restaurant on a free plan — menu builder, order tracking, and sales summary at no cost." },
+    ],
+  },
 }
 
 // Back-compat: existing usages of SEO_ROUTES expect bare invoice slugs.
@@ -201,6 +214,7 @@ export const ALL_CLUSTERS: ClusterKey[] = [
   "massage",
   "airbnb",
   "lending",
+  "restaurant",
 ]
 
 export function clusterForPath(pathname: string): ClusterKey | null {
