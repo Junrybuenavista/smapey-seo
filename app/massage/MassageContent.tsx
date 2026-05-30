@@ -74,16 +74,19 @@ const STEPS = [
   { num: "04", title: "Accept inquiries", desc: "Approve booking requests from your public page and convert them into confirmed appointments." },
 ]
 
-const COMPARISON = [
-  { feature: "Appointments / month", free: "50", pro: "Unlimited", enterprise: "Unlimited" },
-  { feature: "Treatments in catalog", free: "10", pro: "50", enterprise: "Unlimited" },
-  { feature: "Therapists", free: "2", pro: "5", enterprise: "Unlimited" },
+const FEATURE_ROWS = [
   { feature: "Client intake & health notes", free: true, pro: true, enterprise: true },
   { feature: "Public booking page", free: true, pro: true, enterprise: true },
   { feature: "Deposit QR codes", free: false, pro: true, enterprise: true },
-  { feature: "Page themes", free: "1", pro: "3", enterprise: "5" },
   { feature: "Priority support", free: false, pro: false, enterprise: true },
 ]
+
+function limitDisplay(plan: Plan | undefined, key: string): string {
+  if (!plan) return "…"
+  const val = plan.limits?.[key]
+  if (val === -1 || val === null || val === undefined) return "Unlimited"
+  return String(val)
+}
 
 const FAQS = [
   {
@@ -297,10 +300,17 @@ function HowItWorks() {
 
 function ComparisonTable() {
   const { plans, isPhilippines } = usePricing("MASSAGE")
+  const freePlan = plans.find(p => p.planKey === "FREE")
   const proPlan = plans.find(p => p.planKey === "PRO")
   const entPlan = plans.find(p => p.planKey === "ENTERPRISE")
   const proPrice = isPhilippines === null ? "…" : isPhilippines ? proPlan?.phpPrice : proPlan?.usdPrice
   const entPrice = isPhilippines === null ? "…" : isPhilippines ? entPlan?.phpPrice : entPlan?.usdPrice
+
+  const limitRows = [
+    { feature: "Appointments / month", key: "appointments" },
+    { feature: "Treatments in catalog", key: "services" },
+    { feature: "Therapists", key: "users" },
+  ]
 
   return (
     <section className="py-24 bg-slate-50">
@@ -322,18 +332,26 @@ function ComparisonTable() {
                 </tr>
               </thead>
               <tbody>
-                {COMPARISON.map((row, i) => (
-                  <tr key={row.feature} className={`border-b border-slate-100 ${i % 2 === 0 ? "bg-white" : "bg-slate-50/50"}`}>
+                {limitRows.map(({ feature, key }, i) => (
+                  <tr key={feature} className={`border-b border-slate-100 ${i % 2 === 0 ? "bg-white" : "bg-slate-50/50"}`}>
+                    <td className="px-6 py-4 text-slate-700 font-medium">{feature}</td>
+                    <td className="text-center px-6 py-4"><span className="text-slate-700 font-medium">{limitDisplay(freePlan, key)}</span></td>
+                    <td className="text-center px-6 py-4 bg-emerald-50/50"><span className="text-slate-700 font-medium">{limitDisplay(proPlan, key)}</span></td>
+                    <td className="text-center px-6 py-4"><span className="text-slate-700 font-medium">{limitDisplay(entPlan, key)}</span></td>
+                  </tr>
+                ))}
+                <tr className={`border-b border-slate-100 ${limitRows.length % 2 === 0 ? "bg-white" : "bg-slate-50/50"}`}>
+                  <td className="px-6 py-4 text-slate-700 font-medium">Page themes</td>
+                  <td className="text-center px-6 py-4"><span className="text-slate-700 font-medium">1</span></td>
+                  <td className="text-center px-6 py-4 bg-emerald-50/50"><span className="text-slate-700 font-medium">3</span></td>
+                  <td className="text-center px-6 py-4"><span className="text-slate-700 font-medium">5</span></td>
+                </tr>
+                {FEATURE_ROWS.map((row, i) => (
+                  <tr key={row.feature} className={`border-b border-slate-100 ${(limitRows.length + 1 + i) % 2 === 0 ? "bg-white" : "bg-slate-50/50"}`}>
                     <td className="px-6 py-4 text-slate-700 font-medium">{row.feature}</td>
                     {[row.free, row.pro, row.enterprise].map((val, j) => (
                       <td key={j} className={`text-center px-6 py-4 ${j === 1 ? "bg-emerald-50/50" : ""}`}>
-                        {typeof val === "boolean" ? (
-                          val
-                            ? <CheckCircle2 className="w-5 h-5 text-emerald-500 mx-auto" />
-                            : <XCircle className="w-5 h-5 text-slate-300 mx-auto" />
-                        ) : (
-                          <span className="text-slate-700 font-medium">{val}</span>
-                        )}
+                        {val ? <CheckCircle2 className="w-5 h-5 text-emerald-500 mx-auto" /> : <XCircle className="w-5 h-5 text-slate-300 mx-auto" />}
                       </td>
                     ))}
                   </tr>

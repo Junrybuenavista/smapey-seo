@@ -74,10 +74,7 @@ const STEPS = [
   { num: "04", title: "Track check-ins and revenue", desc: "Confirm arrivals, mark checkouts, log payments, and watch your monthly revenue and occupancy rate update in real time." },
 ]
 
-const COMPARISON = [
-  { feature: "Properties listed", free: "3", pro: "10", enterprise: "Unlimited" },
-  { feature: "Reservations / month", free: "20", pro: "Unlimited", enterprise: "Unlimited" },
-  { feature: "Team users", free: "1", pro: "3", enterprise: "Unlimited" },
+const FEATURE_ROWS = [
   { feature: "Guest profiles", free: true, pro: true, enterprise: true },
   { feature: "Photo upload per property", free: true, pro: true, enterprise: true },
   { feature: "Double-booking protection", free: true, pro: true, enterprise: true },
@@ -85,6 +82,13 @@ const COMPARISON = [
   { feature: "Revenue & occupancy analytics", free: true, pro: true, enterprise: true },
   { feature: "Priority support", free: false, pro: false, enterprise: true },
 ]
+
+function limitDisplay(plan: Plan | undefined, key: string): string {
+  if (!plan) return "…"
+  const val = plan.limits?.[key]
+  if (val === -1 || val === null || val === undefined) return "Unlimited"
+  return String(val)
+}
 
 const FAQS = [
   {
@@ -298,10 +302,17 @@ function HowItWorks() {
 
 function ComparisonTable() {
   const { plans, isPhilippines } = usePricing("AIRBNB")
+  const freePlan = plans.find(p => p.planKey === "FREE")
   const proPlan = plans.find(p => p.planKey === "PRO")
   const entPlan = plans.find(p => p.planKey === "ENTERPRISE")
   const proPrice = isPhilippines === null ? "…" : isPhilippines ? proPlan?.phpPrice : proPlan?.usdPrice
   const entPrice = isPhilippines === null ? "…" : isPhilippines ? entPlan?.phpPrice : entPlan?.usdPrice
+
+  const limitRows = [
+    { feature: "Properties listed", key: "properties" },
+    { feature: "Reservations / month", key: "reservations" },
+    { feature: "Team users", key: "users" },
+  ]
 
   return (
     <section className="py-24 bg-slate-50">
@@ -323,18 +334,20 @@ function ComparisonTable() {
                 </tr>
               </thead>
               <tbody>
-                {COMPARISON.map((row, i) => (
-                  <tr key={row.feature} className={`border-b border-slate-100 ${i % 2 === 0 ? "bg-white" : "bg-slate-50/50"}`}>
+                {limitRows.map(({ feature, key }, i) => (
+                  <tr key={feature} className={`border-b border-slate-100 ${i % 2 === 0 ? "bg-white" : "bg-slate-50/50"}`}>
+                    <td className="px-6 py-4 text-slate-700 font-medium">{feature}</td>
+                    <td className="text-center px-6 py-4"><span className="text-slate-700 font-medium">{limitDisplay(freePlan, key)}</span></td>
+                    <td className="text-center px-6 py-4 bg-sky-50/50"><span className="text-slate-700 font-medium">{limitDisplay(proPlan, key)}</span></td>
+                    <td className="text-center px-6 py-4"><span className="text-slate-700 font-medium">{limitDisplay(entPlan, key)}</span></td>
+                  </tr>
+                ))}
+                {FEATURE_ROWS.map((row, i) => (
+                  <tr key={row.feature} className={`border-b border-slate-100 ${(limitRows.length + i) % 2 === 0 ? "bg-white" : "bg-slate-50/50"}`}>
                     <td className="px-6 py-4 text-slate-700 font-medium">{row.feature}</td>
                     {[row.free, row.pro, row.enterprise].map((val, j) => (
                       <td key={j} className={`text-center px-6 py-4 ${j === 1 ? "bg-sky-50/50" : ""}`}>
-                        {typeof val === "boolean" ? (
-                          val
-                            ? <CheckCircle2 className="w-5 h-5 text-sky-500 mx-auto" />
-                            : <XCircle className="w-5 h-5 text-slate-300 mx-auto" />
-                        ) : (
-                          <span className="text-slate-700 font-medium">{val}</span>
-                        )}
+                        {val ? <CheckCircle2 className="w-5 h-5 text-sky-500 mx-auto" /> : <XCircle className="w-5 h-5 text-slate-300 mx-auto" />}
                       </td>
                     ))}
                   </tr>

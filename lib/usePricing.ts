@@ -13,6 +13,7 @@ export interface Plan {
   features:  string[]
   cta:       string
   highlight: boolean
+  limits:    Record<string, any> | null
 }
 
 interface ApiPlan {
@@ -26,6 +27,7 @@ interface ApiPlan {
   features:      string[] | null
   ctaLabel:      string | null
   highlighted:   boolean
+  limits:        Record<string, any> | null
 }
 
 const formatUsd = (n: number) => n === 0 ? "$0" : `$${n}`
@@ -42,6 +44,7 @@ const toLegacy = (p: ApiPlan): Plan => ({
   features:  p.features ?? [],
   cta:       p.ctaLabel ?? (p.name === "FREE" ? "Get started free" : `Start ${p.displayName ?? p.name}`),
   highlight: p.highlighted,
+  limits:    p.limits ?? null,
 })
 
 /**

@@ -74,15 +74,19 @@ const STEPS = [
   },
 ]
 
-const COMPARISON = [
-  { feature: "Appointments / month", free: "50", pro: "Unlimited", enterprise: "Unlimited" },
-  { feature: "Services", free: "5", pro: "20", enterprise: "Unlimited" },
-  { feature: "Team members", free: "2", pro: "5", enterprise: "Unlimited" },
+const FEATURE_ROWS = [
   { feature: "Public booking page", free: true, pro: true, enterprise: true },
   { feature: "Inquiry management", free: true, pro: true, enterprise: true },
   { feature: "Analytics dashboard", free: true, pro: true, enterprise: true },
   { feature: "Priority support", free: false, pro: false, enterprise: true },
 ]
+
+function limitDisplay(plan: Plan | undefined, key: string): string {
+  if (!plan) return "…"
+  const val = plan.limits?.[key]
+  if (val === -1 || val === null || val === undefined) return "Unlimited"
+  return String(val)
+}
 
 const FAQS = [
   {
@@ -391,6 +395,70 @@ function HowItWorks() {
             </Animate>
           ))}
         </div>
+      </div>
+    </section>
+  )
+}
+
+//////////////////////////////////////////////////////
+// COMPARISON TABLE
+//////////////////////////////////////////////////////
+function ComparisonTable() {
+  const { plans, isPhilippines } = usePricing("SALON")
+  const freePlan = plans.find(p => p.planKey === "FREE")
+  const proPlan = plans.find(p => p.planKey === "PRO")
+  const entPlan = plans.find(p => p.planKey === "ENTERPRISE")
+  const proPrice = isPhilippines === null ? "…" : isPhilippines ? proPlan?.phpPrice : proPlan?.usdPrice
+  const entPrice = isPhilippines === null ? "…" : isPhilippines ? entPlan?.phpPrice : entPlan?.usdPrice
+
+  const limitRows = [
+    { feature: "Appointments / month", key: "appointments" },
+    { feature: "Services", key: "services" },
+    { feature: "Team members", key: "users" },
+  ]
+
+  return (
+    <section className="py-24 bg-slate-50">
+      <div className="max-w-4xl mx-auto px-6">
+        <Animate className="text-center mb-16">
+          <p className="text-pink-600 text-sm font-semibold uppercase tracking-widest mb-3">Compare plans</p>
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-800 tracking-tight">Free vs. paid plans</h2>
+          <p className="text-slate-500 mt-4">Start free and upgrade only when your salon grows.</p>
+        </Animate>
+        <Animate>
+          <div className="overflow-x-auto rounded-2xl border border-slate-200 shadow-sm bg-white">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="border-b border-slate-200">
+                  <th className="text-left px-6 py-4 text-slate-500 font-medium">Feature</th>
+                  <th className="text-center px-6 py-4 text-slate-800 font-bold">Free</th>
+                  <th className="text-center px-6 py-4 text-pink-700 font-bold bg-pink-50">Pro <span className="text-xs text-pink-400 font-normal">{proPrice}/mo</span></th>
+                  <th className="text-center px-6 py-4 text-slate-800 font-bold">Enterprise <span className="text-xs text-slate-400 font-normal">{entPrice}/mo</span></th>
+                </tr>
+              </thead>
+              <tbody>
+                {limitRows.map(({ feature, key }, i) => (
+                  <tr key={feature} className={`border-b border-slate-100 ${i % 2 === 0 ? "bg-white" : "bg-slate-50/50"}`}>
+                    <td className="px-6 py-4 text-slate-700 font-medium">{feature}</td>
+                    <td className="text-center px-6 py-4"><span className="text-slate-700 font-medium">{limitDisplay(freePlan, key)}</span></td>
+                    <td className="text-center px-6 py-4 bg-pink-50/50"><span className="text-slate-700 font-medium">{limitDisplay(proPlan, key)}</span></td>
+                    <td className="text-center px-6 py-4"><span className="text-slate-700 font-medium">{limitDisplay(entPlan, key)}</span></td>
+                  </tr>
+                ))}
+                {FEATURE_ROWS.map((row, i) => (
+                  <tr key={row.feature} className={`border-b border-slate-100 ${(limitRows.length + i) % 2 === 0 ? "bg-white" : "bg-slate-50/50"}`}>
+                    <td className="px-6 py-4 text-slate-700 font-medium">{row.feature}</td>
+                    {[row.free, row.pro, row.enterprise].map((val, j) => (
+                      <td key={j} className={`text-center px-6 py-4 ${j === 1 ? "bg-pink-50/50" : ""}`}>
+                        {val ? <CheckCircle2 className="w-5 h-5 text-pink-500 mx-auto" /> : <XCircle className="w-5 h-5 text-slate-300 mx-auto" />}
+                      </td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </Animate>
       </div>
     </section>
   )
@@ -769,6 +837,7 @@ export default function SalonContent() {
       <SalonVideo />
       <Features />
       <HowItWorks />
+      <ComparisonTable />
       <Pricing />
       <FAQ />
       <CTA />

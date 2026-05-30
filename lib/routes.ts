@@ -4,7 +4,7 @@ export type RouteInfo = {
   desc: string
 }
 
-export type ClusterKey = "invoice" | "booking" | "gym" | "essay" | "car-rental" | "laundry" | "salon" | "massage" | "airbnb" | "lending" | "restaurant"
+export type ClusterKey = "invoice" | "booking" | "gym" | "essay" | "car-rental" | "laundry" | "salon" | "massage" | "airbnb" | "lending" | "restaurant" | "store"
 
 export type RouteCluster = {
   label: string
@@ -181,6 +181,19 @@ export const CLUSTERS: Record<ClusterKey, RouteCluster> = {
       { path: "/lending/lending-money-apps-philippines", title: "Lending Money Apps Philippines", desc: "The lending money app for Filipino lenders to issue loans and track repayments with ease." },
       { path: "/lending/legit-loan-app-philippines", title: "Legit Loan App Philippines", desc: "A legit, professional loan management app for registered lending businesses in the Philippines." },
       { path: "/lending/online-lending-apps-philippines", title: "Online Lending Apps Philippines", desc: "Run your online lending business in the Philippines — borrowers, amortization, and collections online." },
+    ],
+  },
+
+  store: {
+    label: "Inventory & POS",
+    hub: { path: "/store", title: "Inventory & POS Manager", desc: "Track stock, ring up sales on a tap-to-add POS, manage suppliers, and monitor daily revenue — everything a small retail store needs in one dashboard." },
+    pages: [
+      { path: "/store/guide",                                          title: "Store Manager Guide",                          desc: "How to add products, set up suppliers, ring up sales on the POS, and track daily revenue end to end." },
+      { path: "/store/inventory-management-system",                    title: "Inventory Management System",                  desc: "A free inventory management system for small stores — stock tracking, low stock alerts, POS, and analytics." },
+      { path: "/store/inventory-management-systems",                   title: "Inventory Management Systems",                 desc: "What inventory management systems do and why Smapey is the right fit for small retailers." },
+      { path: "/store/inventory-management-system-philippines",        title: "Inventory Management System Philippines",      desc: "Free inventory management system for Philippine sari-sari stores, retail shops, and mini groceries." },
+      { path: "/store/free-inventory-management-system",               title: "Free Inventory Management System",             desc: "Permanently free inventory management — 50 products, 200 sales per month, full POS included." },
+      { path: "/store/inventory-management-system-examples",           title: "Inventory Management System Examples",         desc: "Real-world examples of how sari-sari stores, boutiques, and hardware shops use inventory management systems." },
     ],
   },
 

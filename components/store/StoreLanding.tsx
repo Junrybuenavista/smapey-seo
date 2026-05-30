@@ -2,84 +2,88 @@
 
 import { useState, useEffect, useRef } from "react"
 import {
-  Landmark, Users, CalendarRange, BarChart3, Wallet, Percent,
-  HandCoins, CheckCircle2, ChevronRight, Menu, X, Zap, XCircle, AlertTriangle,
+  Package, ScanLine, BarChart3, AlertCircle, Truck,
+  ClipboardList, RefreshCw, Users, CheckCircle2,
+  ChevronRight, Menu, X, Zap, XCircle,
 } from "lucide-react"
 import { usePricing, type Plan } from "@/lib/usePricing"
 import InternalLinks from "@/components/InternalLinks"
 
 const FEATURES = [
   {
-    icon: Users,
-    title: "Borrower Profiles",
-    desc: "Build a complete borrower database with contact details, ID info, and notes. Every borrower's loan history, total borrowed, and outstanding balance update automatically.",
-    color: "from-slate-600 to-slate-800",
-    shadow: "shadow-slate-700/30",
+    icon: Package,
+    title: "Product Catalog",
+    desc: "Add products with names, SKUs, barcodes, selling prices, cost prices, and photos. Organize by category and link each item to a supplier. Toggle active or inactive any time.",
+    color: "from-violet-600 to-purple-500",
+    shadow: "shadow-violet-500/30",
   },
   {
-    icon: HandCoins,
-    title: "Loan Issuance",
-    desc: "Issue a loan in seconds — set the principal, interest rate, term, and start date. The system records everything and links it to the borrower's profile.",
-    color: "from-slate-600 to-slate-800",
-    shadow: "shadow-slate-700/30",
+    icon: ScanLine,
+    title: "Point of Sale (POS)",
+    desc: "Tap a product to add it to the cart, adjust quantities by typing or using +/− buttons, apply a discount, choose a payment method, enter cash tendered, and the change calculates automatically.",
+    color: "from-violet-600 to-purple-500",
+    shadow: "shadow-violet-500/30",
   },
   {
-    icon: CalendarRange,
-    title: "Amortization Schedules",
-    desc: "Auto-generate a full repayment schedule with due dates and amounts the moment a loan is created. No spreadsheets, no manual math — every installment is laid out for you.",
-    color: "from-slate-600 to-slate-800",
-    shadow: "shadow-slate-700/30",
+    icon: AlertCircle,
+    title: "Low Stock Alerts",
+    desc: "Set a reorder threshold for any product. When stock drops at or below that level, an alert appears on your dashboard so you can restock before you run out.",
+    color: "from-violet-600 to-purple-500",
+    shadow: "shadow-violet-500/30",
   },
   {
-    icon: Wallet,
-    title: "Payment Tracking",
-    desc: "Record repayments by Cash, GCash, or Bank Transfer. Handle partial payments, and watch each loan's outstanding balance drop in real time as borrowers pay.",
-    color: "from-slate-600 to-slate-800",
-    shadow: "shadow-slate-700/30",
+    icon: Truck,
+    title: "Supplier Management",
+    desc: "Keep a contact list of your suppliers — name, contact person, phone, email, and address. Link products to suppliers so you always know who to call when stock runs low.",
+    color: "from-violet-600 to-purple-500",
+    shadow: "shadow-violet-500/30",
   },
   {
-    icon: AlertTriangle,
-    title: "Overdue & Collections",
-    desc: "Loans with missed due dates are flagged automatically. See who's late, how much they owe, and how many days overdue — so you can follow up before it becomes a bad debt.",
-    color: "from-slate-600 to-slate-800",
-    shadow: "shadow-slate-700/30",
+    icon: RefreshCw,
+    title: "Stock Adjustments",
+    desc: "Log restocks and manual adjustments with a reason and quantity. Every movement is recorded so you have a full audit trail of how stock levels changed over time.",
+    color: "from-violet-600 to-purple-500",
+    shadow: "shadow-violet-500/30",
   },
   {
-    icon: Percent,
-    title: "Interest & Fees",
-    desc: "Set the interest rate per loan and let the system compute totals and installment amounts. Your terms, applied consistently across every loan you issue.",
-    color: "from-slate-600 to-slate-800",
-    shadow: "shadow-slate-700/30",
-  },
-  {
-    icon: CheckCircle2,
-    title: "Loan Lifecycle",
-    desc: "Move every loan through a clear status — Active, Fully Paid, or Defaulted. Know exactly where your portfolio stands at any moment, no guesswork.",
-    color: "from-slate-600 to-slate-800",
-    shadow: "shadow-slate-700/30",
+    icon: ClipboardList,
+    title: "Sales History",
+    desc: "Every completed sale is logged with its items, totals, payment method, and sale number. Filter by date or method, open any sale to view the full breakdown, or void it if needed.",
+    color: "from-violet-600 to-purple-500",
+    shadow: "shadow-violet-500/30",
   },
   {
     icon: BarChart3,
-    title: "Lending Analytics",
-    desc: "A live dashboard with monthly collections, total outstanding, repayment rate, default rate, and a 6-month collections-vs-disbursed chart — so you always know how your lending business is performing.",
-    color: "from-slate-600 to-slate-800",
-    shadow: "shadow-slate-700/30",
+    title: "Sales Analytics",
+    desc: "7-day revenue trend, top-selling products, payment method breakdown, and plan usage on one analytics screen. All charts refresh automatically with every new sale.",
+    color: "from-violet-600 to-purple-500",
+    shadow: "shadow-violet-500/30",
+  },
+  {
+    icon: Users,
+    title: "Team Access",
+    desc: "Invite staff as Admin or Member and control which features each role can access — cashier staff get POS access, managers get analytics and product management.",
+    color: "from-violet-600 to-purple-500",
+    shadow: "shadow-violet-500/30",
   },
 ]
 
 const STEPS = [
-  { num: "01", title: "Add your borrowers", desc: "Record each borrower once with their contact info and ID details. Their loan history and balance follow them across every future loan automatically." },
-  { num: "02", title: "Issue a loan", desc: "Pick a borrower, set the principal, interest rate, and term — and the amortization schedule generates itself with every due date and amount." },
-  { num: "03", title: "Track repayments", desc: "Log each payment by Cash, GCash, or Bank Transfer. Partial payments are supported and the outstanding balance updates instantly." },
-  { num: "04", title: "Monitor collections", desc: "Spot overdue loans, follow up on collections, and watch your monthly collections, repayment rate, and outstanding balance in real time." },
+  { num: "01", title: "Add your products", desc: "Create categories first — beverages, snacks, cleaning supplies — then add products with price, cost, stock, and a reorder threshold. Upload a photo if you want visual reference at the POS." },
+  { num: "02", title: "Set up suppliers", desc: "Add your regular suppliers and link products to them. When stock runs low and an alert fires, you know exactly who to contact to restock." },
+  { num: "03", title: "Ring up sales on POS", desc: "Open POS, tap products to add them to the cart, adjust quantity, enter a discount if needed, select payment method, and complete the sale. Cash change is calculated automatically." },
+  { num: "04", title: "Track sales & manage stock", desc: "Your dashboard shows today's revenue, total sales, and low stock items at a glance. The Analytics page shows your 7-day revenue trend and top-selling products." },
 ]
 
-const FEATURE_ROWS = [
-  { feature: "Amortization schedules", free: true, pro: true, enterprise: true },
-  { feature: "Payment tracking (Cash / GCash / Bank)", free: true, pro: true, enterprise: true },
-  { feature: "Overdue & collections tracking", free: true, pro: true, enterprise: true },
-  { feature: "Analytics dashboard", free: true, pro: true, enterprise: true },
-  { feature: "Priority support", free: false, pro: false, enterprise: true },
+const FEATURE_ROWS: { feature: string; free: true | false; pro: true | false; enterprise: true | false }[] = [
+  { feature: "Categories & suppliers",     free: true,  pro: true,  enterprise: true  },
+  { feature: "Product images & SKU",       free: true,  pro: true,  enterprise: true  },
+  { feature: "POS with payment methods",   free: true,  pro: true,  enterprise: true  },
+  { feature: "Low stock alerts",           free: true,  pro: true,  enterprise: true  },
+  { feature: "Stock adjustments & logs",   free: true,  pro: true,  enterprise: true  },
+  { feature: "Sales history & voiding",    free: true,  pro: true,  enterprise: true  },
+  { feature: "Analytics & revenue trends", free: true,  pro: true,  enterprise: true  },
+  { feature: "Priority support",           free: false, pro: false, enterprise: true  },
 ]
 
 function limitDisplay(plan: Plan | undefined, key: string): string {
@@ -91,24 +95,24 @@ function limitDisplay(plan: Plan | undefined, key: string): string {
 
 const FAQS = [
   {
-    q: "Is this a loan app for borrowers, or for lenders?",
-    a: "It's for lenders. Smapey Lending is the software you use to run your own lending business — issuing loans, tracking borrowers, and managing repayments. It is not a place to borrow money; it's the system that lending businesses and individual lenders use to manage the money they lend out.",
+    q: "Can I track inventory with the free plan?",
+    a: "Yes. The free plan includes up to 50 products with full stock tracking — reorder thresholds, low stock alerts, stock adjustment logs, and supplier links. You only need to upgrade when your product count or sales volume grows.",
   },
   {
     q: "Is there really a free plan?",
-    a: "Yes. The free plan includes up to 20 borrowers, 30 active loans, amortization schedules, payment tracking, and the full analytics dashboard — no credit card required, no trial timer. Upgrade only when your portfolio grows.",
+    a: "Yes — permanently free, not a trial. The free plan includes 50 products, 200 sales per month, the full POS, stock adjustments, low stock alerts, and 2 team members. No credit card required.",
   },
   {
-    q: "Does it calculate the amortization schedule automatically?",
-    a: "Yes. The moment you create a loan with a principal, interest rate, and term, the system generates a complete repayment schedule — every due date and installment amount — so you never have to compute it by hand.",
+    q: "How does the POS work?",
+    a: "Open the POS screen, tap any product to add it to the cart, type or use +/− to change quantities. Apply a discount if needed, choose Cash, GCash, Maya, Bank, or Other as the payment method. For cash, enter the amount tendered and the change is calculated instantly. Tap Checkout to complete the sale and deduct stock.",
   },
   {
-    q: "Can I record GCash and bank transfer payments?",
-    a: "Yes. Every payment can be logged as Cash, GCash, or Bank Transfer. Partial payments are supported, and each loan's outstanding balance updates the instant you record a payment.",
+    q: "Does it automatically deduct stock when I make a sale?",
+    a: "Yes. Every time you complete a sale through the POS, the stock for each product in the cart is reduced automatically. If you void a sale later, the stock is restored.",
   },
   {
-    q: "How does overdue and collections tracking work?",
-    a: "Loans with a missed due date are flagged automatically. Your dashboard shows who is late, how much they owe, and how many days overdue — so you can follow up early and keep your default rate low.",
+    q: "What payment methods does the POS support?",
+    a: "Cash (with automatic change calculation), GCash, Maya, Bank transfer, and Other. You choose the method at checkout — it's recorded on the sale and shown in your payment method analytics breakdown.",
   },
 ]
 
@@ -141,10 +145,8 @@ function Animate({ children, className = "", delay = 0 }: { children: React.Reac
   )
 }
 
-export type LendingVariant = {
-  /** Canonical path of the page rendering this component, e.g. "/lending" or "/lending/loan-app-philippines" */
+export type StoreVariant = {
   currentPath: string
-  /** "anchors" = hub page (in-page section links); "page" = keyword page (links back to hub) */
   navMode: "anchors" | "page"
   hero: {
     badge: string
@@ -163,8 +165,13 @@ export type LendingVariant = {
   }
 }
 
-function Navbar({ variant }: { variant: LendingVariant }) {
-  const [open, setOpen] = useState(false)
+const BG         = "#04010f"
+const BG_CARD    = "rgba(255,255,255,0.04)"
+const VI_GLOW    = "rgba(124,58,237,0.18)"
+const PU_GLOW    = "rgba(139,92,246,0.12)"
+
+function Navbar({ variant }: { variant: StoreVariant }) {
+  const [open, setOpen]       = useState(false)
   const [scrolled, setScrolled] = useState(false)
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20)
@@ -173,33 +180,33 @@ function Navbar({ variant }: { variant: LendingVariant }) {
   }, [])
   const links = variant.navMode === "anchors" ? (
     <>
-      <a href="#features" className="text-sm text-white/60 hover:text-white transition-colors">Features</a>
+      <a href="#features"     className="text-sm text-white/60 hover:text-white transition-colors">Features</a>
       <a href="#how-it-works" className="text-sm text-white/60 hover:text-white transition-colors">How it Works</a>
-      <a href="#pricing" className="text-sm text-white/60 hover:text-white transition-colors">Pricing</a>
-      <a href="#faq" className="text-sm text-white/60 hover:text-white transition-colors">FAQ</a>
-      <a href="/lending/guide" className="text-sm text-white/60 hover:text-white transition-colors">Guide</a>
+      <a href="#pricing"      className="text-sm text-white/60 hover:text-white transition-colors">Pricing</a>
+      <a href="#faq"          className="text-sm text-white/60 hover:text-white transition-colors">FAQ</a>
+      <a href="/store/guide"  className="text-sm text-white/60 hover:text-white transition-colors">Guide</a>
     </>
   ) : (
     <>
-      <a href="/lending" className="text-sm text-white/60 hover:text-white transition-colors">Home</a>
-      <a href="#features" className="text-sm text-white/60 hover:text-white transition-colors">Features</a>
-      <a href="#pricing" className="text-sm text-white/60 hover:text-white transition-colors">Pricing</a>
-      <a href="#faq" className="text-sm text-white/60 hover:text-white transition-colors">FAQ</a>
-      <a href="/lending/guide" className="text-sm text-white/60 hover:text-white transition-colors">Guide</a>
+      <a href="/store"        className="text-sm text-white/60 hover:text-white transition-colors">Home</a>
+      <a href="#features"     className="text-sm text-white/60 hover:text-white transition-colors">Features</a>
+      <a href="#pricing"      className="text-sm text-white/60 hover:text-white transition-colors">Pricing</a>
+      <a href="#faq"          className="text-sm text-white/60 hover:text-white transition-colors">FAQ</a>
+      <a href="/store/guide"  className="text-sm text-white/60 hover:text-white transition-colors">Guide</a>
     </>
   )
   return (
-    <nav className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${scrolled ? "bg-[#071219]/90 backdrop-blur-md border-b border-white/5 shadow-lg" : "bg-transparent"}`}>
+    <nav className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${scrolled ? "bg-[#04010f]/90 backdrop-blur-md border-b border-white/5 shadow-lg" : "bg-transparent"}`}>
       <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-        <a href="/lending" className="flex items-center gap-2.5">
-          <img src="/logo.png" alt="Smapey Lending" className="w-8 h-8 rounded-lg object-cover" />
-          <span className="text-white font-bold tracking-tight">Smapey Lending</span>
+        <a href="/store" className="flex items-center gap-2.5">
+          <img src="/logo.png" alt="Smapey Store" className="w-8 h-8 rounded-lg object-cover" />
+          <span className="text-white font-bold tracking-tight">Smapey Store</span>
         </a>
         <div className="hidden md:flex items-center gap-8">{links}</div>
         <div className="hidden md:flex items-center gap-3">
           <a href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/login`} className="text-sm text-white/60 hover:text-white transition-colors px-4 py-2">Sign in</a>
-          <a href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=LENDING&plan=FREE`}
-            className="text-sm font-semibold px-4 py-2 rounded-lg bg-slate-700 hover:bg-slate-600 text-white transition-colors shadow-lg shadow-slate-600/20">
+          <a href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=STORE&plan=FREE`}
+            className="text-sm font-semibold px-4 py-2 rounded-lg bg-violet-600 hover:bg-violet-500 text-white transition-colors shadow-lg shadow-violet-600/25">
             Get started free
           </a>
         </div>
@@ -208,10 +215,10 @@ function Navbar({ variant }: { variant: LendingVariant }) {
         </button>
       </div>
       {open && (
-        <div className="md:hidden bg-[#071219] border-t border-white/5 px-6 py-4 flex flex-col gap-4">
+        <div className="md:hidden bg-[#04010f] border-t border-white/5 px-6 py-4 flex flex-col gap-4">
           {links}
-          <a href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=LENDING&plan=FREE`}
-            className="text-sm font-semibold px-4 py-2 rounded-lg bg-slate-700 text-white text-center">
+          <a href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=STORE&plan=FREE`}
+            className="text-sm font-semibold px-4 py-2 rounded-lg bg-violet-600 text-white text-center">
             Get started free
           </a>
         </div>
@@ -220,25 +227,25 @@ function Navbar({ variant }: { variant: LendingVariant }) {
   )
 }
 
-function Hero({ variant }: { variant: LendingVariant }) {
+function Hero({ variant }: { variant: StoreVariant }) {
   const secondary = variant.navMode === "anchors"
     ? { href: "#how-it-works", label: "See how it works" }
-    : { href: "/lending", label: "View all features" }
+    : { href: "/store", label: "View all features" }
   return (
     <section className="relative min-h-screen flex items-center pt-16 overflow-hidden"
-      style={{ background: "#071219", backgroundImage: "repeating-linear-gradient(45deg, rgba(255,255,255,0.02) 0px, rgba(255,255,255,0.02) 1px, transparent 1px, transparent 28px)", backgroundSize: "28px 28px" }}>
+      style={{ background: BG, backgroundImage: "repeating-linear-gradient(45deg, rgba(255,255,255,0.015) 0px, rgba(255,255,255,0.015) 1px, transparent 1px, transparent 28px)", backgroundSize: "28px 28px" }}>
       <div className="absolute -top-40 -left-40 w-[500px] h-[500px] rounded-full pointer-events-none"
-        style={{ background: "radial-gradient(circle, rgba(148,163,184,0.15) 0%, transparent 70%)" }} />
+        style={{ background: `radial-gradient(circle, ${VI_GLOW} 0%, transparent 70%)` }} />
       <div className="absolute -bottom-40 -right-40 w-[500px] h-[500px] rounded-full pointer-events-none"
-        style={{ background: "radial-gradient(circle, rgba(100,116,139,0.10) 0%, transparent 70%)" }} />
+        style={{ background: `radial-gradient(circle, ${PU_GLOW} 0%, transparent 70%)` }} />
       <div className="relative max-w-6xl mx-auto px-6 py-24 text-center">
-        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-600/10 border border-slate-600/20 text-slate-300 text-xs font-semibold mb-6">
-          <Landmark className="w-3 h-3" />
+        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-violet-500/10 border border-violet-500/20 text-violet-300 text-xs font-semibold mb-6">
+          <Package className="w-3 h-3" />
           {variant.hero.badge}
         </div>
         <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight tracking-tight mb-6">
           {variant.hero.titleLead}{" "}
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-slate-300 to-slate-400">
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 via-purple-300 to-violet-300">
             {variant.hero.titleAccent}
           </span>
         </h1>
@@ -246,8 +253,8 @@ function Hero({ variant }: { variant: LendingVariant }) {
           {variant.hero.subtitle}
         </p>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-          <a href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=LENDING&plan=FREE`}
-            className="flex items-center gap-2 px-6 py-3 rounded-xl bg-slate-700 hover:bg-slate-600 text-white font-semibold text-sm transition-all shadow-lg shadow-slate-600/20">
+          <a href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=STORE&plan=FREE`}
+            className="flex items-center gap-2 px-6 py-3 rounded-xl bg-violet-600 hover:bg-violet-500 text-white font-semibold text-sm transition-all shadow-lg shadow-violet-600/25">
             Start free — no card needed <ChevronRight className="w-4 h-4" />
           </a>
           <a href={secondary.href} className="flex items-center gap-2 px-6 py-3 rounded-xl bg-white/5 hover:bg-white/10 text-white/70 hover:text-white font-medium text-sm transition-all border border-white/10">
@@ -255,9 +262,9 @@ function Hero({ variant }: { variant: LendingVariant }) {
           </a>
         </div>
         <div className="mt-16 flex flex-wrap items-center justify-center gap-6 text-white/30 text-xs">
-          {["No credit card required", "Free plan forever", "Setup in 5 minutes"].map((t) => (
+          {["No credit card required", "Free plan forever", "First sale in under 5 minutes"].map((t) => (
             <span key={t} className="flex items-center gap-1.5">
-              <CheckCircle2 className="w-3.5 h-3.5 text-slate-400" />{t}
+              <CheckCircle2 className="w-3.5 h-3.5 text-violet-400/70" />{t}
             </span>
           ))}
         </div>
@@ -266,23 +273,21 @@ function Hero({ variant }: { variant: LendingVariant }) {
   )
 }
 
-function Features({ variant }: { variant: LendingVariant }) {
+function Features({ variant }: { variant: StoreVariant }) {
   return (
-    <section id="features" className="py-24 bg-slate-50">
+    <section id="features" className="py-24 bg-violet-50/40">
       <div className="max-w-6xl mx-auto px-6">
         <Animate className="text-center mb-16">
-          <p className="text-slate-700 text-sm font-semibold uppercase tracking-widest mb-3">{variant.features.eyebrow}</p>
+          <p className="text-violet-600 text-sm font-semibold uppercase tracking-widest mb-3">{variant.features.eyebrow}</p>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-800 tracking-tight">
             {variant.features.heading}
           </h2>
-          <p className="text-slate-500 mt-4 max-w-xl mx-auto">
-            {variant.features.sub}
-          </p>
+          <p className="text-slate-500 mt-4 max-w-xl mx-auto">{variant.features.sub}</p>
         </Animate>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {FEATURES.map(({ icon: Icon, title, desc, color, shadow }, i) => (
             <Animate key={title} delay={i * 60}>
-              <div className="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 hover:shadow-md hover:-translate-y-1 transition-all duration-300 h-full">
+              <div className="bg-white rounded-2xl p-6 shadow-sm border border-violet-100 hover:shadow-md hover:-translate-y-1 transition-all duration-300 h-full">
                 <div className={`w-11 h-11 rounded-xl bg-gradient-to-tr ${color} shadow-lg ${shadow} flex items-center justify-center mb-4`}>
                   <Icon className="w-5 h-5 text-white" />
                 </div>
@@ -302,23 +307,23 @@ function HowItWorks() {
     <section id="how-it-works" className="py-24 bg-white">
       <div className="max-w-6xl mx-auto px-6">
         <Animate className="text-center mb-16">
-          <p className="text-slate-700 text-sm font-semibold uppercase tracking-widest mb-3">How it works</p>
+          <p className="text-violet-600 text-sm font-semibold uppercase tracking-widest mb-3">How it works</p>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-800 tracking-tight">
-            Up and running in four steps
+            From product setup to first sale in four steps
           </h2>
           <p className="text-slate-500 mt-4 max-w-xl mx-auto">
-            Most lenders issue their first loan and generate their first amortization schedule within 30 minutes.
+            Most stores are ringing up their first sale within five minutes of signing up.
           </p>
         </Animate>
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           {STEPS.map((s, i) => (
             <Animate key={s.num} delay={i * 80}>
-              <div className="bg-white rounded-2xl p-6 border border-slate-100 shadow-sm h-full">
+              <div className="bg-white rounded-2xl p-6 border border-violet-100 shadow-sm h-full">
                 <div className="flex items-center gap-3 mb-4">
-                  <div className="w-10 h-10 rounded-xl bg-slate-100 border border-slate-100 flex items-center justify-center font-bold text-slate-700 text-sm">
+                  <div className="w-10 h-10 rounded-xl bg-violet-50 border border-violet-100 flex items-center justify-center font-bold text-violet-600 text-sm">
                     {s.num}
                   </div>
-                  <div className="h-px flex-1 bg-gradient-to-r from-slate-200 to-transparent" />
+                  <div className="h-px flex-1 bg-gradient-to-r from-violet-200 to-transparent" />
                 </div>
                 <h3 className="font-bold text-slate-800 mb-2">{s.title}</h3>
                 <p className="text-slate-500 text-sm leading-relaxed">{s.desc}</p>
@@ -332,53 +337,57 @@ function HowItWorks() {
 }
 
 function ComparisonTable({ showCta = false }: { showCta?: boolean }) {
-  const { plans, isPhilippines } = usePricing("LENDING")
+  const { plans, isPhilippines } = usePricing("STORE")
   const freePlan = plans.find(p => p.planKey === "FREE")
-  const proPlan = plans.find(p => p.planKey === "PRO")
-  const entPlan = plans.find(p => p.planKey === "ENTERPRISE")
+  const proPlan  = plans.find(p => p.planKey === "PRO")
+  const entPlan  = plans.find(p => p.planKey === "ENTERPRISE")
   const proPrice = isPhilippines === null ? "…" : isPhilippines ? proPlan?.phpPrice : proPlan?.usdPrice
   const entPrice = isPhilippines === null ? "…" : isPhilippines ? entPlan?.phpPrice : entPlan?.usdPrice
 
   const limitRows = [
-    { feature: "Borrowers", key: "borrowers" },
-    { feature: "Active loans", key: "loans" },
-    { feature: "Team users", key: "users" },
+    { feature: "Products",      key: "products"      },
+    { feature: "Sales / month", key: "salesPerMonth" },
+    { feature: "Team users",    key: "users"         },
   ]
 
   return (
-    <section className="py-24 bg-slate-50">
+    <section className="py-24 bg-violet-50/40">
       <div className="max-w-4xl mx-auto px-6">
         <Animate className="text-center mb-16">
-          <p className="text-slate-700 text-sm font-semibold uppercase tracking-widest mb-3">Compare plans</p>
+          <p className="text-violet-600 text-sm font-semibold uppercase tracking-widest mb-3">Compare plans</p>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-800 tracking-tight">Free vs. paid plans</h2>
-          <p className="text-slate-500 mt-4">Start free and upgrade only when your loan book grows.</p>
+          <p className="text-slate-500 mt-4">Start free and upgrade only when your store grows.</p>
         </Animate>
         <Animate>
-          <div className="overflow-x-auto rounded-2xl border border-slate-200 shadow-sm bg-white">
+          <div className="overflow-x-auto rounded-2xl border border-violet-100 shadow-sm bg-white">
             <table className="w-full text-sm">
               <thead>
-                <tr className="border-b border-slate-200">
+                <tr className="border-b border-violet-100">
                   <th className="text-left px-6 py-4 text-slate-500 font-medium">Feature</th>
                   <th className="text-center px-6 py-4 text-slate-800 font-bold">Free</th>
-                  <th className="text-center px-6 py-4 text-slate-800 font-bold bg-slate-100">Pro <span className="text-xs text-slate-400 font-normal">{proPrice}/mo</span></th>
+                  <th className="text-center px-6 py-4 text-slate-800 font-bold bg-violet-50">Pro <span className="text-xs text-slate-400 font-normal">{proPrice}/mo</span></th>
                   <th className="text-center px-6 py-4 text-slate-800 font-bold">Enterprise <span className="text-xs text-slate-400 font-normal">{entPrice}/mo</span></th>
                 </tr>
               </thead>
               <tbody>
-                {limitRows.map(({ feature, key }, i) => (
-                  <tr key={feature} className={`border-b border-slate-100 ${i % 2 === 0 ? "bg-white" : "bg-slate-50/50"}`}>
-                    <td className="px-6 py-4 text-slate-700 font-medium">{feature}</td>
-                    <td className="text-center px-6 py-4"><span className="text-slate-700 font-medium">{limitDisplay(freePlan, key)}</span></td>
-                    <td className="text-center px-6 py-4 bg-slate-100/50"><span className="text-slate-700 font-medium">{limitDisplay(proPlan, key)}</span></td>
-                    <td className="text-center px-6 py-4"><span className="text-slate-700 font-medium">{limitDisplay(entPlan, key)}</span></td>
+                {limitRows.map((row, i) => (
+                  <tr key={row.feature} className={`border-b border-violet-50 ${i % 2 === 0 ? "bg-white" : "bg-violet-50/30"}`}>
+                    <td className="px-6 py-4 text-slate-700 font-medium">{row.feature}</td>
+                    {[freePlan, proPlan, entPlan].map((plan, j) => (
+                      <td key={j} className={`text-center px-6 py-4 ${j === 1 ? "bg-violet-50/50" : ""}`}>
+                        <span className="text-slate-700 font-medium">{limitDisplay(plan, row.key)}</span>
+                      </td>
+                    ))}
                   </tr>
                 ))}
                 {FEATURE_ROWS.map((row, i) => (
-                  <tr key={row.feature} className={`border-b border-slate-100 ${(limitRows.length + i) % 2 === 0 ? "bg-white" : "bg-slate-50/50"}`}>
+                  <tr key={row.feature} className={`border-b border-violet-50 ${(i + limitRows.length) % 2 === 0 ? "bg-white" : "bg-violet-50/30"}`}>
                     <td className="px-6 py-4 text-slate-700 font-medium">{row.feature}</td>
                     {[row.free, row.pro, row.enterprise].map((val, j) => (
-                      <td key={j} className={`text-center px-6 py-4 ${j === 1 ? "bg-slate-100/50" : ""}`}>
-                        {val ? <CheckCircle2 className="w-5 h-5 text-slate-600 mx-auto" /> : <XCircle className="w-5 h-5 text-slate-300 mx-auto" />}
+                      <td key={j} className={`text-center px-6 py-4 ${j === 1 ? "bg-violet-50/50" : ""}`}>
+                        {val
+                          ? <CheckCircle2 className="w-5 h-5 text-violet-500 mx-auto" />
+                          : <XCircle className="w-5 h-5 text-slate-200 mx-auto" />}
                       </td>
                     ))}
                   </tr>
@@ -389,8 +398,8 @@ function ComparisonTable({ showCta = false }: { showCta?: boolean }) {
         </Animate>
         {showCta && (
           <Animate className="text-center mt-10">
-            <a href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=LENDING&plan=FREE`}
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-slate-700 hover:bg-slate-600 text-white font-semibold text-sm transition-all shadow-lg shadow-slate-600/20">
+            <a href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=STORE&plan=FREE`}
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-violet-600 hover:bg-violet-500 text-white font-semibold text-sm transition-all shadow-lg shadow-violet-600/25">
               Start free today <ChevronRight className="w-4 h-4" />
             </a>
           </Animate>
@@ -402,7 +411,7 @@ function ComparisonTable({ showCta = false }: { showCta?: boolean }) {
 
 function Pricing() {
   const [selectedPlan, setSelectedPlan] = useState<Plan | null>(null)
-  const { plans, isPhilippines } = usePricing("LENDING")
+  const { plans, isPhilippines } = usePricing("STORE")
 
   const handleSelect = (p: Plan) => {
     if (p.planKey === "FREE") {
@@ -416,7 +425,7 @@ function Pricing() {
     <section id="pricing" className="py-24 bg-white">
       <div className="max-w-6xl mx-auto px-6">
         <Animate className="text-center mb-16">
-          <p className="text-slate-700 text-sm font-semibold uppercase tracking-widest mb-3">Pricing</p>
+          <p className="text-violet-600 text-sm font-semibold uppercase tracking-widest mb-3">Pricing</p>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-800 tracking-tight">Start free. Upgrade when you grow.</h2>
           <p className="text-slate-500 mt-4">The free plan stays free forever.</p>
           {isPhilippines !== null && (
@@ -431,23 +440,23 @@ function Pricing() {
             const displayPrice = isPhilippines === null ? "..." : isPhilippines ? p.phpPrice : p.usdPrice
             return (
               <Animate key={p.name} delay={i * 100}>
-                <div className={`rounded-2xl p-8 border transition-all duration-300 hover:-translate-y-1 ${p.highlight ? "bg-gradient-to-b from-slate-800 to-slate-900 border-slate-600/30 shadow-2xl shadow-slate-600/20 scale-105" : "bg-white border-slate-200 shadow-sm hover:shadow-md"}`}>
-                  {p.highlight && <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-slate-400/20 text-slate-200 text-xs font-semibold mb-4"><Zap className="w-3 h-3" /> Most popular</span>}
+                <div className={`rounded-2xl p-8 border transition-all duration-300 hover:-translate-y-1 ${p.highlight ? "bg-gradient-to-b from-violet-600 to-purple-600 border-violet-400/30 shadow-2xl shadow-violet-500/25 scale-105" : "bg-white border-slate-200 shadow-sm hover:shadow-md"}`}>
+                  {p.highlight && <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-white/20 text-white text-xs font-semibold mb-4"><Zap className="w-3 h-3" /> Most popular</span>}
                   <p className={`font-bold text-lg mb-1 ${p.highlight ? "text-white" : "text-slate-800"}`}>{p.name}</p>
-                  <p className={`text-sm mb-4 ${p.highlight ? "text-slate-200/60" : "text-slate-400"}`}>{p.desc}</p>
+                  <p className={`text-sm mb-4 ${p.highlight ? "text-violet-100/70" : "text-slate-400"}`}>{p.desc}</p>
                   <div className="flex items-end gap-1 mb-6">
                     <span className={`text-4xl font-extrabold tracking-tight ${p.highlight ? "text-white" : "text-slate-800"}`}>{displayPrice}</span>
-                    <span className={`text-sm mb-1 ${p.highlight ? "text-slate-200/50" : "text-slate-400"}`}>{p.period}</span>
+                    <span className={`text-sm mb-1 ${p.highlight ? "text-violet-100/60" : "text-slate-400"}`}>{p.period}</span>
                   </div>
                   <ul className="space-y-3 mb-8">
                     {p.features.map((f) => (
                       <li key={f} className="flex items-center gap-2.5 text-sm">
-                        <CheckCircle2 className={`w-4 h-4 shrink-0 ${p.highlight ? "text-slate-300" : "text-slate-600"}`} />
-                        <span className={p.highlight ? "text-slate-100/80" : "text-slate-600"}>{f}</span>
+                        <CheckCircle2 className={`w-4 h-4 shrink-0 ${p.highlight ? "text-violet-200" : "text-violet-500"}`} />
+                        <span className={p.highlight ? "text-violet-50/90" : "text-slate-600"}>{f}</span>
                       </li>
                     ))}
                   </ul>
-                  <button onClick={() => handleSelect(p)} className={`w-full text-center py-2.5 rounded-xl text-sm font-semibold transition-all ${p.highlight ? "bg-slate-400 hover:bg-slate-300 text-slate-900 shadow-lg shadow-slate-400/25" : "bg-slate-700 hover:bg-slate-600 text-white shadow-md shadow-slate-600/20"}`}>{p.cta}</button>
+                  <button onClick={() => handleSelect(p)} className={`w-full text-center py-2.5 rounded-xl text-sm font-semibold transition-all ${p.highlight ? "bg-white hover:bg-violet-50 text-violet-700 shadow-lg shadow-violet-600/20" : "bg-violet-600 hover:bg-violet-500 text-white shadow-md shadow-violet-500/20"}`}>{p.cta}</button>
                 </div>
               </Animate>
             )
@@ -462,23 +471,23 @@ function Pricing() {
 function FAQ() {
   const [open, setOpen] = useState<number | null>(null)
   return (
-    <section id="faq" className="py-24 bg-slate-50">
+    <section id="faq" className="py-24 bg-violet-50/40">
       <div className="max-w-2xl mx-auto px-6">
         <Animate className="text-center mb-16">
-          <p className="text-slate-700 text-sm font-semibold uppercase tracking-widest mb-3">FAQ</p>
+          <p className="text-violet-600 text-sm font-semibold uppercase tracking-widest mb-3">FAQ</p>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-800 tracking-tight">Common questions</h2>
         </Animate>
         <div className="flex flex-col gap-3">
           {FAQS.map(({ q, a }, i) => (
             <Animate key={i} delay={i * 60}>
-              <div className="border border-slate-200 rounded-xl overflow-hidden bg-white">
+              <div className="border border-violet-100 rounded-xl overflow-hidden bg-white">
                 <button onClick={() => setOpen(open === i ? null : i)}
-                  className="w-full flex items-center justify-between px-5 py-4 text-left text-slate-700 font-medium text-sm hover:bg-slate-50 transition-colors">
+                  className="w-full flex items-center justify-between px-5 py-4 text-left text-slate-700 font-medium text-sm hover:bg-violet-50/50 transition-colors">
                   {q}
                   <ChevronRight className={`w-4 h-4 text-slate-400 transition-transform duration-200 shrink-0 ${open === i ? "rotate-90" : ""}`} />
                 </button>
                 {open === i && (
-                  <div className="px-5 pb-4 text-sm text-slate-500 leading-relaxed border-t border-slate-100 pt-3">{a}</div>
+                  <div className="px-5 pb-4 text-sm text-slate-500 leading-relaxed border-t border-violet-50 pt-3">{a}</div>
                 )}
               </div>
             </Animate>
@@ -489,19 +498,19 @@ function FAQ() {
   )
 }
 
-function CTA({ variant }: { variant: LendingVariant }) {
+function CTA({ variant }: { variant: StoreVariant }) {
   return (
     <section className="py-24 relative overflow-hidden"
-      style={{ background: "#071219", backgroundImage: "repeating-linear-gradient(45deg, rgba(255,255,255,0.02) 0px, rgba(255,255,255,0.02) 1px, transparent 1px, transparent 28px)", backgroundSize: "28px 28px" }}>
+      style={{ background: BG, backgroundImage: "repeating-linear-gradient(45deg, rgba(255,255,255,0.015) 0px, rgba(255,255,255,0.015) 1px, transparent 1px, transparent 28px)", backgroundSize: "28px 28px" }}>
       <div className="absolute -top-40 -left-40 w-[400px] h-[400px] rounded-full pointer-events-none"
-        style={{ background: "radial-gradient(circle, rgba(148,163,184,0.10) 0%, transparent 70%)" }} />
+        style={{ background: `radial-gradient(circle, ${VI_GLOW} 0%, transparent 70%)` }} />
       <Animate className="relative max-w-2xl mx-auto px-6 text-center">
         <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight mb-4">
           {variant.cta.heading}
         </h2>
         <p className="text-white/40 mb-8">{variant.cta.sub}</p>
-        <a href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=LENDING&plan=FREE`}
-          className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl bg-gradient-to-r from-slate-700 to-slate-600 hover:from-slate-600 hover:to-slate-400 text-white font-semibold transition-all shadow-xl shadow-slate-600/20">
+        <a href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=STORE&plan=FREE`}
+          className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl bg-gradient-to-r from-violet-600 to-purple-500 hover:from-violet-500 hover:to-purple-400 text-white font-semibold transition-all shadow-xl shadow-violet-500/25">
           Get started for free <ChevronRight className="w-4 h-4" />
         </a>
       </Animate>
@@ -509,16 +518,16 @@ function CTA({ variant }: { variant: LendingVariant }) {
   )
 }
 
-function Footer() {
+function PageFooter() {
   return (
-    <footer className="bg-[#040b12] border-t border-white/5 px-6 py-8">
+    <footer className="bg-[#020008] border-t border-white/5 px-6 py-8">
       <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
         <div className="flex items-center gap-2">
-          <img src="/logo.png" alt="Smapey Lending" className="w-6 h-6 rounded-md object-cover" />
-          <span className="text-white/60 text-sm font-semibold">Lending by Smapey</span>
+          <img src="/logo.png" alt="Smapey Store" className="w-6 h-6 rounded-md object-cover" />
+          <span className="text-white/60 text-sm font-semibold">Store by Smapey</span>
         </div>
         <div className="flex items-center gap-5 text-white/40 text-xs">
-          <a href="/lending/guide" className="hover:text-white/70 transition">Guide</a>
+          <a href="/store/guide"  className="hover:text-white/70 transition">Guide</a>
           <a href="/privacy-policy" className="hover:text-white/70 transition">Privacy</a>
           <a href="/terms-and-conditions" className="hover:text-white/70 transition">Terms</a>
           <a href="/" className="hover:text-white/70 transition">All Products</a>
@@ -538,11 +547,11 @@ const Spinner = () => (
 )
 
 function PaymentModal({ plan, isPhilippines, onClose }: { plan: Plan | null; isPhilippines: boolean; onClose: () => void }) {
-  const [step, setStep] = useState<"details" | "payment">("details")
-  const [name, setName] = useState("")
-  const [email, setEmail] = useState("")
+  const [step, setStep]     = useState<"details" | "payment">("details")
+  const [name, setName]     = useState("")
+  const [email, setEmail]   = useState("")
   const [loading, setLoading] = useState<CheckoutMethod | null>(null)
-  const [token, setToken] = useState<string | null>(null)
+  const [token, setToken]   = useState<string | null>(null)
 
   useEffect(() => {
     const t = localStorage.getItem("accessToken")
@@ -587,7 +596,7 @@ function PaymentModal({ plan, isPhilippines, onClose }: { plan: Plan | null; isP
   return (
     <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4">
       <div className="bg-white rounded-2xl w-full max-w-md shadow-2xl overflow-hidden">
-        <div className="bg-gradient-to-r from-slate-800 to-slate-600 px-6 py-5 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-violet-600 to-purple-500 px-6 py-5 flex items-center justify-between">
           <div className="flex items-center gap-3">
             {step === "payment" && !token && (
               <button onClick={() => setStep("details")} className="text-white/60 hover:text-white transition">
@@ -596,7 +605,7 @@ function PaymentModal({ plan, isPhilippines, onClose }: { plan: Plan | null; isP
             )}
             <div>
               <h2 className="text-white font-bold text-lg">{step === "details" ? "Create your account" : "Choose payment method"}</h2>
-              <p className="text-slate-100 text-sm mt-0.5">{plan.name} plan — <span className="font-semibold">{displayPrice}</span>{plan.period}</p>
+              <p className="text-violet-100 text-sm mt-0.5">{plan.name} plan — <span className="font-semibold">{displayPrice}</span>{plan.period}</p>
             </div>
           </div>
           <button onClick={onClose} className="text-white/70 hover:text-white transition-colors"><X className="w-5 h-5" /></button>
@@ -604,9 +613,9 @@ function PaymentModal({ plan, isPhilippines, onClose }: { plan: Plan | null; isP
         <div className="p-6 flex flex-col gap-4">
           {step === "details" && (
             <>
-              <input placeholder="Full name" value={name} onChange={(e) => setName(e.target.value)} className="w-full border border-slate-200 rounded-xl px-4 py-2.5 text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-slate-600/30 focus:border-slate-400" />
-              <input type="email" placeholder="Email address" value={email} onChange={(e) => setEmail(e.target.value)} className="w-full border border-slate-200 rounded-xl px-4 py-2.5 text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-slate-600/30 focus:border-slate-400" />
-              <button onClick={handleContinue} disabled={loading !== null} className="w-full py-3 rounded-xl bg-slate-700 hover:bg-slate-600 text-white font-semibold text-sm flex items-center justify-center gap-2 transition-all disabled:opacity-60">
+              <input placeholder="Full name" value={name} onChange={(e) => setName(e.target.value)} className="w-full border border-slate-200 rounded-xl px-4 py-2.5 text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-violet-500/30 focus:border-violet-400" />
+              <input type="email" placeholder="Email address" value={email} onChange={(e) => setEmail(e.target.value)} className="w-full border border-slate-200 rounded-xl px-4 py-2.5 text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-violet-500/30 focus:border-violet-400" />
+              <button onClick={handleContinue} disabled={loading !== null} className="w-full py-3 rounded-xl bg-violet-600 hover:bg-violet-500 text-white font-semibold text-sm flex items-center justify-center gap-2 transition-all disabled:opacity-60">
                 {loading ? <><Spinner /> Redirecting…</> : <>Continue <ChevronRight className="w-4 h-4" /></>}
               </button>
             </>
@@ -647,7 +656,7 @@ function PaymentModal({ plan, isPhilippines, onClose }: { plan: Plan | null; isP
   )
 }
 
-export default function LendingLanding({ variant }: { variant: LendingVariant }) {
+export default function StoreLanding({ variant }: { variant: StoreVariant }) {
   return (
     <main>
       <Navbar variant={variant} />
@@ -658,8 +667,8 @@ export default function LendingLanding({ variant }: { variant: LendingVariant })
       <Pricing />
       <FAQ />
       <CTA variant={variant} />
-      <InternalLinks cluster="lending" currentPath={variant.currentPath} />
-      <Footer />
+      <InternalLinks cluster="store" currentPath={variant.currentPath} />
+      <PageFooter />
     </main>
   )
 }

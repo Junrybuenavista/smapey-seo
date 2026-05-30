@@ -74,10 +74,7 @@ const STEPS = [
   { num: "04", title: "Track your sales", desc: "Your dashboard shows today's revenue and orders in real time. The 7-day chart and top-items list update automatically so you always know what's selling." },
 ]
 
-const COMPARISON = [
-  { feature: "Menu items", free: "20", pro: "Unlimited", enterprise: "Unlimited" },
-  { feature: "Orders / month", free: "100", pro: "Unlimited", enterprise: "Unlimited" },
-  { feature: "Team users", free: "2", pro: "5", enterprise: "Unlimited" },
+const FEATURE_ROWS = [
   { feature: "Menu categories", free: true, pro: true, enterprise: true },
   { feature: "Menu item photos", free: true, pro: true, enterprise: true },
   { feature: "Dine-in & takeaway orders", free: true, pro: true, enterprise: true },
@@ -86,6 +83,13 @@ const COMPARISON = [
   { feature: "Analytics & top items", free: true, pro: true, enterprise: true },
   { feature: "Priority support", free: false, pro: false, enterprise: true },
 ]
+
+function limitDisplay(plan: Plan | undefined, key: string): string {
+  if (!plan) return "…"
+  const val = plan.limits?.[key]
+  if (val === -1 || val === null || val === undefined) return "Unlimited"
+  return String(val)
+}
 
 const FAQS = [
   {
@@ -332,10 +336,17 @@ function HowItWorks() {
 
 function ComparisonTable({ showCta = false }: { showCta?: boolean }) {
   const { plans, isPhilippines } = usePricing("RESTAURANT")
+  const freePlan = plans.find(p => p.planKey === "FREE")
   const proPlan = plans.find(p => p.planKey === "PRO")
   const entPlan = plans.find(p => p.planKey === "ENTERPRISE")
   const proPrice = isPhilippines === null ? "…" : isPhilippines ? proPlan?.phpPrice : proPlan?.usdPrice
   const entPrice = isPhilippines === null ? "…" : isPhilippines ? entPlan?.phpPrice : entPlan?.usdPrice
+
+  const limitRows = [
+    { feature: "Menu items", key: "menuItems" },
+    { feature: "Orders / month", key: "orders" },
+    { feature: "Team users", key: "users" },
+  ]
 
   return (
     <section className="py-24 bg-orange-50/40">
@@ -357,18 +368,20 @@ function ComparisonTable({ showCta = false }: { showCta?: boolean }) {
                 </tr>
               </thead>
               <tbody>
-                {COMPARISON.map((row, i) => (
-                  <tr key={row.feature} className={`border-b border-orange-50 ${i % 2 === 0 ? "bg-white" : "bg-orange-50/30"}`}>
+                {limitRows.map(({ feature, key }, i) => (
+                  <tr key={feature} className={`border-b border-orange-50 ${i % 2 === 0 ? "bg-white" : "bg-orange-50/30"}`}>
+                    <td className="px-6 py-4 text-slate-700 font-medium">{feature}</td>
+                    <td className="text-center px-6 py-4"><span className="text-slate-700 font-medium">{limitDisplay(freePlan, key)}</span></td>
+                    <td className="text-center px-6 py-4 bg-orange-50/50"><span className="text-slate-700 font-medium">{limitDisplay(proPlan, key)}</span></td>
+                    <td className="text-center px-6 py-4"><span className="text-slate-700 font-medium">{limitDisplay(entPlan, key)}</span></td>
+                  </tr>
+                ))}
+                {FEATURE_ROWS.map((row, i) => (
+                  <tr key={row.feature} className={`border-b border-orange-50 ${(limitRows.length + i) % 2 === 0 ? "bg-white" : "bg-orange-50/30"}`}>
                     <td className="px-6 py-4 text-slate-700 font-medium">{row.feature}</td>
                     {[row.free, row.pro, row.enterprise].map((val, j) => (
                       <td key={j} className={`text-center px-6 py-4 ${j === 1 ? "bg-orange-50/50" : ""}`}>
-                        {typeof val === "boolean" ? (
-                          val
-                            ? <CheckCircle2 className="w-5 h-5 text-orange-500 mx-auto" />
-                            : <XCircle className="w-5 h-5 text-slate-200 mx-auto" />
-                        ) : (
-                          <span className="text-slate-700 font-medium">{val}</span>
-                        )}
+                        {val ? <CheckCircle2 className="w-5 h-5 text-orange-500 mx-auto" /> : <XCircle className="w-5 h-5 text-slate-200 mx-auto" />}
                       </td>
                     ))}
                   </tr>

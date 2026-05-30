@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from "react"
 import Link from "next/link"
 import {
   FileText, Dumbbell, BookOpen, CalendarDays, Car, Shirt, Scissors,
-  CalendarPlus, Home, Landmark, UtensilsCrossed,
+  CalendarPlus, Home, Landmark, UtensilsCrossed, ShoppingBag,
   ArrowRight, CheckCircle2, Zap, Shield, TrendingUp,
   Clock, ChevronDown, Menu, X, Users, Sparkles,
   MousePointerClick, LayoutDashboard, Star,
@@ -157,6 +157,19 @@ const PRODUCTS = [
     Icon: UtensilsCrossed,
     features: ["Menu builder with categories", "Dine-in & takeaway orders", "Kitchen order queue", "Daily sales summary"],
     stat: { value: "< 1 min", label: "to place an order" },
+  },
+  {
+    key: "STORE",
+    name: "Store Manager",
+    tagline: "Know your stock, track every sale.",
+    desc: "Manage your product catalog, track stock in real time with low stock alerts, ring up sales on a tap-to-add POS, and review daily revenue — built for sari-sari stores, boutiques, and retail shops.",
+    href: "/store",
+    register: `${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=STORE&plan=FREE`,
+    accent: "#6d28d9",
+    accentLight: "#f5f3ff",
+    Icon: ShoppingBag,
+    features: ["Product catalog with stock tracking", "Tap-to-add POS & change calc", "Low stock alerts & reorder", "Daily sales & revenue analytics"],
+    stat: { value: "< 1 min", label: "to ring up a sale" },
   },
 ]
 
@@ -364,7 +377,7 @@ function Hero() {
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
             <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400" />
           </span>
-          <span className="text-xs font-medium text-white/70 tracking-wide">10 tools live · built for small businesses</span>
+          <span className="text-xs font-medium text-white/70 tracking-wide">12 tools live · built for small businesses</span>
         </div>
 
         {/* HEADLINE */}
@@ -577,7 +590,7 @@ function Products() {
         <Reveal>
           <p className="text-xs font-bold tracking-widest uppercase text-gray-400 mb-3">Our products</p>
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 tracking-tight leading-tight max-w-2xl">
-            Ten tools. Every small business covered.
+            Twelve tools. Every small business covered.
           </h2>
           <p className="mt-4 text-lg text-gray-500 max-w-xl">
             Pick the one you need today. Each product is fully standalone — no bundles, no bloat, no paying for things you don't use.
