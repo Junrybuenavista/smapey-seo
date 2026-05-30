@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from "react"
 import Link from "next/link"
 import {
   FileText, Dumbbell, BookOpen, CalendarDays, Car, Shirt, Scissors,
-  CalendarPlus,
+  CalendarPlus, Home,
   ArrowRight, CheckCircle2, Zap, Shield, TrendingUp,
   Clock, ChevronDown, Menu, X, Users, Sparkles,
   MousePointerClick, LayoutDashboard, Star,
@@ -119,6 +119,19 @@ const PRODUCTS = [
     features: ["Therapist assignment", "Client intake & health notes", "Deposit QR codes", "Public booking page"],
     stat: { value: "30%", label: "more repeat clients" },
   },
+  {
+    key: "AIRBNB",
+    name: "Airbnb / Rentals",
+    tagline: "Fill every night.",
+    desc: "Manage rental properties, guest profiles, and reservations from one clean dashboard — with built-in double-booking protection.",
+    href: "/airbnb",
+    register: `${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=AIRBNB&plan=FREE`,
+    accent: "#0ea5e9",
+    accentLight: "#f0f9ff",
+    Icon: Home,
+    features: ["Property listings & calendar", "Guest profiles & history", "Reservation management", "Double-booking protection"],
+    stat: { value: "0", label: "double bookings" },
+  },
 ]
 
 const STATS = [
@@ -138,6 +151,7 @@ const FOR_WHO = [
   { emoji: "🔧", label: "Service Businesses" },
   { emoji: "🏪", label: "Small Retailers" },
   { emoji: "🧺", label: "Laundry Shop Owners" },
+  { emoji: "🏠", label: "Airbnb Hosts" },
 ]
 
 const STEPS = [
@@ -305,18 +319,25 @@ function Hero() {
       <div className="absolute inset-0 pointer-events-none" style={{
         backgroundImage: "linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px)",
         backgroundSize: "60px 60px",
+        maskImage: "radial-gradient(ellipse 80% 60% at 50% 40%, black 40%, transparent 100%)",
+        WebkitMaskImage: "radial-gradient(ellipse 80% 60% at 50% 40%, black 40%, transparent 100%)",
       }} />
-      <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] rounded-full pointer-events-none"
-        style={{ background: "radial-gradient(circle, rgba(37,99,235,0.15) 0%, transparent 70%)" }} />
-      <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] rounded-full pointer-events-none"
-        style={{ background: "radial-gradient(circle, rgba(124,58,237,0.12) 0%, transparent 70%)" }} />
+      <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] rounded-full pointer-events-none animate-pulse"
+        style={{ background: "radial-gradient(circle, rgba(37,99,235,0.18) 0%, transparent 70%)", animationDuration: "6s" }} />
+      <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] rounded-full pointer-events-none animate-pulse"
+        style={{ background: "radial-gradient(circle, rgba(124,58,237,0.14) 0%, transparent 70%)", animationDuration: "8s" }} />
+      <div className="absolute top-1/3 right-1/3 w-[350px] h-[350px] rounded-full pointer-events-none animate-pulse"
+        style={{ background: "radial-gradient(circle, rgba(14,165,233,0.12) 0%, transparent 70%)", animationDuration: "7s" }} />
 
       <div className="relative z-10 max-w-4xl mx-auto text-center">
 
         {/* BADGE */}
-        <div className="inline-flex items-center gap-2 bg-white/5 border border-white/10 rounded-full px-4 py-2 mb-8">
-          <Sparkles className="w-3.5 h-3.5 text-yellow-400" />
-          <span className="text-xs font-medium text-white/70 tracking-wide">Built for small businesses & startups</span>
+        <div className="inline-flex items-center gap-2 bg-white/5 border border-white/10 rounded-full px-4 py-2 mb-8 backdrop-blur-sm shadow-[0_0_30px_-8px_rgba(99,102,241,0.5)]">
+          <span className="relative flex h-2 w-2">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400" />
+          </span>
+          <span className="text-xs font-medium text-white/70 tracking-wide">9 tools live · built for small businesses</span>
         </div>
 
         {/* HEADLINE */}
@@ -386,7 +407,7 @@ function StatsBar() {
       <div className="max-w-5xl mx-auto px-6 py-8 grid grid-cols-2 md:grid-cols-4 gap-8">
         {STATS.map((s, i) => (
           <Reveal key={s.label} delay={i * 80} className="text-center">
-            <p className="text-3xl font-bold text-white">{s.value}</p>
+            <p className="text-3xl md:text-4xl font-bold bg-gradient-to-br from-white to-white/50 bg-clip-text text-transparent">{s.value}</p>
             <p className="text-sm text-white/40 mt-1">{s.label}</p>
           </Reveal>
         ))}
@@ -529,7 +550,7 @@ function Products() {
         <Reveal>
           <p className="text-xs font-bold tracking-widest uppercase text-gray-400 mb-3">Our products</p>
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 tracking-tight leading-tight max-w-2xl">
-            Eight tools. Every small business covered.
+            Nine tools. Every small business covered.
           </h2>
           <p className="mt-4 text-lg text-gray-500 max-w-xl">
             Pick the one you need today. Each product is fully standalone — no bundles, no bloat, no paying for things you don't use.
@@ -539,14 +560,18 @@ function Products() {
         <div className="mt-14 grid md:grid-cols-2 xl:grid-cols-3 gap-6">
           {PRODUCTS.map((p, i) => (
             <Reveal key={p.key} delay={i * 80}>
-              <div className="group bg-white rounded-3xl border border-gray-200 overflow-hidden hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 flex flex-col h-full">
+              <div className="group relative bg-white rounded-3xl border border-gray-200 overflow-hidden hover:shadow-2xl hover:-translate-y-1.5 hover:border-transparent transition-all duration-300 flex flex-col h-full">
 
-                <div className="h-1 w-full" style={{ background: `linear-gradient(90deg, ${p.accent}, ${p.accent}88)` }} />
+                <div className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
+                  style={{ boxShadow: `0 20px 50px -12px ${p.accent}55`, border: `1px solid ${p.accent}30` }} />
+
+                <div className="h-1.5 w-full" style={{ background: `linear-gradient(90deg, ${p.accent}, ${p.accent}88)` }} />
 
                 <div className="p-8 flex flex-col flex-1">
                   <div className="flex items-start justify-between mb-6">
                     <div className="flex items-center gap-3">
-                      <div className="w-12 h-12 rounded-2xl flex items-center justify-center" style={{ background: p.accentLight }}>
+                      <div className="w-12 h-12 rounded-2xl flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform duration-300"
+                        style={{ background: `linear-gradient(135deg, ${p.accentLight}, ${p.accent}22)` }}>
                         <p.Icon className="w-6 h-6" style={{ color: p.accent }} />
                       </div>
                       <div>
@@ -572,8 +597,8 @@ function Products() {
                   </ul>
 
                   <div className="flex gap-3 mt-auto">
-                    <Link href={p.register} className="flex-1 text-center text-sm font-semibold text-white py-3 rounded-2xl transition-all hover:opacity-90 hover:-translate-y-0.5"
-                      style={{ background: p.accent }}>
+                    <Link href={p.register} className="flex-1 text-center text-sm font-semibold text-white py-3 rounded-2xl transition-all hover:-translate-y-0.5 hover:shadow-lg"
+                      style={{ background: `linear-gradient(135deg, ${p.accent}, ${p.accent}cc)`, boxShadow: `0 8px 20px -8px ${p.accent}99` }}>
                       Try free
                     </Link>
                     <Link href={p.href} className="flex items-center gap-1.5 justify-center text-sm font-semibold text-gray-700 px-5 py-3 rounded-2xl border border-gray-200 hover:border-gray-400 transition-colors">

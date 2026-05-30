@@ -4,7 +4,7 @@ export type RouteInfo = {
   desc: string
 }
 
-export type ClusterKey = "invoice" | "booking" | "gym" | "essay" | "car-rental" | "laundry" | "salon" | "massage"
+export type ClusterKey = "invoice" | "booking" | "gym" | "essay" | "car-rental" | "laundry" | "salon" | "massage" | "airbnb"
 
 export type RouteCluster = {
   label: string
@@ -157,6 +157,19 @@ export const CLUSTERS: Record<ClusterKey, RouteCluster> = {
       { path: "/massage/massage-therapist-booking-app", title: "Massage Therapist Booking App", desc: "Per-therapist booking with specialties, schedules, and client requests." },
     ],
   },
+
+  airbnb: {
+    label: "Airbnb / Short-term Rentals",
+    hub: { path: "/airbnb", title: "Airbnb Management Software", desc: "Manage rental properties, guests, and reservations from one clean dashboard." },
+    pages: [
+      { path: "/airbnb/guide", title: "Airbnb Management Guide", desc: "How to manage your short-term rental properties with software — end to end." },
+      { path: "/airbnb/airbnb-management-software", title: "Airbnb Management Software", desc: "All-in-one software to run your short-term rental — properties, guests, reservations, and revenue." },
+      { path: "/airbnb/airbnb-property-management-software", title: "Airbnb Property Management Software", desc: "Track every property, guest, and booking from a single dashboard with no double-bookings." },
+      { path: "/airbnb/best-airbnb-management-software", title: "Best Airbnb Management Software", desc: "What makes the best Airbnb management software — and why independent hosts choose Smapey." },
+      { path: "/airbnb/airbnb-management-software-features", title: "Airbnb Management Software Features", desc: "A full breakdown of the features your rental management software should include." },
+      { path: "/airbnb/airbnb-cleaning-management-software", title: "Airbnb Cleaning Management Software", desc: "Track turnovers, log cleanings, and keep every property guest-ready between stays." },
+    ],
+  },
 }
 
 // Back-compat: existing usages of SEO_ROUTES expect bare invoice slugs.
@@ -173,6 +186,7 @@ export const ALL_CLUSTERS: ClusterKey[] = [
   "laundry",
   "salon",
   "massage",
+  "airbnb",
 ]
 
 export function clusterForPath(pathname: string): ClusterKey | null {
