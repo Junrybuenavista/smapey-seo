@@ -4,7 +4,7 @@ export type RouteInfo = {
   desc: string
 }
 
-export type ClusterKey = "invoice" | "booking" | "gym" | "essay" | "car-rental" | "laundry" | "salon" | "massage" | "airbnb"
+export type ClusterKey = "invoice" | "booking" | "gym" | "essay" | "car-rental" | "laundry" | "salon" | "massage" | "airbnb" | "lending"
 
 export type RouteCluster = {
   label: string
@@ -170,6 +170,19 @@ export const CLUSTERS: Record<ClusterKey, RouteCluster> = {
       { path: "/airbnb/airbnb-cleaning-management-software", title: "Airbnb Cleaning Management Software", desc: "Track turnovers, log cleanings, and keep every property guest-ready between stays." },
     ],
   },
+
+  lending: {
+    label: "Lending & Loan Management",
+    hub: { path: "/lending", title: "Lending Management Software", desc: "Run your own lending business — borrowers, loans, amortization, and collections from one dashboard." },
+    pages: [
+      { path: "/lending/guide", title: "Lending Software Guide", desc: "How to run a lending business with software — borrowers, loans, schedules, and collections end to end." },
+      { path: "/lending/loan-app-philippines", title: "Loan App Philippines", desc: "The loan app for lenders in the Philippines — issue loans, track payments, and manage borrowers." },
+      { path: "/lending/best-loan-app-philippines", title: "Best Loan App Philippines", desc: "What makes the best loan app for Philippine lenders — and why lending businesses choose Smapey." },
+      { path: "/lending/lending-money-apps-philippines", title: "Lending Money Apps Philippines", desc: "The lending money app for Filipino lenders to issue loans and track repayments with ease." },
+      { path: "/lending/legit-loan-app-philippines", title: "Legit Loan App Philippines", desc: "A legit, professional loan management app for registered lending businesses in the Philippines." },
+      { path: "/lending/online-lending-apps-philippines", title: "Online Lending Apps Philippines", desc: "Run your online lending business in the Philippines — borrowers, amortization, and collections online." },
+    ],
+  },
 }
 
 // Back-compat: existing usages of SEO_ROUTES expect bare invoice slugs.
@@ -187,6 +200,7 @@ export const ALL_CLUSTERS: ClusterKey[] = [
   "salon",
   "massage",
   "airbnb",
+  "lending",
 ]
 
 export function clusterForPath(pathname: string): ClusterKey | null {

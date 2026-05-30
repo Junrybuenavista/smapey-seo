@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from "react"
 import Link from "next/link"
 import {
   FileText, Dumbbell, BookOpen, CalendarDays, Car, Shirt, Scissors,
-  CalendarPlus, Home,
+  CalendarPlus, Home, Landmark,
   ArrowRight, CheckCircle2, Zap, Shield, TrendingUp,
   Clock, ChevronDown, Menu, X, Users, Sparkles,
   MousePointerClick, LayoutDashboard, Star,
@@ -131,6 +131,19 @@ const PRODUCTS = [
     Icon: Home,
     features: ["Property listings & calendar", "Guest profiles & history", "Reservation management", "Double-booking protection"],
     stat: { value: "0", label: "double bookings" },
+  },
+  {
+    key: "LENDING",
+    name: "Lending Manager",
+    tagline: "Run your loan book with ease.",
+    desc: "Issue loans, auto-generate amortization schedules, track GCash and bank payments, and watch collections — everything a lender needs in one dashboard.",
+    href: "/lending",
+    register: `${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=LENDING&plan=FREE`,
+    accent: "#334155",
+    accentLight: "#f1f5f9",
+    Icon: Landmark,
+    features: ["Borrower profiles & history", "Auto amortization schedules", "Cash / GCash / bank payments", "Overdue & collections analytics"],
+    stat: { value: "0", label: "missed dues" },
   },
 ]
 
