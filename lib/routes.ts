@@ -4,7 +4,7 @@ export type RouteInfo = {
   desc: string
 }
 
-export type ClusterKey = "invoice" | "booking" | "gym" | "essay" | "car-rental" | "laundry" | "salon" | "massage" | "airbnb" | "lending" | "restaurant" | "store"
+export type ClusterKey = "invoice" | "booking" | "gym" | "essay" | "car-rental" | "laundry" | "salon" | "massage" | "airbnb" | "lending" | "restaurant" | "store" | "clinic"
 
 export type RouteCluster = {
   label: string
@@ -197,6 +197,22 @@ export const CLUSTERS: Record<ClusterKey, RouteCluster> = {
     ],
   },
 
+  clinic: {
+    label: "Clinic Manager",
+    hub: {
+      path: "/clinic",
+      title: "Clinic Management System",
+      desc: "Manage patients, doctors, appointments, and a live queue board — all in one dashboard.",
+    },
+    pages: [
+      { path: "/clinic/guide", title: "Clinic Manager Guide", desc: "Step-by-step guide to setting up doctors, booking appointments, and running the live queue board." },
+      { path: "/clinic/dental-clinic-management-system", title: "Dental Clinic Management System", desc: "Manage dental appointments, assign dentists, and track your patient queue without complex software." },
+      { path: "/clinic/clinic-appointment-management-system", title: "Clinic Appointment Management System", desc: "Book, confirm, queue, and complete clinic appointments — every status tracked in one system." },
+      { path: "/clinic/clinic-information-management-system", title: "Clinic Information Management System", desc: "Patient records, doctor profiles, appointment history, and analytics — organized and secure." },
+      { path: "/clinic/clinic-management-system-thesis", title: "Clinic Management System Thesis", desc: "Thesis guide covering key modules, data models, and system architecture for a clinic management system." },
+    ],
+  },
+
   restaurant: {
     label: "Food Ordering",
     hub: { path: "/restaurant", title: "Food Ordering Manager", desc: "Manage your menu, orders, kitchen queue, and daily sales — everything a small restaurant or café needs in one dashboard." },
@@ -228,6 +244,7 @@ export const ALL_CLUSTERS: ClusterKey[] = [
   "airbnb",
   "lending",
   "restaurant",
+  "clinic",
 ]
 
 export function clusterForPath(pathname: string): ClusterKey | null {

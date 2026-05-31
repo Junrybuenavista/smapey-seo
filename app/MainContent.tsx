@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from "react"
 import Link from "next/link"
 import {
   FileText, Dumbbell, BookOpen, CalendarDays, Car, Shirt, Scissors,
-  CalendarPlus, Home, Landmark, UtensilsCrossed, ShoppingBag,
+  CalendarPlus, Home, Landmark, UtensilsCrossed, ShoppingBag, Stethoscope,
   ArrowRight, CheckCircle2, Zap, Shield, TrendingUp,
   Clock, ChevronDown, Menu, X, Users, Sparkles,
   MousePointerClick, LayoutDashboard, Star,
@@ -170,6 +170,19 @@ const PRODUCTS = [
     Icon: ShoppingBag,
     features: ["Product catalog with stock tracking", "Tap-to-add POS & change calc", "Low stock alerts & reorder", "Daily sales & revenue analytics"],
     stat: { value: "< 1 min", label: "to ring up a sale" },
+  },
+  {
+    key: "CLINIC",
+    name: "Clinic Manager",
+    tagline: "Run your clinic smarter.",
+    desc: "Manage patients, doctors, appointments, and a live queue board — all in one clean dashboard. Built for clinics of any size.",
+    href: "/clinic",
+    register: `${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=CLINIC&plan=FREE`,
+    accent: "#2563eb",
+    accentLight: "#eff6ff",
+    Icon: Stethoscope,
+    features: ["Patient records & profiles", "Doctor schedules & queue", "Appointment booking", "Live queue board"],
+    stat: { value: "5 min", label: "to set up your clinic" },
   },
 ]
 
@@ -404,7 +417,7 @@ function Hero() {
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
             <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400" />
           </span>
-          <span className="text-xs font-medium text-white/70 tracking-wide">12 tools live · built for small businesses</span>
+          <span className="text-xs font-medium text-white/70 tracking-wide">13 tools live · built for small businesses</span>
         </div>
 
         {/* HEADLINE */}
