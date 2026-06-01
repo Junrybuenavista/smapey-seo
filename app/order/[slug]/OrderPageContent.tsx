@@ -36,10 +36,10 @@ interface PlacedOrder {
 }
 
 const STATUS_STEPS = [
-  { key: "PENDING",   label: "Order received", icon: CheckCircle2 },
-  { key: "PREPARING", label: "Being prepared", icon: ChefHat },
-  { key: "READY",     label: "Ready to serve", icon: BellRing },
-  { key: "COMPLETED", label: "Completed",      icon: CheckCircle2 },
+  { key: "PENDING",   label: "Order received", active: "Waiting for the kitchen…", icon: CheckCircle2 },
+  { key: "PREPARING", label: "Being prepared", active: "In the kitchen now…",      icon: ChefHat },
+  { key: "READY",     label: "Ready to serve", active: "Your order is ready!",     icon: BellRing },
+  { key: "COMPLETED", label: "Completed",      active: "Enjoy your meal!",          icon: CheckCircle2 },
 ]
 
 export default function OrderPageContent({ slug }: { slug: string }) {
@@ -218,7 +218,7 @@ export default function OrderPageContent({ slug }: { slug: string }) {
                       </div>
                       <div className="flex-1">
                         <p className={`text-sm font-semibold ${done || current ? "text-gray-900" : "text-gray-400"}`}>{step.label}</p>
-                        {current && <p className="text-xs" style={{ color: accent }}>In progress…</p>}
+                        {current && <p className="text-xs" style={{ color: accent }}>{step.active}</p>}
                       </div>
                       {done && <CheckCircle2 className="w-4 h-4 text-green-500" />}
                     </li>
