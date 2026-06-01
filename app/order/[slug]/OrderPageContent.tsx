@@ -4,7 +4,7 @@ import { useEffect, useMemo, useState, useCallback } from "react"
 import { useSearchParams } from "next/navigation"
 import {
   UtensilsCrossed, Plus, Minus, ShoppingBag, Loader2, AlertCircle,
-  CheckCircle2, ChefHat, BellRing, X, ArrowLeft, Clock, XCircle,
+  CheckCircle2, ChefHat, BellRing, X, ArrowLeft, Clock, XCircle, Wallet,
 } from "lucide-react"
 
 const API = process.env.NEXT_PUBLIC_API_URL || ""
@@ -31,8 +31,17 @@ interface PlacedOrder {
   tableNumber: string | null
   customerName: string | null
   totalAmount: number
+  paymentStatus: string | null
+  paymentMethod: string | null
+  customerPaidClaim: boolean
   createdAt: string
   items: { name: string; quantity: number; unitPrice: number; subtotal: number }[]
+}
+interface Gcash {
+  enabled: boolean
+  name?: string | null
+  number?: string | null
+  qrUrl?: string | null
 }
 
 const STATUS_STEPS = [
@@ -58,6 +67,8 @@ export default function OrderPageContent({ slug }: { slug: string }) {
 
   const [order, setOrder]       = useState<PlacedOrder | null>(null)
   const [trackingId, setTrackingId] = useState<string | null>(null)
+  const [gcash, setGcash]       = useState<Gcash | null>(null)
+  const [payingMark, setPayingMark] = useState(false)
 
   const accent = data?.org.accentColor || "#f97316"
   const sym    = data?.org.currencySymbol || "₱"
@@ -95,8 +106,20 @@ export default function OrderPageContent({ slug }: { slug: string }) {
       if (!r.ok) { if (r.status === 404) { localStorage.removeItem(storageKey); setTrackingId(null) } return }
       const d = await r.json()
       setOrder(d.order)
+      setGcash(d.gcash || null)
     } catch {}
   }, [trackingId, slug, storageKey])
+
+  const markPaid = async () => {
+    if (!trackingId) return
+    setPayingMark(true)
+    try {
+      await fetch(`${API}/api/restaurant/public/${slug}/orders/${trackingId}/paid`, { method: "POST" })
+      await refreshOrder()
+    } catch {} finally {
+      setPayingMark(false)
+    }
+  }
 
   useEffect(() => {
     if (!trackingId) return
@@ -242,6 +265,50 @@ export default function OrderPageContent({ slug }: { slug: string }) {
               <span>Total</span><span>{sym}{order.totalAmount.toFixed(2)}</span>
             </div>
           </div>
+
+          {/* GCash payment */}
+          {!cancelled && gcash?.enabled && (
+            <div className="bg-white rounded-2xl shadow-sm p-5 mt-4">
+              <p className="text-xs font-semibold uppercase tracking-wide text-gray-400 mb-3 flex items-center gap-1.5">
+                <Wallet className="w-3.5 h-3.5" /> Pay with GCash
+              </p>
+
+              {order.paymentStatus === "PAID" ? (
+                <div className="flex flex-col items-center text-center gap-2 py-3">
+                  <CheckCircle2 className="w-10 h-10 text-green-500" />
+                  <p className="font-semibold text-gray-800">Payment confirmed</p>
+                  <p className="text-sm text-gray-500">Thank you! Your payment has been received.</p>
+                </div>
+              ) : order.customerPaidClaim ? (
+                <div className="flex flex-col items-center text-center gap-2 py-3">
+                  <Clock className="w-9 h-9 text-amber-500" />
+                  <p className="font-semibold text-gray-800">Payment submitted</p>
+                  <p className="text-sm text-gray-500">Waiting for the staff to confirm your GCash payment. Please keep your GCash receipt ready.</p>
+                </div>
+              ) : (
+                <>
+                  {gcash.qrUrl && (
+                    <img src={gcash.qrUrl} alt="GCash QR" className="w-48 h-48 mx-auto rounded-xl border border-gray-100 object-contain" />
+                  )}
+                  <div className="mt-3 space-y-1 text-center">
+                    {gcash.name && <p className="text-sm text-gray-700"><span className="text-gray-400">Account:</span> <span className="font-semibold">{gcash.name}</span></p>}
+                    {gcash.number && <p className="text-sm text-gray-700"><span className="text-gray-400">Number:</span> <span className="font-semibold">{gcash.number}</span></p>}
+                    <p className="text-base font-bold text-gray-900">Amount: {sym}{order.totalAmount.toFixed(2)}</p>
+                  </div>
+                  <p className="text-xs text-gray-400 text-center mt-2">Scan the QR or send to the number above, then tap below.</p>
+                  <button
+                    onClick={markPaid}
+                    disabled={payingMark}
+                    className="w-full mt-3 py-3 rounded-xl text-white text-sm font-semibold flex items-center justify-center gap-2 disabled:opacity-60"
+                    style={{ background: accent }}
+                  >
+                    {payingMark ? <Loader2 className="w-4 h-4 animate-spin" /> : <CheckCircle2 className="w-4 h-4" />}
+                    I’ve paid via GCash
+                  </button>
+                </>
+              )}
+            </div>
+          )}
 
           <p className="text-center text-xs text-gray-400 mt-4 flex items-center justify-center gap-1.5">
             <Clock className="w-3.5 h-3.5" /> Status updates automatically
