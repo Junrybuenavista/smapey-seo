@@ -220,7 +220,7 @@ export default function OrderPageContent({ slug }: { slug: string }) {
                         <p className={`text-sm font-semibold ${done || current ? "text-gray-900" : "text-gray-400"}`}>{step.label}</p>
                         {current && <p className="text-xs" style={{ color: accent }}>{step.active}</p>}
                       </div>
-                      {done && <CheckCircle2 className="w-4 h-4 text-green-500" />}
+                      {(done || current) && <CheckCircle2 className="w-4 h-4 text-green-500" />}
                     </li>
                   )
                 })}
