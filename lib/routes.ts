@@ -4,7 +4,7 @@ export type RouteInfo = {
   desc: string
 }
 
-export type ClusterKey = "invoice" | "booking" | "gym" | "essay" | "car-rental" | "laundry" | "salon" | "massage" | "airbnb" | "lending" | "restaurant" | "store" | "clinic" | "vet-clinic" | "boarding-house"
+export type ClusterKey = "invoice" | "booking" | "gym" | "essay" | "car-rental" | "laundry" | "salon" | "massage" | "airbnb" | "lending" | "restaurant" | "store" | "clinic" | "vet-clinic" | "boarding-house" | "catering"
 
 export type RouteCluster = {
   label: string
@@ -245,6 +245,22 @@ export const CLUSTERS: Record<ClusterKey, RouteCluster> = {
     ],
   },
 
+  catering: {
+    label: "Catering Manager",
+    hub: {
+      path: "/catering",
+      title: "Catering Manager",
+      desc: "Manage catering bookings, packages, payment milestones, supply catalog, and staff — all in one dashboard.",
+    },
+    pages: [
+      { path: "/catering/guide",                                                title: "Catering Manager Guide",                              desc: "Step-by-step guide to setting up packages, registering clients, creating bookings, tracking payment milestones, and reading the dashboard." },
+      { path: "/catering/catering-management-system",                          title: "Catering Management System",                          desc: "A complete catering management system for Philippine catering businesses — bookings, packages, billing, and staff." },
+      { path: "/catering/catering-business-philippines",                       title: "Catering Business Philippines",                       desc: "Running a catering business in the Philippines — manage bookings, payments, and supply costs from one dashboard." },
+      { path: "/catering/how-to-start-a-catering-business-in-the-philippines", title: "How to Start a Catering Business in the Philippines", desc: "Step-by-step guide to starting a catering business in the Philippines — permits, pricing, clients, and operations." },
+      { path: "/catering/catering-management-and-billing-system",              title: "Catering Management and Billing System",              desc: "Catering management and billing combined in one system — bookings, milestone payments, and revenue tracking." },
+    ],
+  },
+
   restaurant: {
     label: "Food Ordering",
     hub: { path: "/restaurant", title: "Food Ordering Manager", desc: "Manage your menu, orders, kitchen queue, and daily sales — everything a small restaurant or café needs in one dashboard." },
@@ -280,6 +296,7 @@ export const ALL_CLUSTERS: ClusterKey[] = [
   "clinic",
   "vet-clinic",
   "boarding-house",
+  "catering",
 ]
 
 export function clusterForPath(pathname: string): ClusterKey | null {

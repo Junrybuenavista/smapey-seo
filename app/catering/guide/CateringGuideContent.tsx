@@ -1,0 +1,463 @@
+"use client"
+
+import { useState, useEffect, useRef } from "react"
+import InternalLinks from "@/components/InternalLinks"
+import Link from "next/link"
+import {
+  BookOpen, ChefHat, Users, CalendarDays, Package, Banknote,
+  FlaskConical, UserCheck, BarChart3, CheckCircle2, ChevronRight,
+  Menu, X, Clock, Lightbulb, AlertTriangle, Shield,
+} from "lucide-react"
+
+const SECTIONS = [
+  {
+    id: "setup",
+    icon: ChefHat,
+    title: "1. Set Up Your Catering Account",
+    steps: [
+      {
+        title: "Create your Smapey account",
+        desc: "Sign up at smapey.com and select Catering Manager as your product. Your private catering workspace is created instantly — no credit card required on the free plan.",
+      },
+      {
+        title: "Build your package catalog",
+        desc: "Go to Catering → Packages and click Add Package. Enter the package name (e.g. Basic Buffet, Premium Set Menu), a short description, and the price per head. Build out all your standard packages here — you'll attach them to bookings later instead of re-quoting every time.",
+      },
+      {
+        title: "Set up your supply catalog",
+        desc: "Go to Catering → Supply Catalog and click Add Ingredient. Enter the ingredient name, unit type (KG, Grams, Liters, ML, Pieces, Packs, Boxes), cost per unit, and any notes (e.g. preferred supplier). Use this as your master procurement reference.",
+      },
+      {
+        title: "Invite your team",
+        desc: "Go to Settings → Team and invite team members by email. Assign Admin or Member roles based on their access level. Team members can log in with their own account and see the live dashboard, bookings, and clients.",
+      },
+      {
+        title: "Configure your currency symbol",
+        desc: "In Settings → Organization, confirm your currency symbol (₱ for Philippine Peso). This appears on all payment milestones and the revenue dashboard.",
+      },
+    ],
+  },
+  {
+    id: "clients",
+    icon: Users,
+    title: "2. Manage Clients",
+    steps: [
+      {
+        title: "Open the Clients page",
+        desc: "Navigate to Catering → Clients from the sidebar. This is where all your client profiles live — register a client once and reuse their details on every booking.",
+      },
+      {
+        title: "Add a new client",
+        desc: "Click Add Client. Enter the client's full name, contact number, and email address. Add any notes that are useful to keep on file (e.g. dietary preferences, how they found you). Click Save.",
+      },
+      {
+        title: "View a client's profile",
+        desc: "Click View on any client to see their full record — contact details, all bookings ever made under their name, and their booking history at a glance. Returning clients are already in the system, so you don't re-enter their information for new bookings.",
+      },
+      {
+        title: "Edit or delete a client",
+        desc: "Click Edit on any client to update their contact details or notes. Clients with existing bookings can be edited but not deleted — this protects your booking history.",
+      },
+    ],
+  },
+  {
+    id: "bookings",
+    icon: CalendarDays,
+    title: "3. Create and Manage Bookings",
+    steps: [
+      {
+        title: "Open the Bookings page",
+        desc: "Navigate to Catering → Bookings from the sidebar. This is your master event list — every booking is shown here with its status, event date, client, and guest count.",
+      },
+      {
+        title: "Create a new booking",
+        desc: "Click New Booking. Select or create the client, enter the event date, venue, expected guest count, and set the initial status (usually Pending for new inquiries, Confirmed for locked-in events). Add internal notes if needed. Click Save.",
+      },
+      {
+        title: "Attach packages to a booking",
+        desc: "Open the booking and scroll to the Packages section. Click Add Package, select from your package catalog, and enter the number of guests for that package. Add multiple packages to one booking if the client is taking both a food package and a drinks package, for example.",
+      },
+      {
+        title: "Update booking status",
+        desc: "Click Change Status on any booking to move it through the lifecycle: Pending → Confirmed → Completed, or Pending/Confirmed → Cancelled. When you mark a booking as Completed, all outstanding payment milestones are automatically settled — because the event happened and the money is considered collected.",
+      },
+      {
+        title: "View booking details",
+        desc: "Click View on any booking to see the full record — packages attached, payment milestones, assigned staff, and any notes. This is your one-stop view for everything related to an event.",
+      },
+    ],
+  },
+  {
+    id: "milestones",
+    icon: Banknote,
+    title: "4. Payment Milestones",
+    steps: [
+      {
+        title: "What is a payment milestone?",
+        desc: "A payment milestone is a scheduled partial payment tied to a specific booking. Instead of tracking a single lump sum, you break the booking's total into stages — for example: 30% reservation fee, 50% partial payment two weeks before the event, and the 20% balance on event day.",
+      },
+      {
+        title: "Add a milestone to a booking",
+        desc: "Open the booking and scroll to the Payment Milestones section. Click Add Milestone. Enter the milestone name (e.g. Reservation Fee), the amount, and the due date. Click Save. Repeat for each payment stage.",
+      },
+      {
+        title: "Record a payment",
+        desc: "Click Mark as Paid on any pending or overdue milestone. Select the payment method: Cash, GCash, Maya, Card, or Bank Transfer. Enter the date collected. The milestone is marked Paid and the revenue dashboard updates immediately.",
+      },
+      {
+        title: "Handle partial collections",
+        desc: "If a client pays only part of a milestone, record the amount actually collected. The milestone status will reflect the partial collection and the outstanding balance is tracked automatically. The dashboard will flag this as a pending collection.",
+      },
+      {
+        title: "Overdue milestones",
+        desc: "Any milestone past its due date that hasn't been fully paid is automatically flagged as Overdue on the dashboard. Check the Overdue Milestones panel regularly — the earlier you follow up, the easier it is to collect.",
+      },
+    ],
+  },
+  {
+    id: "supply",
+    icon: FlaskConical,
+    title: "5. Supply Catalog",
+    steps: [
+      {
+        title: "Open the Supply Catalog",
+        desc: "Navigate to Catering → Supply Catalog from the sidebar. This is your ingredient and materials reference — not an inventory tracker, but a cost reference you can use when planning procurement for each event.",
+      },
+      {
+        title: "Add an ingredient or supply",
+        desc: "Click Add Ingredient. Enter the name (e.g. Chicken, Jasmine Rice, Cooking Oil), select the unit type (KG, Grams, Liters, ML, Pieces, Packs, Boxes, or Other), and enter the cost per unit. Add a notes field for supplier name, brand preference, or buying notes.",
+      },
+      {
+        title: "Use the catalog for procurement planning",
+        desc: "Before each event, refer to the supply catalog to estimate what needs to be procured and at what cost. If you're serving a package that requires 2 kg of chicken per 10 guests, you can quickly calculate the total quantity and cost using the catalog's per-unit pricing.",
+      },
+      {
+        title: "Keep costs updated",
+        desc: "Edit ingredient costs whenever your supplier prices change. Keeping the catalog up to date ensures your procurement estimates stay accurate and your package pricing remains profitable.",
+      },
+    ],
+  },
+  {
+    id: "staff",
+    icon: UserCheck,
+    title: "6. Staff Assignment",
+    steps: [
+      {
+        title: "Assign staff to a booking",
+        desc: "Open any booking and scroll to the Staff section. Click Assign Staff, then select the team members who will be working this event. Each assigned staff member is listed under the booking — so the whole team knows their roster without needing a separate group chat message.",
+      },
+      {
+        title: "Assign different roles per booking",
+        desc: "You can assign multiple staff to one booking — head cook, servers, coordinator, driver. The system lists each person's name under the booking. There's no role label per assignment, so add notes in the booking's notes field if you need to specify who does what.",
+      },
+      {
+        title: "Remove a staff assignment",
+        desc: "Click the remove icon next to any staff name on the booking to unassign them. This is useful if a team member becomes unavailable and you need to reassign the slot.",
+      },
+    ],
+  },
+  {
+    id: "dashboard",
+    icon: BarChart3,
+    title: "7. Dashboard & Analytics",
+    steps: [
+      {
+        title: "Open the Dashboard",
+        desc: "Navigate to Catering → Dashboard from the sidebar. This is your home screen — it shows the full financial and operational picture of your catering business at a glance.",
+      },
+      {
+        title: "Read the stat cards",
+        desc: "The top row shows key numbers: Upcoming Events (confirmed bookings not yet completed), Revenue This Month (collected milestones this month), Payments Collected (total paid-out milestones), and Pending Payments (milestones not yet collected). These update in real time.",
+      },
+      {
+        title: "Monitor overdue milestones",
+        desc: "The Overdue Milestones panel lists every milestone that is past its due date and unpaid — client name, booking, amount, and days overdue. Use this panel to prioritize your follow-up calls and messages.",
+      },
+      {
+        title: "Check upcoming events",
+        desc: "The Upcoming Events list shows all confirmed bookings in date order — event date, client name, venue, and guest count. This is your operations forward-look: what events are coming up this week and next, and are they fully prepared.",
+      },
+      {
+        title: "Review the monthly revenue trend",
+        desc: "The revenue chart shows your monthly collections over time. Use this to spot your peak catering season (typically April–May and October–December for Philippine events), track whether revenue is growing, and set realistic targets for the next quarter.",
+      },
+    ],
+  },
+]
+
+const TIPS = [
+  {
+    icon: Clock,
+    tip: "Build your full package catalog before taking your first booking. This saves time on every inquiry — just select and attach, no re-quoting.",
+  },
+  {
+    icon: Lightbulb,
+    tip: "Create payment milestones at the same time you confirm a booking. Don't wait until payment is due — setting them early gives you a clear picture of expected cash flow.",
+  },
+  {
+    icon: AlertTriangle,
+    tip: "Check the Overdue Milestones panel at least twice a week. Philippine catering clients often pay late — early follow-up before an event is far more effective than chasing after it.",
+  },
+  {
+    icon: Shield,
+    tip: "Always mark a booking as Completed only after the event is done and you're satisfied. Marking Complete auto-settles all outstanding milestones — so do it only when the event actually happened.",
+  },
+]
+
+function useInView(opts?: IntersectionObserverInit) {
+  const ref = useRef<HTMLDivElement>(null)
+  const [inView, setInView] = useState(false)
+  useEffect(() => {
+    const el = ref.current
+    if (!el) return
+    const obs = new IntersectionObserver(([e]) => { if (e.isIntersecting) { setInView(true); obs.disconnect() } }, { threshold: 0.1, ...opts })
+    obs.observe(el)
+    return () => obs.disconnect()
+  }, [])
+  return { ref, inView }
+}
+
+function Animate({ children, className = "", delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) {
+  const { ref, inView } = useInView()
+  return (
+    <div ref={ref} className={className} style={{
+      transitionProperty: "opacity, transform", transitionDuration: "600ms",
+      transitionTimingFunction: "cubic-bezier(0.4,0,0.2,1)", transitionDelay: `${delay}ms`,
+      opacity: inView ? 1 : 0, transform: inView ? "translateY(0)" : "translateY(24px)",
+    }}>
+      {children}
+    </div>
+  )
+}
+
+const NAV_SECTIONS = [
+  ["setup",      "Setup"],
+  ["clients",    "Clients"],
+  ["bookings",   "Bookings"],
+  ["milestones", "Milestones"],
+  ["supply",     "Supply"],
+  ["staff",      "Staff"],
+  ["dashboard",  "Dashboard"],
+]
+
+function Navbar() {
+  const [open, setOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
+  useEffect(() => {
+    const fn = () => setScrolled(window.scrollY > 20)
+    window.addEventListener("scroll", fn)
+    return () => window.removeEventListener("scroll", fn)
+  }, [])
+  const scrollTo = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
+    e.preventDefault()
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" })
+    setOpen(false)
+  }
+  return (
+    <nav className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${scrolled ? "bg-[#1a0008]/90 backdrop-blur-md border-b border-white/5 shadow-lg" : "bg-transparent"}`}>
+      <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+        <Link href="/catering" className="flex items-center gap-2.5">
+          <img src="/logo.png" alt="Smapey Catering" className="w-8 h-8 rounded-lg object-cover" />
+          <span className="text-white font-bold tracking-tight">Smapey Catering</span>
+        </Link>
+        <div className="hidden md:flex items-center gap-6">
+          <Link href="/catering" className="text-sm text-white/60 hover:text-white transition-colors">Home</Link>
+          {NAV_SECTIONS.map(([id, label]) => (
+            <a key={id} href={`#${id}`} onClick={(e) => scrollTo(e, id)}
+              className="text-sm text-white/60 hover:text-white transition-colors">{label}</a>
+          ))}
+        </div>
+        <div className="hidden md:flex items-center gap-3">
+          <a href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/login`} className="text-sm text-white/60 hover:text-white px-4 py-2">Sign in</a>
+          <a href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=CATERING&plan=FREE`}
+            className="text-sm font-semibold px-4 py-2 rounded-lg bg-rose-600 hover:bg-rose-500 text-white shadow-lg shadow-rose-600/25 transition-colors">
+            Try it free
+          </a>
+        </div>
+        <button onClick={() => setOpen(!open)} className="md:hidden text-white/60 hover:text-white">
+          {open ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+        </button>
+      </div>
+      {open && (
+        <div className="md:hidden bg-[#1a0008] border-t border-white/5 px-6 py-4 flex flex-col gap-4">
+          <Link href="/catering" className="text-sm text-white/60 hover:text-white">Home</Link>
+          {NAV_SECTIONS.map(([id, label]) => (
+            <a key={id} href={`#${id}`} onClick={(e) => scrollTo(e, id)}
+              className="text-sm text-white/60 hover:text-white transition-colors">{label}</a>
+          ))}
+          <a href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=CATERING&plan=FREE`}
+            className="text-sm font-semibold px-4 py-2 rounded-lg bg-rose-600 text-white text-center">
+            Try it free
+          </a>
+        </div>
+      )}
+    </nav>
+  )
+}
+
+export default function CateringGuideContent() {
+  return (
+    <main className="bg-white">
+      <Navbar />
+
+      {/* HERO */}
+      <section className="relative pt-32 pb-16 overflow-hidden"
+        style={{ background: "#1a0008", backgroundImage: "repeating-linear-gradient(45deg, rgba(255,255,255,0.02) 0px, rgba(255,255,255,0.02) 1px, transparent 1px, transparent 28px)", backgroundSize: "28px 28px" }}>
+        <div className="absolute -top-40 -left-40 w-[500px] h-[500px] rounded-full pointer-events-none"
+          style={{ background: "radial-gradient(circle, rgba(225,29,72,0.16) 0%, transparent 70%)" }} />
+        <div className="absolute -bottom-20 -right-40 w-[400px] h-[400px] rounded-full pointer-events-none"
+          style={{ background: "radial-gradient(circle, rgba(236,72,153,0.10) 0%, transparent 70%)" }} />
+        <div className="relative max-w-4xl mx-auto px-6 text-center">
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-rose-500/10 border border-rose-500/20 text-rose-400 text-xs font-semibold mb-6">
+            <BookOpen className="w-3 h-3" /> User Guide
+          </div>
+          <h1 className="text-4xl sm:text-5xl font-extrabold text-white leading-tight tracking-tight mb-4">
+            Smapey Catering Manager{" "}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-rose-400 via-pink-400 to-fuchsia-300">
+              Guide
+            </span>
+          </h1>
+          <p className="text-lg text-white/50 max-w-2xl mx-auto mb-8">
+            Everything you need to set up packages, register clients, create bookings, track payment milestones, manage your supply catalog, assign staff, and read the revenue dashboard — step by step.
+          </p>
+          <div className="flex flex-wrap items-center justify-center gap-4 text-white/30 text-xs">
+            {["10-minute setup", "No training required", "Free plan available"].map((t) => (
+              <span key={t} className="flex items-center gap-1.5">
+                <CheckCircle2 className="w-3.5 h-3.5 text-rose-400" />{t}
+              </span>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* TABLE OF CONTENTS */}
+      <section className="py-10 bg-slate-50 border-b border-slate-200">
+        <div className="max-w-4xl mx-auto px-6">
+          <p className="text-xs font-semibold text-slate-400 uppercase tracking-widest mb-3">Jump to section</p>
+          <div className="flex flex-wrap gap-2">
+            {SECTIONS.map((s) => (
+              <a key={s.id} href={`#${s.id}`}
+                onClick={(e) => { e.preventDefault(); document.getElementById(s.id)?.scrollIntoView({ behavior: "smooth" }) }}
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white border border-slate-200 text-slate-600 hover:border-rose-300 hover:text-rose-700 text-xs font-medium transition-all shadow-sm">
+                <s.icon className="w-3 h-3" />
+                {s.title.replace(/^\d+\.\s/, "")}
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* GUIDE SECTIONS */}
+      {SECTIONS.map((section, si) => (
+        <section key={section.id} id={section.id} className={`py-16 ${si % 2 === 0 ? "bg-white" : "bg-slate-50"} border-t border-slate-100`}>
+          <div className="max-w-4xl mx-auto px-6">
+            <Animate>
+              <div className="flex items-center gap-3 mb-8">
+                <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-rose-600 to-pink-400 flex items-center justify-center shadow-lg shadow-rose-500/20">
+                  <section.icon className="w-5 h-5 text-white" />
+                </div>
+                <h2 className="text-xl sm:text-2xl font-extrabold text-slate-800">{section.title}</h2>
+              </div>
+            </Animate>
+            <div className="space-y-4">
+              {section.steps.map((step, i) => (
+                <Animate key={step.title} delay={i * 80}>
+                  <div className="flex gap-4">
+                    <div className="flex flex-col items-center">
+                      <div className="w-7 h-7 rounded-full bg-rose-600 text-white text-xs font-bold flex items-center justify-center shrink-0">
+                        {i + 1}
+                      </div>
+                      {i < section.steps.length - 1 && (
+                        <div className="w-0.5 flex-1 bg-rose-100 mt-2" />
+                      )}
+                    </div>
+                    <div className="pb-4">
+                      <h3 className="font-semibold text-slate-800 mb-1 text-sm">{step.title}</h3>
+                      <p className="text-slate-500 text-sm leading-relaxed">{step.desc}</p>
+                    </div>
+                  </div>
+                </Animate>
+              ))}
+            </div>
+          </div>
+        </section>
+      ))}
+
+      {/* TIPS */}
+      <section className="py-16 bg-rose-50 border-t border-rose-100">
+        <div className="max-w-4xl mx-auto px-6">
+          <Animate className="mb-8">
+            <h2 className="text-xl sm:text-2xl font-extrabold text-slate-800">Quick Tips</h2>
+            <p className="text-slate-500 text-sm mt-1">Things that will save you time and headaches once you're up and running.</p>
+          </Animate>
+          <div className="grid sm:grid-cols-2 gap-4">
+            {TIPS.map(({ icon: Icon, tip }, i) => (
+              <Animate key={i} delay={i * 80}>
+                <div className="flex items-start gap-3 bg-white rounded-xl p-4 border border-rose-100 shadow-sm">
+                  <div className="w-8 h-8 rounded-lg bg-rose-100 flex items-center justify-center shrink-0">
+                    <Icon className="w-4 h-4 text-rose-600" />
+                  </div>
+                  <p className="text-slate-600 text-sm leading-relaxed">{tip}</p>
+                </div>
+              </Animate>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* MONTHLY WORKFLOW */}
+      <section className="py-16 bg-white border-t border-slate-100">
+        <div className="max-w-4xl mx-auto px-6">
+          <Animate className="mb-10">
+            <h2 className="text-xl sm:text-2xl font-extrabold text-slate-800">Monthly workflow at a glance</h2>
+            <p className="text-slate-500 text-sm mt-1">What to do each month to keep your catering business running smoothly.</p>
+          </Animate>
+          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
+            {[
+              { step: "1st", title: "Review upcoming events", desc: "Check all confirmed bookings for the month — verify packages attached, milestones created, and staff assigned for each event." },
+              { step: "2nd", title: "Follow up overdue milestones", desc: "Check the Overdue Milestones panel on the dashboard and contact clients with outstanding balances before their event date." },
+              { step: "3rd", title: "Plan procurement", desc: "Use the supply catalog to estimate ingredient quantities and costs for each upcoming event. Place supplier orders with enough lead time." },
+              { step: "4th", title: "Record all collections", desc: "As payments come in, mark milestones as paid with the correct method and date. Keep the dashboard accurate in real time." },
+              { step: "5th", title: "Mark completed events", desc: "After each event, update the booking status to Completed. This auto-settles any outstanding milestones and feeds the revenue dashboard." },
+              { step: "6th", title: "Review revenue trend", desc: "Check the monthly revenue chart to see if collections are growing and identify your busiest months for forward planning." },
+            ].map(({ step, title, desc }, i) => (
+              <Animate key={title} delay={i * 60}>
+                <div className="bg-slate-50 border border-slate-100 rounded-xl p-4">
+                  <span className="text-xs font-bold text-rose-500 uppercase tracking-widest">{step}</span>
+                  <h3 className="font-semibold text-slate-800 text-sm mt-1 mb-1">{title}</h3>
+                  <p className="text-slate-500 text-xs leading-relaxed">{desc}</p>
+                </div>
+              </Animate>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="py-16 bg-white border-t border-slate-100">
+        <Animate className="max-w-2xl mx-auto px-6 text-center">
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-800 mb-4">Ready to get started?</h2>
+          <p className="text-slate-500 mb-8">
+            Create your free catering account and have your packages, first client, and first booking set up in under 10 minutes.
+          </p>
+          <a href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=CATERING&plan=FREE`}
+            className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl bg-gradient-to-r from-rose-600 to-pink-500 hover:from-rose-500 hover:to-pink-400 text-white font-semibold transition-all shadow-xl shadow-rose-600/20">
+            Start for free <ChevronRight className="w-4 h-4" />
+          </a>
+        </Animate>
+      </section>
+
+      <InternalLinks cluster="catering" currentPath="/catering/guide" />
+
+      <footer className="bg-[#0f0004] border-t border-white/5 px-6 py-8">
+        <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="flex items-center gap-2">
+            <img src="/logo.png" alt="Smapey Catering Manager" className="w-6 h-6 rounded-md object-cover" />
+            <span className="text-white/60 text-sm font-semibold">Smapey Catering Manager</span>
+          </div>
+          <p className="text-white/20 text-xs">© {new Date().getFullYear()} Smapey. All rights reserved.</p>
+        </div>
+      </footer>
+    </main>
+  )
+}
