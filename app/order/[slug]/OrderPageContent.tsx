@@ -68,7 +68,10 @@ export default function OrderPageContent({ slug }: { slug: string }) {
     let active = true
     fetch(`${API}/api/restaurant/public/${slug}`)
       .then(async r => {
-        if (!r.ok) throw new Error((await r.json().catch(() => ({})))?.error || "Menu not available")
+        if (!r.ok) {
+          const body = await r.json().catch(() => ({} as any))
+          throw new Error(body?.message || body?.error || "Menu not available")
+        }
         return r.json()
       })
       .then(d => { if (active) { setData(d); setLoading(false) } })
@@ -142,7 +145,7 @@ export default function OrderPageContent({ slug }: { slug: string }) {
         }),
       })
       const d = await r.json()
-      if (!r.ok) throw new Error(d?.error || "Could not place order")
+      if (!r.ok) throw new Error(d?.message || d?.error || "Could not place order")
       localStorage.setItem(storageKey, JSON.stringify({ id: d.id }))
       setTrackingId(d.id)
       setCart({}); setShowCart(false); setNotes(""); setCustomerName("")
