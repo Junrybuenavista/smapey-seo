@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from "react"
 import {
   UtensilsCrossed, ClipboardList, ChefHat, BarChart3, ShoppingBag,
   Banknote, CheckCircle2, ChevronRight, Menu, X, Zap, XCircle,
+  QrCode, Smartphone,
 } from "lucide-react"
 import { usePricing, type Plan } from "@/lib/usePricing"
 import InternalLinks from "@/components/InternalLinks"
@@ -13,6 +14,20 @@ const FEATURES = [
     icon: UtensilsCrossed,
     title: "Menu Builder",
     desc: "Create categories and add items with photos, descriptions, and prices. Toggle items available or 86'd in seconds. Your menu updates instantly for everyone placing orders.",
+    color: "from-orange-500 to-amber-400",
+    shadow: "shadow-orange-500/30",
+  },
+  {
+    icon: QrCode,
+    title: "QR Table Ordering",
+    desc: "Print one QR code per table. Customers scan, browse your live menu, and place their own order from their phone — no app to download and no login required. Orders drop straight into your kitchen queue.",
+    color: "from-orange-500 to-amber-400",
+    shadow: "shadow-orange-500/30",
+  },
+  {
+    icon: Smartphone,
+    title: "Live Order Tracking",
+    desc: "After ordering, customers see a live status tracker on their phone — Order received, Being prepared, Ready to serve. Less asking \"is my food ready?\" and fewer interruptions for your staff.",
     color: "from-orange-500 to-amber-400",
     shadow: "shadow-orange-500/30",
   },
@@ -46,8 +61,8 @@ const FEATURES = [
   },
   {
     icon: Banknote,
-    title: "Payment Tracking",
-    desc: "Mark any order as paid by Cash, GCash, or Card at any stage. Payment status is tracked per order so nothing gets missed at the end of a shift.",
+    title: "GCash & Payment Tracking",
+    desc: "Show your own GCash QR right on the customer's phone so they can pay in seconds. Customers tap \"I've paid\" and your staff confirm — money goes straight to your wallet, no payment-gateway fees or KYC. Mark orders paid by Cash, GCash, or Card and track every payment per order.",
     color: "from-orange-500 to-amber-400",
     shadow: "shadow-orange-500/30",
   },
@@ -69,16 +84,19 @@ const FEATURES = [
 
 const STEPS = [
   { num: "01", title: "Build your menu", desc: "Create categories (Appetizers, Mains, Drinks, Desserts) and add items with photos, descriptions, and prices. Mark items available or sold-out at any time." },
-  { num: "02", title: "Place an order", desc: "Choose dine-in or takeaway, assign a table or customer name, pick items from your menu, add notes, and place the order in under a minute." },
-  { num: "03", title: "Work the kitchen queue", desc: "New orders appear as Pending. Tap to move them to Preparing, then Ready, then Completed. Cancel from Pending or Preparing if needed." },
-  { num: "04", title: "Track your sales", desc: "Your dashboard shows today's revenue and orders in real time. The 7-day chart and top-items list update automatically so you always know what's selling." },
+  { num: "02", title: "Print your table QR", desc: "Turn on QR ordering and print one code per table. Customers scan, browse your live menu, and place their own order — or your staff can take orders from the dashboard. New orders pop into the queue instantly." },
+  { num: "03", title: "Work the kitchen queue", desc: "New orders appear as Pending. Tap to move them to Preparing, then Ready, then Completed. Customers watch the live status on their phone. Cancel from Pending or Preparing if needed." },
+  { num: "04", title: "Get paid & track sales", desc: "Customers pay by Cash or scan your GCash QR and tap \"I've paid\" for staff to confirm. Your dashboard shows today's revenue, top items, and a 7-day trend in real time." },
 ]
 
 const FEATURE_ROWS = [
   { feature: "Menu categories", free: true, pro: true, enterprise: true },
   { feature: "Menu item photos", free: true, pro: true, enterprise: true },
+  { feature: "QR table ordering", free: true, pro: true, enterprise: true },
+  { feature: "Live order tracking", free: true, pro: true, enterprise: true },
   { feature: "Dine-in & takeaway orders", free: true, pro: true, enterprise: true },
   { feature: "Kitchen queue (Pending → Done)", free: true, pro: true, enterprise: true },
+  { feature: "GCash QR payment", free: true, pro: true, enterprise: true },
   { feature: "Daily sales dashboard", free: true, pro: true, enterprise: true },
   { feature: "Analytics & top items", free: true, pro: true, enterprise: true },
   { feature: "Priority support", free: false, pro: false, enterprise: true },
@@ -94,7 +112,11 @@ function limitDisplay(plan: Plan | undefined, key: string): string {
 const FAQS = [
   {
     q: "Can customers order directly from their phone?",
-    a: "The current version is a staff-facing tool — your team places and manages orders from the dashboard. A customer-facing QR ordering page is on the roadmap. For now it's ideal for counter staff, table-side ordering on a tablet, or a single kitchen screen.",
+    a: "Yes. Turn on QR ordering and print one QR code per table. Customers scan it, browse your live menu, and place their own order from their phone — no app to download and no login required. Orders drop straight into your kitchen queue, and your staff can still place orders from the dashboard too. Customers also see a live status tracker (Order received → Being prepared → Ready to serve) on their phone.",
+  },
+  {
+    q: "Can customers pay with GCash?",
+    a: "Yes. Add your own GCash name, number, and QR code in settings and it shows right on the customer's phone after they order. They can scan it or copy your number to send payment, then tap \"I've paid via GCash.\" Your staff confirm the payment before it's marked paid — money goes straight to your own GCash wallet with no payment-gateway fees, no monthly cost, and no KYC paperwork.",
   },
   {
     q: "Is there really a free plan?",
@@ -110,7 +132,7 @@ const FAQS = [
   },
   {
     q: "What payment methods can I record?",
-    a: "You can mark any order as paid by Cash, GCash, or Card. Payment status is tracked per order and visible on the orders list, so you know exactly what has and hasn't been settled at the end of a shift.",
+    a: "You can mark any order as paid by Cash, GCash, or Card. With GCash, customers can pay themselves by scanning your QR on their phone and tapping \"I've paid\" for staff to confirm. Payment status is tracked per order and visible on the orders list, so you know exactly what has and hasn't been settled at the end of a shift.",
   },
 ]
 

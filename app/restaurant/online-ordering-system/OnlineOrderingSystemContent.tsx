@@ -5,15 +5,15 @@ const variant: RestaurantVariant = {
   navMode: "page",
   hero: {
     badge: "Online ordering system",
-    titleLead: "Take dine-in and takeaway orders",
-    titleAccent: "from one dashboard.",
+    titleLead: "Let customers order from their phone",
+    titleAccent: "with a table QR code.",
     subtitle:
-      "Smapey is an online ordering system for small restaurants, cafés, and canteens. Staff place orders on any device, the kitchen queue updates in real time, and daily sales are tracked automatically.",
+      "Smapey is an online ordering system for small restaurants, cafés, and canteens. Customers scan a QR code at the table to order and pay by GCash, staff can place orders from any device, the kitchen queue updates in real time, and daily sales are tracked automatically.",
   },
   features: {
     eyebrow: "Online Ordering System",
-    heading: "Order management from any device, any browser",
-    sub: "No app to install, no hardware to buy. Your staff opens a browser, logs in, and starts taking orders — dine-in or takeaway — in minutes.",
+    heading: "QR ordering and management from any device",
+    sub: "No app to install, no hardware to buy. Customers scan, browse your live menu, and order from their phone — and your staff can take orders from any browser too.",
   },
   cta: {
     heading: "Start taking orders online in five minutes.",

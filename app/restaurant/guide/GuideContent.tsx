@@ -1,6 +1,6 @@
 "use client"
 
-import { UtensilsCrossed, ShoppingBag, ChefHat, BarChart3, ClipboardList, ChevronRight } from "lucide-react"
+import { UtensilsCrossed, ShoppingBag, ChefHat, BarChart3, ClipboardList, ChevronRight, QrCode, Banknote } from "lucide-react"
 
 const SECTIONS = [
   {
@@ -13,34 +13,53 @@ const SECTIONS = [
     ],
   },
   {
-    icon: ShoppingBag,
-    title: "2. Place an order",
+    icon: QrCode,
+    title: "2. Turn on QR table ordering",
     body: [
-      "Open Orders and click New Order. Choose Dine-in and enter a table number, or choose Takeaway and enter the customer's name.",
+      "Open QR Ordering in the dashboard and toggle ordering on. Print one QR code per table — Smapey generates a unique code that links to your live menu.",
+      "When a customer scans the QR with their phone camera, your menu opens in their browser — no app to download and no login required. They pick items, add notes, enter their name, and place the order themselves.",
+      "The order lands in your Orders queue instantly as Pending, with the table number attached. New orders appear automatically and notify your staff, so nobody has to keep refreshing the screen.",
+    ],
+  },
+  {
+    icon: ShoppingBag,
+    title: "3. Place an order yourself (optional)",
+    body: [
+      "You can still take orders for customers from the dashboard. Open Orders and click New Order. Choose Dine-in and enter a table number, or choose Takeaway and enter the customer's name.",
       "Browse your menu by category, add items to the cart, adjust quantities, and add notes for any item or for the whole order. The order total updates as you add items.",
       "Click Place Order. The order is created with status Pending and an auto-generated order number (#001, #002, …) so the kitchen and counter always share the same reference.",
     ],
   },
   {
     icon: ChefHat,
-    title: "3. Manage the kitchen queue",
+    title: "4. Manage the kitchen queue",
     body: [
       "Every new order appears in the queue as Pending. When the kitchen starts on it, open the order and tap Start Preparing — the status moves to Preparing.",
       "When the food is ready, tap Mark Ready. The status changes to Ready, signalling front-of-house that the order can be picked up or served.",
       "Once the order is handed to the customer, tap Complete. The order moves to Completed and is removed from the active queue. Orders in Pending or Preparing can be Cancelled if needed.",
+      "Customers who ordered by QR see this progress live on their phone — Order received, Being prepared, Ready to serve — so they're not constantly asking your staff if the food is ready.",
+    ],
+  },
+  {
+    icon: Banknote,
+    title: "5. Set up GCash payments",
+    body: [
+      "Open QR Ordering and find the GCash section. Turn it on, then enter your GCash name and number and upload your personal GCash QR code image. This connects your own wallet — no payment gateway, no monthly fees, and no KYC paperwork.",
+      "After a customer places a QR order, your GCash QR appears right on their phone. They can press and hold to save it to their Photos, then open GCash → Scan QR → upload from gallery — or simply copy your number to send money. The exact order total is shown so they know how much to pay.",
+      "Once they've sent payment, the customer taps \"I've paid via GCash.\" This does not auto-mark the order paid — it sends your staff a notification to confirm. Your team verifies the money arrived before marking it paid, so you're always in control.",
     ],
   },
   {
     icon: ClipboardList,
-    title: "4. Record payment",
+    title: "6. Record payment",
     body: [
-      "Open any order and tap Mark Paid. Choose the payment method — Cash, GCash, or Card — and confirm. Payment status is tracked per order.",
+      "Open any order and tap Mark Paid. Choose the payment method — Cash, GCash, or Card — and confirm. If a customer submitted a GCash payment, the order shows a \"GCash · says paid\" flag and the button reads Confirm GCash Paid — just verify the money landed and confirm.",
       "You can mark an order as paid at any point: while it's Pending, Preparing, Ready, or Completed. Payment status is visible on the orders list so nothing slips through at the end of a shift.",
     ],
   },
   {
     icon: BarChart3,
-    title: "5. Track your sales and analytics",
+    title: "7. Track your sales and analytics",
     body: [
       "The Dashboard shows today's revenue, total orders, and a live breakdown of Pending, Preparing, Ready, and Completed orders. Hit Refresh at any time to pull the latest numbers.",
       "The Analytics page shows a 7-day revenue trend line, a breakdown of Dine-in vs. Takeaway orders, and a bar chart of your top-selling items by order count.",
@@ -75,7 +94,7 @@ export default function GuideContent() {
             How to use Smapey Food Ordering Manager
           </h1>
           <p className="text-orange-50/80 text-lg">
-            Build your menu, take orders, manage your kitchen queue, and track daily sales — this guide walks through every step.
+            Build your menu, let customers order and pay by GCash from a table QR code, manage your kitchen queue, and track daily sales — this guide walks through every step.
           </p>
         </div>
       </div>
