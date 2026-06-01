@@ -426,6 +426,11 @@ export default function OrderPageContent({ slug }: { slug: string }) {
 
   return (
     <div className="min-h-screen bg-orange-50 pb-28">
+      {data?.org.coverUrl && (
+        <div className="w-full h-36 sm:h-44 overflow-hidden">
+          <img src={data.org.coverUrl} alt="" className="w-full h-full object-cover" />
+        </div>
+      )}
       <header className="px-5 pt-8 pb-6 text-white" style={{ background: `linear-gradient(135deg, ${accent}, #fbbf24)` }}>
         <div className="flex items-center gap-3">
           {data?.org.logoUrl
