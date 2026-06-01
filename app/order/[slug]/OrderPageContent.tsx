@@ -131,13 +131,29 @@ export default function OrderPageContent({ slug }: { slug: string }) {
     setTimeout(() => setCopiedNum(false), 1500)
   }
 
-  // Download the QR so the customer can upload it inside GCash (Scan QR → Upload from Gallery).
+  // Save the QR so the customer can upload it inside GCash (Scan QR → Upload from Gallery).
+  // On phones we use the native share sheet so it lands in Photos (not the Files folder).
   const saveQr = async () => {
     if (!gcash?.qrUrl) return
     setSavingQr(true)
     try {
       const res = await fetch(gcash.qrUrl)
       const blob = await res.blob()
+      const file = new File([blob], `gcash-qr-${slug}.png`, { type: blob.type || "image/png" })
+      const nav = navigator as any
+
+      // Mobile: open the share sheet → "Save Image" / "Save to Photos" → goes to gallery.
+      if (nav.canShare && nav.canShare({ files: [file] })) {
+        try {
+          await nav.share({ files: [file], title: "GCash QR" })
+        } catch (err: any) {
+          // User just dismissed the sheet — leave them on the page.
+          if (err?.name !== "AbortError") window.open(gcash.qrUrl, "_blank")
+        }
+        return
+      }
+
+      // Desktop (no share API): download the file.
       const url = URL.createObjectURL(blob)
       const a = document.createElement("a")
       a.href = url
@@ -147,7 +163,7 @@ export default function OrderPageContent({ slug }: { slug: string }) {
       a.remove()
       setTimeout(() => URL.revokeObjectURL(url), 1000)
     } catch {
-      // Fallback: open the image in a new tab so they can long-press to save.
+      // Last resort: open the image so they can long-press → Save to Photos.
       window.open(gcash.qrUrl, "_blank")
     } finally {
       setSavingQr(false)
@@ -321,7 +337,10 @@ export default function OrderPageContent({ slug }: { slug: string }) {
               ) : (
                 <>
                   {gcash.qrUrl && (
-                    <img src={gcash.qrUrl} alt="GCash QR" className="w-44 h-44 mx-auto rounded-xl border border-gray-100 object-contain" />
+                    <>
+                      <img src={gcash.qrUrl} alt="GCash QR" className="w-44 h-44 mx-auto rounded-xl border border-gray-100 object-contain" />
+                      <p className="text-[11px] text-gray-400 text-center mt-1.5">Press and hold the QR to save it to your Photos.</p>
+                    </>
                   )}
 
                   <div className="mt-3 space-y-1 text-center">
@@ -359,7 +378,7 @@ export default function OrderPageContent({ slug }: { slug: string }) {
                   <div className="mt-3 rounded-xl bg-gray-50 px-4 py-3">
                     <p className="text-xs font-semibold text-gray-500 mb-1.5">How to pay</p>
                     <ol className="text-xs text-gray-600 space-y-1 list-decimal list-inside">
-                      <li>Tap <span className="font-semibold">Save QR to Photos</span> above.</li>
+                      <li>Tap <span className="font-semibold">Save QR to Photos</span>, then choose <span className="font-semibold">Save Image</span> to add it to your gallery.</li>
                       <li>Open <span className="font-semibold">GCash</span> → <span className="font-semibold">Scan QR</span> → <span className="font-semibold">Upload from Gallery</span> and pick the saved QR{gcash.number ? <> — or use <span className="font-semibold">Send Money</span> to the number above</> : null}.</li>
                       <li>Enter <span className="font-semibold">{sym}{order.totalAmount.toFixed(2)}</span> and complete the payment.</li>
                       <li>Come back here and tap <span className="font-semibold">I’ve paid via GCash</span>.</li>
