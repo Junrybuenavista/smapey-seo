@@ -4,7 +4,7 @@ export type RouteInfo = {
   desc: string
 }
 
-export type ClusterKey = "invoice" | "booking" | "gym" | "essay" | "car-rental" | "laundry" | "salon" | "massage" | "airbnb" | "lending" | "restaurant" | "store" | "clinic"
+export type ClusterKey = "invoice" | "booking" | "gym" | "essay" | "car-rental" | "laundry" | "salon" | "massage" | "airbnb" | "lending" | "restaurant" | "store" | "clinic" | "vet-clinic"
 
 export type RouteCluster = {
   label: string
@@ -213,6 +213,21 @@ export const CLUSTERS: Record<ClusterKey, RouteCluster> = {
     ],
   },
 
+  "vet-clinic": {
+    label: "Vet Clinic Manager",
+    hub: {
+      path: "/vet-clinic",
+      title: "Veterinary Clinic Management System",
+      desc: "Manage pets, veterinarians, appointments, vaccinations, queue board, and billing — all in one dashboard.",
+    },
+    pages: [
+      { path: "/vet-clinic/veterinary-clinic-management-system", title: "Veterinary Clinic Management System", desc: "A complete web-based system for managing vet appointments, pet records, vaccinations, and billing." },
+      { path: "/vet-clinic/veterinary-clinic-and-pet-shop-management-system", title: "Veterinary Clinic & Pet Shop Management System", desc: "One system for your entire pet care operation — vet clinic, grooming, pet shop, and billing." },
+      { path: "/vet-clinic/veterinary-clinic-management-system-thesis", title: "Veterinary Clinic Management System Thesis", desc: "Thesis guide covering key modules, database entities, and system architecture for a vet clinic management system." },
+      { path: "/vet-clinic/online-veterinary-clinic-management-system", title: "Online Veterinary Clinic Management System", desc: "A cloud-based, browser-accessible vet clinic system — manage pets, appointments, and billing from anywhere." },
+    ],
+  },
+
   restaurant: {
     label: "Food Ordering",
     hub: { path: "/restaurant", title: "Food Ordering Manager", desc: "Manage your menu, orders, kitchen queue, and daily sales — everything a small restaurant or café needs in one dashboard." },
@@ -244,7 +259,9 @@ export const ALL_CLUSTERS: ClusterKey[] = [
   "airbnb",
   "lending",
   "restaurant",
+  "store",
   "clinic",
+  "vet-clinic",
 ]
 
 export function clusterForPath(pathname: string): ClusterKey | null {

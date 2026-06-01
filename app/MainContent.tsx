@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from "react"
 import Link from "next/link"
 import {
   FileText, Dumbbell, BookOpen, CalendarDays, Car, Shirt, Scissors,
-  CalendarPlus, Home, Landmark, UtensilsCrossed, ShoppingBag, Stethoscope,
+  CalendarPlus, Home, Landmark, UtensilsCrossed, ShoppingBag, Stethoscope, PawPrint,
   ArrowRight, CheckCircle2, Zap, Shield, TrendingUp,
   Clock, ChevronDown, Menu, X, Users, Sparkles,
   MousePointerClick, LayoutDashboard, Star,
@@ -183,6 +183,19 @@ const PRODUCTS = [
     Icon: Stethoscope,
     features: ["Patient records & profiles", "Doctor schedules & queue", "Appointment booking", "Live queue board"],
     stat: { value: "5 min", label: "to set up your clinic" },
+  },
+  {
+    key: "VET_CLINIC",
+    name: "Vet Clinic Manager",
+    tagline: "Care for every pet, run the whole clinic.",
+    desc: "Manage pet records, vet appointments, vaccinations, a live queue board, and itemized billing — built for small veterinary clinics.",
+    href: "/vet-clinic",
+    register: `${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=VET_CLINIC&plan=FREE`,
+    accent: "#10b981",
+    accentLight: "#ecfdf5",
+    Icon: PawPrint,
+    features: ["Pet profiles & medical notes", "Appointment & queue board", "Vaccination tracking & reminders", "Itemized billing & payments"],
+    stat: { value: "5 min", label: "to set up your vet clinic" },
   },
 ]
 
@@ -417,7 +430,7 @@ function Hero() {
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
             <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400" />
           </span>
-          <span className="text-xs font-medium text-white/70 tracking-wide">13 tools live · built for small businesses</span>
+          <span className="text-xs font-medium text-white/70 tracking-wide">14 tools live · built for small businesses</span>
         </div>
 
         {/* HEADLINE */}
@@ -456,18 +469,6 @@ function Hero() {
           ))}
         </div>
 
-        {/* PRODUCT PILLS */}
-        <div className="mt-16 flex flex-wrap justify-center gap-3">
-          {PRODUCTS.map(p => (
-            <Link key={p.key} href={p.href} className="flex items-center gap-2.5 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 rounded-2xl px-4 py-3 transition-all group">
-              <div className="w-7 h-7 rounded-lg flex items-center justify-center" style={{ background: `${p.accent}25` }}>
-                <p.Icon className="w-4 h-4" style={{ color: p.accent }} />
-              </div>
-              <span className="text-sm font-medium text-white/70 group-hover:text-white/90 transition-colors">{p.name}</span>
-              <ArrowRight className="w-3.5 h-3.5 text-white/20 group-hover:text-white/50 group-hover:translate-x-0.5 transition-all" />
-            </Link>
-          ))}
-        </div>
       </div>
 
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/20 animate-bounce">
@@ -630,7 +631,7 @@ function Products() {
         <Reveal>
           <p className="text-xs font-bold tracking-widest uppercase text-gray-400 mb-3">Our products</p>
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 tracking-tight leading-tight max-w-2xl">
-            Twelve tools. Every small business covered.
+            Fourteen tools. Every small business covered.
           </h2>
           <p className="mt-4 text-lg text-gray-500 max-w-xl">
             Pick the one you need today. Each product is fully standalone — no bundles, no bloat, no paying for things you don't use.
