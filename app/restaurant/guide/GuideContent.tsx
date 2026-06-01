@@ -72,17 +72,19 @@ export default function GuideContent() {
   return (
     <div className="min-h-screen bg-slate-50">
       {/* NAV */}
-      <nav className="bg-white border-b border-slate-100 px-6 py-4 flex items-center justify-between">
-        <a href="/restaurant" className="flex items-center gap-2.5">
-          <img src="/logo.png" alt="Smapey" className="w-7 h-7 rounded-lg object-cover" />
-          <span className="font-bold text-slate-800 tracking-tight">Smapey Food</span>
-        </a>
-        <div className="flex items-center gap-4 text-sm">
-          <a href="/restaurant" className="text-slate-500 hover:text-slate-800 transition">← Back to overview</a>
-          <a href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=RESTAURANT&plan=FREE`}
-            className="px-4 py-2 rounded-lg bg-orange-500 hover:bg-orange-400 text-white font-semibold transition shadow-sm shadow-orange-500/20">
-            Start free
+      <nav className="bg-white border-b border-slate-100 px-6 py-4">
+        <div className="max-w-3xl mx-auto flex items-center justify-between">
+          <a href="/restaurant" className="flex items-center gap-2.5">
+            <img src="/logo.png" alt="Smapey" className="w-7 h-7 rounded-lg object-cover" />
+            <span className="font-bold text-slate-800 tracking-tight">Smapey Food</span>
           </a>
+          <div className="flex items-center gap-4 text-sm">
+            <a href="/restaurant" className="text-slate-500 hover:text-slate-800 transition">← Back to overview</a>
+            <a href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=RESTAURANT&plan=FREE`}
+              className="px-4 py-2 rounded-lg bg-orange-500 hover:bg-orange-400 text-white font-semibold transition shadow-sm shadow-orange-500/20">
+              Start free
+            </a>
+          </div>
         </div>
       </nav>
 
