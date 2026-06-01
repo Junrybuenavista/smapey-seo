@@ -4,7 +4,7 @@ export type RouteInfo = {
   desc: string
 }
 
-export type ClusterKey = "invoice" | "booking" | "gym" | "essay" | "car-rental" | "laundry" | "salon" | "massage" | "airbnb" | "lending" | "restaurant" | "store" | "clinic" | "vet-clinic"
+export type ClusterKey = "invoice" | "booking" | "gym" | "essay" | "car-rental" | "laundry" | "salon" | "massage" | "airbnb" | "lending" | "restaurant" | "store" | "clinic" | "vet-clinic" | "boarding-house"
 
 export type RouteCluster = {
   label: string
@@ -229,6 +229,22 @@ export const CLUSTERS: Record<ClusterKey, RouteCluster> = {
     ],
   },
 
+  "boarding-house": {
+    label: "Boarding House Manager",
+    hub: {
+      path: "/boarding-house",
+      title: "Boarding House Management System",
+      desc: "Manage rooms, tenants, rent billing, utility billing, and occupancy — all in one dashboard for Philippine boarding houses.",
+    },
+    pages: [
+      { path: "/boarding-house/guide",                                          title: "Boarding House Manager Guide",                         desc: "Step-by-step guide to setting up rooms, registering tenants, creating tenancies, issuing rent and utility bills, and reading the dashboard." },
+      { path: "/boarding-house/boarding-house-management-system",              title: "Boarding House Management System",              desc: "A complete web-based system for managing boarding house rooms, tenants, rent bills, utility bills, and occupancy in the Philippines." },
+      { path: "/boarding-house/boarding-house-business-philippines",           title: "Boarding House Business in the Philippines",    desc: "How to run a boarding house business in the Philippines — tenant management, billing, and collections made easy." },
+      { path: "/boarding-house/boarding-house-business-plan-sample-philippines", title: "Boarding House Business Plan Sample Philippines", desc: "A sample boarding house business plan for the Philippines — target market, pricing model, operations plan, and management system." },
+      { path: "/boarding-house/boarding-house-management-and-billing-system",  title: "Boarding House Management and Billing System",  desc: "Combine boarding house management and billing in one system — rooms, tenants, rent bills, utility bills, and payment tracking." },
+    ],
+  },
+
   restaurant: {
     label: "Food Ordering",
     hub: { path: "/restaurant", title: "Food Ordering Manager", desc: "Manage your menu, orders, kitchen queue, and daily sales — everything a small restaurant or café needs in one dashboard." },
@@ -263,6 +279,7 @@ export const ALL_CLUSTERS: ClusterKey[] = [
   "store",
   "clinic",
   "vet-clinic",
+  "boarding-house",
 ]
 
 export function clusterForPath(pathname: string): ClusterKey | null {

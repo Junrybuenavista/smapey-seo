@@ -5,6 +5,7 @@ import Link from "next/link"
 import {
   FileText, Dumbbell, BookOpen, CalendarDays, Car, Shirt, Scissors,
   CalendarPlus, Home, Landmark, UtensilsCrossed, ShoppingBag, Stethoscope, PawPrint,
+  Building2,
   ArrowRight, CheckCircle2, Zap, Shield, TrendingUp,
   Clock, ChevronDown, Menu, X, Users, Sparkles,
   MousePointerClick, LayoutDashboard, Star,
@@ -197,6 +198,19 @@ const PRODUCTS = [
     features: ["Pet profiles & medical notes", "Appointment & queue board", "Vaccination tracking & reminders", "Itemized billing & payments"],
     stat: { value: "5 min", label: "to set up your vet clinic" },
   },
+  {
+    key: "BOARDING_HOUSE",
+    name: "Boarding House Manager",
+    tagline: "Collect rent. Track every tenant.",
+    desc: "Manage rooms, tenants, monthly rent and utility billing, and occupancy — built for boarding house owners across the Philippines.",
+    href: "/boarding-house",
+    register: `${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=BOARDING_HOUSE&plan=FREE`,
+    accent: "#ea580c",
+    accentLight: "#fff7ed",
+    Icon: Building2,
+    features: ["Room & occupancy tracking", "Tenant profiles & tenancy records", "Rent & utility billing", "Overdue alerts & revenue dashboard"],
+    stat: { value: "< 5 min", label: "to set up your boarding house" },
+  },
 ]
 
 const STATS = [
@@ -218,6 +232,7 @@ const FOR_WHO = [
   { emoji: "🧺", label: "Laundry Shop Owners" },
   { emoji: "🏠", label: "Airbnb Hosts" },
   { emoji: "🍽️", label: "Food & Café Owners" },
+  { emoji: "🏘️", label: "Boarding House Owners" },
 ]
 
 const STEPS = [
@@ -430,7 +445,7 @@ function Hero() {
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
             <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400" />
           </span>
-          <span className="text-xs font-medium text-white/70 tracking-wide">14 tools live · built for small businesses</span>
+          <span className="text-xs font-medium text-white/70 tracking-wide">15 tools live · built for small businesses</span>
         </div>
 
         {/* HEADLINE */}
@@ -631,7 +646,7 @@ function Products() {
         <Reveal>
           <p className="text-xs font-bold tracking-widest uppercase text-gray-400 mb-3">Our products</p>
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 tracking-tight leading-tight max-w-2xl">
-            Fourteen tools. Every small business covered.
+            Fifteen tools. Every small business covered.
           </h2>
           <p className="mt-4 text-lg text-gray-500 max-w-xl">
             Pick the one you need today. Each product is fully standalone — no bundles, no bloat, no paying for things you don't use.

@@ -19,6 +19,13 @@ const CLUSTER_ACCENT: Partial<Record<ClusterKey, {
     badge: "text-emerald-600",
     badgeBg: "bg-emerald-100",
   },
+  "boarding-house": {
+    border: "hover:border-orange-500",
+    bg: "from-orange-50",
+    text: "group-hover:text-orange-600",
+    badge: "text-orange-600",
+    badgeBg: "bg-orange-100",
+  },
   clinic: {
     border: "hover:border-blue-500",
     bg: "from-blue-50",
