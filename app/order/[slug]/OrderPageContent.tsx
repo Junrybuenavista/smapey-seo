@@ -5,6 +5,7 @@ import { useSearchParams } from "next/navigation"
 import {
   UtensilsCrossed, Plus, Minus, ShoppingBag, Loader2, AlertCircle,
   CheckCircle2, ChefHat, BellRing, X, ArrowLeft, Clock, XCircle, Wallet,
+  Download, Copy, Check,
 } from "lucide-react"
 
 const API = process.env.NEXT_PUBLIC_API_URL || ""
@@ -69,6 +70,8 @@ export default function OrderPageContent({ slug }: { slug: string }) {
   const [trackingId, setTrackingId] = useState<string | null>(null)
   const [gcash, setGcash]       = useState<Gcash | null>(null)
   const [payingMark, setPayingMark] = useState(false)
+  const [copiedNum, setCopiedNum] = useState(false)
+  const [savingQr, setSavingQr] = useState(false)
 
   const accent = data?.org.accentColor || "#f97316"
   const sym    = data?.org.currencySymbol || "₱"
@@ -118,6 +121,36 @@ export default function OrderPageContent({ slug }: { slug: string }) {
       await refreshOrder()
     } catch {} finally {
       setPayingMark(false)
+    }
+  }
+
+  const copyNumber = () => {
+    if (!gcash?.number) return
+    navigator.clipboard?.writeText(gcash.number).catch(() => {})
+    setCopiedNum(true)
+    setTimeout(() => setCopiedNum(false), 1500)
+  }
+
+  // Download the QR so the customer can upload it inside GCash (Scan QR → Upload from Gallery).
+  const saveQr = async () => {
+    if (!gcash?.qrUrl) return
+    setSavingQr(true)
+    try {
+      const res = await fetch(gcash.qrUrl)
+      const blob = await res.blob()
+      const url = URL.createObjectURL(blob)
+      const a = document.createElement("a")
+      a.href = url
+      a.download = `gcash-qr-${slug}.png`
+      document.body.appendChild(a)
+      a.click()
+      a.remove()
+      setTimeout(() => URL.revokeObjectURL(url), 1000)
+    } catch {
+      // Fallback: open the image in a new tab so they can long-press to save.
+      window.open(gcash.qrUrl, "_blank")
+    } finally {
+      setSavingQr(false)
     }
   }
 
@@ -288,14 +321,51 @@ export default function OrderPageContent({ slug }: { slug: string }) {
               ) : (
                 <>
                   {gcash.qrUrl && (
-                    <img src={gcash.qrUrl} alt="GCash QR" className="w-48 h-48 mx-auto rounded-xl border border-gray-100 object-contain" />
+                    <img src={gcash.qrUrl} alt="GCash QR" className="w-44 h-44 mx-auto rounded-xl border border-gray-100 object-contain" />
                   )}
+
                   <div className="mt-3 space-y-1 text-center">
                     {gcash.name && <p className="text-sm text-gray-700"><span className="text-gray-400">Account:</span> <span className="font-semibold">{gcash.name}</span></p>}
-                    {gcash.number && <p className="text-sm text-gray-700"><span className="text-gray-400">Number:</span> <span className="font-semibold">{gcash.number}</span></p>}
-                    <p className="text-base font-bold text-gray-900">Amount: {sym}{order.totalAmount.toFixed(2)}</p>
+                    <p className="text-lg font-bold text-gray-900">Pay {sym}{order.totalAmount.toFixed(2)}</p>
                   </div>
-                  <p className="text-xs text-gray-400 text-center mt-2">Scan the QR or send to the number above, then tap below.</p>
+
+                  {/* Number with copy */}
+                  {gcash.number && (
+                    <button
+                      onClick={copyNumber}
+                      className="w-full mt-3 flex items-center justify-between gap-2 rounded-xl border border-gray-200 px-4 py-2.5 text-sm"
+                    >
+                      <span className="text-gray-400">GCash number</span>
+                      <span className="flex items-center gap-1.5 font-semibold text-gray-800">
+                        {gcash.number}
+                        {copiedNum ? <Check className="w-3.5 h-3.5 text-green-500" /> : <Copy className="w-3.5 h-3.5 text-gray-400" />}
+                      </span>
+                    </button>
+                  )}
+
+                  {/* Save QR for in-app scanning */}
+                  {gcash.qrUrl && (
+                    <button
+                      onClick={saveQr}
+                      disabled={savingQr}
+                      className="w-full mt-2 py-2.5 rounded-xl border border-gray-200 text-gray-700 text-sm font-semibold flex items-center justify-center gap-2 disabled:opacity-60"
+                    >
+                      {savingQr ? <Loader2 className="w-4 h-4 animate-spin" /> : <Download className="w-4 h-4" />}
+                      Save QR to Photos
+                    </button>
+                  )}
+
+                  {/* How to pay */}
+                  <div className="mt-3 rounded-xl bg-gray-50 px-4 py-3">
+                    <p className="text-xs font-semibold text-gray-500 mb-1.5">How to pay</p>
+                    <ol className="text-xs text-gray-600 space-y-1 list-decimal list-inside">
+                      <li>Tap <span className="font-semibold">Save QR to Photos</span> above.</li>
+                      <li>Open <span className="font-semibold">GCash</span> → <span className="font-semibold">Scan QR</span> → <span className="font-semibold">Upload from Gallery</span> and pick the saved QR{gcash.number ? <> — or use <span className="font-semibold">Send Money</span> to the number above</> : null}.</li>
+                      <li>Enter <span className="font-semibold">{sym}{order.totalAmount.toFixed(2)}</span> and complete the payment.</li>
+                      <li>Come back here and tap <span className="font-semibold">I’ve paid via GCash</span>.</li>
+                    </ol>
+                  </div>
+
                   <button
                     onClick={markPaid}
                     disabled={payingMark}
