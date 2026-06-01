@@ -426,24 +426,28 @@ export default function OrderPageContent({ slug }: { slug: string }) {
 
   return (
     <div className="min-h-screen bg-orange-50 pb-28">
-      {data?.org.coverUrl && (
-        <div className="w-full h-36 sm:h-44 overflow-hidden">
-          <img src={data.org.coverUrl} alt="" className="w-full h-full object-cover" />
-        </div>
-      )}
-      <header className="px-5 pt-8 pb-6 text-white" style={{ background: `linear-gradient(135deg, ${accent}, #fbbf24)` }}>
-        <div className="flex items-center gap-3">
-          {data?.org.logoUrl
-            ? <img src={data.org.logoUrl} alt="" className="w-12 h-12 rounded-xl object-cover bg-white/20" />
-            : <div className="w-12 h-12 rounded-xl bg-white/20 flex items-center justify-center"><UtensilsCrossed className="w-6 h-6" /></div>}
-          <div>
-            <h1 className="text-xl font-bold leading-tight">{data?.org.companyName}</h1>
-            {data?.org.tagline && <p className="text-sm opacity-90">{data.org.tagline}</p>}
+      <header className="relative px-5 pt-10 pb-7 text-white overflow-hidden min-h-[150px] flex flex-col justify-end">
+        {data?.org.coverUrl
+          ? <img src={data.org.coverUrl} alt="" className="absolute inset-0 w-full h-full object-cover" />
+          : <div className="absolute inset-0" style={{ background: `linear-gradient(135deg, ${accent}, #fbbf24)` }} />}
+        {/* Scrim keeps the logo and name readable on any image */}
+        {data?.org.coverUrl && (
+          <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(0,0,0,0.78) 0%, rgba(0,0,0,0.45) 55%, rgba(0,0,0,0.35) 100%)" }} />
+        )}
+        <div className="relative" style={{ textShadow: data?.org.coverUrl ? "0 1px 4px rgba(0,0,0,0.55)" : undefined }}>
+          <div className="flex items-center gap-3">
+            {data?.org.logoUrl
+              ? <img src={data.org.logoUrl} alt="" className="w-12 h-12 rounded-xl object-cover bg-white/20 ring-2 ring-white/40 shadow-lg" />
+              : <div className="w-12 h-12 rounded-xl bg-white/20 ring-2 ring-white/40 shadow-lg flex items-center justify-center"><UtensilsCrossed className="w-6 h-6" /></div>}
+            <div>
+              <h1 className="text-xl font-bold leading-tight">{data?.org.companyName}</h1>
+              {data?.org.tagline && <p className="text-sm opacity-90">{data.org.tagline}</p>}
+            </div>
           </div>
+          {table
+            ? <div className="mt-4 inline-flex items-center gap-1.5 bg-white/20 backdrop-blur-sm rounded-full px-3 py-1 text-sm font-medium">Table {table}</div>
+            : <div className="mt-4 inline-flex items-center gap-1.5 bg-red-500/40 backdrop-blur-sm rounded-full px-3 py-1 text-xs font-medium"><AlertCircle className="w-3.5 h-3.5" /> No table — rescan QR</div>}
         </div>
-        {table
-          ? <div className="mt-4 inline-flex items-center gap-1.5 bg-white/20 rounded-full px-3 py-1 text-sm font-medium">Table {table}</div>
-          : <div className="mt-4 inline-flex items-center gap-1.5 bg-red-500/30 rounded-full px-3 py-1 text-xs font-medium"><AlertCircle className="w-3.5 h-3.5" /> No table — rescan QR</div>}
       </header>
 
       <main className="max-w-md mx-auto px-4 -mt-2">
