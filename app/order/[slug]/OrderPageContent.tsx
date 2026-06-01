@@ -204,6 +204,7 @@ export default function OrderPageContent({ slug }: { slug: string }) {
   const placeOrder = async () => {
     if (!table) { setError("Missing table number. Please rescan the QR code on your table."); return }
     if (cartLines.length === 0) return
+    setError("")
     setSubmitting(true)
     try {
       const r = await fetch(`${API}/api/restaurant/public/${slug}/orders`, {
