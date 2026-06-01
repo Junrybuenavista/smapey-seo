@@ -221,6 +221,7 @@ export const CLUSTERS: Record<ClusterKey, RouteCluster> = {
       desc: "Manage pets, veterinarians, appointments, vaccinations, queue board, and billing — all in one dashboard.",
     },
     pages: [
+      { path: "/vet-clinic/guide", title: "Vet Clinic Manager Guide", desc: "Step-by-step guide to setting up vets, booking appointments, running the queue board, tracking vaccinations, and managing billing." },
       { path: "/vet-clinic/veterinary-clinic-management-system", title: "Veterinary Clinic Management System", desc: "A complete web-based system for managing vet appointments, pet records, vaccinations, and billing." },
       { path: "/vet-clinic/veterinary-clinic-and-pet-shop-management-system", title: "Veterinary Clinic & Pet Shop Management System", desc: "One system for your entire pet care operation — vet clinic, grooming, pet shop, and billing." },
       { path: "/vet-clinic/veterinary-clinic-management-system-thesis", title: "Veterinary Clinic Management System Thesis", desc: "Thesis guide covering key modules, database entities, and system architecture for a vet clinic management system." },
