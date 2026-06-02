@@ -78,48 +78,69 @@ export default function OrderPageContent({ slug }: { slug: string }) {
   const storageKey = `smapey_order_${slug}`
 
   const audioCtxRef = useRef<AudioContext | null>(null)
+  const audioUnlockedRef = useRef(false)
   const prevStatusRef = useRef<string | null>(null)
 
-  // Short two-tone chime via Web Audio — no asset needed.
-  const playChime = useCallback(() => {
+  const ensureCtx = (): AudioContext | null => {
     try {
       const Ctx = window.AudioContext || (window as any).webkitAudioContext
-      if (!Ctx) return
+      if (!Ctx) return null
       if (!audioCtxRef.current) audioCtxRef.current = new Ctx()
-      const ctx = audioCtxRef.current!
-      if (ctx.state === "suspended") ctx.resume()
-      const now = ctx.currentTime
-      ;[{ f: 880, t: 0 }, { f: 1318.5, t: 0.13 }].forEach(({ f, t }) => {
-        const osc = ctx.createOscillator()
-        const gain = ctx.createGain()
-        osc.type = "sine"
-        osc.frequency.value = f
-        gain.gain.setValueAtTime(0.0001, now + t)
-        gain.gain.exponentialRampToValueAtTime(0.25, now + t + 0.02)
-        gain.gain.exponentialRampToValueAtTime(0.0001, now + t + 0.35)
-        osc.connect(gain).connect(ctx.destination)
-        osc.start(now + t)
-        osc.stop(now + t + 0.4)
-      })
-      if (navigator.vibrate) navigator.vibrate(200)
+      return audioCtxRef.current
+    } catch { return null }
+  }
+
+  // Short two-tone chime via Web Audio + vibrate fallback (no asset needed).
+  const playChime = useCallback(() => {
+    try {
+      const ctx = ensureCtx()
+      if (ctx) {
+        if (ctx.state === "suspended") ctx.resume()
+        const now = ctx.currentTime
+        ;[{ f: 880, t: 0 }, { f: 1318.5, t: 0.14 }, { f: 1760, t: 0.28 }].forEach(({ f, t }) => {
+          const osc = ctx.createOscillator()
+          const gain = ctx.createGain()
+          osc.type = "sine"
+          osc.frequency.value = f
+          gain.gain.setValueAtTime(0.0001, now + t)
+          gain.gain.exponentialRampToValueAtTime(0.3, now + t + 0.02)
+          gain.gain.exponentialRampToValueAtTime(0.0001, now + t + 0.4)
+          osc.connect(gain).connect(ctx.destination)
+          osc.start(now + t)
+          osc.stop(now + t + 0.45)
+        })
+      }
+      // On phones with the silent switch on, Web Audio is muted by iOS —
+      // vibration is the only reliable alert (Android; iOS ignores it).
+      if (navigator.vibrate) navigator.vibrate([250, 120, 250])
     } catch {}
   }, [])
 
-  // Unlock audio on first interaction so the chime isn't blocked by autoplay policy.
+  // Fully unlock audio on the first user gesture. iOS needs a silent buffer
+  // played *inside* the gesture, not just ctx.resume().
   useEffect(() => {
     const unlock = () => {
       try {
-        const Ctx = window.AudioContext || (window as any).webkitAudioContext
-        if (!Ctx) return
-        if (!audioCtxRef.current) audioCtxRef.current = new Ctx()
-        if (audioCtxRef.current.state === "suspended") audioCtxRef.current.resume()
+        const ctx = ensureCtx()
+        if (!ctx) return
+        if (ctx.state === "suspended") ctx.resume()
+        if (!audioUnlockedRef.current) {
+          const buf = ctx.createBuffer(1, 1, 22050)
+          const src = ctx.createBufferSource()
+          src.buffer = buf
+          src.connect(ctx.destination)
+          src.start(0)
+          audioUnlockedRef.current = true
+        }
       } catch {}
     }
+    window.addEventListener("touchend", unlock)
     window.addEventListener("pointerdown", unlock)
-    window.addEventListener("touchstart", unlock)
+    window.addEventListener("click", unlock)
     return () => {
+      window.removeEventListener("touchend", unlock)
       window.removeEventListener("pointerdown", unlock)
-      window.removeEventListener("touchstart", unlock)
+      window.removeEventListener("click", unlock)
     }
   }, [])
 
@@ -226,7 +247,14 @@ export default function OrderPageContent({ slug }: { slug: string }) {
     if (!trackingId) return
     refreshOrder()
     const t = setInterval(refreshOrder, 8000)
-    return () => clearInterval(t)
+    const onVisible = () => { if (document.visibilityState === "visible") refreshOrder() }
+    document.addEventListener("visibilitychange", onVisible)
+    window.addEventListener("focus", onVisible)
+    return () => {
+      clearInterval(t)
+      document.removeEventListener("visibilitychange", onVisible)
+      window.removeEventListener("focus", onVisible)
+    }
   }, [trackingId, refreshOrder])
 
   // ─── Cart helpers ───────────────────────────────────────────────────────────
