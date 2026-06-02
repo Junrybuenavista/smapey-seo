@@ -4,7 +4,7 @@ export type RouteInfo = {
   desc: string
 }
 
-export type ClusterKey = "invoice" | "booking" | "gym" | "essay" | "car-rental" | "laundry" | "salon" | "massage" | "airbnb" | "lending" | "restaurant" | "store" | "clinic" | "vet-clinic" | "boarding-house" | "catering"
+export type ClusterKey = "invoice" | "booking" | "gym" | "essay" | "car-rental" | "laundry" | "salon" | "massage" | "airbnb" | "lending" | "restaurant" | "store" | "clinic" | "vet-clinic" | "boarding-house" | "catering" | "water-refilling"
 
 export type RouteCluster = {
   label: string
@@ -261,6 +261,21 @@ export const CLUSTERS: Record<ClusterKey, RouteCluster> = {
     ],
   },
 
+  "water-refilling": {
+    label: "Water Refilling Station",
+    hub: {
+      path: "/water-refilling",
+      title: "Water Refilling Station Software",
+      desc: "Manage deliveries, customers, container deposits, returns, inventory, and payments — all in one dashboard for Philippine water refilling stations.",
+    },
+    pages: [
+      { path: "/water-refilling/guide",                                                       title: "Water Refilling Station Software Guide",          desc: "Plain-English, step-by-step guide to setting up your station, taking deliveries, tracking containers and empties, and reading the dashboard." },
+      { path: "/water-refilling/how-to-start-water-refilling-station-business-philippines",    title: "How to Start a Water Refilling Station in the Philippines", desc: "A complete step-by-step guide to starting a water refilling station business in the Philippines — capital, permits, equipment, and operations." },
+      { path: "/water-refilling/water-refilling-station-business-package-philippines",         title: "Water Refilling Station Business Package Philippines", desc: "What's inside a water refilling station business package in the Philippines — equipment, costs, and the software to run it." },
+      { path: "/water-refilling/business-plan-for-water-refilling-station-philippines",        title: "Business Plan for a Water Refilling Station Philippines", desc: "A sample water refilling station business plan for the Philippines — market, pricing, costs, operations, and management system." },
+    ],
+  },
+
   restaurant: {
     label: "Food Ordering",
     hub: { path: "/restaurant", title: "Food Ordering Manager", desc: "Manage your menu, orders, kitchen queue, and daily sales — everything a small restaurant or café needs in one dashboard." },
@@ -297,6 +312,7 @@ export const ALL_CLUSTERS: ClusterKey[] = [
   "vet-clinic",
   "boarding-house",
   "catering",
+  "water-refilling",
 ]
 
 export function clusterForPath(pathname: string): ClusterKey | null {

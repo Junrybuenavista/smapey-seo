@@ -12,6 +12,13 @@ type Props = {
 const CLUSTER_ACCENT: Partial<Record<ClusterKey, {
   border: string; bg: string; text: string; badge: string; badgeBg: string
 }>> = {
+  "water-refilling": {
+    border: "hover:border-cyan-500",
+    bg: "from-cyan-50",
+    text: "group-hover:text-cyan-600",
+    badge: "text-cyan-600",
+    badgeBg: "bg-cyan-100",
+  },
   "vet-clinic": {
     border: "hover:border-emerald-500",
     bg: "from-emerald-50",
