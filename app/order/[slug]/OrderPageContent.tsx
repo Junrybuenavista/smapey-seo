@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useMemo, useState, useCallback } from "react"
+import { useEffect, useMemo, useState, useCallback, useRef } from "react"
 import { useSearchParams } from "next/navigation"
 import {
   UtensilsCrossed, Plus, Minus, ShoppingBag, Loader2, AlertCircle,
@@ -77,6 +77,52 @@ export default function OrderPageContent({ slug }: { slug: string }) {
   const sym    = data?.org.currencySymbol || "₱"
   const storageKey = `smapey_order_${slug}`
 
+  const audioCtxRef = useRef<AudioContext | null>(null)
+  const prevStatusRef = useRef<string | null>(null)
+
+  // Short two-tone chime via Web Audio — no asset needed.
+  const playChime = useCallback(() => {
+    try {
+      const Ctx = window.AudioContext || (window as any).webkitAudioContext
+      if (!Ctx) return
+      if (!audioCtxRef.current) audioCtxRef.current = new Ctx()
+      const ctx = audioCtxRef.current!
+      if (ctx.state === "suspended") ctx.resume()
+      const now = ctx.currentTime
+      ;[{ f: 880, t: 0 }, { f: 1318.5, t: 0.13 }].forEach(({ f, t }) => {
+        const osc = ctx.createOscillator()
+        const gain = ctx.createGain()
+        osc.type = "sine"
+        osc.frequency.value = f
+        gain.gain.setValueAtTime(0.0001, now + t)
+        gain.gain.exponentialRampToValueAtTime(0.25, now + t + 0.02)
+        gain.gain.exponentialRampToValueAtTime(0.0001, now + t + 0.35)
+        osc.connect(gain).connect(ctx.destination)
+        osc.start(now + t)
+        osc.stop(now + t + 0.4)
+      })
+      if (navigator.vibrate) navigator.vibrate(200)
+    } catch {}
+  }, [])
+
+  // Unlock audio on first interaction so the chime isn't blocked by autoplay policy.
+  useEffect(() => {
+    const unlock = () => {
+      try {
+        const Ctx = window.AudioContext || (window as any).webkitAudioContext
+        if (!Ctx) return
+        if (!audioCtxRef.current) audioCtxRef.current = new Ctx()
+        if (audioCtxRef.current.state === "suspended") audioCtxRef.current.resume()
+      } catch {}
+    }
+    window.addEventListener("pointerdown", unlock)
+    window.addEventListener("touchstart", unlock)
+    return () => {
+      window.removeEventListener("pointerdown", unlock)
+      window.removeEventListener("touchstart", unlock)
+    }
+  }, [])
+
   // ─── Load menu ────────────────────────────────────────────────────────────
   useEffect(() => {
     let active = true
@@ -108,10 +154,16 @@ export default function OrderPageContent({ slug }: { slug: string }) {
       const r = await fetch(`${API}/api/restaurant/public/${slug}/orders/${trackingId}`)
       if (!r.ok) { if (r.status === 404) { localStorage.removeItem(storageKey); setTrackingId(null) } return }
       const d = await r.json()
+      // Chime when the order status changes (skip the first load).
+      const newStatus = d.order?.status ?? null
+      if (prevStatusRef.current !== null && newStatus && newStatus !== prevStatusRef.current) {
+        playChime()
+      }
+      prevStatusRef.current = newStatus
       setOrder(d.order)
       setGcash(d.gcash || null)
     } catch {}
-  }, [trackingId, slug, storageKey])
+  }, [trackingId, slug, storageKey, playChime])
 
   const markPaid = async () => {
     if (!trackingId) return
