@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect, useRef } from "react"
+import BookDemoForm from "@/components/BookDemoForm"
 import {
   Package, MessageSquare, Hash, Users, CreditCard,
   BarChart3, Plus, StickyNote, UserPlus,
@@ -801,6 +802,7 @@ export default function LaundryContent() {
       <HowItWorks />
       <Pricing />
       <FAQ />
+      <BookDemoForm product="LAUNDRY" />
       <CTA />
       <InternalLinks cluster="laundry" currentPath="/laundry" />
       <Footer />

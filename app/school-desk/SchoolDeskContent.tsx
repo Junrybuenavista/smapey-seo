@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import BookDemoForm from "@/components/BookDemoForm"
 import {
   Users, BookOpen, CalendarCheck, CreditCard, ClipboardList,
   NotebookPen, BarChart3, CheckCircle2, ChevronRight,
@@ -247,6 +248,7 @@ export default function SchoolDeskContent() {
       <HowItWorks />
       <Pricing />
       <FAQ />
+      <BookDemoForm product="SCHOOL_DESK" />
       <CTA />
       <InternalLinks cluster="school-desk" currentPath="/school-desk" />
       <Footer />

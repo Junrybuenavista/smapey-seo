@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect, useRef } from "react"
+import BookDemoForm from "@/components/BookDemoForm"
 import {
   Home, Users, CalendarRange, BarChart3, ShieldCheck, Sparkles,
   BedDouble, Wallet, CheckCircle2, ChevronRight, Menu, X, Zap, XCircle,
@@ -618,6 +619,7 @@ export default function AirbnbContent() {
       <ComparisonTable />
       <Pricing />
       <FAQ />
+      <BookDemoForm product="AIRBNB" />
       <CTA />
       <InternalLinks cluster="airbnb" currentPath="/airbnb" />
       <Footer />

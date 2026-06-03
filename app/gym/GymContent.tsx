@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect, useRef } from "react"
+import BookDemoForm from "@/components/BookDemoForm"
 import GymVideoSection from "./GymVideoSection"
 import {
   Dumbbell, QrCode, Users, BarChart3, CreditCard,
@@ -781,6 +782,7 @@ export default function LandingPage() {
       <HowItWorks />
       <Pricing />
       <FAQ />
+      <BookDemoForm product="GYM" />
       <CTA />
       <InternalLinks cluster="gym" currentPath="/gym" />
       <Footer />

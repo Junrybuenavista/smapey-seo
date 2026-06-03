@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect, useRef } from "react"
+import BookDemoForm from "@/components/BookDemoForm"
 import { usePricing, type Plan } from "@/lib/usePricing"
 import InternalLinks from "@/components/InternalLinks"
 import {
@@ -542,6 +543,7 @@ export default function CarRentalContent() {
       <HowItWorks />
       <Pricing />
       <FAQ />
+      <BookDemoForm product="CAR_RENTAL" />
       <CTA />
       <InternalLinks cluster="car-rental" currentPath="/car-rental" />
       <Footer />

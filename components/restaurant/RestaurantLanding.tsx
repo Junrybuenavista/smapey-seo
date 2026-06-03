@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect, useRef } from "react"
+import BookDemoForm from "@/components/BookDemoForm"
 import {
   UtensilsCrossed, ClipboardList, ChefHat, BarChart3, ShoppingBag,
   Banknote, CheckCircle2, ChevronRight, Menu, X, Zap, XCircle,
@@ -682,6 +683,7 @@ export default function RestaurantLanding({ variant }: { variant: RestaurantVari
       <ComparisonTable showCta={variant.navMode === "page"} />
       <Pricing />
       <FAQ />
+      <BookDemoForm product="RESTAURANT" />
       <CTA variant={variant} />
       <InternalLinks cluster="restaurant" currentPath={variant.currentPath} />
       <PageFooter />

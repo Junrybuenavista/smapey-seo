@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect, useRef } from "react"
+import BookDemoForm from "@/components/BookDemoForm"
 import {
   Calendar, Users, Scissors, Globe, Inbox, BarChart3,
   CheckCircle2, ChevronRight, Menu, X, Zap, XCircle,
@@ -840,6 +841,7 @@ export default function SalonContent() {
       <ComparisonTable />
       <Pricing />
       <FAQ />
+      <BookDemoForm product="SALON" />
       <CTA />
       <InternalLinks cluster="salon" currentPath="/salon" />
       <Footer />

@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect, useRef } from "react"
+import BookDemoForm from "@/components/BookDemoForm"
 import { usePricing, type Plan } from "@/lib/usePricing"
 import Link from "next/link"
 import InternalLinks from "@/components/InternalLinks"
@@ -634,6 +635,7 @@ export default function BoardingHouseContent() {
       <HowItWorks />
       <Pricing />
       <FAQ />
+      <BookDemoForm product="BOARDING_HOUSE" />
       <CTA />
       <InternalLinks cluster="boarding-house" currentPath="/boarding-house" />
       <Footer />

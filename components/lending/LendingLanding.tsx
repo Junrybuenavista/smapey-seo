@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect, useRef } from "react"
+import BookDemoForm from "@/components/BookDemoForm"
 import {
   Landmark, Users, CalendarRange, BarChart3, Wallet, Percent,
   HandCoins, CheckCircle2, ChevronRight, Menu, X, Zap, XCircle, AlertTriangle,
@@ -657,6 +658,7 @@ export default function LendingLanding({ variant }: { variant: LendingVariant })
       <ComparisonTable showCta={variant.navMode === "page"} />
       <Pricing />
       <FAQ />
+      <BookDemoForm product="LENDING" />
       <CTA variant={variant} />
       <InternalLinks cluster="lending" currentPath={variant.currentPath} />
       <Footer />

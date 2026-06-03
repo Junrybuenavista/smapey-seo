@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect, useRef } from "react"
+import BookDemoForm from "@/components/BookDemoForm"
 import { usePricing, type Plan } from "@/lib/usePricing"
 import InternalLinks from "@/components/InternalLinks"
 import {
@@ -770,6 +771,7 @@ export default function EssayLandingPage() {
       <HowItWorks />
       <Pricing />
       <FAQ />
+      <BookDemoForm product="ESSAY" />
       <CTA />
       <InternalLinks cluster="essay" currentPath="/essay" />
       <Footer />

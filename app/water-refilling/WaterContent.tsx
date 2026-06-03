@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import BookDemoForm from "@/components/BookDemoForm"
 import {
   Truck, Users, PackageOpen, Boxes, MessageSquare, MapPin,
   Settings, BarChart3, CheckCircle2, ChevronRight,
@@ -267,6 +268,7 @@ export default function WaterContent() {
       <HowItWorks />
       <Pricing />
       <FAQ />
+      <BookDemoForm product="WATER_REFILLING" />
       <CTA />
       <InternalLinks cluster="water-refilling" currentPath="/water-refilling" />
       <Footer />

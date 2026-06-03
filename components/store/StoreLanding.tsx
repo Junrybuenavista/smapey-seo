@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect, useRef } from "react"
+import BookDemoForm from "@/components/BookDemoForm"
 import {
   Package, ScanLine, BarChart3, AlertCircle, Truck,
   ClipboardList, RefreshCw, Users, CheckCircle2,
@@ -666,6 +667,7 @@ export default function StoreLanding({ variant }: { variant: StoreVariant }) {
       <ComparisonTable showCta={variant.navMode === "page"} />
       <Pricing />
       <FAQ />
+      <BookDemoForm product="STORE" />
       <CTA variant={variant} />
       <InternalLinks cluster="store" currentPath={variant.currentPath} />
       <PageFooter />

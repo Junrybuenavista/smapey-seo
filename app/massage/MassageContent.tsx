@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect, useRef } from "react"
+import BookDemoForm from "@/components/BookDemoForm"
 import {
   Calendar, Users, Flower2, Globe, Inbox, BarChart3, HandHelping, HeartPulse,
   CheckCircle2, ChevronRight, Menu, X, Zap, XCircle,
@@ -622,6 +623,7 @@ export default function MassageContent() {
       <ComparisonTable />
       <Pricing />
       <FAQ />
+      <BookDemoForm product="MASSAGE" />
       <CTA />
       <InternalLinks cluster="massage" currentPath="/massage" />
       <Footer />

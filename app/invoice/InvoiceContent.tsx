@@ -1,4 +1,5 @@
 "use client"
+import BookDemoForm from "@/components/BookDemoForm"
 import {
   Send,
   CreditCard,
@@ -592,6 +593,7 @@ export default function InvoicingContent() {
         </div>
       </section>
 
+      <BookDemoForm product="INVOICE" />
       <InternalLinks cluster="invoice" currentPath="/invoice" limit={9} />
       <Footer />
     </>
