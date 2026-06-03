@@ -303,6 +303,51 @@ function Hero({ variant }: { variant: RestaurantVariant }) {
   )
 }
 
+function Showcase() {
+  const shots = [
+    {
+      src: "https://res.cloudinary.com/dxhwfv0jo/image/upload/v1780501558/qr-table-ordering.jpg_acd7i7.png",
+      alt: "Customer scanning a table QR code to open the restaurant's menu on her phone",
+      title: "Scan the table QR",
+      desc: "Each table gets its own QR code. Customers scan it with their phone camera — no app to download and no login required.",
+    },
+    {
+      src: "https://res.cloudinary.com/dxhwfv0jo/image/upload/v1780501566/qr-menu-flatlay.jpg_jlghqo.png",
+      alt: "Smartphone showing a live food-ordering menu beside a table QR code and a plate of food",
+      title: "Order from your live menu",
+      desc: "Your menu opens instantly on their phone. They browse, add to cart, and send the order straight to your kitchen.",
+    },
+  ]
+  return (
+    <section className="py-24 bg-white">
+      <div className="max-w-6xl mx-auto px-6">
+        <Animate className="text-center mb-14">
+          <p className="text-orange-600 text-sm font-semibold uppercase tracking-widest mb-3">QR table ordering</p>
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-800 tracking-tight">
+            Let customers order from their own phone
+          </h2>
+          <p className="text-slate-500 mt-4 max-w-xl mx-auto">
+            Print one QR code per table. Guests scan, browse your live menu, and place their own order — your staff just works the kitchen queue.
+          </p>
+        </Animate>
+        <div className="grid md:grid-cols-2 gap-6">
+          {shots.map((s, i) => (
+            <Animate key={s.src} delay={i * 100}>
+              <figure className="bg-white rounded-2xl border border-orange-100 shadow-sm overflow-hidden hover:shadow-md hover:-translate-y-1 transition-all duration-300 h-full">
+                <img src={s.src} alt={s.alt} loading="lazy" className="w-full aspect-video object-cover" />
+                <figcaption className="p-6">
+                  <h3 className="font-bold text-slate-800 mb-2">{s.title}</h3>
+                  <p className="text-slate-500 text-sm leading-relaxed">{s.desc}</p>
+                </figcaption>
+              </figure>
+            </Animate>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
 function Features({ variant }: { variant: RestaurantVariant }) {
   return (
     <section id="features" className="py-24 bg-orange-50/40">
@@ -687,6 +732,7 @@ export default function RestaurantLanding({ variant }: { variant: RestaurantVari
     <main>
       <Navbar variant={variant} />
       <Hero variant={variant} />
+      <Showcase />
       <Features variant={variant} />
       <HowItWorks />
       <ComparisonTable showCta={variant.navMode === "page"} />
