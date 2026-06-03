@@ -54,6 +54,13 @@ const CLUSTER_ACCENT: Partial<Record<ClusterKey, {
     badge: "text-violet-600",
     badgeBg: "bg-violet-100",
   },
+  "school-desk": {
+    border: "hover:border-indigo-500",
+    bg: "from-indigo-50",
+    text: "group-hover:text-indigo-600",
+    badge: "text-indigo-600",
+    badgeBg: "bg-indigo-100",
+  },
 }
 
 const DEFAULT_ACCENT = {

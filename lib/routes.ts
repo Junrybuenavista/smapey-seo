@@ -4,7 +4,7 @@ export type RouteInfo = {
   desc: string
 }
 
-export type ClusterKey = "invoice" | "booking" | "gym" | "essay" | "car-rental" | "laundry" | "salon" | "massage" | "airbnb" | "lending" | "restaurant" | "store" | "clinic" | "vet-clinic" | "boarding-house" | "catering" | "water-refilling"
+export type ClusterKey = "invoice" | "booking" | "gym" | "essay" | "car-rental" | "laundry" | "salon" | "massage" | "airbnb" | "lending" | "restaurant" | "store" | "clinic" | "vet-clinic" | "boarding-house" | "catering" | "water-refilling" | "school-desk"
 
 export type RouteCluster = {
   label: string
@@ -288,6 +288,23 @@ export const CLUSTERS: Record<ClusterKey, RouteCluster> = {
       { path: "/restaurant/free-restaurant-management-software", title: "Free Restaurant Management Software", desc: "Run your restaurant on a free plan — menu builder, order tracking, and sales summary at no cost." },
     ],
   },
+
+  "school-desk": {
+    label: "Tutorial Center",
+    hub: {
+      path: "/school-desk",
+      title: "Tutorial Center & Tutor Software",
+      desc: "Manage student enrollments, sessions, tuition fees, attendance, and progress notes — all in one dashboard for Philippine tutorial centers and tutors.",
+    },
+    pages: [
+      { path: "/school-desk/guide",                                          title: "Tutorial Center Software Guide",                desc: "Plain-English, step-by-step guide to setting up programs, enrolling students, scheduling sessions, tracking tuition and attendance, and reading the dashboard." },
+      { path: "/school-desk/tutor-philippines",                              title: "How to Become a Tutor in the Philippines",      desc: "How to start and grow a tutoring business in the Philippines — finding students, setting rates, running sessions, and getting paid." },
+      { path: "/school-desk/tutorial-center-philippines",                    title: "Tutorial Center Philippines: Complete Guide",   desc: "What a tutorial center is, how it makes money, what you need, and how to run one in the Philippines without drowning in paperwork." },
+      { path: "/school-desk/how-to-start-tutorial-center-philippines",       title: "How to Start a Tutorial Center in the Philippines", desc: "A complete step-by-step guide to starting a tutorial center — capital, permits, location, hiring tutors, pricing, and operations." },
+      { path: "/school-desk/tutorial-center-business-plan-philippines",      title: "Tutorial Center Business Plan Philippines",     desc: "A sample tutorial center business plan for the Philippines — market, services, pricing, costs, marketing, and operations." },
+      { path: "/school-desk/tutorial-center-requirements-philippines",       title: "Tutorial Center Requirements Philippines",      desc: "The complete permits and requirements checklist to legally open a tutorial center in the Philippines." },
+    ],
+  },
 }
 
 // Back-compat: existing usages of SEO_ROUTES expect bare invoice slugs.
@@ -313,6 +330,7 @@ export const ALL_CLUSTERS: ClusterKey[] = [
   "boarding-house",
   "catering",
   "water-refilling",
+  "school-desk",
 ]
 
 export function clusterForPath(pathname: string): ClusterKey | null {

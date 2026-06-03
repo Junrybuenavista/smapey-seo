@@ -5,7 +5,7 @@ import Link from "next/link"
 import {
   FileText, Dumbbell, BookOpen, CalendarDays, Car, Shirt, Scissors,
   CalendarPlus, Home, Landmark, UtensilsCrossed, ShoppingBag, Stethoscope, PawPrint,
-  Building2, ChefHat, Droplets,
+  Building2, ChefHat, Droplets, GraduationCap,
   ArrowRight, CheckCircle2, Zap, Shield, TrendingUp,
   Clock, ChevronDown, Menu, X, Users, Sparkles,
   MousePointerClick, LayoutDashboard, Star,
@@ -236,6 +236,19 @@ const PRODUCTS = [
     Icon: Droplets,
     features: ["Delivery order tracking", "Container deposit & returns", "Inventory & one-click refills", "Routes, SMS & revenue dashboard"],
     stat: { value: "0", label: "lost containers" },
+  },
+  {
+    key: "SCHOOL_DESK",
+    name: "SchoolDesk (Tutorial Center)",
+    tagline: "Manage your tutorial center.",
+    desc: "Track student enrollments, sessions, tuition fees, attendance, and progress notes — built for tutorial centers and tutors in the Philippines.",
+    href: "/school-desk",
+    register: `${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=SCHOOL_DESK&plan=FREE`,
+    accent: "#6366f1",
+    accentLight: "#eef2ff",
+    Icon: GraduationCap,
+    features: ["Student enrollment & profiles", "Session scheduling & attendance", "Tuition fee monitoring", "Progress notes & dashboard"],
+    stat: { value: "₱0", label: "missed tuition" },
   },
 ]
 
