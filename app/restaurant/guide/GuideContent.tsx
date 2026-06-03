@@ -16,7 +16,7 @@ const SECTIONS = [
     icon: QrCode,
     title: "2. Turn on QR table ordering",
     body: [
-      "Open QR Ordering in the dashboard and toggle ordering on. Print one QR code per table — Smapey generates a unique code that links to your live menu.",
+      "Open QR Ordering in the dashboard and toggle ordering on. Print one QR code per table — Smapey generates a unique code that links to your live menu. If you've enabled GCash, each printed card also includes your GCash QR, so customers can order and pay from the same card on the table.",
       "When a customer scans the QR with their phone camera, your menu opens in their browser — no app to download and no login required. They pick items, add notes, enter their name, and place the order themselves.",
       "The order lands in your Orders queue instantly as Pending, with the table number attached. New orders appear automatically and notify your staff, so nobody has to keep refreshing the screen.",
     ],
@@ -45,7 +45,8 @@ const SECTIONS = [
     title: "5. Set up GCash payments",
     body: [
       "Open QR Ordering and find the GCash section. Turn it on, then enter your GCash name and number and upload your personal GCash QR code image. This connects your own wallet — no payment gateway, no monthly fees, and no KYC paperwork.",
-      "After a customer places a QR order, your GCash QR appears right on their phone. They can press and hold to save it to their Photos, then open GCash → Scan QR → upload from gallery — or simply copy your number to send money. The exact order total is shown so they know how much to pay.",
+      "Easiest setup — print both QRs on the table card. With GCash turned on, the Print all button on the QR Ordering page produces a table card that includes your GCash QR right below the table's ordering QR. Place one on every table so customers can open GCash, tap Scan QR, and scan the printed code directly — no screenshots, no saving to Photos, no switching apps. The exact total to pay is shown on their order screen.",
+      "If you'd rather not print it, your GCash QR also appears on the customer's phone after they order. They can press and hold to save it to their Photos, then open GCash → Scan QR → upload from gallery — or simply copy your number to send money. Either way, the exact order total is shown so they know how much to pay.",
       "Once they've sent payment, the customer taps \"I've paid via GCash.\" This does not auto-mark the order paid — it sends your staff a notification to confirm. Your team verifies the money arrived before marking it paid, so you're always in control.",
     ],
   },
