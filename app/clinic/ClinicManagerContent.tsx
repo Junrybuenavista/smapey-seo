@@ -9,6 +9,7 @@ import {
   Stethoscope, Users, CalendarDays, CheckCircle2, ChevronRight,
   Menu, X, Star, BarChart3, Shield, Clock, ListOrdered,
   ClipboardList, UserCheck, BookOpen, HeartPulse,
+  CalendarCheck,
 } from "lucide-react"
 
 const NAV_LINKS = ["Features", "How it Works", "Pricing", "FAQ"]
@@ -241,6 +242,14 @@ function Hero() {
           <a href="#features" onClick={(e) => { e.preventDefault(); document.getElementById("features")?.scrollIntoView({ behavior: "smooth" }) }}
             className="flex items-center gap-2 px-6 py-3 rounded-xl bg-white/5 hover:bg-white/10 text-white/70 hover:text-white font-medium text-sm transition-all border border-white/10">
             See features
+          </a>
+          <a
+            href="#book-demo"
+            onClick={(e) => { e.preventDefault(); document.getElementById("book-demo")?.scrollIntoView({ behavior: "smooth" }) }}
+            className="flex items-center gap-2 px-6 py-3 rounded-xl bg-white/5 hover:bg-white/10 text-white/70 hover:text-white font-medium text-sm transition-all border border-white/10"
+          >
+            <CalendarCheck className="w-4 h-4" />
+            Book a Demo
           </a>
         </div>
         <div className="mt-16 flex flex-wrap items-center justify-center gap-6 text-white/30 text-xs">

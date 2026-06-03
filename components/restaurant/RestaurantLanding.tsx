@@ -6,6 +6,7 @@ import {
   UtensilsCrossed, ClipboardList, ChefHat, BarChart3, ShoppingBag,
   Banknote, CheckCircle2, ChevronRight, Menu, X, Zap, XCircle,
   QrCode, Smartphone,
+  CalendarCheck,
 } from "lucide-react"
 import { usePricing, type Plan } from "@/lib/usePricing"
 import InternalLinks from "@/components/InternalLinks"
@@ -280,6 +281,14 @@ function Hero({ variant }: { variant: RestaurantVariant }) {
           </a>
           <a href={secondary.href} className="flex items-center gap-2 px-6 py-3 rounded-xl bg-white/5 hover:bg-white/10 text-white/70 hover:text-white font-medium text-sm transition-all border border-white/10">
             {secondary.label}
+          </a>
+          <a
+            href="#book-demo"
+            onClick={(e) => { e.preventDefault(); document.getElementById("book-demo")?.scrollIntoView({ behavior: "smooth" }) }}
+            className="flex items-center gap-2 px-6 py-3 rounded-xl bg-white/5 hover:bg-white/10 text-white/70 hover:text-white font-medium text-sm transition-all border border-white/10"
+          >
+            <CalendarCheck className="w-4 h-4" />
+            Book a Demo
           </a>
         </div>
         <div className="mt-16 flex flex-wrap items-center justify-center gap-6 text-white/30 text-xs">

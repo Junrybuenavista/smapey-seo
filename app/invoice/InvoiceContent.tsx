@@ -13,6 +13,7 @@ import {
   Bell,
   TrendingUp,
   Shield,
+  CalendarCheck,
 } from "lucide-react"
 import Link from "next/link"
 import Footer from "@/components/Footer"
@@ -69,6 +70,14 @@ export default function InvoicingContent() {
               <Link href="/invoice/how-it-works" className="text-gray-400 hover:text-white text-sm font-medium transition-colors underline underline-offset-4">
                 See how it works
               </Link>
+              <a
+                href="#book-demo"
+                onClick={(e) => { e.preventDefault(); document.getElementById("book-demo")?.scrollIntoView({ behavior: "smooth" }) }}
+                className="flex items-center gap-2 text-gray-400 hover:text-white text-sm font-medium transition-colors underline underline-offset-4"
+              >
+                <CalendarCheck size={14} />
+                Book a Demo
+              </a>
             </div>
 
             <div className="flex flex-wrap gap-5 text-sm text-gray-500 pt-2">

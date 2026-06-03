@@ -7,6 +7,7 @@ import {
   Dumbbell, QrCode, Users, BarChart3, CreditCard,
   Zap, CheckCircle2, ChevronRight, Menu, X, UserCheck,
   DollarSign, Globe, UserPlus,
+  CalendarCheck,
 } from "lucide-react"
 import { usePricing, type Plan } from "@/lib/usePricing"
 import InternalLinks from "@/components/InternalLinks"
@@ -303,6 +304,14 @@ function Hero() {
             onClick={(e) => { e.preventDefault(); document.getElementById("features")?.scrollIntoView({ behavior: "smooth" }) }}
             className="flex items-center gap-2 px-6 py-3 rounded-xl bg-white/5 hover:bg-white/10 text-white/70 hover:text-white font-medium text-sm transition-all border border-white/10">
             See features
+          </a>
+          <a
+            href="#book-demo"
+            onClick={(e) => { e.preventDefault(); document.getElementById("book-demo")?.scrollIntoView({ behavior: "smooth" }) }}
+            className="flex items-center gap-2 px-6 py-3 rounded-xl bg-white/5 hover:bg-white/10 text-white/70 hover:text-white font-medium text-sm transition-all border border-white/10"
+          >
+            <CalendarCheck className="w-4 h-4" />
+            Book a Demo
           </a>
         </div>
 
