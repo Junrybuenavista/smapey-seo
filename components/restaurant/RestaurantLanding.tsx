@@ -323,6 +323,12 @@ function Showcase() {
       title: "Work the kitchen queue",
       desc: "Orders land in your kitchen instantly. Staff tap to mark each one preparing, ready, and done — no paper tickets, no shouting.",
     },
+    {
+      src: "https://res.cloudinary.com/dxhwfv0jo/image/upload/v1780506039/pay_with_gcash_kpt7xs.png",
+      alt: "Customer paying with GCash on her phone by scanning the restaurant's GCash QR code at the table",
+      title: "Pay with GCash",
+      desc: "Customers scan your GCash QR, pay from their phone, and tap “I've paid” — you confirm in Orders. No payment gateway and no fees.",
+    },
   ]
   return (
     <section className="py-24 bg-white">
@@ -336,7 +342,7 @@ function Showcase() {
             Print one QR code per table. Guests scan, browse your live menu, and place their own order — your staff just works the kitchen queue.
           </p>
         </Animate>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {shots.map((s, i) => (
             <Animate key={s.src} delay={i * 100}>
               <figure className="bg-white rounded-2xl border border-orange-100 shadow-sm overflow-hidden hover:shadow-md hover:-translate-y-1 transition-all duration-300 h-full">
