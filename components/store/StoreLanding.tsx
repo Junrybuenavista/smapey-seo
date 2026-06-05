@@ -98,6 +98,41 @@ const FEATURES = [
   },
 ]
 
+const SHOWCASE = [
+  {
+    img: "https://res.cloudinary.com/dxhwfv0jo/image/upload/v1780666516/POS_at_checkout_guyg64.png",
+    alt: "Cashier ringing up a sale on the Smapey POS tablet",
+    eyebrow: "Point of Sale",
+    title: "Ring up sales in seconds",
+    desc: "Tap a product to add it to the cart, adjust quantities, apply a discount, and check out. Cash change is calculated automatically and stock is deducted the moment the sale completes.",
+    bullets: ["Tap-to-add product grid", "Automatic change calculation", "Stock deducted in real time"],
+  },
+  {
+    img: "https://res.cloudinary.com/dxhwfv0jo/image/upload/v1780666510/Barcode_scanning_a_product_xxvvag.png",
+    alt: "Scanning a product barcode with a phone camera",
+    eyebrow: "Barcode Scanner",
+    title: "Scan products with your phone",
+    desc: "No barcode gun needed. Point your phone camera at any product barcode to add it to the cart at the POS, or to auto-fill the barcode when adding a new product. Works with EAN, UPC, Code 128 and more.",
+    bullets: ["Use your phone — no extra hardware", "Find products fast at checkout", "Auto-fill barcodes when adding stock"],
+  },
+  {
+    img: "https://res.cloudinary.com/dxhwfv0jo/image/upload/v1780666513/QR_payment_atu1d0.png",
+    alt: "Customer scanning a store QR code to pay",
+    eyebrow: "QR Payment",
+    title: "Accept GCash, Maya & bank QR",
+    desc: "Upload your payment QR code once. When a customer chooses QR at checkout, it appears full-screen with the exact total — they scan, pay, and you confirm. No third-party fees, no extra apps.",
+    bullets: ["Works with any QR — GCash, Maya, banks", "Shows the exact amount to pay", "Confirm payment to complete the sale"],
+  },
+  {
+    img: "https://res.cloudinary.com/dxhwfv0jo/image/upload/v1780666509/Inventory_profit_dashboard_cidfp2.png",
+    alt: "Inventory and profit dashboard on a tablet",
+    eyebrow: "Dashboard & Profit",
+    title: "Know your profit at a glance",
+    desc: "Your dashboard shows today's revenue, profit, sales count, and low-stock alerts in one view. Profit is calculated from the cost price recorded at each sale, so the numbers stay accurate over time.",
+    bullets: ["Today's profit, live", "Low-stock alerts before you run out", "7-day revenue trend & top sellers"],
+  },
+]
+
 const STEPS = [
   { num: "01", title: "Add your products", desc: "Create categories first — beverages, snacks, cleaning supplies — then add products with price, cost, stock, and a reorder threshold. Scan the barcode with your phone camera to fill it in instantly, and snap a product photo directly from the camera." },
   { num: "02", title: "Set up suppliers", desc: "Add your regular suppliers and link products to them. When stock runs low and an alert fires, you know exactly who to contact to restock." },
@@ -352,6 +387,57 @@ function Features({ variant }: { variant: StoreVariant }) {
               </div>
             </Animate>
           ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+function Showcase() {
+  return (
+    <section className="py-24 bg-white">
+      <div className="max-w-6xl mx-auto px-6">
+        <Animate className="text-center mb-16">
+          <p className="text-violet-600 text-sm font-semibold uppercase tracking-widest mb-3">See it in action</p>
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-800 tracking-tight">
+            Everything you need to run the counter
+          </h2>
+          <p className="text-slate-500 mt-4 max-w-xl mx-auto">
+            From the first scan to the daily profit total — built for how small Philippine stores actually work.
+          </p>
+        </Animate>
+
+        <div className="space-y-20 lg:space-y-28">
+          {SHOWCASE.map((s, i) => {
+            const reversed = i % 2 === 1
+            return (
+              <div key={s.title} className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+                {/* Image */}
+                <Animate className={reversed ? "lg:order-2" : ""}>
+                  <div className="relative rounded-2xl overflow-hidden shadow-xl shadow-violet-200/50 border border-violet-100">
+                    <div className="absolute inset-0 bg-gradient-to-tr from-violet-600/10 to-transparent pointer-events-none" />
+                    <img src={s.img} alt={s.alt} loading="lazy"
+                      className="w-full h-full object-cover" />
+                  </div>
+                </Animate>
+
+                {/* Text */}
+                <Animate delay={120} className={reversed ? "lg:order-1" : ""}>
+                  <p className="text-violet-600 text-sm font-semibold uppercase tracking-widest mb-3">{s.eyebrow}</p>
+                  <h3 className="text-2xl sm:text-3xl font-extrabold text-slate-800 tracking-tight mb-4">{s.title}</h3>
+                  <p className="text-slate-500 leading-relaxed mb-6">{s.desc}</p>
+                  <ul className="space-y-3">
+                    {s.bullets.map((b) => (
+                      <li key={b} className="flex items-center gap-3 text-sm text-slate-600">
+                        <CheckCircle2 className="w-5 h-5 text-violet-500 shrink-0" />
+                        {b}
+                      </li>
+                    ))}
+                  </ul>
+                </Animate>
+              </div>
+            )
+          })}
         </div>
       </div>
     </section>
@@ -718,6 +804,7 @@ export default function StoreLanding({ variant }: { variant: StoreVariant }) {
       <Navbar variant={variant} />
       <Hero variant={variant} />
       <Features variant={variant} />
+      <Showcase />
       <HowItWorks />
       <ComparisonTable showCta={variant.navMode === "page"} />
       <Pricing />
