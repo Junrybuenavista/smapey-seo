@@ -486,7 +486,7 @@ function Hero() {
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
             <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400" />
           </span>
-          <span className="text-xs font-medium text-white/70 tracking-wide">17 tools live · built for small businesses</span>
+          <span className="text-xs font-medium text-white/70 tracking-wide">18 tools live · built for small businesses</span>
         </div>
 
         {/* HEADLINE */}
@@ -687,7 +687,7 @@ function Products() {
         <Reveal>
           <p className="text-xs font-bold tracking-widest uppercase text-gray-400 mb-3">Our products</p>
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 tracking-tight leading-tight max-w-2xl">
-            Seventeen tools. Every small business covered.
+            Eighteen tools. Every small business covered.
           </h2>
           <p className="mt-4 text-lg text-gray-500 max-w-xl">
             Pick the one you need today. Each product is fully standalone — no bundles, no bloat, no paying for things you don't use.
