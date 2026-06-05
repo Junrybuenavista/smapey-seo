@@ -803,8 +803,8 @@ export default function StoreLanding({ variant }: { variant: StoreVariant }) {
     <main>
       <Navbar variant={variant} />
       <Hero variant={variant} />
-      <Features variant={variant} />
       <Showcase />
+      <Features variant={variant} />
       <HowItWorks />
       <ComparisonTable showCta={variant.navMode === "page"} />
       <Pricing />
