@@ -6,7 +6,7 @@ import {
   Package, ScanLine, BarChart3, AlertCircle, Truck,
   ClipboardList, RefreshCw, Users, CheckCircle2,
   ChevronRight, Menu, X, Zap, XCircle,
-  CalendarCheck,
+  CalendarCheck, ScanBarcode, Camera,
 } from "lucide-react"
 import { usePricing, type Plan } from "@/lib/usePricing"
 import InternalLinks from "@/components/InternalLinks"
@@ -68,10 +68,24 @@ const FEATURES = [
     color: "from-violet-600 to-purple-500",
     shadow: "shadow-violet-500/30",
   },
+  {
+    icon: ScanBarcode,
+    title: "Camera Barcode Scanner",
+    desc: "Tap the scan icon next to the Barcode field and point your phone camera at any product. EAN-13, EAN-8, UPC-A, Code 128, and more are detected instantly — no manual typing needed.",
+    color: "from-violet-600 to-purple-500",
+    shadow: "shadow-violet-500/30",
+  },
+  {
+    icon: Camera,
+    title: "In-App Camera Capture",
+    desc: "Take a product photo directly from your phone camera without leaving the app. Tap Take Photo, point, and shoot. Switch between front and back camera with one tap.",
+    color: "from-violet-600 to-purple-500",
+    shadow: "shadow-violet-500/30",
+  },
 ]
 
 const STEPS = [
-  { num: "01", title: "Add your products", desc: "Create categories first — beverages, snacks, cleaning supplies — then add products with price, cost, stock, and a reorder threshold. Upload a photo if you want visual reference at the POS." },
+  { num: "01", title: "Add your products", desc: "Create categories first — beverages, snacks, cleaning supplies — then add products with price, cost, stock, and a reorder threshold. Scan the barcode with your phone camera to fill it in instantly, and snap a product photo directly from the camera." },
   { num: "02", title: "Set up suppliers", desc: "Add your regular suppliers and link products to them. When stock runs low and an alert fires, you know exactly who to contact to restock." },
   { num: "03", title: "Ring up sales on POS", desc: "Open POS, tap products to add them to the cart, adjust quantity, enter a discount if needed, select payment method, and complete the sale. Cash change is calculated automatically." },
   { num: "04", title: "Track sales & manage stock", desc: "Your dashboard shows today's revenue, total sales, and low stock items at a glance. The Analytics page shows your 7-day revenue trend and top-selling products." },
@@ -96,6 +110,14 @@ function limitDisplay(plan: Plan | undefined, key: string): string {
 }
 
 const FAQS = [
+  {
+    q: "Can I scan barcodes with my phone camera?",
+    a: "Yes. When adding or editing a product, tap the scan icon next to the Barcode field. Your phone's back camera opens — just point it at the barcode on the packaging and it's detected and filled in automatically. Supports EAN-13, EAN-8, UPC-A, UPC-E, Code 128, Code 39, Code 93, and QR codes. You can also type the barcode manually if you prefer.",
+  },
+  {
+    q: "Can I take product photos without leaving the app?",
+    a: "Yes. In the Add/Edit Product form, tap Take Photo to open your phone's camera directly inside the app. Frame the shot, tap the shutter button, and the photo is set instantly. You can also tap Upload Photo to pick an existing image from your gallery instead.",
+  },
   {
     q: "Can I track inventory with the free plan?",
     a: "Yes. The free plan includes up to 50 products with full stock tracking — reorder thresholds, low stock alerts, stock adjustment logs, and supplier links. You only need to upgrade when your product count or sales volume grows.",

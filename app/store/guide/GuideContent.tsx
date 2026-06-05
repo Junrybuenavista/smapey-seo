@@ -1,15 +1,30 @@
 "use client"
 
-import { Package, ScanLine, RefreshCw, BarChart3, Truck, ChevronRight } from "lucide-react"
+import { Package, ScanLine, RefreshCw, BarChart3, Truck, ChevronRight, ScanBarcode, Camera } from "lucide-react"
 
-const SECTIONS = [
+type BodyItem =
+  | string
+  | { type: "tip"; icon: React.ComponentType<{ className?: string }>; label: string; text: string }
+
+const SECTIONS: { icon: React.ComponentType<{ className?: string }>; title: string; body: BodyItem[] }[] = [
   {
     icon: Package,
     title: "1. Add your products",
     body: [
       "Open Products in the dashboard and start with Categories — Beverages, Snacks, Household, Cleaning Supplies, or whatever fits your store. Categories keep your catalog organized and make it faster to find products at the POS.",
-      "Inside each category, click Add Product. Give it a name, SKU, barcode (optional), selling price, cost price, and initial stock quantity. Set a reorder threshold — when stock drops to or below this number, a low stock alert will appear on your dashboard.",
-      "Upload a product photo if you want a visual reference at the POS. This is especially useful in stores with many similar-looking items.",
+      "Inside each category, click Add Product. Give it a name, SKU (optional), selling price, cost price, and initial stock quantity. Set a reorder threshold — when stock drops to or below this number, a low stock alert will appear on your dashboard.",
+      {
+        type: "tip",
+        icon: ScanBarcode,
+        label: "Scan the barcode with your camera",
+        text: "Tap the scan icon next to the Barcode field. Your phone's back camera opens — point it at the barcode on the product packaging and the number fills in automatically. Supports EAN-13, EAN-8, UPC-A, Code 128, Code 39, and more. You can still type the barcode manually if you prefer.",
+      },
+      {
+        type: "tip",
+        icon: Camera,
+        label: "Take the product photo with your camera",
+        text: "Tap Take Photo to open your phone's camera directly inside the app — no need to save an image to your gallery first. Frame the product, tap the white shutter button to capture, and it's set instantly. Use the flip button to switch between front and back cameras. Or tap Upload Photo to pick an existing image from your gallery.",
+      },
     ],
   },
   {
@@ -90,9 +105,21 @@ export default function GuideContent() {
               <h2 className="text-lg font-bold text-slate-800">{title}</h2>
             </div>
             <div className="px-6 py-5 space-y-4">
-              {body.map((para, i) => (
-                <p key={i} className="text-slate-600 text-sm leading-relaxed">{para}</p>
-              ))}
+              {body.map((item, i) =>
+                typeof item === "string" ? (
+                  <p key={i} className="text-slate-600 text-sm leading-relaxed">{item}</p>
+                ) : (
+                  <div key={i} className="flex gap-3 p-4 rounded-xl bg-violet-50 border border-violet-100">
+                    <div className="w-8 h-8 rounded-lg bg-gradient-to-tr from-violet-600 to-purple-500 flex items-center justify-center shrink-0 mt-0.5">
+                      <item.icon className="w-4 h-4 text-white" />
+                    </div>
+                    <div>
+                      <p className="text-sm font-semibold text-violet-700 mb-1">{item.label}</p>
+                      <p className="text-sm text-slate-600 leading-relaxed">{item.text}</p>
+                    </div>
+                  </div>
+                )
+              )}
             </div>
           </div>
         ))}
