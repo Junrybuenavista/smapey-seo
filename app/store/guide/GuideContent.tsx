@@ -1,6 +1,6 @@
 "use client"
 
-import { Package, ScanLine, RefreshCw, BarChart3, Truck, ChevronRight, ScanBarcode, Camera } from "lucide-react"
+import { Package, ScanLine, RefreshCw, BarChart3, Truck, ChevronRight, ScanBarcode, Camera, QrCode, TrendingUp } from "lucide-react"
 
 type BodyItem =
   | string
@@ -39,14 +39,40 @@ const SECTIONS: { icon: React.ComponentType<{ className?: string }>; title: stri
     icon: ScanLine,
     title: "3. Ring up a sale on POS",
     body: [
-      "Open the POS screen. Products are shown in a grid filtered by category. Tap a product to add it to the cart. You can also type a quantity directly or use the + and − buttons — useful for large quantities.",
-      "Apply a discount in the Discount field if needed. Select the payment method: Cash, GCash, Maya, Bank, or Other. For cash payments, enter the amount tendered and the change is calculated automatically.",
-      "Tap Checkout. The sale is recorded, stock is deducted from inventory, and a receipt modal pops up with the sale summary, total, and change amount.",
+      "Open the POS screen. Products are shown in a grid filtered by category. Tap a product to add it to the cart — or tap the Scan button in the search bar to open your phone camera and scan any product barcode to add it instantly.",
+      "Adjust quantities using the + / − buttons or type a number directly. Apply a discount in the Discount field if needed.",
+      "Choose a payment method — Cash or QR:",
+      {
+        type: "tip",
+        icon: ScanLine,
+        label: "Cash payment",
+        text: "Enter the amount the customer hands you. The change is calculated automatically. Tap Checkout to complete the sale.",
+      },
+      {
+        type: "tip",
+        icon: QrCode,
+        label: "QR payment",
+        text: "Tap Checkout and your QR code pops up full-screen showing the exact total. The customer scans it with GCash, Maya, or their bank app and sends the payment. Once paid, tap Payment Received — Complete Sale to record it.",
+      },
+    ],
+  },
+  {
+    icon: QrCode,
+    title: "4. Set up your QR code",
+    body: [
+      "Go to Store → QR Setup in the sidebar. Tap the upload area and choose a screenshot of your GCash, Maya, or bank QR code from your phone gallery.",
+      "Once uploaded, your QR code is stored and will automatically appear at checkout whenever a customer chooses QR payment.",
+      {
+        type: "tip",
+        icon: QrCode,
+        label: "Where to get your QR code",
+        text: "Open GCash → tap your profile photo → tap 'My QR Code' → screenshot it. For Maya, go to Profile → My QR. For a bank, check your mobile banking app under 'Receive Money' or 'My QR'. Screenshot or save that QR image, then upload it to Smapey QR Setup.",
+      },
     ],
   },
   {
     icon: RefreshCw,
-    title: "4. Adjust stock manually",
+    title: "5. Adjust stock manually",
     body: [
       "Open any product and use the Adjust Stock button to log a RESTOCK (adding stock from a supplier delivery) or an ADJUSTMENT (correcting a discrepancy, writing off spoilage, etc.).",
       "Enter the quantity, choose the type, add a reason, and save. All stock movements are logged so you have a full audit trail and can see how stock levels changed over time.",
@@ -54,10 +80,17 @@ const SECTIONS: { icon: React.ComponentType<{ className?: string }>; title: stri
   },
   {
     icon: BarChart3,
-    title: "5. Track sales and analytics",
+    title: "6. Track sales, profit, and analytics",
     body: [
-      "The Dashboard shows today's total revenue, number of sales, and any products currently below their reorder threshold. Hit Refresh any time to pull the latest numbers.",
+      "The Dashboard shows today's total revenue, profit, number of sales, and any products currently below their reorder threshold. Hit Refresh any time to pull the latest numbers.",
+      {
+        type: "tip",
+        icon: TrendingUp,
+        label: "Today's Profit on the dashboard",
+        text: "Profit is calculated as your total revenue minus the cost of goods sold — using the cost price you entered for each product. It's recorded at the time of sale, so it stays accurate even if you change the cost price later. Products without a cost price set will not contribute to the profit total.",
+      },
       "The Analytics page shows a 7-day revenue trend line chart, a horizontal bar chart of your top-selling products by quantity, and a pie chart breaking down sales by payment method.",
+      "The Sales page shows every transaction with its total, profit, payment method, and status. Click View on any sale to see the full breakdown including per-item detail and total profit for that sale.",
       "Plan Usage shows how many products and sales you've used against your plan's limits — useful if you're on the Free plan and approaching your cap.",
     ],
   },
@@ -89,7 +122,7 @@ export default function GuideContent() {
             How to use Smapey Inventory & POS Manager
           </h1>
           <p className="text-violet-50/80 text-lg">
-            Add products, manage stock, ring up sales, and track daily revenue — this guide walks through every step.
+            Add products, scan barcodes, accept QR payments, and track daily profit — this guide walks through every step.
           </p>
         </div>
       </div>

@@ -6,7 +6,7 @@ import {
   Package, ScanLine, BarChart3, AlertCircle, Truck,
   ClipboardList, RefreshCw, Users, CheckCircle2,
   ChevronRight, Menu, X, Zap, XCircle,
-  CalendarCheck, ScanBarcode, Camera,
+  CalendarCheck, ScanBarcode, Camera, QrCode, TrendingUp,
 } from "lucide-react"
 import { usePricing, type Plan } from "@/lib/usePricing"
 import InternalLinks from "@/components/InternalLinks"
@@ -82,22 +82,38 @@ const FEATURES = [
     color: "from-violet-600 to-purple-500",
     shadow: "shadow-violet-500/30",
   },
+  {
+    icon: QrCode,
+    title: "QR Payment",
+    desc: "Upload your GCash, Maya, or bank QR code once. At checkout, selecting QR instantly shows your QR code for the customer to scan — then you confirm payment received to complete the sale.",
+    color: "from-violet-600 to-purple-500",
+    shadow: "shadow-violet-500/30",
+  },
+  {
+    icon: TrendingUp,
+    title: "Profit Tracking",
+    desc: "See today's profit on the dashboard and per-sale profit in your sales history. Profit is calculated from the cost price recorded at the time of sale — stays accurate even if you change prices later.",
+    color: "from-violet-600 to-purple-500",
+    shadow: "shadow-violet-500/30",
+  },
 ]
 
 const STEPS = [
   { num: "01", title: "Add your products", desc: "Create categories first — beverages, snacks, cleaning supplies — then add products with price, cost, stock, and a reorder threshold. Scan the barcode with your phone camera to fill it in instantly, and snap a product photo directly from the camera." },
   { num: "02", title: "Set up suppliers", desc: "Add your regular suppliers and link products to them. When stock runs low and an alert fires, you know exactly who to contact to restock." },
-  { num: "03", title: "Ring up sales on POS", desc: "Open POS, tap products to add them to the cart, adjust quantity, enter a discount if needed, select payment method, and complete the sale. Cash change is calculated automatically." },
-  { num: "04", title: "Track sales & manage stock", desc: "Your dashboard shows today's revenue, total sales, and low stock items at a glance. The Analytics page shows your 7-day revenue trend and top-selling products." },
+  { num: "03", title: "Ring up sales on POS", desc: "Open POS, scan a barcode or tap a product to add it to the cart. Choose Cash (enter amount tendered, change auto-calculated) or QR (your QR code pops up for the customer to scan). Tap checkout when done." },
+  { num: "04", title: "Track revenue & profit", desc: "Your dashboard shows today's revenue, profit, sales count, and low stock items. The Analytics page shows your 7-day revenue trend and top-selling products. Sales history shows per-sale profit." },
 ]
 
 const FEATURE_ROWS: { feature: string; free: true | false; pro: true | false; enterprise: true | false }[] = [
   { feature: "Categories & suppliers",     free: true,  pro: true,  enterprise: true  },
   { feature: "Product images & SKU",       free: true,  pro: true,  enterprise: true  },
-  { feature: "POS with payment methods",   free: true,  pro: true,  enterprise: true  },
+  { feature: "Camera barcode scanner",     free: true,  pro: true,  enterprise: true  },
+  { feature: "POS — Cash & QR payment",    free: true,  pro: true,  enterprise: true  },
   { feature: "Low stock alerts",           free: true,  pro: true,  enterprise: true  },
   { feature: "Stock adjustments & logs",   free: true,  pro: true,  enterprise: true  },
   { feature: "Sales history & voiding",    free: true,  pro: true,  enterprise: true  },
+  { feature: "Profit tracking",            free: true,  pro: true,  enterprise: true  },
   { feature: "Analytics & revenue trends", free: true,  pro: true,  enterprise: true  },
   { feature: "Priority support",           free: false, pro: false, enterprise: true  },
 ]
@@ -136,7 +152,15 @@ const FAQS = [
   },
   {
     q: "What payment methods does the POS support?",
-    a: "Cash (with automatic change calculation), GCash, Maya, Bank transfer, and Other. You choose the method at checkout — it's recorded on the sale and shown in your payment method analytics breakdown.",
+    a: "Cash and QR. For Cash, enter the amount tendered and the change is calculated instantly. For QR, your uploaded QR code (GCash, Maya, bank — whatever you set up) is shown full-screen for the customer to scan. Once they pay, you tap Payment Received to complete the sale.",
+  },
+  {
+    q: "How does QR payment work?",
+    a: "Go to Store → QR Setup and upload a screenshot of your GCash, Maya, or bank QR code. From then on, when a customer chooses QR at the POS, your QR code appears on screen with the total amount. The customer scans it on their phone and sends the payment. You tap Payment Received to confirm and complete the sale.",
+  },
+  {
+    q: "Can I track profit per sale?",
+    a: "Yes. When you add a product, set its cost price. Smapey records that cost at the time of each sale so your profit stays accurate even if you change the price later. You'll see today's profit on the dashboard and a profit column on every sale in your sales history.",
   },
 ]
 
