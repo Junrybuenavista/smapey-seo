@@ -12,7 +12,7 @@ export default function BlogLayout({ children }: { children: React.ReactNode }) 
     <html lang="en">
       <body>
         <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-QN3CFDFYNB"
+          src="https://www.googletagmanager.com/gtag/js?id=G-KJHG5R9G1S"
           strategy="afterInteractive"
         />
         <Script id="google-analytics" strategy="afterInteractive">
@@ -20,7 +20,7 @@ export default function BlogLayout({ children }: { children: React.ReactNode }) 
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', 'G-QN3CFDFYNB');
+            gtag('config', 'G-KJHG5R9G1S');
           `}
         </Script>
         {children}
