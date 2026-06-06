@@ -4,7 +4,7 @@ import { useEffect } from "react"
 
 export default function PageTracker({ page }: { page: string }) {
   useEffect(() => {
-    fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/seo-analytics/track`, {
+    fetch("/api/track-visit", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
