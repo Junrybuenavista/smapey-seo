@@ -1,5 +1,6 @@
 import "./globals.css"
 import Script from "next/script"
+import PageTracker from "../components/PageTracker"
 
 export const metadata = {
   metadataBase: new URL("https://smapey.com"),
@@ -32,6 +33,7 @@ export default function RootLayout({
           `}
         </Script>
 
+        <PageTracker page="home" />
         {children}
       </body>
     </html>
