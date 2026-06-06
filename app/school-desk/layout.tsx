@@ -1,6 +1,6 @@
 import "../globals.css"
 import Script from "next/script"
-import PageTracker from "../../components/PageTracker"
+
 
 export const metadata = {
   title: "Smapey SchoolDesk",
@@ -18,7 +18,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             gtag('js', new Date());
             gtag('config', 'G-KJHG5R9G1S');`}
         </Script>
-        <PageTracker />
+
         {children}
       </body>
     </html>

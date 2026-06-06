@@ -1,6 +1,6 @@
 import "../globals.css"
 import Script from "next/script"
-import PageTracker from "../../components/PageTracker"
+
 
 export const metadata = {
   title: "Smapey Airbnb / Short-term Rentals",
@@ -23,7 +23,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             gtag('config', 'G-KJHG5R9G1S');
           `}
         </Script>
-        <PageTracker />
+
         {children}
       </body>
     </html>

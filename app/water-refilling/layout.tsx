@@ -1,6 +1,6 @@
 import "../globals.css"
 import Script from "next/script"
-import PageTracker from "../../components/PageTracker"
+
 
 export const metadata = {
   title: "Smapey Water",
@@ -28,7 +28,7 @@ export default function RootLayout({
           `}
         </Script>
 
-        <PageTracker />
+
         {children}
       </body>
     </html>
