@@ -1,11 +1,13 @@
 "use client"
 
 import { useEffect } from "react"
+import { usePathname } from "next/navigation"
 
 export default function PageTracker() {
+  const pathname = usePathname()
+
   useEffect(() => {
-    const path = window.location.pathname
-    const page = path === "/" ? "home" : path.replace(/^\//, "").replace(/\/$/, "")
+    const page = pathname === "/" ? "home" : pathname.replace(/^\//, "").replace(/\/$/, "")
 
     fetch("/api/track-visit", {
       method: "POST",
@@ -16,7 +18,7 @@ export default function PageTracker() {
         userAgent: navigator.userAgent,
       }),
     }).catch(() => {})
-  }, [])
+  }, [pathname])
 
   return null
 }
