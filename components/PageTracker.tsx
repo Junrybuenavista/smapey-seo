@@ -2,8 +2,11 @@
 
 import { useEffect } from "react"
 
-export default function PageTracker({ page }: { page: string }) {
+export default function PageTracker() {
   useEffect(() => {
+    const path = window.location.pathname
+    const page = path === "/" ? "home" : path.replace(/^\//, "").replace(/\/$/, "")
+
     fetch("/api/track-visit", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -13,7 +16,7 @@ export default function PageTracker({ page }: { page: string }) {
         userAgent: navigator.userAgent,
       }),
     }).catch(() => {})
-  }, [page])
+  }, [])
 
   return null
 }

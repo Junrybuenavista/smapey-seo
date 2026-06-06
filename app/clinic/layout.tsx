@@ -23,7 +23,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             gtag('config', 'G-KJHG5R9G1S');
           `}
         </Script>
-        <PageTracker page="clinic" />
+        <PageTracker />
         {children}
       </body>
     </html>

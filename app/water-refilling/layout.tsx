@@ -28,7 +28,7 @@ export default function RootLayout({
           `}
         </Script>
 
-        <PageTracker page="water-refilling" />
+        <PageTracker />
         {children}
       </body>
     </html>

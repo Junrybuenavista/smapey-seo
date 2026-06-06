@@ -18,7 +18,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             gtag('js', new Date());
             gtag('config', 'G-KJHG5R9G1S');`}
         </Script>
-        <PageTracker page="school-desk" />
+        <PageTracker />
         {children}
       </body>
     </html>

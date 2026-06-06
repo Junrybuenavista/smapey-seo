@@ -28,7 +28,7 @@ export default function RootLayout({
           `}
         </Script>
 
-        <PageTracker page="gym" />
+        <PageTracker />
         {children}
       </body>
     </html>

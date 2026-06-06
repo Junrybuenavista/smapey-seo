@@ -33,7 +33,7 @@ export default function RootLayout({
           `}
         </Script>
 
-        <PageTracker page="home" />
+        <PageTracker />
         {children}
       </body>
     </html>

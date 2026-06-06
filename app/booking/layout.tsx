@@ -28,7 +28,7 @@ export default function RootLayout({
           `}
         </Script>
 
-        <PageTracker page="booking" />
+        <PageTracker />
         {children}
       </body>
     </html>
