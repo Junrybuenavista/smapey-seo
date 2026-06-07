@@ -11,8 +11,11 @@ export async function POST(req: NextRequest) {
       req.headers.get("x-real-ip") ||
       undefined
 
-    // Cloudflare sets CF-IPCountry on every request — free, no library needed
-    const country = req.headers.get("cf-ipcountry") || undefined
+    // Vercel edge adds x-vercel-ip-country; Cloudflare adds cf-ipcountry
+    const country =
+      req.headers.get("x-vercel-ip-country") ||
+      req.headers.get("cf-ipcountry") ||
+      undefined
 
     await fetch(`${BACKEND}/api/seo-analytics/track`, {
       method: "POST",
