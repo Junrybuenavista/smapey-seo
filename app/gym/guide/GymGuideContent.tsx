@@ -4,7 +4,7 @@ import { useState, useEffect } from "react"
 import GymVideoSection from "../GymVideoSection"
 import {
   UserPlus, QrCode, UserCheck, CreditCard, Dumbbell, BarChart3,
-  ChevronRight, Zap, BookOpen, ArrowLeft,
+  ChevronRight, Zap, BookOpen, ArrowLeft, SlidersHorizontal,
 } from "lucide-react"
 import InternalLinks from "@/components/InternalLinks"
 
@@ -38,42 +38,47 @@ const GUIDES = [
           "Enter the member's full name, phone number, email (optional), and emergency contact information.",
       },
       {
-        title: "Select a subscription plan",
+        title: "Add a photo (optional)",
         detail:
-          "Choose from your existing plans. The membership start date defaults to today but can be adjusted.",
+          "In the Photo section at the top of the form, upload a picture from your device or click Take Photo to capture one with your computer or phone camera.",
       },
       {
         title: "Save the member",
         detail:
-          "Click Save. A unique QR code is automatically generated and attached to this member's profile — no extra steps required.",
+          "Click Create Member. A unique QR code is automatically generated and attached to this member's profile — no extra steps required.",
+      },
+      {
+        title: "Subscribe them to a plan",
+        detail:
+          "From the gym dashboard's Members Overview, click Subscribe next to the new member and pick one of your plans — the membership starts immediately.",
       },
     ],
-    tip: "You can view and download any member's QR code from their profile page under the \"QR Code\" tab.",
+    tip: "If you enter the member's email address, they automatically receive a welcome email with their check-in QR code attached. You can also view and download it anytime from the member's profile.",
   },
   {
     id: "qr-check-in",
     icon: QrCode,
     title: "Enable QR Code Check-in",
-    badge: "PRO / ENTERPRISE",
-    badgeColor: "bg-amber-50 text-amber-600 border border-amber-100",
+    badge: "All Plans",
+    badgeColor: "bg-green-50 text-green-600 border border-green-100",
     accentColor: "from-amber-500 to-orange-400",
     description:
-      "Set up contactless QR code check-in for your members. Available on PRO and ENTERPRISE plans only.",
+      "Set up contactless QR code check-in for your members. Available on every plan, including FREE.",
     steps: [
       {
-        title: "Upgrade your plan",
+        title: "Get each member's QR code",
         detail:
-          "Go to Settings → Billing and upgrade to PRO or ENTERPRISE. QR check-in is locked on the FREE plan.",
+          "Every member gets a unique QR code automatically when registered. Open the Members page, click View on a member, and use the Download button in the QR Code section. Members with an email address also receive it automatically in their welcome email.",
       },
       {
-        title: "Share each member's QR code",
+        title: "Share the QR code with the member",
         detail:
-          "Open a member's profile and click \"View QR Code\". Members can save it to their phone's photos or print a copy.",
+          "Members can save it to their phone's photos or you can print a copy for their membership card.",
       },
       {
-        title: "Set up a check-in station",
+        title: "Open the QR scanner",
         detail:
-          "Open the Check-in page on a tablet or front-desk monitor. The page activates the device camera automatically.",
+          "On the gym dashboard, click the green Scan QR card — the camera scanner opens instantly. Keep it open on a tablet or front-desk monitor as your check-in station.",
       },
       {
         title: "Members scan to check in",
@@ -94,9 +99,9 @@ const GUIDES = [
       "Record one-day visitors quickly without creating a full membership. Track walk-in revenue and monitor your monthly quota.",
     steps: [
       {
-        title: "Go to the Check-in page",
+        title: "Open the Walk-in form",
         detail:
-          "From the sidebar, open Check-in and switch to the Walk-in tab at the top of the page.",
+          "On the gym dashboard, click the orange Walk-in card. A small form opens for recording the visit.",
       },
       {
         title: "Enter visitor details",
@@ -106,12 +111,12 @@ const GUIDES = [
       {
         title: "Select a walk-in plan",
         detail:
-          "Choose from your walk-in plans (created under Plans → Walk-in Plans). The fee is automatically recorded.",
+          "Choose from your walk-in plans (created on the Plans page with the \"Walk-in Plan\" option checked). The fee is automatically recorded.",
       },
       {
-        title: "Submit the walk-in",
+        title: "Confirm the walk-in",
         detail:
-          "Click Record Walk-in. The visit is logged and counted toward your monthly walk-in quota.",
+          "Click Confirm Walk-in. The visitor is logged, charged the plan fee, checked in automatically, and counted toward your monthly walk-in quota.",
       },
     ],
     tip: "Your walk-in quota resets on the 1st of every month. Check your current usage vs. limit in the Analytics insight cards.",
@@ -139,25 +144,63 @@ const GUIDES = [
       {
         title: "Assign a plan to a member",
         detail:
-          "From the Members Overview, click Subscribe next to a member. Select a plan from the dropdown — the subscription starts from today.",
+          "From the Members Overview, click Subscribe next to a member. Select a plan from the dropdown — the subscription starts from today, and the modal previews the expiry date (day plans) or the number of check-ins included (session plans).",
       },
       {
-        title: "Adjust for already consumed days or sessions (optional)",
+        title: "Correct usage after subscribing (optional)",
         detail:
-          "If a member started using a plan before you set up the app, enter how many days or sessions they've already used. For day-based plans, the expiry is recalculated from today (e.g. 8 days used on a 12-day plan = 4 days remaining). For session-based plans, the sessions counter starts at the number you enter (e.g. 3 sessions used on a 10-session plan = 7 remaining). The same field is available in the Renew modal.",
+          "If a member started using their plan before you set up the app, subscribe them first, then fix their used days or sessions with the Adjustment button — see the \"Adjust a Subscription\" section below for the full walkthrough.",
       },
       {
         title: "Monitor expiring memberships",
         detail:
-          "Your dashboard automatically flags members whose subscriptions are nearing expiry or have already lapsed. Session-based plans show sessions used vs. total directly on the member row.",
+          "Session-based plans show sessions used vs. total directly on the member row. When a membership runs out on the day a member checked in (e.g. their last session), the row shows a yellow \"will expire tomorrow\" badge — it turns red \"expired\" with a Renew button the next day. You can also review a member's full subscription history anytime from the Members page via View.",
       },
       {
         title: "Renew with one click",
         detail:
-          "From a member's row, click Renew when a subscription has expired. Pick a plan and optionally adjust consumed days or sessions before confirming.",
+          "From a member's row, click Renew when a subscription has expired. Pick a plan and confirm — the new subscription starts immediately. If you need to correct already used days or sessions, use the Adjustment button after renewing.",
       },
     ],
-    tip: "Use \"By Sessions\" plans for punch-card style memberships where members buy a block of visits and use them at their own pace. Use \"By Days\" for standard time-based memberships. Both support the consumed adjustment field when migrating existing members into the app.",
+    tip: "Use \"By Sessions\" plans for punch-card style memberships where members buy a block of visits and use them at their own pace. Use \"By Days\" for standard time-based memberships. When migrating existing members into the app, subscribe them first and then fix their used days or sessions with the Adjustment button.",
+  },
+  {
+    id: "adjustment",
+    icon: SlidersHorizontal,
+    title: "Adjust a Subscription",
+    badge: "All Plans",
+    badgeColor: "bg-green-50 text-green-600 border border-green-100",
+    accentColor: "from-slate-700 to-slate-500",
+    description:
+      "Correct how many days or sessions a member has already used — perfect for migrating existing members into the app or fixing front-desk mistakes.",
+    steps: [
+      {
+        title: "Find the member's subscription",
+        detail:
+          "Open the Members Overview on your dashboard. In the Subscription column, every active membership shows its plan name, expiry or sessions used, and a status badge.",
+      },
+      {
+        title: "Click the Adjustment button",
+        detail:
+          "Next to the status badge you'll see an Adjustment button. It only appears on active subscriptions — expired memberships and walk-in passes can't be adjusted. On mobile, the button is in the member card's action row.",
+      },
+      {
+        title: "Enter the days or sessions already used",
+        detail:
+          "The modal adapts to the plan type. For day-based plans, enter the days consumed — the expiry is recalculated from the subscription's start date (e.g. 8 days used on a 12-day plan = 4 days remaining). For session-based plans, set the sessions used (e.g. 3 used on a 10-session plan = 7 remaining).",
+      },
+      {
+        title: "Check the live preview",
+        detail:
+          "Before saving, the modal shows the new expiry date or remaining sessions. If the adjustment uses up the entire plan, it warns that the subscription will be marked expired.",
+      },
+      {
+        title: "Save the adjustment",
+        detail:
+          "Click Save Adjustment. The subscription updates instantly — the member row, dashboard stats, and check-in eligibility all reflect the corrected usage right away.",
+      },
+    ],
+    tip: "Migrating from a paper logbook or spreadsheet? Subscribe each member to their current plan first, then use the Adjustment button to set how much of it they've already used.",
   },
   {
     id: "trainers",
@@ -172,22 +215,22 @@ const GUIDES = [
       {
         title: "Add a trainer",
         detail:
-          'Go to Trainers → Add Trainer. Fill in their name, specialty (e.g. "Strength & Conditioning"), and contact number.',
+          'Go to Trainers → Add Trainer. Fill in their name, specialty (e.g. "Strength & Conditioning"), and contact number. You can also add a photo — upload one or take it with the camera.',
       },
       {
         title: "Set the trainer as active",
         detail:
-          "Only active trainers appear in the assignment dropdown. Toggle a trainer's status from the trainer list.",
+          "Only active trainers appear in the assignment dropdown. Toggle a trainer's status with the power button on their card.",
       },
       {
         title: "Assign to a member",
         detail:
-          "Open a member's profile, scroll to the Trainer section, and click Assign Trainer. Pick from the active trainers list.",
+          "In the Members Overview on your dashboard, click the member's Trainer column — or the red \"Assign trainer\" link if they don't have one yet — and pick from the active trainers list.",
       },
       {
         title: "Update or reassign",
         detail:
-          "You can change a member's trainer at any time from their profile. The new assignment takes effect immediately.",
+          "You can change a member's trainer at any time by clicking the trainer's name in the same column. The new assignment takes effect immediately.",
       },
     ],
     tip: "Specialty tags on trainer profiles help you quickly match the right trainer to each member's fitness goal.",
@@ -203,24 +246,24 @@ const GUIDES = [
       "Understand your gym's performance through revenue charts, attendance trends, and real-time usage insight cards.",
     steps: [
       {
-        title: "Open the Analytics card",
+        title: "Open the Analytics page",
         detail:
-          "The Analytics card appears at the top of your Gym Dashboard and loads automatically when you enter the gym module.",
+          "From the gym sidebar, open Analytics. It loads your latest numbers automatically every time you visit.",
       },
       {
         title: "Read the Revenue chart",
         detail:
-          "The bar chart shows monthly revenue from both subscriptions and walk-ins. Hover over a bar to see exact figures.",
+          "The area chart shows daily revenue over the last 7 days from both subscriptions and walk-ins. Hover over a point to see exact figures.",
       },
       {
-        title: "Read the Attendance chart",
+        title: "Read the Attendance and Member Growth charts",
         detail:
-          "The area chart tracks daily check-ins over the past 30 days. Spikes indicate your busiest days.",
+          "Two bar charts track daily check-ins and new member sign-ups over the last 7 days. Spikes show your busiest days.",
       },
       {
         title: "Check the insight cards",
         detail:
-          "Four insight cards show: Revenue Growth, Peak Hour, Members used vs. plan limit, and Walk-ins used vs. monthly limit.",
+          "Four insight cards show: Revenue Growth (yesterday vs. today), Peak Hour, Members used vs. plan limit, and Walk-ins used vs. monthly limit.",
       },
     ],
     tip: "If the Members or Walk-ins insight card turns red, you've hit your plan's limit. Upgrade to increase your capacity.",
@@ -333,6 +376,7 @@ function Sidebar() {
               <a
                 key={g.id}
                 href={`#${g.id}`}
+                onClick={() => setActiveId(g.id)}
                 className={`flex items-center gap-2.5 px-3 py-2.5 rounded-xl text-sm transition-all duration-200 ${
                   isActive
                     ? "bg-slate-900 text-white font-medium shadow-sm"
