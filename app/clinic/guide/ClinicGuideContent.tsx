@@ -26,9 +26,10 @@ const SECTIONS = [
     title: "2. Register Patients",
     steps: [
       { title: "Open the Patients page", desc: "Navigate to Clinic → Patients from the sidebar." },
-      { title: "Click Register Patient", desc: "Enter the patient's first name, last name, phone number, email (optional), date of birth (optional), and any relevant notes such as allergies or chronic conditions." },
-      { title: "Save the profile", desc: "The patient is now saved in your clinic's records. You can search for them anytime by name or phone number." },
-      { title: "Edit patient records", desc: "Click the Edit button on any patient row to update their contact info or clinical notes at any time." },
+      { title: "Enter patient details", desc: "Click Register Patient and fill in their demographics — first and last name, date of birth, gender, phone, email, and home address. Only the name is required, so you can register a walk-in fast and complete the rest later." },
+      { title: "Record medical & emergency info", desc: "Add the patient's blood type, any allergies (e.g. Penicillin, peanuts), and an emergency contact name and phone. Allergies are surfaced prominently in the patient's record so they're never missed at the point of care." },
+      { title: "Save the profile", desc: "The patient is now stored in your clinic's records. Search for them anytime by name or phone — the list pages results so it stays fast even with thousands of patients." },
+      { title: "Open a patient's record", desc: "Click Details on any patient to see their full chart — demographics, a highlighted allergy alert, emergency contact, notes, and their complete visit history with the status of every past appointment. Click Edit to update any of it at any time." },
     ],
   },
   {
@@ -50,7 +51,7 @@ const SECTIONS = [
       { title: "Open the Queue page", desc: "Navigate to Clinic → Queue from the sidebar. This shows today's patient queue in a live kanban board." },
       { title: "Confirm & enqueue patients", desc: "Click Confirm on a pending appointment, then Enqueue when the patient arrives. The card moves to the Waiting column." },
       { title: "Start the consultation", desc: "When the doctor is ready, click Call In. The patient's card moves to In Consultation with an active pulse indicator." },
-      { title: "Complete or handle exceptions", desc: "When the consultation is done, click Done. If the patient didn't show, click No Show. If cancelled, click Cancel. All actions are logged automatically." },
+      { title: "Complete or handle exceptions", desc: "When the consultation is done, click Done. If the patient didn't show, click No Show. If cancelled, click Cancel. The board follows a guided workflow — a completed visit can't accidentally be moved back into the queue — and every action is logged automatically." },
     ],
   },
   {
@@ -68,7 +69,7 @@ const SECTIONS = [
 
 const TIPS = [
   { icon: Clock, tip: "Set up doctor schedules before booking — this prevents confusion about who's available on which days." },
-  { icon: UserCheck, tip: "Register patients once, reuse their profile for every future appointment — no need to re-enter their details." },
+  { icon: UserCheck, tip: "Fill in allergies and an emergency contact when you register a patient — the allergy alert shows at the top of their record, so it's never missed during a consult." },
   { icon: ClipboardList, tip: "Use the chief complaint field when booking — it helps doctors prepare and makes appointment notes more useful over time." },
   { icon: HeartPulse, tip: "Keep the Queue page open on a clinic tablet or screen throughout the day for real-time visibility." },
 ]

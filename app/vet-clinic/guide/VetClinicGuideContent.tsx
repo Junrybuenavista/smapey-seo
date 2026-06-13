@@ -6,7 +6,7 @@ import Link from "next/link"
 import {
   BookOpen, Users, CalendarDays, CheckCircle2, ChevronRight,
   Menu, X, PawPrint, ListOrdered, BarChart3, Syringe,
-  Receipt, Clock, Bell, Shield, Lightbulb,
+  Receipt, Clock, Bell, Shield, Lightbulb, Globe, Camera,
 } from "lucide-react"
 
 const SECTIONS = [
@@ -28,8 +28,9 @@ const SECTIONS = [
     steps: [
       { title: "Open the Pets page", desc: "Navigate to Vet Clinic → Pets from the sidebar." },
       { title: "Click Add Pet", desc: "Enter the pet's name, species (Dog, Cat, Bird, Reptile, etc.), breed, date of birth, weight, and sex. Add the owner's name, phone, and email so you can follow up on vaccinations or send appointment reminders." },
+      { title: "Add a pet photo", desc: "Upload a photo from your device or snap one on the spot with Take Photo using your phone or tablet camera. The picture shows on the pet's profile, in patient lists, and on their bills — making it easy to match the right pet at a glance." },
       { title: "Add medical notes", desc: "Use the Notes field to record known allergies, chronic conditions, or important background — visible to every vet who looks up the pet's record." },
-      { title: "View pet history", desc: "Click View on any pet to see their full profile — all past appointments, vaccination records, and billing history in one place." },
+      { title: "View pet history", desc: "Click Details on any pet to see their full profile — photo, all past appointments, vaccination records, and billing history in one place." },
     ],
   },
   {
@@ -40,13 +41,24 @@ const SECTIONS = [
       { title: "Open the Appointments page", desc: "Navigate to Vet Clinic → Appointments from the sidebar." },
       { title: "Click Book Appointment", desc: "Select the pet (from your registered list), the attending vet, the appointment date, and start time. The form only shows vets who are scheduled on that day." },
       { title: "Add a reason for visit", desc: "Enter the chief complaint — e.g. Annual check-up, Vomiting, Post-surgery follow-up. This helps the vet prepare and makes records more useful over time." },
-      { title: "Manage appointment status", desc: "Appointments move through a multi-step workflow: Pending → Confirmed → In Queue → In Progress → Completed. You can also mark them Cancelled or No Show. Each status change is logged automatically." },
+      { title: "Manage appointment status", desc: "Appointments move through a guided workflow: Pending → Confirmed → In Queue → In Progress → Completed. You can also mark them Cancelled or No Show. The system prevents invalid jumps — a completed visit can't be sent back to the queue — and every change is logged automatically." },
+    ],
+  },
+  {
+    id: "online-booking",
+    icon: Globe,
+    title: "4. Accept Online Bookings",
+    steps: [
+      { title: "Set up your booking page", desc: "Go to Vet Clinic → Online Booking and claim a short web address for your clinic — for example smapey.com/vet/your-clinic-name. This is your public booking page; no login is required for pet owners to use it." },
+      { title: "Share the link", desc: "Copy your booking link and put it on your Facebook page, Google profile, or website. Pet owners open it on any phone or computer and request a visit in under a minute." },
+      { title: "Owners submit a request", desc: "On the page, the owner enters their pet's name and species, their own name and phone, an optional preferred vet, the preferred date and time, and the reason for the visit. They can submit even if they've never visited before." },
+      { title: "Review and approve requests", desc: "New requests appear on the Booking Requests page and you get a notification. Approve a request to assign a vet and instantly turn it into a real appointment — a new pet profile is created automatically if the pet isn't already on file. Decline requests you can't accommodate." },
     ],
   },
   {
     id: "queue",
     icon: ListOrdered,
-    title: "4. Run the Queue Board",
+    title: "5. Run the Queue Board",
     steps: [
       { title: "Open the Queue page", desc: "Navigate to Vet Clinic → Queue from the sidebar. This shows today's active patient queue in a live board, filterable by vet." },
       { title: "Confirm and enqueue patients", desc: "When a pet owner arrives, click Confirm on their appointment (if still Pending), then In Queue. The pet's card moves to the Waiting column with their assigned queue number." },
@@ -57,7 +69,7 @@ const SECTIONS = [
   {
     id: "vaccinations",
     icon: Syringe,
-    title: "5. Track Vaccinations",
+    title: "6. Track Vaccinations",
     steps: [
       { title: "Open the Vaccinations section", desc: "From a pet's profile, click the Vaccinations tab — or navigate to Vet Clinic → Vaccinations to see all upcoming and recent records across all pets." },
       { title: "Log a vaccination", desc: "Click Add Vaccination and select the pet. Enter the vaccine name, date given, and next due date. Optionally add the batch number and who administered it." },
@@ -68,7 +80,7 @@ const SECTIONS = [
   {
     id: "billing",
     icon: Receipt,
-    title: "6. Manage Billing",
+    title: "7. Manage Billing",
     steps: [
       { title: "Open the Billing page", desc: "Navigate to Vet Clinic → Billing from the sidebar." },
       { title: "Create a bill", desc: "Click New Bill, select the pet, and set the bill date. Add line items — each with a description (e.g. Consultation, Rabies Vaccine, Deworming), quantity, and unit price. The total is calculated automatically." },
@@ -79,7 +91,7 @@ const SECTIONS = [
   {
     id: "analytics",
     icon: BarChart3,
-    title: "7. View Analytics",
+    title: "8. View Analytics",
     steps: [
       { title: "Open the Analytics page", desc: "Navigate to Vet Clinic → Analytics from the sidebar." },
       { title: "Review dashboard stat cards", desc: "See at-a-glance totals: active vets, registered pets, today's appointments, completed consultations, upcoming vaccinations in the next 30 days, and total unpaid bill amounts." },
@@ -90,6 +102,8 @@ const SECTIONS = [
 ]
 
 const TIPS = [
+  { icon: Globe, tip: "Put your online booking link on your Facebook page and Google profile — owners can request visits 24/7, even when your reception line is busy or closed." },
+  { icon: Camera, tip: "Snap a photo when you register a pet — it makes the right record instantly recognizable in lists, the queue, and on bills." },
   { icon: Clock, tip: "Set up vet schedules before you start booking — the appointment form uses them to show only available vets on each selected date." },
   { icon: Bell, tip: "Check the 30-day vaccination reminder list on the dashboard weekly — proactive owner reminders lead to better follow-through and healthier pets." },
   { icon: Lightbulb, tip: "Register a pet once, then link all their appointments, vaccinations, and bills to that same profile — everything is traceable in one place." },
@@ -119,7 +133,7 @@ function Navbar() {
         <Link href="/vet-clinic" className="flex items-center gap-2.5"><img src="/logo.png" alt="Smapey Vet" className="w-8 h-8 rounded-lg object-cover" /><span className="text-white font-bold tracking-tight">Smapey Vet</span></Link>
         <div className="hidden md:flex items-center gap-6">
           <Link href="/vet-clinic" className="text-sm text-white/60 hover:text-white transition-colors">Home</Link>
-          {[["setup", "Setup"], ["queue", "Queue"], ["vaccinations", "Vaccinations"], ["billing", "Billing"]].map(([id, label]) => (
+          {[["setup", "Setup"], ["online-booking", "Online Booking"], ["queue", "Queue"], ["billing", "Billing"]].map(([id, label]) => (
             <a key={id} href={`#${id}`} onClick={(e) => { e.preventDefault(); document.getElementById(id)?.scrollIntoView({ behavior: "smooth" }) }} className="text-sm text-white/60 hover:text-white transition-colors">{label}</a>
           ))}
         </div>
@@ -156,7 +170,7 @@ export default function VetClinicGuideContent() {
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-400 to-emerald-300">Guide</span>
           </h1>
           <p className="text-lg text-white/50 max-w-2xl mx-auto mb-8">
-            Everything you need to set up your clinic, manage pets and vets, book appointments, run the live queue board, track vaccinations, and handle billing — step by step.
+            Everything you need to set up your clinic, manage pets and vets, take appointments online or at the desk, run the live queue board, track vaccinations, and handle billing — step by step.
           </p>
           <div className="flex flex-wrap items-center justify-center gap-4 text-white/30 text-xs">
             {["5-minute setup", "No training required", "Free plan available"].map((t) => (
