@@ -417,6 +417,9 @@ function Navbar() {
               {label}
             </a>
           ))}
+          <Link href="/affiliate" className={`text-sm font-medium transition-colors ${scrolled ? "text-gray-600 hover:text-gray-900" : "text-white/80 hover:text-white"}`}>
+            Affiliate
+          </Link>
           <Link href="/blog" className={`text-sm font-medium transition-colors ${scrolled ? "text-gray-600 hover:text-gray-900" : "text-white/80 hover:text-white"}`}>
             Blog
           </Link>
@@ -447,6 +450,7 @@ function Navbar() {
             </Link>
           ))}
           <div className="pt-3 border-t border-gray-100 flex flex-col gap-2">
+            <Link href="/affiliate" onClick={() => setOpen(false)} className="text-center text-sm font-medium text-gray-600 py-2.5 hover:text-gray-900 transition-colors">Affiliate Program</Link>
             <Link href="/blog" onClick={() => setOpen(false)} className="text-center text-sm font-medium text-gray-600 py-2.5 hover:text-gray-900 transition-colors">Blog</Link>
             <Link href="https://app.smapey.com/login" className="text-center text-sm font-medium text-gray-600 py-2.5 border border-gray-200 rounded-full">Sign in</Link>
             <Link href="https://app.smapey.com/register" className="text-center text-sm font-semibold text-white py-2.5 bg-gray-900 rounded-full">Get started free</Link>

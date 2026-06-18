@@ -1,6 +1,8 @@
 import "./globals.css"
 import Script from "next/script"
+import { Suspense } from "react"
 import PageTracker from "../components/PageTracker"
+import ReferralCapture from "../components/ReferralCapture"
 
 export const metadata = {
   metadataBase: new URL("https://smapey.com"),
@@ -34,6 +36,9 @@ export default function RootLayout({
         </Script>
 
         <PageTracker />
+        <Suspense fallback={null}>
+          <ReferralCapture />
+        </Suspense>
         {children}
       </body>
     </html>
