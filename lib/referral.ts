@@ -22,6 +22,17 @@ export const storeRef = (code: string, referrerName: string | null) => {
   } catch {
     /* private mode / storage disabled — ignore */
   }
+  // Also drop a cross-subdomain cookie so app.smapey.com can read the ref even
+  // when a register CTA is a JS redirect (not an anchor we can decorate), and
+  // because localStorage doesn't cross the smapey.com → app.smapey.com origin.
+  try {
+    const maxAge = TTL_DAYS * 24 * 60 * 60
+    const host = window.location.hostname
+    const domain = host.endsWith("smapey.com") ? "; domain=.smapey.com" : ""
+    document.cookie = `${STORAGE_KEY}=${encodeURIComponent(code)}${domain}; path=/; max-age=${maxAge}; SameSite=Lax`
+  } catch {
+    /* ignore */
+  }
 }
 
 /** Read the stored referral, or null if absent or expired past the TTL. */
