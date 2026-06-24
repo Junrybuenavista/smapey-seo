@@ -2,6 +2,11 @@
 
 import { useEffect, useState } from "react"
 
+export interface TrialInfo {
+  days: number
+  tier: "PRO" | "ENTERPRISE"
+}
+
 export interface Plan {
   name:      string
   phpPrice:  string
@@ -14,6 +19,14 @@ export interface Plan {
   cta:       string
   highlight: boolean
   limits:    Record<string, any> | null
+  /** Present only when this FREE plan is configured as a time-limited trial. */
+  trial:     TrialInfo | null
+}
+
+interface ApiTrialConfig {
+  enabled?: boolean
+  days?:    number
+  tier?:    "PRO" | "ENTERPRISE"
 }
 
 interface ApiPlan {
@@ -28,24 +41,40 @@ interface ApiPlan {
   ctaLabel:      string | null
   highlighted:   boolean
   limits:        Record<string, any> | null
+  trialConfig:   ApiTrialConfig | null
 }
 
 const formatUsd = (n: number) => n === 0 ? "$0" : `$${n}`
 const formatPhp = (n: number | null) => n === null || n === 0 ? "₱0" : `₱${n.toLocaleString("en-PH")}`
 
-const toLegacy = (p: ApiPlan): Plan => ({
-  name:      p.displayName ?? p.name.charAt(0) + p.name.slice(1).toLowerCase(),
-  phpPrice:  formatPhp(p.paymongoPrice),
-  usdPrice:  formatUsd(p.price),
-  period:    "/mo",
-  planKey:   p.name,
-  product:   p.product,
-  desc:      p.description ?? "",
-  features:  p.features ?? [],
-  cta:       p.ctaLabel ?? (p.name === "FREE" ? "Get started free" : `Start ${p.displayName ?? p.name}`),
-  highlight: p.highlighted,
-  limits:    p.limits ?? null,
-})
+const parseTrial = (p: ApiPlan): TrialInfo | null => {
+  if (p.name !== "FREE") return null
+  const c = p.trialConfig
+  if (!c?.enabled || !c.days || c.days <= 0) return null
+  return { days: Math.floor(c.days), tier: c.tier === "ENTERPRISE" ? "ENTERPRISE" : "PRO" }
+}
+
+const toLegacy = (p: ApiPlan): Plan => {
+  const trial = parseTrial(p)
+  const tierLabel = trial?.tier === "ENTERPRISE" ? "Enterprise" : "Pro"
+
+  return {
+    // When the FREE plan is a trial, frame the whole card as a trial so every
+    // product's existing pricing card reflects it without per-page edits.
+    name:      trial ? (p.displayName ?? "Free trial") : (p.displayName ?? p.name.charAt(0) + p.name.slice(1).toLowerCase()),
+    phpPrice:  formatPhp(p.paymongoPrice),
+    usdPrice:  formatUsd(p.price),
+    period:    trial ? `for ${trial.days} days` : "/mo",
+    planKey:   p.name,
+    product:   p.product,
+    desc:      trial ? `Full ${tierLabel} access for ${trial.days} days, then upgrade to keep using it` : (p.description ?? ""),
+    features:  p.features ?? [],
+    cta:       trial ? `Start ${trial.days}-day free trial` : (p.ctaLabel ?? (p.name === "FREE" ? "Get started free" : `Start ${p.displayName ?? p.name}`)),
+    highlight: p.highlighted,
+    limits:    p.limits ?? null,
+    trial,
+  }
+}
 
 /**
  * Fetches pricing for a single product from the API and exposes it
