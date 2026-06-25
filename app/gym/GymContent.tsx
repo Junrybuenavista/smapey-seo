@@ -12,72 +12,25 @@ import {
 import { usePricing, type Plan } from "@/lib/usePricing"
 import InternalLinks from "@/components/InternalLinks"
 
+// ── Layered Pop design tokens ──
+const INK = "#161616"
+const BLUE = "#2f6bff"
+const AMBER = "#ff9e2c"
+const CREAM = "#fbf7f0"
+const display = { fontFamily: "'Hanken Grotesk', system-ui, sans-serif" }
+
 const NAV_LINKS = ["Features", "How it Works", "Pricing", "FAQ", "Guide"]
 
 const FEATURES = [
-  {
-    icon: Users,
-    title: "Member Management",
-    desc: "Register, track, and manage all your gym members in one place. Full profile, emergency contacts, and subscription history.",
-    color: "from-blue-600 to-blue-400",
-    shadow: "shadow-blue-500/20",
-  },
-  {
-    icon: QrCode,
-    title: "QR Code Check-in",
-    desc: "Members check in instantly by scanning their personal QR code. No more manual logs or long queues at the front desk.",
-    color: "from-amber-500 to-orange-400",
-    shadow: "shadow-amber-500/20",
-  },
-  {
-    icon: UserCheck,
-    title: "Walk-in Tracking",
-    desc: "Record one-day visitors in seconds. Track walk-in revenue separately and see today's drop-ins at a glance.",
-    color: "from-blue-500 to-cyan-400",
-    shadow: "shadow-blue-400/20",
-  },
-  {
-    icon: CreditCard,
-    title: "Subscription Plans",
-    desc: "Create flexible plans, set durations and pricing, and handle renewals with automatic expiry tracking.",
-    color: "from-orange-500 to-amber-400",
-    shadow: "shadow-orange-500/20",
-  },
-  {
-    icon: BarChart3,
-    title: "Gym Analytics",
-    desc: "Track revenue trends, peak hours, attendance patterns, and member growth — all from a single dashboard.",
-    color: "from-blue-700 to-blue-500",
-    shadow: "shadow-blue-600/20",
-  },
-  {
-    icon: Dumbbell,
-    title: "Trainer Assignment",
-    desc: "Assign certified trainers to members, track their specialties, and manage their active status with ease.",
-    color: "from-amber-600 to-yellow-400",
-    shadow: "shadow-amber-500/20",
-  },
-  {
-    icon: DollarSign,
-    title: "Multi-Currency",
-    desc: "Accept and display payments in your local currency. Full support for PHP, USD, SGD, and more out of the box.",
-    color: "from-orange-600 to-amber-500",
-    shadow: "shadow-orange-500/20",
-  },
-  {
-    icon: Globe,
-    title: "Multi-Timezone",
-    desc: "Run your gym in any timezone. Check-ins, reports, and dashboards always reflect your local time accurately.",
-    color: "from-blue-600 to-blue-400",
-    shadow: "shadow-blue-500/20",
-  },
-  {
-    icon: UserPlus,
-    title: "Team Collaboration",
-    desc: "Invite staff to your gym dashboard. Assign Admin or Member-level access so everyone only sees what they need.",
-    color: "from-amber-500 to-orange-500",
-    shadow: "shadow-amber-500/20",
-  },
+  { icon: Users, title: "Member Management", desc: "Register, track, and manage all your gym members in one place. Full profile, emergency contacts, and subscription history." },
+  { icon: QrCode, title: "QR Code Check-in", desc: "Members check in instantly by scanning their personal QR code. No more manual logs or long queues at the front desk." },
+  { icon: UserCheck, title: "Walk-in Tracking", desc: "Record one-day visitors in seconds. Track walk-in revenue separately and see today's drop-ins at a glance." },
+  { icon: CreditCard, title: "Subscription Plans", desc: "Create flexible plans, set durations and pricing, and handle renewals with automatic expiry tracking." },
+  { icon: BarChart3, title: "Gym Analytics", desc: "Track revenue trends, peak hours, attendance patterns, and member growth — all from a single dashboard." },
+  { icon: Dumbbell, title: "Trainer Assignment", desc: "Assign certified trainers to members, track their specialties, and manage their active status with ease." },
+  { icon: DollarSign, title: "Multi-Currency", desc: "Accept and display payments in your local currency. Full support for PHP, USD, SGD, and more out of the box." },
+  { icon: Globe, title: "Multi-Timezone", desc: "Run your gym in any timezone. Check-ins, reports, and dashboards always reflect your local time accurately." },
+  { icon: UserPlus, title: "Team Collaboration", desc: "Invite staff to your gym dashboard. Assign Admin or Member-level access so everyone only sees what they need." },
 ]
 
 const STEPS = [
@@ -87,22 +40,10 @@ const STEPS = [
 ]
 
 const FAQS = [
-  {
-    q: "Do members need to install an app?",
-    a: "No. Members receive a QR code they can save to their phone or print. No app needed.",
-  },
-  {
-    q: "Can I track walk-in revenue separately?",
-    a: "Yes. Walk-in revenue is tracked separately from subscription revenue in your dashboard.",
-  },
-  {
-    q: "What happens when a subscription expires?",
-    a: "Expired members are flagged on your dashboard. You can renew them with one click.",
-  },
-  {
-    q: "Can I assign different trainers to different members?",
-    a: "Yes. You can assign any active trainer to any member and change assignments anytime.",
-  },
+  { q: "Do members need to install an app?", a: "No. Members receive a QR code they can save to their phone or print. No app needed." },
+  { q: "Can I track walk-in revenue separately?", a: "Yes. Walk-in revenue is tracked separately from subscription revenue in your dashboard." },
+  { q: "What happens when a subscription expires?", a: "Expired members are flagged on your dashboard. You can renew them with one click." },
+  { q: "Can I assign different trainers to different members?", a: "Yes. You can assign any active trainer to any member and change assignments anytime." },
 ]
 
 //////////////////////////////////////////////////////
@@ -164,12 +105,16 @@ function Animate({
 //////////////////////////////////////////////////////
 function Navbar() {
   const [open, setOpen] = useState(false)
-  const [scrolled, setScrolled] = useState(false)
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20)
-    window.addEventListener("scroll", onScroll)
-    return () => window.removeEventListener("scroll", onScroll)
+    const id = "smapey-pop-fonts"
+    if (!document.getElementById(id)) {
+      const l = document.createElement("link")
+      l.id = id
+      l.rel = "stylesheet"
+      l.href = "https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap"
+      document.head.appendChild(l)
+    }
   }, [])
 
   const scrollTo = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
@@ -179,22 +124,19 @@ function Navbar() {
   }
 
   return (
-    <nav className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
-      scrolled ? "bg-[#0a0f1e]/90 backdrop-blur-md border-b border-white/5 shadow-lg" : "bg-transparent"
-    }`}>
+    <nav className="fixed top-0 inset-x-0 z-50" style={{ background: CREAM, borderBottom: `2px solid ${INK}`, fontFamily: display.fontFamily }}>
       <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
 
-        {/* LOGO */}
-       <div className="flex items-center gap-2.5">
-  <img src="/logo.png" alt="GymOS" className="w-8 h-8 rounded-lg object-cover" />
-  <span className="text-white font-bold tracking-tight">Smapey GymOS</span>
-</div>
+        <div className="flex items-center gap-2.5">
+          <img src="/logo.png" alt="GymOS" className="w-8 h-8 rounded-lg object-cover" />
+          <span className="font-extrabold tracking-tight" style={{ color: INK }}>Smapey GymOS</span>
+        </div>
 
         <div className="hidden md:flex items-center gap-8">
           {NAV_LINKS.map((l) => {
             if (l === "Guide") {
               return (
-                <a key={l} href="/gym/guide" className="text-sm text-white/60 hover:text-white transition-colors">
+                <a key={l} href="/gym/guide" className="text-sm font-semibold hover:opacity-60 transition-opacity" style={{ color: INK }}>
                   {l}
                 </a>
               )
@@ -203,7 +145,7 @@ function Navbar() {
               <a key={l}
                 href={`#${l.toLowerCase().replace(/\s+/g, "-")}`}
                 onClick={(e) => scrollTo(e, l.toLowerCase().replace(/\s+/g, "-"))}
-                className="text-sm text-white/60 hover:text-white transition-colors">
+                className="text-sm font-semibold hover:opacity-60 transition-opacity" style={{ color: INK }}>
                 {l}
               </a>
             )
@@ -211,26 +153,27 @@ function Navbar() {
         </div>
 
         <div className="hidden md:flex items-center gap-3">
-          <a href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/login`} className="text-sm text-white/60 hover:text-white transition-colors px-4 py-2">
+          <a href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/login`} className="text-sm font-semibold hover:opacity-60 transition-opacity px-2 py-2" style={{ color: INK }}>
             Sign in
           </a>
           <a href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=GYM&plan=FREE`}
-            className="text-sm font-semibold px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-500 text-white transition-colors shadow-lg shadow-blue-600/25">
+            className="text-sm font-bold px-5 py-2.5 rounded-full border-2 transition-transform hover:-translate-y-0.5"
+            style={{ ...display, background: AMBER, color: INK, borderColor: INK, boxShadow: `3px 3px 0 ${INK}` }}>
             Get started
           </a>
         </div>
 
-        <button onClick={() => setOpen(!open)} className="md:hidden text-white/60 hover:text-white">
+        <button onClick={() => setOpen(!open)} className="md:hidden" style={{ color: INK }}>
           {open ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
         </button>
       </div>
 
       {open && (
-        <div className="md:hidden bg-[#0a0f1e] border-t border-white/5 px-6 py-4 flex flex-col gap-4">
+        <div className="md:hidden px-6 py-4 flex flex-col gap-4" style={{ background: CREAM, borderTop: `2px solid ${INK}` }}>
           {NAV_LINKS.map((l) => {
             if (l === "Guide") {
               return (
-                <a key={l} href="/gym/guide" className="text-sm text-white/60 hover:text-white transition-colors">
+                <a key={l} href="/gym/guide" className="text-sm font-semibold" style={{ color: INK }}>
                   {l}
                 </a>
               )
@@ -239,13 +182,14 @@ function Navbar() {
               <a key={l}
                 href={`#${l.toLowerCase().replace(/\s+/g, "-")}`}
                 onClick={(e) => scrollTo(e, l.toLowerCase().replace(/\s+/g, "-"))}
-                className="text-sm text-white/60 hover:text-white transition-colors">
+                className="text-sm font-semibold" style={{ color: INK }}>
                 {l}
               </a>
             )
           })}
           <a href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=GYM&plan=FREE`}
-            className="text-sm font-semibold px-4 py-2 rounded-lg bg-blue-600 text-white text-center">
+            className="text-sm font-bold px-4 py-2.5 rounded-full border-2 text-center"
+            style={{ ...display, background: AMBER, color: INK, borderColor: INK }}>
             Get started
           </a>
         </div>
@@ -259,72 +203,162 @@ function Navbar() {
 //////////////////////////////////////////////////////
 function Hero() {
   return (
-    <section
-      className="relative min-h-screen flex items-center pt-16 overflow-hidden"
-      style={{
-        background: "#0a0f1e",
-        backgroundImage:
-          "repeating-linear-gradient(45deg, rgba(255,255,255,0.02) 0px, rgba(255,255,255,0.02) 1px, transparent 1px, transparent 28px)",
-        backgroundSize: "28px 28px",
-      }}
-    >
-      {/* Amber glow left */}
-      <div className="absolute -top-40 -left-40 w-[500px] h-[500px] rounded-full pointer-events-none"
-        style={{ background: "radial-gradient(circle, rgba(251,191,36,0.1) 0%, transparent 70%)" }} />
-      {/* Blue glow right */}
-      <div className="absolute -bottom-40 -right-40 w-[500px] h-[500px] rounded-full pointer-events-none"
-        style={{ background: "radial-gradient(circle, rgba(59,130,246,0.12) 0%, transparent 70%)" }} />
+    <section className="relative pt-16 overflow-hidden" style={{ background: CREAM, fontFamily: display.fontFamily }}>
+      {/* playful layered-bar accents */}
+      <div className="absolute inset-0 pointer-events-none hidden md:block" aria-hidden>
+        <div className="absolute rounded-[22px] border-2" style={{ top: "14%", left: "-70px", width: 280, height: 80, background: AMBER, borderColor: INK, transform: "rotate(-10deg)" }} />
+        <div className="absolute rounded-[22px] border-2" style={{ top: "20%", right: "-80px", width: 300, height: 84, background: BLUE, borderColor: INK, transform: "rotate(8deg)", boxShadow: "5px 5px 0 rgba(22,22,22,.12)" }} />
+      </div>
 
-      <div className="relative max-w-6xl mx-auto px-6 py-24 text-center">
+      <div className="relative max-w-6xl mx-auto px-6 pt-20 pb-24 text-center">
 
-        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-400 text-xs font-semibold mb-6">
+        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border-2 text-xs font-bold mb-6" style={{ color: INK, borderColor: INK, boxShadow: `3px 3px 0 ${BLUE}` }}>
           <Zap className="w-3 h-3" />
           Built for modern gyms
         </div>
 
-        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight tracking-tight mb-6">
-          Run your gym smarter,{" "}
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-orange-400 to-blue-400">
-            not harder
-          </span>
+        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.04] tracking-tight mb-6" style={{ color: INK }}>
+          Run your gym <span style={{ color: BLUE }}>smarter</span>,<br className="hidden sm:block" /> not <span style={{ color: AMBER }}>harder</span>
         </h1>
 
-        <p className="text-lg text-white/50 max-w-2xl mx-auto mb-10 leading-relaxed">
+        <p className="text-lg max-w-2xl mx-auto mb-10 leading-relaxed" style={{ color: "#54514c" }}>
           GymOS handles member management, QR check-ins, subscription tracking, and revenue reporting —
           so you can focus on what matters: your members.
         </p>
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
           <a href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=GYM&plan=FREE`}
-            className="flex items-center gap-2 px-6 py-3 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-semibold text-sm transition-all shadow-lg shadow-blue-600/30">
+            className="flex items-center gap-2 px-7 py-4 rounded-full font-bold text-sm border-2 transition-transform hover:-translate-y-0.5"
+            style={{ ...display, background: AMBER, color: INK, borderColor: INK, boxShadow: `4px 4px 0 ${INK}` }}>
             Start for free
             <ChevronRight className="w-4 h-4" />
           </a>
           <a href="#features"
             onClick={(e) => { e.preventDefault(); document.getElementById("features")?.scrollIntoView({ behavior: "smooth" }) }}
-            className="flex items-center gap-2 px-6 py-3 rounded-xl bg-white/5 hover:bg-white/10 text-white/70 hover:text-white font-medium text-sm transition-all border border-white/10">
+            className="flex items-center gap-2 px-7 py-4 rounded-full font-bold text-sm border-2 bg-white transition-transform hover:-translate-y-0.5" style={{ ...display, color: INK, borderColor: INK }}>
             See features
           </a>
-          <a
-            href="#book-demo"
+          <a href="#book-demo"
             onClick={(e) => { e.preventDefault(); document.getElementById("book-demo")?.scrollIntoView({ behavior: "smooth" }) }}
-            className="flex items-center gap-2 px-6 py-3 rounded-xl bg-white/5 hover:bg-white/10 text-white/70 hover:text-white font-medium text-sm transition-all border border-white/10"
-          >
+            className="flex items-center gap-2 px-7 py-4 rounded-full font-bold text-sm border-2 bg-white transition-transform hover:-translate-y-0.5" style={{ ...display, color: INK, borderColor: INK }}>
             <CalendarCheck className="w-4 h-4" />
             Book a Demo
           </a>
         </div>
 
-        <div className="mt-16 flex flex-wrap items-center justify-center gap-6 text-white/30 text-xs">
+        <div className="mt-8 flex flex-wrap items-center justify-center gap-6 text-xs font-semibold" style={{ color: "#54514c" }}>
           {["No credit card required", "Free plan forever", "Setup in 2 minutes"].map((t) => (
             <span key={t} className="flex items-center gap-1.5">
-              <CheckCircle2 className="w-3.5 h-3.5 text-amber-400" />
+              <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
               {t}
             </span>
           ))}
         </div>
+
+        {/* ── Product mockup: GymOS dashboard ── */}
+        <DashboardMockup />
       </div>
     </section>
+  )
+}
+
+function DashboardMockup() {
+  const stats = [
+    { icon: Users, label: "Active members", value: "248", trend: "+12 this week", c: BLUE },
+    { icon: UserCheck, label: "Check-ins today", value: "73", trend: "Peak 6–8 PM", c: AMBER },
+    { icon: CreditCard, label: "Revenue this month", value: "₱48,200", trend: "+18% vs last", c: BLUE },
+  ]
+  const checkins = [
+    { name: "Maria Santos", plan: "Monthly · Unlimited", time: "2 min ago", initials: "MS", c: BLUE },
+    { name: "Jre Dela Cruz", plan: "10-Session pass", time: "8 min ago", initials: "JD", c: AMBER },
+    { name: "Anna Reyes", plan: "Monthly · Unlimited", time: "15 min ago", initials: "AR", c: BLUE },
+  ]
+  const bars = [42, 58, 35, 70, 88, 64, 73]
+
+  return (
+    <div className="relative mt-20 max-w-4xl mx-auto text-left">
+      {/* floating pop badges */}
+      <div className="hidden sm:flex absolute -top-5 -left-4 z-20 items-center gap-2 px-3.5 py-2 rounded-full bg-white border-2 text-xs font-bold -rotate-3" style={{ color: INK, borderColor: INK, boxShadow: `3px 3px 0 ${AMBER}` }}>
+        <QrCode className="w-3.5 h-3.5" style={{ color: BLUE }} /> QR check-in
+      </div>
+      <div className="hidden sm:flex absolute -bottom-5 -right-4 z-20 items-center gap-2 px-3.5 py-2 rounded-full border-2 text-xs font-bold rotate-3" style={{ background: BLUE, color: "#fff", borderColor: INK, boxShadow: `3px 3px 0 ${INK}` }}>
+        <Dumbbell className="w-3.5 h-3.5" /> Live dashboard
+      </div>
+
+      {/* window card */}
+      <div className="relative rounded-[24px] border-2 overflow-hidden" style={{ background: "#fff", borderColor: INK, boxShadow: `12px 12px 0 ${INK}` }}>
+        {/* window bar */}
+        <div className="flex items-center gap-2 px-5 py-3.5" style={{ background: CREAM, borderBottom: `2px solid ${INK}` }}>
+          <span className="w-3 h-3 rounded-full border-2" style={{ background: AMBER, borderColor: INK }} />
+          <span className="w-3 h-3 rounded-full border-2" style={{ background: "#fff", borderColor: INK }} />
+          <span className="w-3 h-3 rounded-full border-2" style={{ background: BLUE, borderColor: INK }} />
+          <span className="ml-3 inline-flex items-center px-3 py-1 rounded-full text-[11px] font-bold" style={{ background: "#fff", border: `2px solid ${INK}`, color: "#54514c" }}>
+            app.smapey.com/gym
+          </span>
+        </div>
+
+        <div className="p-5 sm:p-6">
+          {/* stat row */}
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            {stats.map((s) => (
+              <div key={s.label} className="rounded-[16px] border-2 p-4" style={{ background: CREAM, borderColor: INK }}>
+                <div className="flex items-center justify-between mb-3">
+                  <span className="w-9 h-9 rounded-[11px] border-2 flex items-center justify-center" style={{ background: s.c, borderColor: INK }}>
+                    <s.icon className="w-4 h-4" style={{ color: s.c === AMBER ? INK : "#fff" }} />
+                  </span>
+                  <span className="text-[10px] font-bold px-2 py-0.5 rounded-full" style={{ background: "#fff", border: `1.5px solid ${INK}`, color: "#54514c" }}>{s.trend}</span>
+                </div>
+                <p className="text-2xl font-extrabold leading-none" style={{ color: INK }}>{s.value}</p>
+                <p className="text-xs font-semibold mt-1.5" style={{ color: "#9a948b" }}>{s.label}</p>
+              </div>
+            ))}
+          </div>
+
+          {/* lower row: chart + check-ins */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-4">
+            {/* revenue chart */}
+            <div className="rounded-[16px] border-2 p-5" style={{ background: "#fff", borderColor: INK }}>
+              <div className="flex items-center justify-between mb-4">
+                <p className="text-sm font-extrabold" style={{ color: INK }}>Weekly check-ins</p>
+                <BarChart3 className="w-4 h-4" style={{ color: BLUE }} />
+              </div>
+              <div className="flex items-end justify-between gap-2 h-28">
+                {bars.map((h, i) => (
+                  <div key={i} className="flex-1 rounded-t-[6px] border-2" style={{ height: `${h}%`, background: i === 4 ? AMBER : BLUE, borderColor: INK }} />
+                ))}
+              </div>
+              <div className="flex justify-between mt-2 text-[10px] font-bold" style={{ color: "#9a948b" }}>
+                {["M", "T", "W", "T", "F", "S", "S"].map((d, i) => <span key={i} className="flex-1 text-center">{d}</span>)}
+              </div>
+            </div>
+
+            {/* recent check-ins */}
+            <div className="rounded-[16px] border-2 p-5" style={{ background: "#fff", borderColor: INK }}>
+              <div className="flex items-center justify-between mb-4">
+                <p className="text-sm font-extrabold" style={{ color: INK }}>Recent check-ins</p>
+                <span className="inline-flex items-center gap-1 text-[11px] font-bold px-2 py-0.5 rounded-full" style={{ background: "#e9f9f0", color: "#0d7a55", border: "1.5px solid #0d9f6e" }}>
+                  <span className="w-1.5 h-1.5 rounded-full" style={{ background: "#0d9f6e" }} /> Live
+                </span>
+              </div>
+              <div className="flex flex-col gap-3">
+                {checkins.map((m) => (
+                  <div key={m.name} className="flex items-center gap-3">
+                    <span className="w-9 h-9 rounded-full border-2 flex items-center justify-center text-[11px] font-bold shrink-0" style={{ background: m.c, color: m.c === AMBER ? INK : "#fff", borderColor: INK }}>
+                      {m.initials}
+                    </span>
+                    <div className="min-w-0 flex-1">
+                      <p className="text-sm font-bold truncate" style={{ color: INK }}>{m.name}</p>
+                      <p className="text-xs truncate" style={{ color: "#9a948b" }}>{m.plan}</p>
+                    </div>
+                    <span className="text-[11px] font-semibold shrink-0" style={{ color: "#9a948b" }}>{m.time}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   )
 }
 
@@ -333,30 +367,33 @@ function Hero() {
 //////////////////////////////////////////////////////
 function Features() {
   return (
-    <section id="features" className="py-24 bg-slate-50">
+    <section id="features" className="py-24" style={{ background: "#fff", fontFamily: display.fontFamily }}>
       <div className="max-w-6xl mx-auto px-6">
         <Animate className="text-center mb-16">
-          <p className="text-blue-600 text-sm font-semibold uppercase tracking-widest mb-3">Features</p>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-800 tracking-tight">
+          <p className="text-sm font-bold uppercase tracking-widest mb-3" style={{ color: BLUE }}>Features</p>
+          <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight" style={{ color: INK }}>
             Everything your gym needs
           </h2>
-          <p className="text-slate-500 mt-4 max-w-xl mx-auto">
+          <p className="mt-4 max-w-xl mx-auto" style={{ color: "#54514c" }}>
             From the front desk to your finances — GymOS covers every part of your operation.
           </p>
         </Animate>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {FEATURES.map(({ icon: Icon, title, desc, color, shadow }, i) => (
-            <Animate key={title} delay={i * 80}>
-              <div className="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 hover:shadow-md hover:-translate-y-1 transition-all duration-300 h-full">
-                <div className={`w-11 h-11 rounded-xl bg-gradient-to-tr ${color} shadow-lg ${shadow} flex items-center justify-center mb-4`}>
-                  <Icon className="w-5 h-5 text-white" />
+          {FEATURES.map(({ icon: Icon, title, desc }, i) => {
+            const c = i % 2 === 0 ? BLUE : AMBER
+            return (
+              <Animate key={title} delay={i * 80}>
+                <div className="rounded-[22px] p-6 border-2 h-full transition-transform hover:-translate-y-1" style={{ background: CREAM, borderColor: INK, boxShadow: `6px 6px 0 ${c}` }}>
+                  <div className="w-12 h-12 rounded-[14px] border-2 flex items-center justify-center mb-4" style={{ background: c, borderColor: INK }}>
+                    <Icon className="w-5 h-5" style={{ color: c === AMBER ? INK : "#fff" }} />
+                  </div>
+                  <h3 className="font-extrabold mb-2" style={{ color: INK }}>{title}</h3>
+                  <p className="text-sm leading-relaxed" style={{ color: "#54514c" }}>{desc}</p>
                 </div>
-                <h3 className="font-bold text-slate-800 mb-2">{title}</h3>
-                <p className="text-slate-500 text-sm leading-relaxed">{desc}</p>
-              </div>
-            </Animate>
-          ))}
+              </Animate>
+            )
+          })}
         </div>
       </div>
     </section>
@@ -367,25 +404,26 @@ function Features() {
 // HOW IT WORKS
 //////////////////////////////////////////////////////
 function HowItWorks() {
+  const acc = [BLUE, AMBER, BLUE]
   return (
-    <section id="how-it-works" className="py-24 bg-white">
+    <section id="how-it-works" className="py-24" style={{ background: CREAM, fontFamily: display.fontFamily }}>
       <div className="max-w-6xl mx-auto px-6">
         <Animate className="text-center mb-16">
-          <p className="text-blue-600 text-sm font-semibold uppercase tracking-widest mb-3">How it Works</p>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-800 tracking-tight">
+          <p className="text-sm font-bold uppercase tracking-widest mb-3" style={{ color: BLUE }}>How it Works</p>
+          <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight" style={{ color: INK }}>
             Up and running in minutes
           </h2>
         </Animate>
 
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-3 gap-6">
           {STEPS.map(({ step, title, desc }, i) => (
             <Animate key={step} delay={i * 120}>
-              <div className="relative text-center group">
-                <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-blue-50 border-2 border-blue-100 text-blue-600 font-extrabold text-lg mb-5 group-hover:bg-gradient-to-tr group-hover:from-amber-400 group-hover:to-blue-500 group-hover:text-white group-hover:border-transparent transition-all duration-300">
+              <div className="rounded-[22px] border-2 p-8 h-full transition-transform hover:-translate-y-1" style={{ background: "#fff", borderColor: INK, boxShadow: `6px 6px 0 ${acc[i]}` }}>
+                <div className="inline-flex items-center justify-center w-14 h-14 rounded-[16px] border-2 font-extrabold text-lg mb-5" style={{ background: acc[i], color: acc[i] === AMBER ? INK : "#fff", borderColor: INK }}>
                   {step}
                 </div>
-                <h3 className="font-bold text-slate-800 mb-2">{title}</h3>
-                <p className="text-slate-500 text-sm leading-relaxed">{desc}</p>
+                <h3 className="font-extrabold mb-2" style={{ color: INK }}>{title}</h3>
+                <p className="text-sm leading-relaxed" style={{ color: "#54514c" }}>{desc}</p>
               </div>
             </Animate>
           ))}
@@ -411,63 +449,61 @@ function Pricing() {
   }
 
   return (
-    <section id="pricing" className="py-24 bg-slate-50">
+    <section id="pricing" className="py-24" style={{ background: "#fff", fontFamily: display.fontFamily }}>
       <div className="max-w-6xl mx-auto px-6">
         <Animate className="text-center mb-16">
-          <p className="text-blue-600 text-sm font-semibold uppercase tracking-widest mb-3">Pricing</p>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-800 tracking-tight">
+          <p className="text-sm font-bold uppercase tracking-widest mb-3" style={{ color: BLUE }}>Pricing</p>
+          <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight" style={{ color: INK }}>
             Simple, transparent pricing
           </h2>
-          <p className="text-slate-500 mt-4">Start free. Scale as you grow.</p>
+          <p className="mt-4" style={{ color: "#54514c" }}>Start free. Scale as you grow.</p>
 
           {isPhilippines !== null && (
-            <div className="inline-flex items-center gap-1.5 mt-4 px-3 py-1 rounded-full bg-white border border-slate-200 text-xs text-slate-500 shadow-sm">
+            <div className="inline-flex items-center gap-1.5 mt-4 px-3 py-1 rounded-full bg-white border-2 text-xs font-semibold" style={{ borderColor: INK, color: INK }}>
               <span>{isPhilippines ? "🇵🇭" : "🌍"}</span>
-              <span>Prices in <span className="font-semibold text-slate-700">{isPhilippines ? "Philippine Peso (₱)" : "US Dollar ($)"}</span></span>
+              <span>Prices in <span className="font-extrabold">{isPhilippines ? "Philippine Peso (₱)" : "US Dollar ($)"}</span></span>
             </div>
           )}
         </Animate>
 
-        <div className="grid md:grid-cols-3 gap-6 items-center">
+        <div className="grid md:grid-cols-3 gap-6 items-stretch">
           {plans.map((p, i) => {
             const displayPrice = isPhilippines === null ? "..." : isPhilippines ? p.phpPrice : p.usdPrice
             return (
               <Animate key={p.name} delay={i * 100}>
-                <div className={`rounded-2xl p-8 border transition-all duration-300 hover:-translate-y-1 ${
-                  p.highlight
-                    ? "bg-gradient-to-b from-blue-700 to-blue-900 border-blue-500/30 shadow-2xl shadow-blue-600/20 scale-105"
-                    : "bg-white border-slate-200 shadow-sm hover:shadow-md"
-                }`}>
+                <div className="rounded-[24px] p-8 border-2 h-full transition-transform hover:-translate-y-1"
+                  style={p.highlight
+                    ? { background: BLUE, borderColor: INK, boxShadow: `8px 8px 0 ${INK}`, color: "#fff" }
+                    : { background: "#fff", borderColor: INK, boxShadow: `8px 8px 0 ${AMBER}` }}>
                   {p.highlight && (
-                    <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-amber-400/20 text-amber-300 text-xs font-semibold mb-4">
+                    <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full border-2 text-xs font-bold mb-4" style={{ background: AMBER, color: INK, borderColor: INK }}>
                       <Zap className="w-3 h-3" /> Most popular
                     </span>
                   )}
-                  <p className={`font-bold text-lg mb-1 ${p.highlight ? "text-white" : "text-slate-800"}`}>{p.name}</p>
-                  <p className={`text-sm mb-4 ${p.highlight ? "text-blue-200/60" : "text-slate-400"}`}>{p.desc}</p>
+                  <p className="font-extrabold text-lg mb-1" style={{ color: p.highlight ? "#fff" : INK }}>{p.name}</p>
+                  <p className="text-sm mb-4" style={{ color: p.highlight ? "rgba(255,255,255,.7)" : "#9a948b" }}>{p.desc}</p>
                   <div className="flex items-end gap-1 mb-6">
-                    <span className={`text-4xl font-extrabold tracking-tight ${p.highlight ? "text-white" : "text-slate-800"}`}>
+                    <span className="text-4xl font-extrabold tracking-tight" style={{ color: p.highlight ? "#fff" : INK }}>
                       {displayPrice}
                     </span>
-                    <span className={`text-sm mb-1 ${p.highlight ? "text-blue-200/50" : "text-slate-400"}`}>{p.period}</span>
+                    <span className="text-sm mb-1" style={{ color: p.highlight ? "rgba(255,255,255,.6)" : "#9a948b" }}>{p.period}</span>
                   </div>
 
                   <ul className="space-y-3 mb-8">
                     {p.features.map((f) => (
                       <li key={f} className="flex items-center gap-2.5 text-sm">
-                        <CheckCircle2 className={`w-4 h-4 shrink-0 ${p.highlight ? "text-amber-400" : "text-blue-500"}`} />
-                        <span className={p.highlight ? "text-blue-100/80" : "text-slate-600"}>{f}</span>
+                        <CheckCircle2 className="w-4 h-4 shrink-0" style={{ color: p.highlight ? AMBER : BLUE }} />
+                        <span style={{ color: p.highlight ? "rgba(255,255,255,.85)" : "#3f3b36" }}>{f}</span>
                       </li>
                     ))}
                   </ul>
 
                   <button
                     onClick={() => handleSelect(p)}
-                    className={`w-full text-center py-2.5 rounded-xl text-sm font-semibold transition-all ${
-                      p.highlight
-                        ? "bg-amber-400 hover:bg-amber-300 text-amber-900 shadow-lg shadow-amber-400/25"
-                        : "bg-blue-600 hover:bg-blue-500 text-white shadow-md shadow-blue-600/20"
-                    }`}>
+                    className="w-full text-center py-3 rounded-full text-sm font-bold border-2 transition-transform hover:-translate-y-0.5"
+                    style={p.highlight
+                      ? { ...display, background: AMBER, color: INK, borderColor: INK }
+                      : { ...display, background: INK, color: "#fff", borderColor: INK }}>
                     {p.cta}
                   </button>
                 </div>
@@ -495,11 +531,11 @@ function FAQ() {
   const [open, setOpen] = useState<number | null>(null)
 
   return (
-    <section id="faq" className="py-24 bg-white">
+    <section id="faq" className="py-24" style={{ background: CREAM, fontFamily: display.fontFamily }}>
       <div className="max-w-2xl mx-auto px-6">
         <Animate className="text-center mb-16">
-          <p className="text-blue-600 text-sm font-semibold uppercase tracking-widest mb-3">FAQ</p>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-800 tracking-tight">
+          <p className="text-sm font-bold uppercase tracking-widest mb-3" style={{ color: BLUE }}>FAQ</p>
+          <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight" style={{ color: INK }}>
             Common questions
           </h2>
         </Animate>
@@ -507,16 +543,17 @@ function FAQ() {
         <div className="flex flex-col gap-3">
           {FAQS.map(({ q, a }, i) => (
             <Animate key={i} delay={i * 60}>
-              <div className="border border-slate-200 rounded-xl overflow-hidden">
+              <div className="rounded-[18px] overflow-hidden border-2 bg-white" style={{ borderColor: INK }}>
                 <button
                   onClick={() => setOpen(open === i ? null : i)}
-                  className="w-full flex items-center justify-between px-5 py-4 text-left text-slate-700 font-medium text-sm hover:bg-slate-50 transition-colors"
+                  className="w-full flex items-center justify-between px-5 py-4 text-left font-bold text-sm transition-colors"
+                  style={{ color: INK }}
                 >
                   {q}
-                  <ChevronRight className={`w-4 h-4 text-blue-400 transition-transform duration-200 shrink-0 ${open === i ? "rotate-90" : ""}`} />
+                  <ChevronRight className="w-4 h-4 transition-transform duration-200 shrink-0" style={{ color: BLUE, transform: open === i ? "rotate(90deg)" : "rotate(0deg)" }} />
                 </button>
                 {open === i && (
-                  <div className="px-5 pb-4 text-sm text-slate-500 leading-relaxed border-t border-slate-100 pt-3">
+                  <div className="px-5 pb-4 text-sm leading-relaxed pt-3" style={{ color: "#54514c", borderTop: "1px solid rgba(22,22,22,.1)" }}>
                     {a}
                   </div>
                 )}
@@ -534,29 +571,17 @@ function FAQ() {
 //////////////////////////////////////////////////////
 function CTA() {
   return (
-    <section
-      className="py-24 relative overflow-hidden"
-      style={{
-        background: "#0a0f1e",
-        backgroundImage:
-          "repeating-linear-gradient(45deg, rgba(255,255,255,0.02) 0px, rgba(255,255,255,0.02) 1px, transparent 1px, transparent 28px)",
-        backgroundSize: "28px 28px",
-      }}
-    >
-      <div className="absolute -top-40 -left-40 w-[400px] h-[400px] rounded-full pointer-events-none"
-        style={{ background: "radial-gradient(circle, rgba(251,191,36,0.07) 0%, transparent 70%)" }} />
-      <div className="absolute -bottom-40 -right-40 w-[400px] h-[400px] rounded-full pointer-events-none"
-        style={{ background: "radial-gradient(circle, rgba(59,130,246,0.1) 0%, transparent 70%)" }} />
-
-      <Animate className="relative max-w-2xl mx-auto px-6 text-center">
-        <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight mb-4">
+    <section className="py-24 px-6" style={{ background: "#fff", fontFamily: display.fontFamily }}>
+      <Animate className="relative max-w-3xl mx-auto rounded-[30px] border-2 p-12 md:p-16 text-center" style={{ background: AMBER, borderColor: INK, boxShadow: `10px 10px 0 ${INK}` }}>
+        <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight mb-4" style={{ color: INK }}>
           Ready to modernize your gym?
         </h2>
-        <p className="text-white/40 mb-8">
+        <p className="mb-8 font-medium" style={{ color: "#5c4a28" }}>
           Join gym owners who trust GymOS to run their operations.
         </p>
         <a href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=GYM&plan=FREE`}
-          className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl bg-gradient-to-r from-amber-400 to-blue-500 hover:from-amber-300 hover:to-blue-400 text-white font-semibold transition-all shadow-xl shadow-blue-600/20">
+          className="inline-flex items-center gap-2 px-8 py-4 rounded-full font-bold border-2 transition-transform hover:-translate-y-0.5"
+          style={{ ...display, background: INK, color: "#fff", borderColor: INK }}>
           Get started for free
           <ChevronRight className="w-4 h-4" />
         </a>
@@ -570,13 +595,13 @@ function CTA() {
 //////////////////////////////////////////////////////
 function Footer() {
   return (
-    <footer className="bg-[#060b16] border-t border-white/5 px-6 py-8">
+    <footer className="px-6 py-8" style={{ background: CREAM, borderTop: `2px solid ${INK}`, fontFamily: display.fontFamily }}>
       <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
-      <div className="flex items-center gap-2">
-  <img src="/logo.png" alt="GymOS" className="w-6 h-6 rounded-md object-cover" />
-  <span className="text-white/60 text-sm font-semibold">GymOS</span>
-</div>
-        <p className="text-white/20 text-xs">© {new Date().getFullYear()} GymOS. All rights reserved.</p>
+        <div className="flex items-center gap-2">
+          <img src="/logo.png" alt="GymOS" className="w-6 h-6 rounded-md object-cover" />
+          <span className="text-sm font-extrabold" style={{ color: INK }}>GymOS</span>
+        </div>
+        <p className="text-xs" style={{ color: "#9a948b" }}>© {new Date().getFullYear()} GymOS. All rights reserved.</p>
       </div>
     </footer>
   )
@@ -612,14 +637,13 @@ function PaymentModal({
   useEffect(() => {
     const t = localStorage.getItem("accessToken")
     setToken(t)
-    // logged-in users skip details step
     if (t) setStep("payment")
-    // international logged-out users go straight to PayPal on open
   }, [])
 
   if (!plan) return null
 
   const displayPrice = isPhilippines ? plan.phpPrice : plan.usdPrice
+  const inputStyle = { borderColor: INK, color: INK } as React.CSSProperties
 
   const checkout = async (method: CheckoutMethod) => {
     try {
@@ -671,23 +695,23 @@ function PaymentModal({
   }
 
   return (
-    <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-2xl w-full max-w-md shadow-2xl overflow-hidden">
+    <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4" style={{ fontFamily: display.fontFamily }}>
+      <div className="bg-white rounded-[22px] w-full max-w-md overflow-hidden border-2" style={{ borderColor: INK, boxShadow: `10px 10px 0 ${AMBER}` }}>
 
         {/* Header */}
-        <div className="bg-gradient-to-r from-blue-700 to-blue-500 px-6 py-5 flex items-center justify-between">
+        <div className="px-6 py-5 flex items-center justify-between" style={{ background: INK, borderBottom: `2px solid ${INK}` }}>
           <div className="flex items-center gap-3">
             {step === "payment" && !token && (
-              <button onClick={() => setStep("details")} className="text-white/60 hover:text-white transition">
+              <button onClick={() => setStep("details")} className="text-white/70 hover:text-white transition">
                 <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
               </button>
             )}
             <div>
-              <h2 className="text-white font-bold text-lg">
+              <h2 className="text-white font-extrabold text-lg">
                 {step === "details" ? "Create your account" : "Choose payment method"}
               </h2>
-              <p className="text-blue-100 text-sm mt-0.5">
-                {plan.name} plan — <span className="font-semibold">{displayPrice}</span>{plan.period}
+              <p className="text-sm mt-0.5" style={{ color: "rgba(255,255,255,.7)" }}>
+                {plan.name} plan — <span className="font-bold" style={{ color: AMBER }}>{displayPrice}</span>{plan.period}
               </p>
             </div>
           </div>
@@ -698,58 +722,59 @@ function PaymentModal({
 
         <div className="p-6 flex flex-col gap-4">
 
-          {/* STEP 1: details (new users only) */}
           {step === "details" && (
             <>
               <input
                 placeholder="Full name"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                className="w-full border border-slate-200 rounded-xl px-4 py-2.5 text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-400"
+                className="w-full border-2 rounded-xl px-4 py-2.5 text-sm focus:outline-none"
+                style={inputStyle}
               />
               <input
                 type="email"
                 placeholder="Email address"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full border border-slate-200 rounded-xl px-4 py-2.5 text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-400"
+                className="w-full border-2 rounded-xl px-4 py-2.5 text-sm focus:outline-none"
+                style={inputStyle}
               />
               <button
                 onClick={handleContinue}
                 disabled={loading !== null}
-                className="w-full py-3 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-semibold text-sm flex items-center justify-center gap-2 transition-all disabled:opacity-60"
+                className="w-full py-3 rounded-full border-2 font-bold text-sm flex items-center justify-center gap-2 transition-transform hover:-translate-y-0.5 disabled:opacity-60"
+                style={{ ...display, background: AMBER, color: INK, borderColor: INK }}
               >
                 {loading ? <><Spinner /> Redirecting…</> : <>Continue <ChevronRight className="w-4 h-4" /></>}
               </button>
             </>
           )}
 
-          {/* STEP 2: payment picker (PH only, or all logged-in users) */}
           {step === "payment" && (
             <>
-              {/* PayMongo — PH first */}
               {isPhilippines && (
                 <button
                   onClick={() => checkout("paymongo")}
                   disabled={loading !== null}
-                  className="w-full flex items-center gap-4 px-5 py-4 border-2 border-slate-200 rounded-2xl hover:border-green-500 hover:bg-green-50 transition-all group"
+                  className="w-full flex items-center gap-4 px-5 py-4 border-2 rounded-2xl transition-all group"
+                  style={{ borderColor: INK }}
                 >
                   <div className="w-10 h-10 rounded-xl bg-green-600 flex items-center justify-center shrink-0">
                     <svg viewBox="0 0 24 24" className="w-5 h-5 fill-white"><path d="M3 3h7v7H3zm0 11h7v7H3zm11-11h7v7h-7zm0 11h7v7h-7z"/></svg>
                   </div>
                   <div className="flex-1 text-left">
-                    <p className="text-sm font-semibold text-slate-800 group-hover:text-green-700">QR Ph / GCash / Card</p>
-                    <p className="text-xs text-slate-400">Philippine payment methods</p>
+                    <p className="text-sm font-bold" style={{ color: INK }}>QR Ph / GCash / Card</p>
+                    <p className="text-xs" style={{ color: "#9a948b" }}>Philippine payment methods</p>
                   </div>
-                  {loading === "paymongo" ? <Spinner /> : <ChevronRight className="w-4 h-4 text-slate-300 group-hover:text-green-500" />}
+                  {loading === "paymongo" ? <Spinner /> : <ChevronRight className="w-4 h-4" style={{ color: INK }} />}
                 </button>
               )}
 
-              {/* PayPal */}
               <button
                 onClick={() => checkout("paypal")}
                 disabled={loading !== null}
-                className="w-full flex items-center gap-4 px-5 py-4 border-2 border-slate-200 rounded-2xl hover:border-blue-500 hover:bg-blue-50 transition-all group"
+                className="w-full flex items-center gap-4 px-5 py-4 border-2 rounded-2xl transition-all group"
+                style={{ borderColor: INK }}
               >
                 <div className="w-10 h-10 rounded-xl bg-[#003087] flex items-center justify-center shrink-0">
                   <svg viewBox="0 0 24 24" className="w-5 h-5 fill-white">
@@ -757,15 +782,15 @@ function PaymentModal({
                   </svg>
                 </div>
                 <div className="flex-1 text-left">
-                  <p className="text-sm font-semibold text-slate-800 group-hover:text-blue-700">PayPal</p>
-                  <p className="text-xs text-slate-400">Pay with your PayPal account</p>
+                  <p className="text-sm font-bold" style={{ color: INK }}>PayPal</p>
+                  <p className="text-xs" style={{ color: "#9a948b" }}>Pay with your PayPal account</p>
                 </div>
-                {loading === "paypal" ? <Spinner /> : <ChevronRight className="w-4 h-4 text-slate-300 group-hover:text-blue-500" />}
+                {loading === "paypal" ? <Spinner /> : <ChevronRight className="w-4 h-4" style={{ color: INK }} />}
               </button>
             </>
           )}
 
-          <p className="text-center text-xs text-slate-400 flex items-center justify-center gap-1">
+          <p className="text-center text-xs flex items-center justify-center gap-1" style={{ color: "#9a948b" }}>
             <svg className="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}>
               <rect x="3" y="11" width="18" height="11" rx="2" /><path d="M7 11V7a5 5 0 0 1 10 0v4" />
             </svg>

@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { CalendarCheck, Loader2, CheckCircle2 } from "lucide-react"
+import { CalendarCheck, Loader2, CheckCircle2, ChevronRight } from "lucide-react"
 
 const PRODUCT_LABELS: Record<string, string> = {
   RESTAURANT:     "Food Ordering Manager",
@@ -34,7 +34,6 @@ type Theme = {
 
 const THEMES: Record<string, Theme> = {
   RESTAURANT:     { section: "bg-orange-50/50",   badge: "bg-orange-50 text-orange-600 border border-orange-200",    button: "bg-orange-500 hover:bg-orange-400 shadow-orange-500/25",   inputFocus: "focus:ring-orange-400/40 focus:border-orange-400", icon: "text-orange-500"  },
-  GYM:            { section: "bg-amber-50/50",     badge: "bg-amber-50 text-amber-600 border border-amber-200",        button: "bg-amber-500 hover:bg-amber-400 shadow-amber-500/25",       inputFocus: "focus:ring-amber-400/40 focus:border-amber-400",   icon: "text-amber-500"   },
   SALON:          { section: "bg-pink-50/50",      badge: "bg-pink-50 text-pink-600 border border-pink-200",           button: "bg-pink-600 hover:bg-pink-500 shadow-pink-500/20",          inputFocus: "focus:ring-pink-400/40 focus:border-pink-400",     icon: "text-pink-500"    },
   LAUNDRY:        { section: "bg-sky-50/50",       badge: "bg-sky-50 text-sky-600 border border-sky-200",              button: "bg-sky-600 hover:bg-sky-500 shadow-sky-500/20",             inputFocus: "focus:ring-sky-400/40 focus:border-sky-400",       icon: "text-sky-500"     },
   AIRBNB:         { section: "bg-sky-50/50",       badge: "bg-sky-50 text-sky-600 border border-sky-200",              button: "bg-sky-600 hover:bg-sky-500 shadow-sky-500/20",             inputFocus: "focus:ring-sky-400/40 focus:border-sky-400",       icon: "text-sky-500"     },
@@ -61,6 +60,13 @@ const DEFAULT_THEME: Theme = {
   icon:       "text-blue-500",
 }
 
+// ── Layered Pop tokens (GYM) ──
+const INK = "#161616"
+const BLUE = "#2f6bff"
+const AMBER = "#ff9e2c"
+const CREAM = "#fbf7f0"
+const popDisplay = { fontFamily: "'Hanken Grotesk', system-ui, sans-serif" }
+
 export default function BookDemoForm({ product }: { product: string }) {
   const [name, setName]       = useState("")
   const [email, setEmail]     = useState("")
@@ -71,6 +77,7 @@ export default function BookDemoForm({ product }: { product: string }) {
 
   const theme        = THEMES[product] ?? DEFAULT_THEME
   const productLabel = PRODUCT_LABELS[product] || product
+  const isPop        = product === "GYM"
 
   const inputClass = `w-full px-3.5 py-2.5 rounded-xl border border-slate-200 bg-slate-50 text-slate-800 text-sm placeholder-slate-400 focus:outline-none focus:ring-2 ${theme.inputFocus} transition`
 
@@ -96,6 +103,97 @@ export default function BookDemoForm({ product }: { product: string }) {
     }
   }
 
+  // ─────────────────────────────────────────────────────────────
+  // LAYERED POP VARIANT (GYM)
+  // ─────────────────────────────────────────────────────────────
+  if (isPop) {
+    const popInput = "w-full px-4 py-3 rounded-xl border-2 text-sm focus:outline-none transition"
+    const popInputStyle = { borderColor: INK, color: INK, background: "#fff" } as React.CSSProperties
+
+    const fields: { label: string; type: string; ph: string; val: string; set: (v: string) => void }[] = [
+      { label: "Full Name", type: "text", ph: "Juan dela Cruz", val: name, set: setName },
+      { label: "Email Address", type: "email", ph: "you@example.com", val: email, set: setEmail },
+      { label: "Phone Number", type: "tel", ph: "+63 912 345 6789", val: phone, set: setPhone },
+    ]
+
+    return (
+      <section id="book-demo" className="relative py-24 px-6 overflow-hidden" style={{ background: CREAM, fontFamily: popDisplay.fontFamily }}>
+        {/* playful layered-bar accents */}
+        <div className="absolute inset-0 pointer-events-none hidden md:block" aria-hidden>
+          <div className="absolute rounded-[22px] border-2" style={{ top: "12%", left: "-70px", width: 260, height: 76, background: AMBER, borderColor: INK, transform: "rotate(-9deg)" }} />
+          <div className="absolute rounded-[22px] border-2" style={{ bottom: "12%", right: "-80px", width: 280, height: 80, background: BLUE, borderColor: INK, transform: "rotate(8deg)", boxShadow: "5px 5px 0 rgba(22,22,22,.12)" }} />
+        </div>
+
+        <div className="relative max-w-xl mx-auto">
+          {/* Header */}
+          <div className="text-center mb-8">
+            <div className="inline-flex items-center gap-2 text-xs font-bold px-4 py-2 rounded-full bg-white border-2 mb-5" style={{ color: INK, borderColor: INK, boxShadow: `3px 3px 0 ${BLUE}` }}>
+              <CalendarCheck className="w-3.5 h-3.5" style={{ color: BLUE }} />
+              Book a Free Demo
+            </div>
+            <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight" style={{ color: INK }}>
+              See {productLabel} in action
+            </h2>
+            <p className="text-base mt-3 leading-relaxed" style={{ color: "#54514c" }}>
+              Leave your details and we&apos;ll walk you through the product personally — no pressure, no commitment.
+            </p>
+          </div>
+
+          {/* Card */}
+          <div className="rounded-[24px] border-2 p-8" style={{ background: "#fff", borderColor: INK, boxShadow: `10px 10px 0 ${AMBER}` }}>
+            {done ? (
+              <div className="flex flex-col items-center gap-3 py-8 text-center">
+                <div className="w-16 h-16 rounded-full border-2 flex items-center justify-center" style={{ background: "#e9f9f0", borderColor: INK }}>
+                  <CheckCircle2 className="w-8 h-8" style={{ color: "#0d9f6e" }} />
+                </div>
+                <p className="text-xl font-extrabold" style={{ color: INK }}>You&apos;re all set!</p>
+                <p className="text-sm leading-relaxed" style={{ color: "#54514c" }}>
+                  We&apos;ll reach out to you shortly to schedule your demo for{" "}
+                  <span className="font-bold" style={{ color: INK }}>{productLabel}</span>.
+                </p>
+              </div>
+            ) : (
+              <form onSubmit={handleSubmit} className="flex flex-col gap-5">
+                {fields.map((f) => (
+                  <div key={f.label} className="flex flex-col gap-1.5">
+                    <label className="text-xs font-bold" style={{ color: INK }}>{f.label}</label>
+                    <input
+                      type={f.type}
+                      placeholder={f.ph}
+                      value={f.val}
+                      onChange={(e) => f.set(e.target.value)}
+                      required
+                      className={popInput}
+                      style={popInputStyle}
+                    />
+                  </div>
+                ))}
+
+                {error && (
+                  <p className="text-sm font-semibold rounded-xl px-4 py-2.5 border-2" style={{ color: "#c01a3e", background: "#fdecec", borderColor: "#e11d48" }}>
+                    {error}
+                  </p>
+                )}
+
+                <button
+                  type="submit"
+                  disabled={loading}
+                  className="w-full mt-1 disabled:opacity-60 font-bold py-3.5 rounded-full border-2 transition-transform hover:-translate-y-0.5 flex items-center justify-center gap-2 text-sm"
+                  style={{ ...popDisplay, background: AMBER, color: INK, borderColor: INK, boxShadow: `4px 4px 0 ${INK}` }}
+                >
+                  {loading ? <><Loader2 className="w-4 h-4 animate-spin" /> Submitting…</> : <>Book My Free Demo <ChevronRight className="w-4 h-4" /></>}
+                </button>
+              </form>
+            )}
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  // ─────────────────────────────────────────────────────────────
+  // DEFAULT VARIANT (all other products — unchanged)
+  // ─────────────────────────────────────────────────────────────
   return (
     <section id="book-demo" className={`${theme.section} py-16 px-6`}>
       <div className="max-w-xl mx-auto">

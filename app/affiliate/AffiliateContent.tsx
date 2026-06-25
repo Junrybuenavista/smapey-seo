@@ -121,7 +121,7 @@ export default function AffiliateContent() {
       <SiteNavbar alwaysLight />
 
       {/* ── HERO ─────────────────────────────────────────────────────────── */}
-      <section className="max-w-[1180px] mx-auto px-6 md:px-8 pt-28 pb-8 grid lg:grid-cols-[1.1fr_.9fr] gap-12 items-center">
+      <section className="max-w-7xl mx-auto px-6 md:px-8 pt-28 pb-8 grid lg:grid-cols-[1.1fr_.9fr] gap-12 items-center">
         <div>
           <span className="inline-flex items-center gap-2 bg-white border-2 font-semibold text-[13px] px-4 py-1.5 rounded-full"
             style={{ ...display, borderColor: INK, boxShadow: `3px 3px 0 ${BLUE}` }}>
@@ -160,7 +160,7 @@ export default function AffiliateContent() {
       </section>
 
       {/* ── STATS ────────────────────────────────────────────────────────── */}
-      <section className="max-w-[1180px] mx-auto px-6 md:px-8 pt-10 grid sm:grid-cols-3 gap-4">
+      <section className="max-w-7xl mx-auto px-6 md:px-8 pt-10 grid sm:grid-cols-3 gap-4">
         {stats.map((s, i) => (
           <div key={i} className="bg-white border-2 rounded-[22px] p-7" style={{ borderColor: INK, boxShadow: `5px 5px 0 ${INK}` }}>
             <div className="text-[44px] md:text-[50px] font-extrabold tracking-[-.03em] leading-none" style={display}>{s.value}</div>
@@ -170,7 +170,7 @@ export default function AffiliateContent() {
       </section>
 
       {/* ── HOW IT WORKS ─────────────────────────────────────────────────── */}
-      <section className="max-w-[1180px] mx-auto px-6 md:px-8 pt-24">
+      <section className="max-w-7xl mx-auto px-6 md:px-8 pt-24">
         <h2 className="text-[40px] md:text-[50px] font-extrabold tracking-[-.03em] text-center" style={display}>Four easy steps</h2>
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-12">
           {steps.map(({ Icon, title, desc }, i) => (
@@ -189,7 +189,7 @@ export default function AffiliateContent() {
       <EarningsCalculator program={program} months={months} />
 
       {/* ── WHY JOIN ─────────────────────────────────────────────────────── */}
-      <section className="max-w-[1180px] mx-auto px-6 md:px-8 pt-24">
+      <section className="max-w-7xl mx-auto px-6 md:px-8 pt-24">
         <h2 className="text-[40px] md:text-[50px] font-extrabold tracking-[-.03em] text-center" style={display}>Why you'll love it</h2>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-12">
           {whys.map(({ Icon, title, desc }) => (
@@ -208,7 +208,7 @@ export default function AffiliateContent() {
       <FAQ program={program} months={months} />
 
       {/* ── FINAL CTA ────────────────────────────────────────────────────── */}
-      <section className="max-w-[1180px] mx-auto px-6 md:px-8 py-24">
+      <section className="max-w-7xl mx-auto px-6 md:px-8 py-24">
         <div className="border-2 rounded-[30px] py-16 md:py-[70px] px-8 text-center" style={{ background: AMBER, borderColor: INK, boxShadow: `8px 8px 0 ${INK}` }}>
           <h2 className="text-[40px] md:text-[56px] font-extrabold tracking-[-.035em] leading-none" style={display}>
             Grab your link &amp;<br />start earning today
@@ -221,7 +221,7 @@ export default function AffiliateContent() {
 
       {/* ── FOOTER ───────────────────────────────────────────────────────── */}
       <footer className="border-t-2" style={{ borderColor: INK }}>
-        <div className="max-w-[1180px] mx-auto px-6 md:px-8 py-7 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="max-w-7xl mx-auto px-6 md:px-8 py-7 flex flex-col sm:flex-row items-center justify-between gap-4">
           <Link href="/" className="flex items-center gap-2.5">
             <img src="/logo.png" alt="Smapey" className="h-7 w-7 object-contain" />
             <span className="font-bold" style={display}>Smapey</span>
@@ -254,7 +254,7 @@ function EarningsCalculator({ program, months }: { program: Program; months: num
   const total = monthly * months
 
   return (
-    <section className="max-w-[1180px] mx-auto px-6 md:px-8 pt-24">
+    <section className="max-w-7xl mx-auto px-6 md:px-8 pt-24">
       <div className="border-2 rounded-[30px] p-8 md:p-[50px] grid lg:grid-cols-2 gap-10 items-center text-white"
         style={{ background: BLUE, borderColor: INK, boxShadow: `8px 8px 0 ${INK}` }}>
         {/* controls */}

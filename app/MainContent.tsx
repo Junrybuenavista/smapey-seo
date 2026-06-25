@@ -469,20 +469,17 @@ function Navbar() {
       </div>
 
       {open && (
-        <div className="md:hidden px-6 py-5 space-y-4" style={{ background: CREAM, borderTop: `2px solid ${INK}` }}>
-          {PRODUCTS.map(p => (
-            <Link key={p.key} href={p.href} onClick={() => setOpen(false)} className="flex items-center gap-3 py-2">
-              <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ background: p.accentLight }}>
-                <p.Icon className="w-4 h-4" style={{ color: p.accent }} />
-              </div>
-              <span className="text-sm font-semibold" style={{ color: INK }}>{p.name}</span>
-            </Link>
+        <div className="md:hidden px-6 py-5 flex flex-col" style={{ background: CREAM, borderTop: `2px solid ${INK}` }}>
+          {[["#products", "Products"], ["#how-it-works", "How it works"], ["#why", "Why Smapey"]].map(([href, label]) => (
+            <a key={label} href={href} onClick={() => setOpen(false)} className="text-base font-semibold py-3" style={{ color: INK, borderBottom: "1px solid rgba(22,22,22,.1)" }}>
+              {label}
+            </a>
           ))}
-          <div className="pt-3 flex flex-col gap-2" style={{ borderTop: `2px solid ${INK}` }}>
-            <Link href="/affiliate" onClick={() => setOpen(false)} className="text-center text-sm font-semibold py-2.5" style={{ color: INK }}>Affiliate Program</Link>
-            <Link href="/blog" onClick={() => setOpen(false)} className="text-center text-sm font-semibold py-2.5" style={{ color: INK }}>Blog</Link>
-            <Link href="https://app.smapey.com/login" className="text-center text-sm font-semibold py-2.5 rounded-full border-2" style={{ color: INK, borderColor: INK }}>Sign in</Link>
-            <Link href="https://app.smapey.com/register" className="text-center text-sm font-bold py-2.5 rounded-full border-2" style={{ background: AMBER, color: INK, borderColor: INK }}>Get started free</Link>
+          <Link href="/affiliate" onClick={() => setOpen(false)} className="text-base font-semibold py-3" style={{ color: INK, borderBottom: "1px solid rgba(22,22,22,.1)" }}>Affiliate</Link>
+          <Link href="/blog" onClick={() => setOpen(false)} className="text-base font-semibold py-3" style={{ color: INK }}>Blog</Link>
+          <div className="pt-4 mt-2 flex flex-col gap-2.5" style={{ borderTop: `2px solid ${INK}` }}>
+            <Link href="https://app.smapey.com/login" onClick={() => setOpen(false)} className="text-center text-sm font-bold py-3 rounded-full border-2" style={{ color: INK, borderColor: INK }}>Sign in</Link>
+            <Link href="https://app.smapey.com/register" onClick={() => setOpen(false)} className="text-center text-sm font-bold py-3 rounded-full border-2" style={{ ...display, background: AMBER, color: INK, borderColor: INK, boxShadow: `3px 3px 0 ${INK}` }}>Get started free</Link>
           </div>
         </div>
       )}

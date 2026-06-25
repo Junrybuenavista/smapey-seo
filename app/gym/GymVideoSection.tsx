@@ -2,6 +2,13 @@
 
 import { useEffect, useState } from "react"
 
+// ── Layered Pop design tokens ──
+const INK = "#161616"
+const BLUE = "#2f6bff"
+const AMBER = "#ff9e2c"
+const CREAM = "#fbf7f0"
+const display = { fontFamily: "'Hanken Grotesk', system-ui, sans-serif" }
+
 const PH_VIDEO =
   "https://res.cloudinary.com/dxhwfv0jo/video/upload/v1779445623/Gym_Management_Tagalog_dhn6ki.mp4"
 const EN_VIDEO =
@@ -16,7 +23,6 @@ export default function GymVideoSection() {
     const lang = (typeof navigator !== "undefined" ? navigator.language : "").toLowerCase()
     const offsetHours = -new Date().getTimezoneOffset() / 60
 
-    // Same multi-signal local detection as usePricing — catches Windows users
     const localPH =
       tz === "Asia/Manila" ||
       lang.includes("-ph") ||
@@ -26,7 +32,6 @@ export default function GymVideoSection() {
     fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/billing/geo`)
       .then((r) => r.json())
       .then((d) => {
-        // Use || so local signals can still catch PH even if API returns false
         const ph = Boolean(d.isPhilippines) || localPH
         setIsPhilippines(ph)
         setVideoUrl(ph ? PH_VIDEO : EN_VIDEO)
@@ -38,16 +43,16 @@ export default function GymVideoSection() {
   }, [])
 
   return (
-    <section className="py-16 bg-white">
+    <section className="py-20" style={{ background: CREAM, fontFamily: display.fontFamily }}>
       <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center">
-        <p className="text-xs font-semibold uppercase tracking-widest text-blue-600 mb-3">
+        <p className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color: BLUE }}>
           See it in action
         </p>
-        <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 mb-10">
+        <h2 className="text-2xl sm:text-4xl font-extrabold mb-10 tracking-tight" style={{ color: INK }}>
           Watch how Smapey works for your gym
         </h2>
 
-        <div className="relative rounded-2xl overflow-hidden shadow-2xl ring-1 ring-slate-200 bg-slate-900">
+        <div className="relative rounded-[24px] overflow-hidden border-2" style={{ borderColor: INK, boxShadow: `10px 10px 0 ${BLUE}`, background: INK }}>
           {videoUrl ? (
             <video
               key={videoUrl}
@@ -59,13 +64,13 @@ export default function GymVideoSection() {
             />
           ) : (
             <div className="w-full aspect-video flex items-center justify-center">
-              <div className="w-8 h-8 rounded-full border-2 border-slate-600 border-t-blue-400 animate-spin" />
+              <div className="w-8 h-8 rounded-full border-2 animate-spin" style={{ borderColor: "rgba(255,255,255,.25)", borderTopColor: AMBER }} />
             </div>
           )}
         </div>
 
         {isPhilippines !== null && (
-          <p className="text-slate-400 text-xs mt-4 flex items-center justify-center gap-1.5">
+          <p className="text-xs mt-4 flex items-center justify-center gap-1.5 font-semibold" style={{ color: "#9a948b" }}>
             <span>{isPhilippines ? "🇵🇭" : "🌍"}</span>
             <span>{isPhilippines ? "Viewing in Filipino (Tagalog)" : "Viewing in English"}</span>
           </p>
