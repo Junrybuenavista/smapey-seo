@@ -55,10 +55,11 @@ function useInView(options?: IntersectionObserverInit) {
   return { ref, inView }
 }
 
-function Animate({ children, className = "", delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) {
+function Animate({ children, className = "", delay = 0, style }: { children: React.ReactNode; className?: string; delay?: number; style?: React.CSSProperties }) {
   const { ref, inView } = useInView()
   return (
     <div ref={ref} className={className} style={{
+      ...style,
       transitionProperty: "opacity, transform", transitionDuration: "600ms",
       transitionTimingFunction: "cubic-bezier(0.4,0,0.2,1)", transitionDelay: `${delay}ms`,
       opacity: inView ? 1 : 0, transform: inView ? "translateY(0)" : "translateY(28px)",

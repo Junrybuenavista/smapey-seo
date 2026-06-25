@@ -76,10 +76,12 @@ function Animate({
   children,
   className = "",
   delay = 0,
+  style,
 }: {
   children: React.ReactNode
   className?: string
   delay?: number
+  style?: React.CSSProperties
 }) {
   const { ref, inView } = useInView()
   return (
@@ -87,6 +89,7 @@ function Animate({
       ref={ref}
       className={className}
       style={{
+        ...style,
         transitionProperty: "opacity, transform",
         transitionDuration: "600ms",
         transitionTimingFunction: "cubic-bezier(0.4,0,0.2,1)",
