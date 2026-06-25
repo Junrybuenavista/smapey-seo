@@ -601,7 +601,7 @@ function ForWho() {
           </p>
         </Reveal>
 
-        <div className="mt-12 flex flex-wrap justify-center gap-3">
+        <div className="mt-12 hidden md:flex flex-wrap justify-center gap-3">
           {FOR_WHO.map((item, i) => (
             <Reveal key={item.label} delay={i * 40}>
               <div className="flex items-center gap-2.5 bg-white border-2 rounded-full px-5 py-3 transition-transform hover:-translate-y-0.5" style={{ borderColor: INK, boxShadow: `3px 3px 0 ${INK}` }}>
@@ -721,22 +721,25 @@ function Products() {
         </Reveal>
 
         <div className="mt-14 grid md:grid-cols-2 xl:grid-cols-3 gap-6">
-          {PRODUCTS.map((p, i) => (
+          {PRODUCTS.map((p, i) => {
+            const c = i % 2 === 0 ? BLUE : AMBER
+            const iconColor = c === AMBER ? INK : "#fff"
+            return (
             <Reveal key={p.key} delay={i * 60}>
-              <div className="group relative bg-white rounded-[24px] border-2 overflow-hidden flex flex-col h-full transition-transform hover:-translate-y-1.5" style={{ borderColor: INK, boxShadow: `6px 6px 0 ${p.accent}` }}>
+              <div className="group relative bg-white rounded-[24px] border-2 overflow-hidden flex flex-col h-full transition-transform hover:-translate-y-1.5" style={{ borderColor: INK, boxShadow: `6px 6px 0 ${c}` }}>
 
-                <div className="h-2 w-full" style={{ background: p.accent, borderBottom: `2px solid ${INK}` }} />
+                <div className="h-2 w-full" style={{ background: c, borderBottom: `2px solid ${INK}` }} />
 
                 <div className="p-7 flex flex-col flex-1">
                   <div className="flex items-start justify-between mb-5">
                     <div className="flex items-center gap-3">
                       <div className="w-12 h-12 rounded-[14px] border-2 flex items-center justify-center transition-transform group-hover:scale-105"
-                        style={{ background: p.accent, borderColor: INK }}>
-                        <p.Icon className="w-6 h-6 text-white" />
+                        style={{ background: c, borderColor: INK }}>
+                        <p.Icon className="w-6 h-6" style={{ color: iconColor }} />
                       </div>
                       <div>
                         <h3 className="text-lg font-extrabold leading-tight" style={{ color: INK }}>{p.name}</h3>
-                        <p className="text-xs font-bold mt-0.5" style={{ color: p.accent }}>{p.tagline}</p>
+                        <p className="text-xs font-bold mt-0.5" style={{ color: c === AMBER ? "#b06c00" : c }}>{p.tagline}</p>
                       </div>
                     </div>
                     <div className="text-right shrink-0 ml-2">
@@ -750,7 +753,7 @@ function Products() {
                   <ul className="grid grid-cols-1 gap-2 mb-7 flex-1">
                     {p.features.map(f => (
                       <li key={f} className="flex items-center gap-2 text-sm font-medium" style={{ color: "#3f3b36" }}>
-                        <CheckCircle2 className="w-3.5 h-3.5 shrink-0" style={{ color: p.accent }} />
+                        <CheckCircle2 className="w-3.5 h-3.5 shrink-0" style={{ color: c === AMBER ? "#b06c00" : c }} />
                         {f}
                       </li>
                     ))}
@@ -768,7 +771,8 @@ function Products() {
                 </div>
               </div>
             </Reveal>
-          ))}
+            )
+          })}
         </div>
       </div>
     </section>
@@ -926,15 +930,10 @@ function CTA() {
         </Reveal>
 
         <Reveal delay={100}>
-          <div className="mt-10 flex flex-wrap gap-3 justify-center">
-            {PRODUCTS.map(p => (
-              <Link key={p.key} href={p.register}
-                className="flex items-center gap-2 text-sm font-bold px-5 py-3 rounded-full border-2 bg-white transition-transform hover:-translate-y-0.5"
-                style={{ color: INK, borderColor: INK }}>
-                <p.Icon className="w-4 h-4" style={{ color: p.accent }} />
-                {p.name}
-              </Link>
-            ))}
+          <div className="mt-10 flex justify-center">
+            <Link href="https://app.smapey.com/register" className="inline-flex items-center gap-2 text-base font-bold px-8 py-4 rounded-full border-2 transition-transform hover:-translate-y-0.5" style={{ ...display, background: INK, color: "#fff", borderColor: INK }}>
+              Get started free
+            </Link>
           </div>
           <p className="mt-8 text-sm font-semibold" style={{ color: "#5c4a28" }}>
             Start with one tool. Add more whenever you're ready.
