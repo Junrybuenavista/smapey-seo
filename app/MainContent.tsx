@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from "react"
 import Link from "next/link"
+import { usePathname } from "next/navigation"
 import {
   FileText, Dumbbell, BookOpen, CalendarDays, Car, Shirt, Scissors,
   CalendarPlus, Home, Landmark, UtensilsCrossed, ShoppingBag, Stethoscope, PawPrint,
@@ -10,6 +11,13 @@ import {
   Clock, ChevronDown, Menu, X, Users, Sparkles,
   MousePointerClick, LayoutDashboard, Star,
 } from "lucide-react"
+
+// ── Layered Pop design tokens ───────────────────────
+const INK = "#161616"
+const BLUE = "#2f6bff"
+const AMBER = "#ff9e2c"
+const CREAM = "#fbf7f0"
+const display = { fontFamily: "'Hanken Grotesk', system-ui, sans-serif" }
 
 //////////////////////////////////////////////////////
 // DATA
@@ -394,66 +402,87 @@ function Reveal({ children, delay = 0, className = "" }: { children: React.React
 
 function Navbar() {
   const [open, setOpen] = useState(false)
-  const [scrolled, setScrolled] = useState(false)
+  const [active, setActive] = useState("")
 
+  // Scroll-spy: highlight the nav item for the section currently in view.
   useEffect(() => {
-    const fn = () => setScrolled(window.scrollY > 20)
-    window.addEventListener("scroll", fn)
-    return () => window.removeEventListener("scroll", fn)
+    const ids = ["products", "how-it-works", "why"]
+    const obs = new IntersectionObserver(
+      entries => entries.forEach(e => { if (e.isIntersecting) setActive(e.target.id) }),
+      { rootMargin: "-45% 0px -50% 0px" }
+    )
+    ids.forEach(id => { const el = document.getElementById(id); if (el) obs.observe(el) })
+    return () => obs.disconnect()
   }, [])
 
+  // Load the Layered Pop display font (no-op if already present).
+  useEffect(() => {
+    const id = "smapey-pop-fonts"
+    if (!document.getElementById(id)) {
+      const l = document.createElement("link")
+      l.id = id
+      l.rel = "stylesheet"
+      l.href = "https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap"
+      document.head.appendChild(l)
+    }
+  }, [])
+
+  const pathname = usePathname() || "/"
+  const activeStyle = (on: boolean) => ({
+    color: on ? BLUE : INK,
+    borderBottom: `4px solid ${on ? AMBER : "transparent"}`,
+    paddingBottom: "3px",
+  } as React.CSSProperties)
+
   return (
-    <nav className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${scrolled ? "bg-white/95 backdrop-blur-md shadow-sm" : "bg-transparent"}`}>
+    <nav className="fixed top-0 inset-x-0 z-50" style={{ background: CREAM, borderBottom: `2px solid ${INK}`, fontFamily: display.fontFamily }}>
       <div className="max-w-7xl mx-auto px-6 md:px-12 h-16 flex items-center justify-between">
 
         <Link href="/" className="flex items-center gap-2.5">
           <img src="/logo.png" alt="Smapey" className="h-8 w-8 object-contain" />
-          <span className={`text-lg font-bold tracking-tight transition-colors ${scrolled ? "text-gray-900" : "text-white"}`}>Smapey</span>
+          <span className="text-xl font-extrabold tracking-tight" style={{ color: INK }}>Smapey</span>
         </Link>
 
         <div className="hidden md:flex items-center gap-8">
-          {[["#products", "Products"], ["#how-it-works", "How it works"], ["#why", "Why Smapey"]].map(([href, label]) => (
-            <a key={label} href={href} className={`text-sm font-medium transition-colors ${scrolled ? "text-gray-600 hover:text-gray-900" : "text-white/80 hover:text-white"}`}>
-              {label}
-            </a>
-          ))}
-          <Link href="/affiliate" className={`text-sm font-medium transition-colors ${scrolled ? "text-gray-600 hover:text-gray-900" : "text-white/80 hover:text-white"}`}>
-            Affiliate
-          </Link>
-          <Link href="/blog" className={`text-sm font-medium transition-colors ${scrolled ? "text-gray-600 hover:text-gray-900" : "text-white/80 hover:text-white"}`}>
-            Blog
-          </Link>
+          {[["#products", "Products"], ["#how-it-works", "How it works"], ["#why", "Why Smapey"]].map(([href, label]) => {
+            const on = pathname === "/" && active === href.slice(1)
+            return (
+              <a key={label} href={href} className="text-sm font-semibold hover:opacity-60 transition-opacity" style={activeStyle(on)}>
+                {label}
+              </a>
+            )
+          })}
+          <Link href="/affiliate" className="text-sm font-semibold hover:opacity-60 transition-opacity" style={activeStyle(pathname.startsWith("/affiliate"))}>Affiliate</Link>
+          <Link href="/blog" className="text-sm font-semibold hover:opacity-60 transition-opacity" style={activeStyle(pathname.startsWith("/blog"))}>Blog</Link>
         </div>
 
-        <div className="hidden md:flex items-center gap-3">
-          <Link href="https://app.smapey.com/login" className={`text-sm font-medium transition-colors ${scrolled ? "text-gray-600 hover:text-gray-900" : "text-white/80 hover:text-white"}`}>
-            Sign in
-          </Link>
-          <Link href="https://app.smapey.com/register" className="bg-white text-gray-900 text-sm font-semibold px-5 py-2.5 rounded-full hover:bg-gray-100 transition-colors shadow-sm">
+        <div className="hidden md:flex items-center gap-4">
+          <Link href="https://app.smapey.com/login" className="text-sm font-semibold hover:opacity-60 transition-opacity" style={{ color: INK }}>Sign in</Link>
+          <Link href="https://app.smapey.com/register" className="text-sm font-bold px-5 py-2.5 rounded-full border-2 transition-transform hover:-translate-y-0.5" style={{ ...display, background: AMBER, color: INK, borderColor: INK, boxShadow: `3px 3px 0 ${INK}` }}>
             Get started free
           </Link>
         </div>
 
-        <button onClick={() => setOpen(!open)} className={`md:hidden ${scrolled ? "text-gray-700" : "text-white"}`}>
+        <button onClick={() => setOpen(!open)} className="md:hidden" style={{ color: INK }}>
           {open ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
         </button>
       </div>
 
       {open && (
-        <div className="md:hidden bg-white border-t border-gray-100 px-6 py-5 space-y-4 shadow-lg">
+        <div className="md:hidden px-6 py-5 space-y-4" style={{ background: CREAM, borderTop: `2px solid ${INK}` }}>
           {PRODUCTS.map(p => (
             <Link key={p.key} href={p.href} onClick={() => setOpen(false)} className="flex items-center gap-3 py-2">
               <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ background: p.accentLight }}>
                 <p.Icon className="w-4 h-4" style={{ color: p.accent }} />
               </div>
-              <span className="text-sm font-medium text-gray-800">{p.name}</span>
+              <span className="text-sm font-semibold" style={{ color: INK }}>{p.name}</span>
             </Link>
           ))}
-          <div className="pt-3 border-t border-gray-100 flex flex-col gap-2">
-            <Link href="/affiliate" onClick={() => setOpen(false)} className="text-center text-sm font-medium text-gray-600 py-2.5 hover:text-gray-900 transition-colors">Affiliate Program</Link>
-            <Link href="/blog" onClick={() => setOpen(false)} className="text-center text-sm font-medium text-gray-600 py-2.5 hover:text-gray-900 transition-colors">Blog</Link>
-            <Link href="https://app.smapey.com/login" className="text-center text-sm font-medium text-gray-600 py-2.5 border border-gray-200 rounded-full">Sign in</Link>
-            <Link href="https://app.smapey.com/register" className="text-center text-sm font-semibold text-white py-2.5 bg-gray-900 rounded-full">Get started free</Link>
+          <div className="pt-3 flex flex-col gap-2" style={{ borderTop: `2px solid ${INK}` }}>
+            <Link href="/affiliate" onClick={() => setOpen(false)} className="text-center text-sm font-semibold py-2.5" style={{ color: INK }}>Affiliate Program</Link>
+            <Link href="/blog" onClick={() => setOpen(false)} className="text-center text-sm font-semibold py-2.5" style={{ color: INK }}>Blog</Link>
+            <Link href="https://app.smapey.com/login" className="text-center text-sm font-semibold py-2.5 rounded-full border-2" style={{ color: INK, borderColor: INK }}>Sign in</Link>
+            <Link href="https://app.smapey.com/register" className="text-center text-sm font-bold py-2.5 rounded-full border-2" style={{ background: AMBER, color: INK, borderColor: INK }}>Get started free</Link>
           </div>
         </div>
       )}
@@ -467,53 +496,46 @@ function Navbar() {
 
 function Hero() {
   return (
-    <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-[#0a0f1e] px-6 pt-16">
+    <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden px-6 pt-16" style={{ background: CREAM, color: INK, fontFamily: display.fontFamily }}>
 
-      <div className="absolute inset-0 pointer-events-none" style={{
-        backgroundImage: "linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px)",
-        backgroundSize: "60px 60px",
-        maskImage: "radial-gradient(ellipse 80% 60% at 50% 40%, black 40%, transparent 100%)",
-        WebkitMaskImage: "radial-gradient(ellipse 80% 60% at 50% 40%, black 40%, transparent 100%)",
-      }} />
-      <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] rounded-full pointer-events-none animate-pulse"
-        style={{ background: "radial-gradient(circle, rgba(37,99,235,0.18) 0%, transparent 70%)", animationDuration: "6s" }} />
-      <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] rounded-full pointer-events-none animate-pulse"
-        style={{ background: "radial-gradient(circle, rgba(124,58,237,0.14) 0%, transparent 70%)", animationDuration: "8s" }} />
-      <div className="absolute top-1/3 right-1/3 w-[350px] h-[350px] rounded-full pointer-events-none animate-pulse"
-        style={{ background: "radial-gradient(circle, rgba(14,165,233,0.12) 0%, transparent 70%)", animationDuration: "7s" }} />
+      {/* playful layered-bar accents (echo the Smapey mark) */}
+      <div className="absolute inset-0 pointer-events-none hidden md:block" aria-hidden>
+        <div className="absolute rounded-[22px] border-2" style={{ top: "15%", left: "-70px", width: 290, height: 80, background: AMBER, borderColor: INK, transform: "rotate(-11deg)" }} />
+        <div className="absolute rounded-[22px] border-2" style={{ top: "28%", right: "-80px", width: 300, height: 84, background: BLUE, borderColor: INK, transform: "rotate(9deg)", boxShadow: `5px 5px 0 rgba(22,22,22,.12)` }} />
+        <div className="absolute rounded-[22px] border-2" style={{ bottom: "16%", left: "-60px", width: 270, height: 76, background: BLUE, borderColor: INK, transform: "rotate(8deg)", boxShadow: `5px 5px 0 rgba(22,22,22,.12)` }} />
+        <div className="absolute rounded-[22px] border-2" style={{ bottom: "22%", right: "-70px", width: 285, height: 80, background: AMBER, borderColor: INK, transform: "rotate(-9deg)" }} />
+      </div>
 
       <div className="relative z-10 max-w-4xl mx-auto text-center">
 
         {/* BADGE */}
-        <div className="inline-flex items-center gap-2 bg-white/5 border border-white/10 rounded-full px-4 py-2 mb-8 backdrop-blur-sm shadow-[0_0_30px_-8px_rgba(99,102,241,0.5)]">
+        <div className="inline-flex items-center gap-2 bg-white border-2 rounded-full px-4 py-2 mb-8" style={{ ...display, borderColor: INK, boxShadow: `3px 3px 0 ${BLUE}` }}>
           <span className="relative flex h-2 w-2">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400" />
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-500 opacity-75" />
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
           </span>
-          <span className="text-xs font-medium text-white/70 tracking-wide">18 tools live · built for small businesses</span>
+          <span className="text-xs font-bold" style={{ color: INK }}>18 tools live · built for small businesses</span>
         </div>
 
         {/* HEADLINE */}
-        <h1 className="text-5xl md:text-7xl font-bold text-white leading-[1.05] tracking-tight">
+        <h1 className="text-5xl md:text-7xl font-extrabold leading-[1.02] tracking-tight" style={{ ...display, color: INK }}>
           Simple software for
           <br />
-          <span className="bg-gradient-to-r from-blue-400 via-violet-400 to-teal-400 bg-clip-text text-transparent">
-            real small businesses.
-          </span>
+          <span style={{ color: BLUE }}>real </span><span style={{ color: AMBER }}>small businesses.</span>
         </h1>
 
-        <p className="mt-6 text-lg md:text-xl text-white/50 max-w-2xl mx-auto leading-relaxed">
+        <p className="mt-6 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed" style={{ color: "#54514c" }}>
           No IT team required. No 3-month setup. No enterprise nonsense.
           Just clean, focused tools that help you run your business from day one.
         </p>
 
         {/* ACTIONS */}
         <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
-          <Link href="https://app.smapey.com/register" className="group flex items-center gap-2 bg-white text-gray-900 font-semibold text-sm px-8 py-3.5 rounded-full hover:bg-gray-100 transition-all shadow-lg hover:-translate-y-0.5">
+          <Link href="https://app.smapey.com/register" className="group flex items-center gap-2 font-bold text-[15px] px-8 py-4 rounded-full border-2 transition-transform hover:-translate-y-0.5" style={{ ...display, background: AMBER, color: INK, borderColor: INK, boxShadow: `4px 4px 0 ${INK}` }}>
             Start for free — no card needed
             <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
           </Link>
-          <a href="#how-it-works" className="flex items-center gap-2 text-white/60 font-medium text-sm px-6 py-3.5 rounded-full border border-white/10 hover:border-white/30 hover:text-white/80 transition-all">
+          <a href="#how-it-works" className="flex items-center gap-2 font-bold text-[15px] px-7 py-4 rounded-full border-2 bg-white transition-transform hover:-translate-y-0.5" style={{ ...display, color: INK, borderColor: INK }}>
             See how it works
             <ChevronDown className="w-4 h-4" />
           </a>
@@ -522,8 +544,8 @@ function Hero() {
         {/* TRUST */}
         <div className="mt-10 flex flex-wrap items-center justify-center gap-6">
           {["Free plan forever", "Setup in under 5 minutes", "No training required"].map(t => (
-            <span key={t} className="flex items-center gap-2 text-xs text-white/40">
-              <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500" />
+            <span key={t} className="flex items-center gap-2 text-sm font-semibold" style={{ color: "#54514c" }}>
+              <CheckCircle2 className="w-4 h-4 text-emerald-600" />
               {t}
             </span>
           ))}
@@ -531,7 +553,7 @@ function Hero() {
 
       </div>
 
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/20 animate-bounce">
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-bounce" style={{ color: INK, opacity: 0.3 }}>
         <ChevronDown className="w-5 h-5" />
       </div>
     </section>
@@ -544,12 +566,12 @@ function Hero() {
 
 function StatsBar() {
   return (
-    <div className="bg-gray-900 border-y border-white/5">
-      <div className="max-w-5xl mx-auto px-6 py-8 grid grid-cols-2 md:grid-cols-4 gap-8">
+    <div style={{ background: INK, fontFamily: display.fontFamily }}>
+      <div className="max-w-5xl mx-auto px-6 py-12 grid grid-cols-2 md:grid-cols-4 gap-8">
         {STATS.map((s, i) => (
           <Reveal key={s.label} delay={i * 80} className="text-center">
-            <p className="text-3xl md:text-4xl font-bold bg-gradient-to-br from-white to-white/50 bg-clip-text text-transparent">{s.value}</p>
-            <p className="text-sm text-white/40 mt-1">{s.label}</p>
+            <p className="text-4xl md:text-5xl font-extrabold tracking-tight" style={{ color: i % 2 === 0 ? AMBER : "#fff" }}>{s.value}</p>
+            <p className="text-sm mt-1 font-semibold" style={{ color: "rgba(255,255,255,.55)" }}>{s.label}</p>
           </Reveal>
         ))}
       </div>
@@ -563,17 +585,17 @@ function StatsBar() {
 
 function ForWho() {
   return (
-    <section className="bg-white py-20 px-6 md:px-12">
+    <section className="py-24 px-6 md:px-12" style={{ background: CREAM, fontFamily: display.fontFamily }}>
       <div className="max-w-5xl mx-auto text-center">
         <Reveal>
-          <div className="inline-flex items-center gap-2 bg-gray-100 rounded-full px-4 py-2 text-xs font-semibold text-gray-500 mb-5">
+          <div className="inline-flex items-center gap-2 bg-white border-2 rounded-full px-4 py-2 text-xs font-bold mb-5" style={{ color: INK, borderColor: INK, boxShadow: `3px 3px 0 ${AMBER}` }}>
             <Users className="w-3.5 h-3.5" /> Who Smapey is built for
           </div>
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 tracking-tight">
+          <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight" style={{ color: INK }}>
             If you run a small business,<br />
-            <span className="text-gray-400">this was made for you.</span>
+            <span style={{ color: BLUE }}>this was made for you.</span>
           </h2>
-          <p className="mt-4 text-gray-500 max-w-xl mx-auto text-base leading-relaxed">
+          <p className="mt-4 max-w-xl mx-auto text-base leading-relaxed" style={{ color: "#54514c" }}>
             We didn't build Smapey for corporations with IT departments and six-month rollouts.
             We built it for owners and operators who need something that just works — today.
           </p>
@@ -581,28 +603,26 @@ function ForWho() {
 
         <div className="mt-12 flex flex-wrap justify-center gap-3">
           {FOR_WHO.map((item, i) => (
-            <Reveal key={item.label} delay={i * 50}>
-              <div className="flex items-center gap-2.5 bg-gray-50 border border-gray-200 rounded-2xl px-5 py-3 hover:bg-gray-100 hover:border-gray-300 transition-all cursor-default">
+            <Reveal key={item.label} delay={i * 40}>
+              <div className="flex items-center gap-2.5 bg-white border-2 rounded-full px-5 py-3 transition-transform hover:-translate-y-0.5" style={{ borderColor: INK, boxShadow: `3px 3px 0 ${INK}` }}>
                 <span className="text-xl">{item.emoji}</span>
-                <span className="text-sm font-medium text-gray-700">{item.label}</span>
+                <span className="text-sm font-bold" style={{ color: INK }}>{item.label}</span>
               </div>
             </Reveal>
           ))}
         </div>
 
-        {/* HONEST POSITIONING CALLOUT */}
+        {/* HONEST PROMISE */}
         <Reveal delay={200}>
-          <div className="mt-14 bg-gradient-to-br from-gray-900 to-[#0a0f1e] rounded-3xl p-8 md:p-10 text-left relative overflow-hidden">
-            <div className="absolute -top-16 -right-16 w-64 h-64 rounded-full pointer-events-none"
-              style={{ background: "radial-gradient(circle, rgba(99,102,241,0.15) 0%, transparent 70%)" }} />
-            <div className="relative grid md:grid-cols-2 gap-8 items-center">
+          <div className="mt-16 rounded-[30px] border-2 p-8 md:p-12 text-left" style={{ background: INK, borderColor: INK, boxShadow: `8px 8px 0 ${AMBER}` }}>
+            <div className="grid md:grid-cols-2 gap-10 items-center">
               <div>
-                <p className="text-xs font-bold tracking-widest uppercase text-white/30 mb-3">Our honest promise</p>
-                <h3 className="text-2xl md:text-3xl font-bold text-white leading-snug">
+                <p className="text-xs font-bold tracking-widest uppercase mb-3" style={{ color: AMBER }}>Our honest promise</p>
+                <h3 className="text-2xl md:text-4xl font-extrabold leading-tight" style={{ color: "#fff" }}>
                   We're not building for<br />
-                  <span className="text-white/40">Fortune 500 companies.</span>
+                  <span style={{ color: "rgba(255,255,255,.45)" }}>Fortune 500 companies.</span>
                 </h3>
-                <p className="mt-4 text-white/50 text-sm leading-relaxed max-w-sm">
+                <p className="mt-4 text-sm leading-relaxed max-w-sm" style={{ color: "rgba(255,255,255,.6)" }}>
                   No bloated feature sets. No 200-page manuals. No "schedule a demo" buttons.
                   Smapey is intentionally simple — because your time is better spent running your business, not learning software.
                 </p>
@@ -614,9 +634,9 @@ function ForWho() {
                   "Every feature exists because someone needed it",
                   "If it feels complex, we'll simplify it",
                 ].map(t => (
-                  <div key={t} className="flex items-center gap-3 bg-white/5 border border-white/8 rounded-xl px-4 py-3">
-                    <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
-                    <span className="text-sm text-white/70">{t}</span>
+                  <div key={t} className="flex items-center gap-3 rounded-xl px-4 py-3.5" style={{ background: "rgba(255,255,255,.06)", border: "1px solid rgba(255,255,255,.12)" }}>
+                    <CheckCircle2 className="w-4 h-4 shrink-0" style={{ color: AMBER }} />
+                    <span className="text-sm font-medium" style={{ color: "rgba(255,255,255,.85)" }}>{t}</span>
                   </div>
                 ))}
               </div>
@@ -633,15 +653,16 @@ function ForWho() {
 //////////////////////////////////////////////////////
 
 function HowItWorks() {
+  const acc = [BLUE, AMBER, BLUE]
   return (
-    <section id="how-it-works" className="bg-gray-50 py-24 px-6 md:px-12">
+    <section id="how-it-works" className="py-28 px-6 md:px-12" style={{ background: "#fff", fontFamily: display.fontFamily }}>
       <div className="max-w-5xl mx-auto">
         <Reveal className="text-center mb-16">
-          <p className="text-xs font-bold tracking-widest uppercase text-gray-400 mb-3">How simple is it?</p>
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 tracking-tight">
+          <p className="text-xs font-bold tracking-widest uppercase mb-3" style={{ color: "#9a948b" }}>How simple is it?</p>
+          <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight" style={{ color: INK }}>
             Up and running in 3 steps.
           </h2>
-          <p className="mt-4 text-gray-500 max-w-md mx-auto">
+          <p className="mt-4 max-w-md mx-auto" style={{ color: "#54514c" }}>
             Most of our users are fully set up and creating their first invoice, reservation, or member profile within minutes of signing up.
           </p>
         </Reveal>
@@ -649,25 +670,26 @@ function HowItWorks() {
         <div className="grid md:grid-cols-3 gap-6">
           {STEPS.map((step, i) => (
             <Reveal key={step.number} delay={i * 100}>
-              <div className="bg-white rounded-3xl border border-gray-200 p-8 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 h-full flex flex-col">
+              <div className="rounded-[24px] border-2 p-8 h-full flex flex-col transition-transform hover:-translate-y-1" style={{ background: CREAM, borderColor: INK, boxShadow: `6px 6px 0 ${acc[i]}` }}>
                 <div className="flex items-center gap-3 mb-6">
-                  <div className={`w-10 h-10 rounded-2xl ${step.bg} flex items-center justify-center`}>
-                    <step.Icon className={`w-5 h-5 ${step.color}`} />
+                  <div className="w-12 h-12 rounded-[14px] border-2 flex items-center justify-center" style={{ background: acc[i], borderColor: INK }}>
+                    <step.Icon className="w-5 h-5 text-white" />
                   </div>
-                  <span className="text-4xl font-black text-gray-100">{step.number}</span>
+                  <span className="text-5xl font-extrabold" style={{ color: "rgba(22,22,22,.12)" }}>{step.number}</span>
                 </div>
-                <h3 className="text-lg font-bold text-gray-900 mb-3">{step.title}</h3>
-                <p className="text-sm text-gray-500 leading-relaxed flex-1">{step.desc}</p>
+                <h3 className="text-lg font-extrabold mb-3" style={{ color: INK }}>{step.title}</h3>
+                <p className="text-sm leading-relaxed flex-1" style={{ color: "#54514c" }}>{step.desc}</p>
               </div>
             </Reveal>
           ))}
         </div>
 
         <Reveal delay={300}>
-          <div className="mt-8 text-center">
+          <div className="mt-10 text-center">
             <Link
               href="https://app.smapey.com/register"
-              className="inline-flex items-center gap-2 bg-gray-900 text-white text-sm font-semibold px-8 py-3.5 rounded-full hover:bg-gray-800 transition-all shadow-lg hover:-translate-y-0.5"
+              className="inline-flex items-center gap-2 text-sm font-bold px-8 py-4 rounded-full border-2 transition-transform hover:-translate-y-0.5"
+              style={{ background: AMBER, color: INK, borderColor: INK, boxShadow: `4px 4px 0 ${INK}` }}
             >
               Try it yourself — it's free
               <ArrowRight className="w-4 h-4" />
@@ -685,52 +707,49 @@ function HowItWorks() {
 
 function Products() {
   return (
-    <section id="products" className="bg-white py-28 px-6 md:px-12">
+    <section id="products" className="py-28 px-6 md:px-12" style={{ background: CREAM, fontFamily: display.fontFamily }}>
       <div className="max-w-7xl mx-auto">
 
         <Reveal>
-          <p className="text-xs font-bold tracking-widest uppercase text-gray-400 mb-3">Our products</p>
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 tracking-tight leading-tight max-w-2xl">
+          <p className="text-xs font-bold tracking-widest uppercase mb-3" style={{ color: "#9a948b" }}>Our products</p>
+          <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight leading-tight max-w-2xl" style={{ color: INK }}>
             Eighteen tools. Every small business covered.
           </h2>
-          <p className="mt-4 text-lg text-gray-500 max-w-xl">
+          <p className="mt-4 text-lg max-w-xl" style={{ color: "#54514c" }}>
             Pick the one you need today. Each product is fully standalone — no bundles, no bloat, no paying for things you don't use.
           </p>
         </Reveal>
 
         <div className="mt-14 grid md:grid-cols-2 xl:grid-cols-3 gap-6">
           {PRODUCTS.map((p, i) => (
-            <Reveal key={p.key} delay={i * 80}>
-              <div className="group relative bg-white rounded-3xl border border-gray-200 overflow-hidden hover:shadow-2xl hover:-translate-y-1.5 hover:border-transparent transition-all duration-300 flex flex-col h-full">
+            <Reveal key={p.key} delay={i * 60}>
+              <div className="group relative bg-white rounded-[24px] border-2 overflow-hidden flex flex-col h-full transition-transform hover:-translate-y-1.5" style={{ borderColor: INK, boxShadow: `6px 6px 0 ${p.accent}` }}>
 
-                <div className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
-                  style={{ boxShadow: `0 20px 50px -12px ${p.accent}55`, border: `1px solid ${p.accent}30` }} />
+                <div className="h-2 w-full" style={{ background: p.accent, borderBottom: `2px solid ${INK}` }} />
 
-                <div className="h-1.5 w-full" style={{ background: `linear-gradient(90deg, ${p.accent}, ${p.accent}88)` }} />
-
-                <div className="p-8 flex flex-col flex-1">
-                  <div className="flex items-start justify-between mb-6">
+                <div className="p-7 flex flex-col flex-1">
+                  <div className="flex items-start justify-between mb-5">
                     <div className="flex items-center gap-3">
-                      <div className="w-12 h-12 rounded-2xl flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform duration-300"
-                        style={{ background: `linear-gradient(135deg, ${p.accentLight}, ${p.accent}22)` }}>
-                        <p.Icon className="w-6 h-6" style={{ color: p.accent }} />
+                      <div className="w-12 h-12 rounded-[14px] border-2 flex items-center justify-center transition-transform group-hover:scale-105"
+                        style={{ background: p.accent, borderColor: INK }}>
+                        <p.Icon className="w-6 h-6 text-white" />
                       </div>
                       <div>
-                        <h3 className="text-lg font-bold text-gray-900 leading-tight">{p.name}</h3>
-                        <p className="text-xs font-semibold mt-0.5" style={{ color: p.accent }}>{p.tagline}</p>
+                        <h3 className="text-lg font-extrabold leading-tight" style={{ color: INK }}>{p.name}</h3>
+                        <p className="text-xs font-bold mt-0.5" style={{ color: p.accent }}>{p.tagline}</p>
                       </div>
                     </div>
                     <div className="text-right shrink-0 ml-2">
-                      <p className="text-xl font-bold text-gray-900">{p.stat.value}</p>
-                      <p className="text-xs text-gray-400 leading-tight max-w-[80px]">{p.stat.label}</p>
+                      <p className="text-xl font-extrabold" style={{ color: INK }}>{p.stat.value}</p>
+                      <p className="text-xs leading-tight max-w-[80px]" style={{ color: "#9a948b" }}>{p.stat.label}</p>
                     </div>
                   </div>
 
-                  <p className="text-sm text-gray-500 leading-relaxed mb-6">{p.desc}</p>
+                  <p className="text-sm leading-relaxed mb-5" style={{ color: "#54514c" }}>{p.desc}</p>
 
-                  <ul className="grid grid-cols-1 gap-2 mb-8 flex-1">
+                  <ul className="grid grid-cols-1 gap-2 mb-7 flex-1">
                     {p.features.map(f => (
-                      <li key={f} className="flex items-center gap-2 text-sm text-gray-600">
+                      <li key={f} className="flex items-center gap-2 text-sm font-medium" style={{ color: "#3f3b36" }}>
                         <CheckCircle2 className="w-3.5 h-3.5 shrink-0" style={{ color: p.accent }} />
                         {f}
                       </li>
@@ -738,11 +757,11 @@ function Products() {
                   </ul>
 
                   <div className="flex gap-3 mt-auto">
-                    <Link href={p.register} className="flex-1 text-center text-sm font-semibold text-white py-3 rounded-2xl transition-all hover:-translate-y-0.5 hover:shadow-lg"
-                      style={{ background: `linear-gradient(135deg, ${p.accent}, ${p.accent}cc)`, boxShadow: `0 8px 20px -8px ${p.accent}99` }}>
+                    <Link href={p.register} className="flex-1 text-center text-sm font-bold py-3 rounded-full border-2 transition-transform hover:-translate-y-0.5"
+                      style={{ background: INK, color: "#fff", borderColor: INK }}>
                       Try free
                     </Link>
-                    <Link href={p.href} className="flex items-center gap-1.5 justify-center text-sm font-semibold text-gray-700 px-5 py-3 rounded-2xl border border-gray-200 hover:border-gray-400 transition-colors">
+                    <Link href={p.href} className="flex items-center gap-1.5 justify-center text-sm font-bold px-5 py-3 rounded-full border-2 bg-white transition-transform hover:-translate-y-0.5" style={{ color: INK, borderColor: INK }}>
                       Learn more <ArrowRight className="w-3.5 h-3.5" />
                     </Link>
                   </div>
@@ -769,16 +788,16 @@ const WHY = [
 
 function Why() {
   return (
-    <section id="why" className="bg-[#0a0f1e] py-28 px-6 md:px-12">
+    <section id="why" className="py-28 px-6 md:px-12" style={{ background: BLUE, fontFamily: display.fontFamily }}>
       <div className="max-w-7xl mx-auto">
 
         <Reveal>
-          <p className="text-xs font-bold tracking-widest uppercase text-white/30 mb-3">Why Smapey</p>
-          <h2 className="text-4xl md:text-5xl font-bold text-white tracking-tight leading-tight max-w-2xl">
+          <p className="text-xs font-bold tracking-widest uppercase mb-3" style={{ color: "rgba(255,255,255,.6)" }}>Why Smapey</p>
+          <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight leading-tight max-w-2xl" style={{ color: "#fff" }}>
             Simple is a feature,<br />
-            <span className="text-white/40">not a compromise.</span>
+            <span style={{ color: AMBER }}>not a compromise.</span>
           </h2>
-          <p className="mt-4 text-white/40 max-w-lg text-base leading-relaxed">
+          <p className="mt-4 max-w-lg text-base leading-relaxed" style={{ color: "rgba(255,255,255,.7)" }}>
             Most business software is designed by people who've never run a small business. We built Smapey from the opposite direction — starting with what you actually need.
           </p>
         </Reveal>
@@ -786,12 +805,12 @@ function Why() {
         <div className="mt-14 grid sm:grid-cols-2 md:grid-cols-4 gap-4">
           {WHY.map((w, i) => (
             <Reveal key={w.title} delay={i * 80}>
-              <div className="bg-white/5 hover:bg-white/8 border border-white/8 rounded-3xl p-7 transition-colors h-full">
-                <div className="w-11 h-11 rounded-2xl bg-white/10 flex items-center justify-center mb-5">
-                  <w.Icon className="w-5 h-5 text-white/60" />
+              <div className="bg-white rounded-[22px] border-2 p-7 h-full transition-transform hover:-translate-y-1" style={{ borderColor: INK, boxShadow: `5px 5px 0 ${INK}` }}>
+                <div className="w-12 h-12 rounded-[14px] border-2 flex items-center justify-center mb-5" style={{ background: AMBER, borderColor: INK }}>
+                  <w.Icon className="w-5 h-5" style={{ color: INK }} />
                 </div>
-                <h3 className="text-base font-semibold text-white mb-2">{w.title}</h3>
-                <p className="text-sm text-white/40 leading-relaxed">{w.desc}</p>
+                <h3 className="text-base font-extrabold mb-2" style={{ color: INK }}>{w.title}</h3>
+                <p className="text-sm leading-relaxed" style={{ color: "#54514c" }}>{w.desc}</p>
               </div>
             </Reveal>
           ))}
@@ -799,34 +818,34 @@ function Why() {
 
         {/* COMPARISON */}
         <Reveal delay={200}>
-          <div className="mt-10 bg-white/5 border border-white/8 rounded-3xl p-8">
-            <p className="text-sm font-semibold text-white/50 mb-6 uppercase tracking-widest">Smapey vs. the old way</p>
-            <div className="grid md:grid-cols-2 gap-6">
+          <div className="mt-10 bg-white rounded-[24px] border-2 p-8" style={{ borderColor: INK, boxShadow: `8px 8px 0 ${INK}` }}>
+            <p className="text-sm font-extrabold mb-6 uppercase tracking-widest" style={{ color: INK }}>Smapey vs. the old way</p>
+            <div className="grid md:grid-cols-2 gap-8">
               <div>
-                <p className="text-xs font-bold text-red-400 uppercase tracking-widest mb-4">The old way</p>
+                <p className="text-xs font-extrabold uppercase tracking-widest mb-4" style={{ color: "#e11d48" }}>The old way</p>
                 {[
                   "5+ apps, 5+ monthly subscriptions",
                   "Weeks of setup before you see any value",
                   "Manual spreadsheets for everything",
                   "Enterprise tools priced for enterprises",
                 ].map(t => (
-                  <div key={t} className="flex items-center gap-3 py-2.5 border-b border-white/5">
-                    <X className="w-4 h-4 text-red-400 shrink-0" />
-                    <span className="text-sm text-white/40">{t}</span>
+                  <div key={t} className="flex items-center gap-3 py-2.5 border-b" style={{ borderColor: "rgba(22,22,22,.08)" }}>
+                    <X className="w-4 h-4 shrink-0" style={{ color: "#e11d48" }} />
+                    <span className="text-sm font-medium" style={{ color: "#54514c" }}>{t}</span>
                   </div>
                 ))}
               </div>
               <div>
-                <p className="text-xs font-bold text-emerald-400 uppercase tracking-widest mb-4">With Smapey</p>
+                <p className="text-xs font-extrabold uppercase tracking-widest mb-4" style={{ color: "#0d9f6e" }}>With Smapey</p>
                 {[
                   "One platform, pick only what you need",
                   "Ready to use in minutes, not weeks",
                   "Everything tracked automatically",
                   "Free to start, affordable to grow",
                 ].map(t => (
-                  <div key={t} className="flex items-center gap-3 py-2.5 border-b border-white/5">
-                    <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
-                    <span className="text-sm text-white/70">{t}</span>
+                  <div key={t} className="flex items-center gap-3 py-2.5 border-b" style={{ borderColor: "rgba(22,22,22,.08)" }}>
+                    <CheckCircle2 className="w-4 h-4 shrink-0" style={{ color: "#0d9f6e" }} />
+                    <span className="text-sm font-semibold" style={{ color: INK }}>{t}</span>
                   </div>
                 ))}
               </div>
@@ -843,36 +862,37 @@ function Why() {
 //////////////////////////////////////////////////////
 
 function Testimonials() {
+  const acc = [AMBER, BLUE, AMBER, BLUE, AMBER, BLUE]
   return (
-    <section className="bg-gray-50 py-24 px-6 md:px-12">
+    <section className="py-28 px-6 md:px-12" style={{ background: CREAM, fontFamily: display.fontFamily }}>
       <div className="max-w-6xl mx-auto">
         <Reveal className="text-center mb-14">
-          <p className="text-xs font-bold tracking-widest uppercase text-gray-400 mb-3">Real businesses</p>
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 tracking-tight">
+          <p className="text-xs font-bold tracking-widest uppercase mb-3" style={{ color: "#9a948b" }}>Real businesses</p>
+          <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight" style={{ color: INK }}>
             Small business owners love it.
           </h2>
-          <p className="mt-3 text-gray-500 max-w-md mx-auto">
+          <p className="mt-3 max-w-md mx-auto" style={{ color: "#54514c" }}>
             From gym owners to freelancers — here's what they say after switching to Smapey.
           </p>
         </Reveal>
 
         <div className="grid md:grid-cols-3 gap-6">
           {TESTIMONIALS.map((t, i) => (
-            <Reveal key={t.name} delay={i * 100}>
-              <div className="bg-white rounded-3xl border border-gray-200 p-7 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 h-full flex flex-col">
+            <Reveal key={t.name} delay={i * 80}>
+              <div className="bg-white rounded-[24px] border-2 p-7 h-full flex flex-col transition-transform hover:-translate-y-1" style={{ borderColor: INK, boxShadow: `6px 6px 0 ${acc[i % acc.length]}` }}>
                 <div className="flex gap-1 mb-5">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-4 h-4 text-yellow-400 fill-yellow-400" />
+                  {[...Array(5)].map((_, j) => (
+                    <Star key={j} className="w-4 h-4" style={{ color: AMBER, fill: AMBER }} />
                   ))}
                 </div>
-                <p className="text-sm text-gray-600 leading-relaxed flex-1">"{t.quote}"</p>
-                <div className="flex items-center gap-3 mt-6 pt-5 border-t border-gray-100">
-                  <div className={`w-10 h-10 rounded-full ${t.color} flex items-center justify-center shrink-0`}>
+                <p className="text-sm leading-relaxed flex-1" style={{ color: "#3f3b36" }}>"{t.quote}"</p>
+                <div className="flex items-center gap-3 mt-6 pt-5 border-t" style={{ borderColor: "rgba(22,22,22,.1)" }}>
+                  <div className={`w-10 h-10 rounded-full ${t.color} flex items-center justify-center shrink-0 border-2`} style={{ borderColor: INK }}>
                     <span className="text-xs font-bold text-white">{t.avatar}</span>
                   </div>
                   <div>
-                    <p className="text-sm font-semibold text-gray-800">{t.name}</p>
-                    <p className="text-xs text-gray-400">{t.role}</p>
+                    <p className="text-sm font-extrabold" style={{ color: INK }}>{t.name}</p>
+                    <p className="text-xs" style={{ color: "#9a948b" }}>{t.role}</p>
                   </div>
                 </div>
               </div>
@@ -890,17 +910,17 @@ function Testimonials() {
 
 function CTA() {
   return (
-    <section id="cta" className="bg-white py-28 px-6 text-center">
-      <div className="max-w-3xl mx-auto">
+    <section id="cta" className="py-28 px-6" style={{ background: "#fff", fontFamily: display.fontFamily }}>
+      <div className="max-w-5xl mx-auto rounded-[32px] border-2 p-10 md:p-16 text-center" style={{ background: AMBER, borderColor: INK, boxShadow: `10px 10px 0 ${INK}` }}>
 
         <Reveal>
-          <div className="inline-flex items-center gap-2 bg-emerald-50 text-emerald-700 rounded-full px-4 py-2 text-xs font-semibold mb-6">
+          <div className="inline-flex items-center gap-2 bg-white border-2 rounded-full px-4 py-2 text-xs font-bold mb-6" style={{ color: INK, borderColor: INK }}>
             <CheckCircle2 className="w-3.5 h-3.5" /> Free plan · No credit card · Cancel anytime
           </div>
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 tracking-tight leading-tight">
+          <h2 className="text-4xl md:text-6xl font-extrabold tracking-tight leading-[1.02]" style={{ color: INK }}>
             Your business deserves<br />better tools.
           </h2>
-          <p className="mt-5 text-lg text-gray-500 max-w-lg mx-auto">
+          <p className="mt-5 text-lg max-w-lg mx-auto font-medium" style={{ color: "#5c4a28" }}>
             Join thousands of small business owners who stopped wrestling with spreadsheets and expensive software — and just started running their business.
           </p>
         </Reveal>
@@ -909,14 +929,14 @@ function CTA() {
           <div className="mt-10 flex flex-wrap gap-3 justify-center">
             {PRODUCTS.map(p => (
               <Link key={p.key} href={p.register}
-                className="flex items-center gap-2 text-sm font-semibold px-5 py-3 rounded-2xl border-2 transition-all hover:-translate-y-0.5 hover:shadow-md"
-                style={{ borderColor: p.accent, color: p.accent }}>
-                <p.Icon className="w-4 h-4" />
+                className="flex items-center gap-2 text-sm font-bold px-5 py-3 rounded-full border-2 bg-white transition-transform hover:-translate-y-0.5"
+                style={{ color: INK, borderColor: INK }}>
+                <p.Icon className="w-4 h-4" style={{ color: p.accent }} />
                 {p.name}
               </Link>
             ))}
           </div>
-          <p className="mt-8 text-sm text-gray-400">
+          <p className="mt-8 text-sm font-semibold" style={{ color: "#5c4a28" }}>
             Start with one tool. Add more whenever you're ready.
           </p>
         </Reveal>
@@ -931,28 +951,28 @@ function CTA() {
 
 function Footer() {
   return (
-    <footer className="bg-gray-50 border-t border-gray-200 px-6 md:px-12 py-12">
+    <footer className="px-6 md:px-12 py-12" style={{ background: CREAM, borderTop: `2px solid ${INK}`, fontFamily: display.fontFamily }}>
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
 
           <div>
             <div className="flex items-center gap-2.5 mb-2">
               <img src="/logo.png" alt="Smapey" className="h-7 w-7 object-contain" />
-              <span className="text-base font-bold text-gray-900">Smapey</span>
+              <span className="text-base font-extrabold" style={{ color: INK }}>Smapey</span>
             </div>
-            <p className="text-xs text-gray-400 max-w-[200px] leading-relaxed">Simple business software for small businesses & startups.</p>
+            <p className="text-xs max-w-[200px] leading-relaxed" style={{ color: "#9a948b" }}>Simple business software for small businesses & startups.</p>
           </div>
 
           <div className="flex flex-wrap gap-x-8 gap-y-2">
             {PRODUCTS.map(p => (
-              <Link key={p.key} href={p.href} className="text-sm text-gray-500 hover:text-gray-900 transition-colors">{p.name}</Link>
+              <Link key={p.key} href={p.href} className="text-sm font-medium hover:opacity-60 transition-opacity" style={{ color: "#54514c" }}>{p.name}</Link>
             ))}
-            <Link href="/blog" className="text-sm text-gray-500 hover:text-gray-900 transition-colors">Blog</Link>
-            <Link href="/privacy-policy" className="text-sm text-gray-500 hover:text-gray-900 transition-colors">Privacy</Link>
-            <Link href="/terms-and-conditions" className="text-sm text-gray-500 hover:text-gray-900 transition-colors">Terms</Link>
+            <Link href="/blog" className="text-sm font-medium hover:opacity-60 transition-opacity" style={{ color: "#54514c" }}>Blog</Link>
+            <Link href="/privacy-policy" className="text-sm font-medium hover:opacity-60 transition-opacity" style={{ color: "#54514c" }}>Privacy</Link>
+            <Link href="/terms-and-conditions" className="text-sm font-medium hover:opacity-60 transition-opacity" style={{ color: "#54514c" }}>Terms</Link>
           </div>
 
-          <span className="text-sm text-gray-300">© {new Date().getFullYear()} Smapey</span>
+          <span className="text-sm" style={{ color: "#b8b2a8" }}>© {new Date().getFullYear()} Smapey</span>
         </div>
       </div>
     </footer>
