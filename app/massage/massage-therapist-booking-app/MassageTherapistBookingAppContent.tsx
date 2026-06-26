@@ -8,49 +8,19 @@ import {
 import { usePricing, type Plan } from "@/lib/usePricing"
 import InternalLinks from "@/components/InternalLinks"
 
+const INK = "#161616"
+const BLUE = "#2f6bff"
+const AMBER = "#ff9e2c"
+const CREAM = "#fbf7f0"
+const display = { fontFamily: "'Hanken Grotesk', system-ui, sans-serif" }
+
 const FEATURES = [
-  {
-    icon: UserCheck,
-    title: "Therapist Profiles with Specialties",
-    desc: "Each therapist gets a profile with their name, contact details, and specialties — Swedish, deep tissue, Thai, hot stone, prenatal. Clients see who's qualified for what they need.",
-    color: "from-emerald-600 to-teal-400",
-    shadow: "shadow-emerald-500/20",
-  },
-  {
-    icon: Star,
-    title: "Client Picks Their Therapist",
-    desc: "On the public booking page, clients optionally choose their preferred therapist. The request flows into your inbox so you can honor it on confirmation — building repeat loyalty.",
-    color: "from-teal-600 to-emerald-400",
-    shadow: "shadow-teal-500/20",
-  },
-  {
-    icon: CalendarPlus,
-    title: "Per-Therapist Appointment View",
-    desc: "Filter the appointment list by therapist to see exactly who's busy today and who has open slots. Plan walk-ins, breaks, and lunch around real availability.",
-    color: "from-emerald-500 to-cyan-400",
-    shadow: "shadow-emerald-500/20",
-  },
-  {
-    icon: Heart,
-    title: "Client History per Therapist",
-    desc: "When a client returns, their therapist sees the full session history — preferred pressure, focus areas, last treatment, allergies. Continuity that makes returning clients feel known.",
-    color: "from-cyan-500 to-emerald-400",
-    shadow: "shadow-cyan-500/20",
-  },
-  {
-    icon: Users,
-    title: "Roles & Permissions",
-    desc: "Owners see everything — revenue, settings, all bookings. Each therapist can see only their own schedule and clients. No data leaks, no accidental edits.",
-    color: "from-teal-500 to-cyan-400",
-    shadow: "shadow-teal-500/20",
-  },
-  {
-    icon: Globe,
-    title: "Per-Therapist Booking Link",
-    desc: "Share your spa's branded booking page, where clients can see the full therapist roster, pick their favorite, and book. Perfect for Instagram bios and therapist business cards.",
-    color: "from-emerald-600 to-green-500",
-    shadow: "shadow-emerald-600/20",
-  },
+  { icon: UserCheck, title: "Therapist Profiles with Specialties", desc: "Each therapist gets a profile with their name, contact details, and specialties — Swedish, deep tissue, Thai, hot stone, prenatal. Clients see who's qualified for what they need." },
+  { icon: Star, title: "Client Picks Their Therapist", desc: "On the public booking page, clients optionally choose their preferred therapist. The request flows into your inbox so you can honor it on confirmation — building repeat loyalty." },
+  { icon: CalendarPlus, title: "Per-Therapist Appointment View", desc: "Filter the appointment list by therapist to see exactly who's busy today and who has open slots. Plan walk-ins, breaks, and lunch around real availability." },
+  { icon: Heart, title: "Client History per Therapist", desc: "When a client returns, their therapist sees the full session history — preferred pressure, focus areas, last treatment, allergies. Continuity that makes returning clients feel known." },
+  { icon: Users, title: "Roles & Permissions", desc: "Owners see everything — revenue, settings, all bookings. Each therapist can see only their own schedule and clients. No data leaks, no accidental edits." },
+  { icon: Globe, title: "Per-Therapist Booking Link", desc: "Share your spa's branded booking page, where clients can see the full therapist roster, pick their favorite, and book. Perfect for Instagram bios and therapist business cards." },
 ]
 
 const COMPARISON = [
@@ -64,22 +34,10 @@ const COMPARISON = [
 ]
 
 const FAQS = [
-  {
-    q: "Can clients actually request a specific therapist when booking?",
-    a: "Yes. On the public booking page, after picking a treatment, clients see an optional therapist selector with names and specialties. The request flows into your inquiry inbox so you can honor it when confirming the appointment.",
-  },
-  {
-    q: "What if my preferred therapist is busy at the requested time?",
-    a: "Smapey uses a request-and-confirm model — clients send a booking inquiry, you decide whether to accept it. If the requested therapist isn't available, you can reassign on confirmation and message the client. No double-booking, no automatic conflicts.",
-  },
-  {
-    q: "Can each therapist see only their own bookings?",
-    a: "Yes. Team members with the MEMBER role see only the appointments assigned to them — not the spa's full schedule or revenue. Owners and admins see everything. You control access through user roles.",
-  },
-  {
-    q: "Does this work for solo massage therapists too?",
-    a: "Absolutely. Solo therapists use Smapey to run their own branded booking page — your name, your services, your specialties, your clients. The free plan supports a solo practice with an optional second team member (often a receptionist or assistant).",
-  },
+  { q: "Can clients actually request a specific therapist when booking?", a: "Yes. On the public booking page, after picking a treatment, clients see an optional therapist selector with names and specialties. The request flows into your inquiry inbox so you can honor it when confirming the appointment." },
+  { q: "What if my preferred therapist is busy at the requested time?", a: "Smapey uses a request-and-confirm model — clients send a booking inquiry, you decide whether to accept it. If the requested therapist isn't available, you can reassign on confirmation and message the client. No double-booking, no automatic conflicts." },
+  { q: "Can each therapist see only their own bookings?", a: "Yes. Team members with the MEMBER role see only the appointments assigned to them — not the spa's full schedule or revenue. Owners and admins see everything. You control access through user roles." },
+  { q: "Does this work for solo massage therapists too?", a: "Absolutely. Solo therapists use Smapey to run their own branded booking page — your name, your services, your specialties, your clients. The free plan supports a solo practice with an optional second team member (often a receptionist or assistant)." },
 ]
 
 function useInView(options?: IntersectionObserverInit) {
@@ -88,24 +46,17 @@ function useInView(options?: IntersectionObserverInit) {
   useEffect(() => {
     const el = ref.current
     if (!el) return
-    const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) { setInView(true); observer.disconnect() } },
-      { threshold: 0.15, ...options }
-    )
+    const observer = new IntersectionObserver(([entry]) => { if (entry.isIntersecting) { setInView(true); observer.disconnect() } }, { threshold: 0.15, ...options })
     observer.observe(el)
     return () => observer.disconnect()
   }, [])
   return { ref, inView }
 }
 
-function Animate({ children, className = "", delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) {
+function Animate({ children, className = "", delay = 0, style }: { children: React.ReactNode; className?: string; delay?: number; style?: React.CSSProperties }) {
   const { ref, inView } = useInView()
   return (
-    <div ref={ref} className={className} style={{
-      transitionProperty: "opacity, transform", transitionDuration: "600ms",
-      transitionTimingFunction: "cubic-bezier(0.4,0,0.2,1)", transitionDelay: `${delay}ms`,
-      opacity: inView ? 1 : 0, transform: inView ? "translateY(0)" : "translateY(28px)",
-    }}>
+    <div ref={ref} className={className} style={{ ...style, transitionProperty: "opacity, transform", transitionDuration: "600ms", transitionTimingFunction: "cubic-bezier(0.4,0,0.2,1)", transitionDelay: `${delay}ms`, opacity: inView ? 1 : 0, transform: inView ? "translateY(0)" : "translateY(28px)" }}>
       {children}
     </div>
   )
@@ -113,41 +64,36 @@ function Animate({ children, className = "", delay = 0 }: { children: React.Reac
 
 function Navbar() {
   const [open, setOpen] = useState(false)
-  const [scrolled, setScrolled] = useState(false)
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20)
-    window.addEventListener("scroll", onScroll)
-    return () => window.removeEventListener("scroll", onScroll)
+    const id = "smapey-pop-fonts"
+    if (!document.getElementById(id)) {
+      const l = document.createElement("link"); l.id = id; l.rel = "stylesheet"
+      l.href = "https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap"
+      document.head.appendChild(l)
+    }
   }, [])
   return (
-    <nav className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${scrolled ? "bg-[#0a1812]/90 backdrop-blur-md border-b border-white/5 shadow-lg" : "bg-transparent"}`}>
+    <nav className="fixed top-0 inset-x-0 z-50" style={{ background: CREAM, borderBottom: `2px solid ${INK}`, fontFamily: display.fontFamily }}>
       <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
         <a href="/massage" className="flex items-center gap-2.5">
-          <img src="/logo.png" alt="Massage and Spa" className="w-8 h-8 rounded-lg object-cover" />
-          <span className="text-white font-bold tracking-tight">Smapey Massage & Spa</span>
+          <img src="/logo.png" alt="Smapey" className="w-8 h-8 rounded-lg object-cover" />
+          <span className="font-extrabold tracking-tight" style={{ color: INK }}>Smapey Massage</span>
         </a>
         <div className="hidden md:flex items-center gap-8">
-          <a href="/massage" className="text-sm text-white/60 hover:text-white transition-colors">Home</a>
-          <a href="/massage/guide" className="text-sm text-white/60 hover:text-white transition-colors">Guide</a>
+          <a href="/massage" className="text-sm font-semibold hover:opacity-60 transition-opacity" style={{ color: INK }}>Home</a>
+          <a href="/massage/guide" className="text-sm font-semibold hover:opacity-60 transition-opacity" style={{ color: INK }}>Guide</a>
         </div>
         <div className="hidden md:flex items-center gap-3">
-          <a href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/login`} className="text-sm text-white/60 hover:text-white transition-colors px-4 py-2">Sign in</a>
-          <a href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=MASSAGE&plan=FREE`}
-            className="text-sm font-semibold px-4 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white transition-colors shadow-lg shadow-emerald-500/20">
-            Get started free
-          </a>
+          <a href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/login`} className="text-sm font-semibold hover:opacity-60 transition-opacity px-2 py-2" style={{ color: INK }}>Sign in</a>
+          <a href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=MASSAGE&plan=FREE`} className="text-sm font-bold px-5 py-2.5 rounded-full border-2 transition-transform hover:-translate-y-0.5" style={{ ...display, background: AMBER, color: INK, borderColor: INK, boxShadow: `3px 3px 0 ${INK}` }}>Get started free</a>
         </div>
-        <button onClick={() => setOpen(!open)} className="md:hidden text-white/60 hover:text-white">
-          {open ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-        </button>
+        <button onClick={() => setOpen(!open)} className="md:hidden" style={{ color: INK }}>{open ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}</button>
       </div>
       {open && (
-        <div className="md:hidden bg-[#0a1812] border-t border-white/5 px-6 py-4 flex flex-col gap-4">
-          <a href="/massage" className="text-sm text-white/60 hover:text-white transition-colors">Home</a>
-          <a href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=MASSAGE&plan=FREE`}
-            className="text-sm font-semibold px-4 py-2 rounded-lg bg-emerald-600 text-white text-center">
-            Get started free
-          </a>
+        <div className="md:hidden px-6 py-4 flex flex-col gap-4" style={{ background: CREAM, borderTop: `2px solid ${INK}` }}>
+          <a href="/massage" className="text-sm font-semibold" style={{ color: INK }}>Home</a>
+          <a href="/massage/guide" className="text-sm font-semibold" style={{ color: INK }}>Guide</a>
+          <a href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=MASSAGE&plan=FREE`} className="text-sm font-bold px-4 py-2.5 rounded-full border-2 text-center" style={{ ...display, background: AMBER, color: INK, borderColor: INK }}>Get started free</a>
         </div>
       )}
     </nav>
@@ -156,72 +102,59 @@ function Navbar() {
 
 function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center pt-16 overflow-hidden"
-      style={{ background: "#0a1812", backgroundImage: "repeating-linear-gradient(45deg, rgba(255,255,255,0.02) 0px, rgba(255,255,255,0.02) 1px, transparent 1px, transparent 28px)", backgroundSize: "28px 28px" }}>
-      <div className="absolute -top-40 -left-40 w-[500px] h-[500px] rounded-full pointer-events-none"
-        style={{ background: "radial-gradient(circle, rgba(16,185,129,0.15) 0%, transparent 70%)" }} />
-      <div className="absolute -bottom-40 -right-40 w-[500px] h-[500px] rounded-full pointer-events-none"
-        style={{ background: "radial-gradient(circle, rgba(20,184,166,0.1) 0%, transparent 70%)" }} />
+    <section className="relative min-h-screen flex items-center pt-16 overflow-hidden" style={{ background: CREAM, fontFamily: display.fontFamily }}>
+      <div className="absolute inset-0 pointer-events-none hidden md:block" aria-hidden>
+        <div className="absolute rounded-[22px] border-2" style={{ top: "20%", left: "-70px", width: 280, height: 80, background: AMBER, borderColor: INK, transform: "rotate(-10deg)" }} />
+        <div className="absolute rounded-[22px] border-2" style={{ top: "32%", right: "-80px", width: 300, height: 84, background: BLUE, borderColor: INK, transform: "rotate(8deg)", boxShadow: "5px 5px 0 rgba(22,22,22,.12)" }} />
+        <div className="absolute rounded-[22px] border-2" style={{ bottom: "16%", right: "-60px", width: 270, height: 78, background: AMBER, borderColor: INK, transform: "rotate(-7deg)" }} />
+      </div>
       <div className="relative max-w-6xl mx-auto px-6 py-24 text-center">
-        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-300 text-xs font-semibold mb-6">
-          <UserCheck className="w-3 h-3" />
-          Booking by therapist, not just by time
+        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border-2 text-xs font-bold mb-6" style={{ color: INK, borderColor: INK, boxShadow: `3px 3px 0 ${BLUE}` }}>
+          <Zap className="w-3 h-3" />
+          Built for massage & spa businesses
         </div>
-        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight tracking-tight mb-6">
-          The massage therapist booking app{" "}
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 via-teal-300 to-cyan-300">
-            built around your team
-          </span>
+        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.04] tracking-tight mb-6" style={{ color: INK }}>
+          The massage therapist booking app <span style={{ color: BLUE }}>built around your team</span>
         </h1>
-        <p className="text-lg text-white/50 max-w-2xl mx-auto mb-10 leading-relaxed">
-          Let clients pick their preferred therapist by specialty. Manage every therapist's schedule, history, and client preferences from one dashboard — built for spas, clinics, and independent therapists.
-        </p>
+        <p className="text-lg max-w-2xl mx-auto mb-10 leading-relaxed" style={{ color: "#54514c" }}>Let clients pick their preferred therapist by specialty. Manage every therapist's schedule, history, and client preferences from one dashboard — built for spas, clinics, and independent therapists.</p>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-          <a href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=MASSAGE&plan=FREE`}
-            className="flex items-center gap-2 px-6 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-sm transition-all shadow-lg shadow-emerald-500/20">
+          <a href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=MASSAGE&plan=FREE`} className="flex items-center gap-2 px-7 py-4 rounded-full font-bold text-sm border-2 transition-transform hover:-translate-y-0.5" style={{ ...display, background: AMBER, color: INK, borderColor: INK, boxShadow: `4px 4px 0 ${INK}` }}>
             Start free — no card needed <ChevronRight className="w-4 h-4" />
           </a>
-          <a href="/massage" className="flex items-center gap-2 px-6 py-3 rounded-xl bg-white/5 hover:bg-white/10 text-white/70 hover:text-white font-medium text-sm transition-all border border-white/10">
-            View all features
-          </a>
+          <a href="/massage" className="flex items-center gap-2 px-7 py-4 rounded-full font-bold text-sm border-2 bg-white transition-transform hover:-translate-y-0.5" style={{ ...display, color: INK, borderColor: INK }}>View all features</a>
         </div>
-        <div className="mt-16 flex flex-wrap items-center justify-center gap-6 text-white/30 text-xs">
-          {["No credit card required", "Free plan forever", "Setup in 5 minutes"].map((t) => (
-            <span key={t} className="flex items-center gap-1.5">
-              <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />{t}
-            </span>
-          ))}
+        <div className="mt-16 flex flex-wrap items-center justify-center gap-6 text-xs font-semibold" style={{ color: "#54514c" }}>
+          {["No credit card required", "Free plan forever", "Setup in minutes"].map((t) => (<span key={t} className="flex items-center gap-1.5"><CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />{t}</span>))}
         </div>
       </div>
     </section>
   )
 }
 
-function FeaturesSection() {
+function Features() {
   return (
-    <section className="py-24 bg-slate-50">
+    <section className="py-24" style={{ background: "#fff", fontFamily: display.fontFamily }}>
       <div className="max-w-6xl mx-auto px-6">
         <Animate className="text-center mb-16">
-          <p className="text-emerald-600 text-sm font-semibold uppercase tracking-widest mb-3">Features</p>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-800 tracking-tight">
-            Booking that respects your therapists
-          </h2>
-          <p className="text-slate-500 mt-4 max-w-xl mx-auto">
-            Most booking apps treat your team as interchangeable slots. This one builds your spa around the relationships between clients and therapists.
-          </p>
+          <p className="text-sm font-bold uppercase tracking-widest mb-3" style={{ color: BLUE }}>Features</p>
+          <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight" style={{ color: INK }}>Booking that respects your therapists</h2>
+          <p className="mt-4 max-w-xl mx-auto" style={{ color: "#54514c" }}>Most booking apps treat your team as interchangeable slots. This one builds your spa around the relationships between clients and therapists.</p>
         </Animate>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {FEATURES.map(({ icon: Icon, title, desc, color, shadow }, i) => (
-            <Animate key={title} delay={i * 80}>
-              <div className="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 hover:shadow-md hover:-translate-y-1 transition-all duration-300 h-full">
-                <div className={`w-11 h-11 rounded-xl bg-gradient-to-tr ${color} shadow-lg ${shadow} flex items-center justify-center mb-4`}>
-                  <Icon className="w-5 h-5 text-white" />
+          {FEATURES.map(({ icon: Icon, title, desc }, i) => {
+            const c = i % 2 === 0 ? BLUE : AMBER
+            return (
+              <Animate key={title} delay={i * 80}>
+                <div className="rounded-[22px] p-6 border-2 h-full transition-transform hover:-translate-y-1" style={{ background: CREAM, borderColor: INK, boxShadow: `6px 6px 0 ${c}` }}>
+                  <div className="w-12 h-12 rounded-[14px] border-2 flex items-center justify-center mb-4" style={{ background: c, borderColor: INK }}>
+                    <Icon className="w-5 h-5" style={{ color: c === AMBER ? INK : "#fff" }} />
+                  </div>
+                  <h3 className="font-extrabold mb-2" style={{ color: INK }}>{title}</h3>
+                  <p className="text-sm leading-relaxed" style={{ color: "#54514c" }}>{desc}</p>
                 </div>
-                <h3 className="font-bold text-slate-800 mb-2">{title}</h3>
-                <p className="text-slate-500 text-sm leading-relaxed">{desc}</p>
-              </div>
-            </Animate>
-          ))}
+              </Animate>
+            )
+          })}
         </div>
       </div>
     </section>
@@ -234,39 +167,31 @@ function ComparisonTable() {
   const entPlan = plans.find(p => p.planKey === "ENTERPRISE")
   const proPrice = isPhilippines === null ? "…" : isPhilippines ? proPlan?.phpPrice : proPlan?.usdPrice
   const entPrice = isPhilippines === null ? "…" : isPhilippines ? entPlan?.phpPrice : entPlan?.usdPrice
-
   return (
-    <section className="py-24 bg-white">
+    <section className="py-24" style={{ background: CREAM, fontFamily: display.fontFamily }}>
       <div className="max-w-4xl mx-auto px-6">
         <Animate className="text-center mb-16">
-          <p className="text-emerald-600 text-sm font-semibold uppercase tracking-widest mb-3">Compare Plans</p>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-800 tracking-tight">Free vs. paid plans</h2>
-          <p className="text-slate-500 mt-4">Start free and upgrade only when you're ready.</p>
+          <p className="text-sm font-bold uppercase tracking-widest mb-3" style={{ color: BLUE }}>Compare Plans</p>
+          <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight" style={{ color: INK }}>Free vs. paid plans</h2>
         </Animate>
         <Animate>
-          <div className="overflow-x-auto rounded-2xl border border-slate-200 shadow-sm">
+          <div className="overflow-x-auto rounded-[20px] border-2 bg-white" style={{ borderColor: INK, boxShadow: `8px 8px 0 ${INK}` }}>
             <table className="w-full text-sm">
               <thead>
-                <tr className="border-b border-slate-200">
-                  <th className="text-left px-6 py-4 text-slate-500 font-medium">Feature</th>
-                  <th className="text-center px-6 py-4 text-slate-800 font-bold">Free</th>
-                  <th className="text-center px-6 py-4 text-emerald-700 font-bold bg-emerald-50">Pro <span className="text-xs text-emerald-400 font-normal">{proPrice}/mo</span></th>
-                  <th className="text-center px-6 py-4 text-slate-800 font-bold">Enterprise <span className="text-xs text-slate-400 font-normal">{entPrice}/mo</span></th>
+                <tr style={{ borderBottom: `2px solid ${INK}` }}>
+                  <th className="text-left px-6 py-4 font-bold" style={{ color: "#9a948b" }}>Feature</th>
+                  <th className="text-center px-6 py-4 font-extrabold" style={{ color: INK }}>Free</th>
+                  <th className="text-center px-6 py-4 font-extrabold" style={{ color: "#fff", background: BLUE }}>Pro <span className="text-xs font-medium" style={{ color: "rgba(255,255,255,.7)" }}>{proPrice}/mo</span></th>
+                  <th className="text-center px-6 py-4 font-extrabold" style={{ color: INK }}>Enterprise <span className="text-xs font-medium" style={{ color: "#9a948b" }}>{entPrice}/mo</span></th>
                 </tr>
               </thead>
               <tbody>
                 {COMPARISON.map((row, i) => (
-                  <tr key={row.feature} className={`border-b border-slate-100 ${i % 2 === 0 ? "bg-white" : "bg-slate-50/50"}`}>
-                    <td className="px-6 py-4 text-slate-700 font-medium">{row.feature}</td>
+                  <tr key={row.feature} style={{ borderBottom: "1px solid rgba(22,22,22,.08)", background: i % 2 === 0 ? "#fff" : "#faf7f1" }}>
+                    <td className="px-6 py-4 font-bold" style={{ color: INK }}>{row.feature}</td>
                     {[row.free, row.pro, row.enterprise].map((val, j) => (
-                      <td key={j} className={`text-center px-6 py-4 ${j === 1 ? "bg-emerald-50/50" : ""}`}>
-                        {typeof val === "boolean" ? (
-                          val
-                            ? <CheckCircle2 className="w-5 h-5 text-emerald-500 mx-auto" />
-                            : <XCircle className="w-5 h-5 text-slate-300 mx-auto" />
-                        ) : (
-                          <span className="text-slate-700 font-medium">{val}</span>
-                        )}
+                      <td key={j} className="text-center px-6 py-4" style={j === 1 ? { background: "rgba(47,107,255,.07)" } : undefined}>
+                        {typeof val === "boolean" ? (val ? <CheckCircle2 className="w-5 h-5 mx-auto" style={{ color: BLUE }} /> : <XCircle className="w-5 h-5 mx-auto" style={{ color: "#d8d1c4" }} />) : (<span className="font-bold" style={{ color: INK }}>{val}</span>)}
                       </td>
                     ))}
                   </tr>
@@ -274,12 +199,6 @@ function ComparisonTable() {
               </tbody>
             </table>
           </div>
-        </Animate>
-        <Animate className="text-center mt-8">
-          <a href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=MASSAGE&plan=FREE`}
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-sm transition-all shadow-lg shadow-emerald-500/20">
-            Get started free <ChevronRight className="w-4 h-4" />
-          </a>
         </Animate>
       </div>
     </section>
@@ -289,46 +208,38 @@ function ComparisonTable() {
 function Pricing() {
   const [selectedPlan, setSelectedPlan] = useState<Plan | null>(null)
   const { plans, isPhilippines } = usePricing("MASSAGE")
-  const handleSelect = (p: Plan) => {
-    if (p.planKey === "FREE") { window.location.href = `${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=${p.product}&plan=FREE`; return }
-    setSelectedPlan(p)
-  }
+  const handleSelect = (p: Plan) => { if (p.planKey === "FREE") { window.location.href = `${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=${p.product}&plan=FREE`; return } setSelectedPlan(p) }
   return (
-    <section id="pricing" className="py-24 bg-slate-50">
+    <section id="pricing" className="py-24" style={{ background: "#fff", fontFamily: display.fontFamily }}>
       <div className="max-w-6xl mx-auto px-6">
         <Animate className="text-center mb-16">
-          <p className="text-emerald-600 text-sm font-semibold uppercase tracking-widest mb-3">Pricing</p>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-800 tracking-tight">Start free. Upgrade when ready.</h2>
-          <p className="text-slate-500 mt-4">The free plan stays free forever.</p>
+          <p className="text-sm font-bold uppercase tracking-widest mb-3" style={{ color: BLUE }}>Pricing</p>
+          <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight" style={{ color: INK }}>Start free. Upgrade when ready.</h2>
+          <p className="mt-4" style={{ color: "#54514c" }}>The free plan stays free forever.</p>
           {isPhilippines !== null && (
-            <div className="inline-flex items-center gap-1.5 mt-4 px-3 py-1 rounded-full bg-white border border-slate-200 text-xs text-slate-500 shadow-sm">
+            <div className="inline-flex items-center gap-1.5 mt-4 px-3 py-1 rounded-full bg-white border-2 text-xs font-semibold" style={{ borderColor: INK, color: INK }}>
               <span>{isPhilippines ? "🇵🇭" : "🌍"}</span>
-              <span>Prices in <span className="font-semibold text-slate-700">{isPhilippines ? "Philippine Peso (₱)" : "US Dollar ($)"}</span></span>
+              <span>Prices in <span className="font-extrabold">{isPhilippines ? "Philippine Peso (₱)" : "US Dollar ($)"}</span></span>
             </div>
           )}
         </Animate>
-        <div className="grid md:grid-cols-3 gap-6 items-center">
+        <div className="grid md:grid-cols-3 gap-6 items-stretch">
           {plans.map((p, i) => {
             const displayPrice = isPhilippines === null ? "..." : isPhilippines ? p.phpPrice : p.usdPrice
             return (
               <Animate key={p.name} delay={i * 100}>
-                <div className={`rounded-2xl p-8 border transition-all duration-300 hover:-translate-y-1 ${p.highlight ? "bg-gradient-to-b from-emerald-700 to-teal-900 border-emerald-500/30 shadow-2xl shadow-emerald-500/20 scale-105" : "bg-white border-slate-200 shadow-sm hover:shadow-md"}`}>
-                  {p.highlight && <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-teal-400/20 text-teal-200 text-xs font-semibold mb-4"><Zap className="w-3 h-3" /> Most popular</span>}
-                  <p className={`font-bold text-lg mb-1 ${p.highlight ? "text-white" : "text-slate-800"}`}>{p.name}</p>
-                  <p className={`text-sm mb-4 ${p.highlight ? "text-emerald-200/60" : "text-slate-400"}`}>{p.desc}</p>
+                <div className="rounded-[24px] p-8 border-2 h-full transition-transform hover:-translate-y-1" style={p.highlight ? { background: BLUE, borderColor: INK, boxShadow: `8px 8px 0 ${INK}`, color: "#fff" } : { background: "#fff", borderColor: INK, boxShadow: `8px 8px 0 ${AMBER}` }}>
+                  {p.highlight && <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full border-2 text-xs font-bold mb-4" style={{ background: AMBER, color: INK, borderColor: INK }}><Zap className="w-3 h-3" /> Most popular</span>}
+                  <p className="font-extrabold text-lg mb-1" style={{ color: p.highlight ? "#fff" : INK }}>{p.name}</p>
+                  <p className="text-sm mb-4" style={{ color: p.highlight ? "rgba(255,255,255,.7)" : "#9a948b" }}>{p.desc}</p>
                   <div className="flex items-end gap-1 mb-6">
-                    <span className={`text-4xl font-extrabold tracking-tight ${p.highlight ? "text-white" : "text-slate-800"}`}>{displayPrice}</span>
-                    <span className={`text-sm mb-1 ${p.highlight ? "text-emerald-200/50" : "text-slate-400"}`}>{p.period}</span>
+                    <span className="text-4xl font-extrabold tracking-tight" style={{ color: p.highlight ? "#fff" : INK }}>{displayPrice}</span>
+                    <span className="text-sm mb-1" style={{ color: p.highlight ? "rgba(255,255,255,.6)" : "#9a948b" }}>{p.period}</span>
                   </div>
                   <ul className="space-y-3 mb-8">
-                    {p.features.map((f) => (
-                      <li key={f} className="flex items-center gap-2.5 text-sm">
-                        <CheckCircle2 className={`w-4 h-4 shrink-0 ${p.highlight ? "text-teal-300" : "text-emerald-500"}`} />
-                        <span className={p.highlight ? "text-emerald-100/80" : "text-slate-600"}>{f}</span>
-                      </li>
-                    ))}
+                    {p.features.map((f) => (<li key={f} className="flex items-center gap-2.5 text-sm"><CheckCircle2 className="w-4 h-4 shrink-0" style={{ color: p.highlight ? AMBER : BLUE }} /><span style={{ color: p.highlight ? "rgba(255,255,255,.85)" : "#3f3b36" }}>{f}</span></li>))}
                   </ul>
-                  <button onClick={() => handleSelect(p)} className={`w-full text-center py-2.5 rounded-xl text-sm font-semibold transition-all ${p.highlight ? "bg-teal-400 hover:bg-teal-300 text-teal-900 shadow-lg shadow-teal-400/25" : "bg-emerald-600 hover:bg-emerald-500 text-white shadow-md shadow-emerald-500/20"}`}>{p.cta}</button>
+                  <button onClick={() => handleSelect(p)} className="w-full text-center py-3 rounded-full text-sm font-bold border-2 transition-transform hover:-translate-y-0.5" style={p.highlight ? { ...display, background: AMBER, color: INK, borderColor: INK } : { ...display, background: INK, color: "#fff", borderColor: INK }}>{p.cta}</button>
                 </div>
               </Animate>
             )
@@ -343,24 +254,18 @@ function Pricing() {
 function FAQ() {
   const [open, setOpen] = useState<number | null>(null)
   return (
-    <section className="py-24 bg-white">
+    <section id="faq" className="py-24" style={{ background: CREAM, fontFamily: display.fontFamily }}>
       <div className="max-w-2xl mx-auto px-6">
         <Animate className="text-center mb-16">
-          <p className="text-emerald-600 text-sm font-semibold uppercase tracking-widest mb-3">FAQ</p>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-800 tracking-tight">Common questions</h2>
+          <p className="text-sm font-bold uppercase tracking-widest mb-3" style={{ color: BLUE }}>FAQ</p>
+          <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight" style={{ color: INK }}>Common questions</h2>
         </Animate>
         <div className="flex flex-col gap-3">
           {FAQS.map(({ q, a }, i) => (
             <Animate key={i} delay={i * 60}>
-              <div className="border border-slate-200 rounded-xl overflow-hidden">
-                <button onClick={() => setOpen(open === i ? null : i)}
-                  className="w-full flex items-center justify-between px-5 py-4 text-left text-slate-700 font-medium text-sm hover:bg-slate-50 transition-colors">
-                  {q}
-                  <ChevronRight className={`w-4 h-4 text-emerald-400 transition-transform duration-200 shrink-0 ${open === i ? "rotate-90" : ""}`} />
-                </button>
-                {open === i && (
-                  <div className="px-5 pb-4 text-sm text-slate-500 leading-relaxed border-t border-slate-100 pt-3">{a}</div>
-                )}
+              <div className="rounded-[18px] overflow-hidden border-2 bg-white" style={{ borderColor: INK }}>
+                <button onClick={() => setOpen(open === i ? null : i)} className="w-full flex items-center justify-between px-5 py-4 text-left font-bold text-sm" style={{ color: INK }}>{q}<ChevronRight className="w-4 h-4 transition-transform duration-200 shrink-0" style={{ color: BLUE, transform: open === i ? "rotate(90deg)" : "rotate(0deg)" }} /></button>
+                {open === i && <div className="px-5 pb-4 text-sm leading-relaxed pt-3" style={{ color: "#54514c", borderTop: "1px solid rgba(22,22,22,.1)" }}>{a}</div>}
               </div>
             </Animate>
           ))}
@@ -372,19 +277,11 @@ function FAQ() {
 
 function CTA() {
   return (
-    <section className="py-24 relative overflow-hidden"
-      style={{ background: "#0a1812", backgroundImage: "repeating-linear-gradient(45deg, rgba(255,255,255,0.02) 0px, rgba(255,255,255,0.02) 1px, transparent 1px, transparent 28px)", backgroundSize: "28px 28px" }}>
-      <div className="absolute -top-40 -left-40 w-[400px] h-[400px] rounded-full pointer-events-none"
-        style={{ background: "radial-gradient(circle, rgba(16,185,129,0.08) 0%, transparent 70%)" }} />
-      <Animate className="relative max-w-2xl mx-auto px-6 text-center">
-        <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight mb-4">
-          Build your spa around your therapists
-        </h2>
-        <p className="text-white/40 mb-8">Free forever. No card. The therapist booking app your team will actually want to use.</p>
-        <a href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=MASSAGE&plan=FREE`}
-          className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-400 hover:from-emerald-500 hover:to-teal-300 text-white font-semibold transition-all shadow-xl shadow-emerald-500/20">
-          Get started for free <ChevronRight className="w-4 h-4" />
-        </a>
+    <section className="py-24 px-6" style={{ background: "#fff", fontFamily: display.fontFamily }}>
+      <Animate className="relative max-w-3xl mx-auto rounded-[30px] border-2 p-12 md:p-16 text-center" style={{ background: AMBER, borderColor: INK, boxShadow: `10px 10px 0 ${INK}` }}>
+        <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight mb-4" style={{ color: INK }}>Build your spa around your therapists</h2>
+        <p className="mb-8 font-medium" style={{ color: "#5c4a28" }}>Free forever. No card. The therapist booking app your team will actually want to use.</p>
+        <a href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=MASSAGE&plan=FREE`} className="inline-flex items-center gap-2 px-8 py-4 rounded-full font-bold border-2 transition-transform hover:-translate-y-0.5" style={{ ...display, background: INK, color: "#fff", borderColor: INK }}>Get started for free <ChevronRight className="w-4 h-4" /></a>
       </Animate>
     </section>
   )
@@ -392,35 +289,27 @@ function CTA() {
 
 function Footer() {
   return (
-    <footer className="bg-[#070f0c] border-t border-white/5 px-6 py-8">
+    <footer className="px-6 py-8" style={{ background: CREAM, borderTop: `2px solid ${INK}`, fontFamily: display.fontFamily }}>
       <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
-        <div className="flex items-center gap-2">
-          <img src="/logo.png" alt="Massage and Spa" className="w-6 h-6 rounded-md object-cover" />
-          <span className="text-white/60 text-sm font-semibold">Massage & Spa by Smapey</span>
-        </div>
-        <p className="text-white/20 text-xs">© {new Date().getFullYear()} Smapey. All rights reserved.</p>
+        <div className="flex items-center gap-2"><img src="/logo.png" alt="Smapey" className="w-6 h-6 rounded-md object-cover" /><span className="text-sm font-extrabold" style={{ color: INK }}>Massage by Smapey</span></div>
+        <p className="text-xs" style={{ color: "#9a948b" }}>© {new Date().getFullYear()} Smapey. All rights reserved.</p>
       </div>
     </footer>
   )
 }
 
 type CheckoutMethod = "paypal" | "paymongo"
-const Spinner = () => (
-  <svg className="w-4 h-4 animate-spin" viewBox="0 0 24 24" fill="none">
-    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z" />
-  </svg>
-)
+const Spinner = () => (<svg className="w-4 h-4 animate-spin" viewBox="0 0 24 24" fill="none"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" /><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z" /></svg>)
 
 function PaymentModal({ plan, isPhilippines, onClose }: { plan: { name: string; phpPrice: string; usdPrice: string; period: string; planKey: string; product: string } | null; isPhilippines: boolean; onClose: () => void }) {
   const [step, setStep] = useState<"details" | "payment">("details")
-  const [name, setName] = useState("")
-  const [email, setEmail] = useState("")
+  const [name, setName] = useState(""); const [email, setEmail] = useState("")
   const [loading, setLoading] = useState<CheckoutMethod | null>(null)
   const [token, setToken] = useState<string | null>(null)
   useEffect(() => { const t = localStorage.getItem("accessToken"); setToken(t); if (t) setStep("payment") }, [])
   if (!plan) return null
   const displayPrice = isPhilippines ? plan.phpPrice : plan.usdPrice
+  const inputStyle = { borderColor: INK, color: INK } as React.CSSProperties
   const checkout = async (method: CheckoutMethod) => {
     try {
       setLoading(method)
@@ -432,56 +321,30 @@ function PaymentModal({ plan, isPhilippines, onClose }: { plan: { name: string; 
       const redirectUrl = data.approveUrl || data.checkoutUrl
       if (!redirectUrl) throw new Error("No redirect URL returned")
       window.location.href = redirectUrl
-    } catch (err: any) { alert(err?.message || "Checkout failed. Please try again.") }
-    finally { setLoading(null) }
+    } catch (err: any) { alert(err?.message || "Checkout failed. Please try again.") } finally { setLoading(null) }
   }
-  const handleContinue = () => {
-    if (!name.trim() || !email.trim()) { alert("Name and email are required"); return }
-    if (!isPhilippines) { checkout("paypal") } else { setStep("payment") }
-  }
+  const handleContinue = () => { if (!name.trim() || !email.trim()) { alert("Name and email are required"); return } if (!isPhilippines) { checkout("paypal") } else { setStep("payment") } }
   return (
-    <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-2xl w-full max-w-md shadow-2xl overflow-hidden">
-        <div className="bg-gradient-to-r from-emerald-700 to-teal-500 px-6 py-5 flex items-center justify-between">
+    <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4" style={{ fontFamily: display.fontFamily }}>
+      <div className="bg-white rounded-[22px] w-full max-w-md overflow-hidden border-2" style={{ borderColor: INK, boxShadow: `10px 10px 0 ${AMBER}` }}>
+        <div className="px-6 py-5 flex items-center justify-between" style={{ background: INK }}>
           <div className="flex items-center gap-3">
-            {step === "payment" && !token && <button onClick={() => setStep("details")} className="text-white/60 hover:text-white transition"><svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}><path d="M19 12H5M12 5l-7 7 7 7"/></svg></button>}
-            <div>
-              <h2 className="text-white font-bold text-lg">{step === "details" ? "Create your account" : "Choose payment method"}</h2>
-              <p className="text-emerald-100 text-sm mt-0.5">{plan.name} plan — <span className="font-semibold">{displayPrice}</span>{plan.period}</p>
-            </div>
+            {step === "payment" && !token && <button onClick={() => setStep("details")} className="text-white/70 hover:text-white transition"><svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}><path d="M19 12H5M12 5l-7 7 7 7"/></svg></button>}
+            <div><h2 className="text-white font-extrabold text-lg">{step === "details" ? "Create your account" : "Choose payment method"}</h2><p className="text-sm mt-0.5" style={{ color: "rgba(255,255,255,.7)" }}>{plan.name} plan — <span className="font-bold" style={{ color: AMBER }}>{displayPrice}</span>{plan.period}</p></div>
           </div>
           <button onClick={onClose} className="text-white/70 hover:text-white transition-colors"><X className="w-5 h-5" /></button>
         </div>
         <div className="p-6 flex flex-col gap-4">
-          {step === "details" && (
-            <>
-              <input placeholder="Full name" value={name} onChange={(e) => setName(e.target.value)} className="w-full border border-slate-200 rounded-xl px-4 py-2.5 text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-emerald-500/30 focus:border-emerald-400" />
-              <input type="email" placeholder="Email address" value={email} onChange={(e) => setEmail(e.target.value)} className="w-full border border-slate-200 rounded-xl px-4 py-2.5 text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-emerald-500/30 focus:border-emerald-400" />
-              <button onClick={handleContinue} disabled={loading !== null} className="w-full py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-sm flex items-center justify-center gap-2 transition-all disabled:opacity-60">
-                {loading ? <><Spinner /> Redirecting…</> : <>Continue <ChevronRight className="w-4 h-4" /></>}
-              </button>
-            </>
-          )}
-          {step === "payment" && (
-            <>
-              {isPhilippines && (
-                <button onClick={() => checkout("paymongo")} disabled={loading !== null} className="w-full flex items-center gap-4 px-5 py-4 border-2 border-slate-200 rounded-2xl hover:border-green-500 hover:bg-green-50 transition-all group">
-                  <div className="w-10 h-10 rounded-xl bg-green-600 flex items-center justify-center shrink-0"><svg viewBox="0 0 24 24" className="w-5 h-5 fill-white"><path d="M3 3h7v7H3zm0 11h7v7H3zm11-11h7v7h-7zm0 11h7v7h-7z"/></svg></div>
-                  <div className="flex-1 text-left"><p className="text-sm font-semibold text-slate-800 group-hover:text-green-700">QR Ph / GCash / Card</p><p className="text-xs text-slate-400">Philippine payment methods</p></div>
-                  {loading === "paymongo" ? <Spinner /> : <ChevronRight className="w-4 h-4 text-slate-300 group-hover:text-green-500" />}
-                </button>
-              )}
-              <button onClick={() => checkout("paypal")} disabled={loading !== null} className="w-full flex items-center gap-4 px-5 py-4 border-2 border-slate-200 rounded-2xl hover:border-blue-500 hover:bg-blue-50 transition-all group">
-                <div className="w-10 h-10 rounded-xl bg-[#003087] flex items-center justify-center shrink-0"><svg viewBox="0 0 24 24" className="w-5 h-5 fill-white"><path d="M7.076 21.337H2.47a.641.641 0 0 1-.633-.74L4.944.901C5.026.382 5.474 0 5.998 0h7.46c2.57 0 4.578.543 5.69 1.81 1.01 1.15 1.304 2.42 1.012 4.287-.023.143-.047.288-.077.437-.983 5.05-4.349 6.797-8.647 6.797h-2.19c-.524 0-.968.382-1.05.9l-1.12 7.106zm14.146-14.42a3.35 3.35 0 0 0-.607-.541c1.379 8.883-5.43 11.61-10.377 11.61H8.23l-1.133 7.184h3.78c.458 0 .848-.332.92-.783l.038-.196.728-4.617.047-.252a.93.93 0 0 1 .919-.784h.578c3.746 0 6.678-1.522 7.534-5.927.358-1.833.173-3.363-.42-4.494z"/></svg></div>
-                <div className="flex-1 text-left"><p className="text-sm font-semibold text-slate-800 group-hover:text-blue-700">PayPal</p><p className="text-xs text-slate-400">Pay with your PayPal account</p></div>
-                {loading === "paypal" ? <Spinner /> : <ChevronRight className="w-4 h-4 text-slate-300 group-hover:text-blue-500" />}
-              </button>
-            </>
-          )}
-          <p className="text-center text-xs text-slate-400 flex items-center justify-center gap-1">
-            <svg className="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}><rect x="3" y="11" width="18" height="11" rx="2" /><path d="M7 11V7a5 5 0 0 1 10 0v4" /></svg>
-            Secure checkout · Cancel anytime · No hidden fees
-          </p>
+          {step === "details" && (<>
+            <input placeholder="Full name" value={name} onChange={(e) => setName(e.target.value)} className="w-full border-2 rounded-xl px-4 py-2.5 text-sm focus:outline-none" style={inputStyle} />
+            <input type="email" placeholder="Email address" value={email} onChange={(e) => setEmail(e.target.value)} className="w-full border-2 rounded-xl px-4 py-2.5 text-sm focus:outline-none" style={inputStyle} />
+            <button onClick={handleContinue} disabled={loading !== null} className="w-full py-3 rounded-full border-2 font-bold text-sm flex items-center justify-center gap-2 transition-transform hover:-translate-y-0.5 disabled:opacity-60" style={{ ...display, background: AMBER, color: INK, borderColor: INK }}>{loading ? <><Spinner /> Redirecting…</> : <>Continue <ChevronRight className="w-4 h-4" /></>}</button>
+          </>)}
+          {step === "payment" && (<>
+            {isPhilippines && (<button onClick={() => checkout("paymongo")} disabled={loading !== null} className="w-full flex items-center gap-4 px-5 py-4 border-2 rounded-2xl transition-all group" style={{ borderColor: INK }}><div className="w-10 h-10 rounded-xl bg-green-600 flex items-center justify-center shrink-0"><svg viewBox="0 0 24 24" className="w-5 h-5 fill-white"><path d="M3 3h7v7H3zm0 11h7v7H3zm11-11h7v7h-7zm0 11h7v7h-7z"/></svg></div><div className="flex-1 text-left"><p className="text-sm font-bold" style={{ color: INK }}>QR Ph / GCash / Card</p><p className="text-xs" style={{ color: "#9a948b" }}>Philippine payment methods</p></div>{loading === "paymongo" ? <Spinner /> : <ChevronRight className="w-4 h-4" style={{ color: INK }} />}</button>)}
+            <button onClick={() => checkout("paypal")} disabled={loading !== null} className="w-full flex items-center gap-4 px-5 py-4 border-2 rounded-2xl transition-all group" style={{ borderColor: INK }}><div className="w-10 h-10 rounded-xl bg-[#003087] flex items-center justify-center shrink-0"><svg viewBox="0 0 24 24" className="w-5 h-5 fill-white"><path d="M7.076 21.337H2.47a.641.641 0 0 1-.633-.74L4.944.901C5.026.382 5.474 0 5.998 0h7.46c2.57 0 4.578.543 5.69 1.81 1.01 1.15 1.304 2.42 1.012 4.287-.023.143-.047.288-.077.437-.983 5.05-4.349 6.797-8.647 6.797h-2.19c-.524 0-.968.382-1.05.9l-1.12 7.106zm14.146-14.42a3.35 3.35 0 0 0-.607-.541c1.379 8.883-5.43 11.61-10.377 11.61H8.23l-1.133 7.184h3.78c.458 0 .848-.332.92-.783l.038-.196.728-4.617.047-.252a.93.93 0 0 1 .919-.784h.578c3.746 0 6.678-1.522 7.534-5.927.358-1.833.173-3.363-.42-4.494z"/></svg></div><div className="flex-1 text-left"><p className="text-sm font-bold" style={{ color: INK }}>PayPal</p><p className="text-xs" style={{ color: "#9a948b" }}>Pay with your PayPal account</p></div>{loading === "paypal" ? <Spinner /> : <ChevronRight className="w-4 h-4" style={{ color: INK }} />}</button>
+          </>)}
+          <p className="text-center text-xs flex items-center justify-center gap-1" style={{ color: "#9a948b" }}><svg className="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}><rect x="3" y="11" width="18" height="11" rx="2" /><path d="M7 11V7a5 5 0 0 1 10 0v4" /></svg>Secure checkout · Cancel anytime · No hidden fees</p>
         </div>
       </div>
     </div>
@@ -493,7 +356,7 @@ export default function MassageTherapistBookingAppContent() {
     <main>
       <Navbar />
       <Hero />
-      <FeaturesSection />
+      <Features />
       <ComparisonTable />
       <Pricing />
       <FAQ />

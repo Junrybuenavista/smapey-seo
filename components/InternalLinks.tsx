@@ -9,67 +9,12 @@ type Props = {
   limit?: number
 }
 
-const CLUSTER_ACCENT: Partial<Record<ClusterKey, {
-  border: string; bg: string; text: string; badge: string; badgeBg: string
-}>> = {
-  "water-refilling": {
-    border: "hover:border-cyan-500",
-    bg: "from-cyan-50",
-    text: "group-hover:text-cyan-600",
-    badge: "text-cyan-600",
-    badgeBg: "bg-cyan-100",
-  },
-  "vet-clinic": {
-    border: "hover:border-emerald-500",
-    bg: "from-emerald-50",
-    text: "group-hover:text-emerald-600",
-    badge: "text-emerald-600",
-    badgeBg: "bg-emerald-100",
-  },
-  "boarding-house": {
-    border: "hover:border-orange-500",
-    bg: "from-orange-50",
-    text: "group-hover:text-orange-600",
-    badge: "text-orange-600",
-    badgeBg: "bg-orange-100",
-  },
-  catering: {
-    border: "hover:border-rose-500",
-    bg: "from-rose-50",
-    text: "group-hover:text-rose-600",
-    badge: "text-rose-600",
-    badgeBg: "bg-rose-100",
-  },
-  clinic: {
-    border: "hover:border-blue-500",
-    bg: "from-blue-50",
-    text: "group-hover:text-blue-600",
-    badge: "text-blue-600",
-    badgeBg: "bg-blue-100",
-  },
-  gym: {
-    border: "hover:border-violet-500",
-    bg: "from-violet-50",
-    text: "group-hover:text-violet-600",
-    badge: "text-violet-600",
-    badgeBg: "bg-violet-100",
-  },
-  "school-desk": {
-    border: "hover:border-indigo-500",
-    bg: "from-indigo-50",
-    text: "group-hover:text-indigo-600",
-    badge: "text-indigo-600",
-    badgeBg: "bg-indigo-100",
-  },
-}
-
-const DEFAULT_ACCENT = {
-  border: "hover:border-yellow-500",
-  bg: "from-yellow-50",
-  text: "group-hover:text-yellow-600",
-  badge: "text-yellow-600",
-  badgeBg: "bg-yellow-100",
-}
+// ── Layered Pop tokens (shared across all product pages) ──
+const INK = "#161616"
+const BLUE = "#2f6bff"
+const AMBER = "#ff9e2c"
+const CREAM = "#fbf7f0"
+const display = { fontFamily: "'Hanken Grotesk', system-ui, sans-serif" }
 
 export default function InternalLinks({
   cluster = "invoice",
@@ -81,7 +26,6 @@ export default function InternalLinks({
   const data = CLUSTERS[cluster]
   const pool = data.pages.filter((p) => p.path !== currentPath)
   const selected = typeof limit === "number" ? pool.slice(0, limit) : pool
-  const accent = CLUSTER_ACCENT[cluster] ?? DEFAULT_ACCENT
 
   const defaultHeading =
     cluster === "invoice"
@@ -93,41 +37,42 @@ export default function InternalLinks({
       : `Guides and tools to help you make the most of ${data.label}.`
 
   return (
-    <section className="py-16 bg-gradient-to-b from-white to-gray-50">
+    <section className="py-24" style={{ background: CREAM, fontFamily: display.fontFamily }}>
       <div className="max-w-6xl mx-auto px-6">
-        <div className="text-center mb-10">
-          <h2 className="text-2xl md:text-3xl font-bold">{heading ?? defaultHeading}</h2>
-          <p className="text-gray-600 mt-2 max-w-2xl mx-auto">{subheading ?? defaultSub}</p>
+        <div className="text-center mb-16">
+          <p className="text-sm font-bold uppercase tracking-widest mb-3" style={{ color: BLUE }}>Keep Exploring</p>
+          <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight" style={{ color: INK }}>{heading ?? defaultHeading}</h2>
+          <p className="mt-4 max-w-2xl mx-auto" style={{ color: "#54514c" }}>{subheading ?? defaultSub}</p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-6">
-          {selected.map((route) => (
-            <Link
-              key={route.path}
-              href={route.path}
-              className={`group relative border rounded-2xl p-6 bg-white transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 ${accent.border} overflow-hidden`}
-            >
-              <div className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition bg-gradient-to-r ${accent.bg} to-transparent`} />
-
-              <div className="relative z-10">
-                <span className={`text-xs font-medium ${accent.badge} ${accent.badgeBg} px-2 py-1 rounded-md`}>
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {selected.map((route, i) => {
+            const c = i % 2 === 0 ? BLUE : AMBER
+            return (
+              <Link
+                key={route.path}
+                href={route.path}
+                className="group rounded-[22px] p-6 border-2 bg-white transition-transform hover:-translate-y-1 flex flex-col"
+                style={{ borderColor: INK, boxShadow: `6px 6px 0 ${c}` }}
+              >
+                <span className="inline-flex self-start items-center text-xs font-bold px-3 py-1 rounded-full border-2 mb-4" style={{ color: INK, borderColor: INK, background: c, ...(c === BLUE ? { color: "#fff" } : {}) }}>
                   {data.label}
                 </span>
 
-                <h3 className={`font-semibold text-lg mt-3 ${accent.text} transition`}>
+                <h3 className="font-extrabold text-lg mb-2" style={{ color: INK }}>
                   {route.title}
                 </h3>
 
-                <p className="text-sm text-gray-500 mt-2 leading-relaxed">
+                <p className="text-sm leading-relaxed" style={{ color: "#54514c" }}>
                   {route.desc}
                 </p>
 
-                <div className={`mt-4 flex items-center text-sm font-medium ${accent.badge} group-hover:translate-x-1 transition`}>
+                <div className="mt-5 flex items-center gap-1 text-sm font-bold group-hover:translate-x-1 transition-transform" style={{ color: c === AMBER ? INK : BLUE }}>
                   Read more →
                 </div>
-              </div>
-            </Link>
-          ))}
+              </Link>
+            )
+          })}
         </div>
       </div>
     </section>
