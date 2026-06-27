@@ -2,12 +2,18 @@
 
 import { useState, useEffect, useRef } from "react"
 import InternalLinks from "@/components/InternalLinks"
-import Link from "next/link"
 import {
   BookOpen, Users, CalendarDays, CheckCircle2, ChevronRight,
   Menu, X, PawPrint, ListOrdered, BarChart3, Syringe,
-  Receipt, Clock, Bell, Shield, Lightbulb, Globe, Camera,
+  Receipt, Clock, Bell, Shield, Lightbulb, Globe, Camera, ArrowLeft,
 } from "lucide-react"
+
+const INK = "#161616"
+const BLUE = "#2f6bff"
+const AMBER = "#ff9e2c"
+const CREAM = "#fbf7f0"
+const display = { fontFamily: "'Hanken Grotesk', system-ui, sans-serif" }
+const REGISTER_URL = `${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=VET_CLINIC&plan=FREE`
 
 const SECTIONS = [
   {
@@ -110,6 +116,20 @@ const TIPS = [
   { icon: Shield, tip: "Keep the Queue board open on a reception screen throughout the day so all staff can see patient status in real time without asking each other." },
 ]
 
+const accentFor = (i: number) => (i % 2 === 0 ? BLUE : AMBER)
+const onAccent = (c: string) => (c === AMBER ? INK : "#fff")
+
+function useFont() {
+  useEffect(() => {
+    const id = "smapey-pop-fonts"
+    if (!document.getElementById(id)) {
+      const l = document.createElement("link"); l.id = id; l.rel = "stylesheet"
+      l.href = "https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap"
+      document.head.appendChild(l)
+    }
+  }, [])
+}
+
 function useInView(opts?: IntersectionObserverInit) {
   const ref = useRef<HTMLDivElement>(null); const [inView, setInView] = useState(false)
   useEffect(() => {
@@ -125,28 +145,34 @@ function Animate({ children, className = "", delay = 0 }: { children: React.Reac
 }
 
 function Navbar() {
-  const [open, setOpen] = useState(false); const [scrolled, setScrolled] = useState(false)
-  useEffect(() => { const fn = () => setScrolled(window.scrollY > 20); window.addEventListener("scroll", fn); return () => window.removeEventListener("scroll", fn) }, [])
+  const [open, setOpen] = useState(false)
+  const links = [
+    { href: "/vet-clinic#features", label: "Features" },
+    { href: "/vet-clinic#how-it-works", label: "How it Works" },
+    { href: "/vet-clinic#pricing", label: "Pricing" },
+    { href: "/vet-clinic#faq", label: "FAQ" },
+    { href: "/vet-clinic/guide", label: "Guide" },
+  ]
   return (
-    <nav className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${scrolled ? "bg-[#050d1a]/90 backdrop-blur-md border-b border-white/5 shadow-lg" : "bg-transparent"}`}>
+    <nav className="fixed top-0 inset-x-0 z-50" style={{ background: CREAM, borderBottom: `2px solid ${INK}`, fontFamily: display.fontFamily }}>
       <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-        <Link href="/vet-clinic" className="flex items-center gap-2.5"><img src="/logo.png" alt="Smapey Vet" className="w-8 h-8 rounded-lg object-cover" /><span className="text-white font-bold tracking-tight">Smapey Vet</span></Link>
-        <div className="hidden md:flex items-center gap-6">
-          <Link href="/vet-clinic" className="text-sm text-white/60 hover:text-white transition-colors">Home</Link>
-          {[["setup", "Setup"], ["online-booking", "Online Booking"], ["queue", "Queue"], ["billing", "Billing"]].map(([id, label]) => (
-            <a key={id} href={`#${id}`} onClick={(e) => { e.preventDefault(); document.getElementById(id)?.scrollIntoView({ behavior: "smooth" }) }} className="text-sm text-white/60 hover:text-white transition-colors">{label}</a>
-          ))}
+        <a href="/vet-clinic" className="flex items-center gap-2.5">
+          <img src="/logo.png" alt="Smapey Vet" className="w-8 h-8 rounded-lg object-cover" />
+          <span className="font-extrabold tracking-tight" style={{ color: INK }}>Smapey Vet</span>
+        </a>
+        <div className="hidden md:flex items-center gap-8">
+          {links.map((l) => (<a key={l.label} href={l.href} className="text-sm font-semibold hover:opacity-60 transition-opacity" style={{ color: INK }}>{l.label}</a>))}
         </div>
         <div className="hidden md:flex items-center gap-3">
-          <a href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/login`} className="text-sm text-white/60 hover:text-white px-4 py-2">Sign in</a>
-          <a href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=VET_CLINIC&plan=FREE`} className="text-sm font-semibold px-4 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white shadow-lg shadow-emerald-600/25 transition-colors">Try it free</a>
+          <a href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/login`} className="text-sm font-semibold hover:opacity-60 transition-opacity px-2 py-2" style={{ color: INK }}>Sign in</a>
+          <a href={REGISTER_URL} className="text-sm font-bold px-5 py-2.5 rounded-full border-2 transition-transform hover:-translate-y-0.5" style={{ ...display, background: AMBER, color: INK, borderColor: INK, boxShadow: `3px 3px 0 ${INK}` }}>Try it free</a>
         </div>
-        <button onClick={() => setOpen(!open)} className="md:hidden text-white/60 hover:text-white">{open ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}</button>
+        <button onClick={() => setOpen(!open)} className="md:hidden" style={{ color: INK }}>{open ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}</button>
       </div>
       {open && (
-        <div className="md:hidden bg-[#050d1a] border-t border-white/5 px-6 py-4 flex flex-col gap-4">
-          <Link href="/vet-clinic" className="text-sm text-white/60 hover:text-white">Home</Link>
-          <a href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=VET_CLINIC&plan=FREE`} className="text-sm font-semibold px-4 py-2 rounded-lg bg-emerald-600 text-white text-center">Try it free</a>
+        <div className="md:hidden px-6 py-4 flex flex-col gap-4" style={{ background: CREAM, borderTop: `2px solid ${INK}` }}>
+          {links.map((l) => (<a key={l.label} href={l.href} className="text-sm font-semibold" style={{ color: INK }}>{l.label}</a>))}
+          <a href={REGISTER_URL} className="text-sm font-bold px-4 py-2.5 rounded-full border-2 text-center" style={{ ...display, background: AMBER, color: INK, borderColor: INK }}>Try it free</a>
         </div>
       )}
     </nav>
@@ -154,118 +180,134 @@ function Navbar() {
 }
 
 export default function VetClinicGuideContent() {
+  useFont()
   return (
-    <main className="bg-white">
+    <main style={{ fontFamily: display.fontFamily }}>
       <Navbar />
 
       {/* HERO */}
-      <section className="relative pt-32 pb-16 overflow-hidden" style={{ background: "#050d1a", backgroundImage: "repeating-linear-gradient(45deg, rgba(255,255,255,0.02) 0px, rgba(255,255,255,0.02) 1px, transparent 1px, transparent 28px)", backgroundSize: "28px 28px" }}>
-        <div className="absolute -top-40 -left-40 w-[500px] h-[500px] rounded-full pointer-events-none" style={{ background: "radial-gradient(circle, rgba(16,185,129,0.13) 0%, transparent 70%)" }} />
-        <div className="relative max-w-4xl mx-auto px-6 text-center">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-semibold mb-6">
+      <section className="relative overflow-hidden pt-16" style={{ background: CREAM }}>
+        <div className="absolute inset-0 pointer-events-none hidden md:block" aria-hidden>
+          <div className="absolute rounded-[22px] border-2" style={{ top: "28%", right: "-70px", width: 280, height: 78, background: BLUE, borderColor: INK, transform: "rotate(8deg)", boxShadow: "5px 5px 0 rgba(22,22,22,.12)" }} />
+        </div>
+        <div className="relative max-w-4xl mx-auto px-6 pt-12 pb-14 text-center">
+          <a href="/vet-clinic" className="inline-flex items-center gap-1.5 text-sm font-semibold transition-colors mb-8 hover:opacity-60" style={{ color: "#54514c" }}>
+            <ArrowLeft className="w-3.5 h-3.5" /> Back to Vet Clinic Manager
+          </a>
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border-2 text-xs font-bold mb-5" style={{ color: INK, borderColor: INK, boxShadow: `3px 3px 0 ${BLUE}` }}>
             <BookOpen className="w-3 h-3" /> User Guide
           </div>
-          <h1 className="text-4xl sm:text-5xl font-extrabold text-white leading-tight tracking-tight mb-4">
-            Smapey Vet Clinic Manager{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-400 to-emerald-300">Guide</span>
+          <h1 className="text-4xl sm:text-5xl font-extrabold leading-tight tracking-tight mb-4" style={{ color: INK }}>
+            Smapey Vet Clinic Manager <span style={{ color: BLUE }}>Guide</span>
           </h1>
-          <p className="text-lg text-white/50 max-w-2xl mx-auto mb-8">
+          <p className="text-lg max-w-2xl mx-auto mb-8" style={{ color: "#54514c" }}>
             Everything you need to set up your clinic, manage pets and vets, take appointments online or at the desk, run the live queue board, track vaccinations, and handle billing — step by step.
           </p>
-          <div className="flex flex-wrap items-center justify-center gap-4 text-white/30 text-xs">
+          <div className="flex flex-wrap items-center justify-center gap-6 text-xs font-semibold" style={{ color: "#54514c" }}>
             {["5-minute setup", "No training required", "Free plan available"].map((t) => (
-              <span key={t} className="flex items-center gap-1.5"><CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />{t}</span>
+              <span key={t} className="flex items-center gap-1.5"><CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />{t}</span>
             ))}
           </div>
         </div>
       </section>
 
-      {/* TABLE OF CONTENTS */}
-      <section className="py-10 bg-slate-50 border-b border-slate-200">
+      {/* TOC */}
+      <section className="py-8" style={{ background: CREAM, borderTop: `2px solid ${INK}`, borderBottom: `2px solid ${INK}` }}>
         <div className="max-w-4xl mx-auto px-6">
-          <div className="flex flex-wrap gap-2">
-            {SECTIONS.map((s) => (
-              <a key={s.id} href={`#${s.id}`}
-                onClick={(e) => { e.preventDefault(); document.getElementById(s.id)?.scrollIntoView({ behavior: "smooth" }) }}
-                className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white border border-slate-200 text-slate-600 hover:border-emerald-300 hover:text-emerald-700 text-xs font-medium transition-all">
-                <s.icon className="w-3 h-3" />{s.title.replace(/^\d+\.\s/, "")}
-              </a>
-            ))}
+          <div className="flex flex-wrap gap-2.5">
+            {SECTIONS.map((s, i) => {
+              const c = accentFor(i)
+              return (
+                <a key={s.id} href={`#${s.id}`} className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-white border-2 text-xs font-bold transition-transform hover:-translate-y-0.5" style={{ color: INK, borderColor: INK }}>
+                  <span className="w-4 h-4 rounded-[5px] border flex items-center justify-center" style={{ background: c, borderColor: INK }}>
+                    <s.icon className="w-2.5 h-2.5" style={{ color: onAccent(c) }} />
+                  </span>
+                  {s.title.replace(/^\d+\.\s/, "")}
+                </a>
+              )
+            })}
           </div>
         </div>
       </section>
 
       {/* GUIDE SECTIONS */}
-      {SECTIONS.map((section, si) => (
-        <section key={section.id} id={section.id} className={`py-16 ${si % 2 === 0 ? "bg-white" : "bg-slate-50"} border-t border-slate-100`}>
-          <div className="max-w-4xl mx-auto px-6">
-            <Animate>
-              <div className="flex items-center gap-3 mb-8">
-                <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-emerald-600 to-teal-400 flex items-center justify-center shadow-lg shadow-emerald-500/20">
-                  <section.icon className="w-5 h-5 text-white" />
-                </div>
-                <h2 className="text-xl sm:text-2xl font-extrabold text-slate-800">{section.title}</h2>
-              </div>
-            </Animate>
-            <div className="space-y-4">
-              {section.steps.map((step, i) => (
-                <Animate key={step.title} delay={i * 80}>
-                  <div className="flex gap-4">
-                    <div className="flex flex-col items-center">
-                      <div className="w-7 h-7 rounded-full bg-emerald-600 text-white text-xs font-bold flex items-center justify-center shrink-0">{i + 1}</div>
-                      {i < section.steps.length - 1 && <div className="w-0.5 flex-1 bg-emerald-100 mt-2" />}
-                    </div>
-                    <div className="pb-4">
-                      <h3 className="font-semibold text-slate-800 mb-1 text-sm">{step.title}</h3>
-                      <p className="text-slate-500 text-sm leading-relaxed">{step.desc}</p>
-                    </div>
+      {SECTIONS.map((section, si) => {
+        const c = accentFor(si)
+        return (
+          <section key={section.id} id={section.id} className="py-16 scroll-mt-20" style={{ background: si % 2 === 0 ? "#fff" : CREAM }}>
+            <div className="max-w-4xl mx-auto px-6">
+              <Animate>
+                <div className="flex items-center gap-3 mb-8">
+                  <div className="w-12 h-12 rounded-[14px] border-2 flex items-center justify-center" style={{ background: c, borderColor: INK }}>
+                    <section.icon className="w-6 h-6" style={{ color: onAccent(c) }} />
                   </div>
-                </Animate>
-              ))}
-            </div>
-          </div>
-        </section>
-      ))}
-
-      {/* TIPS */}
-      <section className="py-16 bg-emerald-50 border-t border-emerald-100">
-        <div className="max-w-4xl mx-auto px-6">
-          <Animate className="mb-8">
-            <h2 className="text-xl sm:text-2xl font-extrabold text-slate-800">Quick Tips</h2>
-          </Animate>
-          <div className="grid sm:grid-cols-2 gap-4">
-            {TIPS.map(({ icon: Icon, tip }, i) => (
-              <Animate key={i} delay={i * 80}>
-                <div className="flex items-start gap-3 bg-white rounded-xl p-4 border border-emerald-100 shadow-sm">
-                  <div className="w-8 h-8 rounded-lg bg-emerald-100 flex items-center justify-center shrink-0">
-                    <Icon className="w-4 h-4 text-emerald-600" />
-                  </div>
-                  <p className="text-slate-600 text-sm leading-relaxed">{tip}</p>
+                  <h2 className="text-xl sm:text-2xl font-extrabold" style={{ color: INK }}>{section.title}</h2>
                 </div>
               </Animate>
-            ))}
+              <div className="rounded-[20px] border-2 overflow-hidden" style={{ background: "#fff", borderColor: INK, boxShadow: `6px 6px 0 ${c}` }}>
+                {section.steps.map((step, i) => (
+                  <div key={step.title} className="flex gap-4 p-5" style={i < section.steps.length - 1 ? { borderBottom: "1px solid rgba(22,22,22,.1)" } : undefined}>
+                    <span className="w-7 h-7 rounded-full border-2 text-xs font-bold flex items-center justify-center shrink-0 mt-0.5" style={{ background: c, color: onAccent(c), borderColor: INK }}>{i + 1}</span>
+                    <div>
+                      <h3 className="font-bold mb-1 text-sm" style={{ color: INK }}>{step.title}</h3>
+                      <p className="text-sm leading-relaxed" style={{ color: "#54514c" }}>{step.desc}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+        )
+      })}
+
+      {/* TIPS */}
+      <section className="py-16" style={{ background: CREAM, borderTop: `2px solid ${INK}` }}>
+        <div className="max-w-4xl mx-auto px-6">
+          <Animate className="mb-8">
+            <h2 className="text-xl sm:text-2xl font-extrabold" style={{ color: INK }}>Quick Tips</h2>
+          </Animate>
+          <div className="grid sm:grid-cols-2 gap-4">
+            {TIPS.map(({ icon: Icon, tip }, i) => {
+              const c = accentFor(i)
+              return (
+                <Animate key={i} delay={i * 80}>
+                  <div className="flex items-start gap-3 rounded-[16px] p-4 border-2 h-full" style={{ background: "#fff", borderColor: INK, boxShadow: `5px 5px 0 ${c}` }}>
+                    <div className="w-8 h-8 rounded-[10px] border-2 flex items-center justify-center shrink-0" style={{ background: c, borderColor: INK }}>
+                      <Icon className="w-4 h-4" style={{ color: onAccent(c) }} />
+                    </div>
+                    <p className="text-sm leading-relaxed" style={{ color: "#54514c" }}>{tip}</p>
+                  </div>
+                </Animate>
+              )
+            })}
           </div>
         </div>
       </section>
 
       {/* CTA */}
-      <section className="py-16 bg-white border-t border-slate-100">
-        <Animate className="max-w-2xl mx-auto px-6 text-center">
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-800 mb-4">Ready to get started?</h2>
-          <p className="text-slate-500 mb-8">Create your free vet clinic account and have your queue running today.</p>
-          <a href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=VET_CLINIC&plan=FREE`}
-            className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-500 hover:from-emerald-500 hover:to-teal-400 text-white font-semibold transition-all shadow-xl shadow-emerald-600/20">
-            Start for free <ChevronRight className="w-4 h-4" />
-          </a>
-        </Animate>
+      <section className="py-16 px-6" style={{ background: "#fff" }}>
+        <div className="max-w-6xl mx-auto">
+          <div className="rounded-[28px] border-2 p-10 flex flex-col md:flex-row items-center justify-between gap-6" style={{ background: AMBER, borderColor: INK, boxShadow: `10px 10px 0 ${INK}` }}>
+            <div>
+              <h3 className="text-2xl font-extrabold mb-2" style={{ color: INK }}>Ready to get started?</h3>
+              <p className="text-sm font-medium" style={{ color: "#5c4a28" }}>Create your free vet clinic account and have your queue running today.</p>
+            </div>
+            <a href={REGISTER_URL} className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full font-bold text-sm border-2 transition-transform hover:-translate-y-0.5 shrink-0" style={{ ...display, background: INK, color: "#fff", borderColor: INK }}>
+              Start for free <ChevronRight className="w-4 h-4" />
+            </a>
+          </div>
+        </div>
       </section>
 
       <InternalLinks cluster="vet-clinic" currentPath="/vet-clinic/guide" />
 
-      <footer className="bg-[#030810] border-t border-white/5 px-6 py-8">
+      <footer className="px-6 py-8" style={{ background: CREAM, borderTop: `2px solid ${INK}` }}>
         <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-2"><img src="/logo.png" alt="Smapey" className="w-6 h-6 rounded-md object-cover" /><span className="text-white/60 text-sm font-semibold">Smapey Vet Clinic Manager</span></div>
-          <p className="text-white/20 text-xs">© {new Date().getFullYear()} Smapey. All rights reserved.</p>
+          <div className="flex items-center gap-2">
+            <img src="/logo.png" alt="Smapey" className="w-6 h-6 rounded-md object-cover" />
+            <span className="text-sm font-extrabold" style={{ color: INK }}>Vet Clinic Manager by Smapey</span>
+          </div>
+          <p className="text-xs" style={{ color: "#9a948b" }}>© {new Date().getFullYear()} Smapey. All rights reserved.</p>
         </div>
       </footer>
     </main>
