@@ -144,12 +144,18 @@ function Navbar() {
 function Hero() {
   return (
     <section className="relative min-h-screen flex items-center pt-16 overflow-hidden" style={{ background: CREAM, fontFamily: display.fontFamily }}>
-      <div className="absolute inset-0 pointer-events-none hidden md:block" aria-hidden>
-        <div className="absolute rounded-[22px] border-2" style={{ top: "20%", left: "-70px", width: 280, height: 80, background: AMBER, borderColor: INK, transform: "rotate(-10deg)" }} />
-        <div className="absolute rounded-[22px] border-2" style={{ top: "32%", right: "-80px", width: 300, height: 84, background: BLUE, borderColor: INK, transform: "rotate(8deg)", boxShadow: "5px 5px 0 rgba(22,22,22,.12)" }} />
-        <div className="absolute rounded-[22px] border-2" style={{ bottom: "16%", right: "-60px", width: 270, height: 78, background: AMBER, borderColor: INK, transform: "rotate(-7deg)" }} />
+      {/* ── Background design ── */}
+      <div className="absolute inset-0 pointer-events-none" aria-hidden>
+        {/* dot grid */}
+        <div className="absolute inset-0" style={{ backgroundImage: "radial-gradient(#161616 1.6px, transparent 1.6px)", backgroundSize: "26px 26px", opacity: 0.07 }} />
+        {/* soft color blobs */}
+        <div className="absolute rounded-full" style={{ top: -80, left: -60, width: 340, height: 340, background: BLUE, opacity: 0.13, filter: "blur(8px)" }} />
+        <div className="absolute rounded-full" style={{ bottom: -90, right: -70, width: 380, height: 380, background: AMBER, opacity: 0.16, filter: "blur(8px)" }} />
+        {/* outlined ring accent */}
+        <div className="absolute hidden md:block rounded-full border-2" style={{ top: 90, right: 120, width: 120, height: 120, borderColor: INK, opacity: 0.12 }} />
       </div>
-      <div className="relative max-w-6xl mx-auto px-6 py-24 text-center">
+
+      <div className="relative z-10 max-w-6xl mx-auto px-6 py-24 text-center">
         <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border-2 text-xs font-bold mb-6" style={{ color: INK, borderColor: INK, boxShadow: `3px 3px 0 ${BLUE}` }}>
           <Zap className="w-3 h-3" />
           Built for small salons and beauty studios

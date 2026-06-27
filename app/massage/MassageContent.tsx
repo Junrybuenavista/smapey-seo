@@ -103,29 +103,54 @@ function Navbar() {
 
 function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center pt-16 overflow-hidden" style={{ background: CREAM, fontFamily: display.fontFamily }}>
-      <div className="absolute inset-0 pointer-events-none hidden md:block" aria-hidden>
-        <div className="absolute rounded-[22px] border-2" style={{ top: "20%", left: "-70px", width: 280, height: 80, background: AMBER, borderColor: INK, transform: "rotate(-10deg)" }} />
-        <div className="absolute rounded-[22px] border-2" style={{ top: "32%", right: "-80px", width: 300, height: 84, background: BLUE, borderColor: INK, transform: "rotate(8deg)", boxShadow: "5px 5px 0 rgba(22,22,22,.12)" }} />
-        <div className="absolute rounded-[22px] border-2" style={{ bottom: "16%", right: "-60px", width: 270, height: 78, background: AMBER, borderColor: INK, transform: "rotate(-7deg)" }} />
+    <section className="relative min-h-screen grid lg:grid-cols-[1.4fr_.85fr] gap-12 items-center px-6 sm:px-12 lg:px-20 py-20 pt-24 overflow-hidden" style={{ background: CREAM, fontFamily: display.fontFamily }}>
+      {/* bg ghost wordmark */}
+      <div className="absolute -bottom-12 -left-5 pointer-events-none select-none" aria-hidden>
+        <span className="font-extrabold whitespace-nowrap" style={{ fontSize: 250, letterSpacing: "-.05em", color: "transparent", WebkitTextStroke: "2px rgba(22,22,22,.05)" }}>SPA</span>
       </div>
-      <div className="relative max-w-6xl mx-auto px-6 py-24 text-center">
-        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border-2 text-xs font-bold mb-6" style={{ color: INK, borderColor: INK, boxShadow: `3px 3px 0 ${BLUE}` }}>
-          <Zap className="w-3 h-3" />
-          Built for massage & spa businesses
+
+      {/* Left: copy */}
+      <div className="relative z-10">
+        <div className="flex items-center gap-3.5 mb-7">
+          <span className="block h-[3px] w-14" style={{ background: INK }} />
+          <span className="text-[13px] font-extrabold tracking-[.16em] uppercase" style={{ color: INK }}>Built for massage &amp; spa businesses</span>
         </div>
-        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.04] tracking-tight mb-6" style={{ color: INK }}>
-          Run your massage business <span style={{ color: BLUE }}>and get more bookings</span>
+        <h1 className="font-extrabold mb-6 text-5xl sm:text-6xl lg:text-[84px]" style={{ color: INK, lineHeight: 0.96, letterSpacing: "-.04em" }}>
+          Run your<br className="hidden lg:block" /> massage <span style={{ color: BLUE }}>business</span><br className="hidden lg:block" /> &amp; get more <span style={{ color: AMBER }}>bookings.</span>
         </h1>
-        <p className="text-lg max-w-2xl mx-auto mb-10 leading-relaxed" style={{ color: "#54514c" }}>Therapists, treatments, client intake, deposits, and a branded booking page — everything you need to run a small spa, in one clean dashboard. No bloat, no learning curve.</p>
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-          <a href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=MASSAGE&plan=FREE`} className="flex items-center gap-2 px-7 py-4 rounded-full font-bold text-sm border-2 transition-transform hover:-translate-y-0.5" style={{ ...display, background: AMBER, color: INK, borderColor: INK, boxShadow: `4px 4px 0 ${INK}` }}>
+        <p className="text-lg max-w-lg mb-9 leading-relaxed" style={{ color: "#54514c" }}>
+          Therapists, treatments, client intake, deposits, and a branded booking page —
+          everything you need to run a small spa, in one clean dashboard. No bloat, no learning curve.
+        </p>
+        <div className="flex flex-wrap items-center gap-3 mb-7">
+          <a href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=MASSAGE&plan=FREE`} className="flex items-center gap-2 px-7 py-4 rounded-full font-bold text-sm border-2 transition-transform hover:-translate-y-0.5" style={{ ...display, background: AMBER, color: INK, borderColor: INK, boxShadow: `5px 5px 0 ${INK}` }}>
             Start free — no card needed <ChevronRight className="w-4 h-4" />
           </a>
-          <a href="/massage" className="flex items-center gap-2 px-7 py-4 rounded-full font-bold text-sm border-2 bg-white transition-transform hover:-translate-y-0.5" style={{ ...display, color: INK, borderColor: INK }}>View all features</a>
+          <a href="/massage" className="flex items-center px-7 py-4 rounded-full font-bold text-sm border-2 transition-transform hover:-translate-y-0.5" style={{ ...display, background: "transparent", color: INK, borderColor: INK }}>
+            View all features
+          </a>
         </div>
-        <div className="mt-16 flex flex-wrap items-center justify-center gap-6 text-xs font-semibold" style={{ color: "#54514c" }}>
-          {["No credit card required", "Free plan forever", "Setup in minutes"].map((t) => (<span key={t} className="flex items-center gap-1.5"><CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />{t}</span>))}
+        <div className="flex flex-wrap gap-5 text-xs font-semibold" style={{ color: "#54514c" }}>
+          {["No credit card required", "Free plan forever"].map((t) => (
+            <span key={t} className="flex items-center gap-1.5"><CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />{t}</span>
+          ))}
+        </div>
+      </div>
+
+      {/* Right: tilted stacked cards */}
+      <div className="relative z-10 hidden lg:flex flex-col gap-[18px]">
+        <div className="border-2 rounded-[18px] p-4 bg-white" style={{ borderColor: INK, boxShadow: `6px 6px 0 ${BLUE}`, transform: "rotate(-3deg)" }}>
+          <div className="flex items-center justify-between mb-2.5"><span className="text-sm font-extrabold" style={{ color: INK }}>2:00 PM · Swedish</span><span className="text-[10px] font-extrabold px-2 py-0.5 rounded-full" style={{ background: "#0d9f6e", color: "#fff" }}>BOOKED</span></div>
+          <div className="flex justify-between text-xs font-bold" style={{ color: "#54514c" }}><span>Mia R. · 60 min</span><span style={{ color: INK }}>₱1,200</span></div>
+        </div>
+        <div className="border-2 rounded-[18px] p-4 ml-[30px]" style={{ background: INK, borderColor: INK, boxShadow: `6px 6px 0 ${AMBER}`, transform: "rotate(2deg)" }}>
+          <div className="flex items-center justify-between mb-2.5"><span className="text-sm font-extrabold text-white">Therapists</span><span className="text-[10px] font-extrabold px-2 py-0.5 rounded-full bg-white" style={{ color: INK }}>4 on shift</span></div>
+          <div className="flex gap-1.5">
+            <span className="flex-1 h-2 rounded-full" style={{ background: "#34d399" }} /><span className="flex-1 h-2 rounded-full" style={{ background: "#34d399" }} /><span className="flex-1 h-2 rounded-full" style={{ background: AMBER }} /><span className="flex-1 h-2 rounded-full" style={{ background: "rgba(255,255,255,.25)" }} />
+          </div>
+        </div>
+        <div className="border-2 rounded-[18px] p-4 ml-2 bg-white" style={{ borderColor: INK, boxShadow: `6px 6px 0 ${AMBER}`, transform: "rotate(-2deg)" }}>
+          <div className="flex items-center justify-between"><span className="text-xs font-bold" style={{ color: "#54514c" }}>Deposits today</span><span className="text-lg font-extrabold" style={{ color: INK }}>₱8,400</span></div>
         </div>
       </div>
     </section>

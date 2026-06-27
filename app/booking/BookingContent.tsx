@@ -105,30 +105,115 @@ function Navbar() {
 }
 
 function Hero() {
+  const slots = [
+    { time: "9:00",  name: "Ana Dela Cruz · Consultation", state: "done" },
+    { time: "10:30", name: "Marco Lim · Follow-up",        state: "next" },
+    { time: "1:00",  name: "Open slot",                    state: "open" },
+    { time: "2:30",  name: "Grace Tan · Session",          state: "booked" },
+  ]
   return (
     <section className="relative min-h-screen flex items-center pt-16 overflow-hidden" style={{ background: CREAM, fontFamily: display.fontFamily }}>
-      <div className="absolute inset-0 pointer-events-none hidden md:block" aria-hidden>
-        <div className="absolute rounded-[22px] border-2" style={{ top: "20%", left: "-70px", width: 280, height: 80, background: AMBER, borderColor: INK, transform: "rotate(-10deg)" }} />
-        <div className="absolute rounded-[22px] border-2" style={{ top: "32%", right: "-80px", width: 300, height: 84, background: BLUE, borderColor: INK, transform: "rotate(8deg)", boxShadow: "5px 5px 0 rgba(22,22,22,.12)" }} />
-        <div className="absolute rounded-[22px] border-2" style={{ bottom: "16%", right: "-60px", width: 270, height: 78, background: AMBER, borderColor: INK, transform: "rotate(-7deg)" }} />
+      <div className="absolute inset-0 pointer-events-none hidden lg:block" aria-hidden>
+        <div className="absolute rounded-full border-2" style={{ top: "-130px", right: "-90px", width: 360, height: 360, borderColor: INK, opacity: 0.06 }} />
+        <div className="absolute rounded-full border-2" style={{ bottom: "-150px", left: "-80px", width: 300, height: 300, borderColor: INK, opacity: 0.05 }} />
       </div>
-      <div className="relative max-w-6xl mx-auto px-6 py-24 text-center">
-        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border-2 text-xs font-bold mb-6" style={{ color: INK, borderColor: INK, boxShadow: `3px 3px 0 ${BLUE}` }}>
-          <Zap className="w-3 h-3" />
-          Built for appointment-based businesses
+
+      <div className="relative w-full max-w-6xl mx-auto px-6 py-24 grid lg:grid-cols-[1fr_1fr] gap-12 lg:gap-16 items-center">
+        {/* LEFT — copy */}
+        <div className="min-w-0 text-center lg:text-left">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border-2 text-xs font-bold mb-7" style={{ color: INK, borderColor: INK, boxShadow: `3px 3px 0 ${BLUE}` }}>
+            <Zap className="w-3 h-3" />
+            Built for appointment-based businesses
+          </div>
+
+          <h1 className="font-extrabold tracking-tight mb-6" style={{ color: INK, fontSize: "clamp(44px,6vw,78px)", lineHeight: 0.97, letterSpacing: "-0.03em" }}>
+            Your whole day,{" "}
+            <span className="relative inline-block" style={{ color: BLUE }}>
+              booked solid
+              <span className="absolute left-0 right-0" style={{ bottom: 6, height: 14, background: AMBER, zIndex: -1, transform: "rotate(-1.2deg)" }} />
+            </span>
+          </h1>
+
+          <p className="text-lg max-w-md mx-auto lg:mx-0 mb-9 leading-relaxed" style={{ color: "#54514c" }}>
+            Let clients book themselves, send automatic reminders, and fill every open slot. Smapey runs your calendar so you spend less time scheduling and more time working.
+          </p>
+
+          <div className="flex flex-col sm:flex-row items-center lg:justify-start justify-center gap-3 mb-9">
+            <a href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=BOOKING&plan=FREE`} className="flex items-center gap-2 px-7 py-4 rounded-full font-bold text-sm border-2 transition-transform hover:-translate-y-0.5" style={{ ...display, background: AMBER, color: INK, borderColor: INK, boxShadow: `4px 4px 0 ${INK}` }}>
+              Start for free <ChevronRight className="w-4 h-4" />
+            </a>
+            <a href="#book-demo" onClick={(e) => { e.preventDefault(); document.getElementById("book-demo")?.scrollIntoView({ behavior: "smooth" }) }} className="flex items-center gap-2 px-7 py-4 rounded-full font-bold text-sm border-2 bg-white transition-transform hover:-translate-y-0.5" style={{ ...display, color: INK, borderColor: INK }}>
+              <CalendarCheck className="w-4 h-4" /> Book a Demo
+            </a>
+          </div>
+
+          <div className="flex flex-wrap items-center lg:justify-start justify-center gap-x-6 gap-y-2 text-xs font-semibold" style={{ color: "#54514c" }}>
+            {["No credit card required", "Free plan forever", "Setup in minutes"].map((t) => (
+              <span key={t} className="flex items-center gap-1.5"><CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />{t}</span>
+            ))}
+          </div>
         </div>
-        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.04] tracking-tight mb-6" style={{ color: INK }}>
-          Book smarter, <span style={{ color: BLUE }}>run smoother</span>
-        </h1>
-        <p className="text-lg max-w-2xl mx-auto mb-10 leading-relaxed" style={{ color: "#54514c" }}>Smapey Booking gives clinics, salons, and studios a simple way to manage appointments, track deposits, assign staff, and never lose track of a booking again.</p>
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-          <a href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=BOOKING&plan=FREE`} className="flex items-center gap-2 px-7 py-4 rounded-full font-bold text-sm border-2 transition-transform hover:-translate-y-0.5" style={{ ...display, background: AMBER, color: INK, borderColor: INK, boxShadow: `4px 4px 0 ${INK}` }}>
-            Start free — no card needed <ChevronRight className="w-4 h-4" />
-          </a>
-          <a href="/booking" className="flex items-center gap-2 px-7 py-4 rounded-full font-bold text-sm border-2 bg-white transition-transform hover:-translate-y-0.5" style={{ ...display, color: INK, borderColor: INK }}>View all features</a>
-        </div>
-        <div className="mt-16 flex flex-wrap items-center justify-center gap-6 text-xs font-semibold" style={{ color: "#54514c" }}>
-          {["No credit card required", "Free plan forever", "Setup in minutes"].map((t) => (<span key={t} className="flex items-center gap-1.5"><CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />{t}</span>))}
+
+        {/* RIGHT — day-schedule card */}
+        <div className="relative min-w-0 w-full max-w-md mx-auto">
+          {/* floating reminder chip */}
+          <div className="absolute z-10 flex items-center gap-2 bg-white border-2 rounded-full px-3.5 py-2" style={{ top: -20, right: -16, borderColor: INK, boxShadow: `4px 4px 0 ${BLUE}`, transform: "rotate(4deg)" }}>
+            <span className="w-6 h-6 rounded-full flex items-center justify-center" style={{ background: BLUE, border: `2px solid ${INK}` }}><Bell className="w-3 h-3 text-white" /></span>
+            <span className="text-[11px] font-extrabold" style={{ color: INK }}>Reminder sent</span>
+          </div>
+
+          <div className="relative bg-white border-2 rounded-[24px] p-6" style={{ borderColor: INK, boxShadow: `9px 9px 0 ${INK}` }}>
+            {/* header */}
+            <div className="flex items-center justify-between mb-5">
+              <div className="flex items-center gap-2.5">
+                <span className="w-9 h-9 rounded-xl border-2 flex items-center justify-center" style={{ background: BLUE, borderColor: INK }}><CalendarDays className="w-4 h-4 text-white" /></span>
+                <div className="leading-tight">
+                  <div className="text-[13px] font-extrabold" style={{ color: INK }}>Today · Tue, Nov 18</div>
+                  <div className="text-[11px] font-semibold" style={{ color: "#9a948b" }}>6 appointments</div>
+                </div>
+              </div>
+              <span className="text-[10px] font-extrabold tracking-widest rounded-full px-2.5 py-1 border" style={{ color: BLUE, borderColor: BLUE }}>85% FULL</span>
+            </div>
+
+            {/* slot rows */}
+            <div className="flex flex-col gap-2.5 mb-5">
+              {slots.map((s) => {
+                const isNext = s.state === "next"
+                const isOpen = s.state === "open"
+                return (
+                  <div key={s.time} className="flex items-center gap-3 rounded-[14px] border-2 px-3.5 py-3" style={{ background: isNext ? AMBER : isOpen ? "#fff" : CREAM, borderColor: INK, borderStyle: isOpen ? "dashed" : "solid" }}>
+                    <span className="text-[12px] font-extrabold w-12 shrink-0" style={{ color: INK }}>{s.time}</span>
+                    <span className="flex-1 text-[12px] font-bold" style={{ color: isOpen ? "#9a948b" : INK }}>{s.name}</span>
+                    {s.state === "done" && <CheckCircle2 className="w-4 h-4" style={{ color: "#059669" }} />}
+                    {isNext && <span className="text-[9px] font-extrabold px-1.5 py-0.5 rounded-full" style={{ background: INK, color: "#fff" }}>NEXT</span>}
+                    {isOpen && <span className="text-[9px] font-extrabold px-1.5 py-0.5 rounded-full" style={{ background: "#eafaf0", color: "#059669" }}>OPEN</span>}
+                    {s.state === "booked" && <Clock className="w-4 h-4" style={{ color: BLUE }} />}
+                  </div>
+                )
+              })}
+            </div>
+
+            {/* footer stats */}
+            <div className="grid grid-cols-2 gap-2.5">
+              <div className="rounded-[12px] border-2 px-3 py-2.5 text-center" style={{ borderColor: INK }}>
+                <div className="text-[16px] font-extrabold" style={{ color: INK }}>1</div>
+                <div className="text-[9px] font-bold" style={{ color: "#9a948b" }}>OPEN SLOT</div>
+              </div>
+              <div className="rounded-[12px] border-2 px-3 py-2.5 text-center" style={{ background: "#eafaf0", borderColor: INK }}>
+                <div className="text-[16px] font-extrabold" style={{ color: "#059669" }}>₱4,500</div>
+                <div className="text-[9px] font-bold" style={{ color: "#059669" }}>TODAY</div>
+              </div>
+            </div>
+          </div>
+
+          {/* floating self-booking chip */}
+          <div className="absolute z-10 flex items-center gap-2 bg-white border-2 rounded-2xl px-3.5 py-2.5" style={{ bottom: -22, left: -16, borderColor: INK, boxShadow: `4px 4px 0 ${AMBER}`, transform: "rotate(-4deg)" }}>
+            <span className="w-7 h-7 rounded-lg border-2 flex items-center justify-center" style={{ background: AMBER, borderColor: INK }}><UserCheck className="w-3.5 h-3.5" style={{ color: INK }} /></span>
+            <div className="leading-tight">
+              <div className="text-[10px] font-bold" style={{ color: "#9a948b" }}>Client booked</div>
+              <div className="text-[12px] font-extrabold" style={{ color: INK }}>online</div>
+            </div>
+          </div>
         </div>
       </div>
     </section>

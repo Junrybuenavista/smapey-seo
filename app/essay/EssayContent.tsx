@@ -104,30 +104,104 @@ function Navbar() {
 }
 
 function Hero() {
+  const rubric = [
+    { label: "Content",   color: BLUE,  width: "88%", score: "9/10" },
+    { label: "Structure", color: BLUE,  width: "82%", score: "8/10" },
+    { label: "Grammar",   color: AMBER, width: "70%", score: "7/10" },
+    { label: "Clarity",   color: BLUE,  width: "90%", score: "9/10" },
+  ]
   return (
     <section className="relative min-h-screen flex items-center pt-16 overflow-hidden" style={{ background: CREAM, fontFamily: display.fontFamily }}>
+      {/* decorative rings */}
       <div className="absolute inset-0 pointer-events-none hidden md:block" aria-hidden>
-        <div className="absolute rounded-[22px] border-2" style={{ top: "20%", left: "-70px", width: 280, height: 80, background: AMBER, borderColor: INK, transform: "rotate(-10deg)" }} />
-        <div className="absolute rounded-[22px] border-2" style={{ top: "32%", right: "-80px", width: 300, height: 84, background: BLUE, borderColor: INK, transform: "rotate(8deg)", boxShadow: "5px 5px 0 rgba(22,22,22,.12)" }} />
-        <div className="absolute rounded-[22px] border-2" style={{ bottom: "16%", right: "-60px", width: 270, height: 78, background: AMBER, borderColor: INK, transform: "rotate(-7deg)" }} />
+        <div className="absolute rounded-full border-2" style={{ top: "-160px", left: "-160px", width: 520, height: 520, borderColor: INK, opacity: 0.08 }} />
+        <div className="absolute rounded-full border-2" style={{ bottom: "-220px", right: "8%", width: 340, height: 340, borderColor: INK, opacity: 0.06 }} />
       </div>
-      <div className="relative max-w-6xl mx-auto px-6 py-24 text-center">
-        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border-2 text-xs font-bold mb-6" style={{ color: INK, borderColor: INK, boxShadow: `3px 3px 0 ${BLUE}` }}>
-          <Zap className="w-3 h-3" />
-          AI essay grading for teachers & students
+
+      <div className="relative w-full max-w-6xl mx-auto px-6 py-24 grid lg:grid-cols-[1.15fr_0.85fr] gap-12 lg:gap-[72px] items-center">
+        {/* LEFT — headline column */}
+        <div className="min-w-0 text-center lg:text-left">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border-2 text-xs font-bold mb-7" style={{ color: INK, borderColor: INK, boxShadow: `3px 3px 0 ${BLUE}` }}>
+            <Zap className="w-3 h-3" />
+            AI essay grading for teachers &amp; students
+          </div>
+
+          <h1 className="font-extrabold tracking-tight mb-6" style={{ color: INK, fontSize: "clamp(46px,6.4vw,84px)", lineHeight: 0.96, letterSpacing: "-0.03em" }}>
+            Grade essays in seconds,{" "}
+            <span className="relative inline-block" style={{ color: BLUE }}>
+              not hours.
+              <span className="absolute left-0 right-0" style={{ bottom: 6, height: 14, background: AMBER, zIndex: -1, transform: "rotate(-1.2deg)" }} />
+            </span>
+          </h1>
+
+          <p className="text-lg max-w-md mx-auto lg:mx-0 mb-9 leading-relaxed" style={{ color: "#54514c" }}>
+            Smapey Essay scores student writing against a clear rubric and returns structured, actionable feedback — typed or handwritten, every essay graded the same fair way.
+          </p>
+
+          <div className="flex flex-col sm:flex-row items-center lg:justify-start justify-center gap-3 mb-9">
+            <a href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=ESSAY&plan=FREE`} className="flex items-center gap-2 px-7 py-4 rounded-full font-bold text-sm border-2 transition-transform hover:-translate-y-0.5" style={{ ...display, background: AMBER, color: INK, borderColor: INK, boxShadow: `4px 4px 0 ${INK}` }}>
+              Start free — no card needed <ChevronRight className="w-4 h-4" />
+            </a>
+            <a href="#how-it-works" className="flex items-center gap-2 px-7 py-4 rounded-full font-bold text-sm border-2 bg-white transition-transform hover:-translate-y-0.5" style={{ ...display, color: INK, borderColor: INK }}>See how it works</a>
+          </div>
+
+          <div className="flex flex-wrap items-center lg:justify-start justify-center gap-x-6 gap-y-2 text-xs font-semibold" style={{ color: "#54514c" }}>
+            {["No credit card required", "Free plan forever", "Setup in minutes"].map((t) => (
+              <span key={t} className="flex items-center gap-1.5"><CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />{t}</span>
+            ))}
+          </div>
         </div>
-        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.04] tracking-tight mb-6" style={{ color: INK }}>
-          Grade essays instantly, <span style={{ color: BLUE }}>give better feedback</span>
-        </h1>
-        <p className="text-lg max-w-2xl mx-auto mb-10 leading-relaxed" style={{ color: "#54514c" }}>Smapey Essay uses AI to score student essays, provide rubric-based feedback, and help students improve their writing — all in seconds, not hours.</p>
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-          <a href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=ESSAY&plan=FREE`} className="flex items-center gap-2 px-7 py-4 rounded-full font-bold text-sm border-2 transition-transform hover:-translate-y-0.5" style={{ ...display, background: AMBER, color: INK, borderColor: INK, boxShadow: `4px 4px 0 ${INK}` }}>
-            Start free — no card needed <ChevronRight className="w-4 h-4" />
-          </a>
-          <a href="/essay" className="flex items-center gap-2 px-7 py-4 rounded-full font-bold text-sm border-2 bg-white transition-transform hover:-translate-y-0.5" style={{ ...display, color: INK, borderColor: INK }}>View all features</a>
-        </div>
-        <div className="mt-16 flex flex-wrap items-center justify-center gap-6 text-xs font-semibold" style={{ color: "#54514c" }}>
-          {["No credit card required", "Free plan forever", "Setup in minutes"].map((t) => (<span key={t} className="flex items-center gap-1.5"><CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />{t}</span>))}
+
+        {/* RIGHT — graded-essay preview card */}
+        <div className="relative min-w-0 max-w-md w-full mx-auto">
+          {/* score badge */}
+          <div className="absolute z-10 flex flex-col items-center justify-center text-white rounded-full border-2" style={{ top: -26, right: -14, width: 96, height: 96, background: BLUE, borderColor: INK, boxShadow: `4px 4px 0 ${INK}`, transform: "rotate(-8deg)" }}>
+            <span className="font-extrabold leading-none" style={{ fontSize: 30 }}>A−</span>
+            <span className="font-extrabold mt-0.5" style={{ fontSize: 9, letterSpacing: "0.14em", opacity: 0.85 }}>SCORE</span>
+          </div>
+
+          <div className="relative bg-white border-2 rounded-[24px] p-6" style={{ borderColor: INK, boxShadow: `9px 9px 0 ${INK}` }}>
+            <div className="flex items-center justify-between mb-4">
+              <div className="flex items-center gap-2.5">
+                <span className="w-8 h-8 rounded-[9px] border-2 flex items-center justify-center" style={{ background: CREAM, borderColor: INK }}><FileText className="w-4 h-4" style={{ color: INK }} /></span>
+                <div className="leading-tight">
+                  <div className="text-[13px] font-extrabold" style={{ color: INK }}>Argumentative Essay</div>
+                  <div className="text-[11px] font-semibold" style={{ color: "#9a948b" }}>Submitted · Grade 10 English</div>
+                </div>
+              </div>
+              <span className="text-[10px] font-extrabold tracking-widest rounded-full px-2.5 py-1 border" style={{ color: BLUE, borderColor: BLUE }}>GRADED</span>
+            </div>
+
+            {/* essay text lines */}
+            <div className="border-2 rounded-[14px] px-4 py-3.5 mb-4 space-y-2" style={{ background: CREAM, borderColor: INK }}>
+              {["100%", "92%", "97%", "74%", "60%"].map((w, i) => (
+                <div key={i} className="h-2 rounded-full" style={{ width: w, background: i === 3 ? "#ffd9a8" : "#e7e1d6", border: i === 3 ? `1px dashed ${AMBER}` : "none" }} />
+              ))}
+            </div>
+
+            {/* rubric bars */}
+            {rubric.map((r) => (
+              <div key={r.label} className="flex items-center gap-3 mb-2.5">
+                <span className="text-xs font-bold w-[78px] shrink-0" style={{ color: INK }}>{r.label}</span>
+                <span className="flex-1 h-2.5 rounded-full overflow-hidden border" style={{ background: "#efe9de", borderColor: INK }}>
+                  <span className="block h-full" style={{ width: r.width, background: r.color }} />
+                </span>
+                <span className="text-[11px] font-extrabold w-9 text-right shrink-0" style={{ color: INK }}>{r.score}</span>
+              </div>
+            ))}
+
+            {/* AI feedback note */}
+            <div className="mt-4 flex gap-2.5 items-start border-2 rounded-[14px] px-3.5 py-3" style={{ background: BLUE, borderColor: INK, boxShadow: `4px 4px 0 ${INK}` }}>
+              <MessageSquare className="w-4 h-4 shrink-0 text-white" />
+              <p className="text-xs font-semibold text-white leading-snug m-0">Strong thesis and clear structure. Tighten paragraph 4 — the counter-argument needs supporting evidence.</p>
+            </div>
+          </div>
+
+          {/* handwriting tag */}
+          <div className="absolute z-10 flex items-center gap-2 border-2 rounded-[14px] px-3 py-2" style={{ bottom: -22, left: -22, background: AMBER, borderColor: INK, boxShadow: `4px 4px 0 ${INK}`, transform: "rotate(-3deg)" }}>
+            <Camera className="w-4 h-4" style={{ color: INK }} />
+            <span className="text-xs font-extrabold leading-tight" style={{ color: INK }}>Reads<br/>handwriting</span>
+          </div>
         </div>
       </div>
     </section>

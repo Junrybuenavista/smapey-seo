@@ -102,30 +102,112 @@ function Navbar() {
 }
 
 function Hero() {
+  // mini month strip: b=booked, o=open, t=turnover(check-in today)
+  const nights = ["b","b","o","o","b","b","b","t","o","b","b","b","o","o"]
+  const cell = { b: { bg: BLUE, fg:"#fff" }, o: { bg:"#fff", fg:"#9a948b" }, t: { bg: AMBER, fg: INK } }
+
   return (
     <section className="relative min-h-screen flex items-center pt-16 overflow-hidden" style={{ background: CREAM, fontFamily: display.fontFamily }}>
-      <div className="absolute inset-0 pointer-events-none hidden md:block" aria-hidden>
-        <div className="absolute rounded-[22px] border-2" style={{ top: "20%", left: "-70px", width: 280, height: 80, background: AMBER, borderColor: INK, transform: "rotate(-10deg)" }} />
-        <div className="absolute rounded-[22px] border-2" style={{ top: "32%", right: "-80px", width: 300, height: 84, background: BLUE, borderColor: INK, transform: "rotate(8deg)", boxShadow: "5px 5px 0 rgba(22,22,22,.12)" }} />
-        <div className="absolute rounded-[22px] border-2" style={{ bottom: "16%", right: "-60px", width: 270, height: 78, background: AMBER, borderColor: INK, transform: "rotate(-7deg)" }} />
+      <div className="absolute inset-0 pointer-events-none hidden lg:block" aria-hidden>
+        <div className="absolute rounded-full border-2" style={{ top: "-130px", left: "-90px", width: 360, height: 360, borderColor: INK, opacity: 0.06 }} />
+        <div className="absolute rounded-full border-2" style={{ bottom: "-150px", right: "-70px", width: 300, height: 300, borderColor: INK, opacity: 0.05 }} />
       </div>
-      <div className="relative max-w-6xl mx-auto px-6 py-24 text-center">
-        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border-2 text-xs font-bold mb-6" style={{ color: INK, borderColor: INK, boxShadow: `3px 3px 0 ${BLUE}` }}>
-          <Zap className="w-3 h-3" />
-          Built for Airbnb hosts
+
+      <div className="relative w-full max-w-6xl mx-auto px-6 py-24 grid lg:grid-cols-[1fr_1fr] gap-12 lg:gap-16 items-center">
+        {/* LEFT — copy */}
+        <div className="min-w-0 text-center lg:text-left">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border-2 text-xs font-bold mb-7" style={{ color: INK, borderColor: INK, boxShadow: `3px 3px 0 ${BLUE}` }}>
+            <Zap className="w-3 h-3" />
+            Built for short-stay &amp; Airbnb hosts
+          </div>
+
+          <h1 className="font-extrabold tracking-tight mb-6" style={{ color: INK, fontSize: "clamp(44px,6vw,78px)", lineHeight: 0.97, letterSpacing: "-0.03em" }}>
+            Every booking,{" "}
+            <span className="relative inline-block" style={{ color: BLUE }}>
+              every night
+              <span className="absolute left-0 right-0" style={{ bottom: 6, height: 14, background: AMBER, zIndex: -1, transform: "rotate(-1.2deg)" }} />
+            </span>
+            , in sync
+          </h1>
+
+          <p className="text-lg max-w-md mx-auto lg:mx-0 mb-9 leading-relaxed" style={{ color: "#54514c" }}>
+            Manage units, calendars, guests, cleaning turnovers, and payouts from one screen. Smapey keeps every reservation organized so no double-booking ever slips through.
+          </p>
+
+          <div className="flex flex-col sm:flex-row items-center lg:justify-start justify-center gap-3 mb-9">
+            <a href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=AIRBNB&plan=FREE`} className="flex items-center gap-2 px-7 py-4 rounded-full font-bold text-sm border-2 transition-transform hover:-translate-y-0.5" style={{ ...display, background: AMBER, color: INK, borderColor: INK, boxShadow: `4px 4px 0 ${INK}` }}>
+              Start for free <ChevronRight className="w-4 h-4" />
+            </a>
+            <a href="#book-demo" onClick={(e) => { e.preventDefault(); document.getElementById("book-demo")?.scrollIntoView({ behavior: "smooth" }) }} className="flex items-center gap-2 px-7 py-4 rounded-full font-bold text-sm border-2 bg-white transition-transform hover:-translate-y-0.5" style={{ ...display, color: INK, borderColor: INK }}>
+              <CalendarCheck className="w-4 h-4" /> Book a Demo
+            </a>
+          </div>
+
+          <div className="flex flex-wrap items-center lg:justify-start justify-center gap-x-6 gap-y-2 text-xs font-semibold" style={{ color: "#54514c" }}>
+            {["No credit card required", "Free plan forever", "Setup in minutes"].map((t) => (
+              <span key={t} className="flex items-center gap-1.5"><CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />{t}</span>
+            ))}
+          </div>
         </div>
-        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.04] tracking-tight mb-6" style={{ color: INK }}>
-          Manage your rental properties <span style={{ color: BLUE }}>without the chaos</span>
-        </h1>
-        <p className="text-lg max-w-2xl mx-auto mb-10 leading-relaxed" style={{ color: "#54514c" }}>Properties, guests, reservations, deposits, and revenue analytics — everything an independent Airbnb host needs, in one clean dashboard. No spreadsheets, no double bookings.</p>
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-          <a href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=AIRBNB&plan=FREE`} className="flex items-center gap-2 px-7 py-4 rounded-full font-bold text-sm border-2 transition-transform hover:-translate-y-0.5" style={{ ...display, background: AMBER, color: INK, borderColor: INK, boxShadow: `4px 4px 0 ${INK}` }}>
-            Start free — no card needed <ChevronRight className="w-4 h-4" />
-          </a>
-          <a href="/airbnb" className="flex items-center gap-2 px-7 py-4 rounded-full font-bold text-sm border-2 bg-white transition-transform hover:-translate-y-0.5" style={{ ...display, color: INK, borderColor: INK }}>View all features</a>
-        </div>
-        <div className="mt-16 flex flex-wrap items-center justify-center gap-6 text-xs font-semibold" style={{ color: "#54514c" }}>
-          {["No credit card required", "Free plan forever", "Setup in minutes"].map((t) => (<span key={t} className="flex items-center gap-1.5"><CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />{t}</span>))}
+
+        {/* RIGHT — property + calendar card */}
+        <div className="relative min-w-0 w-full max-w-md mx-auto">
+          {/* floating new-reservation chip */}
+          <div className="absolute z-10 flex items-center gap-2 bg-white border-2 rounded-full px-3.5 py-2" style={{ top: -20, right: -16, borderColor: INK, boxShadow: `4px 4px 0 ${BLUE}`, transform: "rotate(4deg)" }}>
+            <span className="w-6 h-6 rounded-full flex items-center justify-center" style={{ background: BLUE, border: `2px solid ${INK}` }}><CalendarRange className="w-3 h-3 text-white" /></span>
+            <span className="text-[11px] font-extrabold" style={{ color: INK }}>New reservation · 3 nights</span>
+          </div>
+
+          <div className="relative bg-white border-2 rounded-[24px] overflow-hidden" style={{ borderColor: INK, boxShadow: `9px 9px 0 ${INK}` }}>
+            {/* photo placeholder banner */}
+            <div className="relative h-28 flex items-center justify-center" style={{ background: "repeating-linear-gradient(135deg, #ece6da 0 14px, #f4efe6 14px 28px)" }}>
+              <span className="text-[11px] font-bold tracking-wide" style={{ color: "#a59e90", fontFamily: "ui-monospace, monospace" }}>[ unit photo ]</span>
+              <span className="absolute top-3 left-3 text-[10px] font-extrabold tracking-widest px-2.5 py-1 rounded-full border-2" style={{ background: "#fff", color: INK, borderColor: INK }}>★ 4.92</span>
+            </div>
+
+            <div className="p-6">
+              <div className="flex items-center justify-between mb-1">
+                <div className="text-[15px] font-extrabold" style={{ color: INK }}>Loft 2BR · Poblacion</div>
+                <div className="text-[15px] font-extrabold" style={{ color: INK }}>₱3,400<span className="text-[11px] font-semibold" style={{ color:"#9a948b" }}>/night</span></div>
+              </div>
+              <div className="flex items-center gap-3 text-[11px] font-semibold mb-5" style={{ color: "#9a948b" }}>
+                <span className="flex items-center gap-1"><BedDouble className="w-3.5 h-3.5" /> 2 beds</span>
+                <span className="flex items-center gap-1"><Users className="w-3.5 h-3.5" /> 4 guests</span>
+              </div>
+
+              {/* calendar strip */}
+              <div className="rounded-[14px] border-2 px-4 py-3.5 mb-4" style={{ background: CREAM, borderColor: INK }}>
+                <div className="flex items-center justify-between mb-2.5">
+                  <span className="text-[11px] font-extrabold" style={{ color: INK }}>November</span>
+                  <span className="text-[10px] font-bold" style={{ color: "#9a948b" }}>9 booked · 5 open</span>
+                </div>
+                <div className="grid grid-cols-7 gap-1.5">
+                  {nights.map((n, i) => {
+                    const c = cell[n]
+                    return <span key={i} className="aspect-square rounded-md border flex items-center justify-center text-[10px] font-extrabold" style={{ background: c.bg, borderColor: INK, color: c.fg }}>{i + 8}</span>
+                  })}
+                </div>
+              </div>
+
+              {/* legend + payout */}
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-3 text-[10px] font-bold" style={{ color: "#54514c" }}>
+                  <span className="flex items-center gap-1"><span className="w-2.5 h-2.5 rounded-sm border" style={{ background: BLUE, borderColor: INK }} />Booked</span>
+                  <span className="flex items-center gap-1"><span className="w-2.5 h-2.5 rounded-sm border" style={{ background: AMBER, borderColor: INK }} />Check-in</span>
+                </div>
+                <span className="flex items-center gap-1.5 text-[12px] font-extrabold px-2.5 py-1 rounded-full" style={{ background: "#eafaf0", color: "#059669" }}><Wallet className="w-3.5 h-3.5" />₱30,600 payout</span>
+              </div>
+            </div>
+          </div>
+
+          {/* floating turnover chip */}
+          <div className="absolute z-10 flex items-center gap-2 bg-white border-2 rounded-2xl px-3.5 py-2.5" style={{ bottom: -22, left: -16, borderColor: INK, boxShadow: `4px 4px 0 ${INK}`, transform: "rotate(-4deg)" }}>
+            <span className="w-7 h-7 rounded-lg border-2 flex items-center justify-center" style={{ background: AMBER, borderColor: INK }}><Sparkles className="w-3.5 h-3.5" style={{ color: INK }} /></span>
+            <div className="leading-tight">
+              <div className="text-[10px] font-bold" style={{ color: "#9a948b" }}>Cleaning</div>
+              <div className="text-[12px] font-extrabold" style={{ color: INK }}>Turnover 2PM</div>
+            </div>
+          </div>
         </div>
       </div>
     </section>

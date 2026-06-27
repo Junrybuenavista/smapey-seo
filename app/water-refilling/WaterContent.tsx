@@ -105,30 +105,123 @@ function Navbar() {
 }
 
 function Hero() {
+  const stops = [
+    { addr: "Brgy. San Roque · 3 gal", state: "done" },
+    { addr: "Mabini St. Apt 4 · 5 gal", state: "done" },
+    { addr: "Riverside Eatery · 8 gal", state: "active" },
+    { addr: "Villa Hermosa · 2 gal", state: "queued" },
+  ]
+  const dot = { done: "#10b981", active: AMBER, queued: "rgba(255,255,255,.3)" }
+
   return (
-    <section className="relative min-h-screen flex items-center pt-16 overflow-hidden" style={{ background: CREAM, fontFamily: display.fontFamily }}>
-      <div className="absolute inset-0 pointer-events-none hidden md:block" aria-hidden>
-        <div className="absolute rounded-[22px] border-2" style={{ top: "20%", left: "-70px", width: 280, height: 80, background: AMBER, borderColor: INK, transform: "rotate(-10deg)" }} />
-        <div className="absolute rounded-[22px] border-2" style={{ top: "32%", right: "-80px", width: 300, height: 84, background: BLUE, borderColor: INK, transform: "rotate(8deg)", boxShadow: "5px 5px 0 rgba(22,22,22,.12)" }} />
-        <div className="absolute rounded-[22px] border-2" style={{ bottom: "16%", right: "-60px", width: 270, height: 78, background: AMBER, borderColor: INK, transform: "rotate(-7deg)" }} />
+    <section className="relative min-h-screen flex items-center pt-16 overflow-hidden" style={{ background: INK, fontFamily: display.fontFamily }}>
+      {/* subtle ripple rings */}
+      <div className="absolute inset-0 pointer-events-none hidden lg:block" aria-hidden>
+        <div className="absolute rounded-full border-2" style={{ top: "-140px", right: "-90px", width: 380, height: 380, borderColor: "#fff", opacity: 0.06 }} />
+        <div className="absolute rounded-full border-2" style={{ bottom: "-160px", left: "-80px", width: 320, height: 320, borderColor: BLUE, opacity: 0.18 }} />
       </div>
-      <div className="relative max-w-6xl mx-auto px-6 py-24 text-center">
-        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border-2 text-xs font-bold mb-6" style={{ color: INK, borderColor: INK, boxShadow: `3px 3px 0 ${BLUE}` }}>
-          <Zap className="w-3 h-3" />
-          Built for water refilling stations
+
+      <div className="relative w-full max-w-6xl mx-auto px-6 py-24 grid lg:grid-cols-[1fr_1fr] gap-12 lg:gap-16 items-center">
+        {/* LEFT — copy (light text) */}
+        <div className="min-w-0 text-center lg:text-left">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border-2 text-xs font-bold mb-7" style={{ color: "#fff", borderColor: "rgba(255,255,255,.25)", background: "rgba(255,255,255,.06)" }}>
+            <Zap className="w-3 h-3" style={{ color: AMBER }} />
+            Built for water refilling stations
+          </div>
+
+          <h1 className="font-extrabold tracking-tight mb-6" style={{ color: "#fff", fontSize: "clamp(44px,6vw,78px)", lineHeight: 0.97, letterSpacing: "-0.03em" }}>
+            Every gallon,{" "}
+            <span className="relative inline-block" style={{ color: "#5b8cff" }}>
+              every route
+              <span className="absolute left-0 right-0" style={{ bottom: 6, height: 14, background: AMBER, zIndex: -1, transform: "rotate(-1.2deg)" }} />
+            </span>
+            , on time
+          </h1>
+
+          <p className="text-lg max-w-md mx-auto lg:mx-0 mb-9 leading-relaxed" style={{ color: "rgba(255,255,255,.65)" }}>
+            Track orders, delivery runs, container returns, and customer balances from one screen. Smapey keeps every drop accounted for — from station to doorstep.
+          </p>
+
+          <div className="flex flex-col sm:flex-row items-center lg:justify-start justify-center gap-3 mb-9">
+            <a href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=WATER&plan=FREE`} className="flex items-center gap-2 px-7 py-4 rounded-full font-bold text-sm border-2 transition-transform hover:-translate-y-0.5" style={{ ...display, background: AMBER, color: INK, borderColor: AMBER, boxShadow: "4px 4px 0 rgba(255,255,255,.18)" }}>
+              Start for free <ChevronRight className="w-4 h-4" />
+            </a>
+            <a href="#book-demo" onClick={(e) => { e.preventDefault(); document.getElementById("book-demo")?.scrollIntoView({ behavior: "smooth" }) }} className="flex items-center gap-2 px-7 py-4 rounded-full font-bold text-sm border-2 transition-transform hover:-translate-y-0.5" style={{ ...display, color: "#fff", borderColor: "rgba(255,255,255,.3)", background: "rgba(255,255,255,.04)" }}>
+              <CalendarCheck className="w-4 h-4" /> Book a Demo
+            </a>
+          </div>
+
+          <div className="flex flex-wrap items-center lg:justify-start justify-center gap-x-6 gap-y-2 text-xs font-semibold" style={{ color: "rgba(255,255,255,.6)" }}>
+            {["No credit card required", "Free plan forever", "Setup in minutes"].map((t) => (
+              <span key={t} className="flex items-center gap-1.5"><CheckCircle2 className="w-3.5 h-3.5" style={{ color: "#34d399" }} />{t}</span>
+            ))}
+          </div>
         </div>
-        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.04] tracking-tight mb-6" style={{ color: INK }}>
-          Run your water refilling station <span style={{ color: BLUE }}>without the notebook</span>
-        </h1>
-        <p className="text-lg max-w-2xl mx-auto mb-10 leading-relaxed" style={{ color: "#54514c" }}>Smapey tracks deliveries, customers, container deposits, returns, inventory, and payments — so you always know who has your bottles and where your money is.</p>
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-          <a href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=WATER_REFILLING&plan=FREE`} className="flex items-center gap-2 px-7 py-4 rounded-full font-bold text-sm border-2 transition-transform hover:-translate-y-0.5" style={{ ...display, background: AMBER, color: INK, borderColor: INK, boxShadow: `4px 4px 0 ${INK}` }}>
-            Start free — no card needed <ChevronRight className="w-4 h-4" />
-          </a>
-          <a href="/water-refilling" className="flex items-center gap-2 px-7 py-4 rounded-full font-bold text-sm border-2 bg-white transition-transform hover:-translate-y-0.5" style={{ ...display, color: INK, borderColor: INK }}>View all features</a>
-        </div>
-        <div className="mt-16 flex flex-wrap items-center justify-center gap-6 text-xs font-semibold" style={{ color: "#54514c" }}>
-          {["No credit card required", "Free plan forever", "Setup in minutes"].map((t) => (<span key={t} className="flex items-center gap-1.5"><CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />{t}</span>))}
+
+        {/* RIGHT — delivery-run dispatch card (light card pops on dark) */}
+        <div className="relative min-w-0 w-full max-w-md mx-auto">
+          {/* floating order chip */}
+          <div className="absolute z-10 flex items-center gap-2 bg-white border-2 rounded-full px-3.5 py-2" style={{ top: -20, right: -16, borderColor: INK, boxShadow: `4px 4px 0 ${BLUE}`, transform: "rotate(4deg)" }}>
+            <span className="w-6 h-6 rounded-full flex items-center justify-center" style={{ background: BLUE, border: `2px solid ${INK}` }}><MessageSquare className="w-3 h-3 text-white" /></span>
+            <span className="text-[11px] font-extrabold" style={{ color: INK }}>New order · 8 gal</span>
+          </div>
+
+          <div className="relative bg-white border-2 rounded-[24px] p-6" style={{ borderColor: INK, boxShadow: `9px 9px 0 ${BLUE}` }}>
+            {/* header */}
+            <div className="flex items-center justify-between mb-5">
+              <div className="flex items-center gap-2.5">
+                <span className="w-9 h-9 rounded-xl border-2 flex items-center justify-center" style={{ background: BLUE, borderColor: INK }}><Truck className="w-4 h-4 text-white" /></span>
+                <div className="leading-tight">
+                  <div className="text-[13px] font-extrabold" style={{ color: INK }}>Delivery Run · AM</div>
+                  <div className="text-[11px] font-semibold" style={{ color: "#9a948b" }}>Rider: Jun · 4 stops</div>
+                </div>
+              </div>
+              <span className="text-[10px] font-extrabold tracking-widest rounded-full px-2.5 py-1 border" style={{ color: BLUE, borderColor: BLUE }}>LIVE</span>
+            </div>
+
+            {/* route stops */}
+            <div className="rounded-[16px] border-2 px-4 py-4 mb-5" style={{ background: CREAM, borderColor: INK }}>
+              {stops.map((s, i) => (
+                <div key={s.addr} className="flex items-start gap-3">
+                  <div className="flex flex-col items-center">
+                    <span className="w-5 h-5 rounded-full border-2 flex items-center justify-center shrink-0" style={{ background: s.state === "done" ? dot.done : s.state === "active" ? AMBER : "#fff", borderColor: INK }}>
+                      {s.state === "done" && <CheckCircle2 className="w-3 h-3 text-white" />}
+                      {s.state === "active" && <MapPin className="w-3 h-3" style={{ color: INK }} />}
+                    </span>
+                    {i < stops.length - 1 && <span className="w-0.5 h-6" style={{ background: s.state === "done" ? dot.done : "#e7e1d6" }} />}
+                  </div>
+                  <span className="text-[13px] font-bold pt-px pb-2" style={{ color: s.state === "queued" ? "#9a948b" : INK }}>
+                    {s.addr}{s.state === "active" && <span className="ml-1.5 text-[10px] font-extrabold px-1.5 py-0.5 rounded-full align-middle" style={{ background: AMBER, color: INK }}>EN ROUTE</span>}
+                  </span>
+                </div>
+              ))}
+            </div>
+
+            {/* stats row */}
+            <div className="grid grid-cols-3 gap-2.5">
+              <div className="rounded-[12px] border-2 px-3 py-2.5 text-center" style={{ borderColor: INK }}>
+                <div className="text-[16px] font-extrabold" style={{ color: INK }}>18</div>
+                <div className="text-[9px] font-bold" style={{ color: "#9a948b" }}>GAL TODAY</div>
+              </div>
+              <div className="rounded-[12px] border-2 px-3 py-2.5 text-center" style={{ borderColor: INK }}>
+                <div className="text-[16px] font-extrabold" style={{ color: INK }}>6</div>
+                <div className="text-[9px] font-bold" style={{ color: "#9a948b" }}>RETURNS</div>
+              </div>
+              <div className="rounded-[12px] border-2 px-3 py-2.5 text-center" style={{ background: "#eafaf0", borderColor: INK }}>
+                <div className="text-[16px] font-extrabold" style={{ color: "#059669" }}>₱1,260</div>
+                <div className="text-[9px] font-bold" style={{ color: "#059669" }}>COLLECTED</div>
+              </div>
+            </div>
+          </div>
+
+          {/* floating containers chip */}
+          <div className="absolute z-10 flex items-center gap-2 bg-white border-2 rounded-2xl px-3.5 py-2.5" style={{ bottom: -22, left: -16, borderColor: INK, boxShadow: `4px 4px 0 ${AMBER}`, transform: "rotate(-4deg)" }}>
+            <span className="w-7 h-7 rounded-lg border-2 flex items-center justify-center" style={{ background: AMBER, borderColor: INK }}><Boxes className="w-3.5 h-3.5" style={{ color: INK }} /></span>
+            <div className="leading-tight">
+              <div className="text-[10px] font-bold" style={{ color: "#9a948b" }}>Containers out</div>
+              <div className="text-[12px] font-extrabold" style={{ color: INK }}>34</div>
+            </div>
+          </div>
         </div>
       </div>
     </section>

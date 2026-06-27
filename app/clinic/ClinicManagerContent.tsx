@@ -106,30 +106,84 @@ function Navbar() {
 }
 
 function Hero() {
+  const board = [
+    { key: "WAITING", dot: AMBER, count: 3, cards: [
+      { name: "Ana Lopez", sub: "Walk-in · 9:40", bg: "#fff", c: INK, subC: "#9a948b" },
+      { name: "Ben Tan", sub: "Follow-up · 9:55", bg: "#fff", c: INK, subC: "#9a948b" },
+      { name: "Cora Diaz", sub: "New · 10:10", bg: "#fff", c: INK, subC: "#9a948b" },
+    ] },
+    { key: "IN CONSULT", dot: BLUE, count: 2, cards: [
+      { name: "Mia Reyes", sub: "Dr. Cruz · Rm 2", bg: BLUE, c: "#fff", subC: "rgba(255,255,255,.75)" },
+      { name: "Leo Santos", sub: "Dr. Yu · Rm 1", bg: BLUE, c: "#fff", subC: "rgba(255,255,255,.75)" },
+    ] },
+    { key: "DONE", dot: "#0d9f6e", count: 5, cards: [
+      { name: "Rica Go", sub: "✓ 9:20", bg: "#eafaf0", c: INK, subC: "#0d7a55" },
+      { name: "Sam Uy", sub: "✓ 9:05", bg: "#eafaf0", c: INK, subC: "#0d7a55" },
+      { name: "+ 3 more", sub: "", bg: "#eafaf0", c: INK, subC: "#0d7a55", faded: true },
+    ] },
+  ]
+
   return (
     <section className="relative min-h-screen flex items-center pt-16 overflow-hidden" style={{ background: CREAM, fontFamily: display.fontFamily }}>
-      <div className="absolute inset-0 pointer-events-none hidden md:block" aria-hidden>
-        <div className="absolute rounded-[22px] border-2" style={{ top: "20%", left: "-70px", width: 280, height: 80, background: AMBER, borderColor: INK, transform: "rotate(-10deg)" }} />
-        <div className="absolute rounded-[22px] border-2" style={{ top: "32%", right: "-80px", width: 300, height: 84, background: BLUE, borderColor: INK, transform: "rotate(8deg)", boxShadow: "5px 5px 0 rgba(22,22,22,.12)" }} />
-        <div className="absolute rounded-[22px] border-2" style={{ bottom: "16%", right: "-60px", width: 270, height: 78, background: AMBER, borderColor: INK, transform: "rotate(-7deg)" }} />
-      </div>
-      <div className="relative max-w-6xl mx-auto px-6 py-24 text-center">
-        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border-2 text-xs font-bold mb-6" style={{ color: INK, borderColor: INK, boxShadow: `3px 3px 0 ${BLUE}` }}>
-          <Zap className="w-3 h-3" />
-          Built for clinics
+      <div className="relative z-10 max-w-6xl mx-auto px-6 py-20 grid lg:grid-cols-[.92fr_1.08fr] gap-12 lg:gap-14 items-center">
+        {/* Left: copy + CTAs */}
+        <div>
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border-2 text-xs font-bold mb-6" style={{ color: INK, borderColor: INK, boxShadow: `3px 3px 0 ${BLUE}` }}>
+            <Zap className="w-3 h-3" />
+            Built for clinics
+          </div>
+          <h1 className="text-4xl sm:text-5xl font-extrabold leading-[1.05] tracking-tight mb-6" style={{ color: INK }}>
+            The clinic management system <span style={{ color: BLUE }}>your staff will actually use</span>
+          </h1>
+          <p className="text-lg max-w-xl mb-8 leading-relaxed" style={{ color: "#54514c" }}>
+            Smapey Clinic Manager handles patients, doctors, appointments, and a live queue board —
+            all in one clean dashboard your team can run from day one.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-3 mb-8">
+            <a href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=CLINIC&plan=FREE`} className="flex items-center justify-center gap-2 px-7 py-4 rounded-full font-bold text-sm border-2 transition-transform hover:-translate-y-0.5" style={{ ...display, background: AMBER, color: INK, borderColor: INK, boxShadow: `4px 4px 0 ${INK}` }}>
+              Start free — no card needed <ChevronRight className="w-4 h-4" />
+            </a>
+            <a href="/clinic" className="flex items-center justify-center px-7 py-4 rounded-full font-bold text-sm border-2 bg-white transition-transform hover:-translate-y-0.5" style={{ ...display, color: INK, borderColor: INK }}>
+              View all features
+            </a>
+          </div>
+          <div className="flex flex-wrap gap-5 text-xs font-semibold" style={{ color: "#54514c" }}>
+            {["No credit card required", "Free plan forever", "Setup in minutes"].map((t) => (
+              <span key={t} className="flex items-center gap-1.5"><CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />{t}</span>
+            ))}
+          </div>
         </div>
-        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.04] tracking-tight mb-6" style={{ color: INK }}>
-          The clinic management system <span style={{ color: BLUE }}>your staff will actually use</span>
-        </h1>
-        <p className="text-lg max-w-2xl mx-auto mb-10 leading-relaxed" style={{ color: "#54514c" }}>Smapey Clinic Manager handles patients, doctors, appointments, and a live queue board — all in one clean dashboard. Built for clinics that want less chaos, not more software.</p>
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-          <a href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=CLINIC&plan=FREE`} className="flex items-center gap-2 px-7 py-4 rounded-full font-bold text-sm border-2 transition-transform hover:-translate-y-0.5" style={{ ...display, background: AMBER, color: INK, borderColor: INK, boxShadow: `4px 4px 0 ${INK}` }}>
-            Start free — no card needed <ChevronRight className="w-4 h-4" />
-          </a>
-          <a href="/clinic" className="flex items-center gap-2 px-7 py-4 rounded-full font-bold text-sm border-2 bg-white transition-transform hover:-translate-y-0.5" style={{ ...display, color: INK, borderColor: INK }}>View all features</a>
-        </div>
-        <div className="mt-16 flex flex-wrap items-center justify-center gap-6 text-xs font-semibold" style={{ color: "#54514c" }}>
-          {["No credit card required", "Free plan forever", "Setup in minutes"].map((t) => (<span key={t} className="flex items-center gap-1.5"><CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />{t}</span>))}
+
+        {/* Right: live queue board */}
+        <div className="relative">
+          <div className="absolute -top-[18px] -right-[10px] z-10 inline-flex items-center gap-1.5 px-3 py-2 rounded-full border-2 text-xs font-extrabold text-white" style={{ background: BLUE, borderColor: INK, boxShadow: `3px 3px 0 ${INK}`, transform: "rotate(3deg)" }}>
+            <span className="w-1.5 h-1.5 rounded-full bg-white" /> LIVE QUEUE
+          </div>
+          <div className="rounded-[24px] border-2 overflow-hidden" style={{ borderColor: INK, boxShadow: `10px 10px 0 ${INK}` }}>
+            <div className="flex items-center justify-between px-5 py-[15px]" style={{ background: INK }}>
+              <span className="text-sm font-extrabold text-white">Queue board · Today</span>
+              <span className="text-xs font-bold" style={{ color: "rgba(255,255,255,.6)" }}>3 doctors on duty</span>
+            </div>
+            <div className="p-[18px] grid grid-cols-3 gap-3" style={{ background: CREAM }}>
+              {board.map((col) => (
+                <div key={col.key}>
+                  <div className="flex items-center gap-1.5 mb-2.5">
+                    <span className="w-2.5 h-2.5 rounded-full" style={{ background: col.dot }} />
+                    <span className="text-[11px] font-extrabold tracking-wide" style={{ color: INK }}>{col.key}</span>
+                    <span className="ml-auto text-[11px] font-bold" style={{ color: "#9a948b" }}>{col.count}</span>
+                  </div>
+                  <div className="flex flex-col gap-2.5">
+                    {col.cards.map((c) => (
+                      <div key={c.name} className="border-2 rounded-xl p-[11px]" style={{ borderColor: INK, background: c.bg, opacity: c.faded ? 0.6 : 1 }}>
+                        <div className="text-xs font-extrabold" style={{ color: c.c }}>{c.name}</div>
+                        {c.sub && <div className="text-[10px] font-semibold" style={{ color: c.subC }}>{c.sub}</div>}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </section>

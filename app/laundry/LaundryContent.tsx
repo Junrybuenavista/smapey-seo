@@ -129,40 +129,124 @@ function Navbar() {
 }
 
 function Hero() {
+  const steps = [
+    { label: "Received", done: true },
+    { label: "Washing",  done: true },
+    { label: "Drying",   done: true },
+    { label: "Ready for pickup", done: false, active: true },
+  ]
   return (
     <section className="relative min-h-screen flex items-center pt-16 overflow-hidden" style={{ background: CREAM, fontFamily: display.fontFamily }}>
-      <div className="absolute inset-0 pointer-events-none hidden md:block" aria-hidden>
-        <div className="absolute rounded-[22px] border-2" style={{ top: "20%", left: "-70px", width: 280, height: 80, background: AMBER, borderColor: INK, transform: "rotate(-10deg)" }} />
-        <div className="absolute rounded-[22px] border-2" style={{ top: "32%", right: "-80px", width: 300, height: 84, background: BLUE, borderColor: INK, transform: "rotate(8deg)", boxShadow: "5px 5px 0 rgba(22,22,22,.12)" }} />
-        <div className="absolute rounded-[22px] border-2" style={{ bottom: "16%", right: "-60px", width: 270, height: 78, background: AMBER, borderColor: INK, transform: "rotate(-7deg)" }} />
+      {/* faint bubble field, desktop only */}
+      <div className="absolute inset-0 pointer-events-none hidden lg:block" aria-hidden>
+        <div className="absolute rounded-full border-2" style={{ top: "-120px", right: "-80px", width: 380, height: 380, borderColor: INK, opacity: 0.06 }} />
+        <div className="absolute rounded-full border-2" style={{ bottom: "-140px", left: "-90px", width: 300, height: 300, borderColor: INK, opacity: 0.05 }} />
       </div>
-      <div className="relative max-w-6xl mx-auto px-6 py-24 text-center">
-        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border-2 text-xs font-bold mb-6" style={{ color: INK, borderColor: INK, boxShadow: `3px 3px 0 ${BLUE}` }}>
-          <Zap className="w-3 h-3" />
-          Built for small laundry shops in the Philippines
+
+      <div className="relative w-full max-w-6xl mx-auto px-6 py-24 grid lg:grid-cols-[1.05fr_0.95fr] gap-12 lg:gap-16 items-center">
+        {/* LEFT — copy */}
+        <div className="min-w-0 text-center lg:text-left">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border-2 text-xs font-bold mb-7" style={{ color: INK, borderColor: INK, boxShadow: `3px 3px 0 ${BLUE}` }}>
+            <Zap className="w-3 h-3" />
+            Built for small laundry shops in the Philippines
+          </div>
+
+          <h1 className="font-extrabold tracking-tight mb-6" style={{ color: INK, fontSize: "clamp(44px,6vw,78px)", lineHeight: 0.97, letterSpacing: "-0.03em" }}>
+            Run your shop{" "}
+            <span className="relative inline-block" style={{ color: BLUE }}>
+              smarter
+              <span className="absolute left-0 right-0" style={{ bottom: 6, height: 14, background: AMBER, zIndex: -1, transform: "rotate(-1.2deg)" }} />
+            </span>
+            , not harder
+          </h1>
+
+          <p className="text-lg max-w-md mx-auto lg:mx-0 mb-9 leading-relaxed" style={{ color: "#54514c" }}>
+            LaundryOS handles order tracking, ticket numbers, auto-SMS updates, and payment collection — so you can focus on giving customers clean laundry on time.
+          </p>
+
+          <div className="flex flex-col sm:flex-row items-center lg:justify-start justify-center gap-3 mb-9">
+            <a href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=LAUNDRY&plan=FREE`} className="flex items-center gap-2 px-7 py-4 rounded-full font-bold text-sm border-2 transition-transform hover:-translate-y-0.5" style={{ ...display, background: AMBER, color: INK, borderColor: INK, boxShadow: `4px 4px 0 ${INK}` }}>
+              Start for free <ChevronRight className="w-4 h-4" />
+            </a>
+            <a href="#book-demo" onClick={(e) => { e.preventDefault(); document.getElementById("book-demo")?.scrollIntoView({ behavior: "smooth" }) }} className="flex items-center gap-2 px-7 py-4 rounded-full font-bold text-sm border-2 bg-white transition-transform hover:-translate-y-0.5" style={{ ...display, color: INK, borderColor: INK }}>
+              <CalendarCheck className="w-4 h-4" /> Book a Demo
+            </a>
+          </div>
+
+          <div className="flex flex-wrap items-center lg:justify-start justify-center gap-x-6 gap-y-2 text-xs font-semibold" style={{ color: "#54514c" }}>
+            {["No credit card required", "Free plan forever", "Setup in 2 minutes"].map((t) => (
+              <span key={t} className="flex items-center gap-1.5"><CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />{t}</span>
+            ))}
+          </div>
         </div>
-        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.04] tracking-tight mb-6" style={{ color: INK }}>
-          Run your laundry shop <span style={{ color: BLUE }}>smarter</span>, not <span style={{ color: AMBER }}>harder</span>
-        </h1>
-        <p className="text-lg max-w-2xl mx-auto mb-10 leading-relaxed" style={{ color: "#54514c" }}>
-          LaundryOS handles order tracking, auto-SMS notifications, ticket numbers, and payment collection —
-          so you can focus on giving customers clean laundry on time.
-        </p>
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-          <a href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=LAUNDRY&plan=FREE`} className="flex items-center gap-2 px-7 py-4 rounded-full font-bold text-sm border-2 transition-transform hover:-translate-y-0.5" style={{ ...display, background: AMBER, color: INK, borderColor: INK, boxShadow: `4px 4px 0 ${INK}` }}>
-            Start for free <ChevronRight className="w-4 h-4" />
-          </a>
-          <a href="#features" onClick={(e) => { e.preventDefault(); document.getElementById("features")?.scrollIntoView({ behavior: "smooth" }) }} className="flex items-center gap-2 px-7 py-4 rounded-full font-bold text-sm border-2 bg-white transition-transform hover:-translate-y-0.5" style={{ ...display, color: INK, borderColor: INK }}>
-            See features
-          </a>
-          <a href="#book-demo" onClick={(e) => { e.preventDefault(); document.getElementById("book-demo")?.scrollIntoView({ behavior: "smooth" }) }} className="flex items-center gap-2 px-7 py-4 rounded-full font-bold text-sm border-2 bg-white transition-transform hover:-translate-y-0.5" style={{ ...display, color: INK, borderColor: INK }}>
-            <CalendarCheck className="w-4 h-4" /> Book a Demo
-          </a>
-        </div>
-        <div className="mt-16 flex flex-wrap items-center justify-center gap-6 text-xs font-semibold" style={{ color: "#54514c" }}>
-          {["No credit card required", "Free plan forever", "Setup in 2 minutes"].map((t) => (
-            <span key={t} className="flex items-center gap-1.5"><CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />{t}</span>
-          ))}
+
+        {/* RIGHT — order ticket + status timeline */}
+        <div className="relative min-w-0 w-full max-w-sm mx-auto">
+          {/* floating SMS bubble */}
+          <div className="absolute z-10 max-w-[210px] bg-white border-2 rounded-2xl rounded-bl-sm px-4 py-3" style={{ top: -28, right: -18, borderColor: INK, boxShadow: `4px 4px 0 ${BLUE}`, transform: "rotate(3deg)" }}>
+            <div className="flex items-center gap-1.5 mb-1">
+              <MessageSquare className="w-3 h-3" style={{ color: BLUE }} />
+              <span className="text-[10px] font-extrabold tracking-wide" style={{ color: BLUE }}>AUTO-SMS SENT</span>
+            </div>
+            <p className="text-[12px] font-semibold leading-snug m-0" style={{ color: INK }}>Hi Maria! Order #0428 is ready for pickup. 🧺</p>
+          </div>
+
+          {/* ticket card */}
+          <div className="relative bg-white border-2 rounded-[24px] p-6 pt-7" style={{ borderColor: INK, boxShadow: `9px 9px 0 ${INK}` }}>
+            {/* perforation notches */}
+            <span className="absolute rounded-full" style={{ width: 22, height: 22, background: CREAM, border: `2px solid ${INK}`, left: -13, top: "46%" }} />
+            <span className="absolute rounded-full" style={{ width: 22, height: 22, background: CREAM, border: `2px solid ${INK}`, right: -13, top: "46%" }} />
+
+            <div className="flex items-center justify-between mb-5">
+              <div className="flex items-center gap-2.5">
+                <span className="w-9 h-9 rounded-xl border-2 flex items-center justify-center" style={{ background: AMBER, borderColor: INK }}><Hash className="w-4 h-4" style={{ color: INK }} /></span>
+                <div className="leading-tight">
+                  <div className="text-[11px] font-bold" style={{ color: "#9a948b" }}>Ticket no.</div>
+                  <div className="text-base font-extrabold" style={{ color: INK }}>#0428</div>
+                </div>
+              </div>
+              <span className="text-[10px] font-extrabold tracking-widest rounded-full px-2.5 py-1 border" style={{ color: BLUE, borderColor: BLUE }}>WASH &amp; FOLD</span>
+            </div>
+
+            {/* customer + load */}
+            <div className="flex items-center justify-between rounded-[14px] border-2 px-4 py-3 mb-5" style={{ background: CREAM, borderColor: INK }}>
+              <div>
+                <div className="text-[13px] font-extrabold" style={{ color: INK }}>Maria Santos</div>
+                <div className="text-[11px] font-semibold" style={{ color: "#9a948b" }}>8 kg · Express</div>
+              </div>
+              <div className="text-right">
+                <div className="text-[11px] font-semibold" style={{ color: "#9a948b" }}>Total</div>
+                <div className="text-[15px] font-extrabold" style={{ color: INK }}>₱320</div>
+              </div>
+            </div>
+
+            {/* status timeline */}
+            <div className="flex flex-col gap-0">
+              {steps.map((s, i) => (
+                <div key={s.label} className="flex items-start gap-3">
+                  <div className="flex flex-col items-center">
+                    <span className="w-5 h-5 rounded-full border-2 flex items-center justify-center shrink-0" style={{ background: s.done ? BLUE : s.active ? AMBER : "#fff", borderColor: INK }}>
+                      {s.done && <CheckCircle2 className="w-3 h-3 text-white" />}
+                      {s.active && <span className="w-1.5 h-1.5 rounded-full" style={{ background: INK }} />}
+                    </span>
+                    {i < steps.length - 1 && <span className="w-0.5 h-6" style={{ background: s.done ? BLUE : "#e7e1d6" }} />}
+                  </div>
+                  <span className="text-[13px] font-bold pt-px" style={{ color: s.active ? INK : s.done ? INK : "#9a948b" }}>
+                    {s.label}{s.active && <span className="ml-1.5 text-[10px] font-extrabold px-1.5 py-0.5 rounded-full align-middle" style={{ background: AMBER, color: INK }}>NOW</span>}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* floating paid chip */}
+          <div className="absolute z-10 flex items-center gap-2 bg-white border-2 rounded-2xl px-3.5 py-2.5" style={{ bottom: -22, left: -16, borderColor: INK, boxShadow: `4px 4px 0 ${INK}`, transform: "rotate(-4deg)" }}>
+            <span className="w-7 h-7 rounded-lg border-2 flex items-center justify-center" style={{ background: "#eafaf0", borderColor: INK }}><CreditCard className="w-3.5 h-3.5" style={{ color: "#059669" }} /></span>
+            <div className="leading-tight">
+              <div className="text-[10px] font-bold" style={{ color: "#9a948b" }}>Payment</div>
+              <div className="text-[12px] font-extrabold" style={{ color: "#059669" }}>Paid ✓</div>
+            </div>
+          </div>
         </div>
       </div>
     </section>

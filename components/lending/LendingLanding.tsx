@@ -118,31 +118,63 @@ function Navbar({ variant }: { variant: LendingVariant }) {
   )
 }
 
-function Hero({ variant }: { variant: LendingVariant }) {
+function Hero() {
+  const strip = [
+    { title: "Loan #1042", tag: "PAID", tagBg: "#0d9f6e", tagC: "#fff", sub: "A. Reyes · wk 6/12", val: "₱2,500", valC: INK, border: INK },
+    { title: "Loan #1043", tag: "CURRENT", tagBg: "#eafaf0", tagC: "#059669", sub: "B. Cruz · due Jul 2", val: "₱1,800", valC: INK, border: INK },
+    { title: "Loan #1039", tag: "OVERDUE", tagBg: AMBER, tagC: INK, sub: "C. Santos · 3 days", val: "₱3,200 due", valC: "#b07219", border: AMBER },
+    { title: "Portfolio", tag: "ACTIVE", tagBg: "#fff", tagC: BLUE, sub: "48 loans · 94% on-time", val: "₱1.2M out", valC: "#fff", border: INK, dark: true },
+  ]
   return (
-    <section className="relative min-h-screen flex items-center pt-16 overflow-hidden" style={{ background: CREAM, fontFamily: display.fontFamily }}>
-      <div className="absolute inset-0 pointer-events-none hidden md:block" aria-hidden>
-        <div className="absolute rounded-[22px] border-2" style={{ top: "20%", left: "-70px", width: 280, height: 80, background: AMBER, borderColor: INK, transform: "rotate(-10deg)" }} />
-        <div className="absolute rounded-[22px] border-2" style={{ top: "32%", right: "-80px", width: 300, height: 84, background: BLUE, borderColor: INK, transform: "rotate(8deg)", boxShadow: "5px 5px 0 rgba(22,22,22,.12)" }} />
-        <div className="absolute rounded-[22px] border-2" style={{ bottom: "16%", right: "-60px", width: 270, height: 78, background: AMBER, borderColor: INK, transform: "rotate(-7deg)" }} />
+    <section className="relative min-h-screen flex flex-col pt-16" style={{ fontFamily: display.fontFamily }}>
+      {/* top band: headline */}
+      <div className="relative flex-1 flex flex-col items-center justify-center text-center px-6 sm:px-12 py-16 overflow-hidden" style={{ background: CREAM }}>
+        <div className="absolute inset-0" style={{ backgroundImage: "radial-gradient(#161616 1.6px, transparent 1.6px)", backgroundSize: "26px 26px", opacity: 0.05 }} aria-hidden />
+        <div className="relative z-10 max-w-3xl">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border-2 text-xs font-bold mb-6" style={{ color: INK, borderColor: INK, boxShadow: `3px 3px 0 ${AMBER}` }}>
+            <Zap className="w-3 h-3" />
+            All-in-one lending &amp; loan management
+          </div>
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.02] tracking-tight mb-5" style={{ color: INK }}>
+            Run your lending business <span style={{ color: BLUE }}>without the spreadsheets</span>
+          </h1>
+          <p className="text-lg max-w-2xl mx-auto mb-8 leading-relaxed" style={{ color: "#54514c" }}>
+            Borrowers, loans, amortization schedules, payments, and collections analytics —
+            everything an independent lender needs, in one clean dashboard. No spreadsheets, no missed dues.
+          </p>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-7">
+            <a href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=LENDING&plan=FREE`} className="flex items-center gap-2 px-7 py-4 rounded-full font-bold text-sm border-2 transition-transform hover:-translate-y-0.5" style={{ ...display, background: AMBER, color: INK, borderColor: INK, boxShadow: `4px 4px 0 ${INK}` }}>
+              Start free — no card needed <ChevronRight className="w-4 h-4" />
+            </a>
+            <a href="/lending" className="flex items-center gap-2 px-7 py-4 rounded-full font-bold text-sm border-2 bg-white transition-transform hover:-translate-y-0.5" style={{ ...display, color: INK, borderColor: INK }}>
+              View all features
+            </a>
+          </div>
+          <div className="flex flex-wrap items-center justify-center gap-5 text-xs font-semibold" style={{ color: "#54514c" }}>
+            {["No credit card required", "Free plan forever", "Setup in minutes"].map((t) => (
+              <span key={t} className="flex items-center gap-1.5"><CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />{t}</span>
+            ))}
+          </div>
+        </div>
       </div>
-      <div className="relative max-w-6xl mx-auto px-6 py-24 text-center">
-        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border-2 text-xs font-bold mb-6" style={{ color: INK, borderColor: INK, boxShadow: `3px 3px 0 ${BLUE}` }}>
-          <Zap className="w-3 h-3" />
-          {variant.hero.badge}
+
+      {/* bottom band: live loan book strip */}
+      <div className="px-6 sm:px-10 py-7" style={{ background: INK }}>
+        <div className="flex items-center justify-between mb-[18px] px-1">
+          <span className="inline-flex items-center gap-2 text-[13px] font-extrabold text-white"><span className="w-2 h-2 rounded-full" style={{ background: "#34d399" }} />LIVE LOAN BOOK</span>
+          <span className="text-[13px] font-extrabold" style={{ color: AMBER }}>Collected today · ₱62,400</span>
         </div>
-        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.04] tracking-tight mb-6" style={{ color: INK }}>
-          {variant.hero.titleLead} <span style={{ color: BLUE }}>{variant.hero.titleAccent}</span>
-        </h1>
-        <p className="text-lg max-w-2xl mx-auto mb-10 leading-relaxed" style={{ color: "#54514c" }}>{variant.hero.subtitle}</p>
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-          <a href={registerUrl} className="flex items-center gap-2 px-7 py-4 rounded-full font-bold text-sm border-2 transition-transform hover:-translate-y-0.5" style={{ ...display, background: AMBER, color: INK, borderColor: INK, boxShadow: `4px 4px 0 ${INK}` }}>
-            Start free — no card needed <ChevronRight className="w-4 h-4" />
-          </a>
-          <a href="#features" className="flex items-center gap-2 px-7 py-4 rounded-full font-bold text-sm border-2 bg-white transition-transform hover:-translate-y-0.5" style={{ ...display, color: INK, borderColor: INK }}>View all features</a>
-        </div>
-        <div className="mt-16 flex flex-wrap items-center justify-center gap-6 text-xs font-semibold" style={{ color: "#54514c" }}>
-          {["No credit card required", "Free plan forever", "Setup in minutes"].map((t) => (<span key={t} className="flex items-center gap-1.5"><CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />{t}</span>))}
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3.5">
+          {strip.map((s) => (
+            <div key={s.title} className="border-2 rounded-2xl p-3.5" style={{ borderColor: s.border, background: s.dark ? BLUE : "#fff" }}>
+              <div className="flex justify-between mb-2">
+                <span className="text-[13px] font-extrabold" style={{ color: s.dark ? "#fff" : INK }}>{s.title}</span>
+                <span className="text-[10px] font-extrabold px-2 py-0.5 rounded-full" style={{ background: s.tagBg, color: s.tagC }}>{s.tag}</span>
+              </div>
+              <div className="text-[11px] font-bold" style={{ color: s.dark ? "rgba(255,255,255,.8)" : "#54514c" }}>{s.sub}</div>
+              <div className="mt-2 text-[13px] font-extrabold" style={{ color: s.valC }}>{s.val}</div>
+            </div>
+          ))}
         </div>
       </div>
     </section>

@@ -122,31 +122,59 @@ function Navbar({ variant }: { variant: RestaurantVariant }) {
   )
 }
 
-function Hero({ variant }: { variant: RestaurantVariant }) {
+function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center pt-16 overflow-hidden" style={{ background: CREAM, fontFamily: display.fontFamily }}>
-      <div className="absolute inset-0 pointer-events-none hidden md:block" aria-hidden>
-        <div className="absolute rounded-[22px] border-2" style={{ top: "20%", left: "-70px", width: 280, height: 80, background: AMBER, borderColor: INK, transform: "rotate(-10deg)" }} />
-        <div className="absolute rounded-[22px] border-2" style={{ top: "32%", right: "-80px", width: 300, height: 84, background: BLUE, borderColor: INK, transform: "rotate(8deg)", boxShadow: "5px 5px 0 rgba(22,22,22,.12)" }} />
-        <div className="absolute rounded-[22px] border-2" style={{ bottom: "16%", right: "-60px", width: 270, height: 78, background: AMBER, borderColor: INK, transform: "rotate(-7deg)" }} />
+    <section className="relative min-h-screen flex items-center pt-16 px-6 sm:px-12 lg:px-20 overflow-hidden" style={{ background: "#1a1410", fontFamily: display.fontFamily }}>
+      {/* ── Full-bleed photo backdrop (replace with your image) ── */}
+      <div className="absolute inset-0" aria-hidden>
+        {/* TODO: real photo — e.g. <img src="/restaurant-hero.jpg" className="w-full h-full object-cover" /> */}
+        <div className="absolute inset-0" style={{ background: "repeating-linear-gradient(125deg,#241a12 0 28px,#2b2016 28px 56px)" }} />
+        <div className="absolute inset-0" style={{ background: "linear-gradient(90deg, rgba(16,12,9,.92) 0%, rgba(16,12,9,.72) 42%, rgba(16,12,9,.25) 100%)" }} />
       </div>
-      <div className="relative max-w-6xl mx-auto px-6 py-24 text-center">
-        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border-2 text-xs font-bold mb-6" style={{ color: INK, borderColor: INK, boxShadow: `3px 3px 0 ${BLUE}` }}>
-          <Zap className="w-3 h-3" />
-          {variant.hero.badge}
+      {/* amber corner accent */}
+      <div className="absolute top-0 left-0 pointer-events-none" style={{ width: 0, height: 0, borderTop: `120px solid ${AMBER}`, borderRight: "120px solid transparent" }} aria-hidden />
+
+      <div className="relative z-10 max-w-6xl mx-auto w-full">
+        <div className="max-w-xl">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border-2 text-xs font-bold mb-6" style={{ background: "rgba(255,255,255,.12)", color: AMBER, borderColor: AMBER, backdropFilter: "blur(4px)" }}>
+            <Zap className="w-3 h-3" />
+            Food ordering &amp; kitchen management
+          </div>
+          <h1 className="text-5xl sm:text-6xl font-extrabold leading-[1.02] tracking-tight mb-6 text-white">
+            Take every order, <span style={{ color: AMBER }}>serve every table.</span>
+          </h1>
+          <p className="text-lg max-w-lg mb-8 leading-relaxed" style={{ color: "rgba(255,255,255,.8)" }}>
+            Build your menu, place dine-in and takeaway orders, manage the kitchen queue, and track daily sales —
+            all from one clean dashboard. Free forever, no card required.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-3 mb-8">
+            <a href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=RESTAURANT&plan=FREE`} className="flex items-center justify-center gap-2 px-7 py-4 rounded-full font-bold text-sm border-2 transition-transform hover:-translate-y-0.5" style={{ ...display, background: AMBER, color: INK, borderColor: AMBER, boxShadow: "4px 4px 0 rgba(0,0,0,.4)" }}>
+              Start free — no card needed <ChevronRight className="w-4 h-4" />
+            </a>
+            <a href="/restaurant" className="flex items-center justify-center px-7 py-4 rounded-full font-bold text-sm border-2 transition-transform hover:-translate-y-0.5" style={{ ...display, background: "rgba(255,255,255,.1)", color: "#fff", borderColor: "#fff", backdropFilter: "blur(4px)" }}>
+              View all features
+            </a>
+          </div>
+          <div className="flex flex-wrap gap-5 text-xs font-semibold" style={{ color: "rgba(255,255,255,.8)" }}>
+            {["No credit card required", "Free plan forever", "Setup in 5 minutes"].map((t) => (
+              <span key={t} className="flex items-center gap-1.5"><CheckCircle2 className="w-3.5 h-3.5" style={{ color: "#34d399" }} />{t}</span>
+            ))}
+          </div>
         </div>
-        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.04] tracking-tight mb-6" style={{ color: INK }}>
-          {variant.hero.titleLead} <span style={{ color: BLUE }}>{variant.hero.titleAccent}</span>
-        </h1>
-        <p className="text-lg max-w-2xl mx-auto mb-10 leading-relaxed" style={{ color: "#54514c" }}>{variant.hero.subtitle}</p>
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-          <a href={registerUrl} className="flex items-center gap-2 px-7 py-4 rounded-full font-bold text-sm border-2 transition-transform hover:-translate-y-0.5" style={{ ...display, background: AMBER, color: INK, borderColor: INK, boxShadow: `4px 4px 0 ${INK}` }}>
-            Start free — no card needed <ChevronRight className="w-4 h-4" />
-          </a>
-          <a href="#features" className="flex items-center gap-2 px-7 py-4 rounded-full font-bold text-sm border-2 bg-white transition-transform hover:-translate-y-0.5" style={{ ...display, color: INK, borderColor: INK }}>View all features</a>
+      </div>
+
+      {/* floating glass order ticket (desktop only) */}
+      <div className="absolute right-[70px] top-1/2 z-10 hidden lg:block w-[280px] rounded-[20px] border-2 overflow-hidden" style={{ transform: "translateY(-50%) rotate(3deg)", background: "rgba(255,255,255,.96)", borderColor: INK, boxShadow: "8px 8px 0 rgba(0,0,0,.45)" }} aria-hidden>
+        <div className="flex items-center justify-between px-[17px] py-[13px]" style={{ background: INK }}>
+          <span className="text-[13px] font-extrabold text-white">Order #042</span>
+          <span className="text-[11px] font-extrabold px-2.5 py-1 rounded-full" style={{ background: AMBER, color: INK }}>DINE-IN · T7</span>
         </div>
-        <div className="mt-16 flex flex-wrap items-center justify-center gap-6 text-xs font-semibold" style={{ color: "#54514c" }}>
-          {["No credit card required", "Free plan forever", "Setup in minutes"].map((t) => (<span key={t} className="flex items-center gap-1.5"><CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />{t}</span>))}
+        <div className="px-[17px] py-4 flex flex-col gap-2.5">
+          {[["2× Beef Tapa", "₱340"], ["1× Iced Latte", "₱120"], ["1× Garlic Rice", "₱55"]].map(([item, price]) => (
+            <div key={item} className="flex justify-between text-[13px] font-bold" style={{ color: INK }}><span>{item}</span><span>{price}</span></div>
+          ))}
+          <div className="flex justify-between text-sm font-extrabold pt-2.5" style={{ color: INK, borderTop: `2px solid ${INK}` }}><span>Total</span><span>₱515</span></div>
+          <div className="flex items-center gap-1.5 text-[11px] font-extrabold" style={{ color: "#b07219" }}><span className="w-[7px] h-[7px] rounded-full" style={{ background: AMBER }} />FIRING IN KITCHEN</div>
         </div>
       </div>
     </section>

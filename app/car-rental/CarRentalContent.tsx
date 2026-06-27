@@ -112,61 +112,109 @@ function Navbar() {
 }
 
 function Hero() {
+  const fleet = [
+    { name: "Toyota Vios · ABC 1234", status: "Available", dot: "#10b981" },
+    { name: "Montero Sport · XYZ 8890", status: "Rented",    dot: BLUE },
+    { name: "Honda City · DEF 4521",   status: "Overdue",    dot: "#ef4444" },
+    { name: "Nissan Navara · GHI 7700", status: "Available", dot: "#10b981" },
+  ]
+  const bars = [42, 60, 38, 72, 55, 88, 64] // 7-day revenue trend %
+
   return (
     <section className="relative min-h-screen flex items-center pt-16 overflow-hidden" style={{ background: CREAM, fontFamily: display.fontFamily }}>
-      {/* Floating live cards (desktop only) */}
-      <div className="absolute inset-0 pointer-events-none hidden md:block" aria-hidden>
-        {/* Fleet status — top left */}
-        <div className="absolute rounded-2xl border-2 bg-white flex items-center gap-2.5 px-4 py-3" style={{ top: "20%", left: "4%", borderColor: INK, boxShadow: `4px 4px 0 ${BLUE}`, transform: "rotate(-7deg)" }}>
-          <span className="w-8 h-8 rounded-lg border-2 flex items-center justify-center" style={{ background: BLUE, borderColor: INK }}>
-            <Car className="w-4 h-4 text-white" />
-          </span>
-          <div>
-            <div className="text-[11px] font-bold" style={{ color: "#54514c" }}>Fleet status</div>
-            <div className="text-sm font-extrabold" style={{ color: INK }}>12 available</div>
+      {/* faint road-stripe band, desktop only */}
+      <div className="absolute inset-y-0 right-0 w-1/2 pointer-events-none hidden lg:block" aria-hidden style={{ background: "repeating-linear-gradient(115deg, transparent 0 38px, rgba(22,22,22,.025) 38px 40px)" }} />
+
+      <div className="relative w-full max-w-6xl mx-auto px-6 py-24 grid lg:grid-cols-[0.95fr_1.05fr] gap-12 lg:gap-16 items-center">
+        {/* LEFT — copy */}
+        <div className="min-w-0 text-center lg:text-left">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border-2 text-xs font-bold mb-7" style={{ color: INK, borderColor: INK, boxShadow: `3px 3px 0 ${BLUE}` }}>
+            <Zap className="w-3 h-3" />
+            Built for car rental businesses
+          </div>
+
+          <h1 className="font-extrabold tracking-tight mb-6" style={{ color: INK, fontSize: "clamp(44px,6vw,78px)", lineHeight: 0.97, letterSpacing: "-0.03em" }}>
+            Your whole fleet,{" "}
+            <span className="relative inline-block" style={{ color: BLUE }}>
+              one dashboard
+              <span className="absolute left-0 right-0" style={{ bottom: 6, height: 14, background: AMBER, zIndex: -1, transform: "rotate(-1.2deg)" }} />
+            </span>
+          </h1>
+
+          <p className="text-lg max-w-md mx-auto lg:mx-0 mb-9 leading-relaxed" style={{ color: "#54514c" }}>
+            Track availability, reservations, overdue returns, and monthly revenue in real time. Smapey runs the busywork so you can keep every car earning.
+          </p>
+
+          <div className="flex flex-col sm:flex-row items-center lg:justify-start justify-center gap-3 mb-9">
+            <a href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=CAR_RENTAL&plan=FREE`} className="flex items-center gap-2 px-7 py-4 rounded-full font-bold text-sm border-2 transition-transform hover:-translate-y-0.5" style={{ ...display, background: AMBER, color: INK, borderColor: INK, boxShadow: `4px 4px 0 ${INK}` }}>
+              Start free — no card needed <ChevronRight className="w-4 h-4" />
+            </a>
+            <a href="#how-it-works" className="flex items-center gap-2 px-7 py-4 rounded-full font-bold text-sm border-2 bg-white transition-transform hover:-translate-y-0.5" style={{ ...display, color: INK, borderColor: INK }}>See how it works</a>
+          </div>
+
+          <div className="flex flex-wrap items-center lg:justify-start justify-center gap-x-6 gap-y-2 text-xs font-semibold" style={{ color: "#54514c" }}>
+            {["No credit card required", "Free plan forever", "Setup in minutes"].map((t) => (
+              <span key={t} className="flex items-center gap-1.5"><CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />{t}</span>
+            ))}
           </div>
         </div>
 
-        {/* Returns due — top right */}
-        <div className="absolute rounded-2xl border-2 bg-white flex items-center gap-2.5 px-4 py-3" style={{ top: "28%", right: "4%", borderColor: INK, boxShadow: `4px 4px 0 ${AMBER}`, transform: "rotate(6deg)" }}>
-          <span className="w-8 h-8 rounded-lg border-2 flex items-center justify-center" style={{ background: AMBER, borderColor: INK }}>
-            <Calendar className="w-4 h-4" style={{ color: INK }} />
-          </span>
-          <div>
-            <div className="text-[11px] font-bold" style={{ color: "#54514c" }}>2 returns due</div>
-            <div className="text-sm font-extrabold" style={{ color: INK }}>today</div>
+        {/* RIGHT — dark live dashboard panel */}
+        <div className="relative min-w-0 w-full max-w-lg mx-auto">
+          {/* floating booking alert */}
+          <div className="absolute z-10 flex items-center gap-2 bg-white border-2 rounded-full px-3.5 py-2" style={{ top: -20, left: -16, borderColor: INK, boxShadow: `4px 4px 0 ${AMBER}`, transform: "rotate(-5deg)" }}>
+            <span className="w-6 h-6 rounded-full flex items-center justify-center" style={{ background: AMBER, border: `2px solid ${INK}` }}><Bell className="w-3 h-3" style={{ color: INK }} /></span>
+            <span className="text-[11px] font-extrabold" style={{ color: INK }}>New booking inquiry</span>
           </div>
-        </div>
 
-        {/* Revenue — bottom left (ink card) */}
-        <div className="absolute rounded-2xl border-2 px-4 py-3" style={{ bottom: "16%", left: "7%", background: INK, borderColor: INK, boxShadow: `4px 4px 0 ${AMBER}`, transform: "rotate(5deg)" }}>
-          <div className="text-[11px] font-bold" style={{ color: "rgba(255,255,255,.65)" }}>This month</div>
-          <div className="text-base font-extrabold text-white">+ ₱48,200</div>
-        </div>
+          <div className="relative rounded-[26px] border-2 p-6" style={{ background: INK, borderColor: INK, boxShadow: `10px 10px 0 ${BLUE}` }}>
+            {/* header */}
+            <div className="flex items-center justify-between mb-5">
+              <div className="flex items-center gap-2.5">
+                <span className="w-9 h-9 rounded-xl border-2 flex items-center justify-center" style={{ background: BLUE, borderColor: "#000" }}><Car className="w-4 h-4 text-white" /></span>
+                <span className="text-white font-extrabold text-sm">Fleet Dashboard</span>
+              </div>
+              <span className="text-[10px] font-extrabold tracking-widest px-2.5 py-1 rounded-full" style={{ background: "rgba(255,255,255,.1)", color: "rgba(255,255,255,.7)" }}>LIVE</span>
+            </div>
 
-        {/* New booking — bottom right */}
-        <div className="absolute rounded-2xl border-2 bg-white px-4 py-3" style={{ bottom: "18%", right: "6%", borderColor: INK, boxShadow: `4px 4px 0 ${BLUE}`, transform: "rotate(-6deg)" }}>
-          <span className="text-[11px] font-extrabold px-2.5 py-1 rounded-full" style={{ background: "#eafaf0", color: "#059669" }}>NEW BOOKING</span>
-        </div>
-      </div>
+            {/* revenue + bar chart */}
+            <div className="rounded-[18px] p-4 mb-4" style={{ background: "rgba(255,255,255,.06)" }}>
+              <div className="flex items-end justify-between mb-3">
+                <div>
+                  <div className="text-[11px] font-bold" style={{ color: "rgba(255,255,255,.55)" }}>Revenue this month</div>
+                  <div className="text-2xl font-extrabold text-white leading-tight">₱48,200</div>
+                </div>
+                <span className="text-[11px] font-extrabold px-2 py-1 rounded-full" style={{ background: "rgba(16,185,129,.15)", color: "#34d399" }}>▲ 18%</span>
+              </div>
+              <div className="flex items-end gap-1.5 h-16">
+                {bars.map((h, i) => (
+                  <span key={i} className="flex-1 rounded-t-md" style={{ height: `${h}%`, background: i === bars.length - 1 ? AMBER : "rgba(47,107,255,.7)" }} />
+                ))}
+              </div>
+            </div>
 
-      <div className="relative max-w-6xl mx-auto px-6 py-24 text-center">
-        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border-2 text-xs font-bold mb-6" style={{ color: INK, borderColor: INK, boxShadow: `3px 3px 0 ${BLUE}` }}>
-          <Zap className="w-3 h-3" />
-          Built for car rental businesses
-        </div>
-        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.04] tracking-tight mb-6" style={{ color: INK }}>
-          Car rental software that <span style={{ color: BLUE }}>keeps your fleet moving</span>
-        </h1>
-        <p className="text-lg max-w-2xl mx-auto mb-10 leading-relaxed" style={{ color: "#54514c" }}>Smapey helps car rental businesses manage their fleet, track reservations, handle customers, and monitor revenue — all from one simple dashboard.</p>
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-          <a href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=CAR_RENTAL&plan=FREE`} className="flex items-center gap-2 px-7 py-4 rounded-full font-bold text-sm border-2 transition-transform hover:-translate-y-0.5" style={{ ...display, background: AMBER, color: INK, borderColor: INK, boxShadow: `4px 4px 0 ${INK}` }}>
-            Start free — no card needed <ChevronRight className="w-4 h-4" />
-          </a>
-          <a href="/car-rental" className="flex items-center gap-2 px-7 py-4 rounded-full font-bold text-sm border-2 bg-white transition-transform hover:-translate-y-0.5" style={{ ...display, color: INK, borderColor: INK }}>View all features</a>
-        </div>
-        <div className="mt-16 flex flex-wrap items-center justify-center gap-6 text-xs font-semibold" style={{ color: "#54514c" }}>
-          {["No credit card required", "Free plan forever", "Setup in minutes"].map((t) => (<span key={t} className="flex items-center gap-1.5"><CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />{t}</span>))}
+            {/* fleet rows */}
+            <div className="rounded-[18px] overflow-hidden" style={{ background: "rgba(255,255,255,.06)" }}>
+              {fleet.map((f, i) => (
+                <div key={f.name} className="flex items-center justify-between px-4 py-3" style={{ borderTop: i === 0 ? "none" : "1px solid rgba(255,255,255,.07)" }}>
+                  <div className="flex items-center gap-2.5">
+                    <span className="w-2 h-2 rounded-full" style={{ background: f.dot }} />
+                    <span className="text-[12px] font-semibold text-white">{f.name}</span>
+                  </div>
+                  <span className="text-[10px] font-bold px-2 py-0.5 rounded-full" style={{ background: "rgba(255,255,255,.1)", color: f.dot }}>{f.status}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* floating returns-due chip */}
+          <div className="absolute z-10 flex items-center gap-2 bg-white border-2 rounded-2xl px-3.5 py-2.5" style={{ bottom: -22, right: -16, borderColor: INK, boxShadow: `4px 4px 0 ${INK}`, transform: "rotate(4deg)" }}>
+            <span className="w-7 h-7 rounded-lg border-2 flex items-center justify-center" style={{ background: AMBER, borderColor: INK }}><Calendar className="w-3.5 h-3.5" style={{ color: INK }} /></span>
+            <div className="leading-tight">
+              <div className="text-[10px] font-bold" style={{ color: "#9a948b" }}>Returns due</div>
+              <div className="text-[12px] font-extrabold" style={{ color: INK }}>2 today</div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
