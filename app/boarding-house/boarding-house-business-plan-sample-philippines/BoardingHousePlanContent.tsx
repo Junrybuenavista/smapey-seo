@@ -2,8 +2,26 @@
 
 import { useEffect, useRef, useState } from "react"
 import InternalLinks from "@/components/InternalLinks"
-import Link from "next/link"
-import { Building2, CheckCircle2, ChevronRight, Banknote, Users, BedDouble, Zap } from "lucide-react"
+import { Building2, CheckCircle2, ChevronRight, Banknote, BedDouble, Zap, Menu, X } from "lucide-react"
+
+const INK = "#161616"
+const BLUE = "#2f6bff"
+const AMBER = "#ff9e2c"
+const CREAM = "#fbf7f0"
+const display = { fontFamily: "'Hanken Grotesk', system-ui, sans-serif" }
+const REGISTER_URL = `${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=BOARDING_HOUSE&plan=FREE`
+const accentFor = (i: number) => (i % 2 === 0 ? BLUE : AMBER)
+
+function useFont() {
+  useEffect(() => {
+    const id = "smapey-pop-fonts"
+    if (!document.getElementById(id)) {
+      const l = document.createElement("link"); l.id = id; l.rel = "stylesheet"
+      l.href = "https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap"
+      document.head.appendChild(l)
+    }
+  }, [])
+}
 
 function useInView(opts?: IntersectionObserverInit) {
   const ref = useRef<HTMLDivElement>(null)
@@ -11,10 +29,7 @@ function useInView(opts?: IntersectionObserverInit) {
   useEffect(() => {
     const el = ref.current
     if (!el) return
-    const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) { setInView(true); observer.disconnect() } },
-      { threshold: 0.1, ...opts }
-    )
+    const observer = new IntersectionObserver(([entry]) => { if (entry.isIntersecting) { setInView(true); observer.disconnect() } }, { threshold: 0.1, ...opts })
     observer.observe(el)
     return () => observer.disconnect()
   }, [])
@@ -24,45 +39,81 @@ function useInView(opts?: IntersectionObserverInit) {
 function Animate({ children, className = "", delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) {
   const { ref, inView } = useInView()
   return (
-    <div ref={ref} className={className} style={{
-      transitionProperty: "opacity, transform", transitionDuration: "600ms",
-      transitionTimingFunction: "cubic-bezier(0.4,0,0.2,1)", transitionDelay: `${delay}ms`,
-      opacity: inView ? 1 : 0, transform: inView ? "translateY(0)" : "translateY(24px)",
-    }}>
+    <div ref={ref} className={className} style={{ transitionProperty: "opacity, transform", transitionDuration: "600ms", transitionTimingFunction: "cubic-bezier(0.4,0,0.2,1)", transitionDelay: `${delay}ms`, opacity: inView ? 1 : 0, transform: inView ? "translateY(0)" : "translateY(24px)" }}>
       {children}
     </div>
   )
 }
 
-export default function BoardingHousePlanContent() {
+function Navbar() {
+  const [open, setOpen] = useState(false)
+  const links = [
+    { href: "/boarding-house#features", label: "Features" },
+    { href: "/boarding-house#pricing", label: "Pricing" },
+    { href: "/boarding-house#faq", label: "FAQ" },
+    { href: "/boarding-house/guide", label: "Guide" },
+  ]
   return (
-    <main className="min-h-screen bg-white">
-      {/* NAV */}
-      <nav className="sticky top-0 z-40 bg-white/95 backdrop-blur border-b border-slate-100 px-6 py-4">
-        <div className="max-w-6xl mx-auto flex items-center justify-between">
-          <Link href="/boarding-house" className="flex items-center gap-2">
-            <img src="/logo.png" alt="Smapey" className="w-7 h-7 rounded-lg" />
-            <span className="font-bold text-slate-800 text-sm">Smapey Boarding House</span>
-          </Link>
-          <a href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=BOARDING_HOUSE&plan=FREE`}
-            className="text-sm font-semibold px-4 py-2 rounded-lg bg-orange-600 hover:bg-orange-500 text-white transition-colors shadow-md shadow-orange-600/20">
-            Try free
-          </a>
+    <nav className="sticky top-0 z-40" style={{ background: CREAM, borderBottom: `2px solid ${INK}`, fontFamily: display.fontFamily }}>
+      <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+        <a href="/boarding-house" className="flex items-center gap-2.5">
+          <img src="/logo.png" alt="Smapey" className="w-8 h-8 rounded-lg object-cover" />
+          <span className="font-extrabold tracking-tight" style={{ color: INK }}>Smapey Boarding House</span>
+        </a>
+        <div className="hidden md:flex items-center gap-8">
+          {links.map((l) => (<a key={l.label} href={l.href} className="text-sm font-semibold hover:opacity-60 transition-opacity" style={{ color: INK }}>{l.label}</a>))}
         </div>
-      </nav>
+        <div className="hidden md:flex items-center gap-3">
+          <a href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/login`} className="text-sm font-semibold hover:opacity-60 transition-opacity px-2 py-2" style={{ color: INK }}>Sign in</a>
+          <a href={REGISTER_URL} className="text-sm font-bold px-5 py-2.5 rounded-full border-2 transition-transform hover:-translate-y-0.5" style={{ ...display, background: AMBER, color: INK, borderColor: INK, boxShadow: `3px 3px 0 ${INK}` }}>Try free</a>
+        </div>
+        <button onClick={() => setOpen(!open)} className="md:hidden" style={{ color: INK }}>{open ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}</button>
+      </div>
+      {open && (
+        <div className="md:hidden px-6 py-4 flex flex-col gap-4" style={{ background: CREAM, borderTop: `2px solid ${INK}` }}>
+          {links.map((l) => (<a key={l.label} href={l.href} className="text-sm font-semibold" style={{ color: INK }}>{l.label}</a>))}
+          <a href={REGISTER_URL} className="text-sm font-bold px-4 py-2.5 rounded-full border-2 text-center" style={{ ...display, background: AMBER, color: INK, borderColor: INK }}>Try free</a>
+        </div>
+      )}
+    </nav>
+  )
+}
+
+function Section({ index, eyebrow, title, children }: { index: number; eyebrow: string; title: string; children: React.ReactNode }) {
+  const c = accentFor(index)
+  return (
+    <Animate>
+      <div className="pl-6" style={{ borderLeft: `4px solid ${c}` }}>
+        <p className="text-xs font-extrabold uppercase tracking-widest mb-2" style={{ color: c === AMBER ? "#b06c00" : BLUE }}>{eyebrow}</p>
+        <h2 className="text-2xl font-extrabold mb-4" style={{ color: INK }}>{title}</h2>
+        {children}
+      </div>
+    </Animate>
+  )
+}
+
+export default function BoardingHousePlanContent() {
+  useFont()
+  return (
+    <main style={{ fontFamily: display.fontFamily }}>
+      <Navbar />
 
       {/* HERO */}
-      <section className="bg-gradient-to-br from-orange-50 via-amber-50 to-white py-20 px-6">
-        <div className="max-w-4xl mx-auto text-center">
+      <section className="relative overflow-hidden py-20 px-6" style={{ background: CREAM }}>
+        <div className="absolute inset-0 pointer-events-none hidden md:block" aria-hidden>
+          <div className="absolute rounded-[22px] border-2" style={{ top: "22%", left: "-70px", width: 240, height: 70, background: AMBER, borderColor: INK, transform: "rotate(-9deg)" }} />
+          <div className="absolute rounded-[22px] border-2" style={{ bottom: "14%", right: "-70px", width: 260, height: 74, background: BLUE, borderColor: INK, transform: "rotate(8deg)", boxShadow: "5px 5px 0 rgba(22,22,22,.12)" }} />
+        </div>
+        <div className="relative max-w-4xl mx-auto text-center">
           <Animate>
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-orange-100 text-orange-700 text-xs font-semibold mb-5">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border-2 text-xs font-bold mb-5" style={{ color: INK, borderColor: INK, boxShadow: `3px 3px 0 ${BLUE}` }}>
               <Building2 className="w-3.5 h-3.5" /> Boarding house business plan · Philippines
             </div>
-            <h1 className="text-4xl sm:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight mb-5">
+            <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight leading-tight mb-5" style={{ color: INK }}>
               Boarding House Business Plan<br />
-              <span className="text-orange-600">Sample for the Philippines</span>
+              <span style={{ color: BLUE }}>Sample for the Philippines</span>
             </h1>
-            <p className="text-lg text-slate-500 max-w-2xl mx-auto leading-relaxed">
+            <p className="text-lg max-w-2xl mx-auto leading-relaxed" style={{ color: "#54514c" }}>
               A practical business plan template for Philippine boarding house owners — covering business overview, target market, services, pricing model, and how to manage it all with a digital system.
             </p>
           </Animate>
@@ -70,208 +121,158 @@ export default function BoardingHousePlanContent() {
       </section>
 
       {/* BUSINESS PLAN */}
-      <section className="py-20 px-6 bg-white">
+      <section className="py-20 px-6" style={{ background: "#fff" }}>
         <div className="max-w-4xl mx-auto space-y-14">
 
-          {/* Section 1 */}
-          <Animate>
-            <div className="border-l-4 border-orange-500 pl-6">
-              <p className="text-orange-600 text-xs font-bold uppercase tracking-widest mb-2">Section 1</p>
-              <h2 className="text-2xl font-extrabold text-slate-800 mb-4">Business Overview</h2>
-              <p className="text-slate-500 leading-relaxed mb-3">
-                <strong className="text-slate-700">Business name:</strong> [Your Boarding House Name]
-              </p>
-              <p className="text-slate-500 leading-relaxed mb-3">
-                <strong className="text-slate-700">Business type:</strong> Boarding house / dormitory / bedspace rental
-              </p>
-              <p className="text-slate-500 leading-relaxed mb-3">
-                <strong className="text-slate-700">Location:</strong> [City / Municipality], Philippines — preferably near a university, hospital, call center, or business district
-              </p>
-              <p className="text-slate-500 leading-relaxed mb-3">
-                <strong className="text-slate-700">Business goal:</strong> Provide affordable, clean, and safe lodging for students, young professionals, and workers — while generating consistent monthly rental income for the property owner.
-              </p>
-              <p className="text-slate-500 leading-relaxed">
-                A boarding house in the Philippines operates by renting out individual rooms or bedspaces to multiple tenants who share common areas (bathroom, kitchen, living room). The landlord charges monthly rent plus utility fees, and manages move-ins, move-outs, and collections on a rolling basis.
-              </p>
-            </div>
-          </Animate>
+          <Section index={0} eyebrow="Section 1" title="Business Overview">
+            <p className="leading-relaxed mb-3" style={{ color: "#54514c" }}><strong style={{ color: INK }}>Business name:</strong> [Your Boarding House Name]</p>
+            <p className="leading-relaxed mb-3" style={{ color: "#54514c" }}><strong style={{ color: INK }}>Business type:</strong> Boarding house / dormitory / bedspace rental</p>
+            <p className="leading-relaxed mb-3" style={{ color: "#54514c" }}><strong style={{ color: INK }}>Location:</strong> [City / Municipality], Philippines — preferably near a university, hospital, call center, or business district</p>
+            <p className="leading-relaxed mb-3" style={{ color: "#54514c" }}><strong style={{ color: INK }}>Business goal:</strong> Provide affordable, clean, and safe lodging for students, young professionals, and workers — while generating consistent monthly rental income for the property owner.</p>
+            <p className="leading-relaxed" style={{ color: "#54514c" }}>A boarding house in the Philippines operates by renting out individual rooms or bedspaces to multiple tenants who share common areas (bathroom, kitchen, living room). The landlord charges monthly rent plus utility fees, and manages move-ins, move-outs, and collections on a rolling basis.</p>
+          </Section>
 
-          {/* Section 2 */}
-          <Animate>
-            <div className="border-l-4 border-amber-400 pl-6">
-              <p className="text-amber-600 text-xs font-bold uppercase tracking-widest mb-2">Section 2</p>
-              <h2 className="text-2xl font-extrabold text-slate-800 mb-4">Target Market</h2>
-              <p className="text-slate-500 leading-relaxed mb-4">
-                The primary market for a Philippine boarding house business includes:
-              </p>
-              <ul className="space-y-3">
-                {[
-                  { label: "College students", desc: "Living away from home near their university or college. Key driver in cities like Manila, Cebu, Davao, Cagayan de Oro, and Bacolod." },
-                  { label: "Young professionals", desc: "First-time workers who want affordable housing near their office, BPO company, or hospital." },
-                  { label: "OFW families", desc: "Relatives of Overseas Filipino Workers who need temporary or semi-permanent housing in urban areas." },
-                  { label: "Nurses and healthcare workers", desc: "Hospital staff who need housing close to their work and appreciate a quiet, structured environment." },
-                ].map(({ label, desc }) => (
-                  <li key={label} className="flex items-start gap-3">
-                    <CheckCircle2 className="w-4 h-4 text-amber-500 shrink-0 mt-0.5" />
-                    <p className="text-slate-500 text-sm leading-relaxed"><strong className="text-slate-700">{label}:</strong> {desc}</p>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </Animate>
+          <Section index={1} eyebrow="Section 2" title="Target Market">
+            <p className="leading-relaxed mb-4" style={{ color: "#54514c" }}>The primary market for a Philippine boarding house business includes:</p>
+            <ul className="space-y-3">
+              {[
+                { label: "College students", desc: "Living away from home near their university or college. Key driver in cities like Manila, Cebu, Davao, Cagayan de Oro, and Bacolod." },
+                { label: "Young professionals", desc: "First-time workers who want affordable housing near their office, BPO company, or hospital." },
+                { label: "OFW families", desc: "Relatives of Overseas Filipino Workers who need temporary or semi-permanent housing in urban areas." },
+                { label: "Nurses and healthcare workers", desc: "Hospital staff who need housing close to their work and appreciate a quiet, structured environment." },
+              ].map(({ label, desc }) => (
+                <li key={label} className="flex items-start gap-3">
+                  <CheckCircle2 className="w-4 h-4 shrink-0 mt-0.5" style={{ color: AMBER }} />
+                  <p className="text-sm leading-relaxed" style={{ color: "#54514c" }}><strong style={{ color: INK }}>{label}:</strong> {desc}</p>
+                </li>
+              ))}
+            </ul>
+          </Section>
 
-          {/* Section 3 */}
-          <Animate>
-            <div className="border-l-4 border-orange-400 pl-6">
-              <p className="text-orange-600 text-xs font-bold uppercase tracking-widest mb-2">Section 3</p>
-              <h2 className="text-2xl font-extrabold text-slate-800 mb-4">Services & Room Types</h2>
-              <p className="text-slate-500 leading-relaxed mb-4">
-                Define clearly what you offer to attract the right tenants and set accurate pricing:
-              </p>
-              <div className="grid sm:grid-cols-2 gap-4">
-                {[
-                  { icon: BedDouble, title: "Bedspace / Shared Room", desc: "2–6 beds per room. Shared bathroom. Lower rate — ideal for students on a tight budget." },
-                  { icon: BedDouble, title: "Private Room", desc: "One tenant per room. May include aircon or fan. Higher rate — suits young professionals." },
-                  { icon: Zap, title: "With Utilities Included", desc: "Monthly rate covers electricity and water. Simpler for tenants — easier to market." },
-                  { icon: Banknote, title: "Utilities Billed Separately", desc: "Tenant pays rent + utility share. More transparent and fair for high-usage tenants." },
-                ].map(({ icon: Icon, title, desc }) => (
-                  <div key={title} className="bg-orange-50 border border-orange-100 rounded-xl p-4 flex items-start gap-3">
-                    <div className="w-8 h-8 rounded-lg bg-orange-100 flex items-center justify-center shrink-0">
-                      <Icon className="w-4 h-4 text-orange-600" />
+          <Section index={2} eyebrow="Section 3" title="Services & Room Types">
+            <p className="leading-relaxed mb-4" style={{ color: "#54514c" }}>Define clearly what you offer to attract the right tenants and set accurate pricing:</p>
+            <div className="grid sm:grid-cols-2 gap-4">
+              {[
+                { icon: BedDouble, title: "Bedspace / Shared Room", desc: "2–6 beds per room. Shared bathroom. Lower rate — ideal for students on a tight budget." },
+                { icon: BedDouble, title: "Private Room", desc: "One tenant per room. May include aircon or fan. Higher rate — suits young professionals." },
+                { icon: Zap, title: "With Utilities Included", desc: "Monthly rate covers electricity and water. Simpler for tenants — easier to market." },
+                { icon: Banknote, title: "Utilities Billed Separately", desc: "Tenant pays rent + utility share. More transparent and fair for high-usage tenants." },
+              ].map(({ icon: Icon, title, desc }, i) => {
+                const c = accentFor(i)
+                return (
+                  <div key={title} className="rounded-[16px] border-2 p-4 flex items-start gap-3" style={{ background: CREAM, borderColor: INK }}>
+                    <div className="w-8 h-8 rounded-[10px] border-2 flex items-center justify-center shrink-0" style={{ background: c, borderColor: INK }}>
+                      <Icon className="w-4 h-4" style={{ color: c === AMBER ? INK : "#fff" }} />
                     </div>
                     <div>
-                      <p className="font-semibold text-slate-800 text-sm">{title}</p>
-                      <p className="text-slate-500 text-xs mt-1 leading-relaxed">{desc}</p>
+                      <p className="font-extrabold text-sm" style={{ color: INK }}>{title}</p>
+                      <p className="text-xs mt-1 leading-relaxed" style={{ color: "#54514c" }}>{desc}</p>
                     </div>
                   </div>
-                ))}
-              </div>
+                )
+              })}
             </div>
-          </Animate>
+          </Section>
 
-          {/* Section 4 */}
-          <Animate>
-            <div className="border-l-4 border-yellow-400 pl-6">
-              <p className="text-yellow-600 text-xs font-bold uppercase tracking-widest mb-2">Section 4</p>
-              <h2 className="text-2xl font-extrabold text-slate-800 mb-4">Pricing Model</h2>
-              <p className="text-slate-500 leading-relaxed mb-4">
-                Philippine boarding house rates vary by location, amenities, and room type. A typical range:
-              </p>
-              <div className="overflow-x-auto">
-                <table className="w-full text-sm border-collapse">
-                  <thead>
-                    <tr className="bg-orange-50">
-                      <th className="text-left px-4 py-3 font-semibold text-slate-700 border border-orange-100">Room Type</th>
-                      <th className="text-left px-4 py-3 font-semibold text-slate-700 border border-orange-100">Monthly Rate (Metro Manila)</th>
-                      <th className="text-left px-4 py-3 font-semibold text-slate-700 border border-orange-100">Monthly Rate (Provincial)</th>
+          <Section index={3} eyebrow="Section 4" title="Pricing Model">
+            <p className="leading-relaxed mb-4" style={{ color: "#54514c" }}>Philippine boarding house rates vary by location, amenities, and room type. A typical range:</p>
+            <div className="overflow-x-auto rounded-[16px] border-2" style={{ borderColor: INK, boxShadow: `5px 5px 0 ${BLUE}` }}>
+              <table className="w-full text-sm">
+                <thead>
+                  <tr style={{ background: INK }}>
+                    <th className="text-left px-4 py-3 font-bold text-white">Room Type</th>
+                    <th className="text-left px-4 py-3 font-bold text-white">Monthly Rate (Metro Manila)</th>
+                    <th className="text-left px-4 py-3 font-bold text-white">Monthly Rate (Provincial)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {[
+                    ["Bedspace (fan, shared bath)", "₱2,500 – ₱4,500", "₱1,500 – ₱3,000"],
+                    ["Bedspace (aircon, shared bath)", "₱4,000 – ₱6,000", "₱2,500 – ₱4,000"],
+                    ["Private room (fan)", "₱4,500 – ₱7,000", "₱2,500 – ₱4,500"],
+                    ["Private room (aircon, own bath)", "₱7,000 – ₱12,000", "₱4,000 – ₱7,000"],
+                  ].map(([type, metro, prov], i) => (
+                    <tr key={type} style={{ background: i % 2 ? CREAM : "#fff" }}>
+                      <td className="px-4 py-3" style={{ color: INK }}>{type}</td>
+                      <td className="px-4 py-3" style={{ color: "#54514c" }}>{metro}</td>
+                      <td className="px-4 py-3" style={{ color: "#54514c" }}>{prov}</td>
                     </tr>
-                  </thead>
-                  <tbody>
-                    {[
-                      ["Bedspace (fan, shared bath)", "₱2,500 – ₱4,500", "₱1,500 – ₱3,000"],
-                      ["Bedspace (aircon, shared bath)", "₱4,000 – ₱6,000", "₱2,500 – ₱4,000"],
-                      ["Private room (fan)", "₱4,500 – ₱7,000", "₱2,500 – ₱4,500"],
-                      ["Private room (aircon, own bath)", "₱7,000 – ₱12,000", "₱4,000 – ₱7,000"],
-                    ].map(([type, metro, prov]) => (
-                      <tr key={type} className="hover:bg-slate-50">
-                        <td className="px-4 py-3 text-slate-600 border border-slate-100">{type}</td>
-                        <td className="px-4 py-3 text-slate-600 border border-slate-100">{metro}</td>
-                        <td className="px-4 py-3 text-slate-600 border border-slate-100">{prov}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-              <p className="text-slate-400 text-xs mt-3">Rates are approximate and vary by specific location, amenities, and demand. Adjust based on your local market.</p>
+                  ))}
+                </tbody>
+              </table>
             </div>
-          </Animate>
+            <p className="text-xs mt-3" style={{ color: "#9a948b" }}>Rates are approximate and vary by specific location, amenities, and demand. Adjust based on your local market.</p>
+          </Section>
 
-          {/* Section 5 */}
-          <Animate>
-            <div className="border-l-4 border-orange-500 pl-6">
-              <p className="text-orange-600 text-xs font-bold uppercase tracking-widest mb-2">Section 5</p>
-              <h2 className="text-2xl font-extrabold text-slate-800 mb-4">Operations Plan</h2>
-              <p className="text-slate-500 leading-relaxed mb-4">
-                Day-to-day operations of a boarding house business in the Philippines typically involve:
-              </p>
-              <div className="space-y-4">
-                {[
-                  { title: "Tenant onboarding", desc: "Collect a security deposit (usually 1 month advance + 1 month deposit). Sign a simple lease agreement. Register the tenant's ID and emergency contact." },
-                  { title: "Monthly billing", desc: "Issue rent bills at the start of each month. If utilities are billed separately, calculate each tenant's share of electricity and water based on meter readings or flat allocation." },
-                  { title: "Payment collection", desc: "Accept payments via cash, GCash, or bank transfer. Record every payment against the correct bill. Follow up on overdue accounts promptly." },
-                  { title: "Move-outs", desc: "Confirm the move-out date, do a room inspection, and return the deposit (minus deductions) within an agreed period. Update room availability immediately." },
-                ].map(({ title, desc }) => (
-                  <div key={title} className="flex items-start gap-3">
-                    <CheckCircle2 className="w-4 h-4 text-orange-500 shrink-0 mt-1" />
-                    <div>
-                      <p className="font-semibold text-slate-800 text-sm">{title}</p>
-                      <p className="text-slate-500 text-sm mt-0.5 leading-relaxed">{desc}</p>
-                    </div>
+          <Section index={4} eyebrow="Section 5" title="Operations Plan">
+            <p className="leading-relaxed mb-4" style={{ color: "#54514c" }}>Day-to-day operations of a boarding house business in the Philippines typically involve:</p>
+            <div className="space-y-4">
+              {[
+                { title: "Tenant onboarding", desc: "Collect a security deposit (usually 1 month advance + 1 month deposit). Sign a simple lease agreement. Register the tenant's ID and emergency contact." },
+                { title: "Monthly billing", desc: "Issue rent bills at the start of each month. If utilities are billed separately, calculate each tenant's share of electricity and water based on meter readings or flat allocation." },
+                { title: "Payment collection", desc: "Accept payments via cash, GCash, or bank transfer. Record every payment against the correct bill. Follow up on overdue accounts promptly." },
+                { title: "Move-outs", desc: "Confirm the move-out date, do a room inspection, and return the deposit (minus deductions) within an agreed period. Update room availability immediately." },
+              ].map(({ title, desc }) => (
+                <div key={title} className="flex items-start gap-3">
+                  <CheckCircle2 className="w-4 h-4 shrink-0 mt-1" style={{ color: BLUE }} />
+                  <div>
+                    <p className="font-extrabold text-sm" style={{ color: INK }}>{title}</p>
+                    <p className="text-sm mt-0.5 leading-relaxed" style={{ color: "#54514c" }}>{desc}</p>
                   </div>
-                ))}
-              </div>
+                </div>
+              ))}
             </div>
-          </Animate>
+          </Section>
 
-          {/* Section 6 */}
-          <Animate>
-            <div className="border-l-4 border-amber-500 pl-6">
-              <p className="text-amber-600 text-xs font-bold uppercase tracking-widest mb-2">Section 6</p>
-              <h2 className="text-2xl font-extrabold text-slate-800 mb-4">Management System</h2>
-              <p className="text-slate-500 leading-relaxed mb-4">
-                Running a boarding house manually — with notebooks, spreadsheets, or WhatsApp group chats — works for 2 or 3 tenants. Once you have 5 or more rooms, the administration becomes the bottleneck.
-              </p>
-              <p className="text-slate-500 leading-relaxed mb-4">
-                A dedicated <strong className="text-slate-700">boarding house management system</strong> like Smapey handles all of the above automatically:
-              </p>
-              <ul className="space-y-2 mb-6">
-                {[
-                  "Rooms and occupancy tracked in real time",
-                  "Tenant profiles with full contact and ID records",
-                  "Monthly rent bills generated per tenant",
-                  "Separate utility bills for electricity, water, internet",
-                  "Full or partial payment recording",
-                  "Overdue bill alerts on the dashboard",
-                  "Revenue trend chart — rent vs. utilities, last 6 months",
-                ].map(t => (
-                  <li key={t} className="flex items-center gap-2 text-sm text-slate-600">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-orange-500 shrink-0" />
-                    {t}
-                  </li>
-                ))}
-              </ul>
-              <a href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=BOARDING_HOUSE&plan=FREE`}
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-orange-600 hover:bg-orange-500 text-white font-semibold text-sm transition-all shadow-lg shadow-orange-500/25">
-                Try Smapey free — no credit card <ChevronRight className="w-4 h-4" />
-              </a>
-            </div>
-          </Animate>
+          <Section index={5} eyebrow="Section 6" title="Management System">
+            <p className="leading-relaxed mb-4" style={{ color: "#54514c" }}>Running a boarding house manually — with notebooks, spreadsheets, or WhatsApp group chats — works for 2 or 3 tenants. Once you have 5 or more rooms, the administration becomes the bottleneck.</p>
+            <p className="leading-relaxed mb-4" style={{ color: "#54514c" }}>A dedicated <strong style={{ color: INK }}>boarding house management system</strong> like Smapey handles all of the above automatically:</p>
+            <ul className="space-y-2 mb-6">
+              {[
+                "Rooms and occupancy tracked in real time",
+                "Tenant profiles with full contact and ID records",
+                "Monthly rent bills generated per tenant",
+                "Separate utility bills for electricity, water, internet",
+                "Full or partial payment recording",
+                "Overdue bill alerts on the dashboard",
+                "Revenue trend chart — rent vs. utilities, last 6 months",
+              ].map(t => (
+                <li key={t} className="flex items-center gap-2 text-sm" style={{ color: "#54514c" }}>
+                  <CheckCircle2 className="w-3.5 h-3.5 shrink-0" style={{ color: BLUE }} />{t}
+                </li>
+              ))}
+            </ul>
+            <a href={REGISTER_URL} className="inline-flex items-center gap-2 px-6 py-3 rounded-full font-bold text-sm border-2 transition-transform hover:-translate-y-0.5" style={{ ...display, background: AMBER, color: INK, borderColor: INK }}>
+              Try Smapey free — no credit card <ChevronRight className="w-4 h-4" />
+            </a>
+          </Section>
 
         </div>
       </section>
 
       {/* CTA */}
-      <section className="py-20 px-6 bg-gradient-to-br from-orange-600 to-amber-500 text-white text-center">
-        <Animate className="max-w-2xl mx-auto">
-          <h2 className="text-3xl font-extrabold mb-4">Ready to run your boarding house business properly?</h2>
-          <p className="text-orange-100/80 mb-8 max-w-lg mx-auto">
-            Smapey is the management system for Philippine boarding houses — rooms, tenants, billing, and collections in one dashboard. Free to start.
-          </p>
-          <a href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=BOARDING_HOUSE&plan=FREE`}
-            className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl bg-white text-orange-600 font-semibold hover:bg-orange-50 transition-all shadow-xl">
-            Get started free <ChevronRight className="w-4 h-4" />
-          </a>
+      <section className="py-20 px-6" style={{ background: "#fff" }}>
+        <Animate className="max-w-3xl mx-auto">
+          <div className="rounded-[28px] border-2 p-10 text-center" style={{ background: AMBER, borderColor: INK, boxShadow: `10px 10px 0 ${INK}` }}>
+            <h2 className="text-3xl font-extrabold mb-4" style={{ color: INK }}>Ready to run your boarding house business properly?</h2>
+            <p className="mb-8 max-w-lg mx-auto font-medium" style={{ color: "#5c4a28" }}>Smapey is the management system for Philippine boarding houses — rooms, tenants, billing, and collections in one dashboard. Free to start.</p>
+            <a href={REGISTER_URL} className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full font-bold text-sm border-2 transition-transform hover:-translate-y-0.5" style={{ ...display, background: INK, color: "#fff", borderColor: INK }}>
+              Get started free <ChevronRight className="w-4 h-4" />
+            </a>
+          </div>
         </Animate>
       </section>
 
       <InternalLinks cluster="boarding-house" currentPath="/boarding-house/boarding-house-business-plan-sample-philippines" />
 
-      <footer className="bg-slate-900 px-6 py-8 text-center">
-        <div className="flex items-center justify-center gap-2 mb-2">
-          <img src="/logo.png" alt="Smapey" className="w-6 h-6 rounded-md" />
-          <span className="text-white/60 text-sm font-semibold">Smapey Boarding House Manager</span>
+      <footer className="px-6 py-8" style={{ background: CREAM, borderTop: `2px solid ${INK}` }}>
+        <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="flex items-center gap-2">
+            <img src="/logo.png" alt="Smapey" className="w-6 h-6 rounded-md object-cover" />
+            <span className="text-sm font-extrabold" style={{ color: INK }}>Boarding House Manager by Smapey</span>
+          </div>
+          <p className="text-xs" style={{ color: "#9a948b" }}>© {new Date().getFullYear()} Smapey. All rights reserved.</p>
         </div>
-        <p className="text-white/20 text-xs">© {new Date().getFullYear()} Smapey. All rights reserved.</p>
       </footer>
     </main>
   )
