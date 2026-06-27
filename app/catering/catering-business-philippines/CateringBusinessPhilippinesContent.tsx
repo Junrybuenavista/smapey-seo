@@ -2,8 +2,27 @@
 
 import { useState, useEffect, useRef } from "react"
 import InternalLinks from "@/components/InternalLinks"
-import Link from "next/link"
-import { ChefHat, CheckCircle2, ChevronRight, CalendarDays, Package, Banknote, FlaskConical, UserCheck, BarChart3 } from "lucide-react"
+import { ChefHat, CheckCircle2, ChevronRight, CalendarDays, Package, Banknote, FlaskConical, UserCheck, BarChart3, Menu, X } from "lucide-react"
+
+const INK = "#161616"
+const BLUE = "#2f6bff"
+const AMBER = "#ff9e2c"
+const CREAM = "#fbf7f0"
+const display = { fontFamily: "'Hanken Grotesk', system-ui, sans-serif" }
+const REGISTER_URL = `${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=CATERING&plan=FREE`
+const accentFor = (i: number) => (i % 2 === 0 ? BLUE : AMBER)
+const onAccent = (c: string) => (c === AMBER ? INK : "#fff")
+
+function useFont() {
+  useEffect(() => {
+    const id = "smapey-pop-fonts"
+    if (!document.getElementById(id)) {
+      const l = document.createElement("link"); l.id = id; l.rel = "stylesheet"
+      l.href = "https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap"
+      document.head.appendChild(l)
+    }
+  }, [])
+}
 
 function useInView(opts?: IntersectionObserverInit) {
   const ref = useRef<HTMLDivElement>(null)
@@ -11,10 +30,7 @@ function useInView(opts?: IntersectionObserverInit) {
   useEffect(() => {
     const el = ref.current
     if (!el) return
-    const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) { setInView(true); observer.disconnect() } },
-      { threshold: 0.12, ...opts }
-    )
+    const observer = new IntersectionObserver(([entry]) => { if (entry.isIntersecting) { setInView(true); observer.disconnect() } }, { threshold: 0.12, ...opts })
     observer.observe(el)
     return () => observer.disconnect()
   }, [])
@@ -24,193 +40,164 @@ function useInView(opts?: IntersectionObserverInit) {
 function Animate({ children, className = "", delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) {
   const { ref, inView } = useInView()
   return (
-    <div ref={ref} className={className} style={{
-      transitionProperty: "opacity, transform", transitionDuration: "600ms",
-      transitionTimingFunction: "cubic-bezier(0.4,0,0.2,1)", transitionDelay: `${delay}ms`,
-      opacity: inView ? 1 : 0, transform: inView ? "translateY(0)" : "translateY(24px)",
-    }}>
+    <div ref={ref} className={className} style={{ transitionProperty: "opacity, transform", transitionDuration: "600ms", transitionTimingFunction: "cubic-bezier(0.4,0,0.2,1)", transitionDelay: `${delay}ms`, opacity: inView ? 1 : 0, transform: inView ? "translateY(0)" : "translateY(24px)" }}>
       {children}
     </div>
   )
 }
 
+function Navbar() {
+  const [open, setOpen] = useState(false)
+  const links = [
+    { href: "/catering#features", label: "Features" },
+    { href: "/catering#pricing", label: "Pricing" },
+    { href: "/catering#faq", label: "FAQ" },
+    { href: "/catering/guide", label: "Guide" },
+  ]
+  return (
+    <nav className="sticky top-0 z-40" style={{ background: CREAM, borderBottom: `2px solid ${INK}`, fontFamily: display.fontFamily }}>
+      <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+        <a href="/catering" className="flex items-center gap-2.5">
+          <img src="/logo.png" alt="Smapey" className="w-8 h-8 rounded-lg object-cover" />
+          <span className="font-extrabold tracking-tight" style={{ color: INK }}>Smapey Catering</span>
+        </a>
+        <div className="hidden md:flex items-center gap-8">
+          {links.map((l) => (<a key={l.label} href={l.href} className="text-sm font-semibold hover:opacity-60 transition-opacity" style={{ color: INK }}>{l.label}</a>))}
+        </div>
+        <div className="hidden md:flex items-center gap-3">
+          <a href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/login`} className="text-sm font-semibold hover:opacity-60 transition-opacity px-2 py-2" style={{ color: INK }}>Sign in</a>
+          <a href={REGISTER_URL} className="text-sm font-bold px-5 py-2.5 rounded-full border-2 transition-transform hover:-translate-y-0.5" style={{ ...display, background: AMBER, color: INK, borderColor: INK, boxShadow: `3px 3px 0 ${INK}` }}>Try free</a>
+        </div>
+        <button onClick={() => setOpen(!open)} className="md:hidden" style={{ color: INK }}>{open ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}</button>
+      </div>
+      {open && (
+        <div className="md:hidden px-6 py-4 flex flex-col gap-4" style={{ background: CREAM, borderTop: `2px solid ${INK}` }}>
+          {links.map((l) => (<a key={l.label} href={l.href} className="text-sm font-semibold" style={{ color: INK }}>{l.label}</a>))}
+          <a href={REGISTER_URL} className="text-sm font-bold px-4 py-2.5 rounded-full border-2 text-center" style={{ ...display, background: AMBER, color: INK, borderColor: INK }}>Try free</a>
+        </div>
+      )}
+    </nav>
+  )
+}
+
 const CHALLENGES = [
-  {
-    icon: CalendarDays,
-    problem: "Bookings tracked in a group chat or notebook",
-    solution: "A centralized booking list with status, event date, guest count, and assigned packages — every booking visible at once.",
-    color: "from-rose-500 to-pink-400", shadow: "shadow-rose-400/20",
-  },
-  {
-    icon: Banknote,
-    problem: "Chasing clients for partial payments and balances",
-    solution: "Payment milestones per booking — reservation fee, partial, and final balance — with status tracking and overdue alerts on the dashboard.",
-    color: "from-pink-500 to-rose-400", shadow: "shadow-pink-400/20",
-  },
-  {
-    icon: Package,
-    problem: "Re-quoting the same packages every inquiry",
-    solution: "A package catalog with name, description, and price per head. Attach packages to any booking in seconds.",
-    color: "from-rose-600 to-pink-500", shadow: "shadow-rose-500/20",
-  },
-  {
-    icon: FlaskConical,
-    problem: "No clear picture of food costs per event",
-    solution: "A supply catalog with unit types and cost per unit. Link ingredients to packages and estimate procurement cost before the event.",
-    color: "from-pink-600 to-rose-500", shadow: "shadow-pink-500/20",
-  },
-  {
-    icon: UserCheck,
-    problem: "Staff assignments scattered across messages",
-    solution: "Assign staff to each booking directly in the system. Everyone sees their roster — no separate announcement needed.",
-    color: "from-rose-500 to-red-400", shadow: "shadow-rose-400/20",
-  },
-  {
-    icon: BarChart3,
-    problem: "No clear view of monthly revenue and collections",
-    solution: "A revenue dashboard with upcoming events, money collected this month, pending milestones, and a monthly trend chart.",
-    color: "from-rose-600 to-pink-400", shadow: "shadow-rose-500/20",
-  },
+  { icon: CalendarDays, problem: "Bookings tracked in a group chat or notebook", solution: "A centralized booking list with status, event date, guest count, and assigned packages — every booking visible at once." },
+  { icon: Banknote, problem: "Chasing clients for partial payments and balances", solution: "Payment milestones per booking — reservation fee, partial, and final balance — with status tracking and overdue alerts on the dashboard." },
+  { icon: Package, problem: "Re-quoting the same packages every inquiry", solution: "A package catalog with name, description, and price per head. Attach packages to any booking in seconds." },
+  { icon: FlaskConical, problem: "No clear picture of food costs per event", solution: "A supply catalog with unit types and cost per unit. Link ingredients to packages and estimate procurement cost before the event." },
+  { icon: UserCheck, problem: "Staff assignments scattered across messages", solution: "Assign staff to each booking directly in the system. Everyone sees their roster — no separate announcement needed." },
+  { icon: BarChart3, problem: "No clear view of monthly revenue and collections", solution: "A revenue dashboard with upcoming events, money collected this month, pending milestones, and a monthly trend chart." },
 ]
 
 const FAQS = [
-  {
-    q: "How profitable is a catering business in the Philippines?",
-    a: "Profitability depends on event volume, package pricing, and food cost management. A well-run small catering business in the Philippines handling 4–8 events per month can generate ₱50,000–₱150,000 monthly in revenue. Keeping food costs below 35% of revenue and minimizing uncollected payments are the two biggest levers. A catering management system like Smapey helps you track both.",
-  },
-  {
-    q: "What's the biggest operational challenge for catering businesses in the Philippines?",
-    a: "Most catering businesses struggle with three things: tracking multiple simultaneous bookings, collecting staggered payments on time, and estimating supply costs accurately. These are all manageable with the right system — Smapey is built specifically around these pain points.",
-  },
-  {
-    q: "Do I need software even if I only do a few events per month?",
-    a: "Yes — even at 2–4 events per month, the time spent manually tracking payments, quoting packages, and coordinating staff adds up. A free catering management system eliminates that overhead so you spend more time on the business itself.",
-  },
-  {
-    q: "Can I manage a home-based catering business with Smapey?",
-    a: "Absolutely. Smapey's free plan is designed for small catering operations — home-based caterers, solo operators, and teams just starting out. There's no minimum event volume or setup fee.",
-  },
-  {
-    q: "Does Smapey support GCash and other Philippine payment methods?",
-    a: "Yes. When recording milestone payments, you can log the method as Cash, GCash, Maya, Card, or Bank Transfer. The system doesn't process payments itself — it records what you collect and keeps the collection history accurate.",
-  },
+  { q: "How profitable is a catering business in the Philippines?", a: "Profitability depends on event volume, package pricing, and food cost management. A well-run small catering business in the Philippines handling 4–8 events per month can generate ₱50,000–₱150,000 monthly in revenue. Keeping food costs below 35% of revenue and minimizing uncollected payments are the two biggest levers. A catering management system like Smapey helps you track both." },
+  { q: "What's the biggest operational challenge for catering businesses in the Philippines?", a: "Most catering businesses struggle with three things: tracking multiple simultaneous bookings, collecting staggered payments on time, and estimating supply costs accurately. These are all manageable with the right system — Smapey is built specifically around these pain points." },
+  { q: "Do I need software even if I only do a few events per month?", a: "Yes — even at 2–4 events per month, the time spent manually tracking payments, quoting packages, and coordinating staff adds up. A free catering management system eliminates that overhead so you spend more time on the business itself." },
+  { q: "Can I manage a home-based catering business with Smapey?", a: "Absolutely. Smapey's free plan is designed for small catering operations — home-based caterers, solo operators, and teams just starting out. There's no minimum event volume or setup fee." },
+  { q: "Does Smapey support GCash and other Philippine payment methods?", a: "Yes. When recording milestone payments, you can log the method as Cash, GCash, Maya, Card, or Bank Transfer. The system doesn't process payments itself — it records what you collect and keeps the collection history accurate." },
+]
+
+const WHAT_YOU_GET = [
+  "Event booking management with status tracking",
+  "Client profiles with full booking history",
+  "Package catalog with price per head",
+  "Payment milestones per booking — reservation, partial, balance",
+  "Supply catalog with unit costs",
+  "Staff assignment per event",
+  "Revenue dashboard with monthly trend chart",
+  "GCash, Cash, Maya, Card, Bank Transfer payment logging",
+  "Free plan — no credit card required",
+  "Accessible from any browser, any device",
 ]
 
 export default function CateringBusinessPhilippinesContent() {
+  useFont()
   const [open, setOpen] = useState<number | null>(null)
-
   return (
-    <main className="min-h-screen bg-white">
-      {/* NAV */}
-      <nav className="sticky top-0 z-40 bg-white/95 backdrop-blur border-b border-slate-100 px-6 py-4">
-        <div className="max-w-6xl mx-auto flex items-center justify-between">
-          <Link href="/catering" className="flex items-center gap-2">
-            <img src="/logo.png" alt="Smapey" className="w-7 h-7 rounded-lg" />
-            <span className="font-bold text-slate-800 text-sm">Smapey Catering</span>
-          </Link>
-          <a href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=CATERING&plan=FREE`}
-            className="text-sm font-semibold px-4 py-2 rounded-lg bg-rose-600 hover:bg-rose-500 text-white transition-colors shadow-md shadow-rose-600/20">
-            Try free
-          </a>
-        </div>
-      </nav>
+    <main style={{ fontFamily: display.fontFamily }}>
+      <Navbar />
 
       {/* HERO */}
-      <section className="bg-gradient-to-br from-rose-50 via-pink-50 to-white py-20 px-6">
-        <div className="max-w-4xl mx-auto text-center">
+      <section className="relative overflow-hidden py-20 px-6" style={{ background: CREAM }}>
+        <div className="absolute inset-0 pointer-events-none hidden md:block" aria-hidden>
+          <div className="absolute rounded-[22px] border-2" style={{ top: "22%", left: "-70px", width: 240, height: 70, background: AMBER, borderColor: INK, transform: "rotate(-9deg)" }} />
+          <div className="absolute rounded-[22px] border-2" style={{ bottom: "14%", right: "-70px", width: 260, height: 74, background: BLUE, borderColor: INK, transform: "rotate(8deg)", boxShadow: "5px 5px 0 rgba(22,22,22,.12)" }} />
+        </div>
+        <div className="relative max-w-4xl mx-auto text-center">
           <Animate>
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-rose-100 text-rose-700 text-xs font-semibold mb-5">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border-2 text-xs font-bold mb-5" style={{ color: INK, borderColor: INK, boxShadow: `3px 3px 0 ${BLUE}` }}>
               <ChefHat className="w-3.5 h-3.5" /> Catering business · Philippines
             </div>
-            <h1 className="text-4xl sm:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight mb-5">
+            <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight leading-tight mb-5" style={{ color: INK }}>
               Run your catering business in the Philippines<br />
-              <span className="text-rose-600">without the paperwork chaos</span>
+              <span style={{ color: BLUE }}>without the paperwork chaos</span>
             </h1>
-            <p className="text-lg text-slate-500 max-w-2xl mx-auto mb-8 leading-relaxed">
+            <p className="text-lg max-w-2xl mx-auto mb-8 leading-relaxed" style={{ color: "#54514c" }}>
               Smapey is built for Philippine catering businesses — manage bookings, packages, payment milestones, supply costs, and staff assignments all from one clean dashboard.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
-              <a href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=CATERING&plan=FREE`}
-                className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-rose-600 hover:bg-rose-500 text-white font-semibold text-sm transition-all shadow-lg shadow-rose-500/25">
+              <a href={REGISTER_URL} className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full font-bold text-sm border-2 transition-transform hover:-translate-y-0.5" style={{ ...display, background: AMBER, color: INK, borderColor: INK, boxShadow: `4px 4px 0 ${INK}` }}>
                 Start free — no credit card <ChevronRight className="w-4 h-4" />
               </a>
-              <Link href="/catering" className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl border border-slate-200 text-slate-600 hover:border-rose-400 hover:text-rose-600 font-medium text-sm transition-all">
+              <a href="/catering" className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full border-2 bg-white font-bold text-sm transition-transform hover:-translate-y-0.5" style={{ ...display, color: INK, borderColor: INK }}>
                 See full product overview
-              </Link>
+              </a>
             </div>
           </Animate>
         </div>
       </section>
 
       {/* PROBLEMS & SOLUTIONS */}
-      <section className="py-20 px-6 bg-white">
+      <section className="py-20 px-6" style={{ background: "#fff" }}>
         <div className="max-w-4xl mx-auto">
           <Animate className="mb-12 text-center">
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-800">
-              The problems every Philippine catering business faces — and how Smapey solves them
-            </h2>
+            <h2 className="text-2xl sm:text-3xl font-extrabold" style={{ color: INK }}>The problems every Philippine catering business faces — and how Smapey solves them</h2>
           </Animate>
           <div className="grid sm:grid-cols-2 gap-6">
-            {CHALLENGES.map(({ icon: Icon, problem, solution, color, shadow }, i) => (
-              <Animate key={problem} delay={i * 70}>
-                <div className="bg-white rounded-2xl p-6 border border-slate-100 shadow-sm hover:shadow-md transition-all h-full">
-                  <div className={`w-10 h-10 rounded-xl bg-gradient-to-tr ${color} shadow-md ${shadow} flex items-center justify-center mb-4`}>
-                    <Icon className="w-5 h-5 text-white" />
+            {CHALLENGES.map(({ icon: Icon, problem, solution }, i) => {
+              const c = accentFor(i)
+              return (
+                <Animate key={problem} delay={i * 70}>
+                  <div className="rounded-[20px] p-6 border-2 hover:-translate-y-1 transition-transform h-full" style={{ background: "#fff", borderColor: INK, boxShadow: `6px 6px 0 ${c}` }}>
+                    <div className="w-10 h-10 rounded-[12px] border-2 flex items-center justify-center mb-4" style={{ background: c, borderColor: INK }}>
+                      <Icon className="w-5 h-5" style={{ color: onAccent(c) }} />
+                    </div>
+                    <p className="text-xs font-bold uppercase tracking-wider mb-1" style={{ color: "#d4351c" }}>Problem</p>
+                    <p className="font-medium text-sm mb-3" style={{ color: INK }}>{problem}</p>
+                    <p className="text-xs font-bold uppercase tracking-wider mb-1" style={{ color: "#0d9f6e" }}>Solution</p>
+                    <p className="text-sm leading-relaxed" style={{ color: "#54514c" }}>{solution}</p>
                   </div>
-                  <p className="text-xs font-semibold text-rose-500 uppercase tracking-wider mb-1">Problem</p>
-                  <p className="text-slate-700 font-medium text-sm mb-3">{problem}</p>
-                  <p className="text-xs font-semibold text-emerald-600 uppercase tracking-wider mb-1">Solution</p>
-                  <p className="text-slate-500 text-sm leading-relaxed">{solution}</p>
-                </div>
-              </Animate>
-            ))}
+                </Animate>
+              )
+            })}
           </div>
         </div>
       </section>
 
-      {/* ABOUT CATERING IN PH */}
-      <section className="py-20 px-6 bg-slate-50">
+      {/* ABOUT */}
+      <section className="py-20 px-6" style={{ background: CREAM, borderTop: `2px solid ${INK}` }}>
         <div className="max-w-4xl mx-auto">
           <Animate>
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-800 mb-5">
-              The catering business landscape in the Philippines
-            </h2>
-            <p className="text-slate-500 leading-relaxed mb-4">
-              The catering industry in the Philippines is driven by a culture of large family gatherings, weddings, debuts, baptisms, and corporate events. Filipino families are known for going all-out on celebrations — which means catering businesses often handle high-value bookings where getting the payment schedule and supply planning right is critical.
-            </p>
-            <p className="text-slate-500 leading-relaxed mb-4">
-              Most catering businesses in the Philippines start small — a home-based operation run by one or two people, often taking bookings through Facebook or referrals. As the business grows, the operational complexity grows with it: more clients, more events running simultaneously, more staff to coordinate, and more suppliers to track.
-            </p>
-            <p className="text-slate-500 leading-relaxed">
-              The shift from running a catering business on notebooks, spreadsheets, and Messenger threads to using a dedicated catering management system is usually what separates businesses that scale from those that stay stuck in manual operations. Smapey is designed to make that shift as easy as possible — free to start, no IT setup, accessible from any device.
-            </p>
+            <h2 className="text-2xl sm:text-3xl font-extrabold mb-5" style={{ color: INK }}>The catering business landscape in the Philippines</h2>
+            <p className="leading-relaxed mb-4" style={{ color: "#54514c" }}>The catering industry in the Philippines is driven by a culture of large family gatherings, weddings, debuts, baptisms, and corporate events. Filipino families are known for going all-out on celebrations — which means catering businesses often handle high-value bookings where getting the payment schedule and supply planning right is critical.</p>
+            <p className="leading-relaxed mb-4" style={{ color: "#54514c" }}>Most catering businesses in the Philippines start small — a home-based operation run by one or two people, often taking bookings through Facebook or referrals. As the business grows, the operational complexity grows with it: more clients, more events running simultaneously, more staff to coordinate, and more suppliers to track.</p>
+            <p className="leading-relaxed" style={{ color: "#54514c" }}>The shift from running a catering business on notebooks, spreadsheets, and Messenger threads to using a dedicated catering management system is usually what separates businesses that scale from those that stay stuck in manual operations. Smapey is designed to make that shift as easy as possible — free to start, no IT setup, accessible from any device.</p>
           </Animate>
         </div>
       </section>
 
       {/* WHAT YOU GET */}
-      <section className="py-20 px-6 bg-white">
+      <section className="py-20 px-6" style={{ background: "#fff", borderTop: `2px solid ${INK}` }}>
         <div className="max-w-4xl mx-auto">
           <Animate className="mb-10 text-center">
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-800">What you get with Smapey</h2>
+            <h2 className="text-2xl sm:text-3xl font-extrabold" style={{ color: INK }}>What you get with Smapey</h2>
           </Animate>
           <div className="grid sm:grid-cols-2 gap-4">
-            {[
-              "Event booking management with status tracking",
-              "Client profiles with full booking history",
-              "Package catalog with price per head",
-              "Payment milestones per booking — reservation, partial, balance",
-              "Supply catalog with unit costs",
-              "Staff assignment per event",
-              "Revenue dashboard with monthly trend chart",
-              "GCash, Cash, Maya, Card, Bank Transfer payment logging",
-              "Free plan — no credit card required",
-              "Accessible from any browser, any device",
-            ].map((item, i) => (
+            {WHAT_YOU_GET.map((item, i) => (
               <Animate key={item} delay={i * 40}>
-                <div className="flex items-start gap-3 p-4 rounded-xl border border-slate-100 bg-slate-50 hover:bg-rose-50 hover:border-rose-100 transition-all">
-                  <CheckCircle2 className="w-4 h-4 text-rose-500 mt-0.5 shrink-0" />
-                  <span className="text-slate-700 text-sm">{item}</span>
+                <div className="flex items-start gap-3 p-4 rounded-[14px] border-2" style={{ background: CREAM, borderColor: INK }}>
+                  <CheckCircle2 className="w-4 h-4 mt-0.5 shrink-0" style={{ color: BLUE }} />
+                  <span className="text-sm" style={{ color: INK }}>{item}</span>
                 </div>
               </Animate>
             ))}
@@ -219,21 +206,20 @@ export default function CateringBusinessPhilippinesContent() {
       </section>
 
       {/* FAQ */}
-      <section className="py-20 px-6 bg-slate-50">
+      <section className="py-20 px-6" style={{ background: CREAM, borderTop: `2px solid ${INK}` }}>
         <div className="max-w-2xl mx-auto">
           <Animate className="text-center mb-12">
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-800">Frequently asked questions</h2>
+            <h2 className="text-2xl sm:text-3xl font-extrabold" style={{ color: INK }}>Frequently asked questions</h2>
           </Animate>
           <div className="flex flex-col gap-3">
             {FAQS.map(({ q, a }, i) => (
               <Animate key={i} delay={i * 60}>
-                <div className="border border-slate-200 rounded-xl overflow-hidden bg-white">
-                  <button onClick={() => setOpen(open === i ? null : i)}
-                    className="w-full flex items-center justify-between px-5 py-4 text-left text-slate-700 font-medium text-sm hover:bg-slate-50 transition-colors">
+                <div className="rounded-[16px] overflow-hidden border-2 bg-white" style={{ borderColor: INK }}>
+                  <button onClick={() => setOpen(open === i ? null : i)} className="w-full flex items-center justify-between px-5 py-4 text-left font-bold text-sm" style={{ color: INK }}>
                     {q}
-                    <ChevronRight className={`w-4 h-4 text-rose-400 transition-transform duration-200 shrink-0 ${open === i ? "rotate-90" : ""}`} />
+                    <ChevronRight className="w-4 h-4 transition-transform duration-200 shrink-0" style={{ color: BLUE, transform: open === i ? "rotate(90deg)" : "rotate(0deg)" }} />
                   </button>
-                  {open === i && <div className="px-5 pb-4 text-sm text-slate-500 leading-relaxed border-t border-slate-100 pt-3">{a}</div>}
+                  {open === i && <div className="px-5 pb-4 text-sm leading-relaxed pt-3" style={{ color: "#54514c", borderTop: "1px solid rgba(22,22,22,.1)" }}>{a}</div>}
                 </div>
               </Animate>
             ))}
@@ -242,27 +228,28 @@ export default function CateringBusinessPhilippinesContent() {
       </section>
 
       {/* CTA */}
-      <section className="py-20 px-6 bg-gradient-to-br from-rose-600 to-pink-500 text-white text-center">
-        <Animate className="max-w-2xl mx-auto">
-          <h2 className="text-3xl font-extrabold mb-4">Ready to run your catering business smarter?</h2>
-          <p className="text-rose-100/80 mb-8 max-w-lg mx-auto">
-            Free forever for small catering businesses. No setup fee, no credit card, no IT team required.
-          </p>
-          <a href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=CATERING&plan=FREE`}
-            className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl bg-white text-rose-600 font-semibold hover:bg-rose-50 transition-all shadow-xl">
-            Get started free <ChevronRight className="w-4 h-4" />
-          </a>
+      <section className="py-20 px-6" style={{ background: "#fff" }}>
+        <Animate className="max-w-3xl mx-auto">
+          <div className="rounded-[28px] border-2 p-10 text-center" style={{ background: AMBER, borderColor: INK, boxShadow: `10px 10px 0 ${INK}` }}>
+            <h2 className="text-3xl font-extrabold mb-4" style={{ color: INK }}>Ready to run your catering business smarter?</h2>
+            <p className="mb-8 max-w-lg mx-auto font-medium" style={{ color: "#5c4a28" }}>Free forever for small catering businesses. No setup fee, no credit card, no IT team required.</p>
+            <a href={REGISTER_URL} className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full font-bold text-sm border-2 transition-transform hover:-translate-y-0.5" style={{ ...display, background: INK, color: "#fff", borderColor: INK }}>
+              Get started free <ChevronRight className="w-4 h-4" />
+            </a>
+          </div>
         </Animate>
       </section>
 
       <InternalLinks cluster="catering" currentPath="/catering/catering-business-philippines" />
 
-      <footer className="bg-slate-900 px-6 py-8 text-center">
-        <div className="flex items-center justify-center gap-2 mb-2">
-          <img src="/logo.png" alt="Smapey" className="w-6 h-6 rounded-md" />
-          <span className="text-white/60 text-sm font-semibold">Smapey Catering Manager</span>
+      <footer className="px-6 py-8" style={{ background: CREAM, borderTop: `2px solid ${INK}` }}>
+        <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="flex items-center gap-2">
+            <img src="/logo.png" alt="Smapey" className="w-6 h-6 rounded-md object-cover" />
+            <span className="text-sm font-extrabold" style={{ color: INK }}>Catering Manager by Smapey</span>
+          </div>
+          <p className="text-xs" style={{ color: "#9a948b" }}>© {new Date().getFullYear()} Smapey. All rights reserved.</p>
         </div>
-        <p className="text-white/20 text-xs">© {new Date().getFullYear()} Smapey. All rights reserved.</p>
       </footer>
     </main>
   )
