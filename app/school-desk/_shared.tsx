@@ -5,13 +5,28 @@ import { CheckCircle2, ChevronRight, Menu, X, Zap, GraduationCap } from "lucide-
 import { usePricing, type Plan } from "@/lib/usePricing"
 
 //////////////////////////////////////////////////////
-// CONFIG
+// CONFIG + LAYERED POP TOKENS
 //////////////////////////////////////////////////////
 export const REGISTER_URL = `${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=SCHOOL_DESK&plan=FREE`
 export const LOGIN_URL = `${process.env.NEXT_PUBLIC_FRONTEND_URL}/login`
 export const NAV_LINKS = ["Features", "How it Works", "Pricing", "FAQ", "Guide"]
 
-const BG = "#0c0a1e"
+const INK = "#161616"
+const BLUE = "#2f6bff"
+const AMBER = "#ff9e2c"
+const CREAM = "#fbf7f0"
+const display = { fontFamily: "'Hanken Grotesk', system-ui, sans-serif" }
+
+function useFont() {
+  useEffect(() => {
+    const id = "smapey-pop-fonts"
+    if (!document.getElementById(id)) {
+      const l = document.createElement("link"); l.id = id; l.rel = "stylesheet"
+      l.href = "https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap"
+      document.head.appendChild(l)
+    }
+  }, [])
+}
 
 //////////////////////////////////////////////////////
 // ANIMATION
@@ -50,42 +65,29 @@ export function Animate({ children, className = "", delay = 0 }: { children: Rea
 //////////////////////////////////////////////////////
 export function Navbar() {
   const [open, setOpen] = useState(false)
-  const [scrolled, setScrolled] = useState(false)
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20)
-    window.addEventListener("scroll", onScroll)
-    return () => window.removeEventListener("scroll", onScroll)
-  }, [])
+  useFont()
   const linkHref = (l: string) =>
     l === "Guide" ? "/school-desk/guide" : `/school-desk#${l.toLowerCase().replace(/\s+/g, "-")}`
   return (
-    <nav className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${scrolled ? `bg-[${BG}]/90 backdrop-blur-md border-b border-white/5 shadow-lg` : "bg-transparent"}`}>
+    <nav className="fixed top-0 inset-x-0 z-50" style={{ background: CREAM, borderBottom: `2px solid ${INK}`, fontFamily: display.fontFamily }}>
       <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
         <a href="/school-desk" className="flex items-center gap-2.5">
           <img src="/logo.png" alt="Smapey SchoolDesk" className="w-8 h-8 rounded-lg object-cover" />
-          <span className="text-white font-bold tracking-tight">Smapey SchoolDesk</span>
+          <span className="font-extrabold tracking-tight" style={{ color: INK }}>Smapey SchoolDesk</span>
         </a>
         <div className="hidden md:flex items-center gap-8">
-          {NAV_LINKS.map((l) => (
-            <a key={l} href={linkHref(l)} className="text-sm text-white/60 hover:text-white transition-colors">{l}</a>
-          ))}
+          {NAV_LINKS.map((l) => (<a key={l} href={linkHref(l)} className="text-sm font-semibold hover:opacity-60 transition-opacity" style={{ color: INK }}>{l}</a>))}
         </div>
         <div className="hidden md:flex items-center gap-3">
-          <a href={LOGIN_URL} className="text-sm text-white/60 hover:text-white transition-colors px-4 py-2">Sign in</a>
-          <a href={REGISTER_URL} className="text-sm font-semibold px-4 py-2 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white transition-colors shadow-lg shadow-indigo-600/25">
-            Get started
-          </a>
+          <a href={LOGIN_URL} className="text-sm font-semibold hover:opacity-60 transition-opacity px-2 py-2" style={{ color: INK }}>Sign in</a>
+          <a href={REGISTER_URL} className="text-sm font-bold px-5 py-2.5 rounded-full border-2 transition-transform hover:-translate-y-0.5" style={{ ...display, background: AMBER, color: INK, borderColor: INK, boxShadow: `3px 3px 0 ${INK}` }}>Get started</a>
         </div>
-        <button onClick={() => setOpen(!open)} className="md:hidden text-white/60 hover:text-white">
-          {open ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-        </button>
+        <button onClick={() => setOpen(!open)} className="md:hidden" style={{ color: INK }}>{open ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}</button>
       </div>
       {open && (
-        <div className={`md:hidden bg-[${BG}] border-t border-white/5 px-6 py-4 flex flex-col gap-4`}>
-          {NAV_LINKS.map((l) => (
-            <a key={l} href={linkHref(l)} className="text-sm text-white/60 hover:text-white transition-colors">{l}</a>
-          ))}
-          <a href={REGISTER_URL} className="text-sm font-semibold px-4 py-2 rounded-lg bg-indigo-600 text-white text-center">Get started</a>
+        <div className="md:hidden px-6 py-4 flex flex-col gap-4" style={{ background: CREAM, borderTop: `2px solid ${INK}` }}>
+          {NAV_LINKS.map((l) => (<a key={l} href={linkHref(l)} className="text-sm font-semibold" style={{ color: INK }}>{l}</a>))}
+          <a href={REGISTER_URL} className="text-sm font-bold px-4 py-2.5 rounded-full border-2 text-center" style={{ ...display, background: AMBER, color: INK, borderColor: INK }}>Get started</a>
         </div>
       )}
     </nav>
@@ -103,51 +105,36 @@ export function Pricing() {
     setSelectedPlan(p)
   }
   return (
-    <section id="pricing" className="py-24 bg-slate-50">
+    <section id="pricing" className="py-24" style={{ background: "#fff", fontFamily: display.fontFamily }}>
       <div className="max-w-6xl mx-auto px-6">
         <Animate className="text-center mb-16">
-          <p className="text-indigo-600 text-sm font-semibold uppercase tracking-widest mb-3">Pricing</p>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-800 tracking-tight">Simple, transparent pricing</h2>
-          <p className="text-slate-500 mt-4">Start free. Upgrade as your center grows.</p>
+          <p className="text-sm font-bold uppercase tracking-widest mb-3" style={{ color: BLUE }}>Pricing</p>
+          <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight" style={{ color: INK }}>Simple, transparent pricing</h2>
+          <p className="mt-4" style={{ color: "#54514c" }}>Start free. Upgrade as your center grows.</p>
           {isPhilippines !== null && (
-            <div className="inline-flex items-center gap-1.5 mt-4 px-3 py-1 rounded-full bg-white border border-slate-200 text-xs text-slate-500 shadow-sm">
+            <div className="inline-flex items-center gap-1.5 mt-4 px-3 py-1 rounded-full bg-white border-2 text-xs font-semibold" style={{ borderColor: INK, color: INK }}>
               <span>{isPhilippines ? "🇵🇭" : "🌍"}</span>
-              <span>Prices in <span className="font-semibold text-slate-700">{isPhilippines ? "Philippine Peso (₱)" : "US Dollar ($)"}</span></span>
+              <span>Prices in <span className="font-extrabold">{isPhilippines ? "Philippine Peso (₱)" : "US Dollar ($)"}</span></span>
             </div>
           )}
         </Animate>
-        <div className="grid md:grid-cols-3 gap-6 items-center">
+        <div className="grid md:grid-cols-3 gap-6 items-stretch">
           {plans.map((p, i) => {
             const displayPrice = isPhilippines === null ? "..." : isPhilippines ? p.phpPrice : p.usdPrice
             return (
               <Animate key={p.name} delay={i * 100}>
-                <div className={`rounded-2xl p-8 border transition-all duration-300 hover:-translate-y-1 ${
-                  p.highlight ? "bg-gradient-to-b from-indigo-700 to-violet-900 border-indigo-500/30 shadow-2xl shadow-indigo-600/20 scale-105"
-                    : "bg-white border-slate-200 shadow-sm hover:shadow-md"}`}>
-                  {p.highlight && (
-                    <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-indigo-400/20 text-indigo-300 text-xs font-semibold mb-4">
-                      <Zap className="w-3 h-3" /> Most popular
-                    </span>
-                  )}
-                  <p className={`font-bold text-lg mb-1 ${p.highlight ? "text-white" : "text-slate-800"}`}>{p.name}</p>
-                  <p className={`text-sm mb-4 ${p.highlight ? "text-indigo-200/60" : "text-slate-400"}`}>{p.desc}</p>
+                <div className="rounded-[24px] p-8 border-2 h-full transition-transform hover:-translate-y-1" style={p.highlight ? { background: BLUE, borderColor: INK, boxShadow: `8px 8px 0 ${INK}`, color: "#fff" } : { background: "#fff", borderColor: INK, boxShadow: `8px 8px 0 ${AMBER}` }}>
+                  {p.highlight && <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full border-2 text-xs font-bold mb-4" style={{ background: AMBER, color: INK, borderColor: INK }}><Zap className="w-3 h-3" /> Most popular</span>}
+                  <p className="font-extrabold text-lg mb-1" style={{ color: p.highlight ? "#fff" : INK }}>{p.name}</p>
+                  <p className="text-sm mb-4" style={{ color: p.highlight ? "rgba(255,255,255,.7)" : "#9a948b" }}>{p.desc}</p>
                   <div className="flex items-end gap-1 mb-6">
-                    <span className={`text-4xl font-extrabold tracking-tight ${p.highlight ? "text-white" : "text-slate-800"}`}>{displayPrice}</span>
-                    <span className={`text-sm mb-1 ${p.highlight ? "text-indigo-200/50" : "text-slate-400"}`}>{p.period}</span>
+                    <span className="text-4xl font-extrabold tracking-tight" style={{ color: p.highlight ? "#fff" : INK }}>{displayPrice}</span>
+                    <span className="text-sm mb-1" style={{ color: p.highlight ? "rgba(255,255,255,.6)" : "#9a948b" }}>{p.period}</span>
                   </div>
                   <ul className="space-y-3 mb-8">
-                    {p.features.map((f) => (
-                      <li key={f} className="flex items-center gap-2.5 text-sm">
-                        <CheckCircle2 className={`w-4 h-4 shrink-0 ${p.highlight ? "text-indigo-400" : "text-indigo-500"}`} />
-                        <span className={p.highlight ? "text-indigo-100/80" : "text-slate-600"}>{f}</span>
-                      </li>
-                    ))}
+                    {p.features.map((f) => (<li key={f} className="flex items-center gap-2.5 text-sm"><CheckCircle2 className="w-4 h-4 shrink-0" style={{ color: p.highlight ? AMBER : BLUE }} /><span style={{ color: p.highlight ? "rgba(255,255,255,.85)" : "#3f3b36" }}>{f}</span></li>))}
                   </ul>
-                  <button onClick={() => handleSelect(p)} className={`w-full text-center py-2.5 rounded-xl text-sm font-semibold transition-all ${
-                    p.highlight ? "bg-indigo-400 hover:bg-indigo-300 text-indigo-900 shadow-lg shadow-indigo-400/25"
-                      : "bg-indigo-600 hover:bg-indigo-500 text-white shadow-md shadow-indigo-600/20"}`}>
-                    {p.cta}
-                  </button>
+                  <button onClick={() => handleSelect(p)} className="w-full text-center py-3 rounded-full text-sm font-bold border-2 transition-transform hover:-translate-y-0.5" style={p.highlight ? { ...display, background: AMBER, color: INK, borderColor: INK } : { ...display, background: INK, color: "#fff", borderColor: INK }}>{p.cta}</button>
                 </div>
               </Animate>
             )
@@ -164,22 +151,18 @@ export function Pricing() {
 //////////////////////////////////////////////////////
 export function CTA({ title = "Ready to run your tutorial center smarter?", subtitle = "Join tutors and center owners who use Smapey to manage students, collect tuition, and track every session — without spreadsheets or notebooks." }: { title?: string; subtitle?: string }) {
   return (
-    <section className="py-24 relative overflow-hidden" style={{
-      background: BG,
-      backgroundImage: "repeating-linear-gradient(45deg, rgba(255,255,255,0.02) 0px, rgba(255,255,255,0.02) 1px, transparent 1px, transparent 28px)",
-      backgroundSize: "28px 28px",
-    }}>
-      <div className="absolute -top-40 -left-40 w-[400px] h-[400px] rounded-full pointer-events-none"
-        style={{ background: "radial-gradient(circle, rgba(99,102,241,0.12) 0%, transparent 70%)" }} />
-      <div className="absolute -bottom-40 -right-40 w-[400px] h-[400px] rounded-full pointer-events-none"
-        style={{ background: "radial-gradient(circle, rgba(139,92,246,0.1) 0%, transparent 70%)" }} />
-      <Animate className="relative max-w-2xl mx-auto px-6 text-center">
-        <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight mb-4">{title}</h2>
-        <p className="text-white/40 mb-8">{subtitle}</p>
-        <a href={REGISTER_URL} className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl bg-gradient-to-r from-indigo-500 to-violet-500 hover:from-indigo-400 hover:to-violet-400 text-white font-semibold transition-all shadow-xl shadow-indigo-600/20">
-          Get started for free <ChevronRight className="w-4 h-4" />
-        </a>
-      </Animate>
+    <section className="py-16 px-6" style={{ background: "#fff", fontFamily: display.fontFamily }}>
+      <div className="max-w-6xl mx-auto">
+        <div className="rounded-[28px] border-2 p-10 flex flex-col md:flex-row items-center justify-between gap-6" style={{ background: AMBER, borderColor: INK, boxShadow: `10px 10px 0 ${INK}` }}>
+          <div>
+            <h2 className="text-2xl font-extrabold mb-2" style={{ color: INK }}>{title}</h2>
+            <p className="text-sm font-medium" style={{ color: "#5c4a28" }}>{subtitle}</p>
+          </div>
+          <a href={REGISTER_URL} className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full font-bold text-sm border-2 transition-transform hover:-translate-y-0.5 shrink-0" style={{ ...display, background: INK, color: "#fff", borderColor: INK }}>
+            Get started for free <ChevronRight className="w-4 h-4" />
+          </a>
+        </div>
+      </div>
     </section>
   )
 }
@@ -189,18 +172,18 @@ export function CTA({ title = "Ready to run your tutorial center smarter?", subt
 //////////////////////////////////////////////////////
 export function Footer() {
   return (
-    <footer className="bg-[#07051a] border-t border-white/5 px-6 py-8">
+    <footer className="px-6 py-8" style={{ background: CREAM, borderTop: `2px solid ${INK}`, fontFamily: display.fontFamily }}>
       <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
         <div className="flex items-center gap-2">
           <img src="/logo.png" alt="Smapey SchoolDesk" className="w-6 h-6 rounded-md object-cover" />
-          <span className="text-white/60 text-sm font-semibold">Smapey SchoolDesk</span>
+          <span className="text-sm font-extrabold" style={{ color: INK }}>SchoolDesk by Smapey</span>
         </div>
-        <div className="flex items-center gap-5 text-xs">
-          <a href="/school-desk" className="text-white/30 hover:text-white/60 transition-colors">Overview</a>
-          <a href="/school-desk/guide" className="text-white/30 hover:text-white/60 transition-colors">Guide</a>
-          <a href="/" className="text-white/30 hover:text-white/60 transition-colors">Smapey Home</a>
+        <div className="flex items-center gap-5 text-xs font-semibold">
+          <a href="/school-desk" className="hover:opacity-60 transition-opacity" style={{ color: "#9a948b" }}>Overview</a>
+          <a href="/school-desk/guide" className="hover:opacity-60 transition-opacity" style={{ color: "#9a948b" }}>Guide</a>
+          <a href="/" className="hover:opacity-60 transition-opacity" style={{ color: "#9a948b" }}>Smapey Home</a>
         </div>
-        <p className="text-white/20 text-xs">© {new Date().getFullYear()} Smapey. All rights reserved.</p>
+        <p className="text-xs" style={{ color: "#9a948b" }}>© {new Date().getFullYear()} Smapey. All rights reserved.</p>
       </div>
     </footer>
   )
@@ -210,16 +193,14 @@ export function Footer() {
 // SHARED SECTION HELPERS
 //////////////////////////////////////////////////////
 export function Eyebrow({ children }: { children: React.ReactNode }) {
-  return <p className="text-indigo-600 text-sm font-semibold uppercase tracking-widest mb-3">{children}</p>
+  return <p className="text-sm font-bold uppercase tracking-widest mb-3" style={{ color: BLUE }}>{children}</p>
 }
 
 export function TrustRow({ items = ["No credit card required", "Free plan forever", "Setup in 5 minutes"] }: { items?: string[] }) {
   return (
-    <div className="mt-16 flex flex-wrap items-center justify-center gap-6 text-white/30 text-xs">
+    <div className="mt-16 flex flex-wrap items-center justify-center gap-6 text-xs font-semibold" style={{ color: "#54514c" }}>
       {items.map((t) => (
-        <span key={t} className="flex items-center gap-1.5">
-          <CheckCircle2 className="w-3.5 h-3.5 text-indigo-400" />{t}
-        </span>
+        <span key={t} className="flex items-center gap-1.5"><CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />{t}</span>
       ))}
     </div>
   )
@@ -227,15 +208,11 @@ export function TrustRow({ items = ["No credit card required", "Free plan foreve
 
 export function HeroShell({ children }: { children: React.ReactNode }) {
   return (
-    <section className="relative min-h-screen flex items-center pt-16 overflow-hidden" style={{
-      background: BG,
-      backgroundImage: "repeating-linear-gradient(45deg, rgba(255,255,255,0.02) 0px, rgba(255,255,255,0.02) 1px, transparent 1px, transparent 28px)",
-      backgroundSize: "28px 28px",
-    }}>
-      <div className="absolute -top-40 -left-40 w-[500px] h-[500px] rounded-full pointer-events-none"
-        style={{ background: "radial-gradient(circle, rgba(99,102,241,0.15) 0%, transparent 70%)" }} />
-      <div className="absolute -bottom-40 -right-40 w-[500px] h-[500px] rounded-full pointer-events-none"
-        style={{ background: "radial-gradient(circle, rgba(139,92,246,0.12) 0%, transparent 70%)" }} />
+    <section className="relative overflow-hidden pt-16" style={{ background: CREAM, fontFamily: display.fontFamily }}>
+      <div className="absolute inset-0 pointer-events-none hidden md:block" aria-hidden>
+        <div className="absolute rounded-[22px] border-2" style={{ top: "26%", left: "-70px", width: 240, height: 70, background: AMBER, borderColor: INK, transform: "rotate(-9deg)" }} />
+        <div className="absolute rounded-[22px] border-2" style={{ bottom: "16%", right: "-70px", width: 260, height: 74, background: BLUE, borderColor: INK, transform: "rotate(8deg)", boxShadow: "5px 5px 0 rgba(22,22,22,.12)" }} />
+      </div>
       <div className="relative max-w-6xl mx-auto px-6 py-24 w-full">{children}</div>
     </section>
   )
@@ -243,8 +220,8 @@ export function HeroShell({ children }: { children: React.ReactNode }) {
 
 export function HeroBadge({ children }: { children: React.ReactNode }) {
   return (
-    <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-xs font-semibold mb-6">
-      <GraduationCap className="w-3.5 h-3.5" />{children}
+    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border-2 text-xs font-bold mb-6" style={{ color: INK, borderColor: INK, boxShadow: `3px 3px 0 ${BLUE}` }}>
+      <GraduationCap className="w-3.5 h-3.5" style={{ color: BLUE }} />{children}
     </div>
   )
 }
@@ -257,27 +234,27 @@ export function ArticleHero({ badge, title, intro }: { badge: string; title: Rea
     <HeroShell>
       <div className="max-w-3xl mx-auto text-center">
         <HeroBadge>{badge}</HeroBadge>
-        <h1 className="text-4xl sm:text-5xl font-extrabold text-white leading-tight tracking-tight mb-6">{title}</h1>
-        <p className="text-lg text-white/50 leading-relaxed">{intro}</p>
+        <h1 className="text-4xl sm:text-5xl font-extrabold leading-tight tracking-tight mb-6" style={{ color: INK }}>{title}</h1>
+        <p className="text-lg leading-relaxed" style={{ color: "#54514c" }}>{intro}</p>
       </div>
     </HeroShell>
   )
 }
 
 export function AH2({ children }: { children: React.ReactNode }) {
-  return <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-800 tracking-tight mt-14 mb-4">{children}</h2>
+  return <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight mt-14 mb-4" style={{ color: INK }}>{children}</h2>
 }
 
 export function AP({ children }: { children: React.ReactNode }) {
-  return <p className="text-slate-600 leading-relaxed my-4">{children}</p>
+  return <p className="leading-relaxed my-4" style={{ color: "#54514c" }}>{children}</p>
 }
 
 export function Bullets({ items }: { items: React.ReactNode[] }) {
   return (
     <ul className="my-5 space-y-2.5">
       {items.map((t, i) => (
-        <li key={i} className="flex gap-3 text-slate-600">
-          <CheckCircle2 className="w-4 h-4 text-indigo-500 shrink-0 mt-1" />
+        <li key={i} className="flex gap-3" style={{ color: "#54514c" }}>
+          <CheckCircle2 className="w-4 h-4 shrink-0 mt-1" style={{ color: BLUE }} />
           <span className="text-sm leading-relaxed">{t}</span>
         </li>
       ))}
@@ -287,18 +264,18 @@ export function Bullets({ items }: { items: React.ReactNode[] }) {
 
 export function CostTable({ rows, note }: { rows: [string, string][]; note?: string }) {
   return (
-    <div className="my-6 rounded-2xl border border-slate-200 overflow-hidden shadow-sm">
+    <div className="my-6 rounded-[16px] border-2 overflow-hidden" style={{ borderColor: INK, boxShadow: `5px 5px 0 ${BLUE}` }}>
       <table className="w-full text-sm">
         <tbody>
           {rows.map(([label, value], i) => (
-            <tr key={i} className={i % 2 ? "bg-slate-50" : "bg-white"}>
-              <td className="px-5 py-3 text-slate-600">{label}</td>
-              <td className="px-5 py-3 text-right font-semibold text-slate-800 whitespace-nowrap">{value}</td>
+            <tr key={i} style={{ background: i % 2 ? CREAM : "#fff" }}>
+              <td className="px-5 py-3" style={{ color: "#54514c" }}>{label}</td>
+              <td className="px-5 py-3 text-right font-extrabold whitespace-nowrap" style={{ color: INK }}>{value}</td>
             </tr>
           ))}
         </tbody>
       </table>
-      {note && <p className="px-5 py-3 text-xs text-slate-400 bg-slate-50 border-t border-slate-100">{note}</p>}
+      {note && <p className="px-5 py-3 text-xs" style={{ color: "#9a948b", background: CREAM, borderTop: `2px solid ${INK}` }}>{note}</p>}
     </div>
   )
 }
@@ -308,13 +285,12 @@ export function FAQList({ faqs }: { faqs: { q: string; a: string }[] }) {
   return (
     <div className="flex flex-col gap-3 my-6">
       {faqs.map(({ q, a }, i) => (
-        <div key={i} className="border border-slate-200 rounded-xl overflow-hidden bg-white">
-          <button onClick={() => setOpen(open === i ? null : i)}
-            className="w-full flex items-center justify-between px-5 py-4 text-left text-slate-700 font-medium text-sm hover:bg-slate-50 transition-colors">
+        <div key={i} className="rounded-[16px] overflow-hidden border-2 bg-white" style={{ borderColor: INK }}>
+          <button onClick={() => setOpen(open === i ? null : i)} className="w-full flex items-center justify-between px-5 py-4 text-left font-bold text-sm" style={{ color: INK }}>
             {q}
-            <ChevronRight className={`w-4 h-4 text-indigo-400 transition-transform duration-200 shrink-0 ${open === i ? "rotate-90" : ""}`} />
+            <ChevronRight className="w-4 h-4 transition-transform duration-200 shrink-0" style={{ color: BLUE, transform: open === i ? "rotate(90deg)" : "rotate(0deg)" }} />
           </button>
-          {open === i && <div className="px-5 pb-4 text-sm text-slate-500 leading-relaxed border-t border-slate-100 pt-3">{a}</div>}
+          {open === i && <div className="px-5 pb-4 text-sm leading-relaxed pt-3" style={{ color: "#54514c", borderTop: "1px solid rgba(22,22,22,.1)" }}>{a}</div>}
         </div>
       ))}
     </div>
@@ -323,18 +299,18 @@ export function FAQList({ faqs }: { faqs: { q: string; a: string }[] }) {
 
 export function SoftwarePitch() {
   return (
-    <div className="my-12 rounded-3xl border border-indigo-200 bg-gradient-to-br from-indigo-50 to-violet-50 p-8">
+    <div className="my-12 rounded-[24px] border-2 p-8" style={{ background: CREAM, borderColor: INK, boxShadow: `8px 8px 0 ${BLUE}` }}>
       <div className="flex items-start gap-4">
-        <span className="w-12 h-12 rounded-2xl bg-indigo-600 flex items-center justify-center shrink-0">
+        <span className="w-12 h-12 rounded-[14px] border-2 flex items-center justify-center shrink-0" style={{ background: BLUE, borderColor: INK }}>
           <GraduationCap className="w-6 h-6 text-white" />
         </span>
         <div>
-          <h3 className="text-xl font-extrabold text-slate-800 mb-2">Manage your center with Smapey SchoolDesk</h3>
-          <p className="text-sm text-slate-600 leading-relaxed mb-4">
+          <h3 className="text-xl font-extrabold mb-2" style={{ color: INK }}>Manage your center with Smapey SchoolDesk</h3>
+          <p className="text-sm leading-relaxed mb-4" style={{ color: "#54514c" }}>
             A business plan gets you started — software keeps you running. Smapey SchoolDesk tracks every student enrollment,
             tuition balance, session attendance, and progress note so nothing falls through the cracks.
           </p>
-          <a href={REGISTER_URL} className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-sm transition-colors shadow-lg shadow-indigo-600/25">
+          <a href={REGISTER_URL} className="inline-flex items-center gap-2 px-6 py-3 rounded-full font-bold text-sm border-2 transition-transform hover:-translate-y-0.5" style={{ ...display, background: AMBER, color: INK, borderColor: INK }}>
             Start free <ChevronRight className="w-4 h-4" />
           </a>
         </div>
@@ -365,6 +341,7 @@ export function PaymentModal({ plan, isPhilippines, onClose }: {
   useEffect(() => { const t = localStorage.getItem("accessToken"); setToken(t); if (t) setStep("payment") }, [])
   if (!plan) return null
   const displayPrice = isPhilippines ? plan.phpPrice : plan.usdPrice
+  const inputStyle = { borderColor: INK, color: INK } as React.CSSProperties
   const checkout = async (method: CheckoutMethod) => {
     try {
       setLoading(method)
@@ -386,18 +363,18 @@ export function PaymentModal({ plan, isPhilippines, onClose }: {
     if (!isPhilippines) checkout("paypal"); else setStep("payment")
   }
   return (
-    <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-2xl w-full max-w-md shadow-2xl overflow-hidden">
-        <div className="bg-gradient-to-r from-indigo-700 to-violet-600 px-6 py-5 flex items-center justify-between">
+    <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4" style={{ fontFamily: display.fontFamily }}>
+      <div className="bg-white rounded-[22px] w-full max-w-md overflow-hidden border-2" style={{ borderColor: INK, boxShadow: `10px 10px 0 ${AMBER}` }}>
+        <div className="px-6 py-5 flex items-center justify-between" style={{ background: INK }}>
           <div className="flex items-center gap-3">
             {step === "payment" && !token && (
-              <button onClick={() => setStep("details")} className="text-white/60 hover:text-white transition">
+              <button onClick={() => setStep("details")} className="text-white/70 hover:text-white transition">
                 <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
               </button>
             )}
             <div>
-              <h2 className="text-white font-bold text-lg">{step === "details" ? "Create your account" : "Choose payment method"}</h2>
-              <p className="text-indigo-100 text-sm mt-0.5">{plan.name} plan — <span className="font-semibold">{displayPrice}</span>{plan.period}</p>
+              <h2 className="text-white font-extrabold text-lg">{step === "details" ? "Create your account" : "Choose payment method"}</h2>
+              <p className="text-sm mt-0.5" style={{ color: "rgba(255,255,255,.7)" }}>{plan.name} plan — <span className="font-bold" style={{ color: AMBER }}>{displayPrice}</span>{plan.period}</p>
             </div>
           </div>
           <button onClick={onClose} className="text-white/70 hover:text-white transition-colors"><X className="w-5 h-5" /></button>
@@ -405,12 +382,9 @@ export function PaymentModal({ plan, isPhilippines, onClose }: {
         <div className="p-6 flex flex-col gap-4">
           {step === "details" && (
             <>
-              <input placeholder="Full name" value={name} onChange={e => setName(e.target.value)}
-                className="w-full border border-slate-200 rounded-xl px-4 py-2.5 text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-indigo-500/30 focus:border-indigo-400" />
-              <input type="email" placeholder="Email address" value={email} onChange={e => setEmail(e.target.value)}
-                className="w-full border border-slate-200 rounded-xl px-4 py-2.5 text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-indigo-500/30 focus:border-indigo-400" />
-              <button onClick={handleContinue} disabled={loading !== null}
-                className="w-full py-3 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-sm flex items-center justify-center gap-2 transition-all disabled:opacity-60">
+              <input placeholder="Full name" value={name} onChange={e => setName(e.target.value)} className="w-full border-2 rounded-xl px-4 py-2.5 text-sm focus:outline-none" style={inputStyle} />
+              <input type="email" placeholder="Email address" value={email} onChange={e => setEmail(e.target.value)} className="w-full border-2 rounded-xl px-4 py-2.5 text-sm focus:outline-none" style={inputStyle} />
+              <button onClick={handleContinue} disabled={loading !== null} className="w-full py-3 rounded-full border-2 font-bold text-sm flex items-center justify-center gap-2 transition-transform hover:-translate-y-0.5 disabled:opacity-60" style={{ ...display, background: AMBER, color: INK, borderColor: INK }}>
                 {loading ? <><Spinner /> Redirecting…</> : <>Continue <ChevronRight className="w-4 h-4" /></>}
               </button>
             </>
@@ -418,32 +392,20 @@ export function PaymentModal({ plan, isPhilippines, onClose }: {
           {step === "payment" && (
             <>
               {isPhilippines && (
-                <button onClick={() => checkout("paymongo")} disabled={loading !== null}
-                  className="w-full flex items-center gap-4 px-5 py-4 border-2 border-slate-200 rounded-2xl hover:border-green-500 hover:bg-green-50 transition-all group">
-                  <div className="w-10 h-10 rounded-xl bg-green-600 flex items-center justify-center shrink-0">
-                    <svg viewBox="0 0 24 24" className="w-5 h-5 fill-white"><path d="M3 3h7v7H3zm0 11h7v7H3zm11-11h7v7h-7zm0 11h7v7h-7z"/></svg>
-                  </div>
-                  <div className="flex-1 text-left">
-                    <p className="text-sm font-semibold text-slate-800 group-hover:text-green-700">QR Ph / GCash / Card</p>
-                    <p className="text-xs text-slate-400">Philippine payment methods</p>
-                  </div>
-                  {loading === "paymongo" ? <Spinner /> : <ChevronRight className="w-4 h-4 text-slate-300 group-hover:text-green-500" />}
+                <button onClick={() => checkout("paymongo")} disabled={loading !== null} className="w-full flex items-center gap-4 px-5 py-4 border-2 rounded-2xl transition-all group" style={{ borderColor: INK }}>
+                  <div className="w-10 h-10 rounded-xl bg-green-600 flex items-center justify-center shrink-0"><svg viewBox="0 0 24 24" className="w-5 h-5 fill-white"><path d="M3 3h7v7H3zm0 11h7v7H3zm11-11h7v7h-7zm0 11h7v7h-7z"/></svg></div>
+                  <div className="flex-1 text-left"><p className="text-sm font-bold" style={{ color: INK }}>QR Ph / GCash / Card</p><p className="text-xs" style={{ color: "#9a948b" }}>Philippine payment methods</p></div>
+                  {loading === "paymongo" ? <Spinner /> : <ChevronRight className="w-4 h-4" style={{ color: INK }} />}
                 </button>
               )}
-              <button onClick={() => checkout("paypal")} disabled={loading !== null}
-                className="w-full flex items-center gap-4 px-5 py-4 border-2 border-slate-200 rounded-2xl hover:border-blue-500 hover:bg-blue-50 transition-all group">
-                <div className="w-10 h-10 rounded-xl bg-[#003087] flex items-center justify-center shrink-0">
-                  <svg viewBox="0 0 24 24" className="w-5 h-5 fill-white"><path d="M7.076 21.337H2.47a.641.641 0 0 1-.633-.74L4.944.901C5.026.382 5.474 0 5.998 0h7.46c2.57 0 4.578.543 5.69 1.81 1.01 1.15 1.304 2.42 1.012 4.287-.023.143-.047.288-.077.437-.983 5.05-4.349 6.797-8.647 6.797h-2.19c-.524 0-.968.382-1.05.9l-1.12 7.106zm14.146-14.42a3.35 3.35 0 0 0-.607-.541c1.379 8.883-5.43 11.61-10.377 11.61H8.23l-1.133 7.184h3.78c.458 0 .848-.332.92-.783l.038-.196.728-4.617.047-.252a.93.93 0 0 1 .919-.784h.578c3.746 0 6.678-1.522 7.534-5.927.358-1.833.173-3.363-.42-4.494z"/></svg>
-                </div>
-                <div className="flex-1 text-left">
-                  <p className="text-sm font-semibold text-slate-800 group-hover:text-blue-700">PayPal</p>
-                  <p className="text-xs text-slate-400">Pay with your PayPal account</p>
-                </div>
-                {loading === "paypal" ? <Spinner /> : <ChevronRight className="w-4 h-4 text-slate-300 group-hover:text-blue-500" />}
+              <button onClick={() => checkout("paypal")} disabled={loading !== null} className="w-full flex items-center gap-4 px-5 py-4 border-2 rounded-2xl transition-all group" style={{ borderColor: INK }}>
+                <div className="w-10 h-10 rounded-xl bg-[#003087] flex items-center justify-center shrink-0"><svg viewBox="0 0 24 24" className="w-5 h-5 fill-white"><path d="M7.076 21.337H2.47a.641.641 0 0 1-.633-.74L4.944.901C5.026.382 5.474 0 5.998 0h7.46c2.57 0 4.578.543 5.69 1.81 1.01 1.15 1.304 2.42 1.012 4.287-.023.143-.047.288-.077.437-.983 5.05-4.349 6.797-8.647 6.797h-2.19c-.524 0-.968.382-1.05.9l-1.12 7.106zm14.146-14.42a3.35 3.35 0 0 0-.607-.541c1.379 8.883-5.43 11.61-10.377 11.61H8.23l-1.133 7.184h3.78c.458 0 .848-.332.92-.783l.038-.196.728-4.617.047-.252a.93.93 0 0 1 .919-.784h.578c3.746 0 6.678-1.522 7.534-5.927.358-1.833.173-3.363-.42-4.494z"/></svg></div>
+                <div className="flex-1 text-left"><p className="text-sm font-bold" style={{ color: INK }}>PayPal</p><p className="text-xs" style={{ color: "#9a948b" }}>Pay with your PayPal account</p></div>
+                {loading === "paypal" ? <Spinner /> : <ChevronRight className="w-4 h-4" style={{ color: INK }} />}
               </button>
             </>
           )}
-          <p className="text-center text-xs text-slate-400 flex items-center justify-center gap-1">
+          <p className="text-center text-xs flex items-center justify-center gap-1" style={{ color: "#9a948b" }}>
             <svg className="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}><rect x="3" y="11" width="18" height="11" rx="2" /><path d="M7 11V7a5 5 0 0 1 10 0v4" /></svg>
             Secure checkout · Cancel anytime · No hidden fees
           </p>
