@@ -153,6 +153,78 @@ function Hero({ variant }: { variant: RestaurantVariant }) {
   )
 }
 
+const SHOWCASE = [
+  {
+    img: "https://res.cloudinary.com/dxhwfv0jo/image/upload/v1780501558/qr-table-ordering.jpg_acd7i7.png",
+    alt: "Customer scanning a table QR code to open the restaurant's menu on her phone",
+    eyebrow: "QR Table Ordering",
+    title: "Scan the table QR",
+    desc: "Each table gets its own QR code. Customers scan it with their phone camera to open your menu — no app to download and no login required.",
+    bullets: ["One QR code per table", "No app download needed", "No customer login required"],
+  },
+  {
+    img: "https://res.cloudinary.com/dxhwfv0jo/image/upload/v1780501566/qr-menu-flatlay.jpg_jlghqo.png",
+    alt: "Smartphone showing a live food-ordering menu beside a table QR code and a plate of food",
+    eyebrow: "Live Menu",
+    title: "Order from your live menu",
+    desc: "Your menu opens instantly on their phone. Guests browse photos and prices, add items to the cart, and send the order straight to your kitchen.",
+    bullets: ["Menu opens instantly on their phone", "Browse, customize, add to cart", "Order sent straight to the kitchen"],
+  },
+  {
+    img: "https://res.cloudinary.com/dxhwfv0jo/image/upload/v1780502461/kitchen_order_que_swwjp4.png",
+    alt: "Restaurant chef cooking while checking the Smapey kitchen order queue on a mounted tablet",
+    eyebrow: "Kitchen Display",
+    title: "Work the kitchen queue",
+    desc: "Orders land in your kitchen instantly. Staff tap to mark each one preparing, ready, and done — no paper tickets, no missed orders, no shouting across the floor.",
+    bullets: ["Orders land instantly", "Tap to mark preparing, ready, done", "No paper tickets or missed orders"],
+  },
+  {
+    img: "https://res.cloudinary.com/dxhwfv0jo/image/upload/v1780506039/pay_with_gcash_kpt7xs.png",
+    alt: "Customer paying with GCash on her phone by scanning the restaurant's GCash QR code at the table",
+    eyebrow: "GCash Payment",
+    title: "Pay with GCash",
+    desc: "Customers scan your GCash QR, pay from their phone, and tap “I've paid” — you confirm it in Orders. No payment gateway to set up and no transaction fees.",
+    bullets: ["Customers scan your GCash QR", "Pay from their own phone", "No gateway, no transaction fees"],
+  },
+]
+
+function Showcase() {
+  return (
+    <section className="py-24" style={{ background: "#fff", fontFamily: display.fontFamily }}>
+      <div className="max-w-6xl mx-auto px-6 flex flex-col gap-20">
+        {SHOWCASE.map((s, i) => {
+          const c = i % 2 === 0 ? BLUE : AMBER
+          const reverse = i % 2 === 1
+          return (
+            <Animate key={s.title}>
+              <div className={`flex flex-col gap-8 md:gap-12 items-center ${reverse ? "md:flex-row-reverse" : "md:flex-row"}`}>
+                <div className="w-full md:w-1/2">
+                  <div className="rounded-[22px] border-2 overflow-hidden" style={{ borderColor: INK, boxShadow: `8px 8px 0 ${c}` }}>
+                    <img src={s.img} alt={s.alt} className="w-full h-auto block" loading="lazy" />
+                  </div>
+                </div>
+                <div className="w-full md:w-1/2">
+                  <p className="text-sm font-bold uppercase tracking-widest mb-3" style={{ color: c === AMBER ? "#b06c00" : BLUE }}>{s.eyebrow}</p>
+                  <h3 className="text-2xl sm:text-3xl font-extrabold tracking-tight mb-4" style={{ color: INK }}>{s.title}</h3>
+                  <p className="leading-relaxed mb-5" style={{ color: "#54514c" }}>{s.desc}</p>
+                  <ul className="space-y-2.5">
+                    {s.bullets.map((b) => (
+                      <li key={b} className="flex items-center gap-2.5 text-sm">
+                        <CheckCircle2 className="w-4 h-4 shrink-0" style={{ color: c === AMBER ? AMBER : BLUE }} />
+                        <span style={{ color: "#3f3b36" }}>{b}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </Animate>
+          )
+        })}
+      </div>
+    </section>
+  )
+}
+
 function Features({ variant }: { variant: RestaurantVariant }) {
   return (
     <section id="features" className="py-24" style={{ background: "#fff", fontFamily: display.fontFamily }}>
@@ -359,6 +431,7 @@ export default function RestaurantLanding({ variant }: { variant: RestaurantVari
     <main>
       <Navbar variant={variant} />
       <Hero variant={variant} />
+      <Showcase />
       <Features variant={variant} />
       <HowItWorks />
       <Pricing />
