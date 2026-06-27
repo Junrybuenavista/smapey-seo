@@ -190,7 +190,7 @@ function Hero() {
             {/* room grid */}
             <div className="grid grid-cols-6 gap-2 mb-5">
               {rooms.map((r) => {
-                const t = tile[r.state]
+                const t = tile[r.state as keyof typeof tile]
                 return (
                   <div key={r.no} className="aspect-square rounded-[10px] border-2 flex flex-col items-center justify-center" style={{ background: t.bg, borderColor: INK }}>
                     <span className="text-[11px] font-extrabold leading-none" style={{ color: t.fg }}>{r.no}</span>

@@ -386,7 +386,7 @@ export default function LendingLanding({ variant }: { variant: LendingVariant })
   return (
     <main>
       <Navbar variant={variant} />
-      <Hero variant={variant} />
+      <Hero />
       <Features variant={variant} />
       <HowItWorks />
       <Pricing />

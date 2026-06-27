@@ -467,7 +467,7 @@ export default function StoreLanding({ variant }: { variant: StoreVariant }) {
   return (
     <main>
       <Navbar variant={variant} />
-      <Hero variant={variant} />
+      <Hero />
       <Showcase />
       <Features variant={variant} />
       <HowItWorks />

@@ -458,7 +458,7 @@ export default function RestaurantLanding({ variant }: { variant: RestaurantVari
   return (
     <main>
       <Navbar variant={variant} />
-      <Hero variant={variant} />
+      <Hero />
       <Showcase />
       <Features variant={variant} />
       <HowItWorks />

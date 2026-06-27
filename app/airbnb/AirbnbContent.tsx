@@ -183,7 +183,7 @@ function Hero() {
                 </div>
                 <div className="grid grid-cols-7 gap-1.5">
                   {nights.map((n, i) => {
-                    const c = cell[n]
+                    const c = cell[n as keyof typeof cell]
                     return <span key={i} className="aspect-square rounded-md border flex items-center justify-center text-[10px] font-extrabold" style={{ background: c.bg, borderColor: INK, color: c.fg }}>{i + 8}</span>
                   })}
                 </div>
