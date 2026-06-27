@@ -1,12 +1,21 @@
 "use client"
 
-import { Package, ScanLine, RefreshCw, BarChart3, Truck, ChevronRight, ScanBarcode, Camera, QrCode, TrendingUp } from "lucide-react"
+import { useState, useEffect, useRef } from "react"
+import { Package, ScanLine, RefreshCw, BarChart3, Truck, ChevronRight, ScanBarcode, Camera, QrCode, TrendingUp, Menu, X, ArrowLeft, BookOpen } from "lucide-react"
+import InternalLinks from "@/components/InternalLinks"
+
+const INK = "#161616"
+const BLUE = "#2f6bff"
+const AMBER = "#ff9e2c"
+const CREAM = "#fbf7f0"
+const display = { fontFamily: "'Hanken Grotesk', system-ui, sans-serif" }
+const REGISTER_URL = `${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=STORE&plan=FREE`
 
 type BodyItem =
   | string
-  | { type: "tip"; icon: React.ComponentType<{ className?: string }>; label: string; text: string }
+  | { type: "tip"; icon: React.ComponentType<{ className?: string; style?: React.CSSProperties }>; label: string; text: string }
 
-const SECTIONS: { icon: React.ComponentType<{ className?: string }>; title: string; body: BodyItem[] }[] = [
+const SECTIONS: { icon: React.ComponentType<{ className?: string; style?: React.CSSProperties }>; title: string; body: BodyItem[] }[] = [
   {
     icon: Package,
     title: "1. Add your products",
@@ -96,83 +105,166 @@ const SECTIONS: { icon: React.ComponentType<{ className?: string }>; title: stri
   },
 ]
 
-export default function GuideContent() {
+function useFont() {
+  useEffect(() => {
+    const id = "smapey-pop-fonts"
+    if (!document.getElementById(id)) {
+      const l = document.createElement("link")
+      l.id = id; l.rel = "stylesheet"
+      l.href = "https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap"
+      document.head.appendChild(l)
+    }
+  }, [])
+}
+
+function useInView() {
+  const ref = useRef<HTMLDivElement>(null)
+  const [inView, setInView] = useState(false)
+  useEffect(() => {
+    const el = ref.current
+    if (!el) return
+    const observer = new IntersectionObserver(([entry]) => { if (entry.isIntersecting) { setInView(true); observer.disconnect() } }, { threshold: 0.15 })
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [])
+  return { ref, inView }
+}
+
+function Animate({ children, className = "", delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) {
+  const { ref, inView } = useInView()
   return (
-    <div className="min-h-screen bg-slate-50">
-      {/* NAV */}
-      <nav className="bg-white border-b border-slate-100 px-6 py-4 flex items-center justify-between">
+    <div ref={ref} className={className} style={{ transitionProperty: "opacity, transform", transitionDuration: "600ms", transitionTimingFunction: "cubic-bezier(0.4,0,0.2,1)", transitionDelay: `${delay}ms`, opacity: inView ? 1 : 0, transform: inView ? "translateY(0)" : "translateY(28px)" }}>
+      {children}
+    </div>
+  )
+}
+
+function Navbar() {
+  const [open, setOpen] = useState(false)
+  const links = [
+    { href: "/store#features", label: "Features" },
+    { href: "/store#how-it-works", label: "How it Works" },
+    { href: "/store#pricing", label: "Pricing" },
+    { href: "/store#faq", label: "FAQ" },
+    { href: "/store/guide", label: "Guide" },
+  ]
+  return (
+    <nav className="fixed top-0 inset-x-0 z-50" style={{ background: CREAM, borderBottom: `2px solid ${INK}`, fontFamily: display.fontFamily }}>
+      <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
         <a href="/store" className="flex items-center gap-2.5">
-          <img src="/logo.png" alt="Smapey" className="w-7 h-7 rounded-lg object-cover" />
-          <span className="font-bold text-slate-800 tracking-tight">Smapey Store</span>
+          <img src="/logo.png" alt="Smapey" className="w-8 h-8 rounded-lg object-cover" />
+          <span className="font-extrabold tracking-tight" style={{ color: INK }}>Smapey Store</span>
         </a>
-        <div className="flex items-center gap-4 text-sm">
-          <a href="/store" className="text-slate-500 hover:text-slate-800 transition">← Back to overview</a>
-          <a href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=STORE&plan=FREE`}
-            className="px-4 py-2 rounded-lg bg-violet-600 hover:bg-violet-500 text-white font-semibold transition shadow-sm shadow-violet-600/20">
-            Start free
-          </a>
+        <div className="hidden md:flex items-center gap-8">
+          {links.map((l) => (<a key={l.label} href={l.href} className="text-sm font-semibold hover:opacity-60 transition-opacity" style={{ color: INK }}>{l.label}</a>))}
         </div>
-      </nav>
+        <div className="hidden md:flex items-center gap-3">
+          <a href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/login`} className="text-sm font-semibold hover:opacity-60 transition-opacity px-2 py-2" style={{ color: INK }}>Sign in</a>
+          <a href={REGISTER_URL} className="text-sm font-bold px-5 py-2.5 rounded-full border-2 transition-transform hover:-translate-y-0.5" style={{ ...display, background: AMBER, color: INK, borderColor: INK, boxShadow: `3px 3px 0 ${INK}` }}>Get started</a>
+        </div>
+        <button onClick={() => setOpen(!open)} className="md:hidden" style={{ color: INK }}>{open ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}</button>
+      </div>
+      {open && (
+        <div className="md:hidden px-6 py-4 flex flex-col gap-4" style={{ background: CREAM, borderTop: `2px solid ${INK}` }}>
+          {links.map((l) => (<a key={l.label} href={l.href} className="text-sm font-semibold" style={{ color: INK }}>{l.label}</a>))}
+          <a href={REGISTER_URL} className="text-sm font-bold px-4 py-2.5 rounded-full border-2 text-center" style={{ ...display, background: AMBER, color: INK, borderColor: INK }}>Get started</a>
+        </div>
+      )}
+    </nav>
+  )
+}
+
+export default function GuideContent() {
+  useFont()
+  return (
+    <main style={{ fontFamily: display.fontFamily }}>
+      <Navbar />
 
       {/* HERO */}
-      <div className="bg-gradient-to-r from-violet-600 to-purple-500 px-6 py-16 text-center">
-        <div className="max-w-2xl mx-auto">
-          <p className="text-violet-100 text-sm font-semibold uppercase tracking-widest mb-3">Step-by-step guide</p>
-          <h1 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight mb-4">
-            How to use Smapey Inventory & POS Manager
+      <section className="relative overflow-hidden pt-16" style={{ background: CREAM }}>
+        <div className="absolute inset-0 pointer-events-none hidden md:block" aria-hidden>
+          <div className="absolute rounded-[22px] border-2" style={{ top: "28%", right: "-70px", width: 280, height: 78, background: BLUE, borderColor: INK, transform: "rotate(8deg)", boxShadow: "5px 5px 0 rgba(22,22,22,.12)" }} />
+        </div>
+        <div className="relative max-w-3xl mx-auto px-6 pt-12 pb-14 text-center">
+          <a href="/store" className="inline-flex items-center gap-1.5 text-sm font-semibold transition-colors mb-8 hover:opacity-60" style={{ color: "#54514c" }}>
+            <ArrowLeft className="w-3.5 h-3.5" /> Back to overview
+          </a>
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border-2 text-xs font-bold mb-5" style={{ color: INK, borderColor: INK, boxShadow: `3px 3px 0 ${BLUE}` }}>
+            <BookOpen className="w-3 h-3" /> Step-by-step guide
+          </div>
+          <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight mb-4" style={{ color: INK }}>
+            How to use Smapey Inventory &amp; POS Manager
           </h1>
-          <p className="text-violet-50/80 text-lg">
+          <p className="text-lg leading-relaxed" style={{ color: "#54514c" }}>
             Add products, scan barcodes, accept QR payments, and track daily profit — this guide walks through every step.
           </p>
         </div>
-      </div>
+      </section>
 
       {/* SECTIONS */}
-      <div className="max-w-3xl mx-auto px-6 py-16 space-y-16">
-        {SECTIONS.map(({ icon: Icon, title, body }) => (
-          <div key={title} className="bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden">
-            <div className="flex items-center gap-4 px-6 py-5 border-b border-slate-100 bg-violet-50/40">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-violet-600 to-purple-500 flex items-center justify-center shrink-0">
-                <Icon className="w-5 h-5 text-white" />
-              </div>
-              <h2 className="text-lg font-bold text-slate-800">{title}</h2>
-            </div>
-            <div className="px-6 py-5 space-y-4">
-              {body.map((item, i) =>
-                typeof item === "string" ? (
-                  <p key={i} className="text-slate-600 text-sm leading-relaxed">{item}</p>
-                ) : (
-                  <div key={i} className="flex gap-3 p-4 rounded-xl bg-violet-50 border border-violet-100">
-                    <div className="w-8 h-8 rounded-lg bg-gradient-to-tr from-violet-600 to-purple-500 flex items-center justify-center shrink-0 mt-0.5">
-                      <item.icon className="w-4 h-4 text-white" />
+      <section className="py-16" style={{ background: CREAM }}>
+        <div className="max-w-3xl mx-auto px-6 space-y-12">
+          {SECTIONS.map(({ icon: Icon, title, body }, idx) => {
+            const c = idx % 2 === 0 ? BLUE : AMBER
+            return (
+              <Animate key={title}>
+                <div className="rounded-[20px] border-2 overflow-hidden" style={{ background: "#fff", borderColor: INK, boxShadow: `6px 6px 0 ${c}` }}>
+                  <div className="flex items-center gap-4 px-6 py-5" style={{ borderBottom: `2px solid ${INK}`, background: CREAM }}>
+                    <div className="w-10 h-10 rounded-[12px] border-2 flex items-center justify-center shrink-0" style={{ background: c, borderColor: INK }}>
+                      <Icon className="w-5 h-5" style={{ color: c === AMBER ? INK : "#fff" }} />
                     </div>
-                    <div>
-                      <p className="text-sm font-semibold text-violet-700 mb-1">{item.label}</p>
-                      <p className="text-sm text-slate-600 leading-relaxed">{item.text}</p>
-                    </div>
+                    <h2 className="text-lg font-extrabold" style={{ color: INK }}>{title}</h2>
                   </div>
-                )
-              )}
-            </div>
-          </div>
-        ))}
-      </div>
+                  <div className="px-6 py-5 space-y-4">
+                    {body.map((item, i) =>
+                      typeof item === "string" ? (
+                        <p key={i} className="text-sm leading-relaxed" style={{ color: "#54514c" }}>{item}</p>
+                      ) : (
+                        <div key={i} className="flex gap-3 p-4 rounded-[14px] border-2" style={{ background: "#fff7e8", borderColor: INK }}>
+                          <div className="w-8 h-8 rounded-[10px] border-2 flex items-center justify-center shrink-0 mt-0.5" style={{ background: c, borderColor: INK }}>
+                            <item.icon className="w-4 h-4" style={{ color: c === AMBER ? INK : "#fff" }} />
+                          </div>
+                          <div>
+                            <p className="text-sm font-extrabold mb-1" style={{ color: INK }}>{item.label}</p>
+                            <p className="text-sm leading-relaxed" style={{ color: "#5c4a28" }}>{item.text}</p>
+                          </div>
+                        </div>
+                      )
+                    )}
+                  </div>
+                </div>
+              </Animate>
+            )
+          })}
+        </div>
+      </section>
 
       {/* CTA */}
-      <div className="bg-gradient-to-r from-violet-600 to-purple-500 px-6 py-16 text-center">
-        <div className="max-w-xl mx-auto">
-          <h2 className="text-2xl font-extrabold text-white mb-4">Ready to take control of your store?</h2>
-          <p className="text-violet-100/80 mb-8">Free forever. No card needed. Set up your first product in minutes.</p>
-          <a href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=STORE&plan=FREE`}
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white hover:bg-violet-50 text-violet-700 font-semibold transition shadow-lg">
-            Start free <ChevronRight className="w-4 h-4" />
-          </a>
+      <section className="py-16 px-6" style={{ background: "#fff" }}>
+        <div className="max-w-6xl mx-auto">
+          <div className="rounded-[28px] border-2 p-10 flex flex-col md:flex-row items-center justify-between gap-6" style={{ background: AMBER, borderColor: INK, boxShadow: `10px 10px 0 ${INK}` }}>
+            <div>
+              <h3 className="text-2xl font-extrabold mb-2" style={{ color: INK }}>Ready to take control of your store?</h3>
+              <p className="text-sm font-medium" style={{ color: "#5c4a28" }}>Free forever. No card needed. Set up your first product in minutes.</p>
+            </div>
+            <a href={REGISTER_URL} className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full font-bold text-sm border-2 transition-transform hover:-translate-y-0.5 shrink-0" style={{ ...display, background: INK, color: "#fff", borderColor: INK }}>
+              Start free <ChevronRight className="w-4 h-4" />
+            </a>
+          </div>
         </div>
-      </div>
+      </section>
 
-      <footer className="bg-slate-900 px-6 py-6 text-center text-slate-500 text-xs">
-        © {new Date().getFullYear()} Smapey · <a href="/store" className="hover:text-slate-300 transition">Store Manager</a> · <a href="/privacy-policy" className="hover:text-slate-300 transition">Privacy</a>
+      <InternalLinks cluster="store" currentPath="/store/guide" />
+
+      <footer className="px-6 py-8" style={{ background: CREAM, borderTop: `2px solid ${INK}` }}>
+        <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="flex items-center gap-2">
+            <img src="/logo.png" alt="Smapey" className="w-6 h-6 rounded-md object-cover" />
+            <span className="text-sm font-extrabold" style={{ color: INK }}>Store Manager by Smapey</span>
+          </div>
+          <p className="text-xs" style={{ color: "#9a948b" }}>© {new Date().getFullYear()} Smapey. All rights reserved.</p>
+        </div>
       </footer>
-    </div>
+    </main>
   )
 }

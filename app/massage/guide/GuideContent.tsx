@@ -1,7 +1,15 @@
 "use client"
 
-import Link from "next/link"
-import { Flower2, ChevronRight, CheckCircle2, Calendar, HandHelping, HeartPulse, Globe, Inbox, BarChart3 } from "lucide-react"
+import { useState, useEffect, useRef } from "react"
+import { Flower2, ChevronRight, Calendar, HandHelping, HeartPulse, Globe, Inbox, BarChart3, Menu, X, ArrowLeft, BookOpen } from "lucide-react"
+import InternalLinks from "@/components/InternalLinks"
+
+const INK = "#161616"
+const BLUE = "#2f6bff"
+const AMBER = "#ff9e2c"
+const CREAM = "#fbf7f0"
+const display = { fontFamily: "'Hanken Grotesk', system-ui, sans-serif" }
+const REGISTER_URL = `${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=MASSAGE&plan=FREE`
 
 const SECTIONS = [
   {
@@ -70,86 +78,154 @@ const SECTIONS = [
   },
 ]
 
-export default function GuideContent() {
+function useFont() {
+  useEffect(() => {
+    const id = "smapey-pop-fonts"
+    if (!document.getElementById(id)) {
+      const l = document.createElement("link")
+      l.id = id; l.rel = "stylesheet"
+      l.href = "https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap"
+      document.head.appendChild(l)
+    }
+  }, [])
+}
+
+function useInView() {
+  const ref = useRef<HTMLDivElement>(null)
+  const [inView, setInView] = useState(false)
+  useEffect(() => {
+    const el = ref.current
+    if (!el) return
+    const observer = new IntersectionObserver(([entry]) => { if (entry.isIntersecting) { setInView(true); observer.disconnect() } }, { threshold: 0.15 })
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [])
+  return { ref, inView }
+}
+
+function Animate({ children, className = "", delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) {
+  const { ref, inView } = useInView()
   return (
-    <div className="min-h-screen bg-white">
+    <div ref={ref} className={className} style={{ transitionProperty: "opacity, transform", transitionDuration: "600ms", transitionTimingFunction: "cubic-bezier(0.4,0,0.2,1)", transitionDelay: `${delay}ms`, opacity: inView ? 1 : 0, transform: inView ? "translateY(0)" : "translateY(28px)" }}>
+      {children}
+    </div>
+  )
+}
+
+function Navbar() {
+  const [open, setOpen] = useState(false)
+  const links = [
+    { href: "/massage#features", label: "Features" },
+    { href: "/massage#how-it-works", label: "How it Works" },
+    { href: "/massage#pricing", label: "Pricing" },
+    { href: "/massage#faq", label: "FAQ" },
+    { href: "/massage/guide", label: "Guide" },
+  ]
+  return (
+    <nav className="fixed top-0 inset-x-0 z-50" style={{ background: CREAM, borderBottom: `2px solid ${INK}`, fontFamily: display.fontFamily }}>
+      <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+        <a href="/massage" className="flex items-center gap-2.5">
+          <img src="/logo.png" alt="Smapey" className="w-8 h-8 rounded-lg object-cover" />
+          <span className="font-extrabold tracking-tight" style={{ color: INK }}>Smapey Massage</span>
+        </a>
+        <div className="hidden md:flex items-center gap-8">
+          {links.map((l) => (<a key={l.label} href={l.href} className="text-sm font-semibold hover:opacity-60 transition-opacity" style={{ color: INK }}>{l.label}</a>))}
+        </div>
+        <div className="hidden md:flex items-center gap-3">
+          <a href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/login`} className="text-sm font-semibold hover:opacity-60 transition-opacity px-2 py-2" style={{ color: INK }}>Sign in</a>
+          <a href={REGISTER_URL} className="text-sm font-bold px-5 py-2.5 rounded-full border-2 transition-transform hover:-translate-y-0.5" style={{ ...display, background: AMBER, color: INK, borderColor: INK, boxShadow: `3px 3px 0 ${INK}` }}>Get started</a>
+        </div>
+        <button onClick={() => setOpen(!open)} className="md:hidden" style={{ color: INK }}>{open ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}</button>
+      </div>
+      {open && (
+        <div className="md:hidden px-6 py-4 flex flex-col gap-4" style={{ background: CREAM, borderTop: `2px solid ${INK}` }}>
+          {links.map((l) => (<a key={l.label} href={l.href} className="text-sm font-semibold" style={{ color: INK }}>{l.label}</a>))}
+          <a href={REGISTER_URL} className="text-sm font-bold px-4 py-2.5 rounded-full border-2 text-center" style={{ ...display, background: AMBER, color: INK, borderColor: INK }}>Get started</a>
+        </div>
+      )}
+    </nav>
+  )
+}
+
+export default function GuideContent() {
+  useFont()
+  return (
+    <main style={{ fontFamily: display.fontFamily }}>
+      <Navbar />
 
       {/* HERO */}
-      <section className="bg-gradient-to-br from-emerald-50 via-white to-teal-50 border-b border-slate-100">
-        <div className="max-w-3xl mx-auto px-6 py-16">
-          <div className="flex items-center gap-2 mb-5">
-            <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-400 flex items-center justify-center shadow-md shadow-emerald-500/30">
-              <Flower2 className="w-4 h-4 text-white" />
-            </div>
-            <Link href="/massage" className="font-bold text-slate-700 text-sm tracking-tight hover:text-emerald-600 transition">
-              Smapey Massage & Spa
-            </Link>
+      <section className="relative overflow-hidden pt-16" style={{ background: CREAM }}>
+        <div className="absolute inset-0 pointer-events-none hidden md:block" aria-hidden>
+          <div className="absolute rounded-[22px] border-2" style={{ top: "28%", right: "-70px", width: 280, height: 78, background: BLUE, borderColor: INK, transform: "rotate(8deg)", boxShadow: "5px 5px 0 rgba(22,22,22,.12)" }} />
+        </div>
+        <div className="relative max-w-3xl mx-auto px-6 pt-12 pb-14 text-center">
+          <a href="/massage" className="inline-flex items-center gap-1.5 text-sm font-semibold transition-colors mb-8 hover:opacity-60" style={{ color: "#54514c" }}>
+            <ArrowLeft className="w-3.5 h-3.5" /> Back to Massage & Spa
+          </a>
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border-2 text-xs font-bold mb-5" style={{ color: INK, borderColor: INK, boxShadow: `3px 3px 0 ${BLUE}` }}>
+            <BookOpen className="w-3 h-3" /> Step-by-step guide
           </div>
-          <p className="text-xs uppercase tracking-widest font-bold text-emerald-600 mb-2">Guide</p>
-          <h1 className="text-3xl md:text-5xl font-black text-slate-800 tracking-tight leading-tight">
+          <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight mb-4" style={{ color: INK }}>
             How to run your massage business with Smapey
           </h1>
-          <p className="text-slate-500 text-base md:text-lg mt-5">
+          <p className="text-lg leading-relaxed" style={{ color: "#54514c" }}>
             A step-by-step walkthrough — from adding your first service to taking your first online booking.
           </p>
         </div>
       </section>
 
       {/* SECTIONS */}
-      <section className="max-w-3xl mx-auto px-6 py-16 space-y-12">
-        {SECTIONS.map(s => {
-          const Icon = s.icon
-          return (
-            <article key={s.title}>
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-10 h-10 rounded-xl bg-emerald-50 border border-emerald-100 flex items-center justify-center shrink-0">
-                  <Icon className="w-5 h-5 text-emerald-500" />
+      <section className="py-16" style={{ background: CREAM }}>
+        <div className="max-w-3xl mx-auto px-6 space-y-12">
+          {SECTIONS.map(({ icon: Icon, title, body }, idx) => {
+            const c = idx % 2 === 0 ? BLUE : AMBER
+            return (
+              <Animate key={title}>
+                <div className="rounded-[20px] border-2 overflow-hidden" style={{ background: "#fff", borderColor: INK, boxShadow: `6px 6px 0 ${c}` }}>
+                  <div className="flex items-center gap-4 px-6 py-5" style={{ borderBottom: `2px solid ${INK}`, background: CREAM }}>
+                    <div className="w-10 h-10 rounded-[12px] border-2 flex items-center justify-center shrink-0" style={{ background: c, borderColor: INK }}>
+                      <Icon className="w-5 h-5" style={{ color: c === AMBER ? INK : "#fff" }} />
+                    </div>
+                    <h2 className="text-lg font-extrabold" style={{ color: INK }}>{title}</h2>
+                  </div>
+                  <div className="px-6 py-5 space-y-4">
+                    {body.map((para, i) => (
+                      <p key={i} className="text-sm leading-relaxed" style={{ color: "#54514c" }}>{para}</p>
+                    ))}
+                  </div>
                 </div>
-                <h2 className="text-xl md:text-2xl font-bold text-slate-800 tracking-tight">{s.title}</h2>
-              </div>
-              <div className="space-y-3 pl-13 text-slate-600 text-sm md:text-base leading-relaxed">
-                {s.body.map((p, i) => (
-                  <p key={i} className="flex gap-3">
-                    <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0 mt-1" />
-                    <span>{p}</span>
-                  </p>
-                ))}
-              </div>
-            </article>
-          )
-        })}
+              </Animate>
+            )
+          })}
+        </div>
       </section>
 
       {/* CTA */}
-      <section className="max-w-3xl mx-auto px-6 pb-20 text-center">
-        <div className="rounded-3xl bg-gradient-to-br from-emerald-50 to-teal-50 border border-emerald-100 px-6 py-12">
-          <h2 className="text-2xl md:text-3xl font-black text-slate-800 tracking-tight">
-            Ready to set up your spa?
-          </h2>
-          <p className="text-slate-500 text-base mt-3">
-            Start free — no credit card required. Upgrade only when you outgrow the free plan.
-          </p>
-          <Link href="/register"
-            className="inline-flex items-center gap-2 px-7 py-3 mt-6 rounded-xl bg-gradient-to-tr from-emerald-500 to-teal-400 text-white font-semibold text-sm shadow-lg shadow-emerald-500/30 hover:opacity-90 transition">
-            Start Free <ChevronRight className="w-4 h-4" />
-          </Link>
+      <section className="py-16 px-6" style={{ background: "#fff" }}>
+        <div className="max-w-6xl mx-auto">
+          <div className="rounded-[28px] border-2 p-10 flex flex-col md:flex-row items-center justify-between gap-6" style={{ background: AMBER, borderColor: INK, boxShadow: `10px 10px 0 ${INK}` }}>
+            <div>
+              <h3 className="text-2xl font-extrabold mb-2" style={{ color: INK }}>Ready to set up your spa?</h3>
+              <p className="text-sm font-medium" style={{ color: "#5c4a28" }}>Start free — no credit card required. Upgrade only when you outgrow the free plan.</p>
+            </div>
+            <a href={REGISTER_URL} className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full font-bold text-sm border-2 transition-transform hover:-translate-y-0.5 shrink-0" style={{ ...display, background: INK, color: "#fff", borderColor: INK }}>
+              Start free <ChevronRight className="w-4 h-4" />
+            </a>
+          </div>
         </div>
       </section>
 
-      {/* FOOTER */}
-      <footer className="border-t border-slate-100 py-8">
-        <div className="max-w-6xl mx-auto px-6 flex flex-wrap items-center justify-between gap-4 text-xs text-slate-400">
+      <InternalLinks cluster="massage" currentPath="/massage/guide" />
+
+      <footer className="px-6 py-8" style={{ background: CREAM, borderTop: `2px solid ${INK}` }}>
+        <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-2">
-            <Flower2 className="w-4 h-4 text-emerald-500" />
-            <span>Smapey Massage & Spa</span>
+            <img src="/logo.png" alt="Smapey" className="w-6 h-6 rounded-md object-cover" />
+            <span className="text-sm font-extrabold" style={{ color: INK }}>Massage &amp; Spa by Smapey</span>
           </div>
-          <div className="flex gap-5">
-            <Link href="/massage" className="hover:text-slate-700 transition">Product</Link>
-            <Link href="/privacy-policy" className="hover:text-slate-700 transition">Privacy</Link>
-            <Link href="/terms-and-conditions" className="hover:text-slate-700 transition">Terms</Link>
-          </div>
+          <p className="text-xs" style={{ color: "#9a948b" }}>© {new Date().getFullYear()} Smapey. All rights reserved.</p>
         </div>
       </footer>
-    </div>
+    </main>
   )
 }

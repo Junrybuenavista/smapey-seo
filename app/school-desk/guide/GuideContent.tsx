@@ -1,23 +1,104 @@
 "use client"
 
+import { useState, useEffect, useRef } from "react"
 import {
   GraduationCap, BookOpen, Users, CalendarCheck, ClipboardList, CreditCard,
-  NotebookPen, BarChart3, Lightbulb, ArrowRight,
+  NotebookPen, BarChart3, Lightbulb, ArrowRight, ChevronRight, Menu, X, ArrowLeft,
 } from "lucide-react"
 import InternalLinks from "@/components/InternalLinks"
-import { Navbar, Footer, CTA, Animate, HeroShell, HeroBadge } from "../_shared"
+
+// ── Layered Pop design tokens ──
+const INK = "#161616"
+const BLUE = "#2f6bff"
+const AMBER = "#ff9e2c"
+const CREAM = "#fbf7f0"
+const display = { fontFamily: "'Hanken Grotesk', system-ui, sans-serif" }
+const REGISTER_URL = `${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=SCHOOL_DESK&plan=FREE`
+const LOGIN_URL = `${process.env.NEXT_PUBLIC_FRONTEND_URL}/login`
+
+function useFont() {
+  useEffect(() => {
+    const id = "smapey-pop-fonts"
+    if (!document.getElementById(id)) {
+      const l = document.createElement("link")
+      l.id = id; l.rel = "stylesheet"
+      l.href = "https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap"
+      document.head.appendChild(l)
+    }
+  }, [])
+}
+
+function useInView() {
+  const ref = useRef<HTMLDivElement>(null)
+  const [inView, setInView] = useState(false)
+  useEffect(() => {
+    const el = ref.current
+    if (!el) return
+    const observer = new IntersectionObserver(([entry]) => { if (entry.isIntersecting) { setInView(true); observer.disconnect() } }, { threshold: 0.15 })
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [])
+  return { ref, inView }
+}
+
+function Animate({ children, className = "", delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) {
+  const { ref, inView } = useInView()
+  return (
+    <div ref={ref} className={className} style={{ transitionProperty: "opacity, transform", transitionDuration: "600ms", transitionTimingFunction: "cubic-bezier(0.4,0,0.2,1)", transitionDelay: `${delay}ms`, opacity: inView ? 1 : 0, transform: inView ? "translateY(0)" : "translateY(28px)" }}>
+      {children}
+    </div>
+  )
+}
 
 //////////////////////////////////////////////////////
-// SMALL BUILDING BLOCKS
+// NAVBAR
+//////////////////////////////////////////////////////
+function Navbar() {
+  const [open, setOpen] = useState(false)
+  const links = [
+    { href: "/school-desk#features", label: "Features" },
+    { href: "/school-desk#how-it-works", label: "How it Works" },
+    { href: "/school-desk#pricing", label: "Pricing" },
+    { href: "/school-desk#faq", label: "FAQ" },
+    { href: "/school-desk/guide", label: "Guide" },
+  ]
+  return (
+    <nav className="fixed top-0 inset-x-0 z-50" style={{ background: CREAM, borderBottom: `2px solid ${INK}`, fontFamily: display.fontFamily }}>
+      <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+        <a href="/school-desk" className="flex items-center gap-2.5">
+          <img src="/logo.png" alt="Smapey SchoolDesk" className="w-8 h-8 rounded-lg object-cover" />
+          <span className="font-extrabold tracking-tight" style={{ color: INK }}>Smapey SchoolDesk</span>
+        </a>
+        <div className="hidden md:flex items-center gap-8">
+          {links.map((l) => (<a key={l.label} href={l.href} className="text-sm font-semibold hover:opacity-60 transition-opacity" style={{ color: INK }}>{l.label}</a>))}
+        </div>
+        <div className="hidden md:flex items-center gap-3">
+          <a href={LOGIN_URL} className="text-sm font-semibold hover:opacity-60 transition-opacity px-2 py-2" style={{ color: INK }}>Sign in</a>
+          <a href={REGISTER_URL} className="text-sm font-bold px-5 py-2.5 rounded-full border-2 transition-transform hover:-translate-y-0.5" style={{ ...display, background: AMBER, color: INK, borderColor: INK, boxShadow: `3px 3px 0 ${INK}` }}>Get started</a>
+        </div>
+        <button onClick={() => setOpen(!open)} className="md:hidden" style={{ color: INK }}>{open ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}</button>
+      </div>
+      {open && (
+        <div className="md:hidden px-6 py-4 flex flex-col gap-4" style={{ background: CREAM, borderTop: `2px solid ${INK}` }}>
+          {links.map((l) => (<a key={l.label} href={l.href} className="text-sm font-semibold" style={{ color: INK }}>{l.label}</a>))}
+          <a href={REGISTER_URL} className="text-sm font-bold px-4 py-2.5 rounded-full border-2 text-center" style={{ ...display, background: AMBER, color: INK, borderColor: INK }}>Get started</a>
+        </div>
+      )}
+    </nav>
+  )
+}
+
+//////////////////////////////////////////////////////
+// ARTICLE PRIMITIVES (Layered Pop)
 //////////////////////////////////////////////////////
 function Callout({ children, title }: { children: React.ReactNode; title?: string }) {
   return (
-    <div className="my-6 rounded-2xl border border-indigo-200 bg-indigo-50/70 p-5">
+    <div className="my-6 rounded-[16px] border-2 p-5" style={{ background: "#fff7e8", borderColor: INK }}>
       <div className="flex items-start gap-3">
-        <Lightbulb className="w-5 h-5 text-indigo-600 shrink-0 mt-0.5" />
+        <Lightbulb className="w-5 h-5 shrink-0 mt-0.5" style={{ color: "#b06c00" }} />
         <div>
-          {title && <p className="font-semibold text-indigo-900 mb-1">{title}</p>}
-          <div className="text-sm text-indigo-900/80 leading-relaxed">{children}</div>
+          {title && <p className="font-extrabold mb-1" style={{ color: INK }}>{title}</p>}
+          <div className="text-sm leading-relaxed" style={{ color: "#5c4a28" }}>{children}</div>
         </div>
       </div>
     </div>
@@ -26,9 +107,9 @@ function Callout({ children, title }: { children: React.ReactNode; title?: strin
 
 function Example({ children, title = "Quick example" }: { children: React.ReactNode; title?: string }) {
   return (
-    <div className="my-6 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
-      <p className="text-xs font-bold uppercase tracking-widest text-slate-400 mb-2">{title}</p>
-      <div className="text-sm text-slate-600 leading-relaxed space-y-2">{children}</div>
+    <div className="my-6 rounded-[16px] border-2 p-5" style={{ background: "#fff", borderColor: INK, boxShadow: `5px 5px 0 ${BLUE}` }}>
+      <p className="text-xs font-bold uppercase tracking-widest mb-2" style={{ color: BLUE }}>{title}</p>
+      <div className="text-sm leading-relaxed space-y-2" style={{ color: "#54514c" }}>{children}</div>
     </div>
   )
 }
@@ -38,10 +119,10 @@ function Steps({ items }: { items: { t: string; d: string }[] }) {
     <ol className="my-6 space-y-4">
       {items.map((s, i) => (
         <li key={i} className="flex gap-4">
-          <span className="shrink-0 w-8 h-8 rounded-full bg-indigo-600 text-white text-sm font-bold flex items-center justify-center">{i + 1}</span>
+          <span className="shrink-0 w-8 h-8 rounded-full border-2 text-sm font-bold flex items-center justify-center" style={{ background: BLUE, color: "#fff", borderColor: INK }}>{i + 1}</span>
           <div className="pt-0.5">
-            <p className="font-semibold text-slate-800">{s.t}</p>
-            <p className="text-sm text-slate-500 leading-relaxed mt-0.5">{s.d}</p>
+            <p className="font-bold" style={{ color: INK }}>{s.t}</p>
+            <p className="text-sm leading-relaxed mt-0.5" style={{ color: "#54514c" }}>{s.d}</p>
           </div>
         </li>
       ))}
@@ -49,11 +130,11 @@ function Steps({ items }: { items: { t: string; d: string }[] }) {
   )
 }
 
-function H2({ id, icon: Icon, children }: { id: string; icon: any; children: React.ReactNode }) {
+function H2({ id, icon: Icon, accent = BLUE, children }: { id: string; icon: any; accent?: string; children: React.ReactNode }) {
   return (
-    <h2 id={id} className="scroll-mt-24 flex items-center gap-3 text-2xl sm:text-3xl font-extrabold text-slate-800 tracking-tight mt-16 mb-4">
-      <span className="w-10 h-10 rounded-xl bg-indigo-100 flex items-center justify-center shrink-0">
-        <Icon className="w-5 h-5 text-indigo-600" />
+    <h2 id={id} className="scroll-mt-24 flex items-center gap-3 text-2xl sm:text-3xl font-extrabold tracking-tight mt-16 mb-4" style={{ color: INK }}>
+      <span className="w-10 h-10 rounded-[12px] border-2 flex items-center justify-center shrink-0" style={{ background: accent, borderColor: INK }}>
+        <Icon className="w-5 h-5" style={{ color: accent === AMBER ? INK : "#fff" }} />
       </span>
       {children}
     </h2>
@@ -61,7 +142,7 @@ function H2({ id, icon: Icon, children }: { id: string; icon: any; children: Rea
 }
 
 function P({ children }: { children: React.ReactNode }) {
-  return <p className="text-slate-600 leading-relaxed my-4">{children}</p>
+  return <p className="leading-relaxed my-4" style={{ color: "#54514c" }}>{children}</p>
 }
 
 //////////////////////////////////////////////////////
@@ -81,36 +162,87 @@ const TOC = [
   { id: "glossary", label: "Glossary" },
 ]
 
-export default function GuideContent() {
+//////////////////////////////////////////////////////
+// CTA
+//////////////////////////////////////////////////////
+function CTA() {
   return (
-    <main className="bg-white">
+    <section className="py-16 px-6" style={{ background: "#fff", fontFamily: display.fontFamily }}>
+      <div className="max-w-6xl mx-auto">
+        <div className="rounded-[28px] border-2 p-10 flex flex-col md:flex-row items-center justify-between gap-6" style={{ background: AMBER, borderColor: INK, boxShadow: `10px 10px 0 ${INK}` }}>
+          <div>
+            <h3 className="text-2xl font-extrabold mb-2" style={{ color: INK }}>Ready to run your tutorial center smarter?</h3>
+            <p className="text-sm font-medium" style={{ color: "#5c4a28" }}>Join tutors and center owners who manage students, tuition, and sessions on Smapey — no spreadsheets, no notebooks.</p>
+          </div>
+          <a href={REGISTER_URL} className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full font-bold text-sm border-2 transition-transform hover:-translate-y-0.5 shrink-0" style={{ ...display, background: INK, color: "#fff", borderColor: INK }}>
+            Get started for free <ChevronRight className="w-4 h-4" />
+          </a>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+//////////////////////////////////////////////////////
+// FOOTER
+//////////////////////////////////////////////////////
+function Footer() {
+  return (
+    <footer className="px-6 py-8" style={{ background: CREAM, borderTop: `2px solid ${INK}`, fontFamily: display.fontFamily }}>
+      <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="flex items-center gap-2">
+          <img src="/logo.png" alt="Smapey SchoolDesk" className="w-6 h-6 rounded-md object-cover" />
+          <span className="text-sm font-extrabold" style={{ color: INK }}>SchoolDesk by Smapey</span>
+        </div>
+        <p className="text-xs" style={{ color: "#9a948b" }}>© {new Date().getFullYear()} Smapey. All rights reserved.</p>
+      </div>
+    </footer>
+  )
+}
+
+//////////////////////////////////////////////////////
+// PAGE
+//////////////////////////////////////////////////////
+export default function GuideContent() {
+  useFont()
+  return (
+    <main style={{ fontFamily: display.fontFamily }}>
       <Navbar />
 
-      <HeroShell>
-        <div className="max-w-3xl mx-auto text-center">
-          <HeroBadge>Step-by-step guide</HeroBadge>
-          <h1 className="text-4xl sm:text-5xl font-extrabold text-white leading-tight tracking-tight mb-6">
+      {/* HERO */}
+      <section className="relative overflow-hidden pt-16" style={{ background: CREAM }}>
+        <div className="absolute inset-0 pointer-events-none hidden md:block" aria-hidden>
+          <div className="absolute rounded-[22px] border-2" style={{ top: "28%", right: "-70px", width: 280, height: 78, background: BLUE, borderColor: INK, transform: "rotate(8deg)", boxShadow: "5px 5px 0 rgba(22,22,22,.12)" }} />
+        </div>
+        <div className="relative max-w-3xl mx-auto px-6 pt-12 pb-14 text-center">
+          <a href="/school-desk" className="inline-flex items-center gap-1.5 text-sm font-semibold transition-colors mb-8 hover:opacity-60" style={{ color: "#54514c" }}>
+            <ArrowLeft className="w-3.5 h-3.5" /> Back to SchoolDesk
+          </a>
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border-2 text-xs font-bold mb-5" style={{ color: INK, borderColor: INK, boxShadow: `3px 3px 0 ${BLUE}` }}>
+            <BookOpen className="w-3 h-3" /> Step-by-step guide
+          </div>
+          <h1 className="text-4xl sm:text-5xl font-extrabold leading-tight tracking-tight mb-6" style={{ color: INK }}>
             How to run your tutorial center with Smapey SchoolDesk
           </h1>
-          <p className="text-lg text-white/50 leading-relaxed">
+          <p className="text-lg leading-relaxed" style={{ color: "#54514c" }}>
             Whether you run a one-room review center or tutor from home, this guide walks you through the whole system in
             plain language — programs, students, sessions, attendance, tuition, and progress notes. Follow it top to bottom.
           </p>
         </div>
-      </HeroShell>
+      </section>
 
       <article className="max-w-3xl mx-auto px-6 py-16">
 
         {/* TOC */}
-        <div className="rounded-2xl border border-slate-200 bg-slate-50 p-6 mb-4">
-          <p className="flex items-center gap-2 text-sm font-bold text-slate-700 mb-4">
-            <BookOpen className="w-4 h-4 text-indigo-600" /> What's in this guide
+        <div className="rounded-[20px] border-2 p-6 mb-4" style={{ background: "#fff", borderColor: INK, boxShadow: `6px 6px 0 ${AMBER}` }}>
+          <p className="flex items-center gap-2 text-sm font-extrabold mb-4" style={{ color: INK }}>
+            <BookOpen className="w-4 h-4" style={{ color: BLUE }} /> What&apos;s in this guide
           </p>
           <ul className="grid sm:grid-cols-2 gap-x-6 gap-y-2">
             {TOC.map((t) => (
               <li key={t.id}>
-                <a href={`#${t.id}`} className="text-sm text-slate-600 hover:text-indigo-600 transition-colors flex items-center gap-1.5">
-                  <ArrowRight className="w-3 h-3 text-indigo-400" /> {t.label}
+                <a href={`#${t.id}`} className="text-sm transition-colors flex items-center gap-1.5 hover:opacity-60" style={{ color: "#54514c" }}>
+                  <ArrowRight className="w-3 h-3" style={{ color: BLUE }} /> {t.label}
                 </a>
               </li>
             ))}
@@ -125,33 +257,19 @@ export default function GuideContent() {
             the whole app makes sense:
           </P>
           <div className="grid sm:grid-cols-3 gap-4 my-6">
-            <div className="rounded-2xl border border-slate-200 p-5 bg-white shadow-sm">
-              <div className="w-10 h-10 rounded-xl bg-indigo-100 flex items-center justify-center mb-3">
-                <BookOpen className="w-5 h-5 text-indigo-600" />
+            {[
+              { icon: BookOpen, c: BLUE, n: "1. Programs", d: <>The courses you offer — a subject, grade level, or review track. Each has a tuition fee.</> },
+              { icon: Users, c: AMBER, n: "2. Students", d: <>The people you teach. A student becomes an <strong>enrollment</strong> when joined to a program.</> },
+              { icon: CalendarCheck, c: BLUE, n: "3. Sessions", d: <>The actual classes you hold per program — where you take attendance and write progress notes.</> },
+            ].map((card, i) => (
+              <div key={i} className="rounded-[18px] border-2 p-5" style={{ background: "#fff", borderColor: INK, boxShadow: `5px 5px 0 ${card.c}` }}>
+                <div className="w-10 h-10 rounded-[12px] border-2 flex items-center justify-center mb-3" style={{ background: card.c, borderColor: INK }}>
+                  <card.icon className="w-5 h-5" style={{ color: card.c === AMBER ? INK : "#fff" }} />
+                </div>
+                <p className="font-extrabold mb-1" style={{ color: INK }}>{card.n}</p>
+                <p className="text-sm leading-relaxed" style={{ color: "#54514c" }}>{card.d}</p>
               </div>
-              <p className="font-bold text-slate-800 mb-1">1. Programs</p>
-              <p className="text-sm text-slate-500 leading-relaxed">
-                The courses you offer — a subject, grade level, or review track. Each has a tuition fee.
-              </p>
-            </div>
-            <div className="rounded-2xl border border-slate-200 p-5 bg-white shadow-sm">
-              <div className="w-10 h-10 rounded-xl bg-violet-100 flex items-center justify-center mb-3">
-                <Users className="w-5 h-5 text-violet-600" />
-              </div>
-              <p className="font-bold text-slate-800 mb-1">2. Students</p>
-              <p className="text-sm text-slate-500 leading-relaxed">
-                The people you teach. A student becomes an <strong>enrollment</strong> when joined to a program.
-              </p>
-            </div>
-            <div className="rounded-2xl border border-slate-200 p-5 bg-white shadow-sm">
-              <div className="w-10 h-10 rounded-xl bg-purple-100 flex items-center justify-center mb-3">
-                <CalendarCheck className="w-5 h-5 text-purple-600" />
-              </div>
-              <p className="font-bold text-slate-800 mb-1">3. Sessions</p>
-              <p className="text-sm text-slate-500 leading-relaxed">
-                The actual classes you hold per program — where you take attendance and write progress notes.
-              </p>
-            </div>
+            ))}
           </div>
           <Callout title="The simplest way to think about it">
             A <strong>program</strong> is the course (Grade 5 Math). An <strong>enrollment</strong> is one student joining
@@ -162,7 +280,7 @@ export default function GuideContent() {
 
         {/* PROGRAMS */}
         <Animate>
-          <H2 id="programs" icon={BookOpen}>1. Set up your programs</H2>
+          <H2 id="programs" icon={BookOpen} accent={AMBER}>1. Set up your programs</H2>
           <P>Do this first. A program is anything you charge tuition for.</P>
           <Steps items={[
             { t: "Go to SchoolDesk → Programs → New Program", d: "Give it a clear name like 'Grade 3 Math Tutoring' or 'UPCAT Review Batch A'." },
@@ -187,7 +305,7 @@ export default function GuideContent() {
 
         {/* STUDENTS */}
         <Animate>
-          <H2 id="students" icon={Users}>3. Register students</H2>
+          <H2 id="students" icon={Users} accent={AMBER}>3. Register students</H2>
           <P>Add every student once. Their profile follows them across every program they join.</P>
           <Steps items={[
             { t: "Go to Students → Add Student", d: "Only the full name is required. Add grade level, phone, and the guardian's name and number so parents are easy to reach." },
@@ -202,30 +320,30 @@ export default function GuideContent() {
         {/* ENROLL */}
         <Animate>
           <H2 id="enroll" icon={CreditCard}>4. Enroll a student &amp; set tuition</H2>
-          <P>An enrollment is what connects a student to a program — and it's where tuition lives.</P>
+          <P>An enrollment is what connects a student to a program — and it&apos;s where tuition lives.</P>
           <Steps items={[
             { t: "Go to Enrollments → Enroll Student", d: "Pick the student and the program. The tuition fee auto-fills from the program, but you can override it for scholarships or discounts." },
             { t: "Assign a teacher (optional)", d: "Choose who'll handle this student. Set a start date." },
             { t: "Track the balance", d: "From now on, the enrollment shows the tuition fee, total paid, and the outstanding balance — updated every time you record a payment." },
           ]} />
           <Example title="Example: Maria">
-            <p>• Maria enrolls in 'Grade 5 Math' → tuition ₱1,500, paid ₱0, balance <strong>₱1,500</strong>.</p>
+            <p>• Maria enrolls in &apos;Grade 5 Math&apos; → tuition ₱1,500, paid ₱0, balance <strong>₱1,500</strong>.</p>
             <p>• Her mom pays ₱1,000 → paid ₱1,000, balance <strong>₱500</strong>.</p>
-            <p>• The dashboard lists Maria under "Unpaid Balances" until the ₱500 is settled.</p>
+            <p>• The dashboard lists Maria under &quot;Unpaid Balances&quot; until the ₱500 is settled.</p>
           </Example>
         </Animate>
 
         {/* SESSIONS */}
         <Animate>
-          <H2 id="sessions" icon={CalendarCheck}>5. Schedule sessions</H2>
+          <H2 id="sessions" icon={CalendarCheck} accent={AMBER}>5. Schedule sessions</H2>
           <P>A session is one class meeting for a program.</P>
           <Steps items={[
             { t: "Go to Sessions → Schedule Session", d: "Pick the program, assign a teacher, set the date, time, and duration. Add a title like 'Chapter 3 Review' if you like." },
             { t: "Manage its status", d: "Sessions start as Scheduled. After class, mark them Done — or Cancelled if it didn't happen." },
           ]} />
           <Callout title="Upcoming sessions on the dashboard">
-            Every scheduled session shows in the dashboard's "Upcoming Sessions" list so you and your teachers always know
-            what's next.
+            Every scheduled session shows in the dashboard&apos;s &quot;Upcoming Sessions&quot; list so you and your teachers always know
+            what&apos;s next.
           </Callout>
         </Animate>
 
@@ -242,7 +360,7 @@ export default function GuideContent() {
 
         {/* PAYMENTS */}
         <Animate>
-          <H2 id="payments" icon={CreditCard}>7. Record tuition payments</H2>
+          <H2 id="payments" icon={CreditCard} accent={AMBER}>7. Record tuition payments</H2>
           <P>Every time a parent or student pays, log it against their enrollment.</P>
           <Steps items={[
             { t: "Go to Enrollments and find the student", d: "Click Pay on any enrollment that still has a balance." },
@@ -250,8 +368,8 @@ export default function GuideContent() {
             { t: "Record it", d: "The total paid goes up and the balance goes down instantly. Today's and this month's collections update on the dashboard." },
           ]} />
           <Callout title="No more 'who paid?' guessing">
-            Because every payment is tied to an enrollment, you always know exactly who's fully paid, who still owes, and
-            how much you've collected this month.
+            Because every payment is tied to an enrollment, you always know exactly who&apos;s fully paid, who still owes, and
+            how much you&apos;ve collected this month.
           </Callout>
         </Animate>
 
@@ -267,8 +385,8 @@ export default function GuideContent() {
 
         {/* DASHBOARD */}
         <Animate>
-          <H2 id="dashboard" icon={BarChart3}>9. The dashboard</H2>
-          <P>One screen that answers "how's the center doing today?"</P>
+          <H2 id="dashboard" icon={BarChart3} accent={AMBER}>9. The dashboard</H2>
+          <P>One screen that answers &quot;how&apos;s the center doing today?&quot;</P>
           <Steps items={[
             { t: "Collections", d: "Today's and this month's tuition collected, at a glance." },
             { t: "Students & enrollments", d: "Total and active students, plus active enrollments." },
@@ -290,9 +408,9 @@ export default function GuideContent() {
               ["Progress note", "A written note (with optional 1–5 rating) about a student's performance."],
               ["Billing type", "How a program charges: Monthly, Per Session, or Fixed (one-time)."],
             ].map(([term, def]) => (
-              <div key={term} className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
-                <p className="font-bold text-slate-800 text-sm">{term}</p>
-                <p className="text-sm text-slate-500 leading-relaxed mt-0.5">{def}</p>
+              <div key={term} className="rounded-[14px] border-2 p-4" style={{ background: "#fff", borderColor: INK }}>
+                <p className="font-extrabold text-sm" style={{ color: INK }}>{term}</p>
+                <p className="text-sm leading-relaxed mt-0.5" style={{ color: "#54514c" }}>{def}</p>
               </div>
             ))}
           </div>
