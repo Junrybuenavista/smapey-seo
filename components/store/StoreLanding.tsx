@@ -158,6 +158,78 @@ function Hero({ variant }: { variant: StoreVariant }) {
   )
 }
 
+const SHOWCASE = [
+  {
+    img: "https://res.cloudinary.com/dxhwfv0jo/image/upload/v1780666516/POS_at_checkout_guyg64.png",
+    alt: "Cashier ringing up a sale on the Smapey POS tablet",
+    eyebrow: "Point of Sale",
+    title: "Ring up sales in seconds",
+    desc: "Tap a product to add it to the cart, adjust quantities, apply a discount, and check out. Cash change is calculated automatically and stock is deducted the moment the sale completes.",
+    bullets: ["Tap-to-add product grid", "Automatic change calculation", "Stock deducted in real time"],
+  },
+  {
+    img: "https://res.cloudinary.com/dxhwfv0jo/image/upload/v1780666510/Barcode_scanning_a_product_xxvvag.png",
+    alt: "Scanning a product barcode with a phone camera",
+    eyebrow: "Barcode Scanner",
+    title: "Scan products with your phone",
+    desc: "No barcode gun needed. Point your phone camera at any product barcode to add it to the cart at the POS, or to auto-fill the barcode when adding a new product. Works with EAN, UPC, Code 128 and more.",
+    bullets: ["Use your phone — no extra hardware", "Find products fast at checkout", "Auto-fill barcodes when adding stock"],
+  },
+  {
+    img: "https://res.cloudinary.com/dxhwfv0jo/image/upload/v1780666513/QR_payment_atu1d0.png",
+    alt: "Customer scanning a store QR code to pay",
+    eyebrow: "QR Payment",
+    title: "Accept GCash, Maya & bank QR",
+    desc: "Upload your payment QR code once. When a customer chooses QR at checkout, it appears full-screen with the exact total — they scan, pay, and you confirm. No third-party fees, no extra apps.",
+    bullets: ["Works with any QR — GCash, Maya, banks", "Shows the exact amount to pay", "Confirm payment to complete the sale"],
+  },
+  {
+    img: "https://res.cloudinary.com/dxhwfv0jo/image/upload/v1780666509/Inventory_profit_dashboard_cidfp2.png",
+    alt: "Inventory and profit dashboard on a tablet",
+    eyebrow: "Dashboard & Profit",
+    title: "Know your profit at a glance",
+    desc: "Your dashboard shows today's revenue, profit, sales count, and low-stock alerts in one view. Profit is calculated from the cost price recorded at each sale, so the numbers stay accurate over time.",
+    bullets: ["Today's profit, live", "Low-stock alerts before you run out", "7-day revenue trend & top sellers"],
+  },
+]
+
+function Showcase() {
+  return (
+    <section className="py-24" style={{ background: "#fff", fontFamily: display.fontFamily }}>
+      <div className="max-w-6xl mx-auto px-6 flex flex-col gap-20">
+        {SHOWCASE.map((s, i) => {
+          const c = i % 2 === 0 ? BLUE : AMBER
+          const reverse = i % 2 === 1
+          return (
+            <Animate key={s.title}>
+              <div className={`flex flex-col gap-8 md:gap-12 items-center ${reverse ? "md:flex-row-reverse" : "md:flex-row"}`}>
+                <div className="w-full md:w-1/2">
+                  <div className="rounded-[22px] border-2 overflow-hidden" style={{ borderColor: INK, boxShadow: `8px 8px 0 ${c}` }}>
+                    <img src={s.img} alt={s.alt} className="w-full h-auto block" loading="lazy" />
+                  </div>
+                </div>
+                <div className="w-full md:w-1/2">
+                  <p className="text-sm font-bold uppercase tracking-widest mb-3" style={{ color: c === AMBER ? "#b06c00" : BLUE }}>{s.eyebrow}</p>
+                  <h3 className="text-2xl sm:text-3xl font-extrabold tracking-tight mb-4" style={{ color: INK }}>{s.title}</h3>
+                  <p className="leading-relaxed mb-5" style={{ color: "#54514c" }}>{s.desc}</p>
+                  <ul className="space-y-2.5">
+                    {s.bullets.map((b) => (
+                      <li key={b} className="flex items-center gap-2.5 text-sm">
+                        <CheckCircle2 className="w-4 h-4 shrink-0" style={{ color: c === AMBER ? AMBER : BLUE }} />
+                        <span style={{ color: "#3f3b36" }}>{b}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </Animate>
+          )
+        })}
+      </div>
+    </section>
+  )
+}
+
 function Features({ variant }: { variant: StoreVariant }) {
   return (
     <section id="features" className="py-24" style={{ background: "#fff", fontFamily: display.fontFamily }}>
@@ -364,6 +436,7 @@ export default function StoreLanding({ variant }: { variant: StoreVariant }) {
     <main>
       <Navbar variant={variant} />
       <Hero variant={variant} />
+      <Showcase />
       <Features variant={variant} />
       <HowItWorks />
       <Pricing />
