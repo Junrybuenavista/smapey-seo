@@ -78,6 +78,9 @@ function Navbar() {
         </a>
         <div className="hidden md:flex items-center gap-8">
           <a href="/essay" className="text-sm font-semibold hover:opacity-60 transition-opacity" style={{ color: INK }}>Home</a>
+          <a href="#features" className="text-sm font-semibold hover:opacity-60 transition-opacity" style={{ color: INK }}>Features</a>
+          <a href="#pricing" className="text-sm font-semibold hover:opacity-60 transition-opacity" style={{ color: INK }}>Pricing</a>
+          <a href="#faq" className="text-sm font-semibold hover:opacity-60 transition-opacity" style={{ color: INK }}>FAQ</a>
           <a href="/essay/guide" className="text-sm font-semibold hover:opacity-60 transition-opacity" style={{ color: INK }}>Guide</a>
         </div>
         <div className="hidden md:flex items-center gap-3">
@@ -89,6 +92,9 @@ function Navbar() {
       {open && (
         <div className="md:hidden px-6 py-4 flex flex-col gap-4" style={{ background: CREAM, borderTop: `2px solid ${INK}` }}>
           <a href="/essay" className="text-sm font-semibold" style={{ color: INK }}>Home</a>
+          <a href="#features" className="text-sm font-semibold" style={{ color: INK }}>Features</a>
+          <a href="#pricing" className="text-sm font-semibold" style={{ color: INK }}>Pricing</a>
+          <a href="#faq" className="text-sm font-semibold" style={{ color: INK }}>FAQ</a>
           <a href="/essay/guide" className="text-sm font-semibold" style={{ color: INK }}>Guide</a>
           <a href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=ESSAY&plan=FREE`} className="text-sm font-bold px-4 py-2.5 rounded-full border-2 text-center" style={{ ...display, background: AMBER, color: INK, borderColor: INK }}>Get started free</a>
         </div>
@@ -130,7 +136,7 @@ function Hero() {
 
 function Features() {
   return (
-    <section className="py-24" style={{ background: "#fff", fontFamily: display.fontFamily }}>
+    <section id="features" className="py-24" style={{ background: "#fff", fontFamily: display.fontFamily }}>
       <div className="max-w-6xl mx-auto px-6">
         <Animate className="text-center mb-16">
           <p className="text-sm font-bold uppercase tracking-widest mb-3" style={{ color: BLUE }}>Features</p>
