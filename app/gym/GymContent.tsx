@@ -205,61 +205,84 @@ function Navbar() {
 // HERO
 //////////////////////////////////////////////////////
 function Hero() {
+  const stats = [
+    { value: "248", label: "Active members", c: "#fff" },
+    { value: "73", label: "Check-ins today", c: "#5b8bff" },
+    { value: "₱48k", label: "Revenue this month", c: AMBER },
+  ]
+  const bars = [42, 58, 35, 70, 90, 64, 73]
+
   return (
-    <section className="relative pt-16 overflow-hidden" style={{ background: CREAM, fontFamily: display.fontFamily }}>
-      {/* playful layered-bar accents */}
-      <div className="absolute inset-0 pointer-events-none hidden md:block" aria-hidden>
-        <div className="absolute rounded-[22px] border-2" style={{ top: "14%", left: "-70px", width: 280, height: 80, background: AMBER, borderColor: INK, transform: "rotate(-10deg)" }} />
-        <div className="absolute rounded-[22px] border-2" style={{ top: "20%", right: "-80px", width: 300, height: 84, background: BLUE, borderColor: INK, transform: "rotate(8deg)", boxShadow: "5px 5px 0 rgba(22,22,22,.12)" }} />
-      </div>
+    <section className="relative pt-16 overflow-hidden" style={{ background: INK, fontFamily: display.fontFamily }}>
+      <div className="max-w-6xl mx-auto px-6 pt-20 pb-20">
 
-      <div className="relative max-w-6xl mx-auto px-6 pt-20 pb-24 text-center">
+        <div className="grid lg:grid-cols-[1.1fr_.9fr] gap-12 lg:gap-16 items-center">
+          {/* Left: copy + CTAs */}
+          <div>
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border-2 text-xs font-bold mb-6" style={{ background: "#222", color: AMBER, borderColor: AMBER }}>
+              <Zap className="w-3 h-3" />
+              Built for modern gyms
+            </div>
 
-        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border-2 text-xs font-bold mb-6" style={{ color: INK, borderColor: INK, boxShadow: `3px 3px 0 ${BLUE}` }}>
-          <Zap className="w-3 h-3" />
-          Built for modern gyms
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.0] tracking-tight mb-6 text-white">
+              Run your gym <span style={{ color: "#5b8bff" }}>smarter</span>, not <span style={{ color: AMBER }}>harder</span>
+            </h1>
+
+            <p className="text-lg max-w-xl mb-8 leading-relaxed" style={{ color: "rgba(255,255,255,.72)" }}>
+              GymOS handles member management, QR check-ins, subscription tracking, and revenue reporting —
+              so you can focus on what matters: your members.
+            </p>
+
+            <div className="flex flex-col sm:flex-row sm:flex-wrap items-start sm:items-center gap-3">
+              <a href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=GYM&plan=FREE`}
+                className="flex items-center gap-2 px-7 py-4 rounded-full font-bold text-sm border-2 transition-transform hover:-translate-y-0.5"
+                style={{ ...display, background: AMBER, color: INK, borderColor: AMBER, boxShadow: "4px 4px 0 rgba(255,158,44,.3)" }}>
+                Start for free
+                <ChevronRight className="w-4 h-4" />
+              </a>
+              <a href="#features"
+                onClick={(e) => { e.preventDefault(); document.getElementById("features")?.scrollIntoView({ behavior: "smooth" }) }}
+                className="flex items-center gap-2 px-7 py-4 rounded-full font-bold text-sm border-2 transition-transform hover:-translate-y-0.5" style={{ ...display, background: "transparent", color: "#fff", borderColor: "#fff" }}>
+                See features
+              </a>
+              <a href="#book-demo"
+                onClick={(e) => { e.preventDefault(); document.getElementById("book-demo")?.scrollIntoView({ behavior: "smooth" }) }}
+                className="flex items-center gap-2 px-7 py-4 rounded-full font-bold text-sm border-2 transition-transform hover:-translate-y-0.5" style={{ ...display, background: "transparent", color: "#fff", borderColor: "rgba(255,255,255,.4)" }}>
+                <CalendarCheck className="w-4 h-4" />
+                Book a Demo
+              </a>
+            </div>
+          </div>
+
+          {/* Right: weekly check-ins chart */}
+          <div className="rounded-[22px] border-2 p-6" style={{ background: CREAM, borderColor: AMBER, boxShadow: "10px 10px 0 rgba(255,158,44,.25)" }}>
+            <div className="flex items-center justify-between mb-5">
+              <span className="text-sm font-extrabold" style={{ color: INK }}>Weekly check-ins</span>
+              <span className="inline-flex items-center gap-1.5 text-[11px] font-bold px-2.5 py-1 rounded-full border-2" style={{ background: "#fff", borderColor: INK, color: "#0d7a55" }}>
+                <span className="w-1.5 h-1.5 rounded-full" style={{ background: "#0d9f6e" }} /> Live
+              </span>
+            </div>
+            <div className="flex items-end justify-between gap-2.5 h-36 mb-2">
+              {bars.map((h, i) => (
+                <div key={i} className="flex-1 border-2 rounded-t-[6px]" style={{ height: `${h}%`, background: i === 4 ? AMBER : BLUE, borderColor: INK }} />
+              ))}
+            </div>
+            <div className="flex justify-between text-[10px] font-extrabold" style={{ color: "#9a948b" }}>
+              {["M", "T", "W", "T", "F", "S", "S"].map((d, i) => <span key={i} className="flex-1 text-center">{d}</span>)}
+            </div>
+          </div>
         </div>
 
-        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.04] tracking-tight mb-6" style={{ color: INK }}>
-          Run your gym <span style={{ color: BLUE }}>smarter</span>,<br className="hidden sm:block" /> not <span style={{ color: AMBER }}>harder</span>
-        </h1>
-
-        <p className="text-lg max-w-2xl mx-auto mb-10 leading-relaxed" style={{ color: "#54514c" }}>
-          GymOS handles member management, QR check-ins, subscription tracking, and revenue reporting —
-          so you can focus on what matters: your members.
-        </p>
-
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-          <a href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=GYM&plan=FREE`}
-            className="flex items-center gap-2 px-7 py-4 rounded-full font-bold text-sm border-2 transition-transform hover:-translate-y-0.5"
-            style={{ ...display, background: AMBER, color: INK, borderColor: INK, boxShadow: `4px 4px 0 ${INK}` }}>
-            Start for free
-            <ChevronRight className="w-4 h-4" />
-          </a>
-          <a href="#features"
-            onClick={(e) => { e.preventDefault(); document.getElementById("features")?.scrollIntoView({ behavior: "smooth" }) }}
-            className="flex items-center gap-2 px-7 py-4 rounded-full font-bold text-sm border-2 bg-white transition-transform hover:-translate-y-0.5" style={{ ...display, color: INK, borderColor: INK }}>
-            See features
-          </a>
-          <a href="#book-demo"
-            onClick={(e) => { e.preventDefault(); document.getElementById("book-demo")?.scrollIntoView({ behavior: "smooth" }) }}
-            className="flex items-center gap-2 px-7 py-4 rounded-full font-bold text-sm border-2 bg-white transition-transform hover:-translate-y-0.5" style={{ ...display, color: INK, borderColor: INK }}>
-            <CalendarCheck className="w-4 h-4" />
-            Book a Demo
-          </a>
-        </div>
-
-        <div className="mt-8 flex flex-wrap items-center justify-center gap-6 text-xs font-semibold" style={{ color: "#54514c" }}>
-          {["No credit card required", "Free plan forever", "Setup in 2 minutes"].map((t) => (
-            <span key={t} className="flex items-center gap-1.5">
-              <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
-              {t}
-            </span>
+        {/* Stat strip */}
+        <div className="grid grid-cols-3 gap-5 mt-12 pt-9" style={{ borderTop: "2px solid #333" }}>
+          {stats.map((s) => (
+            <div key={s.label}>
+              <div className="text-3xl sm:text-5xl font-extrabold leading-none" style={{ color: s.c }}>{s.value}</div>
+              <div className="text-xs sm:text-sm font-bold mt-1.5" style={{ color: "rgba(255,255,255,.6)" }}>{s.label}</div>
+            </div>
           ))}
         </div>
 
-        {/* ── Product mockup: GymOS dashboard ── */}
-        <DashboardMockup />
       </div>
     </section>
   )

@@ -114,11 +114,42 @@ function Navbar() {
 function Hero() {
   return (
     <section className="relative min-h-screen flex items-center pt-16 overflow-hidden" style={{ background: CREAM, fontFamily: display.fontFamily }}>
+      {/* Floating live cards (desktop only) */}
       <div className="absolute inset-0 pointer-events-none hidden md:block" aria-hidden>
-        <div className="absolute rounded-[22px] border-2" style={{ top: "20%", left: "-70px", width: 280, height: 80, background: AMBER, borderColor: INK, transform: "rotate(-10deg)" }} />
-        <div className="absolute rounded-[22px] border-2" style={{ top: "32%", right: "-80px", width: 300, height: 84, background: BLUE, borderColor: INK, transform: "rotate(8deg)", boxShadow: "5px 5px 0 rgba(22,22,22,.12)" }} />
-        <div className="absolute rounded-[22px] border-2" style={{ bottom: "16%", right: "-60px", width: 270, height: 78, background: AMBER, borderColor: INK, transform: "rotate(-7deg)" }} />
+        {/* Fleet status — top left */}
+        <div className="absolute rounded-2xl border-2 bg-white flex items-center gap-2.5 px-4 py-3" style={{ top: "20%", left: "4%", borderColor: INK, boxShadow: `4px 4px 0 ${BLUE}`, transform: "rotate(-7deg)" }}>
+          <span className="w-8 h-8 rounded-lg border-2 flex items-center justify-center" style={{ background: BLUE, borderColor: INK }}>
+            <Car className="w-4 h-4 text-white" />
+          </span>
+          <div>
+            <div className="text-[11px] font-bold" style={{ color: "#54514c" }}>Fleet status</div>
+            <div className="text-sm font-extrabold" style={{ color: INK }}>12 available</div>
+          </div>
+        </div>
+
+        {/* Returns due — top right */}
+        <div className="absolute rounded-2xl border-2 bg-white flex items-center gap-2.5 px-4 py-3" style={{ top: "28%", right: "4%", borderColor: INK, boxShadow: `4px 4px 0 ${AMBER}`, transform: "rotate(6deg)" }}>
+          <span className="w-8 h-8 rounded-lg border-2 flex items-center justify-center" style={{ background: AMBER, borderColor: INK }}>
+            <Calendar className="w-4 h-4" style={{ color: INK }} />
+          </span>
+          <div>
+            <div className="text-[11px] font-bold" style={{ color: "#54514c" }}>2 returns due</div>
+            <div className="text-sm font-extrabold" style={{ color: INK }}>today</div>
+          </div>
+        </div>
+
+        {/* Revenue — bottom left (ink card) */}
+        <div className="absolute rounded-2xl border-2 px-4 py-3" style={{ bottom: "16%", left: "7%", background: INK, borderColor: INK, boxShadow: `4px 4px 0 ${AMBER}`, transform: "rotate(5deg)" }}>
+          <div className="text-[11px] font-bold" style={{ color: "rgba(255,255,255,.65)" }}>This month</div>
+          <div className="text-base font-extrabold text-white">+ ₱48,200</div>
+        </div>
+
+        {/* New booking — bottom right */}
+        <div className="absolute rounded-2xl border-2 bg-white px-4 py-3" style={{ bottom: "18%", right: "6%", borderColor: INK, boxShadow: `4px 4px 0 ${BLUE}`, transform: "rotate(-6deg)" }}>
+          <span className="text-[11px] font-extrabold px-2.5 py-1 rounded-full" style={{ background: "#eafaf0", color: "#059669" }}>NEW BOOKING</span>
+        </div>
       </div>
+
       <div className="relative max-w-6xl mx-auto px-6 py-24 text-center">
         <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border-2 text-xs font-bold mb-6" style={{ color: INK, borderColor: INK, boxShadow: `3px 3px 0 ${BLUE}` }}>
           <Zap className="w-3 h-3" />
