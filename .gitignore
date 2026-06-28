@@ -39,3 +39,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Claude Code worktrees (never commit; they bloat the Next.js build)
+.claude/worktrees/
+**/.claude/worktrees/
