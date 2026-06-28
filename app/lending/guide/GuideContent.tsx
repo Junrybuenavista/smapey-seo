@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect, useRef } from "react"
-import { Users, HandCoins, CalendarRange, Wallet, AlertTriangle, BarChart3, ChevronRight, Menu, X, ArrowLeft, BookOpen } from "lucide-react"
+import { CheckCircle2, Users, HandCoins, CalendarRange, Wallet, AlertTriangle, BarChart3, ChevronRight, Menu, X, ArrowLeft, BookOpen } from "lucide-react"
 import InternalLinks from "@/components/InternalLinks"
 
 const INK = "#161616"
@@ -153,7 +153,7 @@ export default function GuideContent() {
             <ArrowLeft className="w-3.5 h-3.5" /> Back to Lending
           </a>
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border-2 text-xs font-bold mb-5" style={{ color: INK, borderColor: INK, boxShadow: `3px 3px 0 ${BLUE}` }}>
-            <BookOpen className="w-3 h-3" /> Complete Guide
+            <BookOpen className="w-3 h-3" /> User Guide
           </div>
           <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight mb-4" style={{ color: INK }}>
             How to run your lending business with Smapey
@@ -161,8 +161,33 @@ export default function GuideContent() {
           <p className="text-lg leading-relaxed" style={{ color: "#54514c" }}>
             A step-by-step walkthrough covering borrowers, loan issuance, amortization schedules, payment tracking, collections, and lending analytics.
           </p>
+          <div className="flex flex-wrap items-center justify-center gap-6 text-xs font-semibold mt-8" style={{ color: "#54514c" }}>
+            {["5-minute setup", "No training required", "Free plan available"].map((t) => (
+              <span key={t} className="flex items-center gap-1.5"><CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />{t}</span>
+            ))}
+          </div>
         </div>
       </section>
+      {/* JUMP TO SECTION */}
+      <section className="py-8" style={{ background: CREAM, borderTop: `2px solid ${INK}`, borderBottom: `2px solid ${INK}` }}>
+        <div className="max-w-3xl mx-auto px-6">
+          <p className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color: "#9a948b" }}>Jump to section</p>
+          <div className="flex flex-wrap gap-2.5">
+            {SECTIONS.map(({ icon: Icon, title }, i) => {
+              const c = i % 2 === 0 ? BLUE : AMBER
+              return (
+                <a key={i} href={`#s${i}`} className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-white border-2 text-xs font-bold transition-transform hover:-translate-y-0.5" style={{ color: INK, borderColor: INK }}>
+                  <span className="w-4 h-4 rounded-[5px] border flex items-center justify-center" style={{ background: c, borderColor: INK }}>
+                    <Icon className="w-2.5 h-2.5" style={{ color: c === AMBER ? INK : "#fff" }} />
+                  </span>
+                  {title.replace(/^\d+\.\s*/, "")}
+                </a>
+              )
+            })}
+          </div>
+        </div>
+      </section>
+
 
       {/* SECTIONS */}
       <section className="py-16" style={{ background: CREAM }}>
@@ -171,7 +196,7 @@ export default function GuideContent() {
             const c = idx % 2 === 0 ? BLUE : AMBER
             return (
               <Animate key={title}>
-                <div className="rounded-[20px] border-2 overflow-hidden" style={{ background: "#fff", borderColor: INK, boxShadow: `6px 6px 0 ${c}` }}>
+                <div id={`s${idx}`} className="rounded-[20px] border-2 overflow-hidden scroll-mt-24" style={{ background: "#fff", borderColor: INK, boxShadow: `6px 6px 0 ${c}` }}>
                   <div className="flex items-center gap-4 px-6 py-5" style={{ borderBottom: `2px solid ${INK}`, background: CREAM }}>
                     <div className="w-10 h-10 rounded-[12px] border-2 flex items-center justify-center shrink-0" style={{ background: c, borderColor: INK }}>
                       <Icon className="w-5 h-5" style={{ color: c === AMBER ? INK : "#fff" }} />

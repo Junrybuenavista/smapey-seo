@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect, useRef } from "react"
-import {
+import { CheckCircle2,
   GraduationCap, BookOpen, Users, CalendarCheck, ClipboardList, CreditCard,
   NotebookPen, BarChart3, Lightbulb, ArrowRight, ChevronRight, Menu, X, ArrowLeft,
 } from "lucide-react"
@@ -219,7 +219,7 @@ export default function GuideContent() {
             <ArrowLeft className="w-3.5 h-3.5" /> Back to SchoolDesk
           </a>
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border-2 text-xs font-bold mb-5" style={{ color: INK, borderColor: INK, boxShadow: `3px 3px 0 ${BLUE}` }}>
-            <BookOpen className="w-3 h-3" /> Step-by-step guide
+            <BookOpen className="w-3 h-3" /> User Guide
           </div>
           <h1 className="text-4xl sm:text-5xl font-extrabold leading-tight tracking-tight mb-6" style={{ color: INK }}>
             How to run your tutorial center with Smapey SchoolDesk
@@ -228,6 +228,11 @@ export default function GuideContent() {
             Whether you run a one-room review center or tutor from home, this guide walks you through the whole system in
             plain language — programs, students, sessions, attendance, tuition, and progress notes. Follow it top to bottom.
           </p>
+          <div className="flex flex-wrap items-center justify-center gap-6 text-xs font-semibold mt-8" style={{ color: "#54514c" }}>
+            {["5-minute setup", "No training required", "Free plan available"].map((t) => (
+              <span key={t} className="flex items-center gap-1.5"><CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />{t}</span>
+            ))}
+          </div>
         </div>
       </section>
 

@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import {
+import { CheckCircle2,
   Car, UserPlus, Key, CreditCard, AlertCircle, BarChart3,
   ChevronRight, Zap, BookOpen, ArrowLeft,
   Globe, Palette, MessageSquare, ArrowRightCircle, QrCode, Bell, ImagePlus,
@@ -242,6 +242,11 @@ function Hero() {
         <p className="max-w-2xl text-lg leading-relaxed" style={{ color: "#54514c" }}>
           Everything you need to run your car rental business on Smapey — from adding your first vehicle to reading your monthly revenue.
         </p>
+          <div className="flex flex-wrap items-center justify-start gap-6 text-xs font-semibold mt-8" style={{ color: "#54514c" }}>
+            {["5-minute setup", "No training required", "Free plan available"].map((t) => (
+              <span key={t} className="flex items-center gap-1.5"><CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />{t}</span>
+            ))}
+          </div>
         <div className="flex flex-wrap gap-2.5 mt-8">
           {GUIDES.map((g, i) => {
             const Icon = g.icon
