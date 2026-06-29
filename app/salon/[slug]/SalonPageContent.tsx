@@ -37,23 +37,23 @@ function BlushPage({ data, form, setForm, handleSubmit, submitting, submitted, s
   const field = (k: keyof FormState) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
     setForm(f => ({ ...f, [k]: e.target.value }))
   const accent = data.org.salonAccentColor || "#ec4899"
-  const soft = "#fdf2f8"
+  const soft = "#f7f2e9"
   const selectedService = data.services.find(s => s.id === form.serviceId)
 
   if (submitted) return (
-    <div className="min-h-screen bg-white flex flex-col items-center justify-center gap-5 p-6">
+    <div className="min-h-screen bg-[#fbf7f0] flex flex-col items-center justify-center gap-5 p-6">
       <div className="w-16 h-16 rounded-full flex items-center justify-center"
         style={{ background: `${accent}15` }}>
         <Sparkles className="w-8 h-8" style={{ color: accent }} />
       </div>
       <div className="text-center">
-        <p className="text-2xl font-bold text-slate-800">You're all set! 🎉</p>
-        <p className="text-slate-400 text-sm mt-2 max-w-xs">
-          <strong className="text-slate-600">{data.org.companyName}</strong> will reach out to confirm your appointment.
+        <p className="text-2xl font-bold text-[#161616]">You're all set! 🎉</p>
+        <p className="text-[#9b9487] text-sm mt-2 max-w-xs">
+          <strong className="text-[#56524b]">{data.org.companyName}</strong> will reach out to confirm your appointment.
         </p>
       </div>
       <button onClick={() => { setSubmitted(false); setForm(EMPTY_FORM) }}
-        className="px-8 py-3 rounded-full text-white font-semibold text-sm shadow-md transition hover:shadow-lg hover:opacity-90"
+        className="px-8 py-3 rounded-full text-white font-semibold text-sm border-2 border-[#161616] shadow-[3px_3px_0_#161616] transition hover:-translate-y-0.5 hover:shadow-[5px_5px_0_#161616] hover:opacity-95"
         style={{ background: accent }}>
         Book Another
       </button>
@@ -61,9 +61,9 @@ function BlushPage({ data, form, setForm, handleSubmit, submitting, submitted, s
   )
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-[#fbf7f0]">
       {/* Sticky nav */}
-      <div className="sticky top-0 z-10 bg-white border-b border-slate-100 shadow-sm">
+      <div className="sticky top-0 z-10 bg-white border-b-2 border-[#161616]">
         <div className="max-w-xl mx-auto px-4 py-3 flex items-center gap-3">
           {data.org.logoUrl
             ? <img src={data.org.logoUrl} alt="logo" className="w-9 h-9 rounded-full object-cover" />
@@ -71,10 +71,10 @@ function BlushPage({ data, form, setForm, handleSubmit, submitting, submitted, s
                 <Scissors className="w-4 h-4" style={{ color: accent }} />
               </div>}
           <div className="flex-1">
-            <p className="font-bold text-slate-800 text-sm">{data.org.companyName || "Salon"}</p>
-            <p className="text-[11px] text-slate-400">{data.org.salonTagline || "Online Booking"}</p>
+            <p className="font-bold text-[#161616] text-sm">{data.org.companyName || "Salon"}</p>
+            <p className="text-[11px] text-[#9b9487]">{data.org.salonTagline || "Online Booking"}</p>
           </div>
-          <span className="text-xs font-semibold px-4 py-1.5 rounded-full text-white shadow-sm" style={{ background: accent }}>
+          <span className="text-xs font-semibold px-4 py-1.5 rounded-full text-white" style={{ background: accent }}>
             Book Now
           </span>
         </div>
@@ -90,29 +90,29 @@ function BlushPage({ data, form, setForm, handleSubmit, submitting, submitted, s
 
       <div className="max-w-xl mx-auto px-4 py-6 space-y-4">
         {/* Services */}
-        <div className="rounded-3xl border border-slate-100 overflow-hidden shadow-sm">
-          <div className="px-5 py-4 border-b border-slate-100" style={{ background: soft }}>
-            <h2 className="font-bold text-slate-700 text-sm flex items-center gap-2">
+        <div className="rounded-3xl bg-white border-2 border-[#161616] overflow-hidden shadow-[5px_5px_0_#161616]">
+          <div className="px-5 py-4 border-b-2 border-[#161616]" style={{ background: soft }}>
+            <h2 className="font-bold text-[#161616] text-sm flex items-center gap-2">
               <span className="w-5 h-5 rounded-full flex items-center justify-center text-white text-[10px] font-bold" style={{ background: accent }}>1</span>
               Choose a Service
             </h2>
           </div>
           {data.services.length === 0
-            ? <div className="py-10 text-center text-slate-400 text-sm">No services yet.</div>
-            : <div className="divide-y divide-slate-50">
+            ? <div className="py-10 text-center text-[#9b9487] text-sm">No services yet.</div>
+            : <div className="divide-y divide-[#e7ded0]">
                 {data.services.map(s => (
                   <button key={s.id} type="button" onClick={() => setForm(f => ({ ...f, serviceId: s.id }))}
-                    className="w-full flex items-center gap-3 px-5 py-3.5 text-left transition hover:bg-pink-50/50"
+                    className="w-full flex items-center gap-3 px-5 py-3.5 text-left transition hover:bg-[#f7f2e9]"
                     style={form.serviceId === s.id ? { background: `${accent}08` } : {}}>
                     {s.imageUrl
-                      ? <img src={s.imageUrl} alt={s.name} className="w-12 h-12 rounded-xl object-cover shrink-0 border border-slate-100" />
-                      : <div className="w-12 h-12 rounded-xl shrink-0 flex items-center justify-center border border-slate-100" style={{ background: `${accent}10` }}>
+                      ? <img src={s.imageUrl} alt={s.name} className="w-12 h-12 rounded-xl object-cover shrink-0 border-2 border-[#161616]" />
+                      : <div className="w-12 h-12 rounded-xl shrink-0 flex items-center justify-center border-2 border-[#161616]" style={{ background: `${accent}10` }}>
                           <Scissors className="w-5 h-5" style={{ color: accent }} />
                         </div>}
                     <div className="flex-1 min-w-0">
-                      <p className="font-semibold text-slate-700 text-sm">{s.name}</p>
-                      {s.description && <p className="text-xs text-slate-400 truncate mt-0.5">{s.description}</p>}
-                      <p className="text-[11px] text-slate-400 mt-1 flex items-center gap-1">
+                      <p className="font-semibold text-[#161616] text-sm">{s.name}</p>
+                      {s.description && <p className="text-xs text-[#9b9487] truncate mt-0.5">{s.description}</p>}
+                      <p className="text-[11px] text-[#9b9487] mt-1 flex items-center gap-1">
                         <Clock className="w-3 h-3" />{s.durationMinutes} min
                       </p>
                     </div>
@@ -120,7 +120,7 @@ function BlushPage({ data, form, setForm, handleSubmit, submitting, submitted, s
                       <p className="font-bold text-sm" style={{ color: accent }}>{sym}{Number(s.price).toLocaleString()}</p>
                       {form.serviceId === s.id
                         ? <CheckCircle2 className="w-4 h-4 mt-1 ml-auto" style={{ color: accent }} />
-                        : <div className="w-4 h-4 rounded-full border-2 border-slate-200 mt-1 ml-auto" />}
+                        : <div className="w-4 h-4 rounded-full border-2 border-[#161616] mt-1 ml-auto" />}
                     </div>
                   </button>
                 ))}
@@ -128,9 +128,9 @@ function BlushPage({ data, form, setForm, handleSubmit, submitting, submitted, s
         </div>
 
         {/* Form */}
-        <form onSubmit={handleSubmit} className="rounded-3xl border border-slate-100 overflow-hidden shadow-sm">
-          <div className="px-5 py-4 border-b border-slate-100" style={{ background: soft }}>
-            <h2 className="font-bold text-slate-700 text-sm flex items-center gap-2">
+        <form onSubmit={handleSubmit} className="rounded-3xl bg-white border-2 border-[#161616] overflow-hidden shadow-[5px_5px_0_#161616]">
+          <div className="px-5 py-4 border-b-2 border-[#161616]" style={{ background: soft }}>
+            <h2 className="font-bold text-[#161616] text-sm flex items-center gap-2">
               <span className="w-5 h-5 rounded-full flex items-center justify-center text-white text-[10px] font-bold" style={{ background: accent }}>2</span>
               Your Details
             </h2>
@@ -142,52 +142,52 @@ function BlushPage({ data, form, setForm, handleSubmit, submitting, submitted, s
               { key: "clientEmail", label: "Email (optional)",  placeholder: "juan@email.com",   type: "email", required: false },
             ].map(f => (
               <div key={f.key} className="space-y-1">
-                <label className="text-xs font-semibold text-slate-500">{f.label}</label>
+                <label className="text-xs font-semibold text-[#56524b]">{f.label}</label>
                 <input value={form[f.key as keyof FormState]} onChange={field(f.key as keyof FormState)}
                   placeholder={f.placeholder} type={f.type}
-                  className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm text-slate-700 placeholder-slate-300 outline-none transition focus:border-pink-300 focus:ring-2 focus:ring-pink-100 bg-slate-50" />
+                  className="w-full px-4 py-2.5 rounded-xl border-2 border-[#161616] text-sm text-[#161616] placeholder-[#9b9487] outline-none transition focus:shadow-[3px_3px_0_#2f6bff] bg-white" />
               </div>
             ))}
             <div className="space-y-1">
-              <label className="text-xs font-semibold text-slate-500">Preferred Date & Time</label>
+              <label className="text-xs font-semibold text-[#56524b]">Preferred Date & Time</label>
               <input type="datetime-local" value={form.preferredDate} onChange={field("preferredDate")}
                 min={dayjs().format("YYYY-MM-DDTHH:mm")}
-                className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm text-slate-700 outline-none transition focus:border-pink-300 focus:ring-2 focus:ring-pink-100 bg-slate-50 [color-scheme:light]" />
+                className="w-full px-4 py-2.5 rounded-xl border-2 border-[#161616] text-sm text-[#161616] outline-none transition focus:shadow-[3px_3px_0_#2f6bff] bg-white [color-scheme:light]" />
             </div>
             {selectedService && (
               <div className="flex items-center justify-between px-4 py-3 rounded-xl border"
                 style={{ background: `${accent}08`, borderColor: `${accent}25` }}>
                 <div>
-                  <p className="font-semibold text-slate-700 text-sm">{selectedService.name}</p>
-                  <p className="text-xs text-slate-400">{selectedService.durationMinutes} min</p>
+                  <p className="font-semibold text-[#161616] text-sm">{selectedService.name}</p>
+                  <p className="text-xs text-[#9b9487]">{selectedService.durationMinutes} min</p>
                 </div>
                 <p className="font-bold" style={{ color: accent }}>{sym}{Number(selectedService.price).toLocaleString()}</p>
               </div>
             )}
             <div className="space-y-1">
-              <label className="text-xs font-semibold text-slate-500">Notes (optional)</label>
+              <label className="text-xs font-semibold text-[#56524b]">Notes (optional)</label>
               <textarea value={form.notes} onChange={field("notes")} rows={3}
                 placeholder="Any special requests or preferences…"
-                className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm text-slate-700 placeholder-slate-300 outline-none transition focus:border-pink-300 focus:ring-2 focus:ring-pink-100 bg-slate-50 resize-none" />
+                className="w-full px-4 py-2.5 rounded-xl border-2 border-[#161616] text-sm text-[#161616] placeholder-[#9b9487] outline-none transition focus:shadow-[3px_3px_0_#2f6bff] bg-white resize-none" />
             </div>
           </div>
 
           {/* Deposit */}
           {data.org.salonDepositEnabled && (
             <div className="mx-5 mb-5 rounded-2xl border p-4 space-y-3" style={{ background: `${accent}06`, borderColor: `${accent}20` }}>
-              <p className="font-bold text-sm text-slate-700">💳 Deposit Required</p>
+              <p className="font-bold text-sm text-[#161616]">💳 Deposit Required</p>
               {data.org.salonDepositAmount && (
-                <p className="text-sm text-slate-500">Send <strong style={{ color: accent }}>{sym}{Number(data.org.salonDepositAmount).toLocaleString()}</strong> to confirm your slot.</p>
+                <p className="text-sm text-[#56524b]">Send <strong style={{ color: accent }}>{sym}{Number(data.org.salonDepositAmount).toLocaleString()}</strong> to confirm your slot.</p>
               )}
               {data.org.salonDepositQrUrl && (
                 <div className="flex flex-col items-center gap-2">
-                  <img src={data.org.salonDepositQrUrl} alt="QR" className="w-40 h-40 rounded-xl border border-slate-200 bg-white p-1 object-contain" />
-                  {data.org.salonDepositNote && <p className="text-xs text-slate-400 text-center">{data.org.salonDepositNote}</p>}
+                  <img src={data.org.salonDepositQrUrl} alt="QR" className="w-40 h-40 rounded-xl border-2 border-[#161616] bg-white p-1 object-contain" />
+                  {data.org.salonDepositNote && <p className="text-xs text-[#9b9487] text-center">{data.org.salonDepositNote}</p>}
                 </div>
               )}
               <input value={form.depositReference} onChange={e => setForm(f => ({ ...f, depositReference: e.target.value }))}
                 placeholder="Paste your reference number"
-                className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm text-slate-700 placeholder-slate-300 outline-none bg-white" />
+                className="w-full px-4 py-2.5 rounded-xl border-2 border-[#161616] text-sm text-[#161616] placeholder-[#9b9487] outline-none bg-white" />
             </div>
           )}
 
@@ -198,11 +198,11 @@ function BlushPage({ data, form, setForm, handleSubmit, submitting, submitted, s
               </div>
             )}
             <button type="submit" disabled={submitting}
-              className="w-full py-3.5 rounded-2xl text-white font-bold text-sm shadow-md transition hover:opacity-90 hover:shadow-lg disabled:opacity-60 flex items-center justify-center gap-2"
+              className="w-full py-3.5 rounded-2xl text-white font-bold text-sm border-2 border-[#161616] shadow-[3px_3px_0_#161616] transition hover:-translate-y-0.5 hover:shadow-[5px_5px_0_#161616] hover:opacity-95 disabled:opacity-60 flex items-center justify-center gap-2"
               style={{ background: accent }}>
               {submitting ? <><Loader2 className="w-4 h-4 animate-spin" /> Sending…</> : "Send Booking Request"}
             </button>
-            <p className="text-center text-[11px] text-slate-400">Confirmed by {data.org.companyName || "the salon"} after review</p>
+            <p className="text-center text-[11px] text-[#9b9487]">Confirmed by {data.org.companyName || "the salon"} after review</p>
           </div>
         </form>
       </div>

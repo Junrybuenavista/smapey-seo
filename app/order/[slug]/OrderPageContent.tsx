@@ -318,16 +318,16 @@ export default function OrderPageContent({ slug }: { slug: string }) {
 
   // ─── Render states ──────────────────────────────────────────────────────────
   if (loading) return (
-    <div className="min-h-screen flex flex-col items-center justify-center gap-3 bg-orange-50 text-orange-600">
+    <div className="min-h-screen flex flex-col items-center justify-center gap-3 bg-[#fbf7f0] text-orange-600">
       <Loader2 className="w-7 h-7 animate-spin" />
       <p className="text-sm font-medium">Loading menu…</p>
     </div>
   )
 
   if (error && !data) return (
-    <div className="min-h-screen flex flex-col items-center justify-center gap-3 bg-orange-50 text-gray-600 p-6 text-center">
+    <div className="min-h-screen flex flex-col items-center justify-center gap-3 bg-[#fbf7f0] text-[#56524b] p-6 text-center">
       <AlertCircle className="w-9 h-9 text-orange-500" />
-      <p className="text-lg font-semibold text-gray-800">Menu unavailable</p>
+      <p className="text-lg font-semibold text-[#161616]">Menu unavailable</p>
       <p className="text-sm max-w-xs">{error}</p>
     </div>
   )
@@ -337,7 +337,7 @@ export default function OrderPageContent({ slug }: { slug: string }) {
     const cancelled = order.status === "CANCELLED"
     const activeIdx = STATUS_STEPS.findIndex(s => s.key === order.status)
     return (
-      <div className="min-h-screen bg-orange-50">
+      <div className="min-h-screen bg-[#fbf7f0]">
         <header className="px-5 pt-8 pb-6 text-white" style={{ background: `linear-gradient(135deg, ${accent}, #fbbf24)` }}>
           <p className="text-sm/none opacity-90">{data?.org.companyName}</p>
           <h1 className="text-2xl font-bold mt-1">Order {order.orderNumber}</h1>
@@ -345,12 +345,12 @@ export default function OrderPageContent({ slug }: { slug: string }) {
         </header>
 
         <main className="max-w-md mx-auto px-5 -mt-3 pb-16">
-          <div className="bg-white rounded-2xl shadow-sm p-5">
+          <div className="bg-white rounded-2xl border-2 border-[#161616] shadow-[5px_5px_0_#161616] p-5">
             {cancelled ? (
               <div className="flex flex-col items-center text-center gap-2 py-4">
-                <XCircle className="w-10 h-10 text-red-500" />
-                <p className="font-semibold text-gray-800">This order was cancelled</p>
-                <p className="text-sm text-gray-500">Please talk to the staff if this is unexpected.</p>
+                <XCircle className="w-10 h-10 text-[#e11d48]" />
+                <p className="font-semibold text-[#161616]">This order was cancelled</p>
+                <p className="text-sm text-[#56524b]">Please talk to the staff if this is unexpected.</p>
               </div>
             ) : (
               <ol className="space-y-4">
@@ -370,10 +370,10 @@ export default function OrderPageContent({ slug }: { slug: string }) {
                         {current ? <Icon className="w-4 h-4 animate-pulse" /> : <Icon className="w-4 h-4" />}
                       </div>
                       <div className="flex-1">
-                        <p className={`text-sm font-semibold ${done || current ? "text-gray-900" : "text-gray-400"}`}>{step.label}</p>
+                        <p className={`text-sm font-semibold ${done || current ? "text-[#161616]" : "text-[#9b9487]"}`}>{step.label}</p>
                         {current && <p className="text-xs" style={{ color: accent }}>{step.active}</p>}
                       </div>
-                      {(done || current) && <CheckCircle2 className="w-4 h-4 text-green-500" />}
+                      {(done || current) && <CheckCircle2 className="w-4 h-4 text-[#0d9f6e]" />}
                     </li>
                   )
                 })}
@@ -381,64 +381,64 @@ export default function OrderPageContent({ slug }: { slug: string }) {
             )}
           </div>
 
-          <div className="bg-white rounded-2xl shadow-sm p-5 mt-4">
-            <p className="text-xs font-semibold uppercase tracking-wide text-gray-400 mb-3">Your order</p>
+          <div className="bg-white rounded-2xl border-2 border-[#161616] shadow-[5px_5px_0_#161616] p-5 mt-4">
+            <p className="text-xs font-semibold uppercase tracking-wide text-[#9b9487] mb-3">Your order</p>
             <ul className="space-y-2">
               {order.items.map((it, i) => (
                 <li key={i} className="flex justify-between text-sm">
-                  <span className="text-gray-700"><span className="font-semibold" style={{ color: accent }}>{it.quantity}×</span> {it.name}</span>
-                  <span className="text-gray-500">{sym}{it.subtotal.toFixed(2)}</span>
+                  <span className="text-[#56524b]"><span className="font-semibold" style={{ color: accent }}>{it.quantity}×</span> {it.name}</span>
+                  <span className="text-[#56524b]">{sym}{it.subtotal.toFixed(2)}</span>
                 </li>
               ))}
             </ul>
-            <div className="border-t border-gray-100 mt-3 pt-3 flex justify-between font-bold text-gray-900">
+            <div className="border-t border-[#161616] mt-3 pt-3 flex justify-between font-bold text-[#161616]">
               <span>Total</span><span>{sym}{order.totalAmount.toFixed(2)}</span>
             </div>
           </div>
 
           {/* GCash payment */}
           {!cancelled && gcash?.enabled && (
-            <div className="bg-white rounded-2xl shadow-sm p-5 mt-4">
-              <p className="text-xs font-semibold uppercase tracking-wide text-gray-400 mb-3 flex items-center gap-1.5">
+            <div className="bg-white rounded-2xl border-2 border-[#161616] shadow-[5px_5px_0_#161616] p-5 mt-4">
+              <p className="text-xs font-semibold uppercase tracking-wide text-[#9b9487] mb-3 flex items-center gap-1.5">
                 <Wallet className="w-3.5 h-3.5" /> Pay with GCash
               </p>
 
               {order.paymentStatus === "PAID" ? (
                 <div className="flex flex-col items-center text-center gap-2 py-3">
-                  <CheckCircle2 className="w-10 h-10 text-green-500" />
-                  <p className="font-semibold text-gray-800">Payment confirmed</p>
-                  <p className="text-sm text-gray-500">Thank you! Your payment has been received.</p>
+                  <CheckCircle2 className="w-10 h-10 text-[#0d9f6e]" />
+                  <p className="font-semibold text-[#161616]">Payment confirmed</p>
+                  <p className="text-sm text-[#56524b]">Thank you! Your payment has been received.</p>
                 </div>
               ) : order.customerPaidClaim ? (
                 <div className="flex flex-col items-center text-center gap-2 py-3">
                   <Clock className="w-9 h-9 text-amber-500" />
-                  <p className="font-semibold text-gray-800">Payment submitted</p>
-                  <p className="text-sm text-gray-500">Waiting for the staff to confirm your GCash payment. Please keep your GCash receipt ready.</p>
+                  <p className="font-semibold text-[#161616]">Payment submitted</p>
+                  <p className="text-sm text-[#56524b]">Waiting for the staff to confirm your GCash payment. Please keep your GCash receipt ready.</p>
                 </div>
               ) : (
                 <>
                   {gcash.qrUrl && (
                     <>
-                      <img src={gcash.qrUrl} alt="GCash QR" className="w-44 h-44 mx-auto rounded-xl border border-gray-100 object-contain" />
-                      <p className="text-[11px] text-gray-400 text-center mt-1.5">Press and hold the QR to save it to your Photos.</p>
+                      <img src={gcash.qrUrl} alt="GCash QR" className="w-44 h-44 mx-auto rounded-xl border-2 border-[#161616] object-contain" />
+                      <p className="text-[11px] text-[#9b9487] text-center mt-1.5">Press and hold the QR to save it to your Photos.</p>
                     </>
                   )}
 
                   <div className="mt-3 space-y-1 text-center">
-                    {gcash.name && <p className="text-sm text-gray-700"><span className="text-gray-400">Account:</span> <span className="font-semibold">{gcash.name}</span></p>}
-                    <p className="text-lg font-bold text-gray-900">Pay {sym}{order.totalAmount.toFixed(2)}</p>
+                    {gcash.name && <p className="text-sm text-[#56524b]"><span className="text-[#9b9487]">Account:</span> <span className="font-semibold">{gcash.name}</span></p>}
+                    <p className="text-lg font-bold text-[#161616]">Pay {sym}{order.totalAmount.toFixed(2)}</p>
                   </div>
 
                   {/* Number with copy */}
                   {gcash.number && (
                     <button
                       onClick={copyNumber}
-                      className="w-full mt-3 flex items-center justify-between gap-2 rounded-xl border border-gray-200 px-4 py-2.5 text-sm"
+                      className="w-full mt-3 flex items-center justify-between gap-2 rounded-xl border-2 border-[#161616] px-4 py-2.5 text-sm"
                     >
-                      <span className="text-gray-400">GCash number</span>
-                      <span className="flex items-center gap-1.5 font-semibold text-gray-800">
+                      <span className="text-[#9b9487]">GCash number</span>
+                      <span className="flex items-center gap-1.5 font-semibold text-[#161616]">
                         {gcash.number}
-                        {copiedNum ? <Check className="w-3.5 h-3.5 text-green-500" /> : <Copy className="w-3.5 h-3.5 text-gray-400" />}
+                        {copiedNum ? <Check className="w-3.5 h-3.5 text-[#0d9f6e]" /> : <Copy className="w-3.5 h-3.5 text-[#9b9487]" />}
                       </span>
                     </button>
                   )}
@@ -448,7 +448,7 @@ export default function OrderPageContent({ slug }: { slug: string }) {
                     <button
                       onClick={saveQr}
                       disabled={savingQr}
-                      className="w-full mt-2 py-2.5 rounded-xl border border-gray-200 text-gray-700 text-sm font-semibold flex items-center justify-center gap-2 disabled:opacity-60"
+                      className="w-full mt-2 py-2.5 rounded-xl border-2 border-[#161616] text-[#56524b] text-sm font-semibold flex items-center justify-center gap-2 disabled:opacity-60"
                     >
                       {savingQr ? <Loader2 className="w-4 h-4 animate-spin" /> : <Download className="w-4 h-4" />}
                       Save QR to Photos
@@ -456,9 +456,9 @@ export default function OrderPageContent({ slug }: { slug: string }) {
                   )}
 
                   {/* How to pay */}
-                  <div className="mt-3 rounded-xl bg-gray-50 px-4 py-3">
-                    <p className="text-xs font-semibold text-gray-500 mb-1.5">How to pay</p>
-                    <ol className="text-xs text-gray-600 space-y-1 list-decimal list-inside">
+                  <div className="mt-3 rounded-xl bg-[#f7f2e9] px-4 py-3">
+                    <p className="text-xs font-semibold text-[#56524b] mb-1.5">How to pay</p>
+                    <ol className="text-xs text-[#56524b] space-y-1 list-decimal list-inside">
                       <li>Tap <span className="font-semibold">Save QR to Photos</span>, then choose <span className="font-semibold">Save Image</span> to add it to your gallery.</li>
                       <li>Open <span className="font-semibold">GCash</span> → <span className="font-semibold">Scan QR</span> → <span className="font-semibold">Upload from Gallery</span> and pick the saved QR{gcash.number ? <> — or use <span className="font-semibold">Send Money</span> to the number above</> : null}.</li>
                       <li>Enter <span className="font-semibold">{sym}{order.totalAmount.toFixed(2)}</span> and complete the payment.</li>
@@ -480,13 +480,13 @@ export default function OrderPageContent({ slug }: { slug: string }) {
             </div>
           )}
 
-          <p className="text-center text-xs text-gray-400 mt-4 flex items-center justify-center gap-1.5">
+          <p className="text-center text-xs text-[#9b9487] mt-4 flex items-center justify-center gap-1.5">
             <Clock className="w-3.5 h-3.5" /> Status updates automatically
           </p>
 
           <button
             onClick={startNewOrder}
-            className="w-full mt-4 py-3 rounded-xl bg-white border border-gray-200 text-gray-700 text-sm font-semibold flex items-center justify-center gap-2 hover:bg-gray-50 transition"
+            className="w-full mt-4 py-3 rounded-xl bg-white border-2 border-[#161616] text-[#56524b] text-sm font-semibold flex items-center justify-center gap-2 hover:bg-[#f7f2e9] transition"
           >
             <ArrowLeft className="w-4 h-4" /> Place another order
           </button>
@@ -505,7 +505,7 @@ export default function OrderPageContent({ slug }: { slug: string }) {
     : []
 
   return (
-    <div className="min-h-screen bg-orange-50 pb-28">
+    <div className="min-h-screen bg-[#fbf7f0] pb-28">
       <header className="relative px-5 pt-10 pb-7 text-white overflow-hidden min-h-[150px] flex flex-col justify-end">
         {data?.org.coverUrl
           ? <img src={data.org.coverUrl} alt="" className="absolute inset-0 w-full h-full object-cover" />
@@ -533,22 +533,22 @@ export default function OrderPageContent({ slug }: { slug: string }) {
       <main className="max-w-md mx-auto px-4 -mt-2">
         {grouped.map(g => (
           <section key={g.cat.id} className="mt-5">
-            <h2 className="text-sm font-bold text-gray-800 mb-2 px-1">{g.cat.name}</h2>
+            <h2 className="text-sm font-bold text-[#161616] mb-2 px-1">{g.cat.name}</h2>
             <div className="space-y-2.5">
               {g.items.map(item => {
                 const qty = cart[item.id] || 0
                 return (
-                  <div key={item.id} className="bg-white rounded-2xl shadow-sm p-3 flex gap-3">
+                  <div key={item.id} className="bg-white rounded-2xl border-2 border-[#161616] shadow-[5px_5px_0_#161616] p-3 flex gap-3">
                     {item.imageUrl && <img src={item.imageUrl} alt="" className="w-16 h-16 rounded-xl object-cover shrink-0" />}
                     <div className="flex-1 min-w-0">
-                      <p className="font-semibold text-gray-900 text-sm leading-tight">{item.name}</p>
-                      {item.description && <p className="text-xs text-gray-500 mt-0.5 line-clamp-2">{item.description}</p>}
+                      <p className="font-semibold text-[#161616] text-sm leading-tight">{item.name}</p>
+                      {item.description && <p className="text-xs text-[#56524b] mt-0.5 line-clamp-2">{item.description}</p>}
                       <p className="text-sm font-bold mt-1" style={{ color: accent }}>{sym}{item.price.toFixed(2)}</p>
                     </div>
                     <div className="flex items-center self-center">
                       {qty > 0 ? (
                         <div className="flex items-center gap-2.5">
-                          <button onClick={() => setQty(item.id, -1)} className="w-7 h-7 rounded-full bg-gray-100 text-gray-700 flex items-center justify-center active:scale-95"><Minus className="w-4 h-4" /></button>
+                          <button onClick={() => setQty(item.id, -1)} className="w-7 h-7 rounded-full bg-[#f7f2e9] text-[#56524b] flex items-center justify-center active:scale-95"><Minus className="w-4 h-4" /></button>
                           <span className="text-sm font-bold w-4 text-center">{qty}</span>
                           <button onClick={() => setQty(item.id, +1)} className="w-7 h-7 rounded-full text-white flex items-center justify-center active:scale-95" style={{ background: accent }}><Plus className="w-4 h-4" /></button>
                         </div>
@@ -563,7 +563,7 @@ export default function OrderPageContent({ slug }: { slug: string }) {
           </section>
         ))}
         {grouped.length === 0 && (
-          <p className="text-center text-gray-400 text-sm mt-16">No items on the menu yet.</p>
+          <p className="text-center text-[#9b9487] text-sm mt-16">No items on the menu yet.</p>
         )}
       </main>
 
@@ -572,7 +572,7 @@ export default function OrderPageContent({ slug }: { slug: string }) {
         <div className="fixed bottom-4 inset-x-0 px-4 z-20">
           <button
             onClick={() => setShowCart(true)}
-            className="max-w-md mx-auto w-full py-3.5 rounded-2xl text-white font-semibold shadow-lg flex items-center justify-between px-5 active:scale-[0.99] transition"
+            className="max-w-md mx-auto w-full py-3.5 rounded-full text-white font-bold border-2 border-[#161616] shadow-[4px_4px_0_#161616] flex items-center justify-between px-5 active:translate-y-0.5 active:shadow-none transition"
             style={{ background: accent }}
           >
             <span className="flex items-center gap-2"><ShoppingBag className="w-5 h-5" /> {cartCount} item{cartCount > 1 ? "s" : ""}</span>
@@ -586,57 +586,57 @@ export default function OrderPageContent({ slug }: { slug: string }) {
         <div className="fixed inset-0 z-30 flex items-end justify-center bg-black/40" onClick={() => setShowCart(false)}>
           <div className="bg-white w-full max-w-md rounded-t-3xl p-5 max-h-[88vh] overflow-y-auto" onClick={e => e.stopPropagation()}>
             <div className="flex items-center justify-between mb-4">
-              <h3 className="text-lg font-bold text-gray-900">Your order</h3>
-              <button onClick={() => setShowCart(false)} className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center"><X className="w-4 h-4 text-gray-500" /></button>
+              <h3 className="text-lg font-bold text-[#161616]">Your order</h3>
+              <button onClick={() => setShowCart(false)} className="w-8 h-8 rounded-full bg-[#f7f2e9] flex items-center justify-center"><X className="w-4 h-4 text-[#56524b]" /></button>
             </div>
 
             <div className="space-y-3">
               {cartLines.map(l => (
                 <div key={l.item.id} className="flex items-center gap-3">
                   <div className="flex-1">
-                    <p className="text-sm font-semibold text-gray-900">{l.item.name}</p>
-                    <p className="text-xs text-gray-500">{sym}{l.item.price.toFixed(2)}</p>
+                    <p className="text-sm font-semibold text-[#161616]">{l.item.name}</p>
+                    <p className="text-xs text-[#56524b]">{sym}{l.item.price.toFixed(2)}</p>
                   </div>
                   <div className="flex items-center gap-2.5">
-                    <button onClick={() => setQty(l.item.id, -1)} className="w-7 h-7 rounded-full bg-gray-100 flex items-center justify-center"><Minus className="w-4 h-4" /></button>
+                    <button onClick={() => setQty(l.item.id, -1)} className="w-7 h-7 rounded-full bg-[#f7f2e9] flex items-center justify-center"><Minus className="w-4 h-4" /></button>
                     <span className="text-sm font-bold w-4 text-center">{l.qty}</span>
                     <button onClick={() => setQty(l.item.id, +1)} className="w-7 h-7 rounded-full text-white flex items-center justify-center" style={{ background: accent }}><Plus className="w-4 h-4" /></button>
                   </div>
-                  <span className="text-sm font-semibold w-16 text-right text-gray-700">{sym}{(l.item.price * l.qty).toFixed(2)}</span>
+                  <span className="text-sm font-semibold w-16 text-right text-[#56524b]">{sym}{(l.item.price * l.qty).toFixed(2)}</span>
                 </div>
               ))}
             </div>
 
-            <div className="border-t border-gray-100 mt-4 pt-4 space-y-3">
+            <div className="border-t border-[#161616] mt-4 pt-4 space-y-3">
               <input
                 value={customerName}
                 onChange={e => setCustomerName(e.target.value)}
                 placeholder="Your name (optional)"
-                className="w-full px-4 py-2.5 rounded-xl bg-gray-50 border border-gray-200 text-sm outline-none focus:border-orange-300"
+                className="w-full px-4 py-2.5 rounded-xl bg-[#f7f2e9] border-2 border-[#161616] text-sm outline-none focus:border-[#161616]"
               />
               <textarea
                 value={notes}
                 onChange={e => setNotes(e.target.value)}
                 placeholder="Special requests (optional)"
                 rows={2}
-                className="w-full px-4 py-2.5 rounded-xl bg-gray-50 border border-gray-200 text-sm outline-none focus:border-orange-300 resize-none"
+                className="w-full px-4 py-2.5 rounded-xl bg-[#f7f2e9] border-2 border-[#161616] text-sm outline-none focus:border-[#161616] resize-none"
               />
             </div>
 
-            {error && <p className="text-sm text-red-500 mt-3 flex items-center gap-1.5"><AlertCircle className="w-4 h-4" /> {error}</p>}
+            {error && <p className="text-sm text-[#e11d48] mt-3 flex items-center gap-1.5"><AlertCircle className="w-4 h-4" /> {error}</p>}
 
-            <div className="flex justify-between font-bold text-gray-900 mt-4 mb-3">
+            <div className="flex justify-between font-bold text-[#161616] mt-4 mb-3">
               <span>Total</span><span>{sym}{cartTotal.toFixed(2)}</span>
             </div>
             <button
               onClick={placeOrder}
               disabled={submitting || !table}
-              className="w-full py-3.5 rounded-2xl text-white font-semibold flex items-center justify-center gap-2 disabled:opacity-60"
+              className="w-full py-3.5 rounded-full text-white font-bold border-2 border-[#161616] shadow-[3px_3px_0_#161616] flex items-center justify-center gap-2 disabled:opacity-60 active:translate-y-0.5 active:shadow-none transition"
               style={{ background: accent }}
             >
               {submitting ? <><Loader2 className="w-5 h-5 animate-spin" /> Placing…</> : <>Place order</>}
             </button>
-            {!table && <p className="text-xs text-red-500 text-center mt-2">Rescan the QR code on your table to order.</p>}
+            {!table && <p className="text-xs text-[#e11d48] text-center mt-2">Rescan the QR code on your table to order.</p>}
           </div>
         </div>
       )}

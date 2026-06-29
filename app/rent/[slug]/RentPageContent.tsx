@@ -40,58 +40,59 @@ function MidnightPage({ data, form, setForm, handleSubmit, submitting, submitted
     setForm(f => ({ ...f, [k]: e.target.value }))
   const selectedVehicle = data.vehicles.find(v => v.id === form.vehicleId)
 
-  const accent = data.org.carRentalAccentColor || "#f97316"
+  const accent = data.org.carRentalAccentColor || "#ff9e2c"
   const accentLight = `${accent}1a` // 10% opacity for bg tints
-  const accentMid   = `${accent}33` // 20% opacity
 
-  const inputCls = "px-4 py-2.5 rounded-xl bg-white/10 border border-white/10 text-sm text-white placeholder-white/30 outline-none transition [color-scheme:dark]"
+  // Layered Pop input: white field, 2px ink border, blue hard-shadow on focus.
+  const inputCls = "px-4 py-2.5 rounded-xl bg-white border-2 border-[#161616] text-sm text-[#1c1a17] placeholder-[#9b9487] outline-none transition"
+  const onFocus = (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => { e.currentTarget.style.boxShadow = "3px 3px 0 #2f6bff" }
+  const onBlur  = (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => { e.currentTarget.style.boxShadow = "none" }
 
   if (submitted) return (
-    <div className="min-h-screen bg-[#0f0700] flex flex-col items-center justify-center gap-4 text-white p-6">
-      <div className="w-16 h-16 rounded-full flex items-center justify-center" style={{ background: accentMid }}>
-        <CheckCircle2 className="w-8 h-8" style={{ color: accent }} />
+    <div className="min-h-screen bg-[#fbf7f0] flex flex-col items-center justify-center gap-4 text-[#1c1a17] p-6">
+      <div className="w-16 h-16 rounded-2xl flex items-center justify-center bg-[#e2f6ee] border-2 border-[#161616] shadow-[5px_5px_0_#161616]">
+        <CheckCircle2 className="w-8 h-8 text-[#0d9f6e]" />
       </div>
-      <p className="text-2xl font-bold">Request Sent!</p>
-      <p className="text-white/60 text-sm text-center max-w-sm">
-        Your booking request has been sent to <strong className="text-white">{data.org.companyName}</strong>. They will contact you shortly.
+      <p className="text-2xl font-extrabold tracking-tight">Request Sent!</p>
+      <p className="text-[#56524b] text-sm text-center max-w-sm">
+        Your booking request has been sent to <strong className="text-[#161616]">{data.org.companyName}</strong>. They will contact you shortly.
       </p>
       <button onClick={() => { setSubmitted(false); setForm(EMPTY_FORM) }}
-        style={{ background: accent }}
-        className="mt-4 px-6 py-2.5 rounded-xl text-white text-sm font-semibold transition hover:opacity-90">
+        className="mt-4 px-6 py-2.5 rounded-full bg-[#161616] text-[#fbf7f0] border-2 border-[#161616] text-sm font-bold shadow-[3px_3px_0_#161616] transition hover:-translate-y-0.5 hover:shadow-[5px_5px_0_#161616] active:translate-y-0 active:shadow-none">
         Make another request
       </button>
     </div>
   )
 
   return (
-    <div className="min-h-screen bg-[#0f0700] text-white">
+    <div className="min-h-screen bg-[#fbf7f0] text-[#1c1a17]">
 
       {/* Sticky navbar */}
-      <div className="border-b border-white/10 bg-[#0f0700]/90 backdrop-blur-sm sticky top-0 z-10">
+      <div className="border-b-2 border-[#161616] bg-white sticky top-0 z-10">
         <div className="max-w-3xl mx-auto px-4 py-3 flex items-center gap-3">
           {data.org.logoUrl
-            ? <img src={data.org.logoUrl} alt="logo" className="w-9 h-9 rounded-xl object-cover" />
-            : <div className="w-9 h-9 rounded-xl flex items-center justify-center" style={{ background: accentMid }}>
-                <Car className="w-5 h-5" style={{ color: accent }} />
+            ? <img src={data.org.logoUrl} alt="logo" className="w-9 h-9 rounded-xl object-cover border-2 border-[#161616]" />
+            : <div className="w-9 h-9 rounded-xl flex items-center justify-center bg-[#fff1da] border-2 border-[#161616]">
+                <Car className="w-5 h-5 text-[#c2740a]" />
               </div>}
           <div>
-            <p className="font-bold text-sm">{data.org.companyName || "Car Rental"}</p>
+            <p className="font-extrabold text-sm text-[#161616]">{data.org.companyName || "Car Rental"}</p>
             {data.org.carRentalTagline
-              ? <p className="text-[11px] text-white/40">{data.org.carRentalTagline}</p>
-              : <p className="text-[11px] text-white/40">Online Booking</p>}
+              ? <p className="text-[11px] text-[#9b9487]">{data.org.carRentalTagline}</p>
+              : <p className="text-[11px] text-[#9b9487]">Online Booking</p>}
           </div>
         </div>
       </div>
 
       {/* Cover photo hero */}
       {data.org.carRentalCoverUrl && (
-        <div className="w-full h-44 sm:h-56 relative overflow-hidden">
+        <div className="w-full h-44 sm:h-56 relative overflow-hidden border-b-2 border-[#161616]">
           <img src={data.org.carRentalCoverUrl} alt="cover" className="w-full h-full object-cover" />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/10 to-[#0f0700]" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/0 to-black/60" />
           <div className="absolute bottom-0 left-0 right-0 max-w-3xl mx-auto px-4 pb-4">
-            <p className="text-2xl font-extrabold drop-shadow">{data.org.companyName || "Car Rental"}</p>
+            <p className="text-2xl font-extrabold tracking-tight text-white drop-shadow">{data.org.companyName || "Car Rental"}</p>
             {data.org.carRentalTagline && (
-              <p className="text-sm text-white/70 mt-0.5">{data.org.carRentalTagline}</p>
+              <p className="text-sm text-white/80 mt-0.5">{data.org.carRentalTagline}</p>
             )}
           </div>
         </div>
@@ -99,27 +100,27 @@ function MidnightPage({ data, form, setForm, handleSubmit, submitting, submitted
 
       <div className="max-w-3xl mx-auto px-4 py-8 space-y-8">
         <div>
-          <h2 className="text-lg font-bold mb-4">Available Vehicles</h2>
+          <h2 className="text-lg font-extrabold tracking-tight text-[#161616] mb-4">Available Vehicles</h2>
           {data.vehicles.length === 0
-            ? <p className="text-white/40 text-sm">No vehicles available.</p>
-            : <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            ? <p className="text-[#9b9487] text-sm">No vehicles available.</p>
+            : <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {data.vehicles.map(v => (
                   <button key={v.id} type="button" onClick={() => setForm(f => ({ ...f, vehicleId: v.id }))}
-                    style={form.vehicleId === v.id ? { borderColor: accent, background: accentLight } : {}}
-                    className={`text-left rounded-2xl border transition overflow-hidden ${form.vehicleId === v.id ? "" : "border-white/10 bg-white/5 hover:border-white/20"}`}>
+                    style={form.vehicleId === v.id ? { boxShadow: `5px 5px 0 ${accent}` } : undefined}
+                    className={`text-left rounded-2xl border-2 border-[#161616] bg-white overflow-hidden transition-all ${form.vehicleId === v.id ? "-translate-y-0.5" : "shadow-[3px_3px_0_#161616] hover:-translate-y-0.5 hover:shadow-[5px_5px_0_#161616]"}`}>
                     {v.imageUrl
-                      ? <img src={v.imageUrl} alt={`${v.make} ${v.model}`} className="w-full h-36 object-cover" />
-                      : <div className="w-full h-24 bg-white/5 flex items-center justify-center"><span className="text-4xl opacity-30">🚗</span></div>}
+                      ? <img src={v.imageUrl} alt={`${v.make} ${v.model}`} className="w-full h-36 object-cover border-b-2 border-[#161616]" />
+                      : <div className="w-full h-24 bg-[#f7f2e9] border-b-2 border-[#161616] flex items-center justify-center"><span className="text-4xl opacity-40">🚗</span></div>}
                     <div className="p-4">
                       <div className="flex items-start justify-between gap-2">
                         <div>
-                          <p className="font-semibold text-sm">{v.make} {v.model} {v.year ? `· ${v.year}` : ""}</p>
-                          <p className="text-xs text-white/40 mt-0.5">{v.plateNumber}{v.color ? ` · ${v.color}` : ""}</p>
+                          <p className="font-bold text-sm text-[#161616]">{v.make} {v.model} {v.year ? `· ${v.year}` : ""}</p>
+                          <p className="text-xs text-[#9b9487] mt-0.5">{v.plateNumber}{v.color ? ` · ${v.color}` : ""}</p>
                         </div>
-                        <p className="font-bold text-sm shrink-0" style={{ color: accent }}>{sym}{Number(v.dailyRate).toLocaleString()}<span className="text-xs text-white/40 font-normal">/day</span></p>
+                        <p className="font-extrabold text-sm shrink-0 tabular-nums" style={{ color: accent }}>{sym}{Number(v.dailyRate).toLocaleString()}<span className="text-xs text-[#9b9487] font-normal">/day</span></p>
                       </div>
                       {form.vehicleId === v.id && (
-                        <div className="mt-2 flex items-center gap-1 text-xs font-medium" style={{ color: accent }}>
+                        <div className="mt-2 inline-flex items-center gap-1 text-xs font-bold px-2 py-0.5 rounded-full border-2 border-[#161616] bg-[#eaf0ff] text-[#2f6bff]">
                           <CheckCircle2 className="w-3.5 h-3.5" /> Selected
                         </div>
                       )}
@@ -130,111 +131,91 @@ function MidnightPage({ data, form, setForm, handleSubmit, submitting, submitted
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-5">
-          <h2 className="text-lg font-bold">Your Details</h2>
+          <h2 className="text-lg font-extrabold tracking-tight text-[#161616]">Your Details</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="flex flex-col gap-1.5">
-              <label className="text-xs text-white/50 font-medium flex items-center gap-1.5"><User className="w-3.5 h-3.5" /> Full Name *</label>
-              <input value={form.customerName} onChange={field("customerName")} placeholder="Juan dela Cruz" className={inputCls}
-                style={{ "--tw-ring-color": accent } as any}
-                onFocus={e => { e.currentTarget.style.borderColor = accent; e.currentTarget.style.boxShadow = `0 0 0 1px ${accent}` }}
-                onBlur={e => { e.currentTarget.style.borderColor = "rgba(255,255,255,0.1)"; e.currentTarget.style.boxShadow = "none" }}
-              />
+              <label className="text-xs text-[#56524b] font-bold flex items-center gap-1.5"><User className="w-3.5 h-3.5" /> Full Name *</label>
+              <input value={form.customerName} onChange={field("customerName")} placeholder="Juan dela Cruz" className={inputCls} onFocus={onFocus} onBlur={onBlur} />
             </div>
             <div className="flex flex-col gap-1.5">
-              <label className="text-xs text-white/50 font-medium flex items-center gap-1.5"><Phone className="w-3.5 h-3.5" /> Phone *</label>
-              <input value={form.customerPhone} onChange={field("customerPhone")} placeholder="+63 917 123 4567" className={inputCls}
-                onFocus={e => { e.currentTarget.style.borderColor = accent; e.currentTarget.style.boxShadow = `0 0 0 1px ${accent}` }}
-                onBlur={e => { e.currentTarget.style.borderColor = "rgba(255,255,255,0.1)"; e.currentTarget.style.boxShadow = "none" }}
-              />
+              <label className="text-xs text-[#56524b] font-bold flex items-center gap-1.5"><Phone className="w-3.5 h-3.5" /> Phone *</label>
+              <input value={form.customerPhone} onChange={field("customerPhone")} placeholder="+63 917 123 4567" className={inputCls} onFocus={onFocus} onBlur={onBlur} />
             </div>
             <div className="flex flex-col gap-1.5 sm:col-span-2">
-              <label className="text-xs text-white/50 font-medium flex items-center gap-1.5"><Mail className="w-3.5 h-3.5" /> Email <span className="text-white/30">(optional)</span></label>
-              <input value={form.customerEmail} onChange={field("customerEmail")} placeholder="juan@email.com" type="email" className={inputCls}
-                onFocus={e => { e.currentTarget.style.borderColor = accent; e.currentTarget.style.boxShadow = `0 0 0 1px ${accent}` }}
-                onBlur={e => { e.currentTarget.style.borderColor = "rgba(255,255,255,0.1)"; e.currentTarget.style.boxShadow = "none" }}
-              />
+              <label className="text-xs text-[#56524b] font-bold flex items-center gap-1.5"><Mail className="w-3.5 h-3.5" /> Email <span className="text-[#9b9487] font-normal">(optional)</span></label>
+              <input value={form.customerEmail} onChange={field("customerEmail")} placeholder="juan@email.com" type="email" className={inputCls} onFocus={onFocus} onBlur={onBlur} />
             </div>
           </div>
-          <h2 className="text-lg font-bold pt-2">Rental Dates</h2>
+          <h2 className="text-lg font-extrabold tracking-tight text-[#161616] pt-2">Rental Dates</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="flex flex-col gap-1.5">
-              <label className="text-xs text-white/50 font-medium flex items-center gap-1.5"><Calendar className="w-3.5 h-3.5" /> Pickup Date *</label>
-              <input type="date" value={form.pickupDate} onChange={field("pickupDate")} min={dayjs().format("YYYY-MM-DD")} className={inputCls}
-                onFocus={e => { e.currentTarget.style.borderColor = accent; e.currentTarget.style.boxShadow = `0 0 0 1px ${accent}` }}
-                onBlur={e => { e.currentTarget.style.borderColor = "rgba(255,255,255,0.1)"; e.currentTarget.style.boxShadow = "none" }}
-              />
+              <label className="text-xs text-[#56524b] font-bold flex items-center gap-1.5"><Calendar className="w-3.5 h-3.5" /> Pickup Date *</label>
+              <input type="date" value={form.pickupDate} onChange={field("pickupDate")} min={dayjs().format("YYYY-MM-DD")} className={inputCls} onFocus={onFocus} onBlur={onBlur} />
             </div>
             <div className="flex flex-col gap-1.5">
-              <label className="text-xs text-white/50 font-medium flex items-center gap-1.5"><Calendar className="w-3.5 h-3.5" /> Return Date *</label>
-              <input type="date" value={form.returnDate} onChange={field("returnDate")} min={form.pickupDate || dayjs().format("YYYY-MM-DD")} className={inputCls}
-                onFocus={e => { e.currentTarget.style.borderColor = accent; e.currentTarget.style.boxShadow = `0 0 0 1px ${accent}` }}
-                onBlur={e => { e.currentTarget.style.borderColor = "rgba(255,255,255,0.1)"; e.currentTarget.style.boxShadow = "none" }}
-              />
+              <label className="text-xs text-[#56524b] font-bold flex items-center gap-1.5"><Calendar className="w-3.5 h-3.5" /> Return Date *</label>
+              <input type="date" value={form.returnDate} onChange={field("returnDate")} min={form.pickupDate || dayjs().format("YYYY-MM-DD")} className={inputCls} onFocus={onFocus} onBlur={onBlur} />
             </div>
           </div>
           {total > 0 && (
-            <div className="flex items-center justify-between px-4 py-3 rounded-xl border" style={{ background: accentLight, borderColor: `${accent}33` }}>
-              <span className="text-sm text-white/60">{days} day{days !== 1 ? "s" : ""} × {sym}{Number(selectedVehicle?.dailyRate).toLocaleString()}/day</span>
-              <span className="text-lg font-bold" style={{ color: accent }}>{sym}{total.toLocaleString()}</span>
+            <div className="flex items-center justify-between px-4 py-3 rounded-xl border-2 border-[#161616] bg-[#f7f2e9]">
+              <span className="text-sm text-[#56524b]">{days} day{days !== 1 ? "s" : ""} × {sym}{Number(selectedVehicle?.dailyRate).toLocaleString()}/day</span>
+              <span className="text-lg font-extrabold tabular-nums" style={{ color: accent }}>{sym}{total.toLocaleString()}</span>
             </div>
           )}
           <div className="flex flex-col gap-1.5">
-            <label className="text-xs text-white/50 font-medium flex items-center gap-1.5"><FileText className="w-3.5 h-3.5" /> Notes <span className="text-white/30">(optional)</span></label>
-            <textarea value={form.notes} onChange={field("notes")} rows={3} placeholder="Any special requests…" className={`${inputCls} resize-none`}
-              onFocus={e => { e.currentTarget.style.borderColor = accent; e.currentTarget.style.boxShadow = `0 0 0 1px ${accent}` }}
-              onBlur={e => { e.currentTarget.style.borderColor = "rgba(255,255,255,0.1)"; e.currentTarget.style.boxShadow = "none" }}
-            />
+            <label className="text-xs text-[#56524b] font-bold flex items-center gap-1.5"><FileText className="w-3.5 h-3.5" /> Notes <span className="text-[#9b9487] font-normal">(optional)</span></label>
+            <textarea value={form.notes} onChange={field("notes")} rows={3} placeholder="Any special requests…" className={`${inputCls} resize-none`} onFocus={onFocus} onBlur={onBlur} />
           </div>
           {/* Deposit QR section */}
           {data.org.carRentalDepositEnabled && (
-            <div className="rounded-2xl border border-white/10 bg-white/5 p-5 space-y-4">
+            <div className="rounded-2xl border-2 border-[#161616] bg-white shadow-[5px_5px_0_#161616] p-5 space-y-4">
               <div className="flex items-center gap-2">
-                <p className="font-semibold text-sm">Deposit Required</p>
+                <p className="font-extrabold text-sm text-[#161616]">Deposit Required</p>
               </div>
 
               {data.org.carRentalDepositAmount && (
-                <div className="flex items-center gap-2 px-3 py-2 rounded-xl" style={{ background: accentLight, border: `1px solid ${accent}33` }}>
-                  <span className="text-sm text-white/60">Amount to deposit:</span>
-                  <span className="font-bold text-lg" style={{ color: accent }}>{sym}{Number(data.org.carRentalDepositAmount).toLocaleString()}</span>
+                <div className="flex items-center gap-2 px-3 py-2 rounded-xl bg-[#fff1da] border-2 border-[#161616]">
+                  <span className="text-sm text-[#56524b]">Amount to deposit:</span>
+                  <span className="font-extrabold text-lg tabular-nums" style={{ color: accent }}>{sym}{Number(data.org.carRentalDepositAmount).toLocaleString()}</span>
                 </div>
               )}
 
               {data.org.carRentalDepositQrUrl && (
                 <div className="flex flex-col items-center gap-2">
-                  <p className="text-xs text-white/50">Scan to pay</p>
+                  <p className="text-xs text-[#56524b]">Scan to pay</p>
                   <img
                     src={data.org.carRentalDepositQrUrl}
                     alt="Deposit QR"
-                    className="w-44 h-44 rounded-xl bg-white p-2 object-contain"
+                    className="w-44 h-44 rounded-xl bg-white border-2 border-[#161616] p-2 object-contain"
                   />
                   {data.org.carRentalDepositNote && (
-                    <p className="text-xs text-white/50 text-center">{data.org.carRentalDepositNote}</p>
+                    <p className="text-xs text-[#56524b] text-center">{data.org.carRentalDepositNote}</p>
                   )}
                 </div>
               )}
 
               <div className="flex flex-col gap-1.5">
-                <label className="text-xs text-white/50 font-medium">Reference Number *</label>
+                <label className="text-xs text-[#56524b] font-bold">Reference Number *</label>
                 <input
                   value={form.depositReference}
                   onChange={e => setForm(f => ({ ...f, depositReference: e.target.value }))}
                   placeholder="Enter your transaction reference number"
                   className={inputCls}
-                  onFocus={e => { e.currentTarget.style.borderColor = accent; e.currentTarget.style.boxShadow = `0 0 0 1px ${accent}` }}
-                  onBlur={e => { e.currentTarget.style.borderColor = "rgba(255,255,255,0.1)"; e.currentTarget.style.boxShadow = "none" }}
+                  onFocus={onFocus}
+                  onBlur={onBlur}
                 />
-                <p className="text-[11px] text-white/30">Enter the reference/transaction number from your payment app after scanning.</p>
+                <p className="text-[11px] text-[#9b9487]">Enter the reference/transaction number from your payment app after scanning.</p>
               </div>
             </div>
           )}
 
-          {error && <div className="flex items-center gap-2 px-4 py-3 rounded-xl bg-red-500/10 border border-red-500/20 text-red-400 text-sm"><AlertCircle className="w-4 h-4 shrink-0" /> {error}</div>}
+          {error && <div className="flex items-center gap-2 px-4 py-3 rounded-xl bg-[#fde6ec] border-2 border-[#161616] text-[#e11d48] text-sm font-medium"><AlertCircle className="w-4 h-4 shrink-0" /> {error}</div>}
           <button type="submit" disabled={submitting}
-            style={{ background: accent }}
-            className="w-full py-3.5 rounded-2xl text-white font-bold text-sm transition disabled:opacity-60 flex items-center justify-center gap-2 hover:opacity-90">
+            className="w-full py-3.5 rounded-full bg-[#161616] text-[#fbf7f0] border-2 border-[#161616] font-bold text-sm shadow-[3px_3px_0_#161616] transition disabled:opacity-60 flex items-center justify-center gap-2 hover:-translate-y-0.5 hover:shadow-[5px_5px_0_#161616] active:translate-y-0 active:shadow-none">
             {submitting ? <><Loader2 className="w-4 h-4 animate-spin" /> Sending…</> : "Send Booking Request"}
           </button>
-          <p className="text-center text-xs text-white/30">Booking request only — confirmed by {data.org.companyName || "the business"} after review.</p>
+          <p className="text-center text-xs text-[#9b9487]">Booking request only — confirmed by {data.org.companyName || "the business"} after review.</p>
         </form>
       </div>
     </div>
@@ -1058,16 +1039,18 @@ export default function RentPageContent({ slug }: { slug: string }) {
   }
 
   if (loading) return (
-    <div className="min-h-screen bg-[#0f0700] flex items-center justify-center">
-      <Loader2 className="w-8 h-8 animate-spin text-orange-400" />
+    <div className="min-h-screen bg-[#fbf7f0] flex items-center justify-center">
+      <Loader2 className="w-8 h-8 animate-spin text-[#161616]" />
     </div>
   )
 
   if (notFound || !data) return (
-    <div className="min-h-screen bg-[#0f0700] flex flex-col items-center justify-center gap-4 text-white p-6">
-      <Car className="w-12 h-12 text-orange-400 opacity-50" />
-      <p className="text-xl font-bold">Page not found</p>
-      <p className="text-white/50 text-sm text-center">This booking page doesn't exist or may have been removed.</p>
+    <div className="min-h-screen bg-[#fbf7f0] flex flex-col items-center justify-center gap-4 text-[#1c1a17] p-6">
+      <div className="w-14 h-14 rounded-2xl bg-[#fff1da] border-2 border-[#161616] shadow-[5px_5px_0_#161616] flex items-center justify-center">
+        <Car className="w-7 h-7 text-[#c2740a]" />
+      </div>
+      <p className="text-xl font-extrabold tracking-tight">Page not found</p>
+      <p className="text-[#56524b] text-sm text-center">This booking page doesn't exist or may have been removed.</p>
     </div>
   )
 
