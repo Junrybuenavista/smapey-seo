@@ -56,9 +56,9 @@ function TherapistPicker({
           ? { borderColor: accent, background: `${accent}10` }
           : { borderColor: cardBorder, background: cardBg }}>
         <div className="flex items-center gap-2">
-          <div className="w-7 h-7 rounded-full flex items-center justify-center shrink-0"
+          <div className="w-9 h-9 rounded-full flex items-center justify-center shrink-0"
             style={{ background: `${accent}15` }}>
-            <Sparkles className="w-3.5 h-3.5" style={{ color: accent }} />
+            <Sparkles className="w-4 h-4" style={{ color: accent }} />
           </div>
           <div className="min-w-0">
             <p className="text-xs font-semibold truncate" style={{ color: textMain }}>Any therapist</p>
@@ -74,10 +74,19 @@ function TherapistPicker({
             ? { borderColor: accent, background: `${accent}10` }
             : { borderColor: cardBorder, background: cardBg }}>
           <div className="flex items-center gap-2">
-            <div className="w-7 h-7 rounded-full flex items-center justify-center shrink-0"
-              style={{ background: `${accent}15` }}>
-              <HandHelping className="w-3.5 h-3.5" style={{ color: accent }} />
-            </div>
+            {t.imageUrl ? (
+              <img
+                src={t.imageUrl}
+                alt={t.fullName}
+                className="w-9 h-9 rounded-full object-cover shrink-0"
+                style={{ border: `2px solid ${accent}30` }}
+              />
+            ) : (
+              <div className="w-9 h-9 rounded-full flex items-center justify-center shrink-0"
+                style={{ background: `${accent}15` }}>
+                <HandHelping className="w-4 h-4" style={{ color: accent }} />
+              </div>
+            )}
             <div className="min-w-0 flex-1">
               <p className="text-xs font-semibold truncate" style={{ color: textMain }}>{t.fullName}</p>
               {t.specialties && (
