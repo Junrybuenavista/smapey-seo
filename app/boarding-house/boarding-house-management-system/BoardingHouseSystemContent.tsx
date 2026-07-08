@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from "react"
 import {
   Building2, Users, BedDouble, CheckCircle2, ChevronRight,
   Banknote, Zap, AlertTriangle, BarChart3, Shield, Receipt,
+  Wrench, QrCode, BedSingle,
 Menu , X } from "lucide-react"
 import { usePricing, type Plan } from "@/lib/usePricing"
 import InternalLinks from "@/components/InternalLinks"
@@ -15,20 +16,25 @@ const CREAM = "#fbf7f0"
 const display = { fontFamily: "'Hanken Grotesk', system-ui, sans-serif" }
 
 const FEATURES = [
-  { icon: BedDouble, title: "Room Management", desc: "Add rooms with name, floor, capacity, and monthly rate. Activate or deactivate rooms — occupancy recalculates automatically." },
+  { icon: BedDouble, title: "Visual Room Cards", desc: "Every room is a card showing who's inside and which beds or slots are free. Move tenants in and out without leaving the page." },
+  { icon: BedSingle, title: "Bed-Level Tracking", desc: "Name each bed in a bedspace room — Lower A, Upper A — with its own monthly rate. See exactly which bed is vacant and fill it in one click." },
   { icon: Users, title: "Tenant Registration", desc: "Store complete tenant profiles — name, contact, emergency contact, and ID info. Searchable records, no paper folders." },
-  { icon: Building2, title: "Tenancy Management", desc: "Assign tenants to rooms with a move-in date and agreed monthly rate. Record move-outs and the room is freed instantly." },
   { icon: Banknote, title: "Rent Billing", desc: "Generate monthly rent bills per tenant. Record payments — full or partial — and track outstanding balances automatically." },
-  { icon: Zap, title: "Utility Billing", desc: "Create separate electricity, water, and internet bills per tenant per month. Keeps rent and utilities clearly itemized." },
-  { icon: BarChart3, title: "Occupancy Dashboard", desc: "Real-time view of occupancy rate, overdue bills, rent collected, and utility collected. Monthly revenue trend chart included." },
+  { icon: Zap, title: "Utility Billing", desc: "Create separate electricity, water, and internet bills per room per month. Keeps rent and utilities clearly itemized." },
+  { icon: Wrench, title: "Maintenance Tracking", desc: "Log repairs with category, priority, and status — Open to Resolved — and record repair costs so you know your true monthly expenses." },
+  { icon: QrCode, title: "QR Issue Reporting", desc: "Print a QR poster per room. Tenants scan it — no app, no login — to report leaks or busted outlets with photos, and see the status of past reports for their room." },
+  { icon: Building2, title: "Stay History", desc: "Every move-in and move-out is a permanent record with dates, rates, bed, and deposit status. Your paper trail for disputes." },
+  { icon: BarChart3, title: "Occupancy Dashboard", desc: "Real-time view of occupancy rate, overdue bills, open maintenance, rent collected, and utility collected. Monthly revenue trend chart included." },
 ]
 
 const FAQS = [
-  { q: "What does a boarding house management system do?", a: "It replaces spreadsheets and paper records by centralizing room setup, tenant registration, move-in/move-out tracking, monthly rent billing, utility billing, payment recording, and occupancy analytics in one dashboard. Philippine boarding house owners use it to collect rent faster and reduce manual follow-up." },
+  { q: "What does a boarding house management system do?", a: "It replaces spreadsheets and paper records by centralizing room and bed setup, tenant registration, move-in/move-out tracking, monthly rent billing, utility billing, payment recording, maintenance requests, and occupancy analytics in one dashboard. Philippine boarding house owners use it to collect rent faster and reduce manual follow-up." },
+  { q: "Can it handle bedspace with different deck rates?", a: "Yes. In a bedspace room you add each bed by name — Lower A, Upper A — with its own monthly rate. When a tenant moves into a bed, their rent defaults to that bed's rate, so lower-deck and upper-deck pricing is handled automatically." },
+  { q: "How do tenants report maintenance problems?", a: "Each room has a printable QR code poster. Tenants scan it with their phone camera — no app or account needed — and submit a short report with up to 3 photos. It appears on the owner's Maintenance page instantly with an in-app notification, tagged with the reporter's name. The report page also shows the room's recent reports and their status, so tenants don't re-report issues that are already being fixed." },
   { q: "Can the system separate rent from utilities?", a: "Yes. Rent bills and utility bills are created separately so tenants always know which amount is rent and which is for electricity or water. Both types appear on the dashboard's revenue breakdown." },
   { q: "Does it support partial payments?", a: "Yes. You can record partial payments on any rent or utility bill. The system calculates the outstanding balance and marks the bill as partially paid. Overdue balances surface automatically on the dashboard." },
-  { q: "How is occupancy rate calculated?", a: "The system counts all rooms with an active tenancy as occupied. Occupancy rate is calculated as occupied rooms divided by total active rooms, shown as a percentage on the dashboard." },
-  { q: "Is it free to use?", a: "Yes — Smapey Boarding House Manager has a free plan. You can manage rooms, tenants, tenancies, rent billing, and utility billing at no cost. Upgrade to PRO or ENTERPRISE when your boarding house needs more capacity." },
+  { q: "How is occupancy rate calculated?", a: "The system counts every occupied bed or slot against total capacity — for bedspace rooms, capacity is the number of beds. Occupancy rate is shown as a percentage on the dashboard and updates the moment someone moves in or out." },
+  { q: "Is it free to use?", a: "Yes — Smapey Boarding House Manager has a free plan. You can manage rooms and beds, tenants, rent billing, utility billing, and maintenance tracking with QR reporting at no cost. Upgrade to PRO or ENTERPRISE when your boarding house needs more capacity." },
 ]
 
 function useInView(options?: IntersectionObserverInit) {

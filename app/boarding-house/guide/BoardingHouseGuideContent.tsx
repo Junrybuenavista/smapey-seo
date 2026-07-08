@@ -5,6 +5,7 @@ import InternalLinks from "@/components/InternalLinks"
 import {
   BookOpen, Building2, Users, BedDouble, CheckCircle2, ChevronRight,
   Menu, X, Banknote, Zap, BarChart3, Clock, Lightbulb, Shield, AlertTriangle, ArrowLeft,
+  Wrench,
 } from "lucide-react"
 
 const INK = "#161616"
@@ -21,7 +22,8 @@ const SECTIONS = [
     title: "1. Set Up Your Boarding House",
     steps: [
       { title: "Create your Smapey account", desc: "Sign up at smapey.com and select Boarding House Manager as your product. Your private workspace is created instantly — no credit card required on the free plan." },
-      { title: "Add your rooms", desc: "Go to the Rooms page and click Add Room. Enter the room name (e.g. Room 101, Bedspace A), floor number, capacity (how many tenants it can hold), and the monthly rate. Toggle the room Active when it's ready to accept tenants." },
+      { title: "Add your rooms", desc: "Go to the Rooms page and click Add Room. Enter the room name (e.g. Room 101), the type — Bedspace, Shared Room, or Private Room — the floor, and the monthly rate. Each room appears as a card showing who's inside and which slots are free." },
+      { title: "Add beds to bedspace rooms", desc: "On a Bedspace room card, click Add Bed to name each bed (e.g. Lower A, Upper A) and optionally set a different rate per bed — handy when lower decks cost more. A bed without its own rate uses the room's default. The room's capacity is simply its number of beds." },
       { title: "Invite your team", desc: "Go to Settings → Team and invite a co-owner or assistant by email. They can log in with their own account and access the same live system. Assign Admin or Member roles based on their level of access." },
       { title: "Configure your currency symbol", desc: "In Settings → Organization, confirm your currency symbol (₱ for Philippine Peso). This appears on all bills and the revenue dashboard." },
     ],
@@ -40,12 +42,12 @@ const SECTIONS = [
   {
     id: "tenancies",
     icon: BedDouble,
-    title: "3. Manage Tenancies",
+    title: "3. Move-ins, Move-outs & Stay History",
     steps: [
-      { title: "Open the Tenancies page", desc: "Navigate to Boarding House → Tenancies from the sidebar. A tenancy is the active link between a tenant and a room — it records the move-in date, agreed monthly rate, and move-out date when they leave." },
-      { title: "Create a new tenancy (Move-in)", desc: "Click Add Tenancy. Select the tenant and the room, set the move-in date, and enter the agreed monthly rate. Click Save — the room is now marked as occupied and the tenant appears on the dashboard's active tenants count." },
-      { title: "Record a move-out", desc: "Find the tenancy and click Move Out. Enter the move-out date. The tenancy is marked as ended, the room is freed immediately, and the occupancy rate on the dashboard updates automatically." },
-      { title: "Review tenancy history", desc: "Past tenancies stay in the system with their full history — who was in the room, for how long, and at what rate. Useful for resolving disputes or checking a room's rental history." },
+      { title: "Move a tenant in from the Rooms page", desc: "Click any vacant bed or slot on a room card and the move-in form opens with the room (and bed) already selected. Pick the tenant, set the move-in date, and confirm the rate — it defaults from the bed or room. Record the deposit amount and whether it's been paid." },
+      { title: "Move a tenant out from the Rooms page", desc: "Click an occupied bed, avatar, or occupant on a room card to see their details — phone, move-in date, rate, and deposit status — then click Move Out. The bed or slot is freed instantly and the dashboard occupancy updates." },
+      { title: "Review Stay History", desc: "Navigate to Boarding House → Stay History for the full ledger of stays. Filter by Active or Moved Out to see who lived in which room and bed, for how long, at what rate, and their deposit status. Your paper trail for disputes." },
+      { title: "Fix a record", desc: "Click Edit on any row in Stay History to correct the move-in date, monthly rate, deposit amount or paid status, bed assignment, or notes. On moved-out records you can also fix the move-out date. Rate changes only affect future bills." },
     ],
   },
   {
@@ -71,25 +73,41 @@ const SECTIONS = [
     ],
   },
   {
+    id: "maintenance",
+    icon: Wrench,
+    title: "6. Maintenance & QR Reporting",
+    steps: [
+      { title: "Report an issue", desc: "Navigate to Boarding House → Maintenance and click Report Issue. Enter a title (e.g. 'Leaking faucet in Room 2'), select the room, choose a category — Plumbing, Electrical, Appliance, Furniture, Pest Control, Cleaning, Structural, or Other — and a priority from Low to Urgent." },
+      { title: "Work the request", desc: "Click Start when the repair begins — the request moves to In Progress. When it's fixed, click Resolve and optionally enter the repair cost. Resolved costs are summed on the dashboard so you know what maintenance costs you each month." },
+      { title: "Print a QR poster for each room", desc: "On any room card, click the QR icon, then Print Poster, and stick it inside the room. Tenants scan it with their phone camera — no app or login — and fill in a short form: name, issue type, what's wrong, and up to 3 photos of the problem." },
+      { title: "Receive reports instantly", desc: "QR reports land on your Maintenance page tagged 'Via QR' and you get an in-app notification the moment one is submitted. If the reporter's name matches a current tenant, the report links to their profile automatically." },
+      { title: "Tenants see the room's report history", desc: "The report page also lists the room's recent reports — who reported what, when, and whether it's Open, In Progress, or Resolved. Tenants can see a fix is already on the way, so you don't get the same issue reported five times." },
+      { title: "Cancel or reopen", desc: "Cancel requests that turn out to be non-issues. If a 'fixed' problem comes back, open the request and click Reopen — the full history stays intact." },
+    ],
+  },
+  {
     id: "dashboard",
     icon: BarChart3,
-    title: "6. Dashboard & Analytics",
+    title: "7. Dashboard & Analytics",
     steps: [
       { title: "Open the Dashboard", desc: "Navigate to Boarding House → Dashboard from the sidebar. This is your home screen — it loads every time you open the app and gives you the full picture of your boarding house at a glance." },
-      { title: "Read the stat cards", desc: "The top row shows: Total Rooms, Active Rooms, Active Tenants, Occupancy Rate (%), Overdue Bills count, Unpaid Bills count, and Total Capacity (occupied / total). These update in real time as you add rooms, tenants, and payments." },
+      { title: "Read the stat cards", desc: "The top row shows: Total Rooms, Active Rooms, Active Tenants, Occupancy Rate (%), Overdue Bills count, Unpaid Bills count, Total Capacity (occupied / total), and Open Maintenance. These update in real time as you add rooms, tenants, and payments." },
       { title: "Check monthly revenue", desc: "Below the stat cards are three revenue cards for the current month: Rent Collected, Utilities Collected, and Total Collected (the combined sum). This tells you exactly how much cash came in this month and from which source." },
       { title: "Read the 6-month revenue chart", desc: "The stacked bar chart shows the last 6 months of collections — orange bars for rent, cyan bars for utilities, stacked per month. Hover on a bar to see the exact amounts. Use this to spot seasonal patterns and set rent collection targets." },
       { title: "Review overdue bills", desc: "The Overdue Rent Bills table shows every rent bill past its due date — tenant name, room, billing month, due date, and amount. Click through to the bill directly from this panel to record a payment." },
+      { title: "Track open maintenance", desc: "The Open Maintenance panel lists unresolved repair issues sorted by priority, with an urgent counter — so the leaking faucet never gets forgotten. Resolved repair costs for the month are tracked alongside revenue." },
       { title: "Monitor move-ins and move-outs", desc: "The bottom section shows Recent Move-ins (active tenancies) and Recent Move-outs (tenancies ended this month) side by side — so you can track tenant turnover at a glance." },
     ],
   },
 ]
 
 const TIPS = [
-  { icon: Clock, tip: "Add all your rooms before assigning tenants — the tenancy form pulls the room list, so rooms must exist first." },
-  { icon: Lightbulb, tip: "Create a new tenancy every time a tenant moves in, even if it's the same tenant returning. This keeps a clean, accurate rental history for the room." },
+  { icon: Clock, tip: "Add rooms and their beds before moving tenants in — a bedspace room needs at least one bed before it can accept a move-in." },
+  { icon: Lightbulb, tip: "Record a new move-in every time a tenant arrives, even a returning tenant. Past stays are never deleted, so your Stay History stays accurate for disputes." },
+  { icon: Wrench, tip: "Print the QR poster for every room on day one. Tenants report issues the moment they spot them — before a small leak becomes a big repair bill." },
   { icon: AlertTriangle, tip: "Issue rent and utility bills as separate entries each month — this makes collections clearer and avoids arguments over what each payment was for." },
   { icon: Shield, tip: "Check the Overdue Rent Bills panel on the dashboard weekly. The sooner you follow up, the easier it is to collect — don't let overdue accounts accumulate." },
+  { icon: Banknote, tip: "Always log the repair cost when resolving a maintenance request — the dashboard sums them monthly so you know your true operating expenses." },
 ]
 
 const WORKFLOW = [
@@ -97,7 +115,7 @@ const WORKFLOW = [
   { step: "2nd", title: "Create utility bills", desc: "Issue separate electricity and water bills per tenant based on meter readings or flat allocation." },
   { step: "3rd", title: "Record payments", desc: "As tenants pay throughout the month, record each payment — cash, GCash, or bank transfer." },
   { step: "4th", title: "Follow up overdue", desc: "Check the Overdue Bills panel on the dashboard and follow up with tenants who haven't paid." },
-  { step: "5th", title: "Review occupancy", desc: "Check if any rooms will be vacated soon and start lining up new tenants to minimize vacancy." },
+  { step: "5th", title: "Clear maintenance backlog", desc: "Work through open maintenance requests — start, resolve, and log repair costs so nothing stays broken for long." },
   { step: "6th", title: "Check revenue trend", desc: "Review the 6-month chart to see if rent collected is growing, flat, or declining — and act accordingly." },
 ]
 
@@ -186,7 +204,7 @@ export default function BoardingHouseGuideContent() {
             Smapey Boarding House Manager <span style={{ color: BLUE }}>Guide</span>
           </h1>
           <p className="text-lg max-w-2xl mx-auto mb-8" style={{ color: "#54514c" }}>
-            Everything you need to set up your boarding house, register tenants, manage tenancies, issue rent and utility bills, record payments, and read the occupancy dashboard — step by step.
+            Everything you need to set up your rooms and beds, register tenants, handle move-ins and move-outs, issue rent and utility bills, track maintenance with QR reporting, and read the occupancy dashboard — step by step.
           </p>
           <div className="flex flex-wrap items-center justify-center gap-6 text-xs font-semibold" style={{ color: "#54514c" }}>
             {["5-minute setup", "No training required", "Free plan available"].map((t) => (
