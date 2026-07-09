@@ -491,19 +491,40 @@ function Navbar() {
 // HERO
 //////////////////////////////////////////////////////
 
+const HERO_CHIPS = [
+  { emoji: "💇", label: "Salon Manager",   bg: "#fff", chipBg: "#fdf2f8", color: INK,   rotate: "-4deg", shift: "0px" },
+  { emoji: "🧾", label: "Invoice Manager", bg: BLUE,   chipBg: "#fff",    color: "#fff", rotate: "3deg",  shift: "-34px" },
+  { emoji: "🏋️", label: "Gym Management", bg: AMBER,  chipBg: "#fff",    color: INK,   rotate: "-2deg", shift: "6px" },
+  { emoji: "💧", label: "Water Refilling", bg: "#fff", chipBg: "#ecfeff", color: INK,   rotate: "4deg",  shift: "-48px" },
+]
+
+const HERO_STATS = [
+  { value: "2,400+", label: <>small businesses<br />run on Smapey</>, accent: true },
+  { value: "5 min",  label: <>average time<br />to full setup</>, accent: false },
+  { value: "18",     label: <>tools, one login,<br />pick what you need</>, accent: true },
+  { value: "₱0",     label: <>to start —<br />free plan forever</>, accent: false },
+]
+
 function Hero() {
   return (
-    <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden px-6 pt-16" style={{ background: CREAM, color: INK, fontFamily: display.fontFamily }}>
+    <section className="relative min-h-screen flex flex-col justify-center overflow-hidden px-6 md:px-16 pt-28 pb-16" style={{ background: CREAM, color: INK, fontFamily: display.fontFamily }}>
 
-      {/* playful layered-bar accents (echo the Smapey mark) */}
-      <div className="absolute inset-0 pointer-events-none hidden md:block" aria-hidden>
-        <div className="absolute rounded-[22px] border-2" style={{ top: "15%", left: "-70px", width: 290, height: 80, background: AMBER, borderColor: INK, transform: "rotate(-11deg)" }} />
-        <div className="absolute rounded-[22px] border-2" style={{ top: "28%", right: "-80px", width: 300, height: 84, background: BLUE, borderColor: INK, transform: "rotate(9deg)", boxShadow: `5px 5px 0 rgba(22,22,22,.12)` }} />
-        <div className="absolute rounded-[22px] border-2" style={{ bottom: "16%", left: "-60px", width: 270, height: 76, background: BLUE, borderColor: INK, transform: "rotate(8deg)", boxShadow: `5px 5px 0 rgba(22,22,22,.12)` }} />
-        <div className="absolute rounded-[22px] border-2" style={{ bottom: "22%", right: "-70px", width: 285, height: 80, background: AMBER, borderColor: INK, transform: "rotate(-9deg)" }} />
+      <div className="relative z-10 max-w-7xl mx-auto w-full">
+
+      {/* right-side tool-chip stack */}
+      <div className="absolute hidden lg:flex flex-col items-end gap-3.5" style={{ top: 8, right: 0, width: 360 }} aria-hidden>
+        {HERO_CHIPS.map(c => (
+          <div
+            key={c.label}
+            className="flex items-center gap-2.5 border-2 rounded-full px-5 py-2.5"
+            style={{ background: c.bg, borderColor: INK, boxShadow: `4px 4px 0 ${INK}`, transform: `rotate(${c.rotate}) translateX(${c.shift})` }}
+          >
+            <span className="inline-grid place-items-center w-6 h-6 rounded-[7px] border-2 text-xs" style={{ background: c.chipBg, borderColor: INK }}>{c.emoji}</span>
+            <span className="text-[13.5px] font-extrabold" style={{ color: c.color }}>{c.label}</span>
+          </div>
+        ))}
+        <span className="text-[13px] font-extrabold mt-1.5" style={{ color: "#9a948b", transform: "rotate(-2deg)" }}>+ 14 more tools</span>
       </div>
-
-      <div className="relative z-10 max-w-4xl mx-auto text-center">
 
         {/* BADGE */}
         <div className="inline-flex items-center gap-2 bg-white border-2 rounded-full px-4 py-2 mb-8" style={{ ...display, borderColor: INK, boxShadow: `3px 3px 0 ${BLUE}` }}>
@@ -511,68 +532,64 @@ function Hero() {
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-500 opacity-75" />
             <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
           </span>
-          <span className="text-xs font-bold" style={{ color: INK }}>18 tools live · built for small businesses</span>
+          <span className="text-xs font-extrabold" style={{ color: INK }}>Trusted by 2,400+ small businesses</span>
         </div>
 
         {/* HEADLINE */}
-        <h1 className="text-5xl md:text-7xl font-extrabold leading-[1.02] tracking-tight" style={{ ...display, color: INK }}>
-          Simple software for
-          <br />
-          <span style={{ color: BLUE }}>real </span><span style={{ color: AMBER }}>small businesses.</span>
+        <h1 className="font-black tracking-[-0.045em] leading-[0.98] text-6xl md:text-8xl xl:text-[108px] max-w-[980px]" style={{ ...display, color: INK }}>
+          Software that&apos;s<br />
+          <span
+            className="inline-block border-2 rounded-[20px] px-4 md:px-6 pb-1 md:pb-2 my-1"
+            style={{ background: AMBER, borderColor: INK, boxShadow: `6px 6px 0 ${INK}`, transform: "rotate(-1.5deg)" }}
+          >
+            simple
+          </span>{" "}
+          on purpose<span style={{ color: BLUE }}>.</span>
         </h1>
 
-        <p className="mt-6 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed" style={{ color: "#54514c" }}>
-          No IT team required. No 3-month setup. No enterprise nonsense.
-          Just clean, focused tools that help you run your business from day one.
+        <p className="mt-8 text-lg md:text-[19px] leading-relaxed max-w-[520px]" style={{ color: "#54514c" }}>
+          No demo calls. No manuals. No 3-month rollouts. Pick the tool built for your
+          business — gym, salon, clinic, laundry — and start working in 5 minutes.
         </p>
 
         {/* ACTIONS */}
-        <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
-          <Link href="https://app.smapey.com/register" className="group flex items-center gap-2 font-bold text-[15px] px-8 py-4 rounded-full border-2 transition-transform hover:-translate-y-0.5" style={{ ...display, background: AMBER, color: INK, borderColor: INK, boxShadow: `4px 4px 0 ${INK}` }}>
-            Start for free — no card needed
+        <div className="mt-9 flex flex-wrap items-center gap-4">
+          <Link
+            href="https://app.smapey.com/register"
+            className="group inline-flex items-center gap-2 font-extrabold text-[15px] px-8 py-4 rounded-full border-2 transition-transform hover:-translate-y-0.5 whitespace-nowrap"
+            style={{ ...display, background: AMBER, color: INK, borderColor: INK, boxShadow: `4px 4px 0 ${INK}` }}
+          >
+            Get started free
             <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
           </Link>
-          <a href="#how-it-works" className="flex items-center gap-2 font-bold text-[15px] px-7 py-4 rounded-full border-2 bg-white transition-transform hover:-translate-y-0.5" style={{ ...display, color: INK, borderColor: INK }}>
-            See how it works
-            <ChevronDown className="w-4 h-4" />
+          <a
+            href="#products"
+            className="inline-flex items-center gap-2 font-extrabold text-[15px] px-7 py-4 rounded-full border-2 bg-white transition-transform hover:-translate-y-0.5 whitespace-nowrap"
+            style={{ ...display, color: INK, borderColor: INK }}
+          >
+            Browse 18 tools
           </a>
+          <span className="text-[13.5px] font-bold ml-1" style={{ color: "#54514c" }}>
+            Free plan forever · No card needed
+          </span>
         </div>
 
-        {/* TRUST */}
-        <div className="mt-10 flex flex-wrap items-center justify-center gap-6">
-          {["Free plan forever", "Setup in under 5 minutes", "No training required"].map(t => (
-            <span key={t} className="flex items-center gap-2 text-sm font-semibold" style={{ color: "#54514c" }}>
-              <CheckCircle2 className="w-4 h-4 text-emerald-600" />
-              {t}
-            </span>
+        {/* STAT BAR (replaces the old StatsBar section) */}
+        <div className="mt-14 flex flex-col sm:flex-row items-stretch border-2 rounded-[18px] overflow-hidden" style={{ background: INK, borderColor: INK, boxShadow: `6px 6px 0 ${BLUE}` }}>
+          {HERO_STATS.map((s, i) => (
+            <div
+              key={i}
+              className="flex-1 flex items-center gap-3 px-6 py-5"
+              style={{ borderRight: i < HERO_STATS.length - 1 ? "1px solid rgba(255,255,255,.15)" : "none" }}
+            >
+              <span className="text-[27px] font-black tracking-[-0.02em]" style={{ color: s.accent ? AMBER : "#fff" }}>{s.value}</span>
+              <span className="text-[13px] font-bold leading-tight" style={{ color: "rgba(255,255,255,.6)" }}>{s.label}</span>
+            </div>
           ))}
         </div>
 
       </div>
-
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-bounce" style={{ color: INK, opacity: 0.3 }}>
-        <ChevronDown className="w-5 h-5" />
-      </div>
     </section>
-  )
-}
-
-//////////////////////////////////////////////////////
-// STATS BAR
-//////////////////////////////////////////////////////
-
-function StatsBar() {
-  return (
-    <div style={{ background: INK, fontFamily: display.fontFamily }}>
-      <div className="max-w-5xl mx-auto px-6 py-12 grid grid-cols-2 md:grid-cols-4 gap-8">
-        {STATS.map((s, i) => (
-          <Reveal key={s.label} delay={i * 80} className="text-center">
-            <p className="text-4xl md:text-5xl font-extrabold tracking-tight" style={{ color: i % 2 === 0 ? AMBER : "#fff" }}>{s.value}</p>
-            <p className="text-sm mt-1 font-semibold" style={{ color: "rgba(255,255,255,.55)" }}>{s.label}</p>
-          </Reveal>
-        ))}
-      </div>
-    </div>
   )
 }
 
@@ -984,7 +1001,6 @@ export default function MainContent() {
     <>
       <Navbar />
       <Hero />
-      <StatsBar />
       <ForWho />
       <HowItWorks />
       <Products />
