@@ -158,7 +158,7 @@ function CTA() {
     <section className="py-24 px-6" style={{ background: CREAM, borderTop: `2px solid ${INK}` }}>
       <Animate className="relative max-w-3xl mx-auto rounded-[30px] border-2 p-12 md:p-16 text-center" style={{ background: AMBER, borderColor: INK, boxShadow: `10px 10px 0 ${INK}` }}>
         <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight mb-4" style={{ color: INK }}>All 8 features. Free to start.</h2>
-        <p className="mb-8 font-medium" style={{ color: "#5c4a28" }}>No credit card. No trial timer. Start with up to 3 properties and unlimited guest profiles.</p>
+        <p className="mb-8 font-medium" style={{ color: "#5c4a28" }}>No credit card. No trial timer. Start with up to 2 properties and unlimited guest profiles.</p>
         <a href={REGISTER_URL} className="inline-flex items-center gap-2 px-8 py-4 rounded-full font-bold border-2 transition-transform hover:-translate-y-0.5" style={{ ...display, background: INK, color: "#fff", borderColor: INK }}>Get started for free <ChevronRight className="w-4 h-4" /></a>
       </Animate>
     </section>

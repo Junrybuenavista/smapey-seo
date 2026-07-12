@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from "react"
 import {
   Home, Users, CalendarRange, BarChart3, ShieldCheck, Sparkles,
   BedDouble, Wallet, CheckCircle2, ChevronRight, Menu, X, Zap, XCircle,
-  CalendarCheck,
+  CalendarCheck, CalendarDays,
 } from "lucide-react"
 import { usePricing, type Plan } from "@/lib/usePricing"
 import InternalLinks from "@/components/InternalLinks"
@@ -17,21 +17,23 @@ const CREAM = "#fbf7f0"
 const display = { fontFamily: "'Hanken Grotesk', system-ui, sans-serif" }
 
 const FEATURES = [
-  { icon: Home, title: "Property Listings", desc: "Add each property with type, address, bedrooms, bathrooms, max guests, nightly rate, and cleaning fee. Upload photos and toggle properties active or inactive." },
+  { icon: CalendarDays, title: "Availability Calendar", desc: "See every property's month at a glance — color-coded bars show booked, checked-in, and completed stays. Click any open day to create a booking for that property on the spot." },
+  { icon: Home, title: "Property Listings", desc: "Add each property with type, address, bedrooms, bathrooms, max guests, nightly rate, and cleaning fee. Browse them as photo cards with the nightly rate front and center." },
   { icon: Users, title: "Guest Profiles", desc: "Build a guest database with contact info and notes. Track each guest's total stays, total spent, and last stay date — all updated automatically after every checkout." },
   { icon: CalendarRange, title: "Reservation Management", desc: "Create reservations with check-in and check-out dates. Auto-calculate the total cost from nightly rate, cleaning fee, and extra charges. Attach notes for your team." },
   { icon: ShieldCheck, title: "Double-Booking Protection", desc: "The system checks for date overlaps when you create a reservation. Conflicting bookings are blocked before they can cause a bad guest experience." },
   { icon: BedDouble, title: "Check-in & Check-out Tracking", desc: "Move reservations through a clear lifecycle: Booked → Checked In → Checked Out (or Cancelled / No Show). Every status change is logged for your records." },
-  { icon: Wallet, title: "Deposit & Payment Tracking", desc: "Track deposit amounts, whether the deposit was paid, and overall payment status per reservation — Unpaid, Partial, or Paid. No more guessing who still owes you." },
+  { icon: Wallet, title: "Payments Ledger", desc: "Record every payment against a reservation — GCash, Maya, cash, or bank, with date and note. The balance updates instantly and the status flips to Partial or Paid automatically." },
   { icon: Sparkles, title: "Multi-Source Booking Tracking", desc: "Log where each booking came from — Airbnb, Booking.com, Agoda, Direct, Facebook, or Referral. See which channels drive the most revenue at a glance." },
   { icon: BarChart3, title: "Revenue & Occupancy Analytics", desc: "Live dashboard with monthly revenue, occupancy rate, total reservations, average nightly rate, and pending check-ins — so you always know how your rentals are performing." },
 ]
 
 const FAQS = [
-  { q: "Is there really a free plan?", a: "Yes. The free plan includes up to 3 properties, 20 reservations per month, and the full dashboard — no credit card required, no trial timer. Upgrade only when your portfolio grows." },
+  { q: "Is there really a free plan?", a: "Yes. The free plan includes up to 2 properties, 10 reservations per month, and the full dashboard — no credit card required, no trial timer. Upgrade only when your portfolio grows." },
+  { q: "Is there a calendar view of my bookings?", a: "Yes. The availability calendar shows all your properties as rows and the days of the month as columns, with color-coded bars for booked, checked-in, and completed stays. Click any empty day to create a booking for that property and date, or click a bar to check the guest in or out." },
   { q: "Does it actually prevent double bookings?", a: "Yes. When you create a reservation, the system checks whether the selected property has any overlapping confirmed bookings for those dates. If a conflict is found, the reservation is blocked before it's saved." },
   { q: "Can I track bookings from Airbnb and Booking.com separately?", a: "Yes. Every reservation has a source field: Airbnb, Booking.com, Agoda, Direct, Facebook, Referral, or Other. You can filter by source and see which channels bring in the most revenue." },
-  { q: "How does payment tracking work?", a: "Each reservation tracks a deposit amount, whether the deposit was paid, and a payment status (Unpaid, Partial, or Paid). After a guest checks out, you can mark the reservation as fully paid with one click." },
+  { q: "How does payment tracking work?", a: "Every reservation has a payment ledger. Record each payment as it comes in — a GCash deposit today, the cash balance at check-in — with the amount, method, and date. Smapey totals the ledger, shows the remaining balance, and sets the status to Unpaid, Partial, or Paid automatically." },
   { q: "Can I manage multiple properties from one account?", a: "Yes. The Pro plan supports up to 10 properties and the Enterprise plan is unlimited. Each property has its own listing, photos, and pricing — and all reservations flow into a single shared calendar and dashboard." },
 ]
 

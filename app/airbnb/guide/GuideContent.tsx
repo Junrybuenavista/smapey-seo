@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect, useRef } from "react"
-import { CheckCircle2, Home, Users, CalendarRange, BedDouble, Sparkles, BarChart3, ChevronRight, Menu, X, ArrowLeft, BookOpen } from "lucide-react"
+import { CheckCircle2, Home, Users, CalendarRange, CalendarDays, Banknote, BedDouble, Sparkles, BarChart3, ChevronRight, Menu, X, ArrowLeft, BookOpen } from "lucide-react"
 import InternalLinks from "@/components/InternalLinks"
 
 const INK = "#161616"
@@ -18,7 +18,7 @@ const SECTIONS = [
     body: [
       "Open Properties in the dashboard and click Add Property. Fill in the name, property type (Apartment, House, Condo, Villa, Room, Studio, or Cabin), address, and description.",
       "Set the number of bedrooms, bathrooms, maximum guests, nightly rate, and cleaning fee. The cleaning fee is automatically added to the reservation total.",
-      "Upload a cover photo for each property. Toggle properties active or inactive — only active properties appear in the reservation form.",
+      "Upload a cover photo for each property — your properties display as photo cards with the nightly rate, beds, baths, and max guests at a glance. Toggle properties active or inactive; only active properties can take new bookings.",
     ],
   },
   {
@@ -40,8 +40,17 @@ const SECTIONS = [
     ],
   },
   {
+    icon: CalendarDays,
+    title: "4. See everything on the calendar",
+    body: [
+      "Open Calendar to see the whole month for every property at once — each property is a row, each day a column, and every stay appears as a color-coded bar: blue for Booked, amber for Checked In, green for Checked Out.",
+      "Click any empty day to create a booking for that property with the date already filled in — the fastest way to take a booking over the phone or from a Facebook message.",
+      "Click a reservation bar to see the guest, dates, and total, and check them in or out right from the calendar. Use the arrows to move between months; Today jumps you back.",
+    ],
+  },
+  {
     icon: BedDouble,
-    title: "4. Manage check-ins and check-outs",
+    title: "5. Manage check-ins and check-outs",
     body: [
       "When a guest arrives, open the reservation and click Check In. The status moves from Booked → Checked In.",
       "When the guest leaves, click Check Out. Status moves to Checked Out and the guest's total stay count and spend are updated immediately.",
@@ -49,8 +58,17 @@ const SECTIONS = [
     ],
   },
   {
+    icon: Banknote,
+    title: "6. Record payments as they come in",
+    body: [
+      "Every reservation has a payment ledger. Click Payments on any booking to see the total, what's been paid, and the remaining balance.",
+      "Record each payment with its amount, method (Cash, GCash, Maya, or Bank), date, and an optional note — for example a ₱1,000 GCash deposit today and the cash balance at check-in.",
+      "The payment status updates itself: Unpaid until the first payment, Partial while a balance remains, and Paid the moment the ledger covers the total. No more guessing who still owes you.",
+    ],
+  },
+  {
     icon: Sparkles,
-    title: "5. Track cleaning between stays",
+    title: "7. Track cleaning between stays",
     body: [
       "After a guest checks out, the property is available for the next booking. Use the Staff Notes field on the reservation to log cleaning instructions or turnaround requirements.",
       "Filter the reservation list by Checked Out status to see which properties need a turnover. Sort by checkout date to prioritize upcoming same-day or next-day arrivals.",
@@ -59,7 +77,7 @@ const SECTIONS = [
   },
   {
     icon: BarChart3,
-    title: "6. Monitor revenue and occupancy",
+    title: "8. Monitor revenue and occupancy",
     body: [
       "The dashboard shows monthly revenue, occupancy rate, total reservations, average nightly rate, and pending check-ins — all updated in real time.",
       "Revenue totals pull from Checked Out and Checked In reservations with Paid or Partial payment status, giving you an accurate picture of earned income.",
@@ -159,7 +177,7 @@ export default function GuideContent() {
             How to manage your Airbnb with Smapey
           </h1>
           <p className="text-lg leading-relaxed" style={{ color: "#54514c" }}>
-            A step-by-step walkthrough covering properties, guests, reservations, check-ins, cleaning coordination, and revenue analytics.
+            A step-by-step walkthrough covering properties, guests, reservations, the availability calendar, check-ins, payments, cleaning coordination, and revenue analytics.
           </p>
           <div className="flex flex-wrap items-center justify-center gap-6 text-xs font-semibold mt-8" style={{ color: "#54514c" }}>
             {["5-minute setup", "No training required", "Free plan available"].map((t) => (
@@ -224,7 +242,7 @@ export default function GuideContent() {
           <div className="rounded-[28px] border-2 p-10 flex flex-col md:flex-row items-center justify-between gap-6" style={{ background: AMBER, borderColor: INK, boxShadow: `10px 10px 0 ${INK}` }}>
             <div>
               <h3 className="text-2xl font-extrabold mb-2" style={{ color: INK }}>Ready to get started?</h3>
-              <p className="text-sm font-medium" style={{ color: "#5c4a28" }}>Free plan — 3 properties, 20 reservations/month. No credit card required.</p>
+              <p className="text-sm font-medium" style={{ color: "#5c4a28" }}>Free plan — 2 properties, 10 reservations/month. No credit card required.</p>
             </div>
             <a href={REGISTER_URL} className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full font-bold text-sm border-2 transition-transform hover:-translate-y-0.5 shrink-0" style={{ ...display, background: INK, color: "#fff", borderColor: INK }}>
               Start free <ChevronRight className="w-4 h-4" />

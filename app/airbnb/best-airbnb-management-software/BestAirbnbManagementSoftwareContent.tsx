@@ -38,7 +38,7 @@ const COMPARISON = [
 const FAQS = [
   { q: "What makes Smapey the best Airbnb management software for small hosts?", a: "Smapey focuses on what independent hosts actually need: a place to track their properties, guests, and bookings without paying for features built for hotel chains. It's free to start, simple to set up, and covers double-booking protection, payment tracking, and revenue analytics out of the box." },
   { q: "How does Smapey compare to channel managers?", a: "Channel managers sync your calendar across Airbnb, Booking.com, and other OTAs automatically. Smapey doesn't sync channels — instead, it's a single dashboard where you manually log each reservation after it's confirmed, regardless of which platform it came from. It's best for hosts who prefer a lightweight, centralized record over automated multi-platform sync." },
-  { q: "Is there a free plan?", a: "Yes. The free plan includes 3 properties, 20 reservations per month, and the full analytics dashboard — no credit card required." },
+  { q: "Is there a free plan?", a: "Yes. The free plan includes 2 properties, 10 reservations per month, and the full analytics dashboard — no credit card required." },
   { q: "Can I upgrade later?", a: "Yes. Start on the free plan and upgrade to Pro (10 properties, 3 team users, unlimited reservations) or Enterprise (unlimited everything) whenever your portfolio grows." },
 ]
 
@@ -282,7 +282,7 @@ function CTA() {
     <section className="py-24 px-6" style={{ background: "#fff", fontFamily: display.fontFamily }}>
       <Animate className="relative max-w-3xl mx-auto rounded-[30px] border-2 p-12 md:p-16 text-center" style={{ background: AMBER, borderColor: INK, boxShadow: `10px 10px 0 ${INK}` }}>
         <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight mb-4" style={{ color: INK }}>Try the best Airbnb management software for free</h2>
-        <p className="mb-8 font-medium" style={{ color: "#5c4a28" }}>Free forever. No credit card. Start with 3 properties and see if it fits.</p>
+        <p className="mb-8 font-medium" style={{ color: "#5c4a28" }}>Free forever. No credit card. Start with 2 properties and see if it fits.</p>
         <a href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=AIRBNB&plan=FREE`} className="inline-flex items-center gap-2 px-8 py-4 rounded-full font-bold border-2 transition-transform hover:-translate-y-0.5" style={{ ...display, background: INK, color: "#fff", borderColor: INK }}>Get started for free <ChevronRight className="w-4 h-4" /></a>
       </Animate>
     </section>
