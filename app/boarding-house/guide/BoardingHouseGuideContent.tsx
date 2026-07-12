@@ -36,7 +36,7 @@ const SECTIONS = [
       { title: "Open the Tenants page", desc: "Navigate to Boarding House → Tenants from the sidebar. This is where all your tenant records live." },
       { title: "Click Add Tenant", desc: "Enter the tenant's full name, contact number, and email address. Add an emergency contact name and phone number — important if you ever need to reach someone on their behalf." },
       { title: "Add ID information", desc: "Record the tenant's government ID type and ID number for verification purposes. This stays stored in their profile and is useful for move-out documentation or disputes." },
-      { title: "View a tenant's profile", desc: "Click View on any tenant to see their full record — current room assignment, tenancy history, all rent bills, utility bills, and payment records in one place." },
+      { title: "Open a tenant's ledger", desc: "Click Ledger on any tenant for their full statement of account — original move-in date, deposit with paid/unpaid status, every stay and transfer they've made, and a month-by-month payment table with billed, paid, balance, and totals." },
     ],
   },
   {
@@ -46,6 +46,8 @@ const SECTIONS = [
     steps: [
       { title: "Move a tenant in from the Rooms page", desc: "Click any vacant bed or slot on a room card and the move-in form opens with the room (and bed) already selected. Pick the tenant, set the move-in date, and confirm the rate — it defaults from the bed or room. Record the deposit amount and whether it's been paid." },
       { title: "Move a tenant out from the Rooms page", desc: "Click an occupied bed, avatar, or occupant on a room card to see their details — phone, move-in date, rate, and deposit status — then click Move Out. The bed or slot is freed instantly and the dashboard occupancy updates." },
+      { title: "Transfer a tenant to another room or bed", desc: "In that same occupant popup, click Transfer. Pick the target room and bed, the date, and optionally a new rate — it defaults from the new spot. The old stay closes, a new one opens, and the deposit carries over automatically." },
+      { title: "Swap two tenants", desc: "Want to trade an upper deck for a lower deck, or exchange two rooms, even with zero vacancy? In the Transfer dialog choose 'Swap With Another Tenant' — both tenants trade places in one step, each keeping their own deposit and taking their new spot's rate." },
       { title: "Review Stay History", desc: "Navigate to Boarding House → Stay History for the full ledger of stays. Filter by Active or Moved Out to see who lived in which room and bed, for how long, at what rate, and their deposit status. Your paper trail for disputes." },
       { title: "Fix a record", desc: "Click Edit on any row in Stay History to correct the move-in date, monthly rate, deposit amount or paid status, bed assignment, or notes. On moved-out records you can also fix the move-out date. Rate changes only affect future bills." },
     ],
@@ -56,9 +58,10 @@ const SECTIONS = [
     title: "4. Rent Billing",
     steps: [
       { title: "Open the Rent Bills page", desc: "Navigate to Boarding House → Rent Bills from the sidebar. This is where you create and manage all monthly rent bills." },
-      { title: "Create a rent bill", desc: "Click New Rent Bill. Select the tenant, enter the billing month, amount, and due date. The system pre-fills the amount from the tenancy's agreed monthly rate — adjust if needed. Click Save to issue the bill." },
-      { title: "Record a payment", desc: "Click Pay on any unpaid or partially paid bill. Enter the amount received and select the payment method: Cash, GCash, Maya, Card, or Bank Transfer. If the amount is less than the total, the bill is marked Partially Paid and the remaining balance is tracked." },
-      { title: "Monitor overdue bills", desc: "Any bill past its due date with an outstanding balance is automatically flagged on the dashboard's Overdue Rent Bills panel — tenant name, room, due date, and amount. No manual checking needed." },
+      { title: "Generate the month's bills in one click", desc: "Click Generate and pick the month — a bill is created for every active tenant, each due on their own move-in day of the month (or tick 'one due day for everyone'). Already-billed tenants and anyone who moved in later are skipped automatically." },
+      { title: "Record a payment", desc: "Click Pay on any unpaid or partially paid bill. Enter the amount received and select the payment method: Cash, GCash, Maya, Card, or Bank Transfer. If the amount is less than the total, the bill is marked Partial and the remaining balance is tracked until it's settled." },
+      { title: "Overdue is automatic", desc: "Any bill past its due date with an outstanding balance flips to Overdue on its own the moment you open the Rent Bills page or dashboard — no button to press. The dashboard's Overdue panel lists tenant, room, due date, and amount." },
+      { title: "Fix mistakes safely", desc: "Created a bill by accident? Delete removes it — but only while no payment has been recorded. Once money is received, the bill becomes part of your records and can't be deleted, protecting your payment history." },
     ],
   },
   {
@@ -67,7 +70,7 @@ const SECTIONS = [
     title: "5. Utility Billing",
     steps: [
       { title: "Open the Utility Bills page", desc: "Navigate to Boarding House → Utility Bills from the sidebar. Utility bills are created separately from rent so tenants can clearly see what they owe for electricity, water, or internet." },
-      { title: "Create a utility bill", desc: "Click New Utility Bill. Select the tenant, choose the utility type (Electricity, Water, Internet, or Other), enter the billing month, amount, and due date. Each utility is its own bill — you can create multiple utility bills per tenant per month." },
+      { title: "Create a utility bill", desc: "Click New Utility Bill. Select the room, choose the utility type (Electricity, Water, Internet, or Other), enter the billing month and amount. Pick 'Other' and a Label field appears — name it Cable TV, Garbage, or Association dues and that name shows on the bill instead of a generic 'Other'." },
       { title: "Record utility payments", desc: "Same as rent — click Pay, enter the amount received, and select the payment method. Partial utility payments are tracked just like rent." },
       { title: "Review utility history", desc: "A tenant's profile shows all their utility bills alongside their rent bills in a single view — so you can see their full payment history at a glance without switching pages." },
     ],
