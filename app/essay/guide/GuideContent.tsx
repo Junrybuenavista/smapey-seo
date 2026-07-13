@@ -141,7 +141,7 @@ function SectionOverview() {
       <h2 className="text-2xl sm:text-3xl font-extrabold mb-4 tracking-tight" style={{ color: INK }}>Welcome to Smapey Essay</h2>
       <p className="leading-relaxed mb-6" style={{ color: "#54514c" }}>
         Smapey Essay is an AI-powered essay grading tool for teachers. It evaluates student essays using a
-        standard 5-point rubric across 5 dimensions — in seconds. This guide walks you through every feature from start to finish.
+        standard 5-point rubric across 5 dimensions, in seconds. This guide walks you through every feature from start to finish.
       </p>
       <div className="grid sm:grid-cols-3 gap-4 mb-8">
         {[
@@ -179,11 +179,11 @@ function SectionAssignments() {
             {[
               { label: "Assignment Title", desc: 'A short name like "Unit 3 Essay" or "Midterm Writing"' },
               { label: "Essay Question / Topic", desc: "The exact question or prompt students will write about" },
-              { label: "Model / Perfect Answer", desc: "Write an ideal answer — the AI compares every student essay against this" },
+              { label: "Model / Perfect Answer", desc: "Write an ideal answer, the AI compares every student essay against this" },
             ].map(({ label, desc }) => (
               <li key={label} className="flex gap-2">
                 <CheckCircle2 className="w-4 h-4 shrink-0 mt-0.5" style={{ color: BLUE }} />
-                <span><strong>{label}</strong> — {desc}</span>
+                <span><strong>{label}</strong>, {desc}</span>
               </li>
             ))}
           </ul>
@@ -223,7 +223,7 @@ function SectionEvaluate() {
       <p className="text-sm mb-6" style={{ color: "#54514c" }}>Once an assignment exists, you can submit any student&apos;s essay for instant AI grading.</p>
       <div className="space-y-0 mb-8">
         <Step number={1} title="Open an assignment"><p>Click the <strong>Evaluate</strong> button on any assignment card in the list.</p></Step>
-        <Step number={2} title="Enter the student's name (optional)"><p>Type the student&apos;s name or leave it blank — they&apos;ll appear as <em>Anonymous</em> in results.</p></Step>
+        <Step number={2} title="Enter the student's name (optional)"><p>Type the student&apos;s name or leave it blank - they&apos;ll appear as <em>Anonymous</em> in results.</p></Step>
         <Step number={3} title="Paste or type the student's essay"><p>Either type the essay directly into the text area, or use the <strong>Upload Image</strong> or <strong>Open Camera</strong> buttons to scan a handwritten essay (see Section 3).</p></Step>
         <Step number={4} title='Click "Evaluate Essay"'>
           <p>The AI processes the essay in seconds and returns:</p>
@@ -304,7 +304,7 @@ function SectionCamera() {
       </div>
       <Callout icon={Camera} title="Best results for camera scanning" color="indigo">
         <ul className="space-y-1 mt-1">
-          <li>• Use good lighting — avoid shadows over the paper</li>
+          <li>• Use good lighting, avoid shadows over the paper</li>
           <li>• Keep the paper flat and the camera parallel to it</li>
           <li>• Make sure all text fits within the camera frame</li>
           <li>• Darker ink on white paper gives the best OCR accuracy</li>
@@ -322,7 +322,7 @@ function SectionResults() {
       <div className="space-y-0 mb-8">
         <Step number={1} title='Switch to the "Student Results" tab'><p>Click <strong>Student Results</strong> at the top of the Essay Feedback page.</p></Step>
         <Step number={2} title="Filter by assignment"><p>Use the <strong>Filter by Assignment</strong> dropdown to narrow results to one specific assignment. Hit <strong>Clear</strong> to show all.</p></Step>
-        <Step number={3} title="View a submission"><p>Click the <Eye className="w-3.5 h-3.5 inline mx-0.5" style={{ color: BLUE }} /> <strong>View</strong> icon to open the full result — score, rubric breakdown, strengths, and suggestions.</p></Step>
+        <Step number={3} title="View a submission"><p>Click the <Eye className="w-3.5 h-3.5 inline mx-0.5" style={{ color: BLUE }} /> <strong>View</strong> icon to open the full result - score, rubric breakdown, strengths, and suggestions.</p></Step>
         <Step number={4} title="Delete a submission"><p>Click the <Trash2 className="w-3.5 h-3.5 inline text-red-400 mx-0.5" /> <strong>Delete</strong> icon to permanently remove a result. A confirmation will appear before deletion.</p></Step>
       </div>
       <MockUI label="Student Results Table">
@@ -373,7 +373,7 @@ function SectionDashboard() {
           </div>
         ))}
       </div>
-      <p className="text-sm mb-3" style={{ color: "#54514c" }}>The dashboard also shows a <strong>score distribution bar</strong> — how many students scored 1 through 5:</p>
+      <p className="text-sm mb-3" style={{ color: "#54514c" }}>The dashboard also shows a <strong>score distribution bar</strong>, how many students scored 1 through 5:</p>
       <MockUI label="Score Distribution">
         <div className="space-y-2">
           {[
@@ -400,12 +400,12 @@ function SectionDashboard() {
 
 function SectionTips() {
   const tips = [
-    { title: "Write a detailed model answer", desc: "A longer, well-structured model answer gives the AI more context to compare against — resulting in more precise rubric scores." },
+    { title: "Write a detailed model answer", desc: "A longer, well-structured model answer gives the AI more context to compare against - resulting in more precise rubric scores." },
     { title: "Use consistent student names", desc: "Always enter the same name format (e.g. 'Juan dela Cruz') so you can easily filter and track a student's progress across assignments." },
     { title: "Scan in good lighting", desc: "When using the camera for handwritten essays, natural light or bright overhead lighting reduces OCR errors significantly." },
     { title: "Review AI feedback with students", desc: "Share the rubric scores and suggestions directly with students. The specific per-criterion feedback is designed to be readable by students." },
-    { title: "Create one assignment per topic", desc: "Keep assignments focused — one question per assignment. This keeps results organized and makes filtering in Student Results easy." },
-    { title: "Use the score distribution to spot trends", desc: "If many students score 1–2 on a specific criterion, it signals a gap in teaching — not just a student issue." },
+    { title: "Create one assignment per topic", desc: "Keep assignments focused - one question per assignment. This keeps results organized and makes filtering in Student Results easy." },
+    { title: "Use the score distribution to spot trends", desc: "If many students score 1–2 on a specific criterion, it signals a gap in teaching - not just a student issue." },
   ]
   return (
     <section id="tips" className="scroll-mt-24 mb-16">
@@ -451,7 +451,7 @@ export default function GuideContent() {
           </div>
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight mb-4" style={{ color: INK }}>How to use Smapey Essay</h1>
           <p className="max-w-xl mx-auto text-base leading-relaxed mb-8" style={{ color: "#54514c" }}>
-            Everything you need to know — from creating your first assignment to reading AI feedback and tracking student progress.
+            Everything you need to know, from creating your first assignment to reading AI feedback and tracking student progress.
           </p>
           <a href={REGISTER_URL} className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full font-bold text-sm border-2 transition-transform hover:-translate-y-0.5" style={{ ...display, background: AMBER, color: INK, borderColor: INK, boxShadow: `4px 4px 0 ${INK}` }}>
             Get started free <ChevronRight className="w-4 h-4" />

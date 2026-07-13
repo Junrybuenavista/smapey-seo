@@ -21,7 +21,7 @@ export default function Footer() {
             </div>
             <p className="text-sm text-gray-600 mt-4 leading-relaxed">
               Simple business software built for small businesses. Invoicing,
-              gym management, booking, car rental, and essay grading — all in
+              gym management, booking, car rental, and essay grading, all in
               one place.
             </p>
             <Link

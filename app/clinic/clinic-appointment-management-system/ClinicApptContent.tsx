@@ -15,19 +15,19 @@ const CREAM = "#fbf7f0"
 const display = { fontFamily: "'Hanken Grotesk', system-ui, sans-serif" }
 
 const FEATURES = [
-  { icon: CalendarDays, title: "One-Click Appointment Booking", desc: "Book appointments by selecting a patient, doctor, date, and time. Add a chief complaint and notes in seconds — no paper forms, no back-and-forth." },
-  { icon: Stethoscope, title: "Doctor Assignment", desc: "Assign every appointment to the right doctor. The system tracks each doctor's bookings separately — no clashes, no confusion." },
-  { icon: ListOrdered, title: "Live Appointment Queue", desc: "A real-time board that shows Waiting, In Consultation, and Done — updated the moment your staff takes action. No reloading, no guessing." },
+  { icon: CalendarDays, title: "One-Click Appointment Booking", desc: "Book appointments by selecting a patient, doctor, date, and time. Add a chief complaint and notes in seconds - no paper forms, no back-and-forth." },
+  { icon: Stethoscope, title: "Doctor Assignment", desc: "Assign every appointment to the right doctor. The system tracks each doctor's bookings separately - no clashes, no confusion." },
+  { icon: ListOrdered, title: "Live Appointment Queue", desc: "A real-time board that shows Waiting, In Consultation, and Done - updated the moment your staff takes action. No reloading, no guessing." },
   { icon: Clock, title: "Status Workflow", desc: "Move appointments through Pending → Confirmed → In Queue → In Progress → Completed. Track cancellations and no-shows without any manual logging." },
-  { icon: BarChart3, title: "Appointment Analytics", desc: "See today's totals, weekly completion trends, and monthly booking volumes — all on a single dashboard. Know when your clinic is busiest." },
-  { icon: Shield, title: "Secure Records", desc: "Every appointment, patient record, and note is stored securely in your isolated clinic account — encrypted and inaccessible to other businesses." },
+  { icon: BarChart3, title: "Appointment Analytics", desc: "See today's totals, weekly completion trends, and monthly booking volumes - all on a single dashboard. Know when your clinic is busiest." },
+  { icon: Shield, title: "Secure Records", desc: "Every appointment, patient record, and note is stored securely in your isolated clinic account - encrypted and inaccessible to other businesses." },
 ]
 
 const FAQS = [
-  { q: "What is a clinic appointment management system?", a: "It's software that handles the full lifecycle of a clinic appointment — from booking and doctor assignment through to completion or cancellation. It replaces paper appointment books and scattered spreadsheets." },
-  { q: "Can I filter appointments by doctor or date?", a: "Yes. The appointments page lets you filter by doctor, date, status, or search by patient name — so you always find exactly what you need." },
+  { q: "What is a clinic appointment management system?", a: "It's software that handles the full lifecycle of a clinic appointment, from booking and doctor assignment through to completion or cancellation. It replaces paper appointment books and scattered spreadsheets." },
+  { q: "Can I filter appointments by doctor or date?", a: "Yes. The appointments page lets you filter by doctor, date, status, or search by patient name, so you always find exactly what you need." },
   { q: "What statuses can an appointment go through?", a: "Appointments move through: Pending → Confirmed → In Queue → In Progress → Completed. You can also mark a patient as Cancelled or No Show at any stage." },
-  { q: "How many appointments can I manage per month?", a: "The free plan includes a monthly appointment limit. Pro and Enterprise plans have higher or unlimited appointment quotas — check the pricing section above." },
+  { q: "How many appointments can I manage per month?", a: "The free plan includes a monthly appointment limit. Pro and Enterprise plans have higher or unlimited appointment quotas, check the pricing section above." },
 ]
 
 function useInView(options?: IntersectionObserverInit) {
@@ -106,10 +106,10 @@ function Hero() {
         <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.04] tracking-tight mb-6" style={{ color: INK }}>
           Clinic appointment management <span style={{ color: BLUE }}>from booking to done</span>
         </h1>
-        <p className="text-lg max-w-2xl mx-auto mb-10 leading-relaxed" style={{ color: "#54514c" }}>Smapey handles the full appointment lifecycle — book, confirm, queue, consult, complete. Every step tracked, every doctor covered, all in one place.</p>
+        <p className="text-lg max-w-2xl mx-auto mb-10 leading-relaxed" style={{ color: "#54514c" }}>Smapey handles the full appointment lifecycle, book, confirm, queue, consult, complete. Every step tracked, every doctor covered, all in one place.</p>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
           <a href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=CLINIC&plan=FREE`} className="flex items-center gap-2 px-7 py-4 rounded-full font-bold text-sm border-2 transition-transform hover:-translate-y-0.5" style={{ ...display, background: AMBER, color: INK, borderColor: INK, boxShadow: `4px 4px 0 ${INK}` }}>
-            Start free — no card needed <ChevronRight className="w-4 h-4" />
+            Start free, no card needed <ChevronRight className="w-4 h-4" />
           </a>
           <a href="/clinic" className="flex items-center gap-2 px-7 py-4 rounded-full font-bold text-sm border-2 bg-white transition-transform hover:-translate-y-0.5" style={{ ...display, color: INK, borderColor: INK }}>View all features</a>
         </div>
@@ -128,7 +128,7 @@ function Features() {
         <Animate className="text-center mb-16">
           <p className="text-sm font-bold uppercase tracking-widest mb-3" style={{ color: BLUE }}>Features</p>
           <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight" style={{ color: INK }}>Manage every appointment end to end</h2>
-          <p className="mt-4 max-w-xl mx-auto" style={{ color: "#54514c" }}>From the first booking to the final completed status — every step handled in one system.</p>
+          <p className="mt-4 max-w-xl mx-auto" style={{ color: "#54514c" }}>From the first booking to the final completed status, every step handled in one system.</p>
         </Animate>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {FEATURES.map(({ icon: Icon, title, desc }, i) => {
@@ -307,7 +307,7 @@ function PaymentModal({ plan, isPhilippines, onClose }: { plan: { name: string; 
         <div className="px-6 py-5 flex items-center justify-between" style={{ background: INK }}>
           <div className="flex items-center gap-3">
             {step === "payment" && !token && <button onClick={() => setStep("details")} className="text-white/70 hover:text-white transition"><svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}><path d="M19 12H5M12 5l-7 7 7 7"/></svg></button>}
-            <div><h2 className="text-white font-extrabold text-lg">{step === "details" ? "Create your account" : "Choose payment method"}</h2><p className="text-sm mt-0.5" style={{ color: "rgba(255,255,255,.7)" }}>{plan.name} plan — <span className="font-bold" style={{ color: AMBER }}>{displayPrice}</span>{plan.period}</p></div>
+            <div><h2 className="text-white font-extrabold text-lg">{step === "details" ? "Create your account" : "Choose payment method"}</h2><p className="text-sm mt-0.5" style={{ color: "rgba(255,255,255,.7)" }}>{plan.name} plan, <span className="font-bold" style={{ color: AMBER }}>{displayPrice}</span>{plan.period}</p></div>
           </div>
           <button onClick={onClose} className="text-white/70 hover:text-white transition-colors"><X className="w-5 h-5" /></button>
         </div>

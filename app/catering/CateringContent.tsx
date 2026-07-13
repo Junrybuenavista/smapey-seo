@@ -18,24 +18,24 @@ const CREAM = "#fbf7f0"
 const display = { fontFamily: "'Hanken Grotesk', system-ui, sans-serif" }
 
 const FEATURES = [
-  { icon: CalendarDays, title: "Event Booking Management", desc: "Create and track every catering booking from inquiry to completion. Set event date, venue, guest count, status, and notes — the dashboard keeps every upcoming event in view." },
-  { icon: Users, title: "Client Profiles", desc: "Register clients with full contact details and keep a booking history per client. Returning clients are already in the system — no re-entering the same information twice." },
+  { icon: CalendarDays, title: "Event Booking Management", desc: "Create and track every catering booking from inquiry to completion. Set event date, venue, guest count, status, and notes - the dashboard keeps every upcoming event in view." },
+  { icon: Users, title: "Client Profiles", desc: "Register clients with full contact details and keep a booking history per client. Returning clients are already in the system - no re-entering the same information twice." },
   { icon: Package, title: "Package & Menu Builder", desc: "Build your catering packages with name, description, and price per head. Assign one or more packages to each booking so your team always knows what's been quoted." },
-  { icon: Banknote, title: "Payment Milestones", desc: "Break each booking's payment into milestones — reservation fee, partial payment, and full settlement. Record the method (Cash, GCash, Maya, Bank Transfer) and track what's still outstanding." },
+  { icon: Banknote, title: "Payment Milestones", desc: "Break each booking's payment into milestones - reservation fee, partial payment, and full settlement. Record the method (Cash, GCash, Maya, Bank Transfer) and track what's still outstanding." },
   { icon: FlaskConical, title: "Supply Catalog", desc: "Maintain a catalog of ingredients and supplies with unit type and cost per unit. Link supplies to packages to estimate food cost and know exactly what to procure before each event." },
-  { icon: UserCheck, title: "Staff Assignment", desc: "Assign staff members to each booking — head cook, waiters, coordinators. Everyone on the team knows their event roster without a separate group chat." },
-  { icon: BarChart3, title: "Revenue Dashboard", desc: "See upcoming events, revenue this month, payments collected, and overdue milestones — all on one screen. Monthly revenue trend chart so you can spot your busy season at a glance." },
+  { icon: UserCheck, title: "Staff Assignment", desc: "Assign staff members to each booking - head cook, waiters, coordinators. Everyone on the team knows their event roster without a separate group chat." },
+  { icon: BarChart3, title: "Revenue Dashboard", desc: "See upcoming events, revenue this month, payments collected, and overdue milestones - all on one screen. Monthly revenue trend chart so you can spot your busy season at a glance." },
   { icon: Clock, title: "Booking Status Tracking", desc: "Move bookings through Pending → Confirmed → Completed or Cancelled. The system auto-settles outstanding milestones when a booking is marked complete." },
   { icon: Shield, title: "Secure & Isolated", desc: "Each catering business gets its own isolated data space. Your client list, bookings, and payment history are never shared with anyone else." },
 ]
 
 const FAQS = [
-  { q: "What is catering management software?", a: "Catering management software is a digital tool that helps catering businesses in the Philippines manage event bookings, client information, packages and menus, payment collection, supply catalogs, and staff assignments — all in one dashboard instead of spreadsheets and paper records." },
-  { q: "Can I track multiple events at the same time?", a: "Yes. You can have as many simultaneous bookings as your plan allows. Each booking has its own status, assigned packages, payment milestones, and staff list — all visible from the main bookings list." },
-  { q: "How do payment milestones work?", a: "You create milestones per booking — for example, a 30% reservation fee, a 50% partial payment two weeks before the event, and the remaining balance on event day. Each milestone tracks amount, due date, payment method, and paid/unpaid status. When a booking is marked Completed, all outstanding milestones are auto-settled." },
+  { q: "What is catering management software?", a: "Catering management software is a digital tool that helps catering businesses in the Philippines manage event bookings, client information, packages and menus, payment collection, supply catalogs, and staff assignments, all in one dashboard instead of spreadsheets and paper records." },
+  { q: "Can I track multiple events at the same time?", a: "Yes. You can have as many simultaneous bookings as your plan allows. Each booking has its own status, assigned packages, payment milestones, and staff list, all visible from the main bookings list." },
+  { q: "How do payment milestones work?", a: "You create milestones per booking, for example, a 30% reservation fee, a 50% partial payment two weeks before the event, and the remaining balance on event day. Each milestone tracks amount, due date, payment method, and paid/unpaid status. When a booking is marked Completed, all outstanding milestones are auto-settled." },
   { q: "Can I manage my supply catalog and estimate food cost?", a: "Yes. The supply catalog lets you add ingredients and materials with unit type (kg, liters, pieces) and cost per unit. You can link supplies to packages to estimate procurement cost per booking." },
-  { q: "Is it suitable for a small catering business in the Philippines?", a: "Absolutely. Smapey Catering Manager is built for small to mid-sized Philippine catering businesses — from solo operators handling weekend events to teams running 10+ bookings a month. The free plan lets you get started at no cost." },
-  { q: "Is there a free plan?", a: "Yes. The free plan lets you manage a small catering operation with bookings, client profiles, packages, a supply catalog, payment milestones, and staff assignments — at no cost." },
+  { q: "Is it suitable for a small catering business in the Philippines?", a: "Absolutely. Smapey Catering Manager is built for small to mid-sized Philippine catering businesses, from solo operators handling weekend events to teams running 10+ bookings a month. The free plan lets you get started at no cost." },
+  { q: "Is there a free plan?", a: "Yes. The free plan lets you manage a small catering operation with bookings, client profiles, packages, a supply catalog, payment milestones, and staff assignments, at no cost." },
 ]
 
 function useInView(options?: IntersectionObserverInit) {
@@ -121,7 +121,7 @@ function Hero() {
       </div>
 
       <div className="relative w-full max-w-6xl mx-auto px-6 py-24 grid lg:grid-cols-[1fr_1fr] gap-12 lg:gap-16 items-center">
-        {/* LEFT — copy */}
+        {/* LEFT, copy */}
         <div className="min-w-0 text-center lg:text-left">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border-2 text-xs font-bold mb-7" style={{ color: INK, borderColor: INK, boxShadow: `3px 3px 0 ${BLUE}` }}>
             <Zap className="w-3 h-3" />
@@ -138,7 +138,7 @@ function Hero() {
           </h1>
 
           <p className="text-lg max-w-md mx-auto lg:mx-0 mb-9 leading-relaxed" style={{ color: "#54514c" }}>
-            Manage bookings, menus, headcounts, ingredients, and staff from one screen. Smapey keeps every event on schedule so nothing — and no one — gets left behind.
+            Manage bookings, menus, headcounts, ingredients, and staff from one screen. Smapey keeps every event on schedule so nothing (and no one) gets left behind.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center lg:justify-start justify-center gap-3 mb-9">
@@ -157,7 +157,7 @@ function Hero() {
           </div>
         </div>
 
-        {/* RIGHT — event booking card */}
+        {/* RIGHT, event booking card */}
         <div className="relative min-w-0 w-full max-w-md mx-auto">
           {/* floating new-booking chip */}
           <div className="absolute z-10 flex items-center gap-2 bg-white border-2 rounded-full px-3.5 py-2" style={{ top: -20, right: -16, borderColor: INK, boxShadow: `4px 4px 0 ${BLUE}`, transform: "rotate(4deg)" }}>
@@ -190,7 +190,7 @@ function Hero() {
               </div>
 
               {/* menu chips */}
-              <div className="flex items-center gap-1.5 text-[11px] font-bold mb-2" style={{ color: "#54514c" }}><ChefHat className="w-3.5 h-3.5" style={{ color: AMBER }} />Menu — Premium Buffet</div>
+              <div className="flex items-center gap-1.5 text-[11px] font-bold mb-2" style={{ color: "#54514c" }}><ChefHat className="w-3.5 h-3.5" style={{ color: AMBER }} />Menu, Premium Buffet</div>
               <div className="flex flex-wrap gap-2 mb-5">
                 {menu.map((m) => (
                   <span key={m} className="text-[12px] font-bold px-3 py-1.5 rounded-full border-2" style={{ background: "#fff", borderColor: INK, color: INK }}>{m}</span>
@@ -237,7 +237,7 @@ function Features() {
         <Animate className="text-center mb-16">
           <p className="text-sm font-bold uppercase tracking-widest mb-3" style={{ color: BLUE }}>Features</p>
           <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight" style={{ color: INK }}>Everything a Philippine catering business needs</h2>
-          <p className="mt-4 max-w-xl mx-auto" style={{ color: "#54514c" }}>From the first client inquiry to the last payment milestone — Smapey Catering Manager keeps every event organized without the chaos of spreadsheets and group chats.</p>
+          <p className="mt-4 max-w-xl mx-auto" style={{ color: "#54514c" }}>From the first client inquiry to the last payment milestone, Smapey Catering Manager keeps every event organized without the chaos of spreadsheets and group chats.</p>
         </Animate>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {FEATURES.map(({ icon: Icon, title, desc }, i) => {
@@ -416,7 +416,7 @@ function PaymentModal({ plan, isPhilippines, onClose }: { plan: { name: string; 
         <div className="px-6 py-5 flex items-center justify-between" style={{ background: INK }}>
           <div className="flex items-center gap-3">
             {step === "payment" && !token && <button onClick={() => setStep("details")} className="text-white/70 hover:text-white transition"><svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}><path d="M19 12H5M12 5l-7 7 7 7"/></svg></button>}
-            <div><h2 className="text-white font-extrabold text-lg">{step === "details" ? "Create your account" : "Choose payment method"}</h2><p className="text-sm mt-0.5" style={{ color: "rgba(255,255,255,.7)" }}>{plan.name} plan — <span className="font-bold" style={{ color: AMBER }}>{displayPrice}</span>{plan.period}</p></div>
+            <div><h2 className="text-white font-extrabold text-lg">{step === "details" ? "Create your account" : "Choose payment method"}</h2><p className="text-sm mt-0.5" style={{ color: "rgba(255,255,255,.7)" }}>{plan.name} plan, <span className="font-bold" style={{ color: AMBER }}>{displayPrice}</span>{plan.period}</p></div>
           </div>
           <button onClick={onClose} className="text-white/70 hover:text-white transition-colors"><X className="w-5 h-5" /></button>
         </div>

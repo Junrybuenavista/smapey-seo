@@ -15,17 +15,17 @@ const CREAM = "#fbf7f0"
 const display = { fontFamily: "'Hanken Grotesk', system-ui, sans-serif" }
 
 const FEATURES = [
-  { icon: Users, title: "Patient Information Records", desc: "Store complete patient profiles — name, contact, date of birth, allergies, conditions, and clinical notes. Search and retrieve any record in seconds." },
-  { icon: CalendarDays, title: "Appointment History", desc: "Every appointment — past, present, and future — is stored and linked to the patient. See the full visit history for any patient at any time." },
-  { icon: ClipboardList, title: "Doctor & Schedule Records", desc: "Maintain a complete directory of your doctors — specialties, contact details, availability slots, and the appointments assigned to each one." },
-  { icon: BarChart3, title: "Analytics & Reporting", desc: "Turn your clinic's data into insights — daily totals, weekly trends, monthly volumes, completion rates, and cancellation counts — all in real time." },
-  { icon: Database, title: "Centralized Data", desc: "All clinic information lives in one system — patients, doctors, appointments, and queue history. No more scattered spreadsheets or disconnected tools." },
+  { icon: Users, title: "Patient Information Records", desc: "Store complete patient profiles - name, contact, date of birth, allergies, conditions, and clinical notes. Search and retrieve any record in seconds." },
+  { icon: CalendarDays, title: "Appointment History", desc: "Every appointment (past, present, and future) is stored and linked to the patient. See the full visit history for any patient at any time." },
+  { icon: ClipboardList, title: "Doctor & Schedule Records", desc: "Maintain a complete directory of your doctors - specialties, contact details, availability slots, and the appointments assigned to each one." },
+  { icon: BarChart3, title: "Analytics & Reporting", desc: "Turn your clinic's data into insights - daily totals, weekly trends, monthly volumes, completion rates, and cancellation counts - all in real time." },
+  { icon: Database, title: "Centralized Data", desc: "All clinic information lives in one system - patients, doctors, appointments, and queue history. No more scattered spreadsheets or disconnected tools." },
   { icon: Shield, title: "Secure & Isolated Storage", desc: "Your clinic's information is encrypted at rest and in transit, stored in a fully isolated account. No sharing, no leakage to other businesses." },
 ]
 
 const FAQS = [
   { q: "What information does the system store?", a: "It stores patient profiles (name, contact, DOB, notes), doctor records (specialty, schedule, contact), appointment history (dates, doctors, status, chief complaints), and queue logs." },
-  { q: "Can I search for a specific patient?", a: "Yes. The patient directory has a real-time search by name or phone number. Results appear as you type — no need to scroll through a long list." },
+  { q: "Can I search for a specific patient?", a: "Yes. The patient directory has a real-time search by name or phone number. Results appear as you type, no need to scroll through a long list." },
   { q: "Is appointment history saved permanently?", a: "Yes. Every appointment, including completed and cancelled ones, is retained in your clinic's history. You can filter by date range, doctor, or status." },
   { q: "How is the data backed up?", a: "Your clinic's data is stored in a managed cloud database with regular automated backups. You don't need to manage backups yourself." },
 ]
@@ -106,10 +106,10 @@ function Hero() {
         <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.04] tracking-tight mb-6" style={{ color: INK }}>
           All your clinic information <span style={{ color: BLUE }}>organized in one place</span>
         </h1>
-        <p className="text-lg max-w-2xl mx-auto mb-10 leading-relaxed" style={{ color: "#54514c" }}>Patients, doctors, appointments, and analytics — stored securely, searchable instantly, and always up to date. No spreadsheets. No paper files.</p>
+        <p className="text-lg max-w-2xl mx-auto mb-10 leading-relaxed" style={{ color: "#54514c" }}>Patients, doctors, appointments, and analytics, stored securely, searchable instantly, and always up to date. No spreadsheets. No paper files.</p>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
           <a href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=CLINIC&plan=FREE`} className="flex items-center gap-2 px-7 py-4 rounded-full font-bold text-sm border-2 transition-transform hover:-translate-y-0.5" style={{ ...display, background: AMBER, color: INK, borderColor: INK, boxShadow: `4px 4px 0 ${INK}` }}>
-            Start free — no card needed <ChevronRight className="w-4 h-4" />
+            Start free, no card needed <ChevronRight className="w-4 h-4" />
           </a>
           <a href="/clinic" className="flex items-center gap-2 px-7 py-4 rounded-full font-bold text-sm border-2 bg-white transition-transform hover:-translate-y-0.5" style={{ ...display, color: INK, borderColor: INK }}>View all features</a>
         </div>
@@ -128,7 +128,7 @@ function Features() {
         <Animate className="text-center mb-16">
           <p className="text-sm font-bold uppercase tracking-widest mb-3" style={{ color: BLUE }}>Features</p>
           <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight" style={{ color: INK }}>Your complete clinic information hub</h2>
-          <p className="mt-4 max-w-xl mx-auto" style={{ color: "#54514c" }}>From patient records to doctor directories to appointment history — all organized, searchable, and secure.</p>
+          <p className="mt-4 max-w-xl mx-auto" style={{ color: "#54514c" }}>From patient records to doctor directories to appointment history, all organized, searchable, and secure.</p>
         </Animate>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {FEATURES.map(({ icon: Icon, title, desc }, i) => {
@@ -307,7 +307,7 @@ function PaymentModal({ plan, isPhilippines, onClose }: { plan: { name: string; 
         <div className="px-6 py-5 flex items-center justify-between" style={{ background: INK }}>
           <div className="flex items-center gap-3">
             {step === "payment" && !token && <button onClick={() => setStep("details")} className="text-white/70 hover:text-white transition"><svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}><path d="M19 12H5M12 5l-7 7 7 7"/></svg></button>}
-            <div><h2 className="text-white font-extrabold text-lg">{step === "details" ? "Create your account" : "Choose payment method"}</h2><p className="text-sm mt-0.5" style={{ color: "rgba(255,255,255,.7)" }}>{plan.name} plan — <span className="font-bold" style={{ color: AMBER }}>{displayPrice}</span>{plan.period}</p></div>
+            <div><h2 className="text-white font-extrabold text-lg">{step === "details" ? "Create your account" : "Choose payment method"}</h2><p className="text-sm mt-0.5" style={{ color: "rgba(255,255,255,.7)" }}>{plan.name} plan, <span className="font-bold" style={{ color: AMBER }}>{displayPrice}</span>{plan.period}</p></div>
           </div>
           <button onClick={onClose} className="text-white/70 hover:text-white transition-colors"><X className="w-5 h-5" /></button>
         </div>

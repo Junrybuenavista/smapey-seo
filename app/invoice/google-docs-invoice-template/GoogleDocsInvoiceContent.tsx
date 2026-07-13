@@ -21,7 +21,7 @@ export default function GoogleDocsInvoiceContent() {
           </h1>
 
           <p className="mt-6 text-lg text-gray-600 max-w-2xl mx-auto">
-            Download a free Google Docs invoice template and learn how to create professional invoices — or automate everything in seconds with modern invoicing software.
+            Download a free Google Docs invoice template and learn how to create professional invoices, or automate everything in seconds with modern invoicing software.
           </p>
 
           <div className="mt-8 flex justify-center gap-4 flex-wrap">
@@ -137,7 +137,7 @@ export default function GoogleDocsInvoiceContent() {
       <section className="py-20 text-center px-6">
         <div className="max-w-xl mx-auto bg-white border rounded-2xl p-10 shadow-sm">
           <h2 className="text-2xl font-semibold mb-4">
-            Stop Using Templates — Start Automating
+            Stop Using Templates, Start Automating
           </h2>
           <p className="text-gray-600 mb-6">
             Save time, reduce errors, and get paid faster with smart invoicing software.

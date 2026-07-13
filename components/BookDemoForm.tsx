@@ -136,7 +136,7 @@ export default function BookDemoForm({ product }: { product: string }) {
               See {productLabel} in action
             </h2>
             <p className="text-base mt-3 leading-relaxed" style={{ color: "#54514c" }}>
-              Leave your details and we&apos;ll walk you through the product personally — no pressure, no commitment.
+              Leave your details and we&apos;ll walk you through the product personally, no pressure, no commitment.
             </p>
           </div>
 
@@ -193,7 +193,7 @@ export default function BookDemoForm({ product }: { product: string }) {
   }
 
   // ─────────────────────────────────────────────────────────────
-  // DEFAULT VARIANT (all other products — unchanged)
+  // DEFAULT VARIANT (all other products, unchanged)
   // ─────────────────────────────────────────────────────────────
   return (
     <section id="book-demo" className={`${theme.section} py-16 px-6`}>
@@ -209,7 +209,7 @@ export default function BookDemoForm({ product }: { product: string }) {
             See {productLabel} in action
           </h2>
           <p className="text-slate-500 text-sm mt-2">
-            Leave your details and we&apos;ll walk you through the product personally — no pressure, no commitment.
+            Leave your details and we&apos;ll walk you through the product personally, no pressure, no commitment.
           </p>
         </div>
 

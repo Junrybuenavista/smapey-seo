@@ -15,11 +15,11 @@ const CREAM = "#fbf7f0"
 const display = { fontFamily: "'Hanken Grotesk', system-ui, sans-serif" }
 
 const FEATURES = [
-  { icon: UserCheck, title: "Therapist Profiles with Specialties", desc: "Each therapist gets a profile with their name, contact details, and specialties — Swedish, deep tissue, Thai, hot stone, prenatal. Clients see who's qualified for what they need." },
-  { icon: Star, title: "Client Picks Their Therapist", desc: "On the public booking page, clients optionally choose their preferred therapist. The request flows into your inbox so you can honor it on confirmation — building repeat loyalty." },
+  { icon: UserCheck, title: "Therapist Profiles with Specialties", desc: "Each therapist gets a profile with their name, contact details, and specialties - Swedish, deep tissue, Thai, hot stone, prenatal. Clients see who's qualified for what they need." },
+  { icon: Star, title: "Client Picks Their Therapist", desc: "On the public booking page, clients optionally choose their preferred therapist. The request flows into your inbox so you can honor it on confirmation - building repeat loyalty." },
   { icon: CalendarPlus, title: "Per-Therapist Appointment View", desc: "Filter the appointment list by therapist to see exactly who's busy today and who has open slots. Plan walk-ins, breaks, and lunch around real availability." },
-  { icon: Heart, title: "Client History per Therapist", desc: "When a client returns, their therapist sees the full session history — preferred pressure, focus areas, last treatment, allergies. Continuity that makes returning clients feel known." },
-  { icon: Users, title: "Roles & Permissions", desc: "Owners see everything — revenue, settings, all bookings. Each therapist can see only their own schedule and clients. No data leaks, no accidental edits." },
+  { icon: Heart, title: "Client History per Therapist", desc: "When a client returns, their therapist sees the full session history - preferred pressure, focus areas, last treatment, allergies. Continuity that makes returning clients feel known." },
+  { icon: Users, title: "Roles & Permissions", desc: "Owners see everything - revenue, settings, all bookings. Each therapist can see only their own schedule and clients. No data leaks, no accidental edits." },
   { icon: Globe, title: "Per-Therapist Booking Link", desc: "Share your spa's branded booking page, where clients can see the full therapist roster, pick their favorite, and book. Perfect for Instagram bios and therapist business cards." },
 ]
 
@@ -35,9 +35,9 @@ const COMPARISON = [
 
 const FAQS = [
   { q: "Can clients actually request a specific therapist when booking?", a: "Yes. On the public booking page, after picking a treatment, clients see an optional therapist selector with names and specialties. The request flows into your inquiry inbox so you can honor it when confirming the appointment." },
-  { q: "What if my preferred therapist is busy at the requested time?", a: "Smapey uses a request-and-confirm model — clients send a booking inquiry, you decide whether to accept it. If the requested therapist isn't available, you can reassign on confirmation and message the client. No double-booking, no automatic conflicts." },
-  { q: "Can each therapist see only their own bookings?", a: "Yes. Team members with the MEMBER role see only the appointments assigned to them — not the spa's full schedule or revenue. Owners and admins see everything. You control access through user roles." },
-  { q: "Does this work for solo massage therapists too?", a: "Absolutely. Solo therapists use Smapey to run their own branded booking page — your name, your services, your specialties, your clients. The free plan supports a solo practice with an optional second team member (often a receptionist or assistant)." },
+  { q: "What if my preferred therapist is busy at the requested time?", a: "Smapey uses a request-and-confirm model, clients send a booking inquiry, you decide whether to accept it. If the requested therapist isn't available, you can reassign on confirmation and message the client. No double-booking, no automatic conflicts." },
+  { q: "Can each therapist see only their own bookings?", a: "Yes. Team members with the MEMBER role see only the appointments assigned to them, not the spa's full schedule or revenue. Owners and admins see everything. You control access through user roles." },
+  { q: "Does this work for solo massage therapists too?", a: "Absolutely. Solo therapists use Smapey to run their own branded booking page, your name, your services, your specialties, your clients. The free plan supports a solo practice with an optional second team member (often a receptionist or assistant)." },
 ]
 
 function useInView(options?: IntersectionObserverInit) {
@@ -116,10 +116,10 @@ function Hero() {
         <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.04] tracking-tight mb-6" style={{ color: INK }}>
           The massage therapist booking app <span style={{ color: BLUE }}>built around your team</span>
         </h1>
-        <p className="text-lg max-w-2xl mx-auto mb-10 leading-relaxed" style={{ color: "#54514c" }}>Let clients pick their preferred therapist by specialty. Manage every therapist's schedule, history, and client preferences from one dashboard — built for spas, clinics, and independent therapists.</p>
+        <p className="text-lg max-w-2xl mx-auto mb-10 leading-relaxed" style={{ color: "#54514c" }}>Let clients pick their preferred therapist by specialty. Manage every therapist's schedule, history, and client preferences from one dashboard, built for spas, clinics, and independent therapists.</p>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
           <a href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=MASSAGE&plan=FREE`} className="flex items-center gap-2 px-7 py-4 rounded-full font-bold text-sm border-2 transition-transform hover:-translate-y-0.5" style={{ ...display, background: AMBER, color: INK, borderColor: INK, boxShadow: `4px 4px 0 ${INK}` }}>
-            Start free — no card needed <ChevronRight className="w-4 h-4" />
+            Start free, no card needed <ChevronRight className="w-4 h-4" />
           </a>
           <a href="/massage" className="flex items-center gap-2 px-7 py-4 rounded-full font-bold text-sm border-2 bg-white transition-transform hover:-translate-y-0.5" style={{ ...display, color: INK, borderColor: INK }}>View all features</a>
         </div>
@@ -330,7 +330,7 @@ function PaymentModal({ plan, isPhilippines, onClose }: { plan: { name: string; 
         <div className="px-6 py-5 flex items-center justify-between" style={{ background: INK }}>
           <div className="flex items-center gap-3">
             {step === "payment" && !token && <button onClick={() => setStep("details")} className="text-white/70 hover:text-white transition"><svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}><path d="M19 12H5M12 5l-7 7 7 7"/></svg></button>}
-            <div><h2 className="text-white font-extrabold text-lg">{step === "details" ? "Create your account" : "Choose payment method"}</h2><p className="text-sm mt-0.5" style={{ color: "rgba(255,255,255,.7)" }}>{plan.name} plan — <span className="font-bold" style={{ color: AMBER }}>{displayPrice}</span>{plan.period}</p></div>
+            <div><h2 className="text-white font-extrabold text-lg">{step === "details" ? "Create your account" : "Choose payment method"}</h2><p className="text-sm mt-0.5" style={{ color: "rgba(255,255,255,.7)" }}>{plan.name} plan, <span className="font-bold" style={{ color: AMBER }}>{displayPrice}</span>{plan.period}</p></div>
           </div>
           <button onClick={onClose} className="text-white/70 hover:text-white transition-colors"><X className="w-5 h-5" /></button>
         </div>

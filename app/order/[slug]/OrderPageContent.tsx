@@ -110,7 +110,7 @@ export default function OrderPageContent({ slug }: { slug: string }) {
           osc.stop(now + t + 0.45)
         })
       }
-      // On phones with the silent switch on, Web Audio is muted by iOS —
+      // On phones with the silent switch on, Web Audio is muted by iOS,
       // vibration is the only reliable alert (Android; iOS ignores it).
       if (navigator.vibrate) navigator.vibrate([250, 120, 250])
     } catch {}
@@ -220,7 +220,7 @@ export default function OrderPageContent({ slug }: { slug: string }) {
         try {
           await nav.share({ files: [file], title: "GCash QR" })
         } catch (err: any) {
-          // User just dismissed the sheet — leave them on the page.
+          // User just dismissed the sheet, leave them on the page.
           if (err?.name !== "AbortError") window.open(gcash.qrUrl, "_blank")
         }
         return
@@ -460,7 +460,7 @@ export default function OrderPageContent({ slug }: { slug: string }) {
                     <p className="text-xs font-semibold text-[#56524b] mb-1.5">How to pay</p>
                     <ol className="text-xs text-[#56524b] space-y-1 list-decimal list-inside">
                       <li>Tap <span className="font-semibold">Save QR to Photos</span>, then choose <span className="font-semibold">Save Image</span> to add it to your gallery.</li>
-                      <li>Open <span className="font-semibold">GCash</span> → <span className="font-semibold">Scan QR</span> → <span className="font-semibold">Upload from Gallery</span> and pick the saved QR{gcash.number ? <> — or use <span className="font-semibold">Send Money</span> to the number above</> : null}.</li>
+                      <li>Open <span className="font-semibold">GCash</span> → <span className="font-semibold">Scan QR</span> → <span className="font-semibold">Upload from Gallery</span> and pick the saved QR{gcash.number ? <>, or use <span className="font-semibold">Send Money</span> to the number above</> : null}.</li>
                       <li>Enter <span className="font-semibold">{sym}{order.totalAmount.toFixed(2)}</span> and complete the payment.</li>
                       <li>Come back here and tap <span className="font-semibold">I’ve paid via GCash</span>.</li>
                     </ol>
@@ -526,7 +526,7 @@ export default function OrderPageContent({ slug }: { slug: string }) {
           </div>
           {table
             ? <div className="mt-4 inline-flex items-center gap-1.5 bg-white/20 backdrop-blur-sm rounded-full px-3 py-1 text-sm font-medium">Table {table}</div>
-            : <div className="mt-4 inline-flex items-center gap-1.5 bg-red-500/40 backdrop-blur-sm rounded-full px-3 py-1 text-xs font-medium"><AlertCircle className="w-3.5 h-3.5" /> No table — rescan QR</div>}
+            : <div className="mt-4 inline-flex items-center gap-1.5 bg-red-500/40 backdrop-blur-sm rounded-full px-3 py-1 text-xs font-medium"><AlertCircle className="w-3.5 h-3.5" /> No table, rescan QR</div>}
         </div>
       </header>
 

@@ -22,7 +22,7 @@ const FREE_INCLUDES = [
   { icon: Users, label: "2 team members (co-teacher access)" },
   { icon: MessageSquare, label: "Basic AI feedback on each essay" },
   { icon: Target, label: "Standard rubric scoring (content, grammar, structure)" },
-  { icon: Zap, label: "Instant grading — no waiting" },
+  { icon: Zap, label: "Instant grading, no waiting" },
 ]
 
 const COMPARISON = [
@@ -38,10 +38,10 @@ const COMPARISON = [
 ]
 
 const FAQS = [
-  { q: "Is the free plan really free forever?", a: "Yes. The Free plan has no expiry. You can grade up to 30 essays per month and create 5 assignments — forever, at no cost. No credit card required to sign up." },
+  { q: "Is the free plan really free forever?", a: "Yes. The Free plan has no expiry. You can grade up to 30 essays per month and create 5 assignments, forever, at no cost. No credit card required to sign up." },
   { q: "What happens when I hit the 30 submission limit?", a: "You'll see a notification when you're approaching the limit. You can upgrade to Pro for unlimited submissions, or wait for your monthly limit to reset." },
   { q: "Can I upgrade from free to paid anytime?", a: "Yes, instantly. Your existing assignments and results carry over when you upgrade." },
-  { q: "Is the AI grading on the free plan the same quality?", a: "The same AI model grades essays on all plans. Free plan feedback is slightly less detailed than Pro — but still includes a rubric score and written comments." },
+  { q: "Is the AI grading on the free plan the same quality?", a: "The same AI model grades essays on all plans. Free plan feedback is slightly less detailed than Pro, but still includes a rubric score and written comments." },
   { q: "Do students need an account to submit?", a: "No. Students submit through a shareable assignment link. Only the teacher needs a Smapey account." },
 ]
 
@@ -109,16 +109,16 @@ function Hero() {
       </div>
       <div className="relative max-w-6xl mx-auto px-6 py-24 text-center">
         <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border-2 text-xs font-bold mb-6" style={{ color: INK, borderColor: INK, boxShadow: `3px 3px 0 ${BLUE}` }}>
-          <Gift className="w-3 h-3" /> Free forever — no credit card
+          <Gift className="w-3 h-3" /> Free forever, no credit card
         </div>
         <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.04] tracking-tight mb-6" style={{ color: INK }}>
-          Free AI essay grader for teachers <span style={{ color: BLUE }}>— no credit card, no catch</span>
+          Free AI essay grader for teachers <span style={{ color: BLUE }}>(no credit card, no catch)</span>
         </h1>
         <p className="text-lg max-w-2xl mx-auto mb-10 leading-relaxed" style={{ color: "#54514c" }}>
-          Smapey Essay&apos;s free plan gives teachers a full AI essay grading tool — rubric scores, written feedback, and assignment management — at zero cost. Grade up to 30 essays per month, forever.
+          Smapey Essay&apos;s free plan gives teachers a full AI essay grading tool (rubric scores, written feedback, and assignment management) at zero cost. Grade up to 30 essays per month, forever.
         </p>
         <a href={REGISTER_URL} className="inline-flex items-center gap-2 px-7 py-4 rounded-full font-bold text-sm border-2 transition-transform hover:-translate-y-0.5" style={{ ...display, background: AMBER, color: INK, borderColor: INK, boxShadow: `4px 4px 0 ${INK}` }}>
-          Start for free — no card needed <ChevronRight className="w-4 h-4" />
+          Start for free, no card needed <ChevronRight className="w-4 h-4" />
         </a>
         <div className="mt-16 flex flex-wrap items-center justify-center gap-6 text-xs font-semibold" style={{ color: "#54514c" }}>
           {["No credit card required", "30 essays/month free", "Instant AI feedback"].map((t) => (
@@ -137,7 +137,7 @@ function FreePlan() {
         <Animate className="text-center mb-16">
           <p className="text-sm font-bold uppercase tracking-widest mb-3" style={{ color: BLUE }}>Free Plan</p>
           <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight" style={{ color: INK }}>What&apos;s included for free</h2>
-          <p className="mt-4 max-w-xl mx-auto" style={{ color: "#54514c" }}>Everything a solo teacher needs to start grading with AI — no credit card, no trial expiry, no commitment.</p>
+          <p className="mt-4 max-w-xl mx-auto" style={{ color: "#54514c" }}>Everything a solo teacher needs to start grading with AI, no credit card, no trial expiry, no commitment.</p>
         </Animate>
         <div className="grid sm:grid-cols-2 gap-4">
           {FREE_INCLUDES.map(({ icon: Icon, label }, i) => {
@@ -324,7 +324,7 @@ function PaymentModal({ plan, isPhilippines, onClose }: { plan: { name: string; 
         <div className="px-6 py-5 flex items-center justify-between" style={{ background: INK }}>
           <div className="flex items-center gap-3">
             {step === "payment" && !token && <button onClick={() => setStep("details")} className="text-white/70 hover:text-white transition"><svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}><path d="M19 12H5M12 5l-7 7 7 7"/></svg></button>}
-            <div><h2 className="text-white font-extrabold text-lg">{step === "details" ? "Create your account" : "Choose payment method"}</h2><p className="text-sm mt-0.5" style={{ color: "rgba(255,255,255,.7)" }}>{plan.name} plan — <span className="font-bold" style={{ color: AMBER }}>{displayPrice}</span>{plan.period}</p></div>
+            <div><h2 className="text-white font-extrabold text-lg">{step === "details" ? "Create your account" : "Choose payment method"}</h2><p className="text-sm mt-0.5" style={{ color: "rgba(255,255,255,.7)" }}>{plan.name} plan, <span className="font-bold" style={{ color: AMBER }}>{displayPrice}</span>{plan.period}</p></div>
           </div>
           <button onClick={onClose} className="text-white/70 hover:text-white transition-colors"><X className="w-5 h-5" /></button>
         </div>

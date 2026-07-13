@@ -8,12 +8,12 @@ const variant: RestaurantVariant = {
     titleLead: "Take every order,",
     titleAccent: "serve every table.",
     subtitle:
-      "Build your menu, place dine-in and takeaway orders, manage the kitchen queue, and track daily sales — all from one clean dashboard. Free forever, no card required.",
+      "Build your menu, place dine-in and takeaway orders, manage the kitchen queue, and track daily sales, all from one clean dashboard. Free forever, no card required.",
   },
   features: {
     eyebrow: "Features",
     heading: "Built for restaurants, cafés, and canteens",
-    sub: "From your first menu item to your hundredth order — every essential a small food business needs, without the enterprise price tag.",
+    sub: "From your first menu item to your hundredth order, every essential a small food business needs, without the enterprise price tag.",
   },
   cta: {
     heading: "Ready to take your first order?",

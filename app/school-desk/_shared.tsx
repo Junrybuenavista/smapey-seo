@@ -149,7 +149,7 @@ export function Pricing() {
 //////////////////////////////////////////////////////
 // CTA
 //////////////////////////////////////////////////////
-export function CTA({ title = "Ready to run your tutorial center smarter?", subtitle = "Join tutors and center owners who use Smapey to manage students, collect tuition, and track every session — without spreadsheets or notebooks." }: { title?: string; subtitle?: string }) {
+export function CTA({ title = "Ready to run your tutorial center smarter?", subtitle = "Join tutors and center owners who use Smapey to manage students, collect tuition, and track every session - without spreadsheets or notebooks." }: { title?: string; subtitle?: string }) {
   return (
     <section className="py-16 px-6" style={{ background: "#fff", fontFamily: display.fontFamily }}>
       <div className="max-w-6xl mx-auto">
@@ -307,7 +307,7 @@ export function SoftwarePitch() {
         <div>
           <h3 className="text-xl font-extrabold mb-2" style={{ color: INK }}>Manage your center with Smapey SchoolDesk</h3>
           <p className="text-sm leading-relaxed mb-4" style={{ color: "#54514c" }}>
-            A business plan gets you started — software keeps you running. Smapey SchoolDesk tracks every student enrollment,
+            A business plan gets you started, software keeps you running. Smapey SchoolDesk tracks every student enrollment,
             tuition balance, session attendance, and progress note so nothing falls through the cracks.
           </p>
           <a href={REGISTER_URL} className="inline-flex items-center gap-2 px-6 py-3 rounded-full font-bold text-sm border-2 transition-transform hover:-translate-y-0.5" style={{ ...display, background: AMBER, color: INK, borderColor: INK }}>
@@ -374,7 +374,7 @@ export function PaymentModal({ plan, isPhilippines, onClose }: {
             )}
             <div>
               <h2 className="text-white font-extrabold text-lg">{step === "details" ? "Create your account" : "Choose payment method"}</h2>
-              <p className="text-sm mt-0.5" style={{ color: "rgba(255,255,255,.7)" }}>{plan.name} plan — <span className="font-bold" style={{ color: AMBER }}>{displayPrice}</span>{plan.period}</p>
+              <p className="text-sm mt-0.5" style={{ color: "rgba(255,255,255,.7)" }}>{plan.name} plan, <span className="font-bold" style={{ color: AMBER }}>{displayPrice}</span>{plan.period}</p>
             </div>
           </div>
           <button onClick={onClose} className="text-white/70 hover:text-white transition-colors"><X className="w-5 h-5" /></button>

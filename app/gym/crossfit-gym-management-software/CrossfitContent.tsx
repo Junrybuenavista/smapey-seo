@@ -20,13 +20,13 @@ const display = { fontFamily: "'Hanken Grotesk', system-ui, sans-serif" }
 
 const FEATURES = [
   { icon: Users, title: "Box Member Management", desc: "Register every athlete with full profiles, emergency contacts, and membership history. Know exactly who's active, expired, or on hold." },
-  { icon: QrCode, title: "QR Code Check-in", desc: "Athletes scan their personal QR code to check in for class. No front desk bottleneck — fast, contactless, and automatic." },
+  { icon: QrCode, title: "QR Code Check-in", desc: "Athletes scan their personal QR code to check in for class. No front desk bottleneck - fast, contactless, and automatic." },
   { icon: Clock, title: "Class Attendance Tracking", desc: "Track who showed up for each class session. See attendance trends and identify members who are dropping off before they churn." },
   { icon: CreditCard, title: "Membership Plans", desc: "Create unlimited/drop-in/monthly plans. Set prices, durations, and renewal rules. Expiry alerts keep your revenue consistent." },
   { icon: BarChart3, title: "Box Analytics", desc: "Monitor revenue, peak class hours, attendance rates, and member growth from a single dashboard built for box owners." },
   { icon: Dumbbell, title: "Coach Assignment", desc: "Assign coaches to members or classes. Track their specialties and manage their active status with ease." },
   { icon: UserCheck, title: "Drop-in / Walk-in Tracking", desc: "Record drop-in visitors in seconds. Track drop-in revenue separately and see today's visitors at a glance." },
-  { icon: Target, title: "Multi-Currency Support", desc: "Accept payments in your local currency — PHP, USD, SGD, and more. Perfect for boxes serving international athletes." },
+  { icon: Target, title: "Multi-Currency Support", desc: "Accept payments in your local currency - PHP, USD, SGD, and more. Perfect for boxes serving international athletes." },
   { icon: Trophy, title: "Team Collaboration", desc: "Invite coaches and staff to the dashboard with role-based access. Admins see everything; staff see only what they need." },
 ]
 
@@ -139,7 +139,7 @@ function Hero() {
           <span style={{ color: BLUE }}>built for <span style={{ color: AMBER }}>boxes</span></span>
         </h1>
         <p className="text-lg max-w-2xl mx-auto mb-10 leading-relaxed" style={{ color: "#54514c" }}>
-          GymOS handles athlete management, QR check-in, drop-in tracking, coach assignment, and revenue reporting —
+          GymOS handles athlete management, QR check-in, drop-in tracking, coach assignment, and revenue reporting,
           so you can focus on programming and coaching.
         </p>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
@@ -175,7 +175,7 @@ function Features() {
             Everything your CrossFit box needs
           </h2>
           <p className="mt-4 max-w-xl mx-auto" style={{ color: "#54514c" }}>
-            From athlete check-in to monthly revenue — GymOS covers every part of your box's operation.
+            From athlete check-in to monthly revenue, GymOS covers every part of your box's operation.
           </p>
         </Animate>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -443,7 +443,7 @@ function PaymentModal({
             )}
             <div>
               <h2 className="text-white font-extrabold text-lg">{step === "details" ? "Create your account" : "Choose payment method"}</h2>
-              <p className="text-sm mt-0.5" style={{ color: "rgba(255,255,255,.7)" }}>{plan.name} plan — <span className="font-bold" style={{ color: AMBER }}>{displayPrice}</span>{plan.period}</p>
+              <p className="text-sm mt-0.5" style={{ color: "rgba(255,255,255,.7)" }}>{plan.name} plan, <span className="font-bold" style={{ color: AMBER }}>{displayPrice}</span>{plan.period}</p>
             </div>
           </div>
           <button onClick={onClose} className="text-white/70 hover:text-white transition-colors"><X className="w-5 h-5" /></button>

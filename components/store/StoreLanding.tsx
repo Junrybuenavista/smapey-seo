@@ -20,32 +20,32 @@ const FEATURES = [
   { icon: Package, title: "Product Catalog", desc: "Add products with names, SKUs, barcodes, selling prices, cost prices, and photos. Organize by category and link each item to a supplier. Toggle active or inactive any time." },
   { icon: ScanLine, title: "Point of Sale (POS)", desc: "Tap a product to add it to the cart, adjust quantities by typing or using +/− buttons, apply a discount, choose a payment method, enter cash tendered, and the change calculates automatically." },
   { icon: AlertCircle, title: "Low Stock Alerts", desc: "Set a reorder threshold for any product. When stock drops at or below that level, an alert appears on your dashboard so you can restock before you run out." },
-  { icon: Truck, title: "Supplier Management", desc: "Keep a contact list of your suppliers — name, contact person, phone, email, and address. Link products to suppliers so you always know who to call when stock runs low." },
+  { icon: Truck, title: "Supplier Management", desc: "Keep a contact list of your suppliers - name, contact person, phone, email, and address. Link products to suppliers so you always know who to call when stock runs low." },
   { icon: RefreshCw, title: "Stock Adjustments", desc: "Log restocks and manual adjustments with a reason and quantity. Every movement is recorded so you have a full audit trail of how stock levels changed over time." },
   { icon: ClipboardList, title: "Sales History", desc: "Every completed sale is logged with its items, totals, payment method, and sale number. Filter by date or method, open any sale to view the full breakdown, or void it if needed." },
   { icon: BarChart3, title: "Sales Analytics", desc: "7-day revenue trend, top-selling products, payment method breakdown, and plan usage on one analytics screen. All charts refresh automatically with every new sale." },
-  { icon: Users, title: "Team Access", desc: "Invite staff as Admin or Member and control which features each role can access — cashier staff get POS access, managers get analytics and product management." },
-  { icon: ScanBarcode, title: "Camera Barcode Scanner", desc: "Tap the scan icon next to the Barcode field and point your phone camera at any product. EAN-13, EAN-8, UPC-A, Code 128, and more are detected instantly — no manual typing needed." },
+  { icon: Users, title: "Team Access", desc: "Invite staff as Admin or Member and control which features each role can access - cashier staff get POS access, managers get analytics and product management." },
+  { icon: ScanBarcode, title: "Camera Barcode Scanner", desc: "Tap the scan icon next to the Barcode field and point your phone camera at any product. EAN-13, EAN-8, UPC-A, Code 128, and more are detected instantly - no manual typing needed." },
   { icon: Camera, title: "In-App Camera Capture", desc: "Take a product photo directly from your phone camera without leaving the app. Tap Take Photo, point, and shoot. Switch between front and back camera with one tap." },
-  { icon: QrCode, title: "QR Payment", desc: "Upload your GCash, Maya, or bank QR code once. At checkout, selecting QR instantly shows your QR code for the customer to scan — then you confirm payment received to complete the sale." },
-  { icon: TrendingUp, title: "Profit Tracking", desc: "See today's profit on the dashboard and per-sale profit in your sales history. Profit is calculated from the cost price recorded at the time of sale — stays accurate even if you change prices later." },
+  { icon: QrCode, title: "QR Payment", desc: "Upload your GCash, Maya, or bank QR code once. At checkout, selecting QR instantly shows your QR code for the customer to scan - then you confirm payment received to complete the sale." },
+  { icon: TrendingUp, title: "Profit Tracking", desc: "See today's profit on the dashboard and per-sale profit in your sales history. Profit is calculated from the cost price recorded at the time of sale - stays accurate even if you change prices later." },
 ]
 
 const STEPS = [
-  { num: "01", title: "Add your products", desc: "Create categories first — beverages, snacks, cleaning supplies — then add products with price, cost, stock, and a reorder threshold. Scan the barcode with your phone camera to fill it in instantly, and snap a product photo directly from the camera." },
+  { num: "01", title: "Add your products", desc: "Create categories first (beverages, snacks, cleaning supplies) then add products with price, cost, stock, and a reorder threshold. Scan the barcode with your phone camera to fill it in instantly, and snap a product photo directly from the camera." },
   { num: "02", title: "Set up suppliers", desc: "Add your regular suppliers and link products to them. When stock runs low and an alert fires, you know exactly who to contact to restock." },
   { num: "03", title: "Ring up sales on POS", desc: "Open POS, scan a barcode or tap a product to add it to the cart. Choose Cash (enter amount tendered, change auto-calculated) or QR (your QR code pops up for the customer to scan). Tap checkout when done." },
   { num: "04", title: "Track revenue & profit", desc: "Your dashboard shows today's revenue, profit, sales count, and low stock items. The Analytics page shows your 7-day revenue trend and top-selling products. Sales history shows per-sale profit." },
 ]
 
 const FAQS = [
-  { q: "Can I scan barcodes with my phone camera?", a: "Yes. When adding or editing a product, tap the scan icon next to the Barcode field. Your phone's back camera opens — just point it at the barcode on the packaging and it's detected and filled in automatically. Supports EAN-13, EAN-8, UPC-A, UPC-E, Code 128, Code 39, Code 93, and QR codes. You can also type the barcode manually if you prefer." },
+  { q: "Can I scan barcodes with my phone camera?", a: "Yes. When adding or editing a product, tap the scan icon next to the Barcode field. Your phone's back camera opens, just point it at the barcode on the packaging and it's detected and filled in automatically. Supports EAN-13, EAN-8, UPC-A, UPC-E, Code 128, Code 39, Code 93, and QR codes. You can also type the barcode manually if you prefer." },
   { q: "Can I take product photos without leaving the app?", a: "Yes. In the Add/Edit Product form, tap Take Photo to open your phone's camera directly inside the app. Frame the shot, tap the shutter button, and the photo is set instantly. You can also tap Upload Photo to pick an existing image from your gallery instead." },
-  { q: "Can I track inventory with the free plan?", a: "Yes. The free plan includes up to 50 products with full stock tracking — reorder thresholds, low stock alerts, stock adjustment logs, and supplier links. You only need to upgrade when your product count or sales volume grows." },
-  { q: "Is there really a free plan?", a: "Yes — permanently free, not a trial. The free plan includes 50 products, 200 sales per month, the full POS, stock adjustments, low stock alerts, and 2 team members. No credit card required." },
+  { q: "Can I track inventory with the free plan?", a: "Yes. The free plan includes up to 50 products with full stock tracking, reorder thresholds, low stock alerts, stock adjustment logs, and supplier links. You only need to upgrade when your product count or sales volume grows." },
+  { q: "Is there really a free plan?", a: "Yes, permanently free, not a trial. The free plan includes 50 products, 200 sales per month, the full POS, stock adjustments, low stock alerts, and 2 team members. No credit card required." },
   { q: "How does the POS work?", a: "Open the POS screen, tap any product to add it to the cart, type or use +/− to change quantities. Apply a discount if needed, choose Cash, GCash, Maya, Bank, or Other as the payment method. For cash, enter the amount tendered and the change is calculated instantly. Tap Checkout to complete the sale and deduct stock." },
   { q: "Does it automatically deduct stock when I make a sale?", a: "Yes. Every time you complete a sale through the POS, the stock for each product in the cart is reduced automatically. If you void a sale later, the stock is restored." },
-  { q: "What payment methods does the POS support?", a: "Cash and QR. For Cash, enter the amount tendered and the change is calculated instantly. For QR, your uploaded QR code (GCash, Maya, bank — whatever you set up) is shown full-screen for the customer to scan. Once they pay, you tap Payment Received to complete the sale." },
+  { q: "What payment methods does the POS support?", a: "Cash and QR. For Cash, enter the amount tendered and the change is calculated instantly. For QR, your uploaded QR code (GCash, Maya, bank, whatever you set up) is shown full-screen for the customer to scan. Once they pay, you tap Payment Received to complete the sale." },
   { q: "How does QR payment work?", a: "Go to Store → QR Setup and upload a screenshot of your GCash, Maya, or bank QR code. From then on, when a customer chooses QR at the POS, your QR code appears on screen with the total amount. The customer scans it on their phone and sends the payment. You tap Payment Received to confirm and complete the sale." },
   { q: "Can I track profit per sale?", a: "Yes. When you add a product, set its cost price. Smapey records that cost at the time of each sale so your profit stays accurate even if you change the price later. You'll see today's profit on the dashboard and a profit column on every sale in your sales history." },
 ]
@@ -148,12 +148,12 @@ function Hero() {
             Smarter inventory, <span style={{ color: BLUE }}>faster sales.</span>
           </h1>
           <p className="text-lg max-w-2xl mx-auto mb-8 leading-relaxed" style={{ color: "#54514c" }}>
-            Track stock levels, ring up sales on a tap-to-add POS, manage suppliers, and get daily revenue summaries —
+            Track stock levels, ring up sales on a tap-to-add POS, manage suppliers, and get daily revenue summaries,
             everything a small retail store needs, free forever.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-7">
             <a href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=STORE&plan=FREE`} className="flex items-center gap-2 px-7 py-4 rounded-full font-bold text-sm border-2 transition-transform hover:-translate-y-0.5" style={{ ...display, background: AMBER, color: INK, borderColor: INK, boxShadow: `4px 4px 0 ${INK}` }}>
-              Start free — no card needed <ChevronRight className="w-4 h-4" />
+              Start free, no card needed <ChevronRight className="w-4 h-4" />
             </a>
             <a href="/store" className="flex items-center gap-2 px-7 py-4 rounded-full font-bold text-sm border-2 bg-white transition-transform hover:-translate-y-0.5" style={{ ...display, color: INK, borderColor: INK }}>
               View all features
@@ -205,15 +205,15 @@ const SHOWCASE = [
     eyebrow: "Barcode Scanner",
     title: "Scan products with your phone",
     desc: "No barcode gun needed. Point your phone camera at any product barcode to add it to the cart at the POS, or to auto-fill the barcode when adding a new product. Works with EAN, UPC, Code 128 and more.",
-    bullets: ["Use your phone — no extra hardware", "Find products fast at checkout", "Auto-fill barcodes when adding stock"],
+    bullets: ["Use your phone, no extra hardware", "Find products fast at checkout", "Auto-fill barcodes when adding stock"],
   },
   {
     img: "https://res.cloudinary.com/dxhwfv0jo/image/upload/v1780666513/QR_payment_atu1d0.png",
     alt: "Customer scanning a store QR code to pay",
     eyebrow: "QR Payment",
     title: "Accept GCash, Maya & bank QR",
-    desc: "Upload your payment QR code once. When a customer chooses QR at checkout, it appears full-screen with the exact total — they scan, pay, and you confirm. No third-party fees, no extra apps.",
-    bullets: ["Works with any QR — GCash, Maya, banks", "Shows the exact amount to pay", "Confirm payment to complete the sale"],
+    desc: "Upload your payment QR code once. When a customer chooses QR at checkout, it appears full-screen with the exact total, they scan, pay, and you confirm. No third-party fees, no extra apps.",
+    bullets: ["Works with any QR, GCash, Maya, banks", "Shows the exact amount to pay", "Confirm payment to complete the sale"],
   },
   {
     img: "https://res.cloudinary.com/dxhwfv0jo/image/upload/v1780666509/Inventory_profit_dashboard_cidfp2.png",
@@ -442,7 +442,7 @@ function PaymentModal({ plan, isPhilippines, onClose }: { plan: { name: string; 
         <div className="px-6 py-5 flex items-center justify-between" style={{ background: INK }}>
           <div className="flex items-center gap-3">
             {step === "payment" && !token && <button onClick={() => setStep("details")} className="text-white/70 hover:text-white transition"><svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}><path d="M19 12H5M12 5l-7 7 7 7"/></svg></button>}
-            <div><h2 className="text-white font-extrabold text-lg">{step === "details" ? "Create your account" : "Choose payment method"}</h2><p className="text-sm mt-0.5" style={{ color: "rgba(255,255,255,.7)" }}>{plan.name} plan — <span className="font-bold" style={{ color: AMBER }}>{displayPrice}</span>{plan.period}</p></div>
+            <div><h2 className="text-white font-extrabold text-lg">{step === "details" ? "Create your account" : "Choose payment method"}</h2><p className="text-sm mt-0.5" style={{ color: "rgba(255,255,255,.7)" }}>{plan.name} plan, <span className="font-bold" style={{ color: AMBER }}>{displayPrice}</span>{plan.period}</p></div>
           </div>
           <button onClick={onClose} className="text-white/70 hover:text-white transition-colors"><X className="w-5 h-5" /></button>
         </div>

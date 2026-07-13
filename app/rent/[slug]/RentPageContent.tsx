@@ -215,7 +215,7 @@ function MidnightPage({ data, form, setForm, handleSubmit, submitting, submitted
             className="w-full py-3.5 rounded-full bg-[#161616] text-[#fbf7f0] border-2 border-[#161616] font-bold text-sm shadow-[3px_3px_0_#161616] transition disabled:opacity-60 flex items-center justify-center gap-2 hover:-translate-y-0.5 hover:shadow-[5px_5px_0_#161616] active:translate-y-0 active:shadow-none">
             {submitting ? <><Loader2 className="w-4 h-4 animate-spin" /> Sending…</> : "Send Booking Request"}
           </button>
-          <p className="text-center text-xs text-[#9b9487]">Booking request only — confirmed by {data.org.companyName || "the business"} after review.</p>
+          <p className="text-center text-xs text-[#9b9487]">Booking request only, confirmed by {data.org.companyName || "the business"} after review.</p>
         </form>
       </div>
     </div>
@@ -407,7 +407,7 @@ function CleanPage({ data, form, setForm, handleSubmit, submitting, submitted, s
               className="w-full py-3.5 rounded-full text-white font-bold text-sm transition disabled:opacity-60 hover:opacity-90 flex items-center justify-center gap-2">
               {submitting ? <><Loader2 className="w-4 h-4 animate-spin" /> Sending…</> : <><span>Send Booking Request</span><ArrowRight className="w-4 h-4" /></>}
             </button>
-            <p className="text-center text-xs text-slate-400">Booking request only — confirmed by {data.org.companyName || "the business"} after review.</p>
+            <p className="text-center text-xs text-slate-400">Booking request only, confirmed by {data.org.companyName || "the business"} after review.</p>
           </form>
         </div>
       </div>
@@ -597,7 +597,7 @@ function OceanPage({ data, form, setForm, handleSubmit, submitting, submitted, s
             className="w-full py-3.5 rounded-2xl text-white font-bold text-sm transition disabled:opacity-60 hover:opacity-90 flex items-center justify-center gap-2">
             {submitting ? <><Loader2 className="w-4 h-4 animate-spin" /> Sending…</> : "Send Booking Request"}
           </button>
-          <p className="text-center text-xs text-white/30">Booking request only — confirmed after review.</p>
+          <p className="text-center text-xs text-white/30">Booking request only, confirmed after review.</p>
         </form>
       </div>
     </div>

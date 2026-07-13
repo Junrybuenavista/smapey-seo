@@ -8,12 +8,12 @@ const variant: LendingVariant = {
     titleLead: "The loan app for lenders",
     titleAccent: "in the Philippines",
     subtitle:
-      "Smapey Lending is the app you use to run your own loan business — issue loans, generate amortization schedules, and track GCash, cash, and bank payments. Built for Filipino lenders, lending offices, and sangla businesses.",
+      "Smapey Lending is the app you use to run your own loan business, issue loans, generate amortization schedules, and track GCash, cash, and bank payments. Built for Filipino lenders, lending offices, and sangla businesses.",
   },
   features: {
     eyebrow: "Why lenders choose Smapey",
     heading: "A loan app built for Philippine lenders",
-    sub: "Everything you need to issue loans and collect payments — borrowers, amortization schedules, GCash and bank tracking, and collections analytics in one dashboard.",
+    sub: "Everything you need to issue loans and collect payments, borrowers, amortization schedules, GCash and bank tracking, and collections analytics in one dashboard.",
   },
   cta: {
     heading: "Start lending smarter today",

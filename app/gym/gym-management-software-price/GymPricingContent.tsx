@@ -31,7 +31,7 @@ const FAQS = [
   },
   {
     q: "Do you offer annual billing?",
-    a: "Monthly billing is available now. Annual plans with a discount are coming soon — contact us if you need one today.",
+    a: "Monthly billing is available now. Annual plans with a discount are coming soon, contact us if you need one today.",
   },
   {
     q: "What payment methods do you accept?",
@@ -364,7 +364,7 @@ function PaymentModal({
             )}
             <div>
               <h2 className="text-white font-extrabold text-lg">{step === "details" ? "Create your account" : "Choose payment method"}</h2>
-              <p className="text-sm mt-0.5" style={{ color: "rgba(255,255,255,.7)" }}>{plan.name} plan — <span className="font-bold" style={{ color: AMBER }}>{displayPrice}</span>{plan.period}</p>
+              <p className="text-sm mt-0.5" style={{ color: "rgba(255,255,255,.7)" }}>{plan.name} plan, <span className="font-bold" style={{ color: AMBER }}>{displayPrice}</span>{plan.period}</p>
             </div>
           </div>
           <button onClick={onClose} className="text-white/70 hover:text-white transition-colors"><X className="w-5 h-5" /></button>

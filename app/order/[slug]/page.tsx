@@ -9,7 +9,7 @@ type Props = { params: Promise<{ slug: string }> }
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
   return {
-    title: `Order Online — ${slug} | Smapey`,
+    title: `Order Online - ${slug} | Smapey`,
     description: `Scan, browse the menu and order from your table at ${slug}.`,
     robots: { index: false, follow: false },
   }

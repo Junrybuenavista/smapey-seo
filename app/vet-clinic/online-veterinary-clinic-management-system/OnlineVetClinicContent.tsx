@@ -16,20 +16,20 @@ const CREAM = "#fbf7f0"
 const display = { fontFamily: "'Hanken Grotesk', system-ui, sans-serif" }
 
 const FEATURES = [
-  { icon: Globe, title: "Access from any browser", desc: "No download, no installation, no device restrictions. Open a browser tab and your clinic dashboard is there — on any laptop, desktop, or tablet." },
+  { icon: Globe, title: "Access from any browser", desc: "No download, no installation, no device restrictions. Open a browser tab and your clinic dashboard is there - on any laptop, desktop, or tablet." },
   { icon: Smartphone, title: "Mobile-ready interface", desc: "The dashboard is fully responsive. Staff can check the appointment queue, record a vaccination, or look up a pet record from a phone between consultations." },
-  { icon: Wifi, title: "Real-time data, always in sync", desc: "Every update — a new appointment, a payment recorded, a queue status change — is reflected instantly for every staff member logged in at the same time." },
-  { icon: Lock, title: "Secure cloud storage", desc: "Pet records, vaccination history, and billing data are stored securely in the cloud — no local backups needed, no risk of losing records when a computer fails." },
-  { icon: Users, title: "Multi-staff, role-based access", desc: "Invite your entire team — vets, receptionists, admin — and assign role-based permissions. Everyone works from the same live system simultaneously." },
-  { icon: Shield, title: "Isolated per clinic", desc: "Your clinic's data is completely isolated from other organizations. Each clinic gets its own private environment — records, billing, and staff accounts are never shared." },
+  { icon: Wifi, title: "Real-time data, always in sync", desc: "Every update (a new appointment, a payment recorded, a queue status change) is reflected instantly for every staff member logged in at the same time." },
+  { icon: Lock, title: "Secure cloud storage", desc: "Pet records, vaccination history, and billing data are stored securely in the cloud - no local backups needed, no risk of losing records when a computer fails." },
+  { icon: Users, title: "Multi-staff, role-based access", desc: "Invite your entire team (vets, receptionists, admin) and assign role-based permissions. Everyone works from the same live system simultaneously." },
+  { icon: Shield, title: "Isolated per clinic", desc: "Your clinic's data is completely isolated from other organizations. Each clinic gets its own private environment - records, billing, and staff accounts are never shared." },
 ]
 
 const FAQS = [
-  { q: "Does Smapey require any software installation?", a: "No. Smapey is entirely browser-based — you access it at smapey.com from any device. There's nothing to download or install." },
-  { q: "Can multiple staff members use it at the same time?", a: "Yes. Smapey is a multi-user online system. You can invite vets, receptionists, and admin staff — each with their own login — and they can all work simultaneously on the same live data." },
+  { q: "Does Smapey require any software installation?", a: "No. Smapey is entirely browser-based, you access it at smapey.com from any device. There's nothing to download or install." },
+  { q: "Can multiple staff members use it at the same time?", a: "Yes. Smapey is a multi-user online system. You can invite vets, receptionists, and admin staff (each with their own login) and they can all work simultaneously on the same live data." },
   { q: "Is the data stored securely online?", a: "All data is stored in a secure cloud database. Your clinic's records are isolated from other organizations, and you don't need to manage any local backups." },
   { q: "Can I access it from a phone?", a: "Yes. The interface is responsive and works on mobile browsers. Staff can check the queue board, update appointment status, or look up a pet record from a smartphone." },
-  { q: "Is there a free plan?", a: "Yes — Smapey's free plan lets you get started with no credit card required. You can manage pets, appointments, vaccinations, and billing at no cost." },
+  { q: "Is there a free plan?", a: "Yes, Smapey's free plan lets you get started with no credit card required. You can manage pets, appointments, vaccinations, and billing at no cost." },
 ]
 
 function useInView(options?: IntersectionObserverInit) {
@@ -106,12 +106,12 @@ function Hero() {
           Built for veterinary clinics
         </div>
         <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.04] tracking-tight mb-6" style={{ color: INK }}>
-          Online veterinary clinic management system — run your vet clinic from any browser
+          Online veterinary clinic management system, run your vet clinic from any browser
         </h1>
-        <p className="text-lg max-w-2xl mx-auto mb-10 leading-relaxed" style={{ color: "#54514c" }}>Smapey is a cloud-based veterinary clinic management system. No software to install — just open a browser and manage pet records, appointments, vaccinations, queue boards, and billing from anywhere.</p>
+        <p className="text-lg max-w-2xl mx-auto mb-10 leading-relaxed" style={{ color: "#54514c" }}>Smapey is a cloud-based veterinary clinic management system. No software to install, just open a browser and manage pet records, appointments, vaccinations, queue boards, and billing from anywhere.</p>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
           <a href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=VET_CLINIC&plan=FREE`} className="flex items-center gap-2 px-7 py-4 rounded-full font-bold text-sm border-2 transition-transform hover:-translate-y-0.5" style={{ ...display, background: AMBER, color: INK, borderColor: INK, boxShadow: `4px 4px 0 ${INK}` }}>
-            Start free — no card needed <ChevronRight className="w-4 h-4" />
+            Start free, no card needed <ChevronRight className="w-4 h-4" />
           </a>
           <a href="/vet-clinic" className="flex items-center gap-2 px-7 py-4 rounded-full font-bold text-sm border-2 bg-white transition-transform hover:-translate-y-0.5" style={{ ...display, color: INK, borderColor: INK }}>View all features</a>
         </div>
@@ -278,7 +278,7 @@ function PaymentModal({ plan, isPhilippines, onClose }: { plan: { name: string; 
         <div className="px-6 py-5 flex items-center justify-between" style={{ background: INK }}>
           <div className="flex items-center gap-3">
             {step === "payment" && !token && <button onClick={() => setStep("details")} className="text-white/70 hover:text-white transition"><svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}><path d="M19 12H5M12 5l-7 7 7 7"/></svg></button>}
-            <div><h2 className="text-white font-extrabold text-lg">{step === "details" ? "Create your account" : "Choose payment method"}</h2><p className="text-sm mt-0.5" style={{ color: "rgba(255,255,255,.7)" }}>{plan.name} plan — <span className="font-bold" style={{ color: AMBER }}>{displayPrice}</span>{plan.period}</p></div>
+            <div><h2 className="text-white font-extrabold text-lg">{step === "details" ? "Create your account" : "Choose payment method"}</h2><p className="text-sm mt-0.5" style={{ color: "rgba(255,255,255,.7)" }}>{plan.name} plan, <span className="font-bold" style={{ color: AMBER }}>{displayPrice}</span>{plan.period}</p></div>
           </div>
           <button onClick={onClose} className="text-white/70 hover:text-white transition-colors"><X className="w-5 h-5" /></button>
         </div>

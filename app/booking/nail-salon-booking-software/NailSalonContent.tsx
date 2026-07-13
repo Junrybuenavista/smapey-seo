@@ -15,12 +15,12 @@ const CREAM = "#fbf7f0"
 const display = { fontFamily: "'Hanken Grotesk', system-ui, sans-serif" }
 
 const FEATURES = [
-  { icon: CalendarDays, title: "Nail Appointment Management", desc: "Book, confirm, and complete nail appointments in one clean dashboard. See your full day at a glance — no paper booking books." },
+  { icon: CalendarDays, title: "Nail Appointment Management", desc: "Book, confirm, and complete nail appointments in one clean dashboard. See your full day at a glance - no paper booking books." },
   { icon: Sparkles, title: "Nail Tech Assignment", desc: "Assign each appointment to the right nail technician. Clients know who they're seeing, and every tech's schedule stays balanced." },
   { icon: Clock, title: "Availability Scheduling", desc: "Set working hours per nail tech per day. Prevent overbooking automatically and control exactly when clients can be scheduled." },
-  { icon: CreditCard, title: "Deposit Tracking", desc: "Collect deposits to reduce no-shows. Record amounts and mark them paid or unpaid — all tracked without a separate spreadsheet." },
+  { icon: CreditCard, title: "Deposit Tracking", desc: "Collect deposits to reduce no-shows. Record amounts and mark them paid or unpaid - all tracked without a separate spreadsheet." },
   { icon: Bell, title: "Status Workflow", desc: "Move appointments through Pending → Confirmed → Completed with one click. Track no-shows and cancellations over time." },
-  { icon: BarChart3, title: "Service Catalog", desc: "List your nail services — manicure, pedicure, gel, acrylics — with custom durations and prices. Activate or deactivate anytime." },
+  { icon: BarChart3, title: "Service Catalog", desc: "List your nail services (manicure, pedicure, gel, acrylics) with custom durations and prices. Activate or deactivate anytime." },
   { icon: BarChart3, title: "Booking Dashboard", desc: "See today's nail appointments, monthly totals, and completion rates at a glance. Know your busiest days and plan accordingly." },
   { icon: Users, title: "Team Collaboration", desc: "Invite your nail techs and front desk staff with role-based access. Control who can book, edit, or view appointments." },
   { icon: Shield, title: "Secure & Isolated", desc: "Your client list and appointment records are fully isolated. No data is ever shared with other nail salons or businesses." },
@@ -29,8 +29,8 @@ const FEATURES = [
 const FAQS = [
   { q: "Can I manage multiple nail techs on one account?", a: "Yes. Invite your nail techs as team members and assign each appointment to the right person. Everyone sees their own schedule." },
   { q: "How does deposit tracking work?", a: "When booking an appointment, you can record a deposit amount and mark it as paid or unpaid. It reduces no-shows and keeps your cash flow visible." },
-  { q: "Can I list different nail services with different prices?", a: "Yes. Each service — manicure, pedicure, gel, acrylics — has its own name, duration, and price." },
-  { q: "Do clients book online themselves?", a: "Currently appointments are created by your staff through the dashboard. It's an internal scheduling tool — ideal for salons where clients call or walk in." },
+  { q: "Can I list different nail services with different prices?", a: "Yes. Each service (manicure, pedicure, gel, acrylics) has its own name, duration, and price." },
+  { q: "Do clients book online themselves?", a: "Currently appointments are created by your staff through the dashboard. It's an internal scheduling tool, ideal for salons where clients call or walk in." },
 ]
 
 function useInView(options?: IntersectionObserverInit) {
@@ -109,10 +109,10 @@ function Hero() {
         <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.04] tracking-tight mb-6" style={{ color: INK }}>
           Nail salon booking software <span style={{ color: BLUE }}>that runs your schedule</span>
         </h1>
-        <p className="text-lg max-w-2xl mx-auto mb-10 leading-relaxed" style={{ color: "#54514c" }}>Smapey Booking helps nail salons manage appointments, assign nail techs, collect deposits, and reduce no-shows — all from one simple dashboard.</p>
+        <p className="text-lg max-w-2xl mx-auto mb-10 leading-relaxed" style={{ color: "#54514c" }}>Smapey Booking helps nail salons manage appointments, assign nail techs, collect deposits, and reduce no-shows, all from one simple dashboard.</p>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
           <a href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=BOOKING&plan=FREE`} className="flex items-center gap-2 px-7 py-4 rounded-full font-bold text-sm border-2 transition-transform hover:-translate-y-0.5" style={{ ...display, background: AMBER, color: INK, borderColor: INK, boxShadow: `4px 4px 0 ${INK}` }}>
-            Start free — no card needed <ChevronRight className="w-4 h-4" />
+            Start free, no card needed <ChevronRight className="w-4 h-4" />
           </a>
           <a href="/booking" className="flex items-center gap-2 px-7 py-4 rounded-full font-bold text-sm border-2 bg-white transition-transform hover:-translate-y-0.5" style={{ ...display, color: INK, borderColor: INK }}>View all features</a>
         </div>
@@ -131,7 +131,7 @@ function Features() {
         <Animate className="text-center mb-16">
           <p className="text-sm font-bold uppercase tracking-widest mb-3" style={{ color: BLUE }}>Features</p>
           <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight" style={{ color: INK }}>Everything your nail salon needs</h2>
-          <p className="mt-4 max-w-xl mx-auto" style={{ color: "#54514c" }}>From booking to deposit to completion — manage your entire nail salon schedule in one place.</p>
+          <p className="mt-4 max-w-xl mx-auto" style={{ color: "#54514c" }}>From booking to deposit to completion, manage your entire nail salon schedule in one place.</p>
         </Animate>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {FEATURES.map(({ icon: Icon, title, desc }, i) => {
@@ -157,7 +157,7 @@ function Features() {
 const STEPS = [
   { step: "01", title: "Set up your nail salon", desc: "Add your services, set your nail techs' working hours, and configure your salon in minutes." },
   { step: "02", title: "Book clients & assign techs", desc: "Start booking nail appointments and assigning them to the right technician." },
-  { step: "03", title: "Track deposits & completions", desc: "Collect deposits, confirm appointments, and mark completions — all from one dashboard." },
+  { step: "03", title: "Track deposits & completions", desc: "Collect deposits, confirm appointments, and mark completions - all from one dashboard." },
 ]
 
 function HowItWorks() {
@@ -310,7 +310,7 @@ function PaymentModal({ plan, isPhilippines, onClose }: { plan: { name: string; 
         <div className="px-6 py-5 flex items-center justify-between" style={{ background: INK }}>
           <div className="flex items-center gap-3">
             {step === "payment" && !token && <button onClick={() => setStep("details")} className="text-white/70 hover:text-white transition"><svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}><path d="M19 12H5M12 5l-7 7 7 7"/></svg></button>}
-            <div><h2 className="text-white font-extrabold text-lg">{step === "details" ? "Create your account" : "Choose payment method"}</h2><p className="text-sm mt-0.5" style={{ color: "rgba(255,255,255,.7)" }}>{plan.name} plan — <span className="font-bold" style={{ color: AMBER }}>{displayPrice}</span>{plan.period}</p></div>
+            <div><h2 className="text-white font-extrabold text-lg">{step === "details" ? "Create your account" : "Choose payment method"}</h2><p className="text-sm mt-0.5" style={{ color: "rgba(255,255,255,.7)" }}>{plan.name} plan, <span className="font-bold" style={{ color: AMBER }}>{displayPrice}</span>{plan.period}</p></div>
           </div>
           <button onClick={onClose} className="text-white/70 hover:text-white transition-colors"><X className="w-5 h-5" /></button>
         </div>

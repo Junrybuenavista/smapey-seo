@@ -19,8 +19,8 @@ const display = { fontFamily: "'Hanken Grotesk', system-ui, sans-serif" }
 const FEATURES = [
   { icon: Calendar, title: "Appointment Management", desc: "Create, update, and track every salon appointment from a single dashboard. See the full day's schedule at a glance and manage last-minute changes with ease." },
   { icon: Users, title: "Client Database", desc: "Store full client profiles including contact details, appointment history, and service preferences. Search by name or phone to pull up any client instantly." },
-  { icon: Scissors, title: "Service Catalogue", desc: "Define every service you offer — name, price, and duration. Your catalogue drives both your appointment booking and your public-facing booking page." },
-  { icon: Globe, title: "Online Booking Page", desc: "Every salon gets a unique URL. Clients visit your page, browse your services, and submit a booking inquiry — no phone call required." },
+  { icon: Scissors, title: "Service Catalogue", desc: "Define every service you offer - name, price, and duration. Your catalogue drives both your appointment booking and your public-facing booking page." },
+  { icon: Globe, title: "Online Booking Page", desc: "Every salon gets a unique URL. Clients visit your page, browse your services, and submit a booking inquiry - no phone call required." },
   { icon: Inbox, title: "Inquiry Pipeline", desc: "Incoming booking requests land in your Inquiries tab. Review, accept, or decline each one. Accepted inquiries become confirmed appointments automatically." },
   { icon: BarChart3, title: "Revenue Dashboard", desc: "See monthly revenue, appointment volume, and completion rate on your main dashboard. Know your numbers without opening a spreadsheet." },
 ]
@@ -36,7 +36,7 @@ const COMPARISON = [
 ]
 
 const FAQS = [
-  { q: "What makes Smapey different from other salon management apps?", a: "Smapey focuses on the essentials — appointments, clients, services, and a public booking page — without the complexity of large enterprise tools. It's built for small salons that need to get started quickly and affordably." },
+  { q: "What makes Smapey different from other salon management apps?", a: "Smapey focuses on the essentials (appointments, clients, services, and a public booking page) without the complexity of large enterprise tools. It's built for small salons that need to get started quickly and affordably." },
   { q: "How does the public booking page work?", a: "Every salon account gets a unique URL. When clients visit the page, they see your service menu and can submit a booking inquiry with their preferred date and time. You review and confirm the booking in your dashboard." },
   { q: "Can I manage staff with the app?", a: "Yes. You can add team members and assign appointments to specific staff. The free plan supports 2 team members. The Pro plan supports up to 5." },
   { q: "Is the free plan really free forever?", a: "Yes. The free plan has no time limit. It supports up to 50 appointments per month, 5 services, and 2 team members. You only need to upgrade when your volume grows." },
@@ -131,11 +131,11 @@ function Hero() {
           <span style={{ color: BLUE }}>built for <span style={{ color: AMBER }}>small salons</span></span>
         </h1>
         <p className="text-lg max-w-2xl mx-auto mb-10 leading-relaxed" style={{ color: "#54514c" }}>
-          Manage every aspect of your salon from one dashboard — appointments, clients, services, a public booking page, and revenue tracking. No complexity, no bloat.
+          Manage every aspect of your salon from one dashboard, appointments, clients, services, a public booking page, and revenue tracking. No complexity, no bloat.
         </p>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
           <a href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=SALON&plan=FREE`} className="flex items-center gap-2 px-7 py-4 rounded-full font-bold text-sm border-2 transition-transform hover:-translate-y-0.5" style={{ ...display, background: AMBER, color: INK, borderColor: INK, boxShadow: `4px 4px 0 ${INK}` }}>
-            Start free — no card needed <ChevronRight className="w-4 h-4" />
+            Start free, no card needed <ChevronRight className="w-4 h-4" />
           </a>
           <a href="/salon" className="flex items-center gap-2 px-7 py-4 rounded-full font-bold text-sm border-2 bg-white transition-transform hover:-translate-y-0.5" style={{ ...display, color: INK, borderColor: INK }}>
             View all features
@@ -158,7 +158,7 @@ function SalonFeatures() {
         <Animate className="text-center mb-16">
           <p className="text-sm font-bold uppercase tracking-widest mb-3" style={{ color: BLUE }}>Features</p>
           <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight" style={{ color: INK }}>Complete salon management in one place</h2>
-          <p className="mt-4 max-w-xl mx-auto" style={{ color: "#54514c" }}>From the first client inquiry to the final payment — SalonOS handles your entire operation.</p>
+          <p className="mt-4 max-w-xl mx-auto" style={{ color: "#54514c" }}>From the first client inquiry to the final payment, SalonOS handles your entire operation.</p>
         </Animate>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {FEATURES.map(({ icon: Icon, title, desc }, i) => {
@@ -388,7 +388,7 @@ function PaymentModal({ plan, isPhilippines, onClose }: { plan: { name: string; 
             {step === "payment" && !token && <button onClick={() => setStep("details")} className="text-white/70 hover:text-white transition"><svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}><path d="M19 12H5M12 5l-7 7 7 7"/></svg></button>}
             <div>
               <h2 className="text-white font-extrabold text-lg">{step === "details" ? "Create your account" : "Choose payment method"}</h2>
-              <p className="text-sm mt-0.5" style={{ color: "rgba(255,255,255,.7)" }}>{plan.name} plan — <span className="font-bold" style={{ color: AMBER }}>{displayPrice}</span>{plan.period}</p>
+              <p className="text-sm mt-0.5" style={{ color: "rgba(255,255,255,.7)" }}>{plan.name} plan, <span className="font-bold" style={{ color: AMBER }}>{displayPrice}</span>{plan.period}</p>
             </div>
           </div>
           <button onClick={onClose} className="text-white/70 hover:text-white transition-colors"><X className="w-5 h-5" /></button>

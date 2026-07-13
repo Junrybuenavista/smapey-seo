@@ -26,13 +26,13 @@ const FEATURES = [
   { icon: Scissors, title: "Service Menu", desc: "Define your full list of services with prices and durations. Each service appears on your public booking page automatically." },
   { icon: Globe, title: "Public Booking Page", desc: "Your salon gets a unique URL clients can visit to browse services and send a booking inquiry. No coding needed." },
   { icon: Inbox, title: "Inquiry Management", desc: "See all incoming booking requests in one place. Accept or decline inquiries and convert them into confirmed appointments." },
-  { icon: BarChart3, title: "Analytics Dashboard", desc: "Track monthly revenue, appointment count, completed sessions, and pending inquiries — all from a single dashboard." },
+  { icon: BarChart3, title: "Analytics Dashboard", desc: "Track monthly revenue, appointment count, completed sessions, and pending inquiries - all from a single dashboard." },
 ]
 
 const STEPS = [
   { step: "01", title: "Add your services", desc: "Set up your service menu with names, prices, and durations. This builds your public booking page automatically." },
   { step: "02", title: "Share your booking link", desc: "Every salon gets a unique URL. Share it on social media, WhatsApp, or your bio so clients can browse and inquire." },
-  { step: "03", title: "Manage appointments", desc: "Accept inquiries, book appointments, complete sessions, and track revenue — all from your salon dashboard." },
+  { step: "03", title: "Manage appointments", desc: "Accept inquiries, book appointments, complete sessions, and track revenue - all from your salon dashboard." },
 ]
 
 const FEATURE_ROWS = [
@@ -53,7 +53,7 @@ const FAQS = [
   { q: "Does the app include a public booking page?", a: "Yes. Every salon account gets a unique URL like smapey.com/salon/your-salon-name. Clients can browse your services and send a booking inquiry directly from that page." },
   { q: "Can I manage multiple staff members?", a: "Yes. You can add team members to your account and assign appointments to specific staff. The Pro plan supports up to 5 team members." },
   { q: "How do I accept payments?", a: "Smapey SalonOS tracks appointment totals and completion status. You can record cash, GCash, or bank transfer payments per appointment." },
-  { q: "Is there a free plan?", a: "Yes. The free plan supports up to 50 appointments per month, 5 services, and a public booking page — no credit card required." },
+  { q: "Is there a free plan?", a: "Yes. The free plan supports up to 50 appointments per month, 5 services, and a public booking page, no credit card required." },
 ]
 
 //////////////////////////////////////////////////////
@@ -164,7 +164,7 @@ function Hero() {
           Run your salon <span style={{ color: BLUE }}>smarter</span>,<br className="hidden sm:block" /> not <span style={{ color: AMBER }}>harder</span>
         </h1>
         <p className="text-lg max-w-2xl mx-auto mb-10 leading-relaxed" style={{ color: "#54514c" }}>
-          SalonOS handles appointment scheduling, client management, and your public booking page —
+          SalonOS handles appointment scheduling, client management, and your public booking page,
           so you can focus on delivering great service to every client.
         </p>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
@@ -196,7 +196,7 @@ function Features() {
         <Animate className="text-center mb-16">
           <p className="text-sm font-bold uppercase tracking-widest mb-3" style={{ color: BLUE }}>Features</p>
           <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight" style={{ color: INK }}>Everything your salon needs</h2>
-          <p className="mt-4 max-w-xl mx-auto" style={{ color: "#54514c" }}>From booking the first appointment to tracking monthly revenue — SalonOS covers your entire salon operation.</p>
+          <p className="mt-4 max-w-xl mx-auto" style={{ color: "#54514c" }}>From booking the first appointment to tracking monthly revenue, SalonOS covers your entire salon operation.</p>
         </Animate>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {FEATURES.map(({ icon: Icon, title, desc }, i) => {
@@ -463,7 +463,7 @@ function PaymentModal({ plan, isPhilippines, onClose }: { plan: { name: string; 
             {step === "payment" && !token && <button onClick={() => setStep("details")} className="text-white/70 hover:text-white transition"><svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}><path d="M19 12H5M12 5l-7 7 7 7"/></svg></button>}
             <div>
               <h2 className="text-white font-extrabold text-lg">{step === "details" ? "Create your account" : "Choose payment method"}</h2>
-              <p className="text-sm mt-0.5" style={{ color: "rgba(255,255,255,.7)" }}>{plan.name} plan — <span className="font-bold" style={{ color: AMBER }}>{displayPrice}</span>{plan.period}</p>
+              <p className="text-sm mt-0.5" style={{ color: "rgba(255,255,255,.7)" }}>{plan.name} plan, <span className="font-bold" style={{ color: AMBER }}>{displayPrice}</span>{plan.period}</p>
             </div>
           </div>
           <button onClick={onClose} className="text-white/70 hover:text-white transition-colors"><X className="w-5 h-5" /></button>

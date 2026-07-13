@@ -12,23 +12,23 @@ const CREAM = "#fbf7f0"
 const display = { fontFamily: "'Hanken Grotesk', system-ui, sans-serif" }
 
 const FEATURES = [
-  { icon: Car, title: "Simple fleet tracking", desc: "Add your vehicles, set their status, and see your whole fleet at a glance. No training required — you'll be running in under 10 minutes." },
-  { icon: Key, title: "Easy reservations", desc: "Create a rental with a few fields — customer, vehicle, dates, deposit. Everything is tracked automatically from there." },
+  { icon: Car, title: "Simple fleet tracking", desc: "Add your vehicles, set their status, and see your whole fleet at a glance. No training required - you'll be running in under 10 minutes." },
+  { icon: Key, title: "Easy reservations", desc: "Create a rental with a few fields - customer, vehicle, dates, deposit. Everything is tracked automatically from there." },
   { icon: CreditCard, title: "Deposit tracking", desc: "Record and track deposits without a separate spreadsheet. Know what's been collected before a vehicle leaves." },
-  { icon: BarChart3, title: "Revenue at a glance", desc: "See your monthly revenue, rental count, and fleet utilization on one dashboard. Know if your business is growing — without a finance degree." },
+  { icon: BarChart3, title: "Revenue at a glance", desc: "See your monthly revenue, rental count, and fleet utilization on one dashboard. Know if your business is growing - without a finance degree." },
   { icon: Wrench, title: "Maintenance flags", desc: "Mark a car as under maintenance with one click. It disappears from available inventory until you're ready to rent it again." },
   { icon: Shield, title: "Affordable pricing", desc: "Start free with 5 vehicles. Upgrade to Pro for $19/month when your fleet grows. No enterprise contracts, no hidden fees." },
-  { icon: Globe, title: "Public Booking Page", desc: "Share a public link where customers can browse your fleet and submit booking inquiries 24/7 — no login required on their end." },
+  { icon: Globe, title: "Public Booking Page", desc: "Share a public link where customers can browse your fleet and submit booking inquiries 24/7 - no login required on their end." },
   { icon: MessageSquare, title: "Booking Inquiries", desc: "Review incoming booking requests from your public page. Approve or reject each inquiry and convert approved ones to rentals in one click." },
-  { icon: QrCode, title: "Deposit QR Code", desc: "Upload your GCash, Maya, or bank QR code to your booking page so customers can scan and pay their deposit instantly — no back-and-forth messaging." },
-  { icon: Palette, title: "Page Personalization", desc: "Choose from 5 themes — Midnight, Clean, Ocean, Forest, Luxury — then personalize any theme with a cover photo, tagline, and accent color to match your brand." },
-  { icon: Bell, title: "Instant Booking Alerts", desc: "Get notified the moment a customer submits a booking inquiry. A badge appears on your notification bell — click it to jump straight to the inquiry." },
+  { icon: QrCode, title: "Deposit QR Code", desc: "Upload your GCash, Maya, or bank QR code to your booking page so customers can scan and pay their deposit instantly - no back-and-forth messaging." },
+  { icon: Palette, title: "Page Personalization", desc: "Choose from 5 themes (Midnight, Clean, Ocean, Forest, Luxury) then personalize any theme with a cover photo, tagline, and accent color to match your brand." },
+  { icon: Bell, title: "Instant Booking Alerts", desc: "Get notified the moment a customer submits a booking inquiry. A badge appears on your notification bell - click it to jump straight to the inquiry." },
   { icon: ImagePlus, title: "Vehicle Photos", desc: "Upload a photo for each vehicle in your fleet. Photos display on your public booking page so customers see exactly what they're renting before they inquire." },
 ]
 
 const FAQS = [
-  { q: "Is this really built for small businesses?", a: "Yes. Smapey was built for small to mid-sized operators who need fleet management without paying for enterprise software. The free plan covers up to 5 vehicles and 20 rentals a month — enough to start." },
-  { q: "How long does it take to set up?", a: "Most users have their fleet added and first rental created within 10 minutes. There's no complex configuration — just add your vehicles, register your customers, and start renting." },
+  { q: "Is this really built for small businesses?", a: "Yes. Smapey was built for small to mid-sized operators who need fleet management without paying for enterprise software. The free plan covers up to 5 vehicles and 20 rentals a month, enough to start." },
+  { q: "How long does it take to set up?", a: "Most users have their fleet added and first rental created within 10 minutes. There's no complex configuration, just add your vehicles, register your customers, and start renting." },
   { q: "Do I need to hire a developer or IT person?", a: "No. Smapey is a web app you access from any browser. No installation, no servers, no technical setup required." },
   { q: "Can I cancel anytime?", a: "Yes. There are no long-term contracts. You can upgrade, downgrade, or cancel your plan at any time from the billing page." },
   { q: "What if my fleet grows beyond the free plan?", a: "Upgrade to Pro (up to 30 vehicles, unlimited rentals) or Enterprise (unlimited everything) anytime. Your data stays intact when you upgrade." },
@@ -110,10 +110,10 @@ function Hero() {
         <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.04] tracking-tight mb-6" style={{ color: INK }}>
           Car rental software for <span style={{ color: BLUE }}>small businesses that mean it</span>
         </h1>
-        <p className="text-lg max-w-2xl mx-auto mb-10 leading-relaxed" style={{ color: "#54514c" }}>Smapey gives small car rental operators the same tools used by larger fleets — at a price that makes sense. Free to start, affordable to grow.</p>
+        <p className="text-lg max-w-2xl mx-auto mb-10 leading-relaxed" style={{ color: "#54514c" }}>Smapey gives small car rental operators the same tools used by larger fleets, at a price that makes sense. Free to start, affordable to grow.</p>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
           <a href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=CAR_RENTAL&plan=FREE`} className="flex items-center gap-2 px-7 py-4 rounded-full font-bold text-sm border-2 transition-transform hover:-translate-y-0.5" style={{ ...display, background: AMBER, color: INK, borderColor: INK, boxShadow: `4px 4px 0 ${INK}` }}>
-            Start free — no card needed <ChevronRight className="w-4 h-4" />
+            Start free, no card needed <ChevronRight className="w-4 h-4" />
           </a>
           <a href="/car-rental" className="flex items-center gap-2 px-7 py-4 rounded-full font-bold text-sm border-2 bg-white transition-transform hover:-translate-y-0.5" style={{ ...display, color: INK, borderColor: INK }}>View all features</a>
         </div>
@@ -280,7 +280,7 @@ function PaymentModal({ plan, isPhilippines, onClose }: { plan: { name: string; 
         <div className="px-6 py-5 flex items-center justify-between" style={{ background: INK }}>
           <div className="flex items-center gap-3">
             {step === "payment" && !token && <button onClick={() => setStep("details")} className="text-white/70 hover:text-white transition"><svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}><path d="M19 12H5M12 5l-7 7 7 7"/></svg></button>}
-            <div><h2 className="text-white font-extrabold text-lg">{step === "details" ? "Create your account" : "Choose payment method"}</h2><p className="text-sm mt-0.5" style={{ color: "rgba(255,255,255,.7)" }}>{plan.name} plan — <span className="font-bold" style={{ color: AMBER }}>{displayPrice}</span>{plan.period}</p></div>
+            <div><h2 className="text-white font-extrabold text-lg">{step === "details" ? "Create your account" : "Choose payment method"}</h2><p className="text-sm mt-0.5" style={{ color: "rgba(255,255,255,.7)" }}>{plan.name} plan, <span className="font-bold" style={{ color: AMBER }}>{displayPrice}</span>{plan.period}</p></div>
           </div>
           <button onClick={onClose} className="text-white/70 hover:text-white transition-colors"><X className="w-5 h-5" /></button>
         </div>

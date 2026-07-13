@@ -83,7 +83,7 @@ function Navbar() {
 const STEPS = [
   { num: "01", title: "Define your niche and service offering", body: [
     "Before spending money on equipment or permits, decide what kind of catering business you want to run. The catering industry in the Philippines covers a wide range: home-based food catering for small parties, full-service catering for weddings and debuts, corporate event catering, school canteen supply, and more.",
-    "Picking a focused niche early makes everything else easier — your marketing, your package pricing, your supply requirements, and your staffing. Most successful catering businesses in the Philippines started by serving one type of event well before expanding.",
+    "Picking a focused niche early makes everything else easier, your marketing, your package pricing, your supply requirements, and your staffing. Most successful catering businesses in the Philippines started by serving one type of event well before expanding.",
     "Common entry points: family celebrations (birthday parties, baptisms, reunions), school events, office catering, and wedding receptions. Wedding and debut catering generally commands higher prices but requires more coordination and planning.",
   ] },
   { num: "02", title: "Register your business", body: [
@@ -92,7 +92,7 @@ const STEPS = [
     "• Barangay clearance from your local barangay",
     "• Mayor's permit / Business permit from your city or municipality",
     "• BIR registration for tax purposes (TIN, official receipts, books of accounts)",
-    "If you plan to operate from a commercial kitchen space, you'll also need a sanitary permit and potentially a DOH food establishment license. Home-based operations also need to comply with local ordinances — check with your barangay and city hall.",
+    "If you plan to operate from a commercial kitchen space, you'll also need a sanitary permit and potentially a DOH food establishment license. Home-based operations also need to comply with local ordinances, check with your barangay and city hall.",
     "Budget ₱3,000–₱10,000 for initial registration fees depending on your location and business size.",
   ] },
   { num: "03", title: "Set your packages and pricing", body: [
@@ -103,27 +103,27 @@ const STEPS = [
   ] },
   { num: "04", title: "Get your equipment and kitchen set up", body: [
     "For a home-based catering startup in the Philippines, your initial equipment investment can be kept minimal. The essentials: large pots and chafing dishes, serving trays and utensils, food containers, a cooler or chiller for transport, and basic service supplies (tablecloths, serving spoons, etc.).",
-    "You don't need to own everything on day one — many catering supplies can be rented per event in the Philippines. Build supplier relationships with kitchen rental and equipment rental providers in your area.",
+    "You don't need to own everything on day one, many catering supplies can be rented per event in the Philippines. Build supplier relationships with kitchen rental and equipment rental providers in your area.",
     "As volume grows, invest in your own equipment to reduce per-event rental costs. Your supply catalog in Smapey can track which items you own vs. rent and factor costs accordingly.",
   ] },
   { num: "05", title: "Find your first clients", body: [
     "The fastest way to get your first catering clients in the Philippines is through personal and community networks. Tell family, friends, officemates, and church communities that you're taking bookings. Word of mouth is still the primary referral channel for Philippine catering businesses.",
-    "Facebook is the dominant digital channel — create a dedicated Facebook page with photos of your food and packages. Join local buy-and-sell groups and community Facebook groups. If you can get even one or two early clients to post reviews or tag you in photos, it compounds quickly.",
+    "Facebook is the dominant digital channel, create a dedicated Facebook page with photos of your food and packages. Join local buy-and-sell groups and community Facebook groups. If you can get even one or two early clients to post reviews or tag you in photos, it compounds quickly.",
     "Once you have a few bookings, ask for referrals proactively. Most catering bookings come from repeat clients and their social networks.",
   ] },
   { num: "06", title: "Manage your operations with a system from day one", body: [
     "The biggest operational mistake new catering businesses make is waiting too long to put a system in place. Once you're handling more than two or three events simultaneously, the complexity of tracking bookings, payment schedules, supply procurement, and staff coordination becomes unmanageable without software.",
-    "Use a catering management system from your very first booking — not after you've outgrown your notebook. This means: every booking has a record, every payment milestone is tracked, every supply requirement is noted, and your monthly revenue is visible at a glance.",
-    "Smapey's free catering management plan is designed for exactly this stage — a small catering business that needs structure without a subscription fee.",
+    "Use a catering management system from your very first booking, not after you've outgrown your notebook. This means: every booking has a record, every payment milestone is tracked, every supply requirement is noted, and your monthly revenue is visible at a glance.",
+    "Smapey's free catering management plan is designed for exactly this stage, a small catering business that needs structure without a subscription fee.",
   ] },
 ]
 
 const FAQS = [
-  { q: "How much capital do you need to start a catering business in the Philippines?", a: "A home-based catering startup can begin with as little as ₱15,000–₱30,000 for basic equipment, permits, and initial supplies. If you rent equipment for your first few events rather than buying, startup costs drop further. Capital scales with ambition — full commercial kitchen setups can require ₱200,000–₱500,000 or more." },
+  { q: "How much capital do you need to start a catering business in the Philippines?", a: "A home-based catering startup can begin with as little as ₱15,000–₱30,000 for basic equipment, permits, and initial supplies. If you rent equipment for your first few events rather than buying, startup costs drop further. Capital scales with ambition, full commercial kitchen setups can require ₱200,000–₱500,000 or more." },
   { q: "Do I need to have a commercial kitchen to start a catering business?", a: "For most small home-based catering businesses in the Philippines, a home kitchen is sufficient to get started. However, if you plan to cater for large corporate events or obtain certain permits, a commercial kitchen may be required. Some caterers rent commercial kitchen space per booking to keep overhead low." },
   { q: "What permits do I need to start a catering business in the Philippines?", a: "At minimum: DTI registration (sole proprietorship), barangay clearance, mayor's permit, and BIR registration. If you're serving food publicly, a sanitary permit is typically required. Check specific requirements with your local government unit, as these vary by city and municipality." },
   { q: "How do I price my catering packages?", a: "Calculate food cost per head (target 30–40% of selling price), add labor, transport, and rentals. The remainder is your gross margin. Research local competitor pricing to ensure you're in range. Start with two or three clearly defined packages rather than quoting custom menus for every inquiry." },
-  { q: "What software should I use to manage a catering business in the Philippines?", a: "Start with a dedicated catering management system that handles bookings, packages, payment milestones, supply catalog, and staff assignment. Smapey's catering module covers all of these on a free plan — no credit card required. Using spreadsheets and chat apps works early on but creates serious operational gaps as your volume grows." },
+  { q: "What software should I use to manage a catering business in the Philippines?", a: "Start with a dedicated catering management system that handles bookings, packages, payment milestones, supply catalog, and staff assignment. Smapey's catering module covers all of these on a free plan, no credit card required. Using spreadsheets and chat apps works early on but creates serious operational gaps as your volume grows." },
 ]
 
 const CHECKLIST = [
@@ -163,7 +163,7 @@ export default function HowToStartCateringContent() {
             <span style={{ color: BLUE }}>in the Philippines</span>
           </h1>
           <p className="text-lg max-w-2xl mx-auto mb-8 leading-relaxed" style={{ color: "#54514c" }}>
-            A practical, step-by-step guide to starting a catering business in the Philippines — from registration and pricing to finding clients and managing operations with software.
+            A practical, step-by-step guide to starting a catering business in the Philippines, from registration and pricing to finding clients and managing operations with software.
           </p>
           <a href={REGISTER_URL} className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full font-bold text-sm border-2 transition-transform hover:-translate-y-0.5" style={{ ...display, background: AMBER, color: INK, borderColor: INK, boxShadow: `4px 4px 0 ${INK}` }}>
             Start managing your catering business free <ChevronRight className="w-4 h-4" />
@@ -206,7 +206,7 @@ export default function HowToStartCateringContent() {
               </div>
               <div className="flex-1 text-center sm:text-left">
                 <h3 className="font-extrabold text-lg mb-1" style={{ color: INK }}>Ready to put a system in place?</h3>
-                <p className="text-sm" style={{ color: "#54514c" }}>Smapey Catering Manager is free for small catering businesses. Manage your bookings, packages, payment milestones, and supply catalog from day one — no spreadsheets, no Messenger threads.</p>
+                <p className="text-sm" style={{ color: "#54514c" }}>Smapey Catering Manager is free for small catering businesses. Manage your bookings, packages, payment milestones, and supply catalog from day one, no spreadsheets, no Messenger threads.</p>
               </div>
               <a href={REGISTER_URL} className="shrink-0 inline-flex items-center gap-2 px-5 py-2.5 rounded-full font-bold text-sm border-2 transition-transform hover:-translate-y-0.5" style={{ ...display, background: AMBER, color: INK, borderColor: INK }}>
                 Get started free <ChevronRight className="w-4 h-4" />
@@ -262,7 +262,7 @@ export default function HowToStartCateringContent() {
         <Animate className="max-w-3xl mx-auto">
           <div className="rounded-[28px] border-2 p-10 text-center" style={{ background: AMBER, borderColor: INK, boxShadow: `10px 10px 0 ${INK}` }}>
             <h2 className="text-3xl font-extrabold mb-4" style={{ color: INK }}>Start your catering business the right way</h2>
-            <p className="mb-8 max-w-lg mx-auto font-medium" style={{ color: "#5c4a28" }}>Use Smapey from your very first booking. Free forever for small catering businesses — no credit card, no setup fee.</p>
+            <p className="mb-8 max-w-lg mx-auto font-medium" style={{ color: "#5c4a28" }}>Use Smapey from your very first booking. Free forever for small catering businesses, no credit card, no setup fee.</p>
             <a href={REGISTER_URL} className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full font-bold text-sm border-2 transition-transform hover:-translate-y-0.5" style={{ ...display, background: INK, color: "#fff", borderColor: INK }}>
               Get started free <ChevronRight className="w-4 h-4" />
             </a>

@@ -8,7 +8,7 @@ const variant: StoreVariant = {
     titleLead: "Inventory management system examples",
     titleAccent: "for every store type.",
     subtitle:
-      "A sari-sari store tracking 40 products. A boutique watching stock on 120 SKUs. A hardware shop reordering nuts and bolts before they run out. These are real inventory management system examples — and Smapey handles all of them, free.",
+      "A sari-sari store tracking 40 products. A boutique watching stock on 120 SKUs. A hardware shop reordering nuts and bolts before they run out. These are real inventory management system examples, and Smapey handles all of them, free.",
   },
   features: {
     eyebrow: "Inventory System Examples",
@@ -17,7 +17,7 @@ const variant: StoreVariant = {
   },
   cta: {
     heading: "See your own inventory management system in action.",
-    sub: "Add your products, set reorder points, and start selling — free forever, no card required.",
+    sub: "Add your products, set reorder points, and start selling, free forever, no card required.",
   },
 }
 

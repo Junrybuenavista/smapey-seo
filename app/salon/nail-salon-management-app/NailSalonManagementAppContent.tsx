@@ -16,10 +16,10 @@ const CREAM = "#fbf7f0"
 const display = { fontFamily: "'Hanken Grotesk', system-ui, sans-serif" }
 
 const FEATURES = [
-  { icon: Palette, title: "Nail Service Menu", desc: "Add all your nail services — gel manicure, acrylic full set, nail art, pedicure, dip powder, and more. Each service shows up on your public booking page with price and duration." },
+  { icon: Palette, title: "Nail Service Menu", desc: "Add all your nail services - gel manicure, acrylic full set, nail art, pedicure, dip powder, and more. Each service shows up on your public booking page with price and duration." },
   { icon: Users, title: "Client Nail Preferences", desc: "Record each client's preferred nail shape, favorite colors, gel vs. acrylic preference, and any sensitivities. Your nail techs always know what the client wants." },
   { icon: Scissors, title: "Nail Technician Assignment", desc: "Assign appointments to specific nail technicians. Clients can request their preferred tech when submitting a booking inquiry through your booking page." },
-  { icon: Globe, title: "Nail Salon Booking Page", desc: "Get a unique booking URL for your nail salon. Share it on social media or in your bio — clients browse your services and send a booking inquiry online." },
+  { icon: Globe, title: "Nail Salon Booking Page", desc: "Get a unique booking URL for your nail salon. Share it on social media or in your bio - clients browse your services and send a booking inquiry online." },
   { icon: Inbox, title: "Booking Request Management", desc: "Incoming nail appointment requests appear in your Inquiries tab. Accept or decline with one click and convert confirmed inquiries into scheduled appointments." },
   { icon: BarChart3, title: "Revenue Tracking", desc: "Monitor monthly revenue, appointment volume, and service popularity from your dashboard. Know which nail services are your best performers." },
 ]
@@ -117,10 +117,10 @@ function Hero() {
         <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.04] tracking-tight mb-6" style={{ color: INK }}>
           The nail salon management app <span style={{ color: BLUE }}>that keeps clients coming back</span>
         </h1>
-        <p className="text-lg max-w-2xl mx-auto mb-10 leading-relaxed" style={{ color: "#54514c" }}>Book nail appointments, track client preferences (gel, acrylic, nail art), publish a booking page, and manage your nail salon revenue — all from one dashboard. Free to start.</p>
+        <p className="text-lg max-w-2xl mx-auto mb-10 leading-relaxed" style={{ color: "#54514c" }}>Book nail appointments, track client preferences (gel, acrylic, nail art), publish a booking page, and manage your nail salon revenue, all from one dashboard. Free to start.</p>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
           <a href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=SALON&plan=FREE`} className="flex items-center gap-2 px-7 py-4 rounded-full font-bold text-sm border-2 transition-transform hover:-translate-y-0.5" style={{ ...display, background: AMBER, color: INK, borderColor: INK, boxShadow: `4px 4px 0 ${INK}` }}>
-            Start free — no card needed <ChevronRight className="w-4 h-4" />
+            Start free, no card needed <ChevronRight className="w-4 h-4" />
           </a>
           <a href="/salon" className="flex items-center gap-2 px-7 py-4 rounded-full font-bold text-sm border-2 bg-white transition-transform hover:-translate-y-0.5" style={{ ...display, color: INK, borderColor: INK }}>View all features</a>
         </div>
@@ -139,7 +139,7 @@ function NailFeatures() {
         <Animate className="text-center mb-16">
           <p className="text-sm font-bold uppercase tracking-widest mb-3" style={{ color: BLUE }}>Features</p>
           <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight" style={{ color: INK }}>Everything a nail salon needs</h2>
-          <p className="mt-4 max-w-xl mx-auto" style={{ color: "#54514c" }}>From gel manicures to acrylic sets — manage every nail appointment and client record in one app.</p>
+          <p className="mt-4 max-w-xl mx-auto" style={{ color: "#54514c" }}>From gel manicures to acrylic sets, manage every nail appointment and client record in one app.</p>
         </Animate>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {FEATURES.map(({ icon: Icon, title, desc }, i) => {
@@ -331,7 +331,7 @@ function PaymentModal({ plan, isPhilippines, onClose }: { plan: { name: string; 
         <div className="px-6 py-5 flex items-center justify-between" style={{ background: INK }}>
           <div className="flex items-center gap-3">
             {step === "payment" && !token && <button onClick={() => setStep("details")} className="text-white/70 hover:text-white transition"><svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}><path d="M19 12H5M12 5l-7 7 7 7"/></svg></button>}
-            <div><h2 className="text-white font-extrabold text-lg">{step === "details" ? "Create your account" : "Choose payment method"}</h2><p className="text-sm mt-0.5" style={{ color: "rgba(255,255,255,.7)" }}>{plan.name} plan — <span className="font-bold" style={{ color: AMBER }}>{displayPrice}</span>{plan.period}</p></div>
+            <div><h2 className="text-white font-extrabold text-lg">{step === "details" ? "Create your account" : "Choose payment method"}</h2><p className="text-sm mt-0.5" style={{ color: "rgba(255,255,255,.7)" }}>{plan.name} plan, <span className="font-bold" style={{ color: AMBER }}>{displayPrice}</span>{plan.period}</p></div>
           </div>
           <button onClick={onClose} className="text-white/70 hover:text-white transition-colors"><X className="w-5 h-5" /></button>
         </div>

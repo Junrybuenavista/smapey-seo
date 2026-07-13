@@ -73,7 +73,7 @@ relative left-1/2 right-1/2 -mx-[50vw] w-screen px-6 lg:px-20 text-white">
 
   <p className="text-gray-300 text-lg max-w-xl">
     Smapey makes invoicing simple. Create professional invoices, send them to clients,
-    and get paid faster—all in just a few steps.
+    and get paid faster, all in just a few steps.
   </p>
 
   <p className="text-gray-300 text-lg max-w-xl">
@@ -217,7 +217,7 @@ relative left-1/2 right-1/2 -mx-[50vw] w-screen px-6 lg:px-20 text-white">
             </h2>
             <p className="text-gray-600 text-lg">
               Stop wasting time with manual invoices. Generate professional invoices instantly 
-              and send them to your clients with one click — so you can focus on growing your business.
+              and send them to your clients with one click, so you can focus on growing your business.
             </p>
           </div>
 
@@ -255,7 +255,7 @@ relative left-1/2 right-1/2 -mx-[50vw] w-screen px-6 lg:px-20 text-white">
             </h2>
             <p className="text-gray-600 text-lg">
               Track invoices, clients, and payments from a clean dashboard. 
-              Instantly see what’s paid, pending, or overdue — and take action without digging through spreadsheets.
+              Instantly see what’s paid, pending, or overdue, and take action without digging through spreadsheets.
             </p>
           </div>
         </div>
@@ -271,7 +271,7 @@ relative left-1/2 right-1/2 -mx-[50vw] w-screen px-6 lg:px-20 text-white">
             </h2>
             <p className="text-gray-600 text-lg">
               Send clean, detailed invoices with item breakdowns, taxes, and due dates. 
-              Impress your clients and reduce confusion — making it easier for them to pay you faster.
+              Impress your clients and reduce confusion, making it easier for them to pay you faster.
             </p>
           </div>
 

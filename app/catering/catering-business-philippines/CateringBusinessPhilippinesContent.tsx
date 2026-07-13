@@ -81,32 +81,32 @@ function Navbar() {
 }
 
 const CHALLENGES = [
-  { icon: CalendarDays, problem: "Bookings tracked in a group chat or notebook", solution: "A centralized booking list with status, event date, guest count, and assigned packages — every booking visible at once." },
-  { icon: Banknote, problem: "Chasing clients for partial payments and balances", solution: "Payment milestones per booking — reservation fee, partial, and final balance — with status tracking and overdue alerts on the dashboard." },
+  { icon: CalendarDays, problem: "Bookings tracked in a group chat or notebook", solution: "A centralized booking list with status, event date, guest count, and assigned packages, every booking visible at once." },
+  { icon: Banknote, problem: "Chasing clients for partial payments and balances", solution: "Payment milestones per booking (reservation fee, partial, and final balance) with status tracking and overdue alerts on the dashboard." },
   { icon: Package, problem: "Re-quoting the same packages every inquiry", solution: "A package catalog with name, description, and price per head. Attach packages to any booking in seconds." },
   { icon: FlaskConical, problem: "No clear picture of food costs per event", solution: "A supply catalog with unit types and cost per unit. Link ingredients to packages and estimate procurement cost before the event." },
-  { icon: UserCheck, problem: "Staff assignments scattered across messages", solution: "Assign staff to each booking directly in the system. Everyone sees their roster — no separate announcement needed." },
+  { icon: UserCheck, problem: "Staff assignments scattered across messages", solution: "Assign staff to each booking directly in the system. Everyone sees their roster, no separate announcement needed." },
   { icon: BarChart3, problem: "No clear view of monthly revenue and collections", solution: "A revenue dashboard with upcoming events, money collected this month, pending milestones, and a monthly trend chart." },
 ]
 
 const FAQS = [
   { q: "How profitable is a catering business in the Philippines?", a: "Profitability depends on event volume, package pricing, and food cost management. A well-run small catering business in the Philippines handling 4–8 events per month can generate ₱50,000–₱150,000 monthly in revenue. Keeping food costs below 35% of revenue and minimizing uncollected payments are the two biggest levers. A catering management system like Smapey helps you track both." },
-  { q: "What's the biggest operational challenge for catering businesses in the Philippines?", a: "Most catering businesses struggle with three things: tracking multiple simultaneous bookings, collecting staggered payments on time, and estimating supply costs accurately. These are all manageable with the right system — Smapey is built specifically around these pain points." },
-  { q: "Do I need software even if I only do a few events per month?", a: "Yes — even at 2–4 events per month, the time spent manually tracking payments, quoting packages, and coordinating staff adds up. A free catering management system eliminates that overhead so you spend more time on the business itself." },
-  { q: "Can I manage a home-based catering business with Smapey?", a: "Absolutely. Smapey's free plan is designed for small catering operations — home-based caterers, solo operators, and teams just starting out. There's no minimum event volume or setup fee." },
-  { q: "Does Smapey support GCash and other Philippine payment methods?", a: "Yes. When recording milestone payments, you can log the method as Cash, GCash, Maya, Card, or Bank Transfer. The system doesn't process payments itself — it records what you collect and keeps the collection history accurate." },
+  { q: "What's the biggest operational challenge for catering businesses in the Philippines?", a: "Most catering businesses struggle with three things: tracking multiple simultaneous bookings, collecting staggered payments on time, and estimating supply costs accurately. These are all manageable with the right system, Smapey is built specifically around these pain points." },
+  { q: "Do I need software even if I only do a few events per month?", a: "Yes, even at 2–4 events per month, the time spent manually tracking payments, quoting packages, and coordinating staff adds up. A free catering management system eliminates that overhead so you spend more time on the business itself." },
+  { q: "Can I manage a home-based catering business with Smapey?", a: "Absolutely. Smapey's free plan is designed for small catering operations, home-based caterers, solo operators, and teams just starting out. There's no minimum event volume or setup fee." },
+  { q: "Does Smapey support GCash and other Philippine payment methods?", a: "Yes. When recording milestone payments, you can log the method as Cash, GCash, Maya, Card, or Bank Transfer. The system doesn't process payments itself, it records what you collect and keeps the collection history accurate." },
 ]
 
 const WHAT_YOU_GET = [
   "Event booking management with status tracking",
   "Client profiles with full booking history",
   "Package catalog with price per head",
-  "Payment milestones per booking — reservation, partial, balance",
+  "Payment milestones per booking, reservation, partial, balance",
   "Supply catalog with unit costs",
   "Staff assignment per event",
   "Revenue dashboard with monthly trend chart",
   "GCash, Cash, Maya, Card, Bank Transfer payment logging",
-  "Free plan — no credit card required",
+  "Free plan, no credit card required",
   "Accessible from any browser, any device",
 ]
 
@@ -133,11 +133,11 @@ export default function CateringBusinessPhilippinesContent() {
               <span style={{ color: BLUE }}>without the paperwork chaos</span>
             </h1>
             <p className="text-lg max-w-2xl mx-auto mb-8 leading-relaxed" style={{ color: "#54514c" }}>
-              Smapey is built for Philippine catering businesses — manage bookings, packages, payment milestones, supply costs, and staff assignments all from one clean dashboard.
+              Smapey is built for Philippine catering businesses, manage bookings, packages, payment milestones, supply costs, and staff assignments all from one clean dashboard.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <a href={REGISTER_URL} className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full font-bold text-sm border-2 transition-transform hover:-translate-y-0.5" style={{ ...display, background: AMBER, color: INK, borderColor: INK, boxShadow: `4px 4px 0 ${INK}` }}>
-                Start free — no credit card <ChevronRight className="w-4 h-4" />
+                Start free, no credit card <ChevronRight className="w-4 h-4" />
               </a>
               <a href="/catering" className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full border-2 bg-white font-bold text-sm transition-transform hover:-translate-y-0.5" style={{ ...display, color: INK, borderColor: INK }}>
                 See full product overview
@@ -151,7 +151,7 @@ export default function CateringBusinessPhilippinesContent() {
       <section className="py-20 px-6" style={{ background: "#fff" }}>
         <div className="max-w-4xl mx-auto">
           <Animate className="mb-12 text-center">
-            <h2 className="text-2xl sm:text-3xl font-extrabold" style={{ color: INK }}>The problems every Philippine catering business faces — and how Smapey solves them</h2>
+            <h2 className="text-2xl sm:text-3xl font-extrabold" style={{ color: INK }}>The problems every Philippine catering business faces, and how Smapey solves them</h2>
           </Animate>
           <div className="grid sm:grid-cols-2 gap-6">
             {CHALLENGES.map(({ icon: Icon, problem, solution }, i) => {
@@ -179,9 +179,9 @@ export default function CateringBusinessPhilippinesContent() {
         <div className="max-w-4xl mx-auto">
           <Animate>
             <h2 className="text-2xl sm:text-3xl font-extrabold mb-5" style={{ color: INK }}>The catering business landscape in the Philippines</h2>
-            <p className="leading-relaxed mb-4" style={{ color: "#54514c" }}>The catering industry in the Philippines is driven by a culture of large family gatherings, weddings, debuts, baptisms, and corporate events. Filipino families are known for going all-out on celebrations — which means catering businesses often handle high-value bookings where getting the payment schedule and supply planning right is critical.</p>
-            <p className="leading-relaxed mb-4" style={{ color: "#54514c" }}>Most catering businesses in the Philippines start small — a home-based operation run by one or two people, often taking bookings through Facebook or referrals. As the business grows, the operational complexity grows with it: more clients, more events running simultaneously, more staff to coordinate, and more suppliers to track.</p>
-            <p className="leading-relaxed" style={{ color: "#54514c" }}>The shift from running a catering business on notebooks, spreadsheets, and Messenger threads to using a dedicated catering management system is usually what separates businesses that scale from those that stay stuck in manual operations. Smapey is designed to make that shift as easy as possible — free to start, no IT setup, accessible from any device.</p>
+            <p className="leading-relaxed mb-4" style={{ color: "#54514c" }}>The catering industry in the Philippines is driven by a culture of large family gatherings, weddings, debuts, baptisms, and corporate events. Filipino families are known for going all-out on celebrations, which means catering businesses often handle high-value bookings where getting the payment schedule and supply planning right is critical.</p>
+            <p className="leading-relaxed mb-4" style={{ color: "#54514c" }}>Most catering businesses in the Philippines start small, a home-based operation run by one or two people, often taking bookings through Facebook or referrals. As the business grows, the operational complexity grows with it: more clients, more events running simultaneously, more staff to coordinate, and more suppliers to track.</p>
+            <p className="leading-relaxed" style={{ color: "#54514c" }}>The shift from running a catering business on notebooks, spreadsheets, and Messenger threads to using a dedicated catering management system is usually what separates businesses that scale from those that stay stuck in manual operations. Smapey is designed to make that shift as easy as possible, free to start, no IT setup, accessible from any device.</p>
           </Animate>
         </div>
       </section>

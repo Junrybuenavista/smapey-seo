@@ -54,14 +54,14 @@ function Navbar() {
 }
 
 const CAPABILITIES = [
-  { icon: PawPrint, title: "Pet Profiles", desc: "Complete pet records — species, breed, age, weight, owner info, medical notes, and visit history. Works for dogs, cats, birds, reptiles, and more." },
+  { icon: PawPrint, title: "Pet Profiles", desc: "Complete pet records - species, breed, age, weight, owner info, medical notes, and visit history. Works for dogs, cats, birds, reptiles, and more." },
   { icon: CalendarDays, title: "Appointment Management", desc: "Book clinic visits and grooming sessions by pet, vet or staff member, date, and time. Status tracking from Pending to Completed." },
   { icon: Syringe, title: "Vaccination Tracking", desc: "Log every vaccination with vaccine name, date, and next due date. A 30-day reminder list keeps your team ahead of overdue pets." },
-  { icon: ListOrdered, title: "Live Queue Board", desc: "Real-time kanban board showing every pet In Queue, In Progress, or Done — per vet or staff member, all at once." },
+  { icon: ListOrdered, title: "Live Queue Board", desc: "Real-time kanban board showing every pet In Queue, In Progress, or Done - per vet or staff member, all at once." },
   { icon: Receipt, title: "Billing & Payments", desc: "Itemized bills for consultations, grooming, medicines, and supplies. Track partial and full payments across GCash, Cash, Card, and more." },
   { icon: BarChart3, title: "Dashboard Analytics", desc: "At-a-glance stats: today's schedule, unpaid bills, upcoming vaccinations, monthly appointment trends, and completion rates." },
   { icon: Users, title: "Team Management", desc: "Invite vets, groomers, and reception staff with role-based access. Control exactly who can book, edit, bill, or only view." },
-  { icon: Shield, title: "Secure & Isolated", desc: "Your clinic's data is fully isolated — pet records, billing history, and staff accounts are never mixed with other businesses." },
+  { icon: Shield, title: "Secure & Isolated", desc: "Your clinic's data is fully isolated - pet records, billing history, and staff accounts are never mixed with other businesses." },
 ]
 
 const COMPARISON = [
@@ -91,7 +91,7 @@ export default function VetPetShopContent() {
             <PawPrint className="w-3 h-3" /> Veterinary Clinic & Pet Shop Management
           </div>
           <h1 className="text-4xl sm:text-5xl font-extrabold leading-tight tracking-tight mb-6" style={{ color: INK }}>
-            Veterinary clinic and pet shop management system — all in one place
+            Veterinary clinic and pet shop management system, all in one place
           </h1>
           <p className="text-lg max-w-2xl mx-auto mb-10" style={{ color: "#54514c" }}>
             Smapey handles everything from pet records and vet appointments to grooming schedules, vaccination tracking, and billing. One system for the whole operation.
@@ -118,7 +118,7 @@ export default function VetPetShopContent() {
           <Animate className="text-center mb-12">
             <p className="text-sm font-bold uppercase tracking-widest mb-3" style={{ color: BLUE }}>What&apos;s Included</p>
             <h2 className="text-3xl font-extrabold" style={{ color: INK }}>Built for vet clinics and pet care businesses</h2>
-            <p className="mt-3 max-w-xl mx-auto" style={{ color: "#54514c" }}>Every module connects — from the first appointment to the final bill.</p>
+            <p className="mt-3 max-w-xl mx-auto" style={{ color: "#54514c" }}>Every module connects, from the first appointment to the final bill.</p>
           </Animate>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {CAPABILITIES.map(({ icon: Icon, title, desc }, i) => {

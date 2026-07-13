@@ -3,8 +3,8 @@ import Script from "next/script"
 
 
 export const metadata = {
-  title: "Smapey Lending — Loan & Lending Management Software",
-  description: "Lending management software for lenders — borrowers, loans, amortization schedules, payment tracking, and collections analytics.",
+  title: "Smapey Lending - Loan & Lending Management Software",
+  description: "Lending management software for lenders, borrowers, loans, amortization schedules, payment tracking, and collections analytics.",
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

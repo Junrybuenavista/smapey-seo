@@ -18,7 +18,7 @@ const SECTIONS = [
     body: [
       "Open Services in the dashboard and add each massage offering: Swedish, deep tissue, hot stone, foot reflexology, prenatal, couples, etc.",
       "For each service, set a price, duration (30/60/90 min), an optional description, and an optional photo.",
-      "Toggle services active or inactive — only active services appear on your public booking page and in the appointment booking form.",
+      "Toggle services active or inactive, only active services appear on your public booking page and in the appointment booking form.",
     ],
   },
   {
@@ -27,7 +27,7 @@ const SECTIONS = [
     body: [
       "Open Therapists and add each team member. Include their full name, phone, email, and a comma-separated list of specialties (e.g. \"Swedish, Deep Tissue, Hot Stone\").",
       "Therapists you mark inactive won't be assignable to new appointments but their history stays on file.",
-      "When booking an appointment, you can assign a specific therapist — or leave it unassigned and decide later.",
+      "When booking an appointment, you can assign a specific therapist, or leave it unassigned and decide later.",
     ],
   },
   {
@@ -56,7 +56,7 @@ const SECTIONS = [
       "Open Public Page and pick a URL like smapey.com/massage/your-spa.",
       "Choose one of five spa-themed designs: Zen (soft green), Stone (slate minimal), Bamboo (warm earth), Ivory (cream luxe), or Charcoal (dark sophisticated).",
       "Upload a cover photo, add a tagline, and pick an accent color to match your brand.",
-      "Share the link on Instagram, Facebook, Google Maps — anywhere clients can find you.",
+      "Share the link on Instagram, Facebook, Google Maps, anywhere clients can find you.",
     ],
   },
   {
@@ -65,7 +65,7 @@ const SECTIONS = [
     body: [
       "When a client submits a booking request from your public page, it appears in Inquiries with their name, phone, preferred date, and notes.",
       "Approve to confirm interest, reject if you can't accommodate, then click \"Book Appointment\" to convert the inquiry into a real appointment with a client profile auto-created.",
-      "Optionally enable a deposit QR code (GCash, Maya, bank) — clients will need to enter a payment reference before submitting a request.",
+      "Optionally enable a deposit QR code (GCash, Maya, bank), clients will need to enter a payment reference before submitting a request.",
     ],
   },
   {
@@ -169,7 +169,7 @@ export default function GuideContent() {
             How to run your massage business with Smapey
           </h1>
           <p className="text-lg leading-relaxed" style={{ color: "#54514c" }}>
-            A step-by-step walkthrough — from adding your first service to taking your first online booking.
+            A step-by-step walkthrough, from adding your first service to taking your first online booking.
           </p>
           <div className="flex flex-wrap items-center justify-center gap-6 text-xs font-semibold mt-8" style={{ color: "#54514c" }}>
             {["5-minute setup", "No training required", "Free plan available"].map((t) => (
@@ -231,7 +231,7 @@ export default function GuideContent() {
           <div className="rounded-[28px] border-2 p-10 flex flex-col md:flex-row items-center justify-between gap-6" style={{ background: AMBER, borderColor: INK, boxShadow: `10px 10px 0 ${INK}` }}>
             <div>
               <h3 className="text-2xl font-extrabold mb-2" style={{ color: INK }}>Ready to set up your spa?</h3>
-              <p className="text-sm font-medium" style={{ color: "#5c4a28" }}>Start free — no credit card required. Upgrade only when you outgrow the free plan.</p>
+              <p className="text-sm font-medium" style={{ color: "#5c4a28" }}>Start free, no credit card required. Upgrade only when you outgrow the free plan.</p>
             </div>
             <a href={REGISTER_URL} className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full font-bold text-sm border-2 transition-transform hover:-translate-y-0.5 shrink-0" style={{ ...display, background: INK, color: "#fff", borderColor: INK }}>
               Start free <ChevronRight className="w-4 h-4" />

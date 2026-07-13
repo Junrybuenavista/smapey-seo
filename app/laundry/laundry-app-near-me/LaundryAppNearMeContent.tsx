@@ -17,15 +17,15 @@ const display = { fontFamily: "'Hanken Grotesk', system-ui, sans-serif" }
 
 const FEATURES = [
   { icon: MapPin, title: "Local Customer Reach", desc: "Build a customer base in your barangay or city. Store every customer's phone number and order history so repeat customers are always recognized." },
-  { icon: MessageSquare, title: "SMS Notifications to Nearby Customers", desc: "Send automatic SMS alerts when orders are ready — no app download needed. Customers get a text on their phone, wherever they are in your area." },
+  { icon: MessageSquare, title: "SMS Notifications to Nearby Customers", desc: "Send automatic SMS alerts when orders are ready - no app download needed. Customers get a text on their phone, wherever they are in your area." },
   { icon: Package, title: "Pickup & Delivery Tracking", desc: "Track whether an order is a walk-in pickup or a delivery. Add delivery addresses and notes per order so your rider knows exactly where to go." },
-  { icon: Users, title: "Customer Profiles by Phone", desc: "Every customer is identified by their phone number. Find returning customers instantly — no account, no login needed from their side." },
+  { icon: Users, title: "Customer Profiles by Phone", desc: "Every customer is identified by their phone number. Find returning customers instantly - no account, no login needed from their side." },
   { icon: CreditCard, title: "Local Payment Methods", desc: "Accept the payment methods your customers actually use: Cash, GCash, Maya, and Bank Transfer. No foreign card required." },
-  { icon: BarChart3, title: "Shop Dashboard", desc: "See how your local shop is performing — today's orders, revenue, and pending pickups — from a single screen you check every morning." },
+  { icon: BarChart3, title: "Shop Dashboard", desc: "See how your local shop is performing (today's orders, revenue, and pending pickups) from a single screen you check every morning." },
 ]
 
 const FAQS = [
-  { q: "Can I use this app for a laundry shop in any city or barangay in the Philippines?", a: "Yes. LaundryOS works for any local laundry shop — whether you're in Metro Manila, Cebu, Davao, or any province. No location restrictions." },
+  { q: "Can I use this app for a laundry shop in any city or barangay in the Philippines?", a: "Yes. LaundryOS works for any local laundry shop, whether you're in Metro Manila, Cebu, Davao, or any province. No location restrictions." },
   { q: "How do nearby customers get notified when their laundry is ready?", a: "Customers receive an SMS on their phone number when you mark their order as ready for pickup. They don't need to install anything." },
   { q: "Do I need internet to use the app?", a: "Yes, LaundryOS is a cloud-based web app. You'll need an internet connection to accept orders and send SMS notifications. Any smartphone or tablet with internet access works." },
   { q: "Can I track multiple orders for customers in the same neighborhood?", a: "Yes. Each order has its own ticket number and status. You can have dozens of open orders at once and see all of them in your dashboard." },
@@ -107,10 +107,10 @@ function Hero() {
         <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.04] tracking-tight mb-6" style={{ color: INK }}>
           Your neighborhood laundry shop, <span style={{ color: BLUE }}>powered by smart software</span>
         </h1>
-        <p className="text-lg max-w-2xl mx-auto mb-10 leading-relaxed" style={{ color: "#54514c" }}>LaundryOS helps local laundry shops manage walk-in orders, send SMS pickups to customers, and grow their customer base — all without a complicated setup.</p>
+        <p className="text-lg max-w-2xl mx-auto mb-10 leading-relaxed" style={{ color: "#54514c" }}>LaundryOS helps local laundry shops manage walk-in orders, send SMS pickups to customers, and grow their customer base, all without a complicated setup.</p>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
           <a href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=LAUNDRY&plan=FREE`} className="flex items-center gap-2 px-7 py-4 rounded-full font-bold text-sm border-2 transition-transform hover:-translate-y-0.5" style={{ ...display, background: AMBER, color: INK, borderColor: INK, boxShadow: `4px 4px 0 ${INK}` }}>
-            Start free — no card needed <ChevronRight className="w-4 h-4" />
+            Start free, no card needed <ChevronRight className="w-4 h-4" />
           </a>
           <a href="/laundry" className="flex items-center gap-2 px-7 py-4 rounded-full font-bold text-sm border-2 bg-white transition-transform hover:-translate-y-0.5" style={{ ...display, color: INK, borderColor: INK }}>View all features</a>
         </div>
@@ -277,7 +277,7 @@ function PaymentModal({ plan, isPhilippines, onClose }: { plan: { name: string; 
         <div className="px-6 py-5 flex items-center justify-between" style={{ background: INK }}>
           <div className="flex items-center gap-3">
             {step === "payment" && !token && <button onClick={() => setStep("details")} className="text-white/70 hover:text-white transition"><svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}><path d="M19 12H5M12 5l-7 7 7 7"/></svg></button>}
-            <div><h2 className="text-white font-extrabold text-lg">{step === "details" ? "Create your account" : "Choose payment method"}</h2><p className="text-sm mt-0.5" style={{ color: "rgba(255,255,255,.7)" }}>{plan.name} plan — <span className="font-bold" style={{ color: AMBER }}>{displayPrice}</span>{plan.period}</p></div>
+            <div><h2 className="text-white font-extrabold text-lg">{step === "details" ? "Create your account" : "Choose payment method"}</h2><p className="text-sm mt-0.5" style={{ color: "rgba(255,255,255,.7)" }}>{plan.name} plan, <span className="font-bold" style={{ color: AMBER }}>{displayPrice}</span>{plan.period}</p></div>
           </div>
           <button onClick={onClose} className="text-white/70 hover:text-white transition-colors"><X className="w-5 h-5" /></button>
         </div>

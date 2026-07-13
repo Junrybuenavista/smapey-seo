@@ -13,7 +13,7 @@ const variant: StoreVariant = {
   features: {
     eyebrow: "Philippines Inventory System",
     heading: "Made for Filipino small businesses",
-    sub: "Peso pricing, GCash and Maya payment tracking at POS, and Philippine-friendly plan pricing — Smapey is the inventory management system Filipino store owners have been looking for.",
+    sub: "Peso pricing, GCash and Maya payment tracking at POS, and Philippine-friendly plan pricing, Smapey is the inventory management system Filipino store owners have been looking for.",
   },
   cta: {
     heading: "The inventory management system Philippine stores need.",

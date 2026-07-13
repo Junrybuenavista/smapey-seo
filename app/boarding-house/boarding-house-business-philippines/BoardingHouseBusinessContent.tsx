@@ -88,31 +88,31 @@ const CHALLENGES = [
     icon: AlertTriangle,
     title: "Chasing overdue rent",
     problem: "Tenants forget to pay. You forget who hasn't paid. The month ends and you're still texting individuals one by one.",
-    solution: "Smapey surfaces every overdue bill on the dashboard — tenant name, amount, and how many days past due.",
+    solution: "Smapey surfaces every overdue bill on the dashboard, tenant name, amount, and how many days past due.",
   },
   {
     icon: Zap,
     title: "Splitting utility costs",
-    problem: "Calculating each tenant's share of electricity and water — manually, every month — takes hours and creates arguments.",
+    problem: "Calculating each tenant's share of electricity and water (manually, every month) takes hours and creates arguments.",
     solution: "Create individual utility bills per tenant per month. Rent and utilities are itemized separately, no confusion.",
   },
   {
     icon: Users,
     title: "Tracking move-ins and move-outs",
     problem: "Paper records get lost. You don't remember when a tenant moved in or what rate you agreed on.",
-    solution: "Every tenancy has a move-in date, room assignment, and agreed rate stored in the system — searchable anytime.",
+    solution: "Every tenancy has a move-in date, room assignment, and agreed rate stored in the system, searchable anytime.",
   },
   {
     icon: BarChart3,
     title: "Knowing your monthly income",
     problem: "You have to manually add up payments from a notebook to know how much you collected this month.",
-    solution: "The dashboard shows rent collected, utilities collected, and total revenue — with a 6-month trend chart.",
+    solution: "The dashboard shows rent collected, utilities collected, and total revenue, with a 6-month trend chart.",
   },
 ]
 
 const MANAGES = [
   { icon: BedDouble, label: "Rooms", desc: "Add rooms with floor, capacity, and monthly rate. Track which are occupied and which are vacant." },
-  { icon: Users, label: "Tenants", desc: "Register tenants with complete profiles — contact, emergency contact, and ID info." },
+  { icon: Users, label: "Tenants", desc: "Register tenants with complete profiles, contact, emergency contact, and ID info." },
   { icon: Building2, label: "Tenancies", desc: "Assign tenants to rooms with move-in dates. Record move-outs when they leave." },
   { icon: Banknote, label: "Rent Bills", desc: "Generate monthly rent bills. Record full or partial payments. Track overdue accounts." },
   { icon: Zap, label: "Utility Bills", desc: "Issue separate electricity, water, and internet bills per tenant per month." },
@@ -141,7 +141,7 @@ export default function BoardingHouseBusinessContent() {
               <span style={{ color: BLUE }}>in the Philippines</span>
             </h1>
             <p className="text-lg max-w-2xl mx-auto mb-8 leading-relaxed" style={{ color: "#54514c" }}>
-              A boarding house business in the Philippines can be one of the most stable sources of passive income — if you have the right system to manage it. Here&apos;s how Smapey helps landlords stay on top of rooms, tenants, and collections.
+              A boarding house business in the Philippines can be one of the most stable sources of passive income, if you have the right system to manage it. Here&apos;s how Smapey helps landlords stay on top of rooms, tenants, and collections.
             </p>
             <a href={REGISTER_URL} className="inline-flex items-center justify-center gap-2 px-7 py-4 rounded-full font-bold text-sm border-2 transition-transform hover:-translate-y-0.5" style={{ ...display, background: AMBER, color: INK, borderColor: INK, boxShadow: `4px 4px 0 ${INK}` }}>
               Try Smapey free <ChevronRight className="w-4 h-4" />
@@ -156,13 +156,13 @@ export default function BoardingHouseBusinessContent() {
           <Animate>
             <h2 className="text-2xl sm:text-3xl font-extrabold mb-5" style={{ color: INK }}>Why boarding houses are popular in the Philippines</h2>
             <p className="leading-relaxed mb-4" style={{ color: "#54514c" }}>
-              The <strong style={{ color: INK }}>boarding house business in the Philippines</strong> thrives near universities, hospitals, call centers, and business districts. Students, nurses, and young professionals need affordable housing close to where they study or work — and bedspaces or dormitory-style rooms fill that gap at a price point that works for both tenant and landlord.
+              The <strong style={{ color: INK }}>boarding house business in the Philippines</strong> thrives near universities, hospitals, call centers, and business districts. Students, nurses, and young professionals need affordable housing close to where they study or work, and bedspaces or dormitory-style rooms fill that gap at a price point that works for both tenant and landlord.
             </p>
             <p className="leading-relaxed mb-4" style={{ color: "#54514c" }}>
-              Unlike traditional long-term leases, boarding house arrangements are typically month-to-month — which means landlords can adjust rates, replace tenants quickly, and maintain flexibility over the property. The trade-off is that it requires more active management: collecting rent every month, tracking utility usage per tenant, and keeping records of who lives where.
+              Unlike traditional long-term leases, boarding house arrangements are typically month-to-month, which means landlords can adjust rates, replace tenants quickly, and maintain flexibility over the property. The trade-off is that it requires more active management: collecting rent every month, tracking utility usage per tenant, and keeping records of who lives where.
             </p>
             <p className="leading-relaxed" style={{ color: "#54514c" }}>
-              That&apos;s exactly the problem Smapey solves. Instead of managing it all in notebooks, group chats, and spreadsheets, you get a clean system that handles rooms, tenants, billing, and collections — all in one place.
+              That&apos;s exactly the problem Smapey solves. Instead of managing it all in notebooks, group chats, and spreadsheets, you get a clean system that handles rooms, tenants, billing, and collections, all in one place.
             </p>
           </Animate>
         </div>
@@ -172,7 +172,7 @@ export default function BoardingHouseBusinessContent() {
       <section className="py-20 px-6" style={{ background: CREAM, borderTop: `2px solid ${INK}` }}>
         <div className="max-w-6xl mx-auto">
           <Animate className="text-center mb-14">
-            <h2 className="text-2xl sm:text-3xl font-extrabold" style={{ color: INK }}>The biggest challenges — and how Smapey solves them</h2>
+            <h2 className="text-2xl sm:text-3xl font-extrabold" style={{ color: INK }}>The biggest challenges, and how Smapey solves them</h2>
             <p className="mt-3 max-w-lg mx-auto" style={{ color: "#54514c" }}>Every boarding house owner in the Philippines faces the same four problems. Here&apos;s exactly how the system addresses each one.</p>
           </Animate>
           <div className="grid sm:grid-cols-2 gap-6">

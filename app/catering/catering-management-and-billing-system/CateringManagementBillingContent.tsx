@@ -12,21 +12,21 @@ const CREAM = "#fbf7f0"
 const display = { fontFamily: "'Hanken Grotesk', system-ui, sans-serif" }
 
 const FEATURES = [
-  { icon: Banknote, title: "Payment Milestones per Booking", desc: "Split each booking's total into milestones — reservation fee, partial payment, and final balance. Each milestone has an amount, due date, and payment status. Outstanding balances show on the dashboard automatically." },
-  { icon: CalendarDays, title: "Booking-Linked Billing", desc: "Every payment is tied to a specific booking. No standalone invoices floating in a spreadsheet — collections are always linked to the event they belong to." },
-  { icon: Package, title: "Package-Based Pricing", desc: "Attach catering packages with price per head to each booking. The system calculates the expected total automatically — no manual computation per inquiry." },
-  { icon: BarChart3, title: "Revenue Dashboard", desc: "See total revenue this month, payments collected, pending milestones, and overdue amounts — all on one screen. Monthly trend chart so you can see peak and slow seasons." },
+  { icon: Banknote, title: "Payment Milestones per Booking", desc: "Split each booking's total into milestones - reservation fee, partial payment, and final balance. Each milestone has an amount, due date, and payment status. Outstanding balances show on the dashboard automatically." },
+  { icon: CalendarDays, title: "Booking-Linked Billing", desc: "Every payment is tied to a specific booking. No standalone invoices floating in a spreadsheet - collections are always linked to the event they belong to." },
+  { icon: Package, title: "Package-Based Pricing", desc: "Attach catering packages with price per head to each booking. The system calculates the expected total automatically - no manual computation per inquiry." },
+  { icon: BarChart3, title: "Revenue Dashboard", desc: "See total revenue this month, payments collected, pending milestones, and overdue amounts - all on one screen. Monthly trend chart so you can see peak and slow seasons." },
   { icon: FlaskConical, title: "Supply Cost Tracking", desc: "Maintain a supply catalog with unit costs to estimate procurement expenses per event. Know your food cost before you finalize a booking." },
   { icon: UserCheck, title: "Staff & Operations", desc: "Assign staff per booking, track event status from Pending to Completed, and get auto-settlement of outstanding milestones when a booking is marked done." },
 ]
 
 const FAQS = [
-  { q: "What is a catering management and billing system?", a: "A catering management and billing system combines event booking management with payment tracking in one tool. It handles client registration, event booking, package assignment, payment milestone creation and collection, supply catalog management, and staff assignment — replacing separate spreadsheets, paper records, and manual invoicing." },
+  { q: "What is a catering management and billing system?", a: "A catering management and billing system combines event booking management with payment tracking in one tool. It handles client registration, event booking, package assignment, payment milestone creation and collection, supply catalog management, and staff assignment, replacing separate spreadsheets, paper records, and manual invoicing." },
   { q: "How does billing work in Smapey's catering system?", a: "Billing is milestone-based per booking. You create milestones for each booking (e.g., 30% reservation fee, 50% partial payment two weeks before the event, 20% balance on event day). Each milestone records the amount, due date, payment method, and paid/unpaid status. The dashboard shows all outstanding milestones at a glance." },
-  { q: "Does the billing system support partial payments?", a: "Yes. Each milestone can be marked as paid, partially paid, pending, or overdue. This matches how Philippine catering payments typically work — clients rarely pay in full upfront, so milestone tracking is central to the billing process." },
-  { q: "What payment methods can I log?", a: "You can record collections as Cash, GCash, Maya, Card, or Bank Transfer. Smapey doesn't process payments — it records what you collect and keeps your milestone history accurate." },
+  { q: "Does the billing system support partial payments?", a: "Yes. Each milestone can be marked as paid, partially paid, pending, or overdue. This matches how Philippine catering payments typically work, clients rarely pay in full upfront, so milestone tracking is central to the billing process." },
+  { q: "What payment methods can I log?", a: "You can record collections as Cash, GCash, Maya, Card, or Bank Transfer. Smapey doesn't process payments, it records what you collect and keeps your milestone history accurate." },
   { q: "Is there a difference between the management system and billing system?", a: "In Smapey, they're the same system. The catering management module handles the operational side (bookings, packages, staff, supplies) and the billing side (payment milestones, collections, revenue tracking) together. You don't need separate software for each." },
-  { q: "Is it free?", a: "Yes — Smapey's free plan includes full catering management and billing capabilities. Upgrade to PRO or ENTERPRISE when your business needs higher limits." },
+  { q: "Is it free?", a: "Yes, Smapey's free plan includes full catering management and billing capabilities. Upgrade to PRO or ENTERPRISE when your business needs higher limits." },
 ]
 
 function useInView(options?: IntersectionObserverInit) {
@@ -105,10 +105,10 @@ function Hero() {
         <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.04] tracking-tight mb-6" style={{ color: INK }}>
           Catering Management and Billing System<br /> <span style={{ color: BLUE }}>in one dashboard</span>
         </h1>
-        <p className="text-lg max-w-2xl mx-auto mb-10 leading-relaxed" style={{ color: "#54514c" }}>Smapey combines catering management and billing in one place. Handle bookings, packages, payment milestones, supply costs, and staff assignment — without switching between tools or maintaining separate records.</p>
+        <p className="text-lg max-w-2xl mx-auto mb-10 leading-relaxed" style={{ color: "#54514c" }}>Smapey combines catering management and billing in one place. Handle bookings, packages, payment milestones, supply costs, and staff assignment, without switching between tools or maintaining separate records.</p>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
           <a href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=CATERING&plan=FREE`} className="flex items-center gap-2 px-7 py-4 rounded-full font-bold text-sm border-2 transition-transform hover:-translate-y-0.5" style={{ ...display, background: AMBER, color: INK, borderColor: INK, boxShadow: `4px 4px 0 ${INK}` }}>
-            Start free — no card needed <ChevronRight className="w-4 h-4" />
+            Start free, no card needed <ChevronRight className="w-4 h-4" />
           </a>
           <a href="/catering" className="flex items-center gap-2 px-7 py-4 rounded-full font-bold text-sm border-2 bg-white transition-transform hover:-translate-y-0.5" style={{ ...display, color: INK, borderColor: INK }}>View all features</a>
         </div>
@@ -275,7 +275,7 @@ function PaymentModal({ plan, isPhilippines, onClose }: { plan: { name: string; 
         <div className="px-6 py-5 flex items-center justify-between" style={{ background: INK }}>
           <div className="flex items-center gap-3">
             {step === "payment" && !token && <button onClick={() => setStep("details")} className="text-white/70 hover:text-white transition"><svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}><path d="M19 12H5M12 5l-7 7 7 7"/></svg></button>}
-            <div><h2 className="text-white font-extrabold text-lg">{step === "details" ? "Create your account" : "Choose payment method"}</h2><p className="text-sm mt-0.5" style={{ color: "rgba(255,255,255,.7)" }}>{plan.name} plan — <span className="font-bold" style={{ color: AMBER }}>{displayPrice}</span>{plan.period}</p></div>
+            <div><h2 className="text-white font-extrabold text-lg">{step === "details" ? "Create your account" : "Choose payment method"}</h2><p className="text-sm mt-0.5" style={{ color: "rgba(255,255,255,.7)" }}>{plan.name} plan, <span className="font-bold" style={{ color: AMBER }}>{displayPrice}</span>{plan.period}</p></div>
           </div>
           <button onClick={onClose} className="text-white/70 hover:text-white transition-colors"><X className="w-5 h-5" /></button>
         </div>

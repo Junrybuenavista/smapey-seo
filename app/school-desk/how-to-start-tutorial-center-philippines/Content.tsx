@@ -17,7 +17,7 @@ const FAQS = [
   },
   {
     q: "Do I need to hire tutors or can I teach myself?",
-    a: "You can start as the sole tutor to keep costs near zero. As enrollment grows, hire part-time tutors — often college students or licensed teachers — and pay per hour or per student. Track which tutor handles which session so quality stays consistent.",
+    a: "You can start as the sole tutor to keep costs near zero. As enrollment grows, hire part-time tutors (often college students or licensed teachers) and pay per hour or per student. Track which tutor handles which session so quality stays consistent.",
   },
   {
     q: "How do I find students for a new tutorial center?",
@@ -37,7 +37,7 @@ export default function Content() {
       <ArticleHero
         badge="Philippines · Step-by-step"
         title={<>How to start a tutorial center in the Philippines</>}
-        intro="A tutorial center is one of the easiest, lowest-cost businesses to start in the Philippines — demand is everywhere and you can begin from a single room. Here's exactly how to launch one, from capital and permits to hiring tutors, pricing, and running the day-to-day."
+        intro="A tutorial center is one of the easiest, lowest-cost businesses to start in the Philippines, demand is everywhere and you can begin from a single room. Here's exactly how to launch one, from capital and permits to hiring tutors, pricing, and running the day-to-day."
       />
 
       <article className="max-w-3xl mx-auto px-6 py-16">
@@ -66,10 +66,10 @@ export default function Content() {
           <AH2>Step 2: Choose your location</AH2>
           <AP>Location decides how many students walk in. Look for:</AP>
           <Bullets items={[
-            "Near schools — proximity means parents pass by every day",
+            "Near schools, proximity means parents pass by every day",
             "Inside or near residential subdivisions and barangays",
             "Safe, accessible, with parking or easy drop-off",
-            "Quiet enough for focused study — avoid noisy main roads if possible",
+            "Quiet enough for focused study, avoid noisy main roads if possible",
           ]} />
 
           <AH2>Step 3: Register and get permits</AH2>
@@ -84,7 +84,7 @@ export default function Content() {
 
           <AH2>Step 4: Decide your programs and pricing</AH2>
           <AP>
-            Define what you teach — by subject, grade level, or review track — and how you charge. Monthly packages give you
+            Define what you teach (by subject, grade level, or review track) and how you charge. Monthly packages give you
             predictable recurring income; per-session pricing is flexible for casual students.
           </AP>
           <CostTable
@@ -98,7 +98,7 @@ export default function Content() {
 
           <AH2>Step 5: Hire tutors (when you're ready)</AH2>
           <AP>
-            Start solo to validate demand, then bring in part-time tutors — college students or licensed teachers — as
+            Start solo to validate demand, then bring in part-time tutors (college students or licensed teachers) as
             enrollment grows. Assign each tutor to specific programs and sessions, and keep notes on student progress so the
             teaching quality stays high no matter who's in the room.
           </AP>

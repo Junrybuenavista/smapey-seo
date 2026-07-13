@@ -16,9 +16,9 @@ const CREAM = "#fbf7f0"
 const display = { fontFamily: "'Hanken Grotesk', system-ui, sans-serif" }
 
 const FEATURES = [
-  { icon: Package, title: "Up to 50 Orders / Month", desc: "Process up to 50 laundry orders per month completely free. Track every order through the full status pipeline — no limits on order size." },
-  { icon: Users, title: "Customer Management", desc: "Find or create customer profiles by phone number. View each customer's order history and total spend — all stored automatically." },
-  { icon: CreditCard, title: "Payment Tracking", desc: "Record Cash, GCash, Maya, or Bank Transfer per order. Mark orders as paid and track outstanding balances — no spreadsheet needed." },
+  { icon: Package, title: "Up to 50 Orders / Month", desc: "Process up to 50 laundry orders per month completely free. Track every order through the full status pipeline - no limits on order size." },
+  { icon: Users, title: "Customer Management", desc: "Find or create customer profiles by phone number. View each customer's order history and total spend - all stored automatically." },
+  { icon: CreditCard, title: "Payment Tracking", desc: "Record Cash, GCash, Maya, or Bank Transfer per order. Mark orders as paid and track outstanding balances - no spreadsheet needed." },
   { icon: BarChart3, title: "Basic Dashboard", desc: "See today's orders, pending pickups, and daily revenue from a single live dashboard. Everything you need to start your day." },
   { icon: Shield, title: "2 Team Members", desc: "Invite one staff member to help manage your shop. Role-based access ensures each person only sees what they need." },
   { icon: MessageSquare, title: "Manual SMS", desc: "Send SMS notifications manually when orders are ready. Auto-SMS (triggered at status changes) is available on the Pro plan." },
@@ -112,15 +112,15 @@ function Hero() {
       <div className="relative max-w-6xl mx-auto px-6 py-24 text-center">
         <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border-2 text-xs font-bold mb-6" style={{ color: INK, borderColor: INK, boxShadow: `3px 3px 0 ${BLUE}` }}>
           <Zap className="w-3 h-3" />
-          Free forever — no credit card required
+          Free forever, no credit card required
         </div>
         <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.04] tracking-tight mb-6" style={{ color: INK }}>
           Free laundry app <span style={{ color: BLUE }}>that actually works</span>
         </h1>
-        <p className="text-lg max-w-2xl mx-auto mb-10 leading-relaxed" style={{ color: "#54514c" }}>LaundryOS gives you a full laundry shop management system at zero cost. Process up to 50 orders per month, manage customers, track payments, and monitor your shop — all for free, forever.</p>
+        <p className="text-lg max-w-2xl mx-auto mb-10 leading-relaxed" style={{ color: "#54514c" }}>LaundryOS gives you a full laundry shop management system at zero cost. Process up to 50 orders per month, manage customers, track payments, and monitor your shop, all for free, forever.</p>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
           <a href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=LAUNDRY&plan=FREE`} className="flex items-center gap-2 px-7 py-4 rounded-full font-bold text-sm border-2 transition-transform hover:-translate-y-0.5" style={{ ...display, background: AMBER, color: INK, borderColor: INK, boxShadow: `4px 4px 0 ${INK}` }}>
-            Start free — no card needed <ChevronRight className="w-4 h-4" />
+            Start free, no card needed <ChevronRight className="w-4 h-4" />
           </a>
           <a href="/laundry" className="flex items-center gap-2 px-7 py-4 rounded-full font-bold text-sm border-2 bg-white transition-transform hover:-translate-y-0.5" style={{ ...display, color: INK, borderColor: INK }}>View all features</a>
         </div>
@@ -331,7 +331,7 @@ function PaymentModal({ plan, isPhilippines, onClose }: { plan: { name: string; 
         <div className="px-6 py-5 flex items-center justify-between" style={{ background: INK }}>
           <div className="flex items-center gap-3">
             {step === "payment" && !token && <button onClick={() => setStep("details")} className="text-white/70 hover:text-white transition"><svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}><path d="M19 12H5M12 5l-7 7 7 7"/></svg></button>}
-            <div><h2 className="text-white font-extrabold text-lg">{step === "details" ? "Create your account" : "Choose payment method"}</h2><p className="text-sm mt-0.5" style={{ color: "rgba(255,255,255,.7)" }}>{plan.name} plan — <span className="font-bold" style={{ color: AMBER }}>{displayPrice}</span>{plan.period}</p></div>
+            <div><h2 className="text-white font-extrabold text-lg">{step === "details" ? "Create your account" : "Choose payment method"}</h2><p className="text-sm mt-0.5" style={{ color: "rgba(255,255,255,.7)" }}>{plan.name} plan, <span className="font-bold" style={{ color: AMBER }}>{displayPrice}</span>{plan.period}</p></div>
           </div>
           <button onClick={onClose} className="text-white/70 hover:text-white transition-colors"><X className="w-5 h-5" /></button>
         </div>

@@ -8,7 +8,7 @@ const variant: LendingVariant = {
     titleLead: "The best loan app in the Philippines",
     titleAccent: "for running your loan book",
     subtitle:
-      "The best loan app isn't one you borrow from — it's the one you run your lending business on. Smapey gives Filipino lenders amortization schedules, GCash and bank payment tracking, overdue alerts, and real collections analytics.",
+      "The best loan app isn't one you borrow from, it's the one you run your lending business on. Smapey gives Filipino lenders amortization schedules, GCash and bank payment tracking, overdue alerts, and real collections analytics.",
   },
   features: {
     eyebrow: "What makes it the best",

@@ -21,7 +21,7 @@ const FAQS = [
   },
   {
     q: "What management system should I put in the plan?",
-    a: "Include software for daily operations. Smapey Water (free to start) handles deliveries, container deposits, returns, inventory, and payments — a concrete, low-cost line item that strengthens the operations section of your plan.",
+    a: "Include software for daily operations. Smapey Water (free to start) handles deliveries, container deposits, returns, inventory, and payments, a concrete, low-cost line item that strengthens the operations section of your plan.",
   },
 ]
 
@@ -33,7 +33,7 @@ export default function Content() {
       <ArticleHero
         badge="Philippines · Sample plan"
         title={<>Business plan for a water refilling station in the Philippines</>}
-        intro="Use this sample outline to write a clear, fundable business plan for your water refilling station. It covers every section a lender or partner expects — with Philippine-specific numbers you can adapt."
+        intro="Use this sample outline to write a clear, fundable business plan for your water refilling station. It covers every section a lender or partner expects, with Philippine-specific numbers you can adapt."
       />
 
       <article className="max-w-3xl mx-auto px-6 py-16">
@@ -55,7 +55,7 @@ export default function Content() {
           <AH2>3. Market analysis</AH2>
           <AP>
             Describe your target barangays, estimated number of households and offices, and your direct competitors.
-            Identify your edge — faster delivery, lower price, better container handling, or office contracts. Demand for
+            Identify your edge, faster delivery, lower price, better container handling, or office contracts. Demand for
             drinking water is constant year-round, which de-risks the business.
           </AP>
 
@@ -67,7 +67,7 @@ export default function Content() {
               ["Small bottled water (500ml–1L)", "₱8 – ₱20"],
               ["New container (with deposit)", "₱150 – ₱250"],
             ]}
-            note="Set a container deposit so bottles come back. Prices vary by area — research local rates."
+            note="Set a container deposit so bottles come back. Prices vary by area, research local rates."
           />
 
           <AH2>5. Startup costs</AH2>
@@ -88,7 +88,7 @@ export default function Content() {
           <Bullets items={[
             "Daily purification, filling, and sanitation routine.",
             "Store hours and delivery schedule by route/barangay.",
-            "Container handling — deposits, returns, and refilling empties.",
+            "Container handling, deposits, returns, and refilling empties.",
             "Staffing: operator, cashier, and delivery rider roles.",
             <>A <strong>management system</strong> to track orders, containers, stock, and payments (e.g. Smapey Water).</>,
           ]} />

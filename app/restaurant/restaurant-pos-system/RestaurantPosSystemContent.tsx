@@ -8,12 +8,12 @@ const variant: RestaurantVariant = {
     titleLead: "A restaurant POS system",
     titleAccent: "without the hardware cost.",
     subtitle:
-      "Smapey is a browser-based restaurant POS system for small restaurants and cafés. Menu builder, order intake, kitchen queue, and daily sales reports — no expensive terminal, no locked-in hardware.",
+      "Smapey is a browser-based restaurant POS system for small restaurants and cafés. Menu builder, order intake, kitchen queue, and daily sales reports, no expensive terminal, no locked-in hardware.",
   },
   features: {
     eyebrow: "Restaurant POS System",
     heading: "POS features that actually matter for small restaurants",
-    sub: "Skip the expensive hardware and bloated enterprise POS. Smapey gives you what a small restaurant actually needs — menu, orders, kitchen queue, and sales — for free.",
+    sub: "Skip the expensive hardware and bloated enterprise POS. Smapey gives you what a small restaurant actually needs (menu, orders, kitchen queue, and sales) for free.",
   },
   cta: {
     heading: "A restaurant POS system that fits your budget.",

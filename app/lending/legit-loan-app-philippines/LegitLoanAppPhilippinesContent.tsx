@@ -8,12 +8,12 @@ const variant: LendingVariant = {
     titleLead: "A legit loan app",
     titleAccent: "for serious lenders in the Philippines",
     subtitle:
-      "Run your lending business the legit way. Smapey keeps clean, auditable records of every borrower, loan, and payment — with amortization schedules and a clear repayment history you can stand behind.",
+      "Run your lending business the legit way. Smapey keeps clean, auditable records of every borrower, loan, and payment, with amortization schedules and a clear repayment history you can stand behind.",
   },
   features: {
     eyebrow: "Built for professional lenders",
     heading: "Keep your lending business clean and legit",
-    sub: "Transparent terms, automatic amortization, and a full payment trail for every loan — so your records are accurate, organized, and ready whenever you need them.",
+    sub: "Transparent terms, automatic amortization, and a full payment trail for every loan, so your records are accurate, organized, and ready whenever you need them.",
   },
   cta: {
     heading: "Lend with clean, legit records",

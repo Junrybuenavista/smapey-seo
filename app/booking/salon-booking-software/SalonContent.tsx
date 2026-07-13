@@ -19,8 +19,8 @@ const FEATURES = [
   { icon: CalendarDays, title: "Appointment Management", desc: "Book, confirm, reschedule, and complete client appointments in one clean dashboard. No double bookings, no missed slots." },
   { icon: Scissors, title: "Stylist Assignment", desc: "Assign each appointment to the right stylist or technician. Clients know who they're seeing, and your team stays organized." },
   { icon: Clock, title: "Availability Scheduling", desc: "Set working hours per stylist per day. Control exactly when clients can book and prevent overbooking automatically." },
-  { icon: CreditCard, title: "Deposit Tracking", desc: "Require deposits to reduce no-shows. Record and mark them as paid or unpaid — all tracked without a separate spreadsheet." },
-  { icon: Sparkles, title: "Service Catalog", desc: "List all your salon services — haircuts, color, treatments — with custom durations and prices. Activate or deactivate anytime." },
+  { icon: CreditCard, title: "Deposit Tracking", desc: "Require deposits to reduce no-shows. Record and mark them as paid or unpaid - all tracked without a separate spreadsheet." },
+  { icon: Sparkles, title: "Service Catalog", desc: "List all your salon services (haircuts, color, treatments) with custom durations and prices. Activate or deactivate anytime." },
   { icon: Bell, title: "Status Workflow", desc: "Move appointments through Pending → Confirmed → Completed with one click. Track no-shows and cancellations over time." },
   { icon: BarChart3, title: "Salon Dashboard", desc: "See today's bookings, monthly totals, stylist workloads, and completion rates at a glance from your salon dashboard." },
   { icon: Users, title: "Team Collaboration", desc: "Invite receptionists and staff with role-based access. Control who can create, edit, or view your booking calendar." },
@@ -29,9 +29,9 @@ const FEATURES = [
 
 const FAQS = [
   { q: "Can I manage multiple stylists on one account?", a: "Yes. You can invite your stylists as team members and assign each appointment to the right person. Everyone sees only what they need." },
-  { q: "How does deposit tracking help reduce no-shows?", a: "When you require a deposit at booking, clients have skin in the game. You record the deposit amount and mark it as paid — giving you a clear record and reducing last-minute cancellations." },
-  { q: "Can I list different services with different durations?", a: "Yes. Each service has its own name, duration, and price. You can set a haircut to 45 mins and a color treatment to 2 hours — and availability is managed accordingly." },
-  { q: "Do clients book online themselves?", a: "Currently appointments are created by your staff through the dashboard. It's designed as an internal scheduling tool — ideal for salons where clients call or walk in and staff enters the booking." },
+  { q: "How does deposit tracking help reduce no-shows?", a: "When you require a deposit at booking, clients have skin in the game. You record the deposit amount and mark it as paid, giving you a clear record and reducing last-minute cancellations." },
+  { q: "Can I list different services with different durations?", a: "Yes. Each service has its own name, duration, and price. You can set a haircut to 45 mins and a color treatment to 2 hours, and availability is managed accordingly." },
+  { q: "Do clients book online themselves?", a: "Currently appointments are created by your staff through the dashboard. It's designed as an internal scheduling tool, ideal for salons where clients call or walk in and staff enters the booking." },
 ]
 
 function useInView(options?: IntersectionObserverInit) {
@@ -110,10 +110,10 @@ function Hero() {
         <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.04] tracking-tight mb-6" style={{ color: INK }}>
           Salon booking software that <span style={{ color: BLUE }}>keeps your chair full</span>
         </h1>
-        <p className="text-lg max-w-2xl mx-auto mb-10 leading-relaxed" style={{ color: "#54514c" }}>Smapey Booking helps salons manage appointments, assign stylists, collect deposits, and run a full schedule — all from one simple dashboard.</p>
+        <p className="text-lg max-w-2xl mx-auto mb-10 leading-relaxed" style={{ color: "#54514c" }}>Smapey Booking helps salons manage appointments, assign stylists, collect deposits, and run a full schedule, all from one simple dashboard.</p>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
           <a href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=BOOKING&plan=FREE`} className="flex items-center gap-2 px-7 py-4 rounded-full font-bold text-sm border-2 transition-transform hover:-translate-y-0.5" style={{ ...display, background: AMBER, color: INK, borderColor: INK, boxShadow: `4px 4px 0 ${INK}` }}>
-            Start free — no card needed <ChevronRight className="w-4 h-4" />
+            Start free, no card needed <ChevronRight className="w-4 h-4" />
           </a>
           <a href="/booking" className="flex items-center gap-2 px-7 py-4 rounded-full font-bold text-sm border-2 bg-white transition-transform hover:-translate-y-0.5" style={{ ...display, color: INK, borderColor: INK }}>View all features</a>
         </div>
@@ -132,7 +132,7 @@ function Features() {
         <Animate className="text-center mb-16">
           <p className="text-sm font-bold uppercase tracking-widest mb-3" style={{ color: BLUE }}>Features</p>
           <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight" style={{ color: INK }}>Everything your salon needs</h2>
-          <p className="mt-4 max-w-xl mx-auto" style={{ color: "#54514c" }}>From booking to deposit to completion — manage your entire salon schedule in one place.</p>
+          <p className="mt-4 max-w-xl mx-auto" style={{ color: "#54514c" }}>From booking to deposit to completion, manage your entire salon schedule in one place.</p>
         </Animate>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {FEATURES.map(({ icon: Icon, title, desc }, i) => {
@@ -311,7 +311,7 @@ function PaymentModal({ plan, isPhilippines, onClose }: { plan: { name: string; 
         <div className="px-6 py-5 flex items-center justify-between" style={{ background: INK }}>
           <div className="flex items-center gap-3">
             {step === "payment" && !token && <button onClick={() => setStep("details")} className="text-white/70 hover:text-white transition"><svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}><path d="M19 12H5M12 5l-7 7 7 7"/></svg></button>}
-            <div><h2 className="text-white font-extrabold text-lg">{step === "details" ? "Create your account" : "Choose payment method"}</h2><p className="text-sm mt-0.5" style={{ color: "rgba(255,255,255,.7)" }}>{plan.name} plan — <span className="font-bold" style={{ color: AMBER }}>{displayPrice}</span>{plan.period}</p></div>
+            <div><h2 className="text-white font-extrabold text-lg">{step === "details" ? "Create your account" : "Choose payment method"}</h2><p className="text-sm mt-0.5" style={{ color: "rgba(255,255,255,.7)" }}>{plan.name} plan, <span className="font-bold" style={{ color: AMBER }}>{displayPrice}</span>{plan.period}</p></div>
           </div>
           <button onClick={onClose} className="text-white/70 hover:text-white transition-colors"><X className="w-5 h-5" /></button>
         </div>

@@ -11,7 +11,7 @@ const faqs = [
   { q: "Is there a free electrician invoice template?", a: "Yes, you can use a free electrician invoice template, but most lack automation. With Smapey, you get a free invoicing tool plus automation, tracking, and online payments." },
   { q: "Can I create electrician invoices online?", a: "Yes, Smapey allows electricians to create invoices online instantly. You can generate, send, and manage invoices from anywhere." },
   { q: "How do electricians track payments?", a: "Electricians can track payments using invoicing software that shows paid, pending, and overdue invoices in one dashboard." },
-  { q: "What is the best invoicing software for electricians?", a: "The best invoicing software for electricians includes automation, payment tracking, and estimate-to-invoice workflow—like Smapey." },
+  { q: "What is the best invoicing software for electricians?", a: "The best invoicing software for electricians includes automation, payment tracking, and estimate-to-invoice workflow, like Smapey." },
   { q: "Can I convert estimates into invoices?", a: "Yes, Smapey lets you convert estimates into invoices in one click, making your workflow faster and more efficient." },
 ]
 
@@ -36,7 +36,7 @@ export default function ElectricianContent() {
               <span className="bg-gradient-to-r from-yellow-400 to-orange-400 bg-clip-text text-transparent">Paid Faster</span>
             </h1>
             <p className="text-gray-400 text-lg leading-relaxed max-w-xl">
-              Stop using spreadsheets and outdated templates. Create, send, and track electrician invoices in seconds — with online payments built in.
+              Stop using spreadsheets and outdated templates. Create, send, and track electrician invoices in seconds, with online payments built in.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 pt-2">
               <Link href="https://app.smapey.com/register?product=INVOICE&plan=FREE">
@@ -62,9 +62,9 @@ export default function ElectricianContent() {
             <div className="relative bg-white/5 border border-white/10 rounded-2xl p-8 w-full max-w-md space-y-5">
               <p className="text-xs text-gray-500 uppercase tracking-widest">Invoice Dashboard</p>
               {[
-                { label: "Job #E-042 — Panel upgrade", amount: "$1,800", status: "Paid", color: "text-green-400 bg-green-500/10" },
-                { label: "Job #E-043 — Wiring repair", amount: "$450", status: "Pending", color: "text-yellow-400 bg-yellow-500/10" },
-                { label: "Job #E-044 — EV charger install", amount: "$2,200", status: "Sent", color: "text-blue-400 bg-blue-500/10" },
+                { label: "Job #E-042, Panel upgrade", amount: "$1,800", status: "Paid", color: "text-green-400 bg-green-500/10" },
+                { label: "Job #E-043, Wiring repair", amount: "$450", status: "Pending", color: "text-yellow-400 bg-yellow-500/10" },
+                { label: "Job #E-044, EV charger install", amount: "$2,200", status: "Sent", color: "text-blue-400 bg-blue-500/10" },
               ].map(item => (
                 <div key={item.label} className="flex items-center justify-between py-3 border-b border-white/5 last:border-0">
                   <div>
@@ -111,7 +111,7 @@ export default function ElectricianContent() {
             <span className="text-sm font-semibold text-blue-600 uppercase tracking-widest">Why Smapey</span>
             <h2 className="text-4xl font-bold text-gray-900">More Than Just an Invoice Template</h2>
             <p className="text-gray-500 text-lg max-w-2xl mx-auto">
-              Smapey is a complete electrician billing software — manage your estimate and invoice workflow, automate billing, and get paid without chasing clients.
+              Smapey is a complete electrician billing software, manage your estimate and invoice workflow, automate billing, and get paid without chasing clients.
             </p>
           </div>
 
@@ -121,7 +121,7 @@ export default function ElectricianContent() {
               "Convert estimates into invoices in one click",
               "Accept online payments via Stripe & PayPal",
               "Track which invoices are paid, pending, or overdue",
-              "Automate payment reminders — stop chasing clients",
+              "Automate payment reminders, stop chasing clients",
               "Professional invoice templates built for electricians",
             ].map(item => (
               <div key={item} className="flex items-center gap-3 bg-white border border-gray-100 rounded-xl px-4 py-3 shadow-sm text-sm text-gray-700">

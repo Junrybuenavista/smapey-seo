@@ -26,7 +26,7 @@ const FEATURES = [
   { icon: QrCode, title: "QR Code Check-in", desc: "Members check in instantly by scanning their personal QR code. No more manual logs or long queues at the front desk." },
   { icon: UserCheck, title: "Walk-in Tracking", desc: "Record one-day visitors in seconds. Track walk-in revenue separately and see today's drop-ins at a glance." },
   { icon: CreditCard, title: "Subscription Plans", desc: "Create flexible plans, set durations and pricing, and handle renewals with automatic expiry tracking." },
-  { icon: BarChart3, title: "Gym Analytics", desc: "Track revenue trends, peak hours, attendance patterns, and member growth — all from a single dashboard." },
+  { icon: BarChart3, title: "Gym Analytics", desc: "Track revenue trends, peak hours, attendance patterns, and member growth - all from a single dashboard." },
   { icon: Dumbbell, title: "Trainer Assignment", desc: "Assign certified trainers to members, track their specialties, and manage their active status with ease." },
   { icon: DollarSign, title: "Multi-Currency", desc: "Accept and display payments in your local currency. Full support for PHP, USD, SGD, and more out of the box." },
   { icon: Globe, title: "Multi-Timezone", desc: "Run your gym in any timezone. Check-ins, reports, and dashboards always reflect your local time accurately." },
@@ -229,7 +229,7 @@ function Hero() {
             </h1>
 
             <p className="text-lg max-w-xl mb-8 leading-relaxed" style={{ color: "rgba(255,255,255,.72)" }}>
-              GymOS handles member management, QR check-ins, subscription tracking, and revenue reporting —
+              GymOS handles member management, QR check-ins, subscription tracking, and revenue reporting,
               so you can focus on what matters: your members.
             </p>
 
@@ -401,7 +401,7 @@ function Features() {
             Everything your gym needs
           </h2>
           <p className="mt-4 max-w-xl mx-auto" style={{ color: "#54514c" }}>
-            From the front desk to your finances — GymOS covers every part of your operation.
+            From the front desk to your finances, GymOS covers every part of your operation.
           </p>
         </Animate>
 
@@ -737,7 +737,7 @@ function PaymentModal({
                 {step === "details" ? "Create your account" : "Choose payment method"}
               </h2>
               <p className="text-sm mt-0.5" style={{ color: "rgba(255,255,255,.7)" }}>
-                {plan.name} plan — <span className="font-bold" style={{ color: AMBER }}>{displayPrice}</span>{plan.period}
+                {plan.name} plan, <span className="font-bold" style={{ color: AMBER }}>{displayPrice}</span>{plan.period}
               </p>
             </div>
           </div>

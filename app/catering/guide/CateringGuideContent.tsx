@@ -21,8 +21,8 @@ const SECTIONS = [
     icon: ChefHat,
     title: "1. Set Up Your Catering Account",
     steps: [
-      { title: "Create your Smapey account", desc: "Sign up at smapey.com and select Catering Manager as your product. Your private catering workspace is created instantly — no credit card required on the free plan." },
-      { title: "Build your package catalog", desc: "Go to Catering → Packages and click Add Package. Enter the package name (e.g. Basic Buffet, Premium Set Menu), a short description, and the price per head. Build out all your standard packages here — you'll attach them to bookings later instead of re-quoting every time." },
+      { title: "Create your Smapey account", desc: "Sign up at smapey.com and select Catering Manager as your product. Your private catering workspace is created instantly - no credit card required on the free plan." },
+      { title: "Build your package catalog", desc: "Go to Catering → Packages and click Add Package. Enter the package name (e.g. Basic Buffet, Premium Set Menu), a short description, and the price per head. Build out all your standard packages here - you'll attach them to bookings later instead of re-quoting every time." },
       { title: "Set up your supply catalog", desc: "Go to Catering → Supply Catalog and click Add Ingredient. Enter the ingredient name, unit type (KG, Grams, Liters, ML, Pieces, Packs, Boxes), cost per unit, and any notes (e.g. preferred supplier). Use this as your master procurement reference." },
       { title: "Invite your team", desc: "Go to Settings → Team and invite team members by email. Assign Admin or Member roles based on their access level. Team members can log in with their own account and see the live dashboard, bookings, and clients." },
       { title: "Configure your currency symbol", desc: "In Settings → Organization, confirm your currency symbol (₱ for Philippine Peso). This appears on all payment milestones and the revenue dashboard." },
@@ -33,10 +33,10 @@ const SECTIONS = [
     icon: Users,
     title: "2. Manage Clients",
     steps: [
-      { title: "Open the Clients page", desc: "Navigate to Catering → Clients from the sidebar. This is where all your client profiles live — register a client once and reuse their details on every booking." },
+      { title: "Open the Clients page", desc: "Navigate to Catering → Clients from the sidebar. This is where all your client profiles live - register a client once and reuse their details on every booking." },
       { title: "Add a new client", desc: "Click Add Client. Enter the client's full name, contact number, and email address. Add any notes that are useful to keep on file (e.g. dietary preferences, how they found you). Click Save." },
-      { title: "View a client's profile", desc: "Click View on any client to see their full record — contact details, all bookings ever made under their name, and their booking history at a glance. Returning clients are already in the system, so you don't re-enter their information for new bookings." },
-      { title: "Edit or delete a client", desc: "Click Edit on any client to update their contact details or notes. Clients with existing bookings can be edited but not deleted — this protects your booking history." },
+      { title: "View a client's profile", desc: "Click View on any client to see their full record - contact details, all bookings ever made under their name, and their booking history at a glance. Returning clients are already in the system, so you don't re-enter their information for new bookings." },
+      { title: "Edit or delete a client", desc: "Click Edit on any client to update their contact details or notes. Clients with existing bookings can be edited but not deleted - this protects your booking history." },
     ],
   },
   {
@@ -44,11 +44,11 @@ const SECTIONS = [
     icon: CalendarDays,
     title: "3. Create and Manage Bookings",
     steps: [
-      { title: "Open the Bookings page", desc: "Navigate to Catering → Bookings from the sidebar. This is your master event list — every booking is shown here with its status, event date, client, and guest count." },
+      { title: "Open the Bookings page", desc: "Navigate to Catering → Bookings from the sidebar. This is your master event list - every booking is shown here with its status, event date, client, and guest count." },
       { title: "Create a new booking", desc: "Click New Booking. Select or create the client, enter the event date, venue, expected guest count, and set the initial status (usually Pending for new inquiries, Confirmed for locked-in events). Add internal notes if needed. Click Save." },
       { title: "Attach packages to a booking", desc: "Open the booking and scroll to the Packages section. Click Add Package, select from your package catalog, and enter the number of guests for that package. Add multiple packages to one booking if the client is taking both a food package and a drinks package, for example." },
-      { title: "Update booking status", desc: "Click Change Status on any booking to move it through the lifecycle: Pending → Confirmed → Completed, or Pending/Confirmed → Cancelled. When you mark a booking as Completed, all outstanding payment milestones are automatically settled — because the event happened and the money is considered collected." },
-      { title: "View booking details", desc: "Click View on any booking to see the full record — packages attached, payment milestones, assigned staff, and any notes. This is your one-stop view for everything related to an event." },
+      { title: "Update booking status", desc: "Click Change Status on any booking to move it through the lifecycle: Pending → Confirmed → Completed, or Pending/Confirmed → Cancelled. When you mark a booking as Completed, all outstanding payment milestones are automatically settled - because the event happened and the money is considered collected." },
+      { title: "View booking details", desc: "Click View on any booking to see the full record - packages attached, payment milestones, assigned staff, and any notes. This is your one-stop view for everything related to an event." },
     ],
   },
   {
@@ -56,11 +56,11 @@ const SECTIONS = [
     icon: Banknote,
     title: "4. Payment Milestones",
     steps: [
-      { title: "What is a payment milestone?", desc: "A payment milestone is a scheduled partial payment tied to a specific booking. Instead of tracking a single lump sum, you break the booking's total into stages — for example: 30% reservation fee, 50% partial payment two weeks before the event, and the 20% balance on event day." },
+      { title: "What is a payment milestone?", desc: "A payment milestone is a scheduled partial payment tied to a specific booking. Instead of tracking a single lump sum, you break the booking's total into stages - for example: 30% reservation fee, 50% partial payment two weeks before the event, and the 20% balance on event day." },
       { title: "Add a milestone to a booking", desc: "Open the booking and scroll to the Payment Milestones section. Click Add Milestone. Enter the milestone name (e.g. Reservation Fee), the amount, and the due date. Click Save. Repeat for each payment stage." },
       { title: "Record a payment", desc: "Click Mark as Paid on any pending or overdue milestone. Select the payment method: Cash, GCash, Maya, Card, or Bank Transfer. Enter the date collected. The milestone is marked Paid and the revenue dashboard updates immediately." },
       { title: "Handle partial collections", desc: "If a client pays only part of a milestone, record the amount actually collected. The milestone status will reflect the partial collection and the outstanding balance is tracked automatically. The dashboard will flag this as a pending collection." },
-      { title: "Overdue milestones", desc: "Any milestone past its due date that hasn't been fully paid is automatically flagged as Overdue on the dashboard. Check the Overdue Milestones panel regularly — the earlier you follow up, the easier it is to collect." },
+      { title: "Overdue milestones", desc: "Any milestone past its due date that hasn't been fully paid is automatically flagged as Overdue on the dashboard. Check the Overdue Milestones panel regularly - the earlier you follow up, the easier it is to collect." },
     ],
   },
   {
@@ -68,7 +68,7 @@ const SECTIONS = [
     icon: FlaskConical,
     title: "5. Supply Catalog",
     steps: [
-      { title: "Open the Supply Catalog", desc: "Navigate to Catering → Supply Catalog from the sidebar. This is your ingredient and materials reference — not an inventory tracker, but a cost reference you can use when planning procurement for each event." },
+      { title: "Open the Supply Catalog", desc: "Navigate to Catering → Supply Catalog from the sidebar. This is your ingredient and materials reference - not an inventory tracker, but a cost reference you can use when planning procurement for each event." },
       { title: "Add an ingredient or supply", desc: "Click Add Ingredient. Enter the name (e.g. Chicken, Jasmine Rice, Cooking Oil), select the unit type (KG, Grams, Liters, ML, Pieces, Packs, Boxes, or Other), and enter the cost per unit. Add a notes field for supplier name, brand preference, or buying notes." },
       { title: "Use the catalog for procurement planning", desc: "Before each event, refer to the supply catalog to estimate what needs to be procured and at what cost. If you're serving a package that requires 2 kg of chicken per 10 guests, you can quickly calculate the total quantity and cost using the catalog's per-unit pricing." },
       { title: "Keep costs updated", desc: "Edit ingredient costs whenever your supplier prices change. Keeping the catalog up to date ensures your procurement estimates stay accurate and your package pricing remains profitable." },
@@ -79,8 +79,8 @@ const SECTIONS = [
     icon: UserCheck,
     title: "6. Staff Assignment",
     steps: [
-      { title: "Assign staff to a booking", desc: "Open any booking and scroll to the Staff section. Click Assign Staff, then select the team members who will be working this event. Each assigned staff member is listed under the booking — so the whole team knows their roster without needing a separate group chat message." },
-      { title: "Assign different roles per booking", desc: "You can assign multiple staff to one booking — head cook, servers, coordinator, driver. The system lists each person's name under the booking. There's no role label per assignment, so add notes in the booking's notes field if you need to specify who does what." },
+      { title: "Assign staff to a booking", desc: "Open any booking and scroll to the Staff section. Click Assign Staff, then select the team members who will be working this event. Each assigned staff member is listed under the booking - so the whole team knows their roster without needing a separate group chat message." },
+      { title: "Assign different roles per booking", desc: "You can assign multiple staff to one booking - head cook, servers, coordinator, driver. The system lists each person's name under the booking. There's no role label per assignment, so add notes in the booking's notes field if you need to specify who does what." },
       { title: "Remove a staff assignment", desc: "Click the remove icon next to any staff name on the booking to unassign them. This is useful if a team member becomes unavailable and you need to reassign the slot." },
     ],
   },
@@ -89,24 +89,24 @@ const SECTIONS = [
     icon: BarChart3,
     title: "7. Dashboard & Analytics",
     steps: [
-      { title: "Open the Dashboard", desc: "Navigate to Catering → Dashboard from the sidebar. This is your home screen — it shows the full financial and operational picture of your catering business at a glance." },
+      { title: "Open the Dashboard", desc: "Navigate to Catering → Dashboard from the sidebar. This is your home screen - it shows the full financial and operational picture of your catering business at a glance." },
       { title: "Read the stat cards", desc: "The top row shows key numbers: Upcoming Events (confirmed bookings not yet completed), Revenue This Month (collected milestones this month), Payments Collected (total paid-out milestones), and Pending Payments (milestones not yet collected). These update in real time." },
-      { title: "Monitor overdue milestones", desc: "The Overdue Milestones panel lists every milestone that is past its due date and unpaid — client name, booking, amount, and days overdue. Use this panel to prioritize your follow-up calls and messages." },
-      { title: "Check upcoming events", desc: "The Upcoming Events list shows all confirmed bookings in date order — event date, client name, venue, and guest count. This is your operations forward-look: what events are coming up this week and next, and are they fully prepared." },
+      { title: "Monitor overdue milestones", desc: "The Overdue Milestones panel lists every milestone that is past its due date and unpaid - client name, booking, amount, and days overdue. Use this panel to prioritize your follow-up calls and messages." },
+      { title: "Check upcoming events", desc: "The Upcoming Events list shows all confirmed bookings in date order - event date, client name, venue, and guest count. This is your operations forward-look: what events are coming up this week and next, and are they fully prepared." },
       { title: "Review the monthly revenue trend", desc: "The revenue chart shows your monthly collections over time. Use this to spot your peak catering season (typically April–May and October–December for Philippine events), track whether revenue is growing, and set realistic targets for the next quarter." },
     ],
   },
 ]
 
 const TIPS = [
-  { icon: Clock, tip: "Build your full package catalog before taking your first booking. This saves time on every inquiry — just select and attach, no re-quoting." },
-  { icon: Lightbulb, tip: "Create payment milestones at the same time you confirm a booking. Don't wait until payment is due — setting them early gives you a clear picture of expected cash flow." },
-  { icon: AlertTriangle, tip: "Check the Overdue Milestones panel at least twice a week. Philippine catering clients often pay late — early follow-up before an event is far more effective than chasing after it." },
-  { icon: Shield, tip: "Always mark a booking as Completed only after the event is done and you're satisfied. Marking Complete auto-settles all outstanding milestones — so do it only when the event actually happened." },
+  { icon: Clock, tip: "Build your full package catalog before taking your first booking. This saves time on every inquiry, just select and attach, no re-quoting." },
+  { icon: Lightbulb, tip: "Create payment milestones at the same time you confirm a booking. Don't wait until payment is due, setting them early gives you a clear picture of expected cash flow." },
+  { icon: AlertTriangle, tip: "Check the Overdue Milestones panel at least twice a week. Philippine catering clients often pay late, early follow-up before an event is far more effective than chasing after it." },
+  { icon: Shield, tip: "Always mark a booking as Completed only after the event is done and you're satisfied. Marking Complete auto-settles all outstanding milestones, so do it only when the event actually happened." },
 ]
 
 const WORKFLOW = [
-  { step: "1st", title: "Review upcoming events", desc: "Check all confirmed bookings for the month — verify packages attached, milestones created, and staff assigned for each event." },
+  { step: "1st", title: "Review upcoming events", desc: "Check all confirmed bookings for the month - verify packages attached, milestones created, and staff assigned for each event." },
   { step: "2nd", title: "Follow up overdue milestones", desc: "Check the Overdue Milestones panel on the dashboard and contact clients with outstanding balances before their event date." },
   { step: "3rd", title: "Plan procurement", desc: "Use the supply catalog to estimate ingredient quantities and costs for each upcoming event. Place supplier orders with enough lead time." },
   { step: "4th", title: "Record all collections", desc: "As payments come in, mark milestones as paid with the correct method and date. Keep the dashboard accurate in real time." },
@@ -199,7 +199,7 @@ export default function CateringGuideContent() {
             Smapey Catering Manager <span style={{ color: BLUE }}>Guide</span>
           </h1>
           <p className="text-lg max-w-2xl mx-auto mb-8" style={{ color: "#54514c" }}>
-            Everything you need to set up packages, register clients, create bookings, track payment milestones, manage your supply catalog, assign staff, and read the revenue dashboard — step by step.
+            Everything you need to set up packages, register clients, create bookings, track payment milestones, manage your supply catalog, assign staff, and read the revenue dashboard, step by step.
           </p>
           <div className="flex flex-wrap items-center justify-center gap-6 text-xs font-semibold" style={{ color: "#54514c" }}>
             {["10-minute setup", "No training required", "Free plan available"].map((t) => (

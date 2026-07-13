@@ -18,27 +18,27 @@ const CREAM = "#fbf7f0"
 const display = { fontFamily: "'Hanken Grotesk', system-ui, sans-serif" }
 
 const FEATURES = [
-  { icon: Car, title: "Fleet Management", desc: "Track every vehicle in your fleet — availability, status, and maintenance history. Know which cars are available, rented, or in the shop at any time." },
+  { icon: Car, title: "Fleet Management", desc: "Track every vehicle in your fleet - availability, status, and maintenance history. Know which cars are available, rented, or in the shop at any time." },
   { icon: Key, title: "Rental Reservations", desc: "Create and manage reservations with pickup and return dates, locations, and deposit tracking. No double bookings, no missed handoffs." },
-  { icon: Users, title: "Customer Records", desc: "Keep a complete record of every customer — license number, contact details, and full rental history. Reactivate or deactivate customers without losing history." },
+  { icon: Users, title: "Customer Records", desc: "Keep a complete record of every customer - license number, contact details, and full rental history. Reactivate or deactivate customers without losing history." },
   { icon: CreditCard, title: "Revenue Tracking", desc: "Track total amount per rental and see your monthly revenue at a glance. Know which vehicles are earning the most and which are sitting idle." },
   { icon: AlertCircle, title: "Overdue Detection", desc: "Rentals past their return date are automatically flagged as overdue. See them instantly on your dashboard and follow up with customers faster." },
   { icon: Wrench, title: "Maintenance Status", desc: "Mark vehicles as under maintenance with one click so they can't be booked. Return them to available when the work is done." },
-  { icon: Calendar, title: "Upcoming Returns", desc: "See all active rentals sorted by return date. Know who's returning a car today, tomorrow, and this week — without digging through records." },
+  { icon: Calendar, title: "Upcoming Returns", desc: "See all active rentals sorted by return date. Know who's returning a car today, tomorrow, and this week - without digging through records." },
   { icon: BarChart3, title: "Rental Dashboard", desc: "One screen shows available vehicles, active rentals, overdue count, and monthly revenue. Everything you need to run your day." },
   { icon: Shield, title: "Secure & Isolated", desc: "Your fleet and customer data are fully isolated per business. Nothing is shared, nothing is exposed. Your records stay yours." },
-  { icon: Globe, title: "Public Booking Page", desc: "Share a public link where customers can browse your fleet and submit booking inquiries 24/7 — no login required on their end." },
+  { icon: Globe, title: "Public Booking Page", desc: "Share a public link where customers can browse your fleet and submit booking inquiries 24/7 - no login required on their end." },
   { icon: MessageSquare, title: "Booking Inquiries", desc: "Review incoming booking requests from your public page. Approve or reject each inquiry and convert approved ones to rentals in one click." },
-  { icon: QrCode, title: "Deposit QR Code", desc: "Upload your GCash, Maya, or bank QR code to your booking page so customers can scan and pay their deposit instantly — no back-and-forth messaging." },
-  { icon: Palette, title: "Page Personalization", desc: "Choose from 5 themes — Midnight, Clean, Ocean, Forest, Luxury — then personalize any theme with a cover photo, tagline, and accent color to match your brand." },
-  { icon: Bell, title: "Instant Booking Alerts", desc: "Get notified the moment a customer submits a booking inquiry. A badge appears on your notification bell — click it to jump straight to the inquiry." },
+  { icon: QrCode, title: "Deposit QR Code", desc: "Upload your GCash, Maya, or bank QR code to your booking page so customers can scan and pay their deposit instantly - no back-and-forth messaging." },
+  { icon: Palette, title: "Page Personalization", desc: "Choose from 5 themes (Midnight, Clean, Ocean, Forest, Luxury) then personalize any theme with a cover photo, tagline, and accent color to match your brand." },
+  { icon: Bell, title: "Instant Booking Alerts", desc: "Get notified the moment a customer submits a booking inquiry. A badge appears on your notification bell - click it to jump straight to the inquiry." },
   { icon: ImagePlus, title: "Vehicle Photos", desc: "Upload a photo for each vehicle in your fleet. Photos display on your public booking page so customers see exactly what they're renting before they inquire." },
 ]
 
 const FAQS = [
-  { q: "Can I track which vehicles are available right now?", a: "Yes. The fleet page shows every vehicle's current status — Available, Rented, or Maintenance. The dashboard also shows a live count so you always know your fleet state at a glance." },
+  { q: "Can I track which vehicles are available right now?", a: "Yes. The fleet page shows every vehicle's current status, Available, Rented, or Maintenance. The dashboard also shows a live count so you always know your fleet state at a glance." },
   { q: "What happens when a rental goes past its return date?", a: "Smapey automatically flags it as Overdue. You'll see overdue rentals highlighted on your dashboard so you can follow up with customers immediately." },
-  { q: "Can I delete a customer who completed their rental?", a: "Customers with rental history can't be hard-deleted to protect your revenue records. Instead, you can deactivate them — they're hidden from active views but their history is preserved." },
+  { q: "Can I delete a customer who completed their rental?", a: "Customers with rental history can't be hard-deleted to protect your revenue records. Instead, you can deactivate them, they're hidden from active views but their history is preserved." },
   { q: "How do I track revenue?", a: "Each rental has a total amount field. Your dashboard shows monthly revenue from active and returned rentals, plus a 7-day trend chart." },
   { q: "Can my team use this too?", a: "Yes. You can invite staff with role-based access. Owners and admins can manage everything, while members can handle day-to-day rental operations." },
 ]
@@ -126,7 +126,7 @@ function Hero() {
       <div className="absolute inset-y-0 right-0 w-1/2 pointer-events-none hidden lg:block" aria-hidden style={{ background: "repeating-linear-gradient(115deg, transparent 0 38px, rgba(22,22,22,.025) 38px 40px)" }} />
 
       <div className="relative w-full max-w-6xl mx-auto px-6 py-24 grid lg:grid-cols-[0.95fr_1.05fr] gap-12 lg:gap-16 items-center">
-        {/* LEFT — copy */}
+        {/* LEFT, copy */}
         <div className="min-w-0 text-center lg:text-left">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border-2 text-xs font-bold mb-7" style={{ color: INK, borderColor: INK, boxShadow: `3px 3px 0 ${BLUE}` }}>
             <Zap className="w-3 h-3" />
@@ -147,7 +147,7 @@ function Hero() {
 
           <div className="flex flex-col sm:flex-row items-center lg:justify-start justify-center gap-3 mb-9">
             <a href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=CAR_RENTAL&plan=FREE`} className="flex items-center gap-2 px-7 py-4 rounded-full font-bold text-sm border-2 transition-transform hover:-translate-y-0.5" style={{ ...display, background: AMBER, color: INK, borderColor: INK, boxShadow: `4px 4px 0 ${INK}` }}>
-              Start free — no card needed <ChevronRight className="w-4 h-4" />
+              Start free, no card needed <ChevronRight className="w-4 h-4" />
             </a>
             <a href="#how-it-works" className="flex items-center gap-2 px-7 py-4 rounded-full font-bold text-sm border-2 bg-white transition-transform hover:-translate-y-0.5" style={{ ...display, color: INK, borderColor: INK }}>See how it works</a>
           </div>
@@ -159,7 +159,7 @@ function Hero() {
           </div>
         </div>
 
-        {/* RIGHT — dark live dashboard panel */}
+        {/* RIGHT, dark live dashboard panel */}
         <div className="relative min-w-0 w-full max-w-lg mx-auto">
           {/* floating booking alert */}
           <div className="absolute z-10 flex items-center gap-2 bg-white border-2 rounded-full px-3.5 py-2" style={{ top: -20, left: -16, borderColor: INK, boxShadow: `4px 4px 0 ${AMBER}`, transform: "rotate(-5deg)" }}>
@@ -228,7 +228,7 @@ function Features() {
         <Animate className="text-center mb-16">
           <p className="text-sm font-bold uppercase tracking-widest mb-3" style={{ color: BLUE }}>Features</p>
           <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight" style={{ color: INK }}>Everything your rental business needs</h2>
-          <p className="mt-4 max-w-xl mx-auto" style={{ color: "#54514c" }}>From fleet tracking to revenue reports — manage your entire car rental operation in one place.</p>
+          <p className="mt-4 max-w-xl mx-auto" style={{ color: "#54514c" }}>From fleet tracking to revenue reports, manage your entire car rental operation in one place.</p>
         </Animate>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {FEATURES.map(({ icon: Icon, title, desc }, i) => {
@@ -252,7 +252,7 @@ function Features() {
 }
 
 const STEPS = [
-  { step: "01", title: "Add your vehicles", desc: "Enter your fleet — make, model, plate number, and daily rate. Set each vehicle's status and you're ready to rent." },
+  { step: "01", title: "Add your vehicles", desc: "Enter your fleet - make, model, plate number, and daily rate. Set each vehicle's status and you're ready to rent." },
   { step: "02", title: "Register your customers", desc: "Add customer profiles with contact details and license numbers. Their full rental history builds automatically over time." },
   { step: "03", title: "Create and track rentals", desc: "Book a rental, set pickup and return dates, track deposits, and manage the full lifecycle from reserved to returned." },
 ]
@@ -407,7 +407,7 @@ function PaymentModal({ plan, isPhilippines, onClose }: { plan: { name: string; 
         <div className="px-6 py-5 flex items-center justify-between" style={{ background: INK }}>
           <div className="flex items-center gap-3">
             {step === "payment" && !token && <button onClick={() => setStep("details")} className="text-white/70 hover:text-white transition"><svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}><path d="M19 12H5M12 5l-7 7 7 7"/></svg></button>}
-            <div><h2 className="text-white font-extrabold text-lg">{step === "details" ? "Create your account" : "Choose payment method"}</h2><p className="text-sm mt-0.5" style={{ color: "rgba(255,255,255,.7)" }}>{plan.name} plan — <span className="font-bold" style={{ color: AMBER }}>{displayPrice}</span>{plan.period}</p></div>
+            <div><h2 className="text-white font-extrabold text-lg">{step === "details" ? "Create your account" : "Choose payment method"}</h2><p className="text-sm mt-0.5" style={{ color: "rgba(255,255,255,.7)" }}>{plan.name} plan, <span className="font-bold" style={{ color: AMBER }}>{displayPrice}</span>{plan.period}</p></div>
           </div>
           <button onClick={onClose} className="text-white/70 hover:text-white transition-colors"><X className="w-5 h-5" /></button>
         </div>

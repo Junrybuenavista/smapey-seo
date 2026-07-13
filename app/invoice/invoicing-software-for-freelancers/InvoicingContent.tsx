@@ -30,7 +30,7 @@ export default function InvoicingContent() {
               <span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse" /> Built for Freelancers
             </div>
             <h1 className="text-4xl lg:text-5xl font-bold leading-tight">
-              Invoicing Software for Freelancers —{" "}
+              Invoicing Software for Freelancers:{" "}
               <span className="bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent">Get Paid On Time</span>
             </h1>
             <p className="text-gray-400 text-lg leading-relaxed max-w-xl">
@@ -59,7 +59,7 @@ export default function InvoicingContent() {
             <div className="relative bg-white/5 border border-white/10 rounded-2xl p-8 w-full max-w-md space-y-5">
               <p className="text-xs text-gray-500 uppercase tracking-widest">Freelance Invoices</p>
               {[
-                { label: "Website redesign — Acme Corp", amount: "$2,800", status: "Paid", color: "text-green-400 bg-green-500/10" },
+                { label: "Website redesign, Acme Corp", amount: "$2,800", status: "Paid", color: "text-green-400 bg-green-500/10" },
                 { label: "Logo & branding package", amount: "$950", status: "Pending", color: "text-yellow-400 bg-yellow-500/10" },
                 { label: "Monthly SEO retainer", amount: "$500", status: "Sent", color: "text-blue-400 bg-blue-500/10" },
               ].map(item => (
@@ -107,7 +107,7 @@ export default function InvoicingContent() {
             <span className="text-sm font-semibold text-blue-600 uppercase tracking-widest">Why Smapey</span>
             <h2 className="text-4xl font-bold text-gray-900">Built for the Way Freelancers Work</h2>
             <p className="text-gray-500 text-lg max-w-2xl mx-auto">
-              Not just invoicing software for freelancers — a powerful platform that also works for contractors, electricians, plumbers, and service professionals.
+              Not just invoicing software for freelancers, a powerful platform that also works for contractors, electricians, plumbers, and service professionals.
             </p>
           </div>
           <div className="grid md:grid-cols-2 gap-5">
@@ -115,7 +115,7 @@ export default function InvoicingContent() {
               "Create and send invoices in under 2 minutes",
               "Accept Stripe, PayPal, and card payments",
               "Real-time tracking of all invoices",
-              "Automated reminders — stop chasing clients",
+              "Automated reminders, stop chasing clients",
               "Recurring invoices for retainer clients",
               "Multi-currency support for global clients",
             ].map(item => (

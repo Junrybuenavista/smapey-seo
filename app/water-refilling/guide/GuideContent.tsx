@@ -197,7 +197,7 @@ export default function GuideContent() {
             How to run your water refilling station with Smapey
           </h1>
           <p className="text-lg leading-relaxed" style={{ color: "#54514c" }}>
-            This app does a lot — so we wrote this guide in plain language. No jargon. Just follow it top to bottom
+            This app does a lot, so we wrote this guide in plain language. No jargon. Just follow it top to bottom
             and you&apos;ll understand the whole system, including the part everyone finds confusing: tracking who is holding your bottles.
           </p>
           <div className="flex flex-wrap items-center justify-center gap-6 text-xs font-semibold mt-8" style={{ color: "#54514c" }}>
@@ -256,8 +256,8 @@ export default function GuideContent() {
             </div>
           </div>
           <Callout title="Think of it like a library">
-            The <strong>water</strong> is like the knowledge inside a book — you &quot;sell&quot; it. The <strong>bottle</strong> is
-            like the physical book — you lend it and expect it back. Smapey tracks both separately, because a returned
+            The <strong>water</strong> is like the knowledge inside a book, you &quot;sell&quot; it. The <strong>bottle</strong> is
+            like the physical book, you lend it and expect it back. Smapey tracks both separately, because a returned
             empty bottle is <em>not</em> the same as sellable water. It has to be refilled first.
           </Callout>
         </Animate>
@@ -268,7 +268,7 @@ export default function GuideContent() {
           <P>Do this once, in this order, and everything afterwards is faster.</P>
           <Steps items={[
             { t: "Open Settings and set your defaults", d: "Go to Water Refilling → Settings. Set your default price per gallon (e.g. ₱25), default container deposit (e.g. ₱0 or ₱150 per bottle), and a low-stock threshold (the number where Smapey warns you to refill)." },
-            { t: "Add your delivery routes", d: "Go to Routes and add the areas you serve — e.g. 'Barangay San Jose' or 'Downtown'. This lets you group customers and plan a delivery run." },
+            { t: "Add your delivery routes", d: "Go to Routes and add the areas you serve, e.g. 'Barangay San Jose' or 'Downtown'. This lets you group customers and plan a delivery run." },
             { t: "Add your customers", d: "Go to Customers → New Customer. Just the name is required. Leave the price blank to use your station default, or set a special price for that customer. Assign them to a route if you deliver." },
           ]} />
           <Callout title="You only set the price once">
@@ -280,7 +280,7 @@ export default function GuideContent() {
         {/* DELIVERIES */}
         <Animate>
           <H2 id="deliveries" icon={Truck}>2. Take a delivery order</H2>
-          <P>Every time you sell water — walk-in or delivery — you create an order.</P>
+          <P>Every time you sell water (walk-in or delivery) you create an order.</P>
           <Steps items={[
             { t: "Go to Orders → New Delivery Order", d: "Pick the customer. Their price fills in automatically." },
             { t: "Enter 'Gallons to Deliver'", d: "How many filled gallons the customer is taking today, e.g. 5." },
@@ -289,7 +289,7 @@ export default function GuideContent() {
             { t: "Mark it Delivered", d: "When you confirm delivery, Smapey automatically subtracts those gallons from your stock and records the sale." },
           ]} />
           <Callout title="Why status matters">
-            Gallons on Pending / Out-for-Delivery orders are shown as <strong>Reserved</strong> in inventory — they&apos;re
+            Gallons on Pending / Out-for-Delivery orders are shown as <strong>Reserved</strong> in inventory, they&apos;re
             promised but not gone yet. They only leave your stock when the order is marked <strong>Delivered</strong>.
           </Callout>
         </Animate>
@@ -315,7 +315,7 @@ export default function GuideContent() {
           <Example title="Example: Juan">
             <p>• Juan orders 10 gallons over the month → he&apos;s now holding <strong>10</strong> of your bottles.</p>
             <p>• Next visit, Juan hands back 8 empties → he&apos;s now holding <strong>2</strong>.</p>
-            <p>• Smapey shows Juan&apos;s &quot;outstanding containers&quot; as <strong>2</strong> — no notebook needed.</p>
+            <p>• Smapey shows Juan&apos;s &quot;outstanding containers&quot; as <strong>2</strong>, no notebook needed.</p>
           </Example>
         </Animate>
 
@@ -324,14 +324,14 @@ export default function GuideContent() {
           <H2 id="returns" icon={PackageOpen}>4. Record returned empties</H2>
           <P>There are two situations, and Smapey handles both.</P>
           <P><strong>A) Empties come back during a delivery.</strong> Just type the number in the &quot;Empty Returned&quot; field on the order (see step 2). Done.</P>
-          <P><strong>B) A customer just drops by to return empties — no purchase.</strong> Use the dedicated Returns page:</P>
+          <P><strong>B) A customer just drops by to return empties, no purchase.</strong> Use the dedicated Returns page:</P>
           <Steps items={[
             { t: "Go to Returns → Record Return", d: "Pick the customer. Smapey shows how many bottles they're currently holding." },
             { t: "Enter how many empties they returned", d: "For example, 8. Add a note if you like." },
             { t: "Save", d: "Their outstanding container count drops immediately, and the return is logged with the date and who recorded it." },
           ]} />
           <Callout title="Important: returned empties are NOT sellable yet">
-            When a bottle comes back empty, it lowers the customer&apos;s count — but you can&apos;t sell it until you refill it.
+            When a bottle comes back empty, it lowers the customer&apos;s count, but you can&apos;t sell it until you refill it.
             That&apos;s what the next section is about.
           </Callout>
         </Animate>
@@ -344,7 +344,7 @@ export default function GuideContent() {
             {[
               ["Total Stock", "Filled gallons you can sell right now."],
               ["Reserved (pending)", "Gallons promised to orders that aren't delivered yet."],
-              ["Available (after pending)", "Stock minus reserved — what's truly free to sell."],
+              ["Available (after pending)", "Stock minus reserved, what's truly free to sell."],
               ["Empties on Hand", "Returned empty bottles waiting to be refilled."],
             ].map(([t, d]) => (
               <li key={t} className="flex gap-3 text-sm">
@@ -355,9 +355,9 @@ export default function GuideContent() {
           </ul>
           <P>There are three buttons:</P>
           <Steps items={[
-            { t: "Restock — water from a supplier", d: "Got filled gallons delivered from a bulk supplier? Enter the amount. Stock goes up." },
-            { t: "Refill Empties — turn returned bottles into stock", d: "After you refill the empties customers returned, enter the number here. Stock goes up and 'Empties on Hand' goes down. This is the step that closes the loop." },
-            { t: "Manual Adjustment — fix mistakes", d: "Use + or − to correct stock after a physical count, or to write off broken bottles." },
+            { t: "Restock, water from a supplier", d: "Got filled gallons delivered from a bulk supplier? Enter the amount. Stock goes up." },
+            { t: "Refill Empties, turn returned bottles into stock", d: "After you refill the empties customers returned, enter the number here. Stock goes up and 'Empties on Hand' goes down. This is the step that closes the loop." },
+            { t: "Manual Adjustment, fix mistakes", d: "Use + or − to correct stock after a physical count, or to write off broken bottles." },
           ]} />
           <Example title="Example: the full loop">
             <p>• You start the day with <strong>38</strong> filled gallons in stock.</p>
@@ -371,7 +371,7 @@ export default function GuideContent() {
         <Animate>
           <H2 id="payments" icon={CreditCard}>6. Payments</H2>
           <P>
-            Every order is Unpaid until you mark it Paid. Open the order and choose how they paid — Cash, GCash, Maya,
+            Every order is Unpaid until you mark it Paid. Open the order and choose how they paid, Cash, GCash, Maya,
             or Bank Transfer. Your dashboard then shows today&apos;s revenue and any unpaid balances so you always know who still owes you.
           </P>
         </Animate>
@@ -380,7 +380,7 @@ export default function GuideContent() {
         <Animate>
           <H2 id="sms" icon={MessageSquare} accent={AMBER}>7. SMS notifications</H2>
           <P>
-            Smapey can automatically text a customer when their delivery is on the way. It&apos;s an <strong>optional toggle</strong> —
+            Smapey can automatically text a customer when their delivery is on the way. It&apos;s an <strong>optional toggle</strong>,
             turn it on when you want the heads-up texts going out, and off when you don&apos;t. Customers don&apos;t need any app;
             the message goes to their phone number.
           </P>

@@ -15,20 +15,20 @@ const CREAM = "#fbf7f0"
 const display = { fontFamily: "'Hanken Grotesk', system-ui, sans-serif" }
 
 const FEATURES = [
-  { icon: PawPrint, title: "Pet & Patient Records", desc: "Store complete pet profiles — species, breed, age, owner contact, medical history, and allergies. Pull up any record instantly when the owner arrives." },
+  { icon: PawPrint, title: "Pet & Patient Records", desc: "Store complete pet profiles - species, breed, age, owner contact, medical history, and allergies. Pull up any record instantly when the owner arrives." },
   { icon: CalendarDays, title: "Appointment Scheduling", desc: "Book appointments by pet, veterinarian, date, and time. Attach chief complaint and service notes so the right vet is always prepared." },
-  { icon: ListOrdered, title: "Live Queue Board", desc: "Track every pet in real time — In Queue, In Progress, Done. One screen, every status, every vet — no more shouting names across the waiting room." },
+  { icon: ListOrdered, title: "Live Queue Board", desc: "Track every pet in real time - In Queue, In Progress, Done. One screen, every status, every vet - no more shouting names across the waiting room." },
   { icon: Syringe, title: "Vaccination Records", desc: "Log vaccines per pet with the date given and next due date. The system flags upcoming vaccinations so your team can proactively remind pet owners." },
-  { icon: Receipt, title: "Billing & Invoicing", desc: "Generate itemized bills after each visit — consultation, medicines, procedures. Accept partial and full payments across multiple payment methods." },
-  { icon: BarChart3, title: "Analytics Dashboard", desc: "Today's appointments, weekly trends, completion rates, unpaid bills, and upcoming vaccinations — all visible on your clinic dashboard." },
+  { icon: Receipt, title: "Billing & Invoicing", desc: "Generate itemized bills after each visit - consultation, medicines, procedures. Accept partial and full payments across multiple payment methods." },
+  { icon: BarChart3, title: "Analytics Dashboard", desc: "Today's appointments, weekly trends, completion rates, unpaid bills, and upcoming vaccinations - all visible on your clinic dashboard." },
 ]
 
 const FAQS = [
-  { q: "What is a veterinary clinic management system?", a: "It is software that centralizes all clinic operations — pet records, vet schedules, appointment booking, a live patient queue, vaccination tracking, and billing — in one place instead of paper cards and spreadsheets." },
-  { q: "Does it work for both dog and cat clinics?", a: "Yes. Pet profiles include a species and breed field, so the system works for any animal — dogs, cats, birds, reptiles, rabbits, and more. There are no species restrictions." },
+  { q: "What is a veterinary clinic management system?", a: "It is software that centralizes all clinic operations, pet records, vet schedules, appointment booking, a live patient queue, vaccination tracking, and billing, in one place instead of paper cards and spreadsheets." },
+  { q: "Does it work for both dog and cat clinics?", a: "Yes. Pet profiles include a species and breed field, so the system works for any animal, dogs, cats, birds, reptiles, rabbits, and more. There are no species restrictions." },
   { q: "Can I track vaccination schedules per pet?", a: "Yes. Each vaccination entry stores the vaccine name, date given, and next due date. A 30-day upcoming vaccinations list appears on the dashboard so your team can remind owners in advance." },
-  { q: "How does billing work?", a: "After a visit, create a bill with line items — consultation fee, medications, procedures. Set quantity and unit price per item. Record payments via Cash, GCash, Maya, Card, or Bank Transfer. The system tracks unpaid and partial balances." },
-  { q: "Is there a free plan?", a: "Yes. The free plan includes core features — pet records, appointment scheduling, live queue, vaccination tracking, and billing — at no cost. Upgrade when your clinic needs more capacity." },
+  { q: "How does billing work?", a: "After a visit, create a bill with line items, consultation fee, medications, procedures. Set quantity and unit price per item. Record payments via Cash, GCash, Maya, Card, or Bank Transfer. The system tracks unpaid and partial balances." },
+  { q: "Is there a free plan?", a: "Yes. The free plan includes core features, pet records, appointment scheduling, live queue, vaccination tracking, and billing, at no cost. Upgrade when your clinic needs more capacity." },
 ]
 
 function useInView(options?: IntersectionObserverInit) {
@@ -110,7 +110,7 @@ function Hero() {
         <p className="text-lg max-w-2xl mx-auto mb-10 leading-relaxed" style={{ color: "#54514c" }}>Smapey gives vet clinics one place to manage pets, vets, appointments, vaccinations, and billing. No paper cards. No spreadsheets. No extra software to learn.</p>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
           <a href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=VET_CLINIC&plan=FREE`} className="flex items-center gap-2 px-7 py-4 rounded-full font-bold text-sm border-2 transition-transform hover:-translate-y-0.5" style={{ ...display, background: AMBER, color: INK, borderColor: INK, boxShadow: `4px 4px 0 ${INK}` }}>
-            Start free — no card needed <ChevronRight className="w-4 h-4" />
+            Start free, no card needed <ChevronRight className="w-4 h-4" />
           </a>
           <a href="/vet-clinic" className="flex items-center gap-2 px-7 py-4 rounded-full font-bold text-sm border-2 bg-white transition-transform hover:-translate-y-0.5" style={{ ...display, color: INK, borderColor: INK }}>View all features</a>
         </div>
@@ -154,7 +154,7 @@ function Features() {
 
 const STEPS = [
   { step: "01", title: "Add your vets & set schedules", desc: "Register each veterinarian with their specialty and availability. The system knows who's on duty and when." },
-  { step: "02", title: "Register pets & book visits", desc: "Create a pet profile once. Book each visit in seconds — pick the pet, vet, date, and time." },
+  { step: "02", title: "Register pets & book visits", desc: "Create a pet profile once. Book each visit in seconds - pick the pet, vet, date, and time." },
   { step: "03", title: "Run queue, log vaccines & bill", desc: "Move pets through the live queue. After each visit, log vaccinations and generate a bill with line items." },
 ]
 
@@ -308,7 +308,7 @@ function PaymentModal({ plan, isPhilippines, onClose }: { plan: { name: string; 
         <div className="px-6 py-5 flex items-center justify-between" style={{ background: INK }}>
           <div className="flex items-center gap-3">
             {step === "payment" && !token && <button onClick={() => setStep("details")} className="text-white/70 hover:text-white transition"><svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}><path d="M19 12H5M12 5l-7 7 7 7"/></svg></button>}
-            <div><h2 className="text-white font-extrabold text-lg">{step === "details" ? "Create your account" : "Choose payment method"}</h2><p className="text-sm mt-0.5" style={{ color: "rgba(255,255,255,.7)" }}>{plan.name} plan — <span className="font-bold" style={{ color: AMBER }}>{displayPrice}</span>{plan.period}</p></div>
+            <div><h2 className="text-white font-extrabold text-lg">{step === "details" ? "Create your account" : "Choose payment method"}</h2><p className="text-sm mt-0.5" style={{ color: "rgba(255,255,255,.7)" }}>{plan.name} plan, <span className="font-bold" style={{ color: AMBER }}>{displayPrice}</span>{plan.period}</p></div>
           </div>
           <button onClick={onClose} className="text-white/70 hover:text-white transition-colors"><X className="w-5 h-5" /></button>
         </div>

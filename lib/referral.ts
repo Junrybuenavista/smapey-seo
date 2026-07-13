@@ -20,7 +20,7 @@ export const storeRef = (code: string, referrerName: string | null) => {
     const payload: StoredRef = { code, referrerName, ts: Date.now() }
     window.localStorage.setItem(STORAGE_KEY, JSON.stringify(payload))
   } catch {
-    /* private mode / storage disabled — ignore */
+    /* private mode / storage disabled, ignore */
   }
   // Also drop a cross-subdomain cookie so app.smapey.com can read the ref even
   // when a register CTA is a JS redirect (not an anchor we can decorate), and
@@ -64,7 +64,7 @@ export const withRef = (url: string): string => {
 /**
  * Decorate every register link on the page with the stored ref code, so a
  * referred visitor carries attribution to signup no matter which landing page's
- * CTA they click — without editing each page. Idempotent.
+ * CTA they click, without editing each page. Idempotent.
  */
 export const decorateRegisterLinks = () => {
   if (typeof document === "undefined") return

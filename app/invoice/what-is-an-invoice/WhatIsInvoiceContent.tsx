@@ -49,7 +49,7 @@ export default function WhatIsInvoicePage() {
 
   <div className="space-y-6 text-gray-600 text-lg leading-relaxed">
     <p>
-      Invoices are more than just payment requests—they are critical business tools
+      Invoices are more than just payment requests, they are critical business tools
       that help manage cash flow, maintain accurate records, and ensure legal compliance.
     </p>
 

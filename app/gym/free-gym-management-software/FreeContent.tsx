@@ -20,7 +20,7 @@ const display = { fontFamily: "'Hanken Grotesk', system-ui, sans-serif" }
 const FREE_FEATURES = [
   { icon: Users, title: "Up to 50 Members", desc: "Register and manage up to 50 gym members completely free. Full profiles, contact info, and subscription history included." },
   { icon: UserCheck, title: "Walk-in Tracking", desc: "Record up to 50 walk-in visits per month. Track drop-in revenue separately from memberships." },
-  { icon: CreditCard, title: "Subscription Plans", desc: "Create membership plans for your members. Track expiry dates automatically — no spreadsheets needed." },
+  { icon: CreditCard, title: "Subscription Plans", desc: "Create membership plans for your members. Track expiry dates automatically - no spreadsheets needed." },
   { icon: BarChart3, title: "Basic Dashboard", desc: "See your active members, recent walk-ins, and expiring memberships from a single live dashboard." },
   { icon: Shield, title: "2 Team Members", desc: "Invite one staff member to help manage your gym. Role-based access keeps your data secure." },
   { icon: Globe, title: "Multi-Currency", desc: "Display prices in your local currency. PHP, USD, SGD, and more supported out of the box." },
@@ -131,7 +131,7 @@ function Hero() {
       <div className="relative max-w-6xl mx-auto px-6 py-24 text-center">
         <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border-2 text-xs font-bold mb-6" style={{ color: INK, borderColor: INK, boxShadow: `3px 3px 0 ${BLUE}` }}>
           <Zap className="w-3 h-3" />
-          Free forever — no credit card required
+          Free forever, no credit card required
         </div>
         <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.04] tracking-tight mb-6" style={{ color: INK }}>
           Free gym management software{" "}
@@ -139,13 +139,13 @@ function Hero() {
         </h1>
         <p className="text-lg max-w-2xl mx-auto mb-10 leading-relaxed" style={{ color: "#54514c" }}>
           GymOS gives you a full gym management system at zero cost. Manage up to 50 members, track walk-ins,
-          handle subscriptions, and monitor your gym — all for free, forever.
+          handle subscriptions, and monitor your gym, all for free, forever.
         </p>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
           <a href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=GYM&plan=FREE`}
             className="flex items-center gap-2 px-7 py-4 rounded-full font-bold text-sm border-2 transition-transform hover:-translate-y-0.5"
             style={{ ...display, background: AMBER, color: INK, borderColor: INK, boxShadow: `4px 4px 0 ${INK}` }}>
-            Start free — no card needed <ChevronRight className="w-4 h-4" />
+            Start free, no card needed <ChevronRight className="w-4 h-4" />
           </a>
           <a href="#whats-included"
             className="flex items-center gap-2 px-7 py-4 rounded-full font-bold text-sm border-2 bg-white transition-transform hover:-translate-y-0.5" style={{ ...display, color: INK, borderColor: INK }}>
@@ -419,7 +419,7 @@ function PaymentModal({ plan, isPhilippines, onClose }: { plan: { name: string; 
             {step === "payment" && !token && <button onClick={() => setStep("details")} className="text-white/70 hover:text-white transition"><svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}><path d="M19 12H5M12 5l-7 7 7 7"/></svg></button>}
             <div>
               <h2 className="text-white font-extrabold text-lg">{step === "details" ? "Create your account" : "Choose payment method"}</h2>
-              <p className="text-sm mt-0.5" style={{ color: "rgba(255,255,255,.7)" }}>{plan.name} plan — <span className="font-bold" style={{ color: AMBER }}>{displayPrice}</span>{plan.period}</p>
+              <p className="text-sm mt-0.5" style={{ color: "rgba(255,255,255,.7)" }}>{plan.name} plan, <span className="font-bold" style={{ color: AMBER }}>{displayPrice}</span>{plan.period}</p>
             </div>
           </div>
           <button onClick={onClose} className="text-white/70 hover:text-white transition-colors"><X className="w-5 h-5" /></button>

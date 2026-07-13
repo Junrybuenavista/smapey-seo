@@ -18,7 +18,7 @@ export default function HowToCreateInvoicePage() {
             Complete Invoice Guide
           </div>
           <h1 className="text-4xl lg:text-5xl font-bold leading-tight">
-            How to Create an Invoice —{" "}
+            How to Create an Invoice:{" "}
             <span className="bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent">Like a Pro</span>
           </h1>
           <p className="text-gray-400 text-lg max-w-2xl mx-auto">

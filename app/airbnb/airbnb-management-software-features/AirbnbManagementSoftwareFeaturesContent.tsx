@@ -17,13 +17,13 @@ const accentFor = (i: number) => (i % 2 === 0 ? BLUE : AMBER)
 const onAccent = (c: string) => (c === AMBER ? INK : "#fff")
 
 const FEATURES = [
-  { icon: Home, title: "Property Listings", must: true, desc: "Each property needs its own record with property type, address, bedrooms, bathrooms, max guest count, nightly rate, and cleaning fee. Photo upload is a strong plus — it helps your team identify properties quickly.", smapey: "Smapey stores all of the above per property, with photo upload and an active/inactive toggle." },
+  { icon: Home, title: "Property Listings", must: true, desc: "Each property needs its own record with property type, address, bedrooms, bathrooms, max guest count, nightly rate, and cleaning fee. Photo upload is a strong plus - it helps your team identify properties quickly.", smapey: "Smapey stores all of the above per property, with photo upload and an active/inactive toggle." },
   { icon: ShieldCheck, title: "Double-Booking Protection", must: true, desc: "This is the most critical feature. Software that allows overlapping reservations on the same property is dangerous. The system should validate date ranges on save and reject conflicts before they're created.", smapey: "Smapey checks for date overlaps on every new reservation and blocks conflicting bookings at the database level." },
   { icon: CalendarRange, title: "Reservation Management", must: true, desc: "Full reservation records including check-in/check-out dates, cost breakdown (nights × rate + cleaning fee + extras), number of guests, notes, and staff-only notes. Status should flow through a lifecycle: Booked → Checked In → Checked Out.", smapey: "Smapey reservation records include all of the above plus a booking source field and automatic cost calculation." },
-  { icon: Wallet, title: "Deposit & Payment Tracking", must: true, desc: "You need to know — per reservation — what deposit was expected, whether it was paid, and the overall payment status. A \"deposit paid\" checkbox on paper is not enough for a multi-property operation.", smapey: "Each reservation tracks deposit amount, deposit paid status, payment status (Unpaid / Partial / Paid), and payment method." },
+  { icon: Wallet, title: "Deposit & Payment Tracking", must: true, desc: "You need to know (per reservation) what deposit was expected, whether it was paid, and the overall payment status. A \"deposit paid\" checkbox on paper is not enough for a multi-property operation.", smapey: "Each reservation tracks deposit amount, deposit paid status, payment status (Unpaid / Partial / Paid), and payment method." },
   { icon: Users, title: "Guest Profiles", must: true, desc: "A searchable guest database that auto-updates total stays, total spend, and last stay date after each checkout. You should be able to attach any number of reservations to the same guest profile.", smapey: "Smapey guest profiles track stays, spend, and last stay date automatically. Profiles are reusable across all properties." },
-  { icon: Sparkles, title: "Booking Source Tracking", must: false, desc: "Which channel fills your calendar — Airbnb, Booking.com, Direct, or Facebook? Without source tagging, you can't make data-driven decisions about where to list your property.", smapey: "Every Smapey reservation has a source field: Airbnb, Booking.com, Agoda, Direct, Facebook, Referral, or Other." },
-  { icon: BedDouble, title: "Check-in / Check-out Actions", must: false, desc: "Status buttons that move a reservation through its lifecycle give you an audit trail and trigger downstream updates — like incrementing the guest's total stay count.", smapey: "Smapey has one-click Check In, Check Out, Cancel, and No Show actions. Each updates the guest profile automatically." },
+  { icon: Sparkles, title: "Booking Source Tracking", must: false, desc: "Which channel fills your calendar - Airbnb, Booking.com, Direct, or Facebook? Without source tagging, you can't make data-driven decisions about where to list your property.", smapey: "Every Smapey reservation has a source field: Airbnb, Booking.com, Agoda, Direct, Facebook, Referral, or Other." },
+  { icon: BedDouble, title: "Check-in / Check-out Actions", must: false, desc: "Status buttons that move a reservation through its lifecycle give you an audit trail and trigger downstream updates - like incrementing the guest's total stay count.", smapey: "Smapey has one-click Check In, Check Out, Cancel, and No Show actions. Each updates the guest profile automatically." },
   { icon: BarChart3, title: "Revenue & Occupancy Analytics", must: false, desc: "A live dashboard showing monthly revenue, occupancy rate, total reservations, average nightly rate, and upcoming check-ins. This is the difference between running blind and running a real business.", smapey: "Smapey's dashboard shows all of the above metrics, updated in real time on every reservation status change." },
 ]
 
@@ -101,7 +101,7 @@ function Hero() {
           Airbnb management software features: <span style={{ color: BLUE }}>what you actually need</span>
         </h1>
         <p className="text-lg max-w-2xl mx-auto mb-10 leading-relaxed" style={{ color: "#54514c" }}>
-          A plain-language breakdown of every feature your rental management software should have — and exactly how Smapey handles each one.
+          A plain-language breakdown of every feature your rental management software should have, and exactly how Smapey handles each one.
         </p>
         <a href={REGISTER_URL} className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full font-bold text-sm border-2 transition-transform hover:-translate-y-0.5" style={{ ...display, background: AMBER, color: INK, borderColor: INK, boxShadow: `4px 4px 0 ${INK}` }}>
           Try Smapey free <ChevronRight className="w-4 h-4" />
@@ -117,7 +117,7 @@ function FeatureBreakdown() {
       <div className="max-w-4xl mx-auto px-6 space-y-8">
         <Animate className="text-center mb-12">
           <p className="text-sm font-bold uppercase tracking-widest mb-3" style={{ color: BLUE }}>Feature checklist</p>
-          <h2 className="text-3xl font-extrabold" style={{ color: INK }}>8 features — 5 must-haves, 3 strong additions</h2>
+          <h2 className="text-3xl font-extrabold" style={{ color: INK }}>8 features, 5 must-haves, 3 strong additions</h2>
           <p className="mt-3 max-w-xl mx-auto" style={{ color: "#54514c" }}>Sorted by importance. The must-haves are non-negotiable for any host managing more than 2 properties.</p>
         </Animate>
 

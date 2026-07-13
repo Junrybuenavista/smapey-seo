@@ -29,10 +29,10 @@ const FEATURES = [
 ]
 
 const FAQS = [
-  { q: "Who is this built for?", a: "Any service-based business with appointments — dental clinics, hair salons, massage studios, tutoring centers, beauty spas, and more. If clients book time slots with your staff, this is for you." },
-  { q: "Can clients book appointments themselves online?", a: "Currently, appointments are created by your staff through the dashboard. This is designed as an internal scheduling tool — ideal for businesses where clients call or walk in and staff enters the booking." },
-  { q: "How does deposit tracking work?", a: "When creating an appointment, you can record a deposit amount and mark it as Paid or Unpaid. It's a simple record-keeping field — no payment processing is involved at the appointment level." },
-  { q: "Can I assign different staff to different appointments?", a: "Yes. Each appointment has an optional staff name field. You can assign Dr. Santos to one booking and Dr. Reyes to another — all tracked separately." },
+  { q: "Who is this built for?", a: "Any service-based business with appointments, dental clinics, hair salons, massage studios, tutoring centers, beauty spas, and more. If clients book time slots with your staff, this is for you." },
+  { q: "Can clients book appointments themselves online?", a: "Currently, appointments are created by your staff through the dashboard. This is designed as an internal scheduling tool, ideal for businesses where clients call or walk in and staff enters the booking." },
+  { q: "How does deposit tracking work?", a: "When creating an appointment, you can record a deposit amount and mark it as Paid or Unpaid. It's a simple record-keeping field, no payment processing is involved at the appointment level." },
+  { q: "Can I assign different staff to different appointments?", a: "Yes. Each appointment has an optional staff name field. You can assign Dr. Santos to one booking and Dr. Reyes to another, all tracked separately." },
   { q: "What happens when an appointment is completed?", a: "You mark it as Completed in the dashboard. It stays in your appointment history so you can track your monthly totals, completion rates, and client records over time." },
 ]
 
@@ -119,7 +119,7 @@ function Hero() {
       </div>
 
       <div className="relative w-full max-w-6xl mx-auto px-6 py-24 grid lg:grid-cols-[1fr_1fr] gap-12 lg:gap-16 items-center">
-        {/* LEFT — copy */}
+        {/* LEFT, copy */}
         <div className="min-w-0 text-center lg:text-left">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border-2 text-xs font-bold mb-7" style={{ color: INK, borderColor: INK, boxShadow: `3px 3px 0 ${BLUE}` }}>
             <Zap className="w-3 h-3" />
@@ -154,7 +154,7 @@ function Hero() {
           </div>
         </div>
 
-        {/* RIGHT — day-schedule card */}
+        {/* RIGHT, day-schedule card */}
         <div className="relative min-w-0 w-full max-w-md mx-auto">
           {/* floating reminder chip */}
           <div className="absolute z-10 flex items-center gap-2 bg-white border-2 rounded-full px-3.5 py-2" style={{ top: -20, right: -16, borderColor: INK, boxShadow: `4px 4px 0 ${BLUE}`, transform: "rotate(4deg)" }}>
@@ -227,7 +227,7 @@ function Features() {
         <Animate className="text-center mb-16">
           <p className="text-sm font-bold uppercase tracking-widest mb-3" style={{ color: BLUE }}>Features</p>
           <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight" style={{ color: INK }}>Everything your front desk needs</h2>
-          <p className="mt-4 max-w-xl mx-auto" style={{ color: "#54514c" }}>From services to schedules to staff — Smapey Booking keeps your appointments organized so you can focus on your clients.</p>
+          <p className="mt-4 max-w-xl mx-auto" style={{ color: "#54514c" }}>From services to schedules to staff, Smapey Booking keeps your appointments organized so you can focus on your clients.</p>
         </Animate>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {FEATURES.map(({ icon: Icon, title, desc }, i) => {
@@ -251,7 +251,7 @@ function Features() {
 }
 
 const STEPS = [
-  { step: "01", title: "Set up your services", desc: "Add the services you offer — like a 30-min consultation or haircut — with duration, price, and capacity." },
+  { step: "01", title: "Set up your services", desc: "Add the services you offer (like a 30-min consultation or haircut) with duration, price, and capacity." },
   { step: "02", title: "Define your availability", desc: "Set which days and hours you're open. Assign staff names to specific time slots if needed." },
   { step: "03", title: "Book and manage clients", desc: "Create appointments, track deposits, confirm bookings, and mark them complete when done." },
 ]
@@ -406,7 +406,7 @@ function PaymentModal({ plan, isPhilippines, onClose }: { plan: { name: string; 
         <div className="px-6 py-5 flex items-center justify-between" style={{ background: INK }}>
           <div className="flex items-center gap-3">
             {step === "payment" && !token && <button onClick={() => setStep("details")} className="text-white/70 hover:text-white transition"><svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}><path d="M19 12H5M12 5l-7 7 7 7"/></svg></button>}
-            <div><h2 className="text-white font-extrabold text-lg">{step === "details" ? "Create your account" : "Choose payment method"}</h2><p className="text-sm mt-0.5" style={{ color: "rgba(255,255,255,.7)" }}>{plan.name} plan — <span className="font-bold" style={{ color: AMBER }}>{displayPrice}</span>{plan.period}</p></div>
+            <div><h2 className="text-white font-extrabold text-lg">{step === "details" ? "Create your account" : "Choose payment method"}</h2><p className="text-sm mt-0.5" style={{ color: "rgba(255,255,255,.7)" }}>{plan.name} plan, <span className="font-bold" style={{ color: AMBER }}>{displayPrice}</span>{plan.period}</p></div>
           </div>
           <button onClick={onClose} className="text-white/70 hover:text-white transition-colors"><X className="w-5 h-5" /></button>
         </div>

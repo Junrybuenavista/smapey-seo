@@ -2,7 +2,7 @@ import "../globals.css"
 import Script from "next/script"
 
 export const metadata = {
-  title: "Smapey Blog — Small Business Tips & Stories",
+  title: "Smapey Blog - Small Business Tips & Stories",
   description:
     "Real insights, tips, and stories from small business owners using Smapey. Written by the community, for the community.",
 }

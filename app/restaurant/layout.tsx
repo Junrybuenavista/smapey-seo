@@ -4,7 +4,7 @@ import Script from "next/script"
 
 export const metadata = {
   title: "Smapey Food Ordering Manager",
-  description: "Food ordering management software — menu builder, order tracking, kitchen queue, and daily sales for small restaurants and cafés.",
+  description: "Food ordering management software, menu builder, order tracking, kitchen queue, and daily sales for small restaurants and cafés.",
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

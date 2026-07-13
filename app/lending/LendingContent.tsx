@@ -8,12 +8,12 @@ const variant: LendingVariant = {
     titleLead: "Run your lending business",
     titleAccent: "without the spreadsheets",
     subtitle:
-      "Borrowers, loans, amortization schedules, payments, and collections analytics — everything an independent lender needs, in one clean dashboard. No spreadsheets, no missed dues.",
+      "Borrowers, loans, amortization schedules, payments, and collections analytics, everything an independent lender needs, in one clean dashboard. No spreadsheets, no missed dues.",
   },
   features: {
     eyebrow: "Features",
     heading: "Built for lenders and lending businesses",
-    sub: "From the first loan you issue to the final payment collected — every essential a small lending business needs, without the enterprise price tag.",
+    sub: "From the first loan you issue to the final payment collected, every essential a small lending business needs, without the enterprise price tag.",
   },
   cta: {
     heading: "Ready to run your loan book with less stress?",

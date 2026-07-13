@@ -18,25 +18,25 @@ const CREAM = "#fbf7f0"
 const display = { fontFamily: "'Hanken Grotesk', system-ui, sans-serif" }
 
 const FEATURES = [
-  { icon: UserPlus, title: "Member Registration", desc: "Add new members with full profiles — name, contact, emergency info, photo, and subscription history. Everything in one place." },
+  { icon: UserPlus, title: "Member Registration", desc: "Add new members with full profiles - name, contact, emergency info, photo, and subscription history. Everything in one place." },
   { icon: CreditCard, title: "Subscription Plans", desc: "Create monthly, quarterly, or custom plans. Set pricing, duration, and renewal rules. Members are automatically marked as expired when their plan ends." },
   { icon: Bell, title: "Expiry Tracking", desc: "See every expiring membership at a glance on your dashboard. No more manually checking who's due for renewal." },
   { icon: RefreshCw, title: "One-Click Renewal", desc: "Renew any expired membership with a single click. Choose the new plan, set the start date, and you're done." },
   { icon: Search, title: "Quick Member Search", desc: "Find any member instantly by name, email, or membership status. No more scrolling through spreadsheets." },
-  { icon: BarChart3, title: "Membership Analytics", desc: "Track active vs. expired members, monthly growth, and revenue from memberships — all from a single dashboard." },
-  { icon: Users, title: "Member Status Flags", desc: "Active, expired, on-hold — members are clearly flagged so your staff always knows who can access the gym." },
+  { icon: BarChart3, title: "Membership Analytics", desc: "Track active vs. expired members, monthly growth, and revenue from memberships - all from a single dashboard." },
+  { icon: Users, title: "Member Status Flags", desc: "Active, expired, on-hold - members are clearly flagged so your staff always knows who can access the gym." },
   { icon: Shield, title: "Role-Based Access", desc: "Invite staff to manage members without giving them full admin access. Control exactly what each team member can see and do." },
 ]
 
 const STEPS = [
   { step: "01", title: "Add your members", desc: "Register members with their contact info, emergency contacts, and starting plan." },
   { step: "02", title: "Assign a plan", desc: "Attach a subscription plan to each member. Duration and expiry are tracked automatically." },
-  { step: "03", title: "Monitor & renew", desc: "Get a live view of active, expiring, and expired members — and renew with one click." },
+  { step: "03", title: "Monitor & renew", desc: "Get a live view of active, expiring, and expired members - and renew with one click." },
 ]
 
 const FAQS = [
   { q: "How does expiry tracking work?", a: "When you assign a membership plan to a member, GymOS calculates the expiry date automatically. Expired members are flagged on your dashboard the moment their plan ends." },
-  { q: "Can I have different membership tiers?", a: "Yes. You can create as many plans as you need — day passes, monthly, quarterly, annual, or any custom duration — each with its own price." },
+  { q: "Can I have different membership tiers?", a: "Yes. You can create as many plans as you need (day passes, monthly, quarterly, annual, or any custom duration) each with its own price." },
   { q: "What happens when a member's subscription expires?", a: "The member is automatically marked as expired and flagged on your dashboard. You can renew them with a single click." },
   { q: "Can staff renew memberships without admin access?", a: "Yes. You can grant staff the ability to renew memberships without giving them full admin access to your gym account." },
 ]
@@ -136,7 +136,7 @@ function Hero() {
           <span style={{ color: BLUE }}>that does the <span style={{ color: AMBER }}>heavy lifting</span></span>
         </h1>
         <p className="text-lg max-w-2xl mx-auto mb-10 leading-relaxed" style={{ color: "#54514c" }}>
-          Track every member, every plan, and every renewal — automatically. GymOS replaces your spreadsheets
+          Track every member, every plan, and every renewal, automatically. GymOS replaces your spreadsheets
           with a live dashboard that shows you exactly who's active, who's expiring, and who needs attention.
         </p>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
@@ -172,7 +172,7 @@ function Features() {
             Complete gym membership management
           </h2>
           <p className="mt-4 max-w-xl mx-auto" style={{ color: "#54514c" }}>
-            Everything you need to manage members from sign-up to renewal — and everything in between.
+            Everything you need to manage members from sign-up to renewal, and everything in between.
           </p>
         </Animate>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -385,7 +385,7 @@ function PaymentModal({ plan, isPhilippines, onClose }: { plan: { name: string; 
             {step === "payment" && !token && <button onClick={() => setStep("details")} className="text-white/70 hover:text-white transition"><svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}><path d="M19 12H5M12 5l-7 7 7 7"/></svg></button>}
             <div>
               <h2 className="text-white font-extrabold text-lg">{step === "details" ? "Create your account" : "Choose payment method"}</h2>
-              <p className="text-sm mt-0.5" style={{ color: "rgba(255,255,255,.7)" }}>{plan.name} plan — <span className="font-bold" style={{ color: AMBER }}>{displayPrice}</span>{plan.period}</p>
+              <p className="text-sm mt-0.5" style={{ color: "rgba(255,255,255,.7)" }}>{plan.name} plan, <span className="font-bold" style={{ color: AMBER }}>{displayPrice}</span>{plan.period}</p>
             </div>
           </div>
           <button onClick={onClose} className="text-white/70 hover:text-white transition-colors"><X className="w-5 h-5" /></button>

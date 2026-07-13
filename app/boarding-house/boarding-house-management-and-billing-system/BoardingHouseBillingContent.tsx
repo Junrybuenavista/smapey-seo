@@ -86,16 +86,16 @@ function Navbar() {
 const BILLING_FEATURES = [
   { icon: Banknote, title: "Monthly Rent Billing", desc: "Generate a rent bill for each tenant at the start of the month. Set the amount, due date, and payment method. The system tracks the balance automatically." },
   { icon: Zap, title: "Utility Billing", desc: "Create separate electricity, water, or internet bills per tenant per month. Utilities are clearly separated from rent so tenants always understand what they owe." },
-  { icon: Receipt, title: "Partial Payment Support", desc: "Record partial payments on any bill. The remaining balance is tracked automatically — no manual calculations needed." },
+  { icon: Receipt, title: "Partial Payment Support", desc: "Record partial payments on any bill. The remaining balance is tracked automatically - no manual calculations needed." },
   { icon: AlertTriangle, title: "Overdue Bill Alerts", desc: "Every overdue rent bill surfaces on the dashboard with tenant name, room, amount, and due date. You always know who hasn't paid without having to check manually." },
-  { icon: BarChart3, title: "Revenue Dashboard", desc: "See rent collected and utilities collected this month — plus a 6-month stacked bar chart showing rent vs. utility revenue trends." },
-  { icon: Users, title: "Tenant-linked Bills", desc: "Every bill is linked to a specific tenant and tenancy. Payment history is stored per tenant — you always have a complete record for any dispute or query." },
+  { icon: BarChart3, title: "Revenue Dashboard", desc: "See rent collected and utilities collected this month - plus a 6-month stacked bar chart showing rent vs. utility revenue trends." },
+  { icon: Users, title: "Tenant-linked Bills", desc: "Every bill is linked to a specific tenant and tenancy. Payment history is stored per tenant - you always have a complete record for any dispute or query." },
 ]
 
 const HOW_IT_WORKS = [
   { step: "1", title: "Set up rooms and assign tenants", desc: "Add your rooms once. Assign tenants with a move-in date and monthly rate. The system links every bill to the right tenant automatically." },
   { step: "2", title: "Generate bills each month", desc: "Create a rent bill and utility bill per tenant. Set amounts and due dates. It takes under a minute per tenant." },
-  { step: "3", title: "Record payments as they come in", desc: "When a tenant pays — cash, GCash, Maya, or bank transfer — mark the payment on their bill. Partial payments are tracked. Overdue balances flag themselves." },
+  { step: "3", title: "Record payments as they come in", desc: "When a tenant pays (cash, GCash, Maya, or bank transfer) mark the payment on their bill. Partial payments are tracked. Overdue balances flag themselves." },
 ]
 
 export default function BoardingHouseBillingContent() {
@@ -120,11 +120,11 @@ export default function BoardingHouseBillingContent() {
               <span style={{ color: BLUE }}>and Billing System</span>
             </h1>
             <p className="text-lg max-w-2xl mx-auto mb-8 leading-relaxed" style={{ color: "#54514c" }}>
-              Smapey combines boarding house management and billing in one system — rooms, tenants, rent bills, utility bills, payment tracking, and overdue alerts. Built for Philippine landlords who want the whole operation in one place.
+              Smapey combines boarding house management and billing in one system, rooms, tenants, rent bills, utility bills, payment tracking, and overdue alerts. Built for Philippine landlords who want the whole operation in one place.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <a href={REGISTER_URL} className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full font-bold text-sm border-2 transition-transform hover:-translate-y-0.5" style={{ ...display, background: AMBER, color: INK, borderColor: INK, boxShadow: `4px 4px 0 ${INK}` }}>
-                Start free — no credit card <ChevronRight className="w-4 h-4" />
+                Start free, no credit card <ChevronRight className="w-4 h-4" />
               </a>
               <a href="/boarding-house" className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full border-2 bg-white font-bold text-sm transition-transform hover:-translate-y-0.5" style={{ ...display, color: INK, borderColor: INK }}>
                 See full product overview
@@ -139,9 +139,9 @@ export default function BoardingHouseBillingContent() {
         <div className="max-w-4xl mx-auto">
           <Animate>
             <h2 className="text-2xl sm:text-3xl font-extrabold mb-5" style={{ color: INK }}>What is a boarding house management and billing system?</h2>
-            <p className="leading-relaxed mb-4" style={{ color: "#54514c" }}>A <strong style={{ color: INK }}>boarding house management and billing system</strong> combines two things that most Philippine landlords still handle separately: (1) managing their property — rooms, tenants, occupancy — and (2) billing tenants for rent and utilities every month.</p>
-            <p className="leading-relaxed mb-4" style={{ color: "#54514c" }}>When these two things are in the same system, everything connects automatically. A tenant is assigned to a room — their billing details are already there. They move out — the room is freed and billing stops. They pay a bill — the payment is recorded against their account instantly.</p>
-            <p className="leading-relaxed" style={{ color: "#54514c" }}>Smapey is exactly that: a combined boarding house management and billing system that keeps every room, tenant, and payment connected — so you always know the full picture without manually reconciling records.</p>
+            <p className="leading-relaxed mb-4" style={{ color: "#54514c" }}>A <strong style={{ color: INK }}>boarding house management and billing system</strong> combines two things that most Philippine landlords still handle separately: (1) managing their property (rooms, tenants, occupancy) and (2) billing tenants for rent and utilities every month.</p>
+            <p className="leading-relaxed mb-4" style={{ color: "#54514c" }}>When these two things are in the same system, everything connects automatically. A tenant is assigned to a room, their billing details are already there. They move out, the room is freed and billing stops. They pay a bill, the payment is recorded against their account instantly.</p>
+            <p className="leading-relaxed" style={{ color: "#54514c" }}>Smapey is exactly that: a combined boarding house management and billing system that keeps every room, tenant, and payment connected, so you always know the full picture without manually reconciling records.</p>
           </Animate>
         </div>
       </section>

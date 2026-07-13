@@ -18,30 +18,30 @@ const display = { fontFamily: "'Hanken Grotesk', system-ui, sans-serif" }
 
 const FEATURES = [
   { icon: UtensilsCrossed, title: "Menu Builder", desc: "Create categories and add items with photos, descriptions, and prices. Toggle items available or 86'd in seconds. Your menu updates instantly for everyone placing orders." },
-  { icon: QrCode, title: "QR Table Ordering", desc: "Print one QR code per table. Customers scan, browse your live menu, and place their own order from their phone — no app to download and no login required. Orders drop straight into your kitchen queue." },
-  { icon: Smartphone, title: "Live Order Tracking", desc: "After ordering, customers see a live status tracker on their phone — Order received, Being prepared, Ready to serve. Less asking \"is my food ready?\" and fewer interruptions for your staff." },
+  { icon: QrCode, title: "QR Table Ordering", desc: "Print one QR code per table. Customers scan, browse your live menu, and place their own order from their phone - no app to download and no login required. Orders drop straight into your kitchen queue." },
+  { icon: Smartphone, title: "Live Order Tracking", desc: "After ordering, customers see a live status tracker on their phone - Order received, Being prepared, Ready to serve. Less asking \"is my food ready?\" and fewer interruptions for your staff." },
   { icon: ShoppingBag, title: "Dine-in & Takeaway Orders", desc: "Place orders in under a minute. Assign a table number for dine-in or a customer name for takeaway. Add item-level notes and a per-order memo." },
   { icon: ChefHat, title: "Kitchen Queue", desc: "Every order enters as Pending. Move it to Preparing when you start cooking, Ready when it's done, Completed when served. Your team always knows what to do next." },
   { icon: ClipboardList, title: "Order History", desc: "Filter orders by status, type, or date. View every order's line items, total, and payment status. Cancel orders from Pending or Preparing at any time." },
   { icon: BarChart3, title: "Sales Analytics", desc: "Today's revenue, order count, and status breakdown on one screen. A 7-day revenue trend and top-selling items chart refresh automatically with every new order." },
-  { icon: Banknote, title: "GCash & Payment Tracking", desc: "Show your own GCash QR right on the customer's phone so they can pay in seconds. Customers tap \"I've paid\" and your staff confirm — money goes straight to your wallet, no payment-gateway fees or KYC. Mark orders paid by Cash, GCash, or Card." },
+  { icon: Banknote, title: "GCash & Payment Tracking", desc: "Show your own GCash QR right on the customer's phone so they can pay in seconds. Customers tap \"I've paid\" and your staff confirm - money goes straight to your wallet, no payment-gateway fees or KYC. Mark orders paid by Cash, GCash, or Card." },
   { icon: Zap, title: "Auto Order Numbers", desc: "Each order gets a sequential number (#001, #002, …) the moment it's placed. Numbers reset cleanly so your kitchen and counter always share the same reference." },
-  { icon: CheckCircle2, title: "Team Access", desc: "Invite staff as Admin or Member. Set per-feature permissions — front-of-house can place orders, kitchen staff can advance queue status, managers get analytics." },
+  { icon: CheckCircle2, title: "Team Access", desc: "Invite staff as Admin or Member. Set per-feature permissions - front-of-house can place orders, kitchen staff can advance queue status, managers get analytics." },
 ]
 
 const STEPS = [
   { num: "01", title: "Build your menu", desc: "Create categories (Appetizers, Mains, Drinks, Desserts) and add items with photos, descriptions, and prices. Mark items available or sold-out at any time." },
-  { num: "02", title: "Print your table QR", desc: "Turn on QR ordering and print one code per table. Customers scan, browse your live menu, and place their own order — or your staff can take orders from the dashboard. New orders pop into the queue instantly." },
+  { num: "02", title: "Print your table QR", desc: "Turn on QR ordering and print one code per table. Customers scan, browse your live menu, and place their own order - or your staff can take orders from the dashboard. New orders pop into the queue instantly." },
   { num: "03", title: "Work the kitchen queue", desc: "New orders appear as Pending. Tap to move them to Preparing, then Ready, then Completed. Customers watch the live status on their phone. Cancel from Pending or Preparing if needed." },
   { num: "04", title: "Get paid & track sales", desc: "Customers pay by Cash or scan your GCash QR and tap \"I've paid\" for staff to confirm. Your dashboard shows today's revenue, top items, and a 7-day trend in real time." },
 ]
 
 const FAQS = [
-  { q: "Can customers order directly from their phone?", a: "Yes. Turn on QR ordering and print one QR code per table. Customers scan it, browse your live menu, and place their own order from their phone — no app to download and no login required. Orders drop straight into your kitchen queue, and your staff can still place orders from the dashboard too. Customers also see a live status tracker (Order received → Being prepared → Ready to serve) on their phone." },
-  { q: "Can customers pay with GCash?", a: "Yes. Add your own GCash name, number, and QR code in settings and it shows right on the customer's phone after they order. They can scan it or copy your number to send payment, then tap \"I've paid via GCash.\" Your staff confirm the payment before it's marked paid — money goes straight to your own GCash wallet with no payment-gateway fees, no monthly cost, and no KYC paperwork." },
-  { q: "Is there really a free plan?", a: "Yes. The free plan includes up to 20 menu items, 100 orders per month, the full kitchen queue, the daily sales dashboard, and 2 team members — no credit card required. Upgrade only when your volume grows." },
+  { q: "Can customers order directly from their phone?", a: "Yes. Turn on QR ordering and print one QR code per table. Customers scan it, browse your live menu, and place their own order from their phone, no app to download and no login required. Orders drop straight into your kitchen queue, and your staff can still place orders from the dashboard too. Customers also see a live status tracker (Order received → Being prepared → Ready to serve) on their phone." },
+  { q: "Can customers pay with GCash?", a: "Yes. Add your own GCash name, number, and QR code in settings and it shows right on the customer's phone after they order. They can scan it or copy your number to send payment, then tap \"I've paid via GCash.\" Your staff confirm the payment before it's marked paid, money goes straight to your own GCash wallet with no payment-gateway fees, no monthly cost, and no KYC paperwork." },
+  { q: "Is there really a free plan?", a: "Yes. The free plan includes up to 20 menu items, 100 orders per month, the full kitchen queue, the daily sales dashboard, and 2 team members, no credit card required. Upgrade only when your volume grows." },
   { q: "How does the kitchen queue work?", a: "Every new order lands in the queue as Pending. A staff member moves it to Preparing when cooking starts, Ready when the food is done, and Completed when served or picked up. Orders can be cancelled from Pending or Preparing." },
-  { q: "Can I add photos to menu items?", a: "Yes. When you create or edit a menu item, you can upload a photo. Photos are shown to the staff member placing the order — useful for visually identifying items or matching presentation standards." },
+  { q: "Can I add photos to menu items?", a: "Yes. When you create or edit a menu item, you can upload a photo. Photos are shown to the staff member placing the order, useful for visually identifying items or matching presentation standards." },
   { q: "What payment methods can I record?", a: "You can mark any order as paid by Cash, GCash, or Card. With GCash, customers can pay themselves by scanning your QR on their phone and tapping \"I've paid\" for staff to confirm. Payment status is tracked per order and visible on the orders list, so you know exactly what has and hasn't been settled at the end of a shift." },
 ]
 
@@ -127,7 +127,7 @@ function Hero() {
     <section className="relative min-h-screen flex items-center pt-16 px-6 sm:px-12 lg:px-20 overflow-hidden" style={{ background: "#1a1410", fontFamily: display.fontFamily }}>
       {/* ── Full-bleed photo backdrop (replace with your image) ── */}
       <div className="absolute inset-0" aria-hidden>
-        {/* TODO: real photo — e.g. <img src="/restaurant-hero.jpg" className="w-full h-full object-cover" /> */}
+        {/* TODO: real photo, e.g. <img src="/restaurant-hero.jpg" className="w-full h-full object-cover" /> */}
         <div className="absolute inset-0" style={{ background: "repeating-linear-gradient(125deg,#241a12 0 28px,#2b2016 28px 56px)" }} />
         <div className="absolute inset-0" style={{ background: "linear-gradient(90deg, rgba(16,12,9,.92) 0%, rgba(16,12,9,.72) 42%, rgba(16,12,9,.25) 100%)" }} />
       </div>
@@ -144,12 +144,12 @@ function Hero() {
             Take every order, <span style={{ color: AMBER }}>serve every table.</span>
           </h1>
           <p className="text-lg max-w-lg mb-8 leading-relaxed" style={{ color: "rgba(255,255,255,.8)" }}>
-            Build your menu, place dine-in and takeaway orders, manage the kitchen queue, and track daily sales —
+            Build your menu, place dine-in and takeaway orders, manage the kitchen queue, and track daily sales,
             all from one clean dashboard. Free forever, no card required.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 mb-8">
             <a href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=RESTAURANT&plan=FREE`} className="flex items-center justify-center gap-2 px-7 py-4 rounded-full font-bold text-sm border-2 transition-transform hover:-translate-y-0.5" style={{ ...display, background: AMBER, color: INK, borderColor: AMBER, boxShadow: "4px 4px 0 rgba(0,0,0,.4)" }}>
-              Start free — no card needed <ChevronRight className="w-4 h-4" />
+              Start free, no card needed <ChevronRight className="w-4 h-4" />
             </a>
             <a href="/restaurant" className="flex items-center justify-center px-7 py-4 rounded-full font-bold text-sm border-2 transition-transform hover:-translate-y-0.5" style={{ ...display, background: "rgba(255,255,255,.1)", color: "#fff", borderColor: "#fff", backdropFilter: "blur(4px)" }}>
               View all features
@@ -187,7 +187,7 @@ const SHOWCASE = [
     alt: "Customer scanning a table QR code to open the restaurant's menu on her phone",
     eyebrow: "QR Table Ordering",
     title: "Scan the table QR",
-    desc: "Each table gets its own QR code. Customers scan it with their phone camera to open your menu — no app to download and no login required.",
+    desc: "Each table gets its own QR code. Customers scan it with their phone camera to open your menu, no app to download and no login required.",
     bullets: ["One QR code per table", "No app download needed", "No customer login required"],
   },
   {
@@ -203,7 +203,7 @@ const SHOWCASE = [
     alt: "Restaurant chef cooking while checking the Smapey kitchen order queue on a mounted tablet",
     eyebrow: "Kitchen Display",
     title: "Work the kitchen queue",
-    desc: "Orders land in your kitchen instantly. Staff tap to mark each one preparing, ready, and done — no paper tickets, no missed orders, no shouting across the floor.",
+    desc: "Orders land in your kitchen instantly. Staff tap to mark each one preparing, ready, and done, no paper tickets, no missed orders, no shouting across the floor.",
     bullets: ["Orders land instantly", "Tap to mark preparing, ready, done", "No paper tickets or missed orders"],
   },
   {
@@ -211,7 +211,7 @@ const SHOWCASE = [
     alt: "Customer paying with GCash on her phone by scanning the restaurant's GCash QR code at the table",
     eyebrow: "GCash Payment",
     title: "Pay with GCash",
-    desc: "Customers scan your GCash QR, pay from their phone, and tap “I've paid” — you confirm it in Orders. No payment gateway to set up and no transaction fees.",
+    desc: "Customers scan your GCash QR, pay from their phone, and tap “I've paid”, you confirm it in Orders. No payment gateway to set up and no transaction fees.",
     bullets: ["Customers scan your GCash QR", "Pay from their own phone", "No gateway, no transaction fees"],
   },
 ]
@@ -433,7 +433,7 @@ function PaymentModal({ plan, isPhilippines, onClose }: { plan: { name: string; 
         <div className="px-6 py-5 flex items-center justify-between" style={{ background: INK }}>
           <div className="flex items-center gap-3">
             {step === "payment" && !token && <button onClick={() => setStep("details")} className="text-white/70 hover:text-white transition"><svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}><path d="M19 12H5M12 5l-7 7 7 7"/></svg></button>}
-            <div><h2 className="text-white font-extrabold text-lg">{step === "details" ? "Create your account" : "Choose payment method"}</h2><p className="text-sm mt-0.5" style={{ color: "rgba(255,255,255,.7)" }}>{plan.name} plan — <span className="font-bold" style={{ color: AMBER }}>{displayPrice}</span>{plan.period}</p></div>
+            <div><h2 className="text-white font-extrabold text-lg">{step === "details" ? "Create your account" : "Choose payment method"}</h2><p className="text-sm mt-0.5" style={{ color: "rgba(255,255,255,.7)" }}>{plan.name} plan, <span className="font-bold" style={{ color: AMBER }}>{displayPrice}</span>{plan.period}</p></div>
           </div>
           <button onClick={onClose} className="text-white/70 hover:text-white transition-colors"><X className="w-5 h-5" /></button>
         </div>

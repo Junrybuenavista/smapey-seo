@@ -15,11 +15,11 @@ const CREAM = "#fbf7f0"
 const display = { fontFamily: "'Hanken Grotesk', system-ui, sans-serif" }
 
 const FEATURES = [
-  { icon: ShieldCheck, title: "Double-booking protection", desc: "The single most costly mistake in short-term rentals. The best software blocks overlapping reservations automatically — you should never have to cross-check dates manually." },
-  { icon: Home, title: "Multi-property support", desc: "If you manage more than one unit, your software needs to keep each property's availability, pricing, and bookings completely separate — with one unified revenue view." },
+  { icon: ShieldCheck, title: "Double-booking protection", desc: "The single most costly mistake in short-term rentals. The best software blocks overlapping reservations automatically - you should never have to cross-check dates manually." },
+  { icon: Home, title: "Multi-property support", desc: "If you manage more than one unit, your software needs to keep each property's availability, pricing, and bookings completely separate - with one unified revenue view." },
   { icon: Sparkles, title: "Multi-channel source tracking", desc: "Bookings come from Airbnb, Booking.com, Agoda, Facebook, and direct inquiries. Good software lets you tag each source so you know which channels are worth your marketing spend." },
-  { icon: Wallet, title: "Deposit and payment tracking", desc: "Every host collects deposits. Your software should track the deposit amount, whether it was paid, and the final payment status — per reservation, not as a rough note." },
-  { icon: Users, title: "Guest profiles with history", desc: "Returning guests are your best guests. The best software keeps a guest database with stay count, total spent, and contact info — searchable, not buried in old messages." },
+  { icon: Wallet, title: "Deposit and payment tracking", desc: "Every host collects deposits. Your software should track the deposit amount, whether it was paid, and the final payment status - per reservation, not as a rough note." },
+  { icon: Users, title: "Guest profiles with history", desc: "Returning guests are your best guests. The best software keeps a guest database with stay count, total spent, and contact info - searchable, not buried in old messages." },
   { icon: BarChart3, title: "Occupancy and revenue analytics", desc: "You need to know your monthly revenue and occupancy rate without building a spreadsheet. A live dashboard that updates on every check-in and checkout is non-negotiable." },
 ]
 
@@ -37,8 +37,8 @@ const COMPARISON = [
 
 const FAQS = [
   { q: "What makes Smapey the best Airbnb management software for small hosts?", a: "Smapey focuses on what independent hosts actually need: a place to track their properties, guests, and bookings without paying for features built for hotel chains. It's free to start, simple to set up, and covers double-booking protection, payment tracking, and revenue analytics out of the box." },
-  { q: "How does Smapey compare to channel managers?", a: "Channel managers sync your calendar across Airbnb, Booking.com, and other OTAs automatically. Smapey doesn't sync channels — instead, it's a single dashboard where you manually log each reservation after it's confirmed, regardless of which platform it came from. It's best for hosts who prefer a lightweight, centralized record over automated multi-platform sync." },
-  { q: "Is there a free plan?", a: "Yes. The free plan includes 2 properties, 10 reservations per month, and the full analytics dashboard — no credit card required." },
+  { q: "How does Smapey compare to channel managers?", a: "Channel managers sync your calendar across Airbnb, Booking.com, and other OTAs automatically. Smapey doesn't sync channels, instead, it's a single dashboard where you manually log each reservation after it's confirmed, regardless of which platform it came from. It's best for hosts who prefer a lightweight, centralized record over automated multi-platform sync." },
+  { q: "Is there a free plan?", a: "Yes. The free plan includes 2 properties, 10 reservations per month, and the full analytics dashboard, no credit card required." },
   { q: "Can I upgrade later?", a: "Yes. Start on the free plan and upgrade to Pro (10 properties, 3 team users, unlimited reservations) or Enterprise (unlimited everything) whenever your portfolio grows." },
 ]
 
@@ -118,10 +118,10 @@ function Hero() {
         <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.04] tracking-tight mb-6" style={{ color: INK }}>
           What to look for in the <span style={{ color: BLUE }}>best Airbnb management software</span>
         </h1>
-        <p className="text-lg max-w-2xl mx-auto mb-10 leading-relaxed" style={{ color: "#54514c" }}>Six criteria independent hosts should evaluate — and how Smapey stacks up against each one. Start free and decide for yourself.</p>
+        <p className="text-lg max-w-2xl mx-auto mb-10 leading-relaxed" style={{ color: "#54514c" }}>Six criteria independent hosts should evaluate, and how Smapey stacks up against each one. Start free and decide for yourself.</p>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
           <a href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=AIRBNB&plan=FREE`} className="flex items-center gap-2 px-7 py-4 rounded-full font-bold text-sm border-2 transition-transform hover:-translate-y-0.5" style={{ ...display, background: AMBER, color: INK, borderColor: INK, boxShadow: `4px 4px 0 ${INK}` }}>
-            Start free — no card needed <ChevronRight className="w-4 h-4" />
+            Start free, no card needed <ChevronRight className="w-4 h-4" />
           </a>
           <a href="/airbnb" className="flex items-center gap-2 px-7 py-4 rounded-full font-bold text-sm border-2 bg-white transition-transform hover:-translate-y-0.5" style={{ ...display, color: INK, borderColor: INK }}>View all features</a>
         </div>
@@ -332,7 +332,7 @@ function PaymentModal({ plan, isPhilippines, onClose }: { plan: { name: string; 
         <div className="px-6 py-5 flex items-center justify-between" style={{ background: INK }}>
           <div className="flex items-center gap-3">
             {step === "payment" && !token && <button onClick={() => setStep("details")} className="text-white/70 hover:text-white transition"><svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}><path d="M19 12H5M12 5l-7 7 7 7"/></svg></button>}
-            <div><h2 className="text-white font-extrabold text-lg">{step === "details" ? "Create your account" : "Choose payment method"}</h2><p className="text-sm mt-0.5" style={{ color: "rgba(255,255,255,.7)" }}>{plan.name} plan — <span className="font-bold" style={{ color: AMBER }}>{displayPrice}</span>{plan.period}</p></div>
+            <div><h2 className="text-white font-extrabold text-lg">{step === "details" ? "Create your account" : "Choose payment method"}</h2><p className="text-sm mt-0.5" style={{ color: "rgba(255,255,255,.7)" }}>{plan.name} plan, <span className="font-bold" style={{ color: AMBER }}>{displayPrice}</span>{plan.period}</p></div>
           </div>
           <button onClick={onClose} className="text-white/70 hover:text-white transition-colors"><X className="w-5 h-5" /></button>
         </div>

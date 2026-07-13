@@ -1,7 +1,7 @@
 export const metadata = {
-  title: "Affiliate Program | Earn Recurring Commissions — Smapey",
+  title: "Affiliate Program | Earn Recurring Commissions - Smapey",
   description:
-    "Refer businesses to Smapey and earn recurring commissions on every paying customer you send our way. Join the Smapey affiliate program — free to start.",
+    "Refer businesses to Smapey and earn recurring commissions on every paying customer you send our way. Join the Smapey affiliate program, free to start.",
   alternates: { canonical: "https://smapey.com/affiliate" },
 }
 

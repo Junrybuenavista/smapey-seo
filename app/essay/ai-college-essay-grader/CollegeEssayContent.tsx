@@ -16,17 +16,17 @@ const CREAM = "#fbf7f0"
 const display = { fontFamily: "'Hanken Grotesk', system-ui, sans-serif" }
 
 const FEATURES = [
-  { icon: Target, title: "Hook & Opening Strength", desc: "AI evaluates how effectively the essay opens — whether it grabs attention, establishes voice, and draws the reader in from the first line." },
-  { icon: MessageSquare, title: "Narrative Clarity", desc: "Scores how clearly the student's story flows — logical structure, smooth transitions, and a coherent narrative arc from start to finish." },
-  { icon: Shield, title: "Authenticity & Voice", desc: "Flags generic, formulaic writing and rewards authentic personal voice — the quality admissions officers look for most in college essays." },
-  { icon: BookOpen, title: "Grammar & Mechanics", desc: "Catches sentence-level errors, punctuation issues, and awkward phrasing — so students submit polished, error-free essays." },
-  { icon: Award, title: "Theme & Self-Reflection", desc: "Evaluates whether the essay reveals meaningful insight about the student — the depth of reflection that distinguishes memorable applications." },
-  { icon: BarChart3, title: "Overall Admissions Readiness", desc: "Gives a composite score and summary recommendation — whether the essay is ready to submit or needs another revision pass." },
+  { icon: Target, title: "Hook & Opening Strength", desc: "AI evaluates how effectively the essay opens - whether it grabs attention, establishes voice, and draws the reader in from the first line." },
+  { icon: MessageSquare, title: "Narrative Clarity", desc: "Scores how clearly the student's story flows - logical structure, smooth transitions, and a coherent narrative arc from start to finish." },
+  { icon: Shield, title: "Authenticity & Voice", desc: "Flags generic, formulaic writing and rewards authentic personal voice - the quality admissions officers look for most in college essays." },
+  { icon: BookOpen, title: "Grammar & Mechanics", desc: "Catches sentence-level errors, punctuation issues, and awkward phrasing - so students submit polished, error-free essays." },
+  { icon: Award, title: "Theme & Self-Reflection", desc: "Evaluates whether the essay reveals meaningful insight about the student - the depth of reflection that distinguishes memorable applications." },
+  { icon: BarChart3, title: "Overall Admissions Readiness", desc: "Gives a composite score and summary recommendation - whether the essay is ready to submit or needs another revision pass." },
 ]
 
 const FAQS = [
-  { q: "Is this designed specifically for college application essays?", a: "Yes. The college essay grader evaluates criteria that matter to admissions officers — authentic voice, narrative clarity, self-reflection depth — not just grammar and structure." },
-  { q: "Can it handle Common App and other essay prompts?", a: "Yes. You can set any prompt when creating the assignment — Common App, Coalition App, school-specific supplemental essays, or custom prompts." },
+  { q: "Is this designed specifically for college application essays?", a: "Yes. The college essay grader evaluates criteria that matter to admissions officers (authentic voice, narrative clarity, self-reflection depth) not just grammar and structure." },
+  { q: "Can it handle Common App and other essay prompts?", a: "Yes. You can set any prompt when creating the assignment, Common App, Coalition App, school-specific supplemental essays, or custom prompts." },
   { q: "How many drafts can a student submit?", a: "Unlimited on Pro and Enterprise plans. Students can revise and resubmit as many times as they need, and you can track which draft improved the most." },
   { q: "Can students submit directly, or does everything go through the teacher?", a: "Both. Teachers share an assignment link with students. Students submit directly, and the teacher sees all submissions in the dashboard." },
   { q: "Does it work for international students writing in English?", a: "Yes. The AI grades English-language essays regardless of the student's background, and gives feedback that's especially useful for non-native speakers improving their college writing." },
@@ -108,10 +108,10 @@ function Hero() {
         <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.04] tracking-tight mb-6" style={{ color: INK }}>
           AI college essay grader <span style={{ color: BLUE }}>for admissions-level feedback</span>
         </h1>
-        <p className="text-lg max-w-2xl mx-auto mb-10 leading-relaxed" style={{ color: "#54514c" }}>Help students write college essays that get noticed. Smapey Essay grades college applications on the criteria admissions officers actually care about — hook, voice, narrative, reflection, and clarity.</p>
+        <p className="text-lg max-w-2xl mx-auto mb-10 leading-relaxed" style={{ color: "#54514c" }}>Help students write college essays that get noticed. Smapey Essay grades college applications on the criteria admissions officers actually care about, hook, voice, narrative, reflection, and clarity.</p>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
           <a href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=ESSAY&plan=FREE`} className="flex items-center gap-2 px-7 py-4 rounded-full font-bold text-sm border-2 transition-transform hover:-translate-y-0.5" style={{ ...display, background: AMBER, color: INK, borderColor: INK, boxShadow: `4px 4px 0 ${INK}` }}>
-            Start free — no card needed <ChevronRight className="w-4 h-4" />
+            Start free, no card needed <ChevronRight className="w-4 h-4" />
           </a>
           <a href="/essay" className="flex items-center gap-2 px-7 py-4 rounded-full font-bold text-sm border-2 bg-white transition-transform hover:-translate-y-0.5" style={{ ...display, color: INK, borderColor: INK }}>View all features</a>
         </div>
@@ -156,7 +156,7 @@ function Features() {
 const STEPS = [
   { step: "01", title: "Create a college essay assignment", desc: "Set the prompt (Common App, Coalition, school-specific), word limit, and any special instructions." },
   { step: "02", title: "Student submits their draft", desc: "They paste their essay, upload a file, or photograph a handwritten draft. The AI reads it instantly." },
-  { step: "03", title: "Get admissions-level feedback", desc: "Hook, narrative, voice, grammar, reflection — each scored with written suggestions to improve." },
+  { step: "03", title: "Get admissions-level feedback", desc: "Hook, narrative, voice, grammar, reflection - each scored with written suggestions to improve." },
 ]
 
 function HowItWorks() {
@@ -259,7 +259,7 @@ function CTA() {
     <section className="py-24 px-6" style={{ background: "#fff", fontFamily: display.fontFamily }}>
       <Animate className="relative max-w-3xl mx-auto rounded-[30px] border-2 p-12 md:p-16 text-center" style={{ background: AMBER, borderColor: INK, boxShadow: `10px 10px 0 ${INK}` }}>
         <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight mb-4" style={{ color: INK }}>Help your students get into their dream school</h2>
-        <p className="mb-8 font-medium" style={{ color: "#5c4a28" }}>Start grading college essays with AI — instant feedback, admissions criteria, and revision tracking.</p>
+        <p className="mb-8 font-medium" style={{ color: "#5c4a28" }}>Start grading college essays with AI, instant feedback, admissions criteria, and revision tracking.</p>
         <a href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=ESSAY&plan=FREE`} className="inline-flex items-center gap-2 px-8 py-4 rounded-full font-bold border-2 transition-transform hover:-translate-y-0.5" style={{ ...display, background: INK, color: "#fff", borderColor: INK }}>Get started for free <ChevronRight className="w-4 h-4" /></a>
       </Animate>
     </section>
@@ -309,7 +309,7 @@ function PaymentModal({ plan, isPhilippines, onClose }: { plan: { name: string; 
         <div className="px-6 py-5 flex items-center justify-between" style={{ background: INK }}>
           <div className="flex items-center gap-3">
             {step === "payment" && !token && <button onClick={() => setStep("details")} className="text-white/70 hover:text-white transition"><svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}><path d="M19 12H5M12 5l-7 7 7 7"/></svg></button>}
-            <div><h2 className="text-white font-extrabold text-lg">{step === "details" ? "Create your account" : "Choose payment method"}</h2><p className="text-sm mt-0.5" style={{ color: "rgba(255,255,255,.7)" }}>{plan.name} plan — <span className="font-bold" style={{ color: AMBER }}>{displayPrice}</span>{plan.period}</p></div>
+            <div><h2 className="text-white font-extrabold text-lg">{step === "details" ? "Create your account" : "Choose payment method"}</h2><p className="text-sm mt-0.5" style={{ color: "rgba(255,255,255,.7)" }}>{plan.name} plan, <span className="font-bold" style={{ color: AMBER }}>{displayPrice}</span>{plan.period}</p></div>
           </div>
           <button onClick={onClose} className="text-white/70 hover:text-white transition-colors"><X className="w-5 h-5" /></button>
         </div>

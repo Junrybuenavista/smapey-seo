@@ -114,7 +114,7 @@ export default function BoardingHousePlanContent() {
               <span style={{ color: BLUE }}>Sample for the Philippines</span>
             </h1>
             <p className="text-lg max-w-2xl mx-auto leading-relaxed" style={{ color: "#54514c" }}>
-              A practical business plan template for Philippine boarding house owners — covering business overview, target market, services, pricing model, and how to manage it all with a digital system.
+              A practical business plan template for Philippine boarding house owners, covering business overview, target market, services, pricing model, and how to manage it all with a digital system.
             </p>
           </Animate>
         </div>
@@ -127,8 +127,8 @@ export default function BoardingHousePlanContent() {
           <Section index={0} eyebrow="Section 1" title="Business Overview">
             <p className="leading-relaxed mb-3" style={{ color: "#54514c" }}><strong style={{ color: INK }}>Business name:</strong> [Your Boarding House Name]</p>
             <p className="leading-relaxed mb-3" style={{ color: "#54514c" }}><strong style={{ color: INK }}>Business type:</strong> Boarding house / dormitory / bedspace rental</p>
-            <p className="leading-relaxed mb-3" style={{ color: "#54514c" }}><strong style={{ color: INK }}>Location:</strong> [City / Municipality], Philippines — preferably near a university, hospital, call center, or business district</p>
-            <p className="leading-relaxed mb-3" style={{ color: "#54514c" }}><strong style={{ color: INK }}>Business goal:</strong> Provide affordable, clean, and safe lodging for students, young professionals, and workers — while generating consistent monthly rental income for the property owner.</p>
+            <p className="leading-relaxed mb-3" style={{ color: "#54514c" }}><strong style={{ color: INK }}>Location:</strong> [City / Municipality], Philippines, preferably near a university, hospital, call center, or business district</p>
+            <p className="leading-relaxed mb-3" style={{ color: "#54514c" }}><strong style={{ color: INK }}>Business goal:</strong> Provide affordable, clean, and safe lodging for students, young professionals, and workers, while generating consistent monthly rental income for the property owner.</p>
             <p className="leading-relaxed" style={{ color: "#54514c" }}>A boarding house in the Philippines operates by renting out individual rooms or bedspaces to multiple tenants who share common areas (bathroom, kitchen, living room). The landlord charges monthly rent plus utility fees, and manages move-ins, move-outs, and collections on a rolling basis.</p>
           </Section>
 
@@ -153,9 +153,9 @@ export default function BoardingHousePlanContent() {
             <p className="leading-relaxed mb-4" style={{ color: "#54514c" }}>Define clearly what you offer to attract the right tenants and set accurate pricing:</p>
             <div className="grid sm:grid-cols-2 gap-4">
               {[
-                { icon: BedDouble, title: "Bedspace / Shared Room", desc: "2–6 beds per room. Shared bathroom. Lower rate — ideal for students on a tight budget." },
-                { icon: BedDouble, title: "Private Room", desc: "One tenant per room. May include aircon or fan. Higher rate — suits young professionals." },
-                { icon: Zap, title: "With Utilities Included", desc: "Monthly rate covers electricity and water. Simpler for tenants — easier to market." },
+                { icon: BedDouble, title: "Bedspace / Shared Room", desc: "2–6 beds per room. Shared bathroom. Lower rate - ideal for students on a tight budget." },
+                { icon: BedDouble, title: "Private Room", desc: "One tenant per room. May include aircon or fan. Higher rate - suits young professionals." },
+                { icon: Zap, title: "With Utilities Included", desc: "Monthly rate covers electricity and water. Simpler for tenants - easier to market." },
                 { icon: Banknote, title: "Utilities Billed Separately", desc: "Tenant pays rent + utility share. More transparent and fair for high-usage tenants." },
               ].map(({ icon: Icon, title, desc }, i) => {
                 const c = accentFor(i)
@@ -225,7 +225,7 @@ export default function BoardingHousePlanContent() {
           </Section>
 
           <Section index={5} eyebrow="Section 6" title="Management System">
-            <p className="leading-relaxed mb-4" style={{ color: "#54514c" }}>Running a boarding house manually — with notebooks, spreadsheets, or WhatsApp group chats — works for 2 or 3 tenants. Once you have 5 or more rooms, the administration becomes the bottleneck.</p>
+            <p className="leading-relaxed mb-4" style={{ color: "#54514c" }}>Running a boarding house manually (with notebooks, spreadsheets, or WhatsApp group chats) works for 2 or 3 tenants. Once you have 5 or more rooms, the administration becomes the bottleneck.</p>
             <p className="leading-relaxed mb-4" style={{ color: "#54514c" }}>A dedicated <strong style={{ color: INK }}>boarding house management system</strong> like Smapey handles all of the above automatically:</p>
             <ul className="space-y-2 mb-6">
               {[
@@ -235,7 +235,7 @@ export default function BoardingHousePlanContent() {
                 "Separate utility bills for electricity, water, internet",
                 "Full or partial payment recording",
                 "Overdue bill alerts on the dashboard",
-                "Revenue trend chart — rent vs. utilities, last 6 months",
+                "Revenue trend chart, rent vs. utilities, last 6 months",
               ].map(t => (
                 <li key={t} className="flex items-center gap-2 text-sm" style={{ color: "#54514c" }}>
                   <CheckCircle2 className="w-3.5 h-3.5 shrink-0" style={{ color: BLUE }} />{t}
@@ -243,7 +243,7 @@ export default function BoardingHousePlanContent() {
               ))}
             </ul>
             <a href={REGISTER_URL} className="inline-flex items-center gap-2 px-6 py-3 rounded-full font-bold text-sm border-2 transition-transform hover:-translate-y-0.5" style={{ ...display, background: AMBER, color: INK, borderColor: INK }}>
-              Try Smapey free — no credit card <ChevronRight className="w-4 h-4" />
+              Try Smapey free, no credit card <ChevronRight className="w-4 h-4" />
             </a>
           </Section>
 
@@ -255,7 +255,7 @@ export default function BoardingHousePlanContent() {
         <Animate className="max-w-3xl mx-auto">
           <div className="rounded-[28px] border-2 p-10 text-center" style={{ background: AMBER, borderColor: INK, boxShadow: `10px 10px 0 ${INK}` }}>
             <h2 className="text-3xl font-extrabold mb-4" style={{ color: INK }}>Ready to run your boarding house business properly?</h2>
-            <p className="mb-8 max-w-lg mx-auto font-medium" style={{ color: "#5c4a28" }}>Smapey is the management system for Philippine boarding houses — rooms, tenants, billing, and collections in one dashboard. Free to start.</p>
+            <p className="mb-8 max-w-lg mx-auto font-medium" style={{ color: "#5c4a28" }}>Smapey is the management system for Philippine boarding houses, rooms, tenants, billing, and collections in one dashboard. Free to start.</p>
             <a href={REGISTER_URL} className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full font-bold text-sm border-2 transition-transform hover:-translate-y-0.5" style={{ ...display, background: INK, color: "#fff", borderColor: INK }}>
               Get started free <ChevronRight className="w-4 h-4" />
             </a>

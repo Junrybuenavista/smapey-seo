@@ -16,8 +16,8 @@ const CREAM = "#fbf7f0"
 const display = { fontFamily: "'Hanken Grotesk', system-ui, sans-serif" }
 
 const FEATURES = [
-  { icon: Calendar, title: "Full Appointment Scheduler", desc: "Create and manage every salon appointment from your dashboard. Set date, time, service, and assigned staff — all in a few taps." },
-  { icon: Inbox, title: "Online Inquiry Pipeline", desc: "Clients submit booking inquiries through your public booking page. All requests land in your Inquiries tab — review, accept, or decline in one click." },
+  { icon: Calendar, title: "Full Appointment Scheduler", desc: "Create and manage every salon appointment from your dashboard. Set date, time, service, and assigned staff - all in a few taps." },
+  { icon: Inbox, title: "Online Inquiry Pipeline", desc: "Clients submit booking inquiries through your public booking page. All requests land in your Inquiries tab - review, accept, or decline in one click." },
   { icon: CheckCircle, title: "Appointment Status Tracking", desc: "Every appointment moves through clear statuses: Booked → In Progress → Completed. Know exactly where every client is at any moment." },
   { icon: Clock, title: "Daily Schedule View", desc: "See all appointments for the day in chronological order. Filter by staff member or service type. Never double-book a slot again." },
   { icon: Users, title: "Client Records", desc: "Every appointment is linked to a client profile. View a client's full booking history, preferences, and contact details before each appointment." },
@@ -38,7 +38,7 @@ const FAQS = [
   { q: "How does the inquiry-to-appointment flow work?", a: "Clients visit your public booking page and submit a booking inquiry with their preferred service, date, and time. The inquiry appears in your Inquiries tab. You review it, accept it, and it converts into a confirmed appointment automatically." },
   { q: "Can clients book directly without me approving?", a: "Currently, all bookings go through an inquiry flow where you confirm the appointment. This gives you full control over your schedule and prevents conflicts." },
   { q: "What appointment statuses are available?", a: "Appointments move through three statuses: Booked (confirmed), In Progress (client is currently being served), and Completed (service is done and payment recorded)." },
-  { q: "Can I see all appointments for the week at once?", a: "Yes. The appointment dashboard gives you a full list view that you can filter by date range, staff member, or service type — so you can plan ahead and avoid scheduling conflicts." },
+  { q: "Can I see all appointments for the week at once?", a: "Yes. The appointment dashboard gives you a full list view that you can filter by date range, staff member, or service type, so you can plan ahead and avoid scheduling conflicts." },
 ]
 
 function useInView(options?: IntersectionObserverInit) {
@@ -117,10 +117,10 @@ function Hero() {
         <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.04] tracking-tight mb-6" style={{ color: INK }}>
           The salon appointment manager app <span style={{ color: BLUE }}>that never misses a booking</span>
         </h1>
-        <p className="text-lg max-w-2xl mx-auto mb-10 leading-relaxed" style={{ color: "#54514c" }}>Schedule appointments, accept booking inquiries online, track statuses from Booked to Completed, and see your full daily schedule — all from one clean dashboard. Free to start.</p>
+        <p className="text-lg max-w-2xl mx-auto mb-10 leading-relaxed" style={{ color: "#54514c" }}>Schedule appointments, accept booking inquiries online, track statuses from Booked to Completed, and see your full daily schedule, all from one clean dashboard. Free to start.</p>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
           <a href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=SALON&plan=FREE`} className="flex items-center gap-2 px-7 py-4 rounded-full font-bold text-sm border-2 transition-transform hover:-translate-y-0.5" style={{ ...display, background: AMBER, color: INK, borderColor: INK, boxShadow: `4px 4px 0 ${INK}` }}>
-            Start free — no card needed <ChevronRight className="w-4 h-4" />
+            Start free, no card needed <ChevronRight className="w-4 h-4" />
           </a>
           <a href="/salon" className="flex items-center gap-2 px-7 py-4 rounded-full font-bold text-sm border-2 bg-white transition-transform hover:-translate-y-0.5" style={{ ...display, color: INK, borderColor: INK }}>View all features</a>
         </div>
@@ -139,7 +139,7 @@ function AppointmentFeatures() {
         <Animate className="text-center mb-16">
           <p className="text-sm font-bold uppercase tracking-widest mb-3" style={{ color: BLUE }}>Features</p>
           <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight" style={{ color: INK }}>Manage every appointment from one place</h2>
-          <p className="mt-4 max-w-xl mx-auto" style={{ color: "#54514c" }}>From online inquiry to completed appointment — track your full booking pipeline with zero confusion.</p>
+          <p className="mt-4 max-w-xl mx-auto" style={{ color: "#54514c" }}>From online inquiry to completed appointment, track your full booking pipeline with zero confusion.</p>
         </Animate>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {FEATURES.map(({ icon: Icon, title, desc }, i) => {
@@ -331,7 +331,7 @@ function PaymentModal({ plan, isPhilippines, onClose }: { plan: { name: string; 
         <div className="px-6 py-5 flex items-center justify-between" style={{ background: INK }}>
           <div className="flex items-center gap-3">
             {step === "payment" && !token && <button onClick={() => setStep("details")} className="text-white/70 hover:text-white transition"><svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}><path d="M19 12H5M12 5l-7 7 7 7"/></svg></button>}
-            <div><h2 className="text-white font-extrabold text-lg">{step === "details" ? "Create your account" : "Choose payment method"}</h2><p className="text-sm mt-0.5" style={{ color: "rgba(255,255,255,.7)" }}>{plan.name} plan — <span className="font-bold" style={{ color: AMBER }}>{displayPrice}</span>{plan.period}</p></div>
+            <div><h2 className="text-white font-extrabold text-lg">{step === "details" ? "Create your account" : "Choose payment method"}</h2><p className="text-sm mt-0.5" style={{ color: "rgba(255,255,255,.7)" }}>{plan.name} plan, <span className="font-bold" style={{ color: AMBER }}>{displayPrice}</span>{plan.period}</p></div>
           </div>
           <button onClick={onClose} className="text-white/70 hover:text-white transition-colors"><X className="w-5 h-5" /></button>
         </div>

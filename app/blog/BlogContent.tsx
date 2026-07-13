@@ -123,7 +123,7 @@ export default function BlogContent() {
             <span style={{ color: BLUE }}>real </span><span style={{ color: AMBER }}>small businesses.</span>
           </h1>
           <p className="mt-5 text-lg max-w-xl mx-auto leading-relaxed" style={{ color: "#54514c" }}>
-            Tips, insights, and lessons learned — written by the people actually running these businesses.
+            Tips, insights, and lessons learned, written by the people actually running these businesses.
           </p>
           <Link
             href="/blog/submit"

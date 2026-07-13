@@ -28,7 +28,7 @@ const PRODUCTS = [
     key: "INVOICE",
     name: "Invoice Manager",
     tagline: "Get paid faster.",
-    desc: "Create professional invoices, track payments, and send PDF receipts — all in under 2 minutes.",
+    desc: "Create professional invoices, track payments, and send PDF receipts, all in under 2 minutes.",
     href: "/invoice",
     register: `${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=INVOICE&plan=FREE`,
     accent: "#2563eb",
@@ -41,7 +41,7 @@ const PRODUCTS = [
   key: "GYM",
   name: "Gym Management",
   tagline: "Run your gym smarter.",
-  desc: "Manage members, automate billing, track attendance, and assign trainers — one dashboard, zero chaos.",
+  desc: "Manage members, automate billing, track attendance, and assign trainers, one dashboard, zero chaos.",
   href: "/gym",
   register: `${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=GYM&plan=FREE`,
   accent: "#f59e0b",
@@ -67,7 +67,7 @@ const PRODUCTS = [
     key: "BOOKING",
     name: "Booking & Appointments",
     tagline: "Zero scheduling stress.",
-    desc: "Manage client appointments, staff availability, and deposits — built for clinics, salons & studios.",
+    desc: "Manage client appointments, staff availability, and deposits, built for clinics, salons & studios.",
     href: "/booking",
     register: `${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=BOOKING&plan=FREE`,
     accent: "#0d9488",
@@ -80,7 +80,7 @@ const PRODUCTS = [
     key: "CAR_RENTAL",
     name: "Car Rental",
     tagline: "Keep your fleet moving.",
-    desc: "Manage vehicles, reservations, deposits, and overdue alerts — everything a rental business needs in one dashboard.",
+    desc: "Manage vehicles, reservations, deposits, and overdue alerts, everything a rental business needs in one dashboard.",
     href: "/car-rental",
     register: `${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=CAR_RENTAL&plan=FREE`,
     accent: "#ea580c",
@@ -93,7 +93,7 @@ const PRODUCTS = [
     key: "LAUNDRY",
     name: "Laundry Shop",
     tagline: "Run every order smoothly.",
-    desc: "Track laundry orders by ticket, notify customers by SMS, and accept GCash or cash — built for small laundry shops.",
+    desc: "Track laundry orders by ticket, notify customers by SMS, and accept GCash or cash, built for small laundry shops.",
     href: "/laundry",
     register: `${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=LAUNDRY&plan=FREE`,
     accent: "#0284c7",
@@ -106,7 +106,7 @@ const PRODUCTS = [
     key: "SALON",
     name: "Salon Manager",
     tagline: "Book clients, grow your salon.",
-    desc: "Manage appointments, clients, and services — with a public booking page your clients can use to send inquiries directly.",
+    desc: "Manage appointments, clients, and services, with a public booking page your clients can use to send inquiries directly.",
     href: "/salon",
     register: `${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=SALON&plan=FREE`,
     accent: "#ec4899",
@@ -119,7 +119,7 @@ const PRODUCTS = [
     key: "MASSAGE",
     name: "Massage and Spa",
     tagline: "Relax your clients. Run your spa.",
-    desc: "Manage therapists, treatments, intake forms, and deposits — with a public booking page where clients can request their favorite therapist.",
+    desc: "Manage therapists, treatments, intake forms, and deposits, with a public booking page where clients can request their favorite therapist.",
     href: "/massage",
     register: `${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=MASSAGE&plan=FREE`,
     accent: "#10b981",
@@ -132,7 +132,7 @@ const PRODUCTS = [
     key: "AIRBNB",
     name: "Airbnb / Rentals",
     tagline: "Fill every night.",
-    desc: "Manage rental properties, guest profiles, and reservations from one clean dashboard — with built-in double-booking protection.",
+    desc: "Manage rental properties, guest profiles, and reservations from one clean dashboard, with built-in double-booking protection.",
     href: "/airbnb",
     register: `${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=AIRBNB&plan=FREE`,
     accent: "#0ea5e9",
@@ -145,7 +145,7 @@ const PRODUCTS = [
     key: "LENDING",
     name: "Lending Manager",
     tagline: "Run your loan book with ease.",
-    desc: "Issue loans, auto-generate amortization schedules, track GCash and bank payments, and watch collections — everything a lender needs in one dashboard.",
+    desc: "Issue loans, auto-generate amortization schedules, track GCash and bank payments, and watch collections, everything a lender needs in one dashboard.",
     href: "/lending",
     register: `${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=LENDING&plan=FREE`,
     accent: "#334155",
@@ -158,7 +158,7 @@ const PRODUCTS = [
     key: "RESTAURANT",
     name: "Food Ordering Manager",
     tagline: "Serve every table, track every order.",
-    desc: "Build your menu, take dine-in and takeaway orders, manage the kitchen queue, and review daily sales — all in one clean dashboard built for small restaurants and cafés.",
+    desc: "Build your menu, take dine-in and takeaway orders, manage the kitchen queue, and review daily sales, all in one clean dashboard built for small restaurants and cafés.",
     href: "/restaurant",
     register: `${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=RESTAURANT&plan=FREE`,
     accent: "#f97316",
@@ -171,7 +171,7 @@ const PRODUCTS = [
     key: "STORE",
     name: "Store Manager",
     tagline: "Know your stock, track every sale.",
-    desc: "Manage your product catalog, track stock in real time with low stock alerts, ring up sales on a tap-to-add POS, and review daily revenue — built for sari-sari stores, boutiques, and retail shops.",
+    desc: "Manage your product catalog, track stock in real time with low stock alerts, ring up sales on a tap-to-add POS, and review daily revenue, built for sari-sari stores, boutiques, and retail shops.",
     href: "/store",
     register: `${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=STORE&plan=FREE`,
     accent: "#6d28d9",
@@ -184,7 +184,7 @@ const PRODUCTS = [
     key: "CLINIC",
     name: "Clinic Manager",
     tagline: "Run your clinic smarter.",
-    desc: "Manage patients, doctors, appointments, and a live queue board — all in one clean dashboard. Built for clinics of any size.",
+    desc: "Manage patients, doctors, appointments, and a live queue board, all in one clean dashboard. Built for clinics of any size.",
     href: "/clinic",
     register: `${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=CLINIC&plan=FREE`,
     accent: "#2563eb",
@@ -197,7 +197,7 @@ const PRODUCTS = [
     key: "VET_CLINIC",
     name: "Vet Clinic Manager",
     tagline: "Care for every pet, run the whole clinic.",
-    desc: "Manage pet records, vet appointments, vaccinations, a live queue board, and itemized billing — built for small veterinary clinics.",
+    desc: "Manage pet records, vet appointments, vaccinations, a live queue board, and itemized billing, built for small veterinary clinics.",
     href: "/vet-clinic",
     register: `${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=VET_CLINIC&plan=FREE`,
     accent: "#10b981",
@@ -210,7 +210,7 @@ const PRODUCTS = [
     key: "BOARDING_HOUSE",
     name: "Boarding House Manager",
     tagline: "Collect rent. Track every tenant.",
-    desc: "Manage rooms, tenants, monthly rent and utility billing, and occupancy — built for boarding house owners across the Philippines.",
+    desc: "Manage rooms, tenants, monthly rent and utility billing, and occupancy, built for boarding house owners across the Philippines.",
     href: "/boarding-house",
     register: `${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=BOARDING_HOUSE&plan=FREE`,
     accent: "#ea580c",
@@ -223,7 +223,7 @@ const PRODUCTS = [
     key: "CATERING",
     name: "Catering Manager",
     tagline: "Book events. Collect every peso.",
-    desc: "Manage catering bookings, packages, payment milestones, supply catalog, and staff — everything a Philippine catering business needs in one dashboard.",
+    desc: "Manage catering bookings, packages, payment milestones, supply catalog, and staff, everything a Philippine catering business needs in one dashboard.",
     href: "/catering",
     register: `${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=CATERING&plan=FREE`,
     accent: "#e11d48",
@@ -236,7 +236,7 @@ const PRODUCTS = [
     key: "WATER_REFILLING",
     name: "Water Refilling Station",
     tagline: "Know who has your bottles.",
-    desc: "Manage refill deliveries, customers, container deposits, returns, and inventory — built for water refilling stations in the Philippines.",
+    desc: "Manage refill deliveries, customers, container deposits, returns, and inventory, built for water refilling stations in the Philippines.",
     href: "/water-refilling",
     register: `${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=WATER_REFILLING&plan=FREE`,
     accent: "#0891b2",
@@ -249,7 +249,7 @@ const PRODUCTS = [
     key: "SCHOOL_DESK",
     name: "SchoolDesk (Tutorial Center)",
     tagline: "Manage your tutorial center.",
-    desc: "Track student enrollments, sessions, tuition fees, attendance, and progress notes — built for tutorial centers and tutors in the Philippines.",
+    desc: "Track student enrollments, sessions, tuition fees, attendance, and progress notes, built for tutorial centers and tutors in the Philippines.",
     href: "/school-desk",
     register: `${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=SCHOOL_DESK&plan=FREE`,
     accent: "#6366f1",
@@ -297,7 +297,7 @@ const STEPS = [
     number: "02",
     Icon: LayoutDashboard,
     title: "Pick your tool",
-    desc: "Choose the product that fits your business today. Start with one — add more whenever you need to.",
+    desc: "Choose the product that fits your business today. Start with one, add more whenever you need to.",
     color: "text-violet-500",
     bg: "bg-violet-50",
   },
@@ -305,7 +305,7 @@ const STEPS = [
     number: "03",
     Icon: Zap,
     title: "Start working",
-    desc: "No training. No IT setup. No onboarding calls. Open it, and it just makes sense — that's the point.",
+    desc: "No training. No IT setup. No onboarding calls. Open it, and it just makes sense, that's the point.",
     color: "text-emerald-500",
     bg: "bg-emerald-50",
   },
@@ -318,7 +318,7 @@ const TESTIMONIALS = [
     avatar: "KM",
     color: "bg-rose-500",
     product: "Salon Manager",
-    quote: "I was running my salon out of a Facebook Messenger inbox — no schedule, no record of who came in when. Now I have a booking page I share on my IG bio and all appointments are in one place. Took me maybe an hour to set up.",
+    quote: "I was running my salon out of a Facebook Messenger inbox, no schedule, no record of who came in when. Now I have a booking page I share on my IG bio and all appointments are in one place. Took me maybe an hour to set up.",
   },
   {
     name: "Aldrin Resurreccion",
@@ -342,7 +342,7 @@ const TESTIMONIALS = [
     avatar: "RG",
     color: "bg-sky-500",
     product: "Airbnb / Rentals",
-    quote: "I nearly lost a guest last year over a double booking — two reservations, same unit, same weekend. Since I moved to Smapey that's blocked automatically. Haven't had a conflict once, and I sleep better on weekends.",
+    quote: "I nearly lost a guest last year over a double booking, two reservations, same unit, same weekend. Since I moved to Smapey that's blocked automatically. Haven't had a conflict once, and I sleep better on weekends.",
   },
   {
     name: "Trisha Delantar",
@@ -358,7 +358,7 @@ const TESTIMONIALS = [
     avatar: "BM",
     color: "bg-orange-500",
     product: "Car Rental",
-    quote: "I had a spreadsheet I built myself for tracking reservations and it fell apart the moment two people tried to book the same car. Smapey handles all of that now. My staff picked it up without any training — that was a big deal for me.",
+    quote: "I had a spreadsheet I built myself for tracking reservations and it fell apart the moment two people tried to book the same car. Smapey handles all of that now. My staff picked it up without any training, that was a big deal for me.",
   },
 ]
 
@@ -502,7 +502,7 @@ const HERO_STATS = [
   { value: "2,400+", label: <>small businesses<br />run on Smapey</>, accent: true },
   { value: "5 min",  label: <>average time<br />to full setup</>, accent: false },
   { value: "18",     label: <>tools, one login,<br />pick what you need</>, accent: true },
-  { value: "₱0",     label: <>to start —<br />free plan forever</>, accent: false },
+  { value: "₱0",     label: <>to start,<br />free plan forever</>, accent: false },
 ]
 
 function Hero() {
@@ -549,7 +549,7 @@ function Hero() {
 
         <p className="mt-8 text-lg md:text-[19px] leading-relaxed max-w-[520px]" style={{ color: "#54514c" }}>
           No demo calls. No manuals. No 3-month rollouts. Pick the tool built for your
-          business — gym, salon, clinic, laundry — and start working in 5 minutes.
+          business (gym, salon, clinic, laundry) and start working in 5 minutes.
         </p>
 
         {/* ACTIONS */}
@@ -611,7 +611,7 @@ function ForWho() {
           </h2>
           <p className="mt-4 max-w-xl mx-auto text-base leading-relaxed" style={{ color: "#54514c" }}>
             We didn't build Smapey for corporations with IT departments and six-month rollouts.
-            We built it for owners and operators who need something that just works — today.
+            We built it for owners and operators who need something that just works, today.
           </p>
         </Reveal>
 
@@ -638,7 +638,7 @@ function ForWho() {
                 </h3>
                 <p className="mt-4 text-sm leading-relaxed max-w-sm" style={{ color: "rgba(255,255,255,.6)" }}>
                   No bloated feature sets. No 200-page manuals. No "schedule a demo" buttons.
-                  Smapey is intentionally simple — because your time is better spent running your business, not learning software.
+                  Smapey is intentionally simple, because your time is better spent running your business, not learning software.
                 </p>
               </div>
               <div className="flex flex-col gap-3">
@@ -705,7 +705,7 @@ function HowItWorks() {
               className="inline-flex items-center gap-2 text-sm font-bold px-8 py-4 rounded-full border-2 transition-transform hover:-translate-y-0.5"
               style={{ background: AMBER, color: INK, borderColor: INK, boxShadow: `4px 4px 0 ${INK}` }}
             >
-              Try it yourself — it's free
+              Try it yourself, it's free
               <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
@@ -730,7 +730,7 @@ function Products() {
             Eighteen tools. Every small business covered.
           </h2>
           <p className="mt-4 text-lg max-w-xl" style={{ color: "#54514c" }}>
-            Pick the one you need today. Each product is fully standalone — no bundles, no bloat, no paying for things you don't use.
+            Pick the one you need today. Each product is fully standalone, no bundles, no bloat, no paying for things you don't use.
           </p>
         </Reveal>
 
@@ -799,9 +799,9 @@ function Products() {
 
 const WHY = [
   { Icon: Zap,        title: "Works on day one",      desc: "Sign up and start. No configuration, no demo calls, no waiting for an account manager." },
-  { Icon: Shield,     title: "Secure by default",     desc: "Modern encryption and reliable infrastructure. Your data is safe — always." },
+  { Icon: Shield,     title: "Secure by default",     desc: "Modern encryption and reliable infrastructure. Your data is safe - always." },
   { Icon: TrendingUp, title: "Grows with you",        desc: "Start on the free plan. Upgrade when your business needs more. No pressure, no lock-in." },
-  { Icon: Clock,      title: "Hours back every week", desc: "Automate the repetitive tasks — invoicing, tracking, reminders — and focus on what matters." },
+  { Icon: Clock,      title: "Hours back every week", desc: "Automate the repetitive tasks (invoicing, tracking, reminders) and focus on what matters." },
 ]
 
 function Why() {
@@ -816,7 +816,7 @@ function Why() {
             <span style={{ color: AMBER }}>not a compromise.</span>
           </h2>
           <p className="mt-4 max-w-lg text-base leading-relaxed" style={{ color: "rgba(255,255,255,.7)" }}>
-            Most business software is designed by people who've never run a small business. We built Smapey from the opposite direction — starting with what you actually need.
+            Most business software is designed by people who've never run a small business. We built Smapey from the opposite direction, starting with what you actually need.
           </p>
         </Reveal>
 
@@ -890,7 +890,7 @@ function Testimonials() {
             Small business owners love it.
           </h2>
           <p className="mt-3 max-w-md mx-auto" style={{ color: "#54514c" }}>
-            From gym owners to freelancers — here's what they say after switching to Smapey.
+            From gym owners to freelancers, here's what they say after switching to Smapey.
           </p>
         </Reveal>
 
@@ -939,7 +939,7 @@ function CTA() {
             Your business deserves<br />better tools.
           </h2>
           <p className="mt-5 text-lg max-w-lg mx-auto font-medium" style={{ color: "#5c4a28" }}>
-            Join thousands of small business owners who stopped wrestling with spreadsheets and expensive software — and just started running their business.
+            Join thousands of small business owners who stopped wrestling with spreadsheets and expensive software, and just started running their business.
           </p>
         </Reveal>
 

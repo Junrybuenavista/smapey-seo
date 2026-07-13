@@ -17,9 +17,9 @@ const display = { fontFamily: "'Hanken Grotesk', system-ui, sans-serif" }
 const FEATURES = [
   { icon: BedDouble, title: "Checkout Status Tracking", desc: "Every reservation that reaches Checked Out is immediately visible on the dashboard. Filter by Checked Out status to see exactly which properties need a turnover right now." },
   { icon: CalendarRange, title: "Upcoming Check-in Visibility", desc: "The dashboard shows upcoming check-ins so you know which units need to be guest-ready within the next 24–48 hours. No manual calendar cross-checking." },
-  { icon: Home, title: "Staff Notes per Reservation", desc: "Every reservation has a Staff Notes field — invisible to guests, visible only to your team. Log cleaning instructions, turnover checklists, or special requests from the incoming guest." },
-  { icon: ShieldCheck, title: "Same-Day Conflict Detection", desc: "Double-booking protection also means preventing a cleaning crew crunch — the system won't let you create a same-day arrival before the previous checkout is confirmed." },
-  { icon: Users, title: "Team Access Control", desc: "On Pro and Enterprise plans, add cleaners or co-hosts as team members with limited access. They see only what they need — no access to billing, pricing, or guest financial data." },
+  { icon: Home, title: "Staff Notes per Reservation", desc: "Every reservation has a Staff Notes field - invisible to guests, visible only to your team. Log cleaning instructions, turnover checklists, or special requests from the incoming guest." },
+  { icon: ShieldCheck, title: "Same-Day Conflict Detection", desc: "Double-booking protection also means preventing a cleaning crew crunch - the system won't let you create a same-day arrival before the previous checkout is confirmed." },
+  { icon: Users, title: "Team Access Control", desc: "On Pro and Enterprise plans, add cleaners or co-hosts as team members with limited access. They see only what they need - no access to billing, pricing, or guest financial data." },
   { icon: BarChart3, title: "Occupancy Rate Dashboard", desc: "High occupancy means tighter cleaning windows. The live dashboard shows your current occupancy rate so you can plan your cleaning schedule around your busiest periods." },
 ]
 
@@ -35,10 +35,10 @@ const COMPARISON = [
 ]
 
 const FAQS = [
-  { q: "Does Smapey have a dedicated cleaning schedule feature?", a: "Not as a standalone module — Smapey tracks cleaning through the reservation lifecycle. When a reservation is Checked Out, the property needs a turnover. The Checked Out filter and Staff Notes cover most cleaning coordination without a separate schedule tool." },
+  { q: "Does Smapey have a dedicated cleaning schedule feature?", a: "Not as a standalone module, Smapey tracks cleaning through the reservation lifecycle. When a reservation is Checked Out, the property needs a turnover. The Checked Out filter and Staff Notes cover most cleaning coordination without a separate schedule tool." },
   { q: "How do I track which properties have been cleaned?", a: "Use the Staff Notes field on the outgoing reservation to log cleaning completion. When the next reservation is confirmed ready, your team knows the unit is prepared. For multi-property operations, filter by Checked Out status daily to see the full turnover queue." },
   { q: "Can I give my cleaner access to the dashboard?", a: "Yes. On Pro and Enterprise plans, add team members with limited permissions. Role-based access means your cleaner can see reservation notes and dates without touching billing or guest financial records." },
-  { q: "What happens between a checkout and the next check-in?", a: "The reservation status sits at Checked Out until the next reservation is created. The upcoming check-in on the dashboard shows you the gap — and the Staff Notes field on both reservations is where you coordinate the turnover." },
+  { q: "What happens between a checkout and the next check-in?", a: "The reservation status sits at Checked Out until the next reservation is created. The upcoming check-in on the dashboard shows you the gap, and the Staff Notes field on both reservations is where you coordinate the turnover." },
 ]
 
 function useInView(options?: IntersectionObserverInit) {
@@ -117,10 +117,10 @@ function Hero() {
         <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.04] tracking-tight mb-6" style={{ color: INK }}>
           Track turnovers and keep every <span style={{ color: BLUE }}>property guest-ready</span>
         </h1>
-        <p className="text-lg max-w-2xl mx-auto mb-10 leading-relaxed" style={{ color: "#54514c" }}>Know exactly which properties need a cleaning turnover, when the next guest arrives, and what your cleaner needs to know — all from the reservation dashboard.</p>
+        <p className="text-lg max-w-2xl mx-auto mb-10 leading-relaxed" style={{ color: "#54514c" }}>Know exactly which properties need a cleaning turnover, when the next guest arrives, and what your cleaner needs to know, all from the reservation dashboard.</p>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
           <a href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=AIRBNB&plan=FREE`} className="flex items-center gap-2 px-7 py-4 rounded-full font-bold text-sm border-2 transition-transform hover:-translate-y-0.5" style={{ ...display, background: AMBER, color: INK, borderColor: INK, boxShadow: `4px 4px 0 ${INK}` }}>
-            Start free — no card needed <ChevronRight className="w-4 h-4" />
+            Start free, no card needed <ChevronRight className="w-4 h-4" />
           </a>
           <a href="/airbnb" className="flex items-center gap-2 px-7 py-4 rounded-full font-bold text-sm border-2 bg-white transition-transform hover:-translate-y-0.5" style={{ ...display, color: INK, borderColor: INK }}>View all features</a>
         </div>
@@ -330,7 +330,7 @@ function PaymentModal({ plan, isPhilippines, onClose }: { plan: { name: string; 
         <div className="px-6 py-5 flex items-center justify-between" style={{ background: INK }}>
           <div className="flex items-center gap-3">
             {step === "payment" && !token && <button onClick={() => setStep("details")} className="text-white/70 hover:text-white transition"><svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}><path d="M19 12H5M12 5l-7 7 7 7"/></svg></button>}
-            <div><h2 className="text-white font-extrabold text-lg">{step === "details" ? "Create your account" : "Choose payment method"}</h2><p className="text-sm mt-0.5" style={{ color: "rgba(255,255,255,.7)" }}>{plan.name} plan — <span className="font-bold" style={{ color: AMBER }}>{displayPrice}</span>{plan.period}</p></div>
+            <div><h2 className="text-white font-extrabold text-lg">{step === "details" ? "Create your account" : "Choose payment method"}</h2><p className="text-sm mt-0.5" style={{ color: "rgba(255,255,255,.7)" }}>{plan.name} plan, <span className="font-bold" style={{ color: AMBER }}>{displayPrice}</span>{plan.period}</p></div>
           </div>
           <button onClick={onClose} className="text-white/70 hover:text-white transition-colors"><X className="w-5 h-5" /></button>
         </div>

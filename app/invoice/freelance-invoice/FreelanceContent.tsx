@@ -19,11 +19,11 @@ export default function FreelanceInvoiceGuide() {
             Freelance Invoice Guide 2026
           </div>
           <h1 className="text-4xl lg:text-5xl font-bold leading-tight">
-            Freelance Invoice Template & Guide —{" "}
+            Freelance Invoice Template & Guide:{" "}
             <span className="bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent">Get Paid Faster</span>
           </h1>
           <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-            Struggling with late payments? Learn how to create professional freelance invoices, avoid common mistakes, and get paid faster — with free templates included.
+            Struggling with late payments? Learn how to create professional freelance invoices, avoid common mistakes, and get paid faster, with free templates included.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center pt-2">
             <Link href="/invoice/invoice-generation-online">

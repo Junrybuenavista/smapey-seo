@@ -16,18 +16,18 @@ const CREAM = "#fbf7f0"
 const display = { fontFamily: "'Hanken Grotesk', system-ui, sans-serif" }
 
 const FEATURES = [
-  { icon: Package, title: "Instant Order Acceptance", desc: "Accept a new laundry order in under 30 seconds. Enter the customer's phone, kilos, and service type — ticket number generated automatically." },
-  { icon: MessageSquare, title: "Auto-Notify When Ready", desc: "The moment you mark an order as 'Ready', the customer gets an SMS. No manual texting, no delays — just instant on-demand communication." },
-  { icon: Hash, title: "Auto-Ticket on Every Order", desc: "Each on-demand order gets a unique ticket number (YYMMDD-NNN). Customers quote this number for quick retrieval — no confusion at pickup." },
-  { icon: CreditCard, title: "GCash & Cash at Pickup", desc: "Collect payment when customers arrive — via Cash, GCash, Maya, or Bank Transfer. Mark orders as paid with one tap." },
-  { icon: BarChart3, title: "Real-Time Order Dashboard", desc: "See all active on-demand orders in one dashboard — Received, In Progress, Ready, and Released. Know exactly what's waiting at any moment." },
+  { icon: Package, title: "Instant Order Acceptance", desc: "Accept a new laundry order in under 30 seconds. Enter the customer's phone, kilos, and service type - ticket number generated automatically." },
+  { icon: MessageSquare, title: "Auto-Notify When Ready", desc: "The moment you mark an order as 'Ready', the customer gets an SMS. No manual texting, no delays - just instant on-demand communication." },
+  { icon: Hash, title: "Auto-Ticket on Every Order", desc: "Each on-demand order gets a unique ticket number (YYMMDD-NNN). Customers quote this number for quick retrieval - no confusion at pickup." },
+  { icon: CreditCard, title: "GCash & Cash at Pickup", desc: "Collect payment when customers arrive - via Cash, GCash, Maya, or Bank Transfer. Mark orders as paid with one tap." },
+  { icon: BarChart3, title: "Real-Time Order Dashboard", desc: "See all active on-demand orders in one dashboard - Received, In Progress, Ready, and Released. Know exactly what's waiting at any moment." },
   { icon: Zap, title: "Add-on Services", desc: "Offer express processing, stain removal, or fabric conditioner as on-demand add-ons. Price them separately and track them per order." },
 ]
 
 const FAQS = [
   { q: "How fast can I accept a new on-demand order?", a: "Under 30 seconds. Enter the customer's phone number (or select a returning customer), choose the service type, enter kilos, and submit. Ticket number is auto-generated instantly." },
   { q: "Do customers get notified automatically?", a: "Yes. On the Pro plan, customers receive an automatic SMS when you accept their order and another when it's ready for pickup. On the Free plan, SMS can be sent manually." },
-  { q: "Can I handle multiple on-demand orders at the same time?", a: "Yes. All open orders appear in your dashboard. You can update each order's status independently — there's no limit to how many you can have in progress simultaneously (on Pro)." },
+  { q: "Can I handle multiple on-demand orders at the same time?", a: "Yes. All open orders appear in your dashboard. You can update each order's status independently, there's no limit to how many you can have in progress simultaneously (on Pro)." },
   { q: "What if a customer wants express processing?", a: "Add express processing as an add-on service with its own price. It's attached to the specific order and shown in the customer's receipt." },
 ]
 
@@ -107,10 +107,10 @@ function Hero() {
         <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.04] tracking-tight mb-6" style={{ color: INK }}>
           Accept laundry orders on demand, <span style={{ color: BLUE }}>notify customers instantly</span>
         </h1>
-        <p className="text-lg max-w-2xl mx-auto mb-10 leading-relaxed" style={{ color: "#54514c" }}>LaundryOS lets your shop accept on-demand orders in seconds, track them through every stage, and send automatic SMS notifications — so customers always know when their laundry is ready.</p>
+        <p className="text-lg max-w-2xl mx-auto mb-10 leading-relaxed" style={{ color: "#54514c" }}>LaundryOS lets your shop accept on-demand orders in seconds, track them through every stage, and send automatic SMS notifications, so customers always know when their laundry is ready.</p>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
           <a href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=LAUNDRY&plan=FREE`} className="flex items-center gap-2 px-7 py-4 rounded-full font-bold text-sm border-2 transition-transform hover:-translate-y-0.5" style={{ ...display, background: AMBER, color: INK, borderColor: INK, boxShadow: `4px 4px 0 ${INK}` }}>
-            Start free — no card needed <ChevronRight className="w-4 h-4" />
+            Start free, no card needed <ChevronRight className="w-4 h-4" />
           </a>
           <a href="/laundry" className="flex items-center gap-2 px-7 py-4 rounded-full font-bold text-sm border-2 bg-white transition-transform hover:-translate-y-0.5" style={{ ...display, color: INK, borderColor: INK }}>View all features</a>
         </div>
@@ -277,7 +277,7 @@ function PaymentModal({ plan, isPhilippines, onClose }: { plan: { name: string; 
         <div className="px-6 py-5 flex items-center justify-between" style={{ background: INK }}>
           <div className="flex items-center gap-3">
             {step === "payment" && !token && <button onClick={() => setStep("details")} className="text-white/70 hover:text-white transition"><svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}><path d="M19 12H5M12 5l-7 7 7 7"/></svg></button>}
-            <div><h2 className="text-white font-extrabold text-lg">{step === "details" ? "Create your account" : "Choose payment method"}</h2><p className="text-sm mt-0.5" style={{ color: "rgba(255,255,255,.7)" }}>{plan.name} plan — <span className="font-bold" style={{ color: AMBER }}>{displayPrice}</span>{plan.period}</p></div>
+            <div><h2 className="text-white font-extrabold text-lg">{step === "details" ? "Create your account" : "Choose payment method"}</h2><p className="text-sm mt-0.5" style={{ color: "rgba(255,255,255,.7)" }}>{plan.name} plan, <span className="font-bold" style={{ color: AMBER }}>{displayPrice}</span>{plan.period}</p></div>
           </div>
           <button onClick={onClose} className="text-white/70 hover:text-white transition-colors"><X className="w-5 h-5" /></button>
         </div>

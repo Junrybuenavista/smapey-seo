@@ -4,7 +4,7 @@ import Script from "next/script"
 
 export const metadata = {
   title: "Smapey Airbnb / Short-term Rentals",
-  description: "Airbnb and short-term rental management software — properties, guests, reservations, and revenue analytics.",
+  description: "Airbnb and short-term rental management software, properties, guests, reservations, and revenue analytics.",
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

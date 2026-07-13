@@ -16,11 +16,11 @@ const CREAM = "#fbf7f0"
 const display = { fontFamily: "'Hanken Grotesk', system-ui, sans-serif" }
 
 const FEATURES = [
-  { icon: Scissors, title: "Service Menu Management", desc: "Your service menu is your primary inventory. Add, edit, and organize all your salon services — name, price, and duration — in one place. Changes reflect everywhere instantly." },
+  { icon: Scissors, title: "Service Menu Management", desc: "Your service menu is your primary inventory. Add, edit, and organize all your salon services (name, price, and duration) in one place. Changes reflect everywhere instantly." },
   { icon: TrendingUp, title: "Service Popularity Tracking", desc: "See which services are booked most frequently from your appointments data. Understand what drives revenue and where clients keep coming back." },
-  { icon: DollarSign, title: "Service Pricing Control", desc: "Update prices for any service at any time. Price changes reflect on your public booking page immediately — keeping clients informed without any extra effort." },
+  { icon: DollarSign, title: "Service Pricing Control", desc: "Update prices for any service at any time. Price changes reflect on your public booking page immediately - keeping clients informed without any extra effort." },
   { icon: Users, title: "Staff-Service Assignment", desc: "Assign appointments and services to specific staff members. Track which services each team member performs most to optimize scheduling and staffing." },
-  { icon: Globe, title: "Public Service Catalogue", desc: "Your service menu doubles as your public-facing catalogue. Clients see your services, prices, and descriptions on your booking page — no separate website needed." },
+  { icon: Globe, title: "Public Service Catalogue", desc: "Your service menu doubles as your public-facing catalogue. Clients see your services, prices, and descriptions on your booking page - no separate website needed." },
   { icon: BarChart3, title: "Revenue by Service", desc: "The analytics dashboard shows your total revenue and appointment volume. Combined with your service data, you can identify your highest-value offerings." },
 ]
 
@@ -35,10 +35,10 @@ const COMPARISON = [
 ]
 
 const FAQS = [
-  { q: "Does Smapey track physical product inventory like shampoo or hair dye?", a: "Smapey SalonOS is focused on service management — appointments, clients, and your service catalogue. It does not currently track physical product stock levels. If you need physical inventory tracking, you would need a separate tool for that." },
-  { q: "How do I track which services are most popular?", a: "Your appointments dashboard shows completed appointments by service type. Over time, this data tells you which services generate the most bookings and revenue — your most important business intelligence." },
-  { q: "Can I add service categories or group services?", a: "Yes. You can name and organize your services however makes sense for your salon — hair services, nail services, skin treatments, etc. Each service has its own name, price, and duration." },
-  { q: "How many services can I add on the free plan?", a: "The free plan supports up to 5 services. The Pro plan supports up to 20, and the Enterprise plan has unlimited services — suitable for full-service beauty salons with a wide menu." },
+  { q: "Does Smapey track physical product inventory like shampoo or hair dye?", a: "Smapey SalonOS is focused on service management, appointments, clients, and your service catalogue. It does not currently track physical product stock levels. If you need physical inventory tracking, you would need a separate tool for that." },
+  { q: "How do I track which services are most popular?", a: "Your appointments dashboard shows completed appointments by service type. Over time, this data tells you which services generate the most bookings and revenue, your most important business intelligence." },
+  { q: "Can I add service categories or group services?", a: "Yes. You can name and organize your services however makes sense for your salon, hair services, nail services, skin treatments, etc. Each service has its own name, price, and duration." },
+  { q: "How many services can I add on the free plan?", a: "The free plan supports up to 5 services. The Pro plan supports up to 20, and the Enterprise plan has unlimited services, suitable for full-service beauty salons with a wide menu." },
 ]
 
 function useInView(options?: IntersectionObserverInit) {
@@ -117,10 +117,10 @@ function Hero() {
         <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.04] tracking-tight mb-6" style={{ color: INK }}>
           Organize your salon services, <span style={{ color: BLUE }}>not just your products</span>
         </h1>
-        <p className="text-lg max-w-2xl mx-auto mb-10 leading-relaxed" style={{ color: "#54514c" }}>Smapey SalonOS helps you manage your service catalogue, track which services drive the most revenue, and keep your pricing organized — the foundation of a well-run salon business.</p>
+        <p className="text-lg max-w-2xl mx-auto mb-10 leading-relaxed" style={{ color: "#54514c" }}>Smapey SalonOS helps you manage your service catalogue, track which services drive the most revenue, and keep your pricing organized, the foundation of a well-run salon business.</p>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
           <a href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=SALON&plan=FREE`} className="flex items-center gap-2 px-7 py-4 rounded-full font-bold text-sm border-2 transition-transform hover:-translate-y-0.5" style={{ ...display, background: AMBER, color: INK, borderColor: INK, boxShadow: `4px 4px 0 ${INK}` }}>
-            Start free — no card needed <ChevronRight className="w-4 h-4" />
+            Start free, no card needed <ChevronRight className="w-4 h-4" />
           </a>
           <a href="/salon" className="flex items-center gap-2 px-7 py-4 rounded-full font-bold text-sm border-2 bg-white transition-transform hover:-translate-y-0.5" style={{ ...display, color: INK, borderColor: INK }}>View all features</a>
         </div>
@@ -139,7 +139,7 @@ function InventoryFeatures() {
         <Animate className="text-center mb-16">
           <p className="text-sm font-bold uppercase tracking-widest mb-3" style={{ color: BLUE }}>Features</p>
           <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight" style={{ color: INK }}>Keep your service catalogue organized</h2>
-          <p className="mt-4 max-w-xl mx-auto" style={{ color: "#54514c" }}>For most small salons, the most important inventory to manage is your service menu — pricing, durations, and what each staff member offers.</p>
+          <p className="mt-4 max-w-xl mx-auto" style={{ color: "#54514c" }}>For most small salons, the most important inventory to manage is your service menu, pricing, durations, and what each staff member offers.</p>
         </Animate>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {FEATURES.map(({ icon: Icon, title, desc }, i) => {
@@ -331,7 +331,7 @@ function PaymentModal({ plan, isPhilippines, onClose }: { plan: { name: string; 
         <div className="px-6 py-5 flex items-center justify-between" style={{ background: INK }}>
           <div className="flex items-center gap-3">
             {step === "payment" && !token && <button onClick={() => setStep("details")} className="text-white/70 hover:text-white transition"><svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}><path d="M19 12H5M12 5l-7 7 7 7"/></svg></button>}
-            <div><h2 className="text-white font-extrabold text-lg">{step === "details" ? "Create your account" : "Choose payment method"}</h2><p className="text-sm mt-0.5" style={{ color: "rgba(255,255,255,.7)" }}>{plan.name} plan — <span className="font-bold" style={{ color: AMBER }}>{displayPrice}</span>{plan.period}</p></div>
+            <div><h2 className="text-white font-extrabold text-lg">{step === "details" ? "Create your account" : "Choose payment method"}</h2><p className="text-sm mt-0.5" style={{ color: "rgba(255,255,255,.7)" }}>{plan.name} plan, <span className="font-bold" style={{ color: AMBER }}>{displayPrice}</span>{plan.period}</p></div>
           </div>
           <button onClick={onClose} className="text-white/70 hover:text-white transition-colors"><X className="w-5 h-5" /></button>
         </div>

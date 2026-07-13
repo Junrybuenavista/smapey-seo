@@ -18,17 +18,17 @@ const FEATURES = [
   { icon: CalendarDays, title: "Event Booking Management", desc: "Create bookings with client, event date, venue, guest count, and status. Track every event from Pending to Confirmed to Completed in one list." },
   { icon: Users, title: "Client Management", desc: "Register clients once and reuse their details on every booking. Full contact history and booking records per client." },
   { icon: Package, title: "Package & Menu Builder", desc: "Define catering packages with name, description, and price per head. Attach one or more packages to each booking." },
-  { icon: Banknote, title: "Payment Milestone Tracking", desc: "Break payments into milestones — reservation fee, partial, balance. Record each collection with method and date. Outstanding balances tracked automatically." },
+  { icon: Banknote, title: "Payment Milestone Tracking", desc: "Break payments into milestones - reservation fee, partial, balance. Record each collection with method and date. Outstanding balances tracked automatically." },
   { icon: FlaskConical, title: "Supply Catalog", desc: "Maintain a catalog of ingredients and supplies with unit type and cost per unit. Link to packages for food cost estimation." },
   { icon: BarChart3, title: "Revenue Dashboard", desc: "See upcoming events, monthly revenue, payments collected, and overdue milestones at a glance. Monthly trend chart included." },
 ]
 
 const FAQS = [
-  { q: "What does a catering management system do?", a: "A catering management system helps catering businesses manage the full event lifecycle — from client registration and booking creation, to package assignment, payment milestone tracking, supply catalog management, and staff assignment. It replaces spreadsheets and paper records with a single digital dashboard." },
-  { q: "Can it handle payment milestones for each booking?", a: "Yes. Each booking can have multiple payment milestones — for example, a reservation fee, a partial payment before the event, and a final balance on event day. You record each payment against its milestone and the system tracks outstanding balances automatically." },
-  { q: "Does it support multiple catering packages?", a: "Yes. You can build a catalog of catering packages with name, description, and price per head. Multiple packages can be attached to a single booking — useful when a client books both a buffet package and a drinks package, for example." },
+  { q: "What does a catering management system do?", a: "A catering management system helps catering businesses manage the full event lifecycle, from client registration and booking creation, to package assignment, payment milestone tracking, supply catalog management, and staff assignment. It replaces spreadsheets and paper records with a single digital dashboard." },
+  { q: "Can it handle payment milestones for each booking?", a: "Yes. Each booking can have multiple payment milestones, for example, a reservation fee, a partial payment before the event, and a final balance on event day. You record each payment against its milestone and the system tracks outstanding balances automatically." },
+  { q: "Does it support multiple catering packages?", a: "Yes. You can build a catalog of catering packages with name, description, and price per head. Multiple packages can be attached to a single booking, useful when a client books both a buffet package and a drinks package, for example." },
   { q: "Can I track ingredients and supply costs?", a: "Yes. The supply catalog lets you add ingredients and materials with unit type (kg, liters, pieces) and cost per unit. This gives you a reference point for estimating procurement cost when planning for an event." },
-  { q: "Is the system free to use?", a: "Yes — Smapey Catering Manager has a free plan that covers bookings, client profiles, packages, payment milestones, supply catalog, and staff assignment at no cost. Upgrade to PRO or ENTERPRISE when your business needs more capacity." },
+  { q: "Is the system free to use?", a: "Yes, Smapey Catering Manager has a free plan that covers bookings, client profiles, packages, payment milestones, supply catalog, and staff assignment at no cost. Upgrade to PRO or ENTERPRISE when your business needs more capacity." },
 ]
 
 function useInView(options?: IntersectionObserverInit) {
@@ -110,7 +110,7 @@ function Hero() {
         <p className="text-lg max-w-2xl mx-auto mb-10 leading-relaxed" style={{ color: "#54514c" }}>Smapey is a catering management system that replaces spreadsheets and paper records with a clean dashboard for bookings, packages, payment milestones, supply catalog, and staff assignment.</p>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
           <a href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=CATERING&plan=FREE`} className="flex items-center gap-2 px-7 py-4 rounded-full font-bold text-sm border-2 transition-transform hover:-translate-y-0.5" style={{ ...display, background: AMBER, color: INK, borderColor: INK, boxShadow: `4px 4px 0 ${INK}` }}>
-            Start free — no card needed <ChevronRight className="w-4 h-4" />
+            Start free, no card needed <ChevronRight className="w-4 h-4" />
           </a>
           <a href="/catering" className="flex items-center gap-2 px-7 py-4 rounded-full font-bold text-sm border-2 bg-white transition-transform hover:-translate-y-0.5" style={{ ...display, color: INK, borderColor: INK }}>View all features</a>
         </div>
@@ -277,7 +277,7 @@ function PaymentModal({ plan, isPhilippines, onClose }: { plan: { name: string; 
         <div className="px-6 py-5 flex items-center justify-between" style={{ background: INK }}>
           <div className="flex items-center gap-3">
             {step === "payment" && !token && <button onClick={() => setStep("details")} className="text-white/70 hover:text-white transition"><svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}><path d="M19 12H5M12 5l-7 7 7 7"/></svg></button>}
-            <div><h2 className="text-white font-extrabold text-lg">{step === "details" ? "Create your account" : "Choose payment method"}</h2><p className="text-sm mt-0.5" style={{ color: "rgba(255,255,255,.7)" }}>{plan.name} plan — <span className="font-bold" style={{ color: AMBER }}>{displayPrice}</span>{plan.period}</p></div>
+            <div><h2 className="text-white font-extrabold text-lg">{step === "details" ? "Create your account" : "Choose payment method"}</h2><p className="text-sm mt-0.5" style={{ color: "rgba(255,255,255,.7)" }}>{plan.name} plan, <span className="font-bold" style={{ color: AMBER }}>{displayPrice}</span>{plan.period}</p></div>
           </div>
           <button onClick={onClose} className="text-white/70 hover:text-white transition-colors"><X className="w-5 h-5" /></button>
         </div>

@@ -90,9 +90,9 @@ export default function InvoicingContent() {
             </div>
           </div>
 
-          {/* RIGHT — invoice card stack */}
+          {/* RIGHT, invoice card stack */}
           <div className="relative flex items-center justify-center lg:justify-end h-[380px]">
-            {/* card 1 — back */}
+            {/* card 1, back */}
             <div className="absolute right-0 top-4 rotate-6 w-[300px] bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-sm shadow-2xl">
               <p className="text-xs text-gray-500 uppercase tracking-widest mb-3">Invoice #1041</p>
               <p className="text-2xl font-bold">USD 4,500.00</p>
@@ -105,7 +105,7 @@ export default function InvoicingContent() {
               </div>
             </div>
 
-            {/* card 2 — front */}
+            {/* card 2, front */}
             <div className="relative -rotate-2 w-[300px] bg-gradient-to-br from-white/10 to-white/5 border border-white/15 rounded-2xl p-6 backdrop-blur-md shadow-2xl">
               <div className="flex items-center justify-between mb-4">
                 <p className="text-xs text-gray-400 uppercase tracking-widest">Invoice #1042</p>
@@ -170,11 +170,11 @@ export default function InvoicingContent() {
               Slow Invoicing Kills Your Cash Flow
             </h2>
             <p className="text-gray-600 text-lg">
-              Most businesses don't struggle because invoicing is hard — they struggle because it's slow. Manual templates, scattered tools, and missed follow-ups lead to late payments and unpredictable revenue.
+              Most businesses don't struggle because invoicing is hard, they struggle because it's slow. Manual templates, scattered tools, and missed follow-ups lead to late payments and unpredictable revenue.
             </p>
 
             <div className="bg-red-50 border-l-4 border-red-400 rounded-r-xl p-4">
-              <p className="text-red-700 font-semibold text-sm">You send invoices late — you get paid late.</p>
+              <p className="text-red-700 font-semibold text-sm">You send invoices late, you get paid late.</p>
             </div>
 
             <ul className="space-y-3 text-sm text-gray-600">
@@ -269,7 +269,7 @@ export default function InvoicingContent() {
           <div className="text-center max-w-2xl mx-auto space-y-4">
             <span className="text-sm font-semibold text-blue-600 uppercase tracking-widest">Features</span>
             <h2 className="text-4xl font-bold text-gray-900">Everything You Need to Get Paid</h2>
-            <p className="text-gray-500 text-lg">One platform to create, send, and track invoices — no extra tools needed.</p>
+            <p className="text-gray-500 text-lg">One platform to create, send, and track invoices, no extra tools needed.</p>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -339,7 +339,7 @@ export default function InvoicingContent() {
               {
                 step: "01",
                 title: "Create Your Invoice",
-                desc: "Pick a template, fill in client details and line items — done in under 2 minutes.",
+                desc: "Pick a template, fill in client details and line items, done in under 2 minutes.",
                 icon: <FileText size={24} />,
               },
               {
@@ -436,7 +436,7 @@ export default function InvoicingContent() {
               Why Businesses Switch from QuickBooks, FreshBooks & Wave
             </h2>
             <p className="text-gray-600 text-lg">
-              Complex tools built for accountants — not for the way you actually work. Smapey is focused, fast, and simple.
+              Complex tools built for accountants, not for the way you actually work. Smapey is focused, fast, and simple.
             </p>
           </div>
 
@@ -466,7 +466,7 @@ export default function InvoicingContent() {
                 "No hidden transaction fee surprises",
                 "No complex accounting system to learn",
                 "Fast, responsive support when you need it",
-                "Just invoicing — done right",
+                "Just invoicing, done right",
               ].map((item) => (
                 <div key={item} className="flex items-start gap-3 text-sm text-gray-700">
                   <CheckCircle2 size={16} className="mt-0.5 text-green-500 flex-shrink-0" />
@@ -493,7 +493,7 @@ export default function InvoicingContent() {
               {[
                 { icon: <Zap size={16} />, text: "Send invoices the moment work is done" },
                 { icon: <CreditCard size={16} />, text: "Offer multiple payment options to clients" },
-                { icon: <Bell size={16} />, text: "Automate payment reminders — no chasing" },
+                { icon: <Bell size={16} />, text: "Automate payment reminders, no chasing" },
                 { icon: <BarChart3 size={16} />, text: "Track invoice status in real time" },
                 { icon: <Shield size={16} />, text: "Reduce overdue invoices significantly" },
               ].map(({ icon, text }) => (
@@ -561,7 +561,7 @@ export default function InvoicingContent() {
             </button>
           </Link>
 
-          <p className="text-sm text-gray-400">Start your free trial today — no credit card required</p>
+          <p className="text-sm text-gray-400">Start your free trial today, no credit card required</p>
         </div>
       </section>
 
@@ -576,7 +576,7 @@ export default function InvoicingContent() {
             </span>
           </h2>
           <p className="text-gray-400 text-lg max-w-xl mx-auto">
-            Create invoices, accept payments, and track everything in one place — without the complexity.
+            Create invoices, accept payments, and track everything in one place, without the complexity.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">
             <Link href="https://app.smapey.com/register?product=INVOICE&plan=FREE">

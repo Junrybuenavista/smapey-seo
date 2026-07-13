@@ -28,7 +28,7 @@ const GUIDES = [
       { title: "Set vehicle status", detail: "New vehicles default to Available. You can set them to Maintenance if they're not yet ready to rent." },
       { title: "Save the vehicle", detail: "Click Save. The vehicle is now part of your fleet and can be selected when creating a new rental reservation." },
     ],
-    tip: "Add your daily rate when creating the vehicle — it auto-fills the rental amount field when you create a reservation for that car.",
+    tip: "Add your daily rate when creating the vehicle, it auto-fills the rental amount field when you create a reservation for that car.",
   },
   {
     id: "register-customer",
@@ -42,7 +42,7 @@ const GUIDES = [
       { title: "Enter customer details", detail: "Enter the customer's full name, phone number, email address, and driver's license number. License number is important for dispute tracking." },
       { title: "Save the customer", detail: "Click Save. The customer is now in your system and can be assigned to new rental reservations." },
     ],
-    tip: "Customers with completed rentals can't be hard-deleted — use Deactivate instead to hide them from active views without losing their rental history.",
+    tip: "Customers with completed rentals can't be hard-deleted, use Deactivate instead to hide them from active views without losing their rental history.",
   },
   {
     id: "create-reservation",
@@ -53,7 +53,7 @@ const GUIDES = [
     steps: [
       { title: "Open the Rentals tab", detail: "Click Rentals in the sidebar. This shows all active, reserved, returned, overdue, and cancelled rentals." },
       { title: 'Click "New Rental"', detail: "Hit New Rental to open the reservation form. You'll need a vehicle and customer already registered before proceeding." },
-      { title: "Select the vehicle and customer", detail: "Choose the vehicle from the dropdown — only Available vehicles appear. Then select the customer from your registered customers list." },
+      { title: "Select the vehicle and customer", detail: "Choose the vehicle from the dropdown - only Available vehicles appear. Then select the customer from your registered customers list." },
       { title: "Set pickup and return dates", detail: "Enter the pickup date and expected return date. The system uses these to calculate the rental duration and flag overdue vehicles." },
       { title: "Add deposit and location details", detail: "Enter the deposit amount collected and the pickup/return locations if applicable. These fields are optional but recommended." },
       { title: "Save as Reserved or Active", detail: "Save as Reserved if the customer hasn't picked up the car yet. Change to Active when they do. The vehicle status updates automatically." },
@@ -72,7 +72,7 @@ const GUIDES = [
       { title: "Update deposit if needed", detail: "If a customer pays an additional deposit, open the rental record and edit the deposit field. Changes save immediately." },
       { title: "Review deposits in your revenue report", detail: "Your revenue dashboard shows total rental amounts. Cross-reference with deposit fields to track what's been pre-collected vs. still owed." },
     ],
-    tip: "Always record the deposit before marking a rental Active — this creates an accurate paper trail in case of disputes or damage claims.",
+    tip: "Always record the deposit before marking a rental Active, this creates an accurate paper trail in case of disputes or damage claims.",
   },
   {
     id: "handle-overdue",
@@ -99,36 +99,36 @@ const GUIDES = [
       { title: "Open the Dashboard", detail: "The car rental dashboard loads automatically when you enter the module. Summary cards appear at the top with key real-time metrics." },
       { title: "Read the summary cards", detail: "Cards show: Available vehicles, Active rentals, Overdue count, and Monthly revenue. These update live as rentals are created or returned." },
       { title: "Check the Monthly Revenue chart", detail: "The bar chart shows rental revenue by month. Hover over a bar to see the exact figure. Compare months to spot seasonal trends." },
-      { title: "Review Upcoming Returns", detail: "The Upcoming Returns section lists active rentals sorted by return date — so you can prepare for handoffs today, tomorrow, and this week." },
+      { title: "Review Upcoming Returns", detail: "The Upcoming Returns section lists active rentals sorted by return date - so you can prepare for handoffs today, tomorrow, and this week." },
       { title: "Monitor fleet utilization", detail: "Divide active rentals by total fleet size to see your utilization rate. High utilization means your fleet is working. Low means idle inventory." },
     ],
-    tip: "If monthly revenue is flat but rental count is up, check your daily rates — vehicles might be underpriced relative to demand.",
+    tip: "If monthly revenue is flat but rental count is up, check your daily rates, vehicles might be underpriced relative to demand.",
   },
   {
     id: "public-booking-page",
     icon: Globe,
     title: "Set Up Your Public Booking Page",
     badge: "All Plans",
-    description: "Create a public page where customers can browse your fleet and submit booking inquiries — no login required on their end.",
+    description: "Create a public page where customers can browse your fleet and submit booking inquiries, no login required on their end.",
     steps: [
       { title: "Open Public Page settings", detail: "In your car rental dashboard sidebar, click Public Page. This is where you configure your public-facing booking URL and design." },
       { title: "Set your unique slug", detail: "Enter a short, memorable slug (e.g. your business name). Your public page will be live at smapey.com/rent/your-slug. Slugs must be unique across all Smapey accounts." },
       { title: "Save the slug", detail: "Click Save Slug. Once saved, the public page is immediately live. Anyone with the link can browse your vehicles and submit an inquiry." },
       { title: "Share your booking link", detail: "Copy the public page URL and add it to your Google Maps listing, Facebook page, Instagram bio, or wherever customers contact you. This is your 24/7 online booking intake." },
     ],
-    tip: "Put your public page link in your Google Maps Business profile under the website or booking URL field — customers searching nearby will see it directly in Google Maps.",
+    tip: "Put your public page link in your Google Maps Business profile under the website or booking URL field, customers searching nearby will see it directly in Google Maps.",
   },
   {
     id: "deposit-qr",
     icon: QrCode,
     title: "Set Up a Deposit QR Code",
     badge: "All Plans",
-    description: "Upload a QR code to your public booking page so customers can scan and pay their deposit directly — no manual payment link sharing needed.",
+    description: "Upload a QR code to your public booking page so customers can scan and pay their deposit directly, no manual payment link sharing needed.",
     steps: [
       { title: "Open Public Page settings", detail: "Go to Public Page in the sidebar. Scroll down to the Deposit section below the page design selector." },
-      { title: "Upload your QR code image", detail: "Click the QR code upload area and select your payment QR image — typically your GCash, Maya, or bank QR code. PNG or JPG files both work." },
-      { title: "Your QR appears on your booking page", detail: "Once uploaded, a Deposit Required section appears on your public booking page. Customers can scan the QR code to pay their deposit before pickup — without any back-and-forth messaging." },
-      { title: "Update or remove the QR code", detail: "To swap it out, upload a new image — the old one is replaced immediately. To remove it entirely, click the remove button next to the uploaded QR image." },
+      { title: "Upload your QR code image", detail: "Click the QR code upload area and select your payment QR image - typically your GCash, Maya, or bank QR code. PNG or JPG files both work." },
+      { title: "Your QR appears on your booking page", detail: "Once uploaded, a Deposit Required section appears on your public booking page. Customers can scan the QR code to pay their deposit before pickup - without any back-and-forth messaging." },
+      { title: "Update or remove the QR code", detail: "To swap it out, upload a new image - the old one is replaced immediately. To remove it entirely, click the remove button next to the uploaded QR image." },
     ],
     tip: "Use your GCash or Maya QR code for the fastest customer experience. Displaying it directly on your booking page cuts the number of messages you receive asking for payment details.",
   },
@@ -141,9 +141,9 @@ const GUIDES = [
     steps: [
       { title: "Open Public Page settings", detail: "Go to Public Page in the sidebar. Below the slug field you'll find the Page Design section with a visual preview of each available theme." },
       { title: "Preview the available designs", detail: "Five designs are shown: Midnight (dark, orange), Clean (minimal white), Ocean (navy glassmorphism), Forest (dark green angular), and Luxury (gold editorial). Locked designs show a lock icon with your required plan." },
-      { title: "Click a design to apply it", detail: "Clicking an unlocked design saves it immediately — your public page updates live. No separate save button needed." },
+      { title: "Click a design to apply it", detail: "Clicking an unlocked design saves it immediately - your public page updates live. No separate save button needed." },
       { title: "Set a cover photo", detail: "In the Personalize section below the theme selector, upload a cover photo. It displays as a full-width hero image at the top of your public page. Works on all 5 themes." },
-      { title: "Add a tagline", detail: "Enter a short tagline (e.g. \"Affordable rides across the city\"). It appears below your business name on the public page — a quick way to set your brand tone." },
+      { title: "Add a tagline", detail: "Enter a short tagline (e.g. \"Affordable rides across the city\"). It appears below your business name on the public page - a quick way to set your brand tone." },
       { title: "Pick an accent color", detail: "Choose a hex color for your accent. Buttons, borders, and highlights on your public page will use this color. Works on all themes so your brand color always comes through." },
       { title: "Upgrade to unlock more designs", detail: "FREE plan includes Midnight only. PRO adds Clean and Ocean. ENTERPRISE unlocks Forest and Luxury. Upgrade in Settings → Billing." },
     ],
@@ -159,7 +159,7 @@ const GUIDES = [
       { title: "Open the Inquiries tab", detail: "Click Inquiries in the sidebar. All submissions from your public page appear here sorted by date, showing customer name, vehicle, dates, and status." },
       { title: "Read the inquiry details", detail: "Each row shows the customer's name, phone, requested vehicle, pickup/return dates, and any notes they left. Click a row to expand full details." },
       { title: "Approve or Reject", detail: "Hit Approve to confirm the request or Reject to decline it. Both actions update the inquiry status immediately. Rejected inquiries stay on record but are visually marked." },
-      { title: "Follow up with the customer", detail: "After approving, use the customer's phone number shown in the inquiry to confirm details directly. The customer isn't notified automatically — outreach is manual." },
+      { title: "Follow up with the customer", detail: "After approving, use the customer's phone number shown in the inquiry to confirm details directly. The customer isn't notified automatically - outreach is manual." },
     ],
     tip: "FREE plan supports up to 15 inquiries per month. PRO supports 200. ENTERPRISE is unlimited. Check your plan limit in Public Page settings if inquiries stop coming through.",
   },
@@ -174,7 +174,7 @@ const GUIDES = [
       { title: 'Click "Convert to Rental"', detail: "The Convert to Rental button appears on every approved inquiry that hasn't been converted yet. Click it to start the conversion." },
       { title: "Customer is created automatically", detail: "If the customer's phone number isn't already in your system, a new customer profile is created using the name and phone from the inquiry. No manual data entry needed." },
       { title: "Rental is created and you're redirected", detail: "A new rental reservation is created with the vehicle, customer, and dates from the inquiry. You're taken to the Rentals tab automatically to review and activate it." },
-      { title: "Inquiry is marked as converted", detail: "The original inquiry shows a Rental Created badge. The Convert button disappears — each inquiry can only produce one rental to prevent duplicates." },
+      { title: "Inquiry is marked as converted", detail: "The original inquiry shows a Rental Created badge. The Convert button disappears - each inquiry can only produce one rental to prevent duplicates." },
     ],
     tip: "Converting an inquiry doesn't automatically mark the rental Active. Review the rental record, confirm any deposit details, then change the status to Active when the customer picks up the car.",
   },
@@ -183,12 +183,12 @@ const GUIDES = [
     icon: Bell,
     title: "Get Notified of New Inquiries",
     badge: "All Plans",
-    description: "Smapey notifies you instantly when a customer submits a booking inquiry from your public page — no manual refreshing needed.",
+    description: "Smapey notifies you instantly when a customer submits a booking inquiry from your public page, no manual refreshing needed.",
     steps: [
       { title: "A customer submits an inquiry", detail: "When someone fills out and submits the booking form on your public page, the system creates the inquiry and immediately sends a notification to your account." },
-      { title: "The bell badge lights up", detail: "A red badge with a count appears on the notification bell in your dashboard header. You'll see it the next time you're on any page in the dashboard — no refresh needed." },
-      { title: "Click the bell to see the notification", detail: "Click the bell icon to open the notification panel. You'll see a card that shows the customer's name, vehicle, and dates — along with a \"Tap to view inquiries →\" hint." },
-      { title: "Click the notification to go directly to inquiries", detail: "Clicking the notification closes the panel, navigates you to the Booking Inquiries page, and refreshes the list automatically — so the new inquiry is always at the top." },
+      { title: "The bell badge lights up", detail: "A red badge with a count appears on the notification bell in your dashboard header. You'll see it the next time you're on any page in the dashboard - no refresh needed." },
+      { title: "Click the bell to see the notification", detail: "Click the bell icon to open the notification panel. You'll see a card that shows the customer's name, vehicle, and dates - along with a \"Tap to view inquiries →\" hint." },
+      { title: "Click the notification to go directly to inquiries", detail: "Clicking the notification closes the panel, navigates you to the Booking Inquiries page, and refreshes the list automatically - so the new inquiry is always at the top." },
     ],
     tip: "Notifications are delivered to all OWNER and ADMIN accounts in your organization, so your whole team stays in the loop when a new booking request comes in.",
   },
@@ -197,15 +197,15 @@ const GUIDES = [
     icon: ImagePlus,
     title: "Upload Vehicle Photos",
     badge: "All Plans",
-    description: "Add a photo to each vehicle so customers can see exactly what they're renting on your public booking page — before they submit an inquiry.",
+    description: "Add a photo to each vehicle so customers can see exactly what they're renting on your public booking page, before they submit an inquiry.",
     steps: [
       { title: "Open the Fleet tab", detail: "Go to Fleet in the sidebar. Your registered vehicles are listed here with their current status and a thumbnail if a photo has been uploaded." },
       { title: "Open Add Vehicle or Edit an existing one", detail: "Click Add Vehicle to create a new one, or click the edit icon on any existing vehicle. The vehicle form includes a photo upload area at the top." },
       { title: "Upload a vehicle photo", detail: "Click the photo upload zone and select an image file from your device. You'll see a preview of the photo immediately inside the form before saving." },
       { title: "Save the vehicle", detail: "Click Save. The photo is uploaded to the cloud and linked to that vehicle. It now shows as a thumbnail in the fleet list and as a full image on your public booking page." },
-      { title: "Replace or remove a photo", detail: "To replace a photo, open the vehicle edit form and upload a new image — the old one is overwritten. To remove it entirely, click the remove button that appears on the photo preview." },
+      { title: "Replace or remove a photo", detail: "To replace a photo, open the vehicle edit form and upload a new image - the old one is overwritten. To remove it entirely, click the remove button that appears on the photo preview." },
     ],
-    tip: "Use clean, well-lit photos taken from the front or 3/4 angle — customers decide faster when they can clearly see the car. Photos display at full width on your public booking page across all 5 themes.",
+    tip: "Use clean, well-lit photos taken from the front or 3/4 angle, customers decide faster when they can clearly see the car. Photos display at full width on your public booking page across all 5 themes.",
   },
 ]
 
@@ -240,7 +240,7 @@ function Hero() {
           Car Rental Documentation
         </h1>
         <p className="max-w-2xl text-lg leading-relaxed" style={{ color: "#54514c" }}>
-          Everything you need to run your car rental business on Smapey — from adding your first vehicle to reading your monthly revenue.
+          Everything you need to run your car rental business on Smapey, from adding your first vehicle to reading your monthly revenue.
         </p>
           <div className="flex flex-wrap items-center justify-start gap-6 text-xs font-semibold mt-8" style={{ color: "#54514c" }}>
             {["5-minute setup", "No training required", "Free plan available"].map((t) => (
@@ -347,7 +347,7 @@ function CTA() {
         <div className="rounded-[28px] border-2 p-10 flex flex-col md:flex-row items-center justify-between gap-6" style={{ background: AMBER, borderColor: INK, boxShadow: `10px 10px 0 ${INK}` }}>
           <div>
             <h3 className="text-2xl font-extrabold mb-2" style={{ color: INK }}>Ready to manage your fleet?</h3>
-            <p className="text-sm font-medium" style={{ color: "#5c4a28" }}>Start free — no credit card required. Cancel anytime.</p>
+            <p className="text-sm font-medium" style={{ color: "#5c4a28" }}>Start free, no credit card required. Cancel anytime.</p>
           </div>
           <a href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=CAR_RENTAL&plan=FREE`} className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full font-bold text-sm border-2 transition-transform hover:-translate-y-0.5 shrink-0" style={{ ...display, background: INK, color: "#fff", borderColor: INK }}>
             Start for free <ChevronRight className="w-4 h-4" />

@@ -17,8 +17,8 @@ const SECTIONS = [
     title: "1. Add your borrowers",
     body: [
       "Open Borrowers in the dashboard and click Add Borrower. Fill in the full name, phone number, email, address, and any ID or reference details you want on record.",
-      "Borrower profiles are reusable — you create them once and attach them to any number of loans. Each profile keeps a running history of every loan and payment.",
-      "The dashboard automatically tracks each borrower's total borrowed, outstanding balance, and active loan count — so you can see their standing at a glance before issuing a new loan.",
+      "Borrower profiles are reusable, you create them once and attach them to any number of loans. Each profile keeps a running history of every loan and payment.",
+      "The dashboard automatically tracks each borrower's total borrowed, outstanding balance, and active loan count, so you can see their standing at a glance before issuing a new loan.",
     ],
   },
   {
@@ -26,7 +26,7 @@ const SECTIONS = [
     title: "2. Issue a loan",
     body: [
       "Open Loans and click New Loan. Select a borrower, then set the principal amount, interest rate, term (number of installments), and the disbursement date.",
-      "Choose the repayment frequency — weekly, bi-weekly, or monthly — and the system computes the installment amount and total repayable for you.",
+      "Choose the repayment frequency (weekly, bi-weekly, or monthly) and the system computes the installment amount and total repayable for you.",
       "Add notes for your records (purpose of the loan, collateral, guarantor) and save. The loan is created with an Active status and linked to the borrower's profile.",
     ],
   },
@@ -34,16 +34,16 @@ const SECTIONS = [
     icon: CalendarRange,
     title: "3. Review the amortization schedule",
     body: [
-      "The moment a loan is created, a full amortization schedule is generated — every due date and installment amount laid out from the first payment to the last.",
+      "The moment a loan is created, a full amortization schedule is generated, every due date and installment amount laid out from the first payment to the last.",
       "Each scheduled installment shows the amount due and its status, so you and the borrower both know exactly what is owed and when.",
-      "No manual computation, no spreadsheets — the schedule recalculates automatically based on the principal, interest rate, and term you entered.",
+      "No manual computation, no spreadsheets, the schedule recalculates automatically based on the principal, interest rate, and term you entered.",
     ],
   },
   {
     icon: Wallet,
     title: "4. Record payments",
     body: [
-      "When a borrower pays, open the loan and click Record Payment. Enter the amount and choose the method — Cash, GCash, or Bank Transfer.",
+      "When a borrower pays, open the loan and click Record Payment. Enter the amount and choose the method, Cash, GCash, or Bank Transfer.",
       "Partial payments are fully supported. The loan's outstanding balance drops immediately and the relevant installments are marked as paid.",
       "Every payment is timestamped and kept in the loan's history, giving you a clear, auditable record of what each borrower has settled.",
     ],
@@ -54,14 +54,14 @@ const SECTIONS = [
     body: [
       "Loans with a missed due date are flagged as overdue automatically. The dashboard shows who is late, how much they owe, and how many days past due.",
       "Filter your loan list by overdue status to build a daily collections worklist, then follow up by phone or message before the debt ages further.",
-      "Mark a loan as Defaulted when it can no longer be collected — it stays in history and is reflected in your default-rate analytics.",
+      "Mark a loan as Defaulted when it can no longer be collected, it stays in history and is reflected in your default-rate analytics.",
     ],
   },
   {
     icon: BarChart3,
     title: "6. Monitor your lending analytics",
     body: [
-      "The Analytics dashboard shows monthly collections, total outstanding balance, repayment rate, and default rate — all updated in real time.",
+      "The Analytics dashboard shows monthly collections, total outstanding balance, repayment rate, and default rate, all updated in real time.",
       "A 6-month Collections vs. Disbursed chart shows cash collected against money lent out, so you can see whether your loan book is growing healthily.",
       "The loan portfolio breakdown splits your loans into Active, Fully Paid, and Defaulted, giving you an instant read on the health of your lending business.",
     ],
@@ -224,7 +224,7 @@ export default function GuideContent() {
           <div className="rounded-[28px] border-2 p-10 flex flex-col md:flex-row items-center justify-between gap-6" style={{ background: AMBER, borderColor: INK, boxShadow: `10px 10px 0 ${INK}` }}>
             <div>
               <h3 className="text-2xl font-extrabold mb-2" style={{ color: INK }}>Ready to get started?</h3>
-              <p className="text-sm font-medium" style={{ color: "#5c4a28" }}>Free plan — 20 borrowers, 30 active loans. No credit card required.</p>
+              <p className="text-sm font-medium" style={{ color: "#5c4a28" }}>Free plan, 20 borrowers, 30 active loans. No credit card required.</p>
             </div>
             <a href={REGISTER_URL} className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full font-bold text-sm border-2 transition-transform hover:-translate-y-0.5 shrink-0" style={{ ...display, background: INK, color: "#fff", borderColor: INK }}>
               Start free <ChevronRight className="w-4 h-4" />

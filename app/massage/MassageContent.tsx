@@ -18,12 +18,12 @@ const display = { fontFamily: "'Hanken Grotesk', system-ui, sans-serif" }
 
 const FEATURES = [
   { icon: Calendar, title: "Appointment Scheduling", desc: "Book sessions, assign services and therapists, and set durations. View your day at a glance from one clean dashboard." },
-  { icon: HandHelping, title: "Therapist Management", desc: "Track each therapist's specialties and schedule. Assign sessions by skill — Swedish, deep tissue, Thai, hot stone — and filter the calendar by therapist." },
-  { icon: HeartPulse, title: "Client Intake & Health Notes", desc: "Full client profiles with medical conditions, allergies, focus areas, and pressure preferences — visible only to your staff, never on the public page." },
-  { icon: Flower2, title: "Treatment Menu", desc: "Define every treatment — Swedish, deep tissue, hot stone, reflexology — with prices, durations, and photos. Updates flow to your booking page instantly." },
+  { icon: HandHelping, title: "Therapist Management", desc: "Track each therapist's specialties and schedule. Assign sessions by skill (Swedish, deep tissue, Thai, hot stone) and filter the calendar by therapist." },
+  { icon: HeartPulse, title: "Client Intake & Health Notes", desc: "Full client profiles with medical conditions, allergies, focus areas, and pressure preferences - visible only to your staff, never on the public page." },
+  { icon: Flower2, title: "Treatment Menu", desc: "Define every treatment (Swedish, deep tissue, hot stone, reflexology) with prices, durations, and photos. Updates flow to your booking page instantly." },
   { icon: Globe, title: "Public Booking Page", desc: "Your spa gets a unique URL clients can visit to browse treatments and submit a booking request. Pick from 5 spa-themed designs." },
-  { icon: Inbox, title: "Inquiry Management", desc: "Booking requests land in one inbox. Approve, reject, or convert them into confirmed appointments — with optional deposit collection — in one click." },
-  { icon: BarChart3, title: "Analytics Dashboard", desc: "Live numbers — monthly revenue, session count, completion rate, therapist utilization, and pending inquiries — without a spreadsheet in sight." },
+  { icon: Inbox, title: "Inquiry Management", desc: "Booking requests land in one inbox. Approve, reject, or convert them into confirmed appointments (with optional deposit collection) in one click." },
+  { icon: BarChart3, title: "Analytics Dashboard", desc: "Live numbers - monthly revenue, session count, completion rate, therapist utilization, and pending inquiries - without a spreadsheet in sight." },
   { icon: Users, title: "Team Roles & Permissions", desc: "Owners see everything. Therapists see only their own bookings. Receptionists see the schedule. Role-based access keeps data clean and private." },
 ]
 
@@ -32,7 +32,7 @@ const FAQS = [
   { q: "Can clients book online?", a: "Yes. Every business gets a unique public URL (e.g. smapey.com/massage/your-spa) where clients can browse treatments, optionally request a therapist, and send a booking inquiry. Approve or decline from your dashboard." },
   { q: "Can I track therapist assignments?", a: "Yes. Add your therapists, assign them to appointments, and filter the schedule by therapist. Each appointment also captures the client's pressure preference and focus areas." },
   { q: "Do you store health information securely?", a: "Yes. Health notes are stored on each client profile and only visible to authenticated staff in your organization. They never appear on the public booking page." },
-  { q: "Can I take deposits?", a: "On Pro and Enterprise plans, you can upload a payment QR (GCash, Maya, bank) and require a reference number before clients can submit a booking request — reducing no-shows on premium treatments." },
+  { q: "Can I take deposits?", a: "On Pro and Enterprise plans, you can upload a payment QR (GCash, Maya, bank) and require a reference number before clients can submit a booking request, reducing no-shows on premium treatments." },
 ]
 
 function useInView(options?: IntersectionObserverInit) {
@@ -119,12 +119,12 @@ function Hero() {
           Run your<br className="hidden lg:block" /> massage <span style={{ color: BLUE }}>business</span><br className="hidden lg:block" /> &amp; get more <span style={{ color: AMBER }}>bookings.</span>
         </h1>
         <p className="text-lg max-w-lg mb-9 leading-relaxed" style={{ color: "#54514c" }}>
-          Therapists, treatments, client intake, deposits, and a branded booking page —
+          Therapists, treatments, client intake, deposits, and a branded booking page,
           everything you need to run a small spa, in one clean dashboard. No bloat, no learning curve.
         </p>
         <div className="flex flex-wrap items-center gap-3 mb-7">
           <a href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=MASSAGE&plan=FREE`} className="flex items-center gap-2 px-7 py-4 rounded-full font-bold text-sm border-2 transition-transform hover:-translate-y-0.5" style={{ ...display, background: AMBER, color: INK, borderColor: INK, boxShadow: `5px 5px 0 ${INK}` }}>
-            Start free — no card needed <ChevronRight className="w-4 h-4" />
+            Start free, no card needed <ChevronRight className="w-4 h-4" />
           </a>
           <a href="/massage" className="flex items-center px-7 py-4 rounded-full font-bold text-sm border-2 transition-transform hover:-translate-y-0.5" style={{ ...display, background: "transparent", color: INK, borderColor: INK }}>
             View all features
@@ -164,7 +164,7 @@ function Features() {
         <Animate className="text-center mb-16">
           <p className="text-sm font-bold uppercase tracking-widest mb-3" style={{ color: BLUE }}>Features</p>
           <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight" style={{ color: INK }}>Built for spas and wellness clinics</h2>
-          <p className="mt-4 max-w-xl mx-auto" style={{ color: "#54514c" }}>From the first inquiry to the final session — every essential a small spa needs, none of the enterprise bloat.</p>
+          <p className="mt-4 max-w-xl mx-auto" style={{ color: "#54514c" }}>From the first inquiry to the final session, every essential a small spa needs, none of the enterprise bloat.</p>
         </Animate>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {FEATURES.map(({ icon: Icon, title, desc }, i) => {
@@ -312,7 +312,7 @@ function PaymentModal({ plan, isPhilippines, onClose }: { plan: { name: string; 
         <div className="px-6 py-5 flex items-center justify-between" style={{ background: INK }}>
           <div className="flex items-center gap-3">
             {step === "payment" && !token && <button onClick={() => setStep("details")} className="text-white/70 hover:text-white transition"><svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}><path d="M19 12H5M12 5l-7 7 7 7"/></svg></button>}
-            <div><h2 className="text-white font-extrabold text-lg">{step === "details" ? "Create your account" : "Choose payment method"}</h2><p className="text-sm mt-0.5" style={{ color: "rgba(255,255,255,.7)" }}>{plan.name} plan — <span className="font-bold" style={{ color: AMBER }}>{displayPrice}</span>{plan.period}</p></div>
+            <div><h2 className="text-white font-extrabold text-lg">{step === "details" ? "Create your account" : "Choose payment method"}</h2><p className="text-sm mt-0.5" style={{ color: "rgba(255,255,255,.7)" }}>{plan.name} plan, <span className="font-bold" style={{ color: AMBER }}>{displayPrice}</span>{plan.period}</p></div>
           </div>
           <button onClick={onClose} className="text-white/70 hover:text-white transition-colors"><X className="w-5 h-5" /></button>
         </div>

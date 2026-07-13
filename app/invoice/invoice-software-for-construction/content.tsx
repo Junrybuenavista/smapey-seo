@@ -65,7 +65,7 @@ export default function ConstructionInvoiceContent() {
 
           <p className="mt-4 text-lg text-gray-700 leading-relaxed">
             Smapey helps construction businesses create professional invoices,
-            track project payments, and manage billing workflows—all in one
+            track project payments, and manage billing workflows, all in one
             simple platform.
           </p>
         </div>
@@ -120,7 +120,7 @@ export default function ConstructionInvoiceContent() {
           </h2>
 
           <p className="mt-4 text-gray-300">
-            Create invoices, manage projects, and get paid faster—all in one place.
+            Create invoices, manage projects, and get paid faster, all in one place.
           </p>
 
           <div className="mt-8">

@@ -17,20 +17,20 @@ const display = { fontFamily: "'Hanken Grotesk', system-ui, sans-serif" }
 
 const FEATURES = [
   { icon: CalendarDays, title: "Patient Appointment Management", desc: "Create, confirm, cancel, and complete patient appointments in one organized dashboard. No more paper logbooks or scattered spreadsheets." },
-  { icon: Stethoscope, title: "Doctor & Staff Assignment", desc: "Assign each appointment to the right doctor, nurse, or specialist. Patients always know who they're seeing — and your team stays coordinated." },
+  { icon: Stethoscope, title: "Doctor & Staff Assignment", desc: "Assign each appointment to the right doctor, nurse, or specialist. Patients always know who they're seeing - and your team stays coordinated." },
   { icon: Clock, title: "Clinic Availability Scheduling", desc: "Set open hours per day and assign staff to specific time blocks. Control exactly when patients can be booked in." },
   { icon: CreditCard, title: "Deposit & Fee Tracking", desc: "Record consultation fees and deposits. Mark payments as paid or unpaid and keep your revenue visible without a separate tool." },
   { icon: Bell, title: "Appointment Status Workflow", desc: "Move appointments through Pending → Confirmed → Completed with one click. Track no-shows and cancellations automatically." },
-  { icon: ClipboardList, title: "Service Catalog", desc: "Define your clinic's services — consultations, check-ups, procedures — with custom durations and prices. Activate or deactivate anytime." },
+  { icon: ClipboardList, title: "Service Catalog", desc: "Define your clinic's services (consultations, check-ups, procedures) with custom durations and prices. Activate or deactivate anytime." },
   { icon: BarChart3, title: "Clinic Dashboard", desc: "See today's patient schedule, monthly appointment totals, completion rates, and upcoming bookings at a glance." },
   { icon: Users, title: "Team Collaboration", desc: "Invite receptionists, nurses, and clinic managers with role-based access. Control who can create, edit, or view appointments." },
   { icon: Shield, title: "Secure & Isolated Data", desc: "Your patient list and appointment records are fully isolated. No data is ever shared across clinics or businesses." },
 ]
 
 const FAQS = [
-  { q: "Is this built for medical clinics specifically?", a: "Yes — the workflow maps directly to how clinics operate. Assign doctors, track consultation fees, manage patient appointment slots, and move bookings through a Pending → Confirmed → Completed flow." },
-  { q: "Can we assign appointments to specific doctors?", a: "Yes. Each appointment has a staff assignment field. You can assign Dr. Santos to one booking and Dr. Reyes to another — all tracked separately." },
-  { q: "How does deposit/fee tracking work?", a: "When creating an appointment you can record a fee or deposit amount and mark it as paid or unpaid. It's a simple record-keeping field — no payment processing at the appointment level." },
+  { q: "Is this built for medical clinics specifically?", a: "Yes, the workflow maps directly to how clinics operate. Assign doctors, track consultation fees, manage patient appointment slots, and move bookings through a Pending → Confirmed → Completed flow." },
+  { q: "Can we assign appointments to specific doctors?", a: "Yes. Each appointment has a staff assignment field. You can assign Dr. Santos to one booking and Dr. Reyes to another, all tracked separately." },
+  { q: "How does deposit/fee tracking work?", a: "When creating an appointment you can record a fee or deposit amount and mark it as paid or unpaid. It's a simple record-keeping field, no payment processing at the appointment level." },
   { q: "Can our receptionist use this without full admin access?", a: "Yes. You can invite staff with limited access so they can create and manage appointments without seeing billing or admin settings." },
 ]
 
@@ -110,10 +110,10 @@ function Hero() {
         <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.04] tracking-tight mb-6" style={{ color: INK }}>
           Clinic appointment scheduling software <span style={{ color: BLUE }}>your staff will actually use</span>
         </h1>
-        <p className="text-lg max-w-2xl mx-auto mb-10 leading-relaxed" style={{ color: "#54514c" }}>Smapey Booking helps clinics manage patient appointments, assign doctors, track deposits, and run a full schedule — without the chaos of paper logs or manual spreadsheets.</p>
+        <p className="text-lg max-w-2xl mx-auto mb-10 leading-relaxed" style={{ color: "#54514c" }}>Smapey Booking helps clinics manage patient appointments, assign doctors, track deposits, and run a full schedule, without the chaos of paper logs or manual spreadsheets.</p>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
           <a href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=BOOKING&plan=FREE`} className="flex items-center gap-2 px-7 py-4 rounded-full font-bold text-sm border-2 transition-transform hover:-translate-y-0.5" style={{ ...display, background: AMBER, color: INK, borderColor: INK, boxShadow: `4px 4px 0 ${INK}` }}>
-            Start free — no card needed <ChevronRight className="w-4 h-4" />
+            Start free, no card needed <ChevronRight className="w-4 h-4" />
           </a>
           <a href="/booking" className="flex items-center gap-2 px-7 py-4 rounded-full font-bold text-sm border-2 bg-white transition-transform hover:-translate-y-0.5" style={{ ...display, color: INK, borderColor: INK }}>View all features</a>
         </div>
@@ -132,7 +132,7 @@ function Features() {
         <Animate className="text-center mb-16">
           <p className="text-sm font-bold uppercase tracking-widest mb-3" style={{ color: BLUE }}>Features</p>
           <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight" style={{ color: INK }}>Everything your clinic's front desk needs</h2>
-          <p className="mt-4 max-w-xl mx-auto" style={{ color: "#54514c" }}>From patient booking to doctor assignment to payment tracking — all in one place.</p>
+          <p className="mt-4 max-w-xl mx-auto" style={{ color: "#54514c" }}>From patient booking to doctor assignment to payment tracking, all in one place.</p>
         </Animate>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {FEATURES.map(({ icon: Icon, title, desc }, i) => {
@@ -311,7 +311,7 @@ function PaymentModal({ plan, isPhilippines, onClose }: { plan: { name: string; 
         <div className="px-6 py-5 flex items-center justify-between" style={{ background: INK }}>
           <div className="flex items-center gap-3">
             {step === "payment" && !token && <button onClick={() => setStep("details")} className="text-white/70 hover:text-white transition"><svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}><path d="M19 12H5M12 5l-7 7 7 7"/></svg></button>}
-            <div><h2 className="text-white font-extrabold text-lg">{step === "details" ? "Create your account" : "Choose payment method"}</h2><p className="text-sm mt-0.5" style={{ color: "rgba(255,255,255,.7)" }}>{plan.name} plan — <span className="font-bold" style={{ color: AMBER }}>{displayPrice}</span>{plan.period}</p></div>
+            <div><h2 className="text-white font-extrabold text-lg">{step === "details" ? "Create your account" : "Choose payment method"}</h2><p className="text-sm mt-0.5" style={{ color: "rgba(255,255,255,.7)" }}>{plan.name} plan, <span className="font-bold" style={{ color: AMBER }}>{displayPrice}</span>{plan.period}</p></div>
           </div>
           <button onClick={onClose} className="text-white/70 hover:text-white transition-colors"><X className="w-5 h-5" /></button>
         </div>

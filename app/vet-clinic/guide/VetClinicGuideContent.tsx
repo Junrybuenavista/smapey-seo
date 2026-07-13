@@ -21,9 +21,9 @@ const SECTIONS = [
     icon: PawPrint,
     title: "1. Set Up Your Vet Clinic",
     steps: [
-      { title: "Create your Smapey account", desc: "Sign up at smapey.com and select Vet Clinic Manager as your product. Your clinic's private workspace is created instantly — no credit card required on the free plan." },
+      { title: "Create your Smapey account", desc: "Sign up at smapey.com and select Vet Clinic Manager as your product. Your clinic's private workspace is created instantly - no credit card required on the free plan." },
       { title: "Add your veterinarians", desc: "Go to the Vets page and click Add Vet. Enter the vet's name, specialty (e.g. General Practitioner, Surgeon, Exotic Animals), phone, and email. Toggle them Active when they're ready to accept appointments." },
-      { title: "Set vet schedules", desc: "Click on a vet's name to manage their availability. Use Add Schedule to define which days and hours they work — e.g. Monday 08:00–17:00. You can add multiple time slots per day and repeat for each working day." },
+      { title: "Set vet schedules", desc: "Click on a vet's name to manage their availability. Use Add Schedule to define which days and hours they work - e.g. Monday 08:00–17:00. You can add multiple time slots per day and repeat for each working day." },
       { title: "Invite your team", desc: "Go to Settings → Team and invite receptionists or assistants by email. They can log in with their own account and work simultaneously on the same live system. Assign Admin or Member roles based on their responsibilities." },
     ],
   },
@@ -34,9 +34,9 @@ const SECTIONS = [
     steps: [
       { title: "Open the Pets page", desc: "Navigate to Vet Clinic → Pets from the sidebar." },
       { title: "Click Add Pet", desc: "Enter the pet's name, species (Dog, Cat, Bird, Reptile, etc.), breed, date of birth, weight, and sex. Add the owner's name, phone, and email so you can follow up on vaccinations or send appointment reminders." },
-      { title: "Add a pet photo", desc: "Upload a photo from your device or snap one on the spot with Take Photo using your phone or tablet camera. The picture shows on the pet's profile, in patient lists, and on their bills — making it easy to match the right pet at a glance." },
-      { title: "Add medical notes", desc: "Use the Notes field to record known allergies, chronic conditions, or important background — visible to every vet who looks up the pet's record." },
-      { title: "View pet history", desc: "Click Details on any pet to see their full profile — photo, all past appointments, vaccination records, and billing history in one place." },
+      { title: "Add a pet photo", desc: "Upload a photo from your device or snap one on the spot with Take Photo using your phone or tablet camera. The picture shows on the pet's profile, in patient lists, and on their bills - making it easy to match the right pet at a glance." },
+      { title: "Add medical notes", desc: "Use the Notes field to record known allergies, chronic conditions, or important background - visible to every vet who looks up the pet's record." },
+      { title: "View pet history", desc: "Click Details on any pet to see their full profile - photo, all past appointments, vaccination records, and billing history in one place." },
     ],
   },
   {
@@ -46,8 +46,8 @@ const SECTIONS = [
     steps: [
       { title: "Open the Appointments page", desc: "Navigate to Vet Clinic → Appointments from the sidebar." },
       { title: "Click Book Appointment", desc: "Select the pet (from your registered list), the attending vet, the appointment date, and start time. The form only shows vets who are scheduled on that day." },
-      { title: "Add a reason for visit", desc: "Enter the chief complaint — e.g. Annual check-up, Vomiting, Post-surgery follow-up. This helps the vet prepare and makes records more useful over time." },
-      { title: "Manage appointment status", desc: "Appointments move through a guided workflow: Pending → Confirmed → In Queue → In Progress → Completed. You can also mark them Cancelled or No Show. The system prevents invalid jumps — a completed visit can't be sent back to the queue — and every change is logged automatically." },
+      { title: "Add a reason for visit", desc: "Enter the chief complaint - e.g. Annual check-up, Vomiting, Post-surgery follow-up. This helps the vet prepare and makes records more useful over time." },
+      { title: "Manage appointment status", desc: "Appointments move through a guided workflow: Pending → Confirmed → In Queue → In Progress → Completed. You can also mark them Cancelled or No Show. The system prevents invalid jumps (a completed visit can't be sent back to the queue) and every change is logged automatically." },
     ],
   },
   {
@@ -55,10 +55,10 @@ const SECTIONS = [
     icon: Globe,
     title: "4. Accept Online Bookings",
     steps: [
-      { title: "Set up your booking page", desc: "Go to Vet Clinic → Online Booking and claim a short web address for your clinic — for example smapey.com/vet/your-clinic-name. This is your public booking page; no login is required for pet owners to use it." },
+      { title: "Set up your booking page", desc: "Go to Vet Clinic → Online Booking and claim a short web address for your clinic - for example smapey.com/vet/your-clinic-name. This is your public booking page; no login is required for pet owners to use it." },
       { title: "Share the link", desc: "Copy your booking link and put it on your Facebook page, Google profile, or website. Pet owners open it on any phone or computer and request a visit in under a minute." },
       { title: "Owners submit a request", desc: "On the page, the owner enters their pet's name and species, their own name and phone, an optional preferred vet, the preferred date and time, and the reason for the visit. They can submit even if they've never visited before." },
-      { title: "Review and approve requests", desc: "New requests appear on the Booking Requests page and you get a notification. Approve a request to assign a vet and instantly turn it into a real appointment — a new pet profile is created automatically if the pet isn't already on file. Decline requests you can't accommodate." },
+      { title: "Review and approve requests", desc: "New requests appear on the Booking Requests page and you get a notification. Approve a request to assign a vet and instantly turn it into a real appointment - a new pet profile is created automatically if the pet isn't already on file. Decline requests you can't accommodate." },
     ],
   },
   {
@@ -77,10 +77,10 @@ const SECTIONS = [
     icon: Syringe,
     title: "6. Track Vaccinations",
     steps: [
-      { title: "Open the Vaccinations section", desc: "From a pet's profile, click the Vaccinations tab — or navigate to Vet Clinic → Vaccinations to see all upcoming and recent records across all pets." },
+      { title: "Open the Vaccinations section", desc: "From a pet's profile, click the Vaccinations tab - or navigate to Vet Clinic → Vaccinations to see all upcoming and recent records across all pets." },
       { title: "Log a vaccination", desc: "Click Add Vaccination and select the pet. Enter the vaccine name, date given, and next due date. Optionally add the batch number and who administered it." },
-      { title: "Monitor upcoming vaccinations", desc: "The dashboard and analytics page show pets with vaccinations due in the next 30 days — so you can proactively contact owners before the due date." },
-      { title: "Review vaccination history", desc: "Each pet's profile shows their full vaccination log — what was given, when, and what's coming up next. Useful during consultations and for owner inquiries." },
+      { title: "Monitor upcoming vaccinations", desc: "The dashboard and analytics page show pets with vaccinations due in the next 30 days - so you can proactively contact owners before the due date." },
+      { title: "Review vaccination history", desc: "Each pet's profile shows their full vaccination log - what was given, when, and what's coming up next. Useful during consultations and for owner inquiries." },
     ],
   },
   {
@@ -89,7 +89,7 @@ const SECTIONS = [
     title: "7. Manage Billing",
     steps: [
       { title: "Open the Billing page", desc: "Navigate to Vet Clinic → Billing from the sidebar." },
-      { title: "Create a bill", desc: "Click New Bill, select the pet, and set the bill date. Add line items — each with a description (e.g. Consultation, Rabies Vaccine, Deworming), quantity, and unit price. The total is calculated automatically." },
+      { title: "Create a bill", desc: "Click New Bill, select the pet, and set the bill date. Add line items - each with a description (e.g. Consultation, Rabies Vaccine, Deworming), quantity, and unit price. The total is calculated automatically." },
       { title: "Record payments", desc: "Click Pay on any unpaid bill. Enter the amount received and select the payment method (Cash, GCash, Card, Bank Transfer). The bill status updates to Partial or Paid automatically based on the balance." },
       { title: "View bill details", desc: "Click View on any bill to see the full itemized breakdown, payment history, outstanding balance, and any notes. From the detail view you can also record additional payments." },
     ],
@@ -101,18 +101,18 @@ const SECTIONS = [
     steps: [
       { title: "Open the Analytics page", desc: "Navigate to Vet Clinic → Analytics from the sidebar." },
       { title: "Review dashboard stat cards", desc: "See at-a-glance totals: active vets, registered pets, today's appointments, completed consultations, upcoming vaccinations in the next 30 days, and total unpaid bill amounts." },
-      { title: "Check the 7-day trend chart", desc: "The bar chart shows daily appointment counts and completion counts for the past 7 days — useful for spotting busy periods and tracking your clinic's throughput." },
-      { title: "Monitor today's schedule", desc: "The bottom section lists today's queued appointments with pet name, vet, scheduled time, and current status — a quick reference during busy clinic days." },
+      { title: "Check the 7-day trend chart", desc: "The bar chart shows daily appointment counts and completion counts for the past 7 days - useful for spotting busy periods and tracking your clinic's throughput." },
+      { title: "Monitor today's schedule", desc: "The bottom section lists today's queued appointments with pet name, vet, scheduled time, and current status - a quick reference during busy clinic days." },
     ],
   },
 ]
 
 const TIPS = [
-  { icon: Globe, tip: "Put your online booking link on your Facebook page and Google profile — owners can request visits 24/7, even when your reception line is busy or closed." },
-  { icon: Camera, tip: "Snap a photo when you register a pet — it makes the right record instantly recognizable in lists, the queue, and on bills." },
-  { icon: Clock, tip: "Set up vet schedules before you start booking — the appointment form uses them to show only available vets on each selected date." },
-  { icon: Bell, tip: "Check the 30-day vaccination reminder list on the dashboard weekly — proactive owner reminders lead to better follow-through and healthier pets." },
-  { icon: Lightbulb, tip: "Register a pet once, then link all their appointments, vaccinations, and bills to that same profile — everything is traceable in one place." },
+  { icon: Globe, tip: "Put your online booking link on your Facebook page and Google profile, owners can request visits 24/7, even when your reception line is busy or closed." },
+  { icon: Camera, tip: "Snap a photo when you register a pet, it makes the right record instantly recognizable in lists, the queue, and on bills." },
+  { icon: Clock, tip: "Set up vet schedules before you start booking, the appointment form uses them to show only available vets on each selected date." },
+  { icon: Bell, tip: "Check the 30-day vaccination reminder list on the dashboard weekly, proactive owner reminders lead to better follow-through and healthier pets." },
+  { icon: Lightbulb, tip: "Register a pet once, then link all their appointments, vaccinations, and bills to that same profile, everything is traceable in one place." },
   { icon: Shield, tip: "Keep the Queue board open on a reception screen throughout the day so all staff can see patient status in real time without asking each other." },
 ]
 
@@ -201,7 +201,7 @@ export default function VetClinicGuideContent() {
             Smapey Vet Clinic Manager <span style={{ color: BLUE }}>Guide</span>
           </h1>
           <p className="text-lg max-w-2xl mx-auto mb-8" style={{ color: "#54514c" }}>
-            Everything you need to set up your clinic, manage pets and vets, take appointments online or at the desk, run the live queue board, track vaccinations, and handle billing — step by step.
+            Everything you need to set up your clinic, manage pets and vets, take appointments online or at the desk, run the live queue board, track vaccinations, and handle billing, step by step.
           </p>
           <div className="flex flex-wrap items-center justify-center gap-6 text-xs font-semibold" style={{ color: "#54514c" }}>
             {["5-minute setup", "No training required", "Free plan available"].map((t) => (

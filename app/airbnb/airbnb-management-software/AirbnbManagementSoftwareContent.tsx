@@ -18,9 +18,9 @@ const FEATURES = [
   { icon: Home, title: "Property Management", desc: "List every rental with photos, property type, room count, nightly rate, and cleaning fee. Toggle properties on or off as availability changes." },
   { icon: Users, title: "Guest Database", desc: "Maintain full guest profiles with contact info, stay history, total spent, and personal notes. Reuse profiles across every reservation without re-entering data." },
   { icon: CalendarRange, title: "Reservation Tracking", desc: "Create reservations with date range, cost breakdown, deposit tracking, booking source, and payment status. All in one form, without switching tools." },
-  { icon: ShieldCheck, title: "Double-Booking Prevention", desc: "Smapey checks for conflicting reservations on the same property before saving. Overlapping bookings are blocked automatically — no manual cross-checking needed." },
-  { icon: Sparkles, title: "Multi-Channel Source Tracking", desc: "Tag each booking's source — Airbnb, Booking.com, Agoda, Direct, Facebook, or Referral. Understand which channels fill your calendar and which ones underperform." },
-  { icon: BarChart3, title: "Revenue Analytics", desc: "A live dashboard showing monthly revenue, occupancy rate, total reservations, average nightly rate, and upcoming check-ins — no spreadsheet required." },
+  { icon: ShieldCheck, title: "Double-Booking Prevention", desc: "Smapey checks for conflicting reservations on the same property before saving. Overlapping bookings are blocked automatically - no manual cross-checking needed." },
+  { icon: Sparkles, title: "Multi-Channel Source Tracking", desc: "Tag each booking's source - Airbnb, Booking.com, Agoda, Direct, Facebook, or Referral. Understand which channels fill your calendar and which ones underperform." },
+  { icon: BarChart3, title: "Revenue Analytics", desc: "A live dashboard showing monthly revenue, occupancy rate, total reservations, average nightly rate, and upcoming check-ins - no spreadsheet required." },
 ]
 
 const COMPARISON = [
@@ -36,9 +36,9 @@ const COMPARISON = [
 
 const FAQS = [
   { q: "What does Airbnb management software actually do?", a: "It replaces the spreadsheets and manual notes most hosts use to track their properties, guests, and bookings. Good software centralizes reservation creation, check-in/check-out status, payment tracking, and revenue reporting in one dashboard." },
-  { q: "Is Smapey only for Airbnb listings?", a: "No. Smapey tracks bookings from any source — Airbnb, Booking.com, Agoda, Direct, Facebook, Referral, or Other. It's useful for any short-term or transient rental host regardless of where their bookings come from." },
+  { q: "Is Smapey only for Airbnb listings?", a: "No. Smapey tracks bookings from any source, Airbnb, Booking.com, Agoda, Direct, Facebook, Referral, or Other. It's useful for any short-term or transient rental host regardless of where their bookings come from." },
   { q: "How does Smapey prevent double bookings?", a: "When you create a reservation, the system checks whether the chosen property has any confirmed overlapping bookings for those dates. If a conflict exists, the booking is blocked before it saves." },
-  { q: "Can I start for free?", a: "Yes. The free plan includes 2 properties, 10 reservations per month, and full access to the dashboard — no credit card, no trial expiry." },
+  { q: "Can I start for free?", a: "Yes. The free plan includes 2 properties, 10 reservations per month, and full access to the dashboard, no credit card, no trial expiry." },
 ]
 
 function useInView(options?: IntersectionObserverInit) {
@@ -117,10 +117,10 @@ function Hero() {
         <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.04] tracking-tight mb-6" style={{ color: INK }}>
           The Airbnb management software <span style={{ color: BLUE }}>that handles the admin side</span>
         </h1>
-        <p className="text-lg max-w-2xl mx-auto mb-10 leading-relaxed" style={{ color: "#54514c" }}>Properties, guests, reservations, deposits, and revenue analytics — all in one dashboard. Stop managing your rental from spreadsheets and WhatsApp threads.</p>
+        <p className="text-lg max-w-2xl mx-auto mb-10 leading-relaxed" style={{ color: "#54514c" }}>Properties, guests, reservations, deposits, and revenue analytics, all in one dashboard. Stop managing your rental from spreadsheets and WhatsApp threads.</p>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
           <a href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=AIRBNB&plan=FREE`} className="flex items-center gap-2 px-7 py-4 rounded-full font-bold text-sm border-2 transition-transform hover:-translate-y-0.5" style={{ ...display, background: AMBER, color: INK, borderColor: INK, boxShadow: `4px 4px 0 ${INK}` }}>
-            Start free — no card needed <ChevronRight className="w-4 h-4" />
+            Start free, no card needed <ChevronRight className="w-4 h-4" />
           </a>
           <a href="/airbnb" className="flex items-center gap-2 px-7 py-4 rounded-full font-bold text-sm border-2 bg-white transition-transform hover:-translate-y-0.5" style={{ ...display, color: INK, borderColor: INK }}>View all features</a>
         </div>
@@ -331,7 +331,7 @@ function PaymentModal({ plan, isPhilippines, onClose }: { plan: { name: string; 
         <div className="px-6 py-5 flex items-center justify-between" style={{ background: INK }}>
           <div className="flex items-center gap-3">
             {step === "payment" && !token && <button onClick={() => setStep("details")} className="text-white/70 hover:text-white transition"><svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}><path d="M19 12H5M12 5l-7 7 7 7"/></svg></button>}
-            <div><h2 className="text-white font-extrabold text-lg">{step === "details" ? "Create your account" : "Choose payment method"}</h2><p className="text-sm mt-0.5" style={{ color: "rgba(255,255,255,.7)" }}>{plan.name} plan — <span className="font-bold" style={{ color: AMBER }}>{displayPrice}</span>{plan.period}</p></div>
+            <div><h2 className="text-white font-extrabold text-lg">{step === "details" ? "Create your account" : "Choose payment method"}</h2><p className="text-sm mt-0.5" style={{ color: "rgba(255,255,255,.7)" }}>{plan.name} plan, <span className="font-bold" style={{ color: AMBER }}>{displayPrice}</span>{plan.period}</p></div>
           </div>
           <button onClick={onClose} className="text-white/70 hover:text-white transition-colors"><X className="w-5 h-5" /></button>
         </div>

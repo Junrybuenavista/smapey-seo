@@ -19,20 +19,20 @@ const GUIDES = [
     icon: Scissors,
     title: "What Is Salon Management Software?",
     badge: "Introduction",
-    description: "Salon management software helps salon owners manage appointments, clients, and services in one place — replacing paper appointment books, spreadsheets, and manual follow-up calls.",
+    description: "Salon management software helps salon owners manage appointments, clients, and services in one place, replacing paper appointment books, spreadsheets, and manual follow-up calls.",
     steps: [
-      { title: "Replaces manual appointment books", detail: "Instead of writing appointments in a notebook, the app stores every booking digitally — including client name, service, assigned staff, date, time, and payment status." },
-      { title: "Gives clients a way to find and book you", detail: "Your public booking page lets clients browse your service menu and send a booking inquiry online — without calling you or sending a message first." },
+      { title: "Replaces manual appointment books", detail: "Instead of writing appointments in a notebook, the app stores every booking digitally - including client name, service, assigned staff, date, time, and payment status." },
+      { title: "Gives clients a way to find and book you", detail: "Your public booking page lets clients browse your service menu and send a booking inquiry online - without calling you or sending a message first." },
       { title: "Keeps your client history intact", detail: "Every appointment a client has ever made is stored in their profile. You can see what services they prefer, how often they visit, and how much they've spent." },
     ],
-    tip: "You don't need a dedicated computer. Smapey SalonOS runs in any web browser — a tablet or smartphone at the reception desk is all you need.",
+    tip: "You don't need a dedicated computer. Smapey SalonOS runs in any web browser, a tablet or smartphone at the reception desk is all you need.",
   },
   {
     id: "setting-up-services",
     icon: Scissors,
     title: "Setting Up Your Services",
     badge: "Getting Started",
-    description: "Your service menu is the foundation of your salon setup. Everything else — your public booking page, appointments, and pricing — flows from the services you define.",
+    description: "Your service menu is the foundation of your salon setup. Everything else (your public booking page, appointments, and pricing) flows from the services you define.",
     steps: [
       { title: "Add each service you offer", detail: "Create a service for each offering: haircut, blowout, hair color, manicure, pedicure, facial, etc. Give each one a name, price, and duration in minutes." },
       { title: "Services appear on your booking page automatically", detail: "Once you save a service, it appears on your public booking page immediately. Clients can see your full menu and the prices before they inquire." },
@@ -50,7 +50,7 @@ const GUIDES = [
     steps: [
       { title: "Book appointments directly", detail: "Create appointments from the dashboard: pick a client (or create a new one), choose a service, set the date and time, and assign a staff member if needed." },
       { title: "Track appointment statuses", detail: "Every appointment moves through statuses: Booked → In Progress → Completed. Update the status as the client arrives and as the service is finished." },
-      { title: "Record payment at completion", detail: "When you mark an appointment as Completed, record how the client paid — Cash, GCash, or Bank Transfer. The total is added to your revenue automatically." },
+      { title: "Record payment at completion", detail: "When you mark an appointment as Completed, record how the client paid - Cash, GCash, or Bank Transfer. The total is added to your revenue automatically." },
       { title: "View your daily schedule", detail: "The appointment dashboard shows all bookings for the day in order. You can filter by staff member or service type to see only what's relevant to you." },
     ],
     tip: "Mark appointments as In Progress when the client is in the chair. This keeps your dashboard accurate and makes it easy to see who's currently being served.",
@@ -60,7 +60,7 @@ const GUIDES = [
     icon: Globe,
     title: "Using the Public Booking Page",
     badge: "Client Experience",
-    description: "Every salon account gets a public-facing booking page — a simple, mobile-friendly page where clients can browse your services and send a booking inquiry.",
+    description: "Every salon account gets a public-facing booking page, a simple, mobile-friendly page where clients can browse your services and send a booking inquiry.",
     steps: [
       { title: "Your page is live the moment you add services", detail: "Once you save your first service, your booking page is live. No coding, no website builder, no extra configuration required." },
       { title: "Share your link everywhere", detail: "Post your booking page URL on Instagram, Facebook, WhatsApp, TikTok, or print it on your business card. Anywhere clients can click or scan a QR code." },
@@ -77,9 +77,9 @@ const GUIDES = [
     description: "Your client list is one of your most valuable business assets. Smapey SalonOS stores every client's contact details, appointment history, and notes in one searchable profile.",
     steps: [
       { title: "Create client profiles", detail: "Add clients by name, phone number, and email. You can create a client profile when booking an appointment or when they submit a booking inquiry." },
-      { title: "Search clients instantly", detail: "Find any client by typing their name or phone number. The search works across your entire client list — no scrolling through a long list needed." },
-      { title: "View full appointment history", detail: "Every appointment a client has ever had — including service, date, amount, and payment method — is stored in their profile. This is useful for personalizing service." },
-      { title: "Add notes per client", detail: "Record client preferences and notes directly in their profile — preferred products, color formulas, allergy notes, or anything else your staff should know." },
+      { title: "Search clients instantly", detail: "Find any client by typing their name or phone number. The search works across your entire client list - no scrolling through a long list needed." },
+      { title: "View full appointment history", detail: "Every appointment a client has ever had (including service, date, amount, and payment method) is stored in their profile. This is useful for personalizing service." },
+      { title: "Add notes per client", detail: "Record client preferences and notes directly in their profile - preferred products, color formulas, allergy notes, or anything else your staff should know." },
     ],
     tip: "Use client notes to record hair color formulas, nail preferences, or skin sensitivities. Your clients will notice when you remember the details.",
   },
@@ -88,7 +88,7 @@ const GUIDES = [
     icon: BarChart3,
     title: "Analytics and Revenue Tracking",
     badge: "Business Insights",
-    description: "The analytics dashboard gives you a real-time view of how your salon is performing — revenue, appointments, and pending inquiries — all from one screen.",
+    description: "The analytics dashboard gives you a real-time view of how your salon is performing (revenue, appointments, and pending inquiries) all from one screen.",
     steps: [
       { title: "Monthly revenue at a glance", detail: "The dashboard shows your total revenue for the current month, updated in real time as appointments are completed and payments are recorded." },
       { title: "Appointment count and completion rate", detail: "See how many appointments were booked, how many were completed, and how many are still pending. This helps you spot slow periods and plan staff schedules." },
@@ -130,7 +130,7 @@ function Hero() {
           How to Run a Salon with Software
         </h1>
         <p className="max-w-2xl text-lg leading-relaxed" style={{ color: "#54514c" }}>
-          Everything you need to know about salon management — from setting up your service menu to managing client records and tracking revenue.
+          Everything you need to know about salon management, from setting up your service menu to managing client records and tracking revenue.
         </p>
           <div className="flex flex-wrap items-center justify-start gap-6 text-xs font-semibold mt-8" style={{ color: "#54514c" }}>
             {["5-minute setup", "No training required", "Free plan available"].map((t) => (
@@ -237,7 +237,7 @@ function CTA() {
         <div className="rounded-[28px] border-2 p-10 flex flex-col md:flex-row items-center justify-between gap-6" style={{ background: AMBER, borderColor: INK, boxShadow: `10px 10px 0 ${INK}` }}>
           <div>
             <h3 className="text-2xl font-extrabold mb-2" style={{ color: INK }}>Ready to set up your salon?</h3>
-            <p className="text-sm font-medium" style={{ color: "#5c4a28" }}>Start for free — no credit card required. Cancel anytime.</p>
+            <p className="text-sm font-medium" style={{ color: "#5c4a28" }}>Start for free, no credit card required. Cancel anytime.</p>
           </div>
           <a href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=SALON&plan=FREE`} className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full font-bold text-sm border-2 transition-transform hover:-translate-y-0.5 shrink-0" style={{ ...display, background: INK, color: "#fff", borderColor: INK }}>
             Create your salon for free <ChevronRight className="w-4 h-4" />

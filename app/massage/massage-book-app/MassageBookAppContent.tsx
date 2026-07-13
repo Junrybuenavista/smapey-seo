@@ -15,12 +15,12 @@ const CREAM = "#fbf7f0"
 const display = { fontFamily: "'Hanken Grotesk', system-ui, sans-serif" }
 
 const FEATURES = [
-  { icon: BookOpen, title: "Your Massage Book — In the Cloud", desc: "Every appointment, every therapist, every client — all in one digital book that runs in your browser. No more flipping pages or rewriting cancellations." },
-  { icon: CalendarPlus, title: "Same-Day Visibility", desc: "Open the app, see today's session — every therapist's column, every booked slot, every gap. Plan your day at a glance, just like a real appointment book." },
+  { icon: BookOpen, title: "Your Massage Book (In the Cloud", desc: "Every appointment, every therapist, every client) all in one digital book that runs in your browser. No more flipping pages or rewriting cancellations." },
+  { icon: CalendarPlus, title: "Same-Day Visibility", desc: "Open the app, see today's session - every therapist's column, every booked slot, every gap. Plan your day at a glance, just like a real appointment book." },
   { icon: Users, title: "Client Records Built In", desc: "Tap any booking to see the client's history, notes, and preferences. No more scribbled cards or searching for last month's notebook." },
-  { icon: Globe, title: "Online Bookings Land Here", desc: "Clients book through your public page, and the appointment appears in your massage book automatically — no manual entry required." },
-  { icon: Cloud, title: "Backed Up Automatically", desc: "Lose your phone, drop your tablet, computer crashes — your massage book lives in the cloud. Sign in from any device and pick up exactly where you left off." },
-  { icon: BarChart3, title: "What Paper Books Can't Do", desc: "Monthly revenue, completion rate, top services, pending inquiries — your dashboard updates in real time. Try doing that with a Moleskine." },
+  { icon: Globe, title: "Online Bookings Land Here", desc: "Clients book through your public page, and the appointment appears in your massage book automatically - no manual entry required." },
+  { icon: Cloud, title: "Backed Up Automatically", desc: "Lose your phone, drop your tablet, computer crashes - your massage book lives in the cloud. Sign in from any device and pick up exactly where you left off." },
+  { icon: BarChart3, title: "What Paper Books Can't Do", desc: "Monthly revenue, completion rate, top services, pending inquiries - your dashboard updates in real time. Try doing that with a Moleskine." },
 ]
 
 const COMPARISON = [
@@ -34,10 +34,10 @@ const COMPARISON = [
 ]
 
 const FAQS = [
-  { q: "Is this really a digital replacement for a paper massage book?", a: "Yes. Every appointment your team takes lives in one shared, searchable book — with the client's name, treatment, therapist, time, and notes. Unlike paper, it's visible to everyone with access and backed up automatically." },
-  { q: "How long does it take to switch from a paper book?", a: "Most small spas finish their setup in under 10 minutes — add your treatments, your therapists, and a couple of clients. You can keep using paper alongside the app for a week if you'd like to ease in." },
-  { q: "What if my internet goes down at the front desk?", a: "Once a page is loaded, you can keep viewing it. The app syncs as soon as you reconnect. For most small spas the bigger risk is losing a paper book — and that's the problem this app solves." },
-  { q: "Can multiple staff see the same massage book?", a: "Yes. Add team members to your account and everyone sees the same up-to-the-minute book. Permissions decide who can edit, view, or add bookings — no more arguments over who wrote what." },
+  { q: "Is this really a digital replacement for a paper massage book?", a: "Yes. Every appointment your team takes lives in one shared, searchable book, with the client's name, treatment, therapist, time, and notes. Unlike paper, it's visible to everyone with access and backed up automatically." },
+  { q: "How long does it take to switch from a paper book?", a: "Most small spas finish their setup in under 10 minutes, add your treatments, your therapists, and a couple of clients. You can keep using paper alongside the app for a week if you'd like to ease in." },
+  { q: "What if my internet goes down at the front desk?", a: "Once a page is loaded, you can keep viewing it. The app syncs as soon as you reconnect. For most small spas the bigger risk is losing a paper book, and that's the problem this app solves." },
+  { q: "Can multiple staff see the same massage book?", a: "Yes. Add team members to your account and everyone sees the same up-to-the-minute book. Permissions decide who can edit, view, or add bookings, no more arguments over who wrote what." },
 ]
 
 function useInView(options?: IntersectionObserverInit) {
@@ -116,10 +116,10 @@ function Hero() {
         <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.04] tracking-tight mb-6" style={{ color: INK }}>
           The massage book app <span style={{ color: BLUE }}>that lives in the cloud</span>
         </h1>
-        <p className="text-lg max-w-2xl mx-auto mb-10 leading-relaxed" style={{ color: "#54514c" }}>Replace your paper massage book with a digital version your whole team shares. Every booking, every therapist, every client — backed up, searchable, and visible from anywhere.</p>
+        <p className="text-lg max-w-2xl mx-auto mb-10 leading-relaxed" style={{ color: "#54514c" }}>Replace your paper massage book with a digital version your whole team shares. Every booking, every therapist, every client, backed up, searchable, and visible from anywhere.</p>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
           <a href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=MASSAGE&plan=FREE`} className="flex items-center gap-2 px-7 py-4 rounded-full font-bold text-sm border-2 transition-transform hover:-translate-y-0.5" style={{ ...display, background: AMBER, color: INK, borderColor: INK, boxShadow: `4px 4px 0 ${INK}` }}>
-            Start free — no card needed <ChevronRight className="w-4 h-4" />
+            Start free, no card needed <ChevronRight className="w-4 h-4" />
           </a>
           <a href="/massage" className="flex items-center gap-2 px-7 py-4 rounded-full font-bold text-sm border-2 bg-white transition-transform hover:-translate-y-0.5" style={{ ...display, color: INK, borderColor: INK }}>View all features</a>
         </div>
@@ -138,7 +138,7 @@ function Features() {
         <Animate className="text-center mb-16">
           <p className="text-sm font-bold uppercase tracking-widest mb-3" style={{ color: BLUE }}>Features</p>
           <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight" style={{ color: INK }}>A massage book that actually works for you</h2>
-          <p className="mt-4 max-w-xl mx-auto" style={{ color: "#54514c" }}>Everything a paper book gives you — plus search, sync, and zero lost data.</p>
+          <p className="mt-4 max-w-xl mx-auto" style={{ color: "#54514c" }}>Everything a paper book gives you, plus search, sync, and zero lost data.</p>
         </Animate>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {FEATURES.map(({ icon: Icon, title, desc }, i) => {
@@ -330,7 +330,7 @@ function PaymentModal({ plan, isPhilippines, onClose }: { plan: { name: string; 
         <div className="px-6 py-5 flex items-center justify-between" style={{ background: INK }}>
           <div className="flex items-center gap-3">
             {step === "payment" && !token && <button onClick={() => setStep("details")} className="text-white/70 hover:text-white transition"><svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}><path d="M19 12H5M12 5l-7 7 7 7"/></svg></button>}
-            <div><h2 className="text-white font-extrabold text-lg">{step === "details" ? "Create your account" : "Choose payment method"}</h2><p className="text-sm mt-0.5" style={{ color: "rgba(255,255,255,.7)" }}>{plan.name} plan — <span className="font-bold" style={{ color: AMBER }}>{displayPrice}</span>{plan.period}</p></div>
+            <div><h2 className="text-white font-extrabold text-lg">{step === "details" ? "Create your account" : "Choose payment method"}</h2><p className="text-sm mt-0.5" style={{ color: "rgba(255,255,255,.7)" }}>{plan.name} plan, <span className="font-bold" style={{ color: AMBER }}>{displayPrice}</span>{plan.period}</p></div>
           </div>
           <button onClick={onClose} className="text-white/70 hover:text-white transition-colors"><X className="w-5 h-5" /></button>
         </div>

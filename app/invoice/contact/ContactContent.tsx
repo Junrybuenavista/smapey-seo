@@ -64,7 +64,7 @@ export default function ContactPage() {
       <div className="max-w-6xl mx-auto px-6 pt-16 pb-10 text-center">
         <h1 className="text-4xl md:text-5xl font-bold mb-4">Let’s Build Something Great</h1>
         <p className="text-gray-600 max-w-2xl mx-auto">
-          Whether you have a question, feedback, or a business proposal — our team is ready to help you scale faster.
+          Whether you have a question, feedback, or a business proposal, our team is ready to help you scale faster.
         </p>
       </div>
 
@@ -119,7 +119,7 @@ export default function ContactPage() {
 
             <div className="flex gap-3">
               <Sparkles className="w-5 h-5" />
-              <p className="text-gray-600">Fast response — we usually reply within 24 hours.</p>
+              <p className="text-gray-600">Fast response, we usually reply within 24 hours.</p>
             </div>
           </div>
 
@@ -139,7 +139,7 @@ export default function ContactPage() {
 
             <div className="bg-white p-4 rounded-xl shadow-sm">
               <p className="font-medium">Can I request a demo?</p>
-              <p className="text-gray-600 text-sm">Absolutely — just send us a message and we’ll schedule one.</p>
+              <p className="text-gray-600 text-sm">Absolutely, just send us a message and we’ll schedule one.</p>
             </div>
           </div>
         </div>

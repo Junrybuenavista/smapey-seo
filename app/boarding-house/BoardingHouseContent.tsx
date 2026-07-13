@@ -18,30 +18,30 @@ const CREAM = "#fbf7f0"
 const display = { fontFamily: "'Hanken Grotesk', system-ui, sans-serif" }
 
 const FEATURES = [
-  { icon: BedDouble, title: "Visual Room Cards", desc: "Every room is a card showing exactly who's inside and which beds or slots are free. Move tenants in, transfer them to another room or bed, swap two tenants, or move them out — all without leaving the page." },
-  { icon: BedSingle, title: "Bed-Level Tracking", desc: "For bedspace rooms, add named beds — Lower A, Upper A — each with its own rate. Charge more for lower decks, see which exact bed is vacant, and fill it in one click." },
-  { icon: Users, title: "Tenant Profiles", desc: "Register each tenant with full name, contact number, emergency contact, and ID information. Every detail is stored and searchable — no more paper folders." },
-  { icon: Banknote, title: "Rent Billing", desc: "Generate a month's bills in one click — each tenant's due date follows their own move-in day. Record full or partial payments via Cash, GCash, Maya, Card, or Bank Transfer; balances and overdue flags update automatically." },
-  { icon: Zap, title: "Utility Billing", desc: "Log separate utility bills — electricity, water, or internet — per room per month. Itemized billing keeps rent and utilities clearly separated so tenants always know what they owe." },
-  { icon: Wrench, title: "Maintenance Tracking", desc: "Log every repair — leaks, busted outlets, pests — with category, priority, and status. Track jobs from Open to Resolved and record repair costs so you know what maintenance really costs each month." },
-  { icon: QrCode, title: "QR Issue Reporting", desc: "Print a QR code poster for each room. Tenants scan it with their phone — no app, no login — and report issues with photos straight to your Maintenance page. They also see what's already been reported and its status, so you don't get the same leak five times." },
-  { icon: AlertTriangle, title: "Overdue Alerts", desc: "The dashboard surfaces every overdue rent bill at a glance — tenant name, room, amount, and how many days past due. No more manually checking who hasn't paid." },
-  { icon: BarChart3, title: "Occupancy Dashboard", desc: "See total rooms, active tenants, occupancy rate, overdue count, open maintenance, rent collected, and utility collected — all on one dashboard. Monthly revenue trend chart included." },
-  { icon: Clock, title: "Stay History", desc: "Every move-in, transfer, swap, and move-out is a permanent record — who lived in which room and bed, for how long, at what rate, with deposit status. Your paper trail for disputes, always intact." },
-  { icon: Building2, title: "Tenant Ledger", desc: "One click on any tenant shows their full statement of account — original move-in date, deposit and its status, every stay and transfer, and a month-by-month payment table with running totals." },
+  { icon: BedDouble, title: "Visual Room Cards", desc: "Every room is a card showing exactly who's inside and which beds or slots are free. Move tenants in, transfer them to another room or bed, swap two tenants, or move them out - all without leaving the page." },
+  { icon: BedSingle, title: "Bed-Level Tracking", desc: "For bedspace rooms, add named beds (Lower A, Upper A) each with its own rate. Charge more for lower decks, see which exact bed is vacant, and fill it in one click." },
+  { icon: Users, title: "Tenant Profiles", desc: "Register each tenant with full name, contact number, emergency contact, and ID information. Every detail is stored and searchable - no more paper folders." },
+  { icon: Banknote, title: "Rent Billing", desc: "Generate a month's bills in one click - each tenant's due date follows their own move-in day. Record full or partial payments via Cash, GCash, Maya, Card, or Bank Transfer; balances and overdue flags update automatically." },
+  { icon: Zap, title: "Utility Billing", desc: "Log separate utility bills (electricity, water, or internet) per room per month. Itemized billing keeps rent and utilities clearly separated so tenants always know what they owe." },
+  { icon: Wrench, title: "Maintenance Tracking", desc: "Log every repair (leaks, busted outlets, pests) with category, priority, and status. Track jobs from Open to Resolved and record repair costs so you know what maintenance really costs each month." },
+  { icon: QrCode, title: "QR Issue Reporting", desc: "Print a QR code poster for each room. Tenants scan it with their phone (no app, no login) and report issues with photos straight to your Maintenance page. They also see what's already been reported and its status, so you don't get the same leak five times." },
+  { icon: AlertTriangle, title: "Overdue Alerts", desc: "The dashboard surfaces every overdue rent bill at a glance - tenant name, room, amount, and how many days past due. No more manually checking who hasn't paid." },
+  { icon: BarChart3, title: "Occupancy Dashboard", desc: "See total rooms, active tenants, occupancy rate, overdue count, open maintenance, rent collected, and utility collected - all on one dashboard. Monthly revenue trend chart included." },
+  { icon: Clock, title: "Stay History", desc: "Every move-in, transfer, swap, and move-out is a permanent record - who lived in which room and bed, for how long, at what rate, with deposit status. Your paper trail for disputes, always intact." },
+  { icon: Building2, title: "Tenant Ledger", desc: "One click on any tenant shows their full statement of account - original move-in date, deposit and its status, every stay and transfer, and a month-by-month payment table with running totals." },
   { icon: Shield, title: "Secure & Isolated", desc: "Each boarding house gets its own isolated data space. Your tenant records, billing history, and occupancy data are never shared with anyone else." },
 ]
 
 const FAQS = [
-  { q: "What is a boarding house management system?", a: "A boarding house management system is software that helps boarding house owners in the Philippines track rooms and beds, register tenants, record move-ins and move-outs, generate monthly rent and utility bills, accept payments, handle maintenance requests, and monitor occupancy — all in one place instead of spreadsheets and paper records." },
-  { q: "Can I charge different rates for upper and lower deck beds?", a: "Yes. In a bedspace room you add each bed by name — Lower A, Upper A — and give it its own monthly rate. Lower decks can cost more than upper decks, and when a tenant moves into a bed, their rent defaults to that bed's rate automatically." },
-  { q: "How do tenants report maintenance issues?", a: "Each room gets its own QR code that you can print and post inside the room. Tenants scan it with their phone camera — no app or login needed — and fill in a short form describing the issue, with up to 3 photos of the problem. The report lands on your Maintenance page instantly and you get an in-app notification. The same page shows the room's recent reports with their status — Open, In Progress, or Resolved — so tenants can see a fix is already on the way instead of reporting it again." },
-  { q: "How does rent billing work?", a: "You generate a monthly rent bill per tenant with a due date and amount. Tenants pay via Cash, GCash, Maya, Card, or Bank Transfer. The system records full or partial payments and tracks outstanding balances — overdue bills appear on the dashboard automatically." },
-  { q: "Can I bill tenants separately for utilities?", a: "Yes. Utility bills — electricity, water, internet — are created separately from rent bills. This keeps rent and utility charges clearly itemized so tenants always know exactly what each bill is for." },
-  { q: "Can I see a tenant's complete payment record?", a: "Yes — every tenant has a Ledger: their original move-in date, deposit and whether it's paid, every room and bed they've stayed in, and a month-by-month table of rent bills showing billed, paid, balance, and payment dates, with running totals. It's a statement of account you can pull up in one click." },
-  { q: "Can tenants transfer or swap rooms and beds?", a: "Yes. Transfer moves a tenant to any vacant room or bed — the deposit carries over and the rate updates to the new spot. And if two tenants want to trade places (like upper deck for lower deck) even with no vacancy, Swap exchanges them in one step. Every move is recorded in Stay History." },
+  { q: "What is a boarding house management system?", a: "A boarding house management system is software that helps boarding house owners in the Philippines track rooms and beds, register tenants, record move-ins and move-outs, generate monthly rent and utility bills, accept payments, handle maintenance requests, and monitor occupancy, all in one place instead of spreadsheets and paper records." },
+  { q: "Can I charge different rates for upper and lower deck beds?", a: "Yes. In a bedspace room you add each bed by name (Lower A, Upper A) and give it its own monthly rate. Lower decks can cost more than upper decks, and when a tenant moves into a bed, their rent defaults to that bed's rate automatically." },
+  { q: "How do tenants report maintenance issues?", a: "Each room gets its own QR code that you can print and post inside the room. Tenants scan it with their phone camera (no app or login needed) and fill in a short form describing the issue, with up to 3 photos of the problem. The report lands on your Maintenance page instantly and you get an in-app notification. The same page shows the room's recent reports with their status (Open, In Progress, or Resolved) so tenants can see a fix is already on the way instead of reporting it again." },
+  { q: "How does rent billing work?", a: "You generate a monthly rent bill per tenant with a due date and amount. Tenants pay via Cash, GCash, Maya, Card, or Bank Transfer. The system records full or partial payments and tracks outstanding balances, overdue bills appear on the dashboard automatically." },
+  { q: "Can I bill tenants separately for utilities?", a: "Yes. Utility bills (electricity, water, internet) are created separately from rent bills. This keeps rent and utility charges clearly itemized so tenants always know exactly what each bill is for." },
+  { q: "Can I see a tenant's complete payment record?", a: "Yes, every tenant has a Ledger: their original move-in date, deposit and whether it's paid, every room and bed they've stayed in, and a month-by-month table of rent bills showing billed, paid, balance, and payment dates, with running totals. It's a statement of account you can pull up in one click." },
+  { q: "Can tenants transfer or swap rooms and beds?", a: "Yes. Transfer moves a tenant to any vacant room or bed, the deposit carries over and the rate updates to the new spot. And if two tenants want to trade places (like upper deck for lower deck) even with no vacancy, Swap exchanges them in one step. Every move is recorded in Stay History." },
   { q: "Does it track occupancy automatically?", a: "Yes. When you move a tenant into a room or bed, that slot is marked occupied. When you record a move-out, it's freed instantly. Occupancy rate, active tenants, and total capacity are all calculated and shown on the dashboard in real time." },
-  { q: "Is there a free plan?", a: "Yes. The free plan lets you manage a small boarding house with core features — rooms and beds, tenant registration, rent billing, utility billing, maintenance tracking with QR reporting, and the occupancy dashboard — at no cost." },
+  { q: "Is there a free plan?", a: "Yes. The free plan lets you manage a small boarding house with core features, rooms and beds, tenant registration, rent billing, utility billing, maintenance tracking with QR reporting, and the occupancy dashboard, at no cost." },
 ]
 
 function useInView(options?: IntersectionObserverInit) {
@@ -113,7 +113,7 @@ function Navbar() {
 }
 
 function Hero() {
-  // room board — occupancy tiles
+  // room board, occupancy tiles
   const rooms = [
     { no: "101", state: "occupied" }, { no: "102", state: "occupied" },
     { no: "103", state: "due" },      { no: "104", state: "occupied" },
@@ -136,7 +136,7 @@ function Hero() {
       </div>
 
       <div className="relative w-full max-w-6xl mx-auto px-6 py-24 grid lg:grid-cols-[1fr_1fr] gap-12 lg:gap-16 items-center">
-        {/* LEFT — copy */}
+        {/* LEFT, copy */}
         <div className="min-w-0 text-center lg:text-left">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border-2 text-xs font-bold mb-7" style={{ color: INK, borderColor: INK, boxShadow: `3px 3px 0 ${BLUE}` }}>
             <Zap className="w-3 h-3" />
@@ -153,7 +153,7 @@ function Hero() {
           </h1>
 
           <p className="text-lg max-w-md mx-auto lg:mx-0 mb-9 leading-relaxed" style={{ color: "#54514c" }}>
-            See who's in, who's due, and which beds are open at a glance. Smapey logs tenants, tracks rent per bed, flags overdue payments, and lets tenants report issues by scanning a QR code — so collection day runs itself.
+            See who's in, who's due, and which beds are open at a glance. Smapey logs tenants, tracks rent per bed, flags overdue payments, and lets tenants report issues by scanning a QR code, so collection day runs itself.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center lg:justify-start justify-center gap-3 mb-9">
@@ -172,7 +172,7 @@ function Hero() {
           </div>
         </div>
 
-        {/* RIGHT — room board card */}
+        {/* RIGHT, room board card */}
         <div className="relative min-w-0 w-full max-w-md mx-auto">
           {/* floating overdue chip */}
           <div className="absolute z-10 flex items-center gap-2 bg-white border-2 rounded-full px-3.5 py-2" style={{ top: -20, left: -16, borderColor: INK, boxShadow: `4px 4px 0 ${AMBER}`, transform: "rotate(-5deg)" }}>
@@ -246,7 +246,7 @@ function Features() {
         <Animate className="text-center mb-16">
           <p className="text-sm font-bold uppercase tracking-widest mb-3" style={{ color: BLUE }}>Features</p>
           <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight" style={{ color: INK }}>Everything a Philippine boarding house needs</h2>
-          <p className="mt-4 max-w-xl mx-auto" style={{ color: "#54514c" }}>From room setup to monthly billing — Smapey Boarding House Manager keeps your property running without paper records or scattered spreadsheets.</p>
+          <p className="mt-4 max-w-xl mx-auto" style={{ color: "#54514c" }}>From room setup to monthly billing, Smapey Boarding House Manager keeps your property running without paper records or scattered spreadsheets.</p>
         </Animate>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {FEATURES.map(({ icon: Icon, title, desc }, i) => {
@@ -270,9 +270,9 @@ function Features() {
 }
 
 const STEPS = [
-  { step: "01", title: "Set up rooms & beds", desc: "Add each room with a name, floor, and monthly rate. For bedspace rooms, add named beds with their own rates — lower deck, upper deck, whatever your setup is. Takes about 5 minutes." },
-  { step: "02", title: "Move tenants in from the room card", desc: "Create tenant profiles once, then click any vacant bed or slot to move someone in. Occupancy, rates, and deposits are tracked automatically — and each room's QR poster lets tenants report issues." },
-  { step: "03", title: "Generate bills & collect payments", desc: "Issue rent and utility bills each month. Record payments — full or partial — and the dashboard shows you exactly who still owes, plus any open maintenance jobs." },
+  { step: "01", title: "Set up rooms & beds", desc: "Add each room with a name, floor, and monthly rate. For bedspace rooms, add named beds with their own rates - lower deck, upper deck, whatever your setup is. Takes about 5 minutes." },
+  { step: "02", title: "Move tenants in from the room card", desc: "Create tenant profiles once, then click any vacant bed or slot to move someone in. Occupancy, rates, and deposits are tracked automatically - and each room's QR poster lets tenants report issues." },
+  { step: "03", title: "Generate bills & collect payments", desc: "Issue rent and utility bills each month. Record payments (full or partial) and the dashboard shows you exactly who still owes, plus any open maintenance jobs." },
 ]
 
 function HowItWorks() {
@@ -425,7 +425,7 @@ function PaymentModal({ plan, isPhilippines, onClose }: { plan: { name: string; 
         <div className="px-6 py-5 flex items-center justify-between" style={{ background: INK }}>
           <div className="flex items-center gap-3">
             {step === "payment" && !token && <button onClick={() => setStep("details")} className="text-white/70 hover:text-white transition"><svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}><path d="M19 12H5M12 5l-7 7 7 7"/></svg></button>}
-            <div><h2 className="text-white font-extrabold text-lg">{step === "details" ? "Create your account" : "Choose payment method"}</h2><p className="text-sm mt-0.5" style={{ color: "rgba(255,255,255,.7)" }}>{plan.name} plan — <span className="font-bold" style={{ color: AMBER }}>{displayPrice}</span>{plan.period}</p></div>
+            <div><h2 className="text-white font-extrabold text-lg">{step === "details" ? "Create your account" : "Choose payment method"}</h2><p className="text-sm mt-0.5" style={{ color: "rgba(255,255,255,.7)" }}>{plan.name} plan, <span className="font-bold" style={{ color: AMBER }}>{displayPrice}</span>{plan.period}</p></div>
           </div>
           <button onClick={onClose} className="text-white/70 hover:text-white transition-colors"><X className="w-5 h-5" /></button>
         </div>

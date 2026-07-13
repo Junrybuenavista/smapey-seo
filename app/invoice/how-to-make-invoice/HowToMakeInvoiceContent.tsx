@@ -23,7 +23,7 @@ export default function HowToMakeInvoicePage() {
             <span className="bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent">That Gets You Paid Faster</span>
           </h1>
           <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-            Learn step-by-step how to create professional invoices, avoid common mistakes, and follow best billing practices — even if you're a beginner.
+            Learn step-by-step how to create professional invoices, avoid common mistakes, and follow best billing practices, even if you're a beginner.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center pt-2">
             <Link href="/invoice/invoice-generation-online">

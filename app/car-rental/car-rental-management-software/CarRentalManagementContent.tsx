@@ -12,25 +12,25 @@ const CREAM = "#fbf7f0"
 const display = { fontFamily: "'Hanken Grotesk', system-ui, sans-serif" }
 
 const FEATURES = [
-  { icon: Car, title: "Fleet status board", desc: "Every vehicle shows its current status — Available, Rented, or Maintenance. Change status with one click. Never lose track of a car." },
+  { icon: Car, title: "Fleet status board", desc: "Every vehicle shows its current status - Available, Rented, or Maintenance. Change status with one click. Never lose track of a car." },
   { icon: Wrench, title: "Maintenance tracking", desc: "Flag vehicles under maintenance so they can't be booked. Mark them available when the work is done. Keep your operable fleet clearly visible." },
-  { icon: Calendar, title: "Rental lifecycle", desc: "Manage the full cycle — Reserved → Active → Returned or Cancelled. Each stage is one click and every transition is logged." },
+  { icon: Calendar, title: "Rental lifecycle", desc: "Manage the full cycle - Reserved → Active → Returned or Cancelled. Each stage is one click and every transition is logged." },
   { icon: AlertCircle, title: "Overdue management", desc: "Rentals past their return date are auto-flagged as Overdue. See them immediately on your dashboard and take action before it becomes a problem." },
   { icon: BarChart3, title: "Revenue & utilization", desc: "See monthly revenue, rental counts, and fleet utilization side by side. Identify your highest-earning vehicles and your idle ones." },
-  { icon: Key, title: "Upcoming returns", desc: "View all active rentals sorted by return date. Know exactly who's coming back today and this week — no manual calendar tracking needed." },
-  { icon: Globe, title: "Public Booking Page", desc: "Share a public link where customers can browse your fleet and submit booking inquiries 24/7 — no login required on their end." },
+  { icon: Key, title: "Upcoming returns", desc: "View all active rentals sorted by return date. Know exactly who's coming back today and this week - no manual calendar tracking needed." },
+  { icon: Globe, title: "Public Booking Page", desc: "Share a public link where customers can browse your fleet and submit booking inquiries 24/7 - no login required on their end." },
   { icon: MessageSquare, title: "Booking Inquiries", desc: "Review incoming booking requests from your public page. Approve or reject each inquiry and convert approved ones to rentals in one click." },
-  { icon: QrCode, title: "Deposit QR Code", desc: "Upload your GCash, Maya, or bank QR code to your booking page so customers can scan and pay their deposit instantly — no back-and-forth messaging." },
-  { icon: Palette, title: "Page Personalization", desc: "Choose from 5 themes — Midnight, Clean, Ocean, Forest, Luxury — then personalize any theme with a cover photo, tagline, and accent color to match your brand." },
-  { icon: Bell, title: "Instant Booking Alerts", desc: "Get notified the moment a customer submits a booking inquiry. A badge appears on your notification bell — click it to jump straight to the inquiry." },
+  { icon: QrCode, title: "Deposit QR Code", desc: "Upload your GCash, Maya, or bank QR code to your booking page so customers can scan and pay their deposit instantly - no back-and-forth messaging." },
+  { icon: Palette, title: "Page Personalization", desc: "Choose from 5 themes (Midnight, Clean, Ocean, Forest, Luxury) then personalize any theme with a cover photo, tagline, and accent color to match your brand." },
+  { icon: Bell, title: "Instant Booking Alerts", desc: "Get notified the moment a customer submits a booking inquiry. A badge appears on your notification bell - click it to jump straight to the inquiry." },
   { icon: ImagePlus, title: "Vehicle Photos", desc: "Upload a photo for each vehicle in your fleet. Photos display on your public booking page so customers see exactly what they're renting before they inquire." },
 ]
 
 const FAQS = [
-  { q: "Can I manage vehicles across different statuses?", a: "Yes. Each vehicle is always in one of three states — Available, Rented, or Maintenance. You can change status manually, and the system updates automatically when a rental is activated or returned." },
+  { q: "Can I manage vehicles across different statuses?", a: "Yes. Each vehicle is always in one of three states, Available, Rented, or Maintenance. You can change status manually, and the system updates automatically when a rental is activated or returned." },
   { q: "How does overdue detection work?", a: "When a rental's return date passes and it's still Active, Smapey automatically changes its status to Overdue. You'll see it highlighted on your dashboard so you can follow up with the customer." },
   { q: "Can I see which vehicles earn the most?", a: "Your dashboard shows monthly revenue and rental counts. You can see how much each month has brought in and track trends over time." },
-  { q: "How many team members can I add?", a: "Free plan supports 2. Pro supports 5. Enterprise has no limit. All team members have role-based access — owners control everything, members handle day-to-day operations." },
+  { q: "How many team members can I add?", a: "Free plan supports 2. Pro supports 5. Enterprise has no limit. All team members have role-based access, owners control everything, members handle day-to-day operations." },
 ]
 
 function useInView(options?: IntersectionObserverInit) {
@@ -109,10 +109,10 @@ function Hero() {
         <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.04] tracking-tight mb-6" style={{ color: INK }}>
           Car rental management software that <span style={{ color: BLUE }}>runs your whole operation</span>
         </h1>
-        <p className="text-lg max-w-2xl mx-auto mb-10 leading-relaxed" style={{ color: "#54514c" }}>Track your fleet status, manage the full rental lifecycle, catch overdue vehicles, and see your revenue — all from one clean dashboard.</p>
+        <p className="text-lg max-w-2xl mx-auto mb-10 leading-relaxed" style={{ color: "#54514c" }}>Track your fleet status, manage the full rental lifecycle, catch overdue vehicles, and see your revenue, all from one clean dashboard.</p>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
           <a href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=CAR_RENTAL&plan=FREE`} className="flex items-center gap-2 px-7 py-4 rounded-full font-bold text-sm border-2 transition-transform hover:-translate-y-0.5" style={{ ...display, background: AMBER, color: INK, borderColor: INK, boxShadow: `4px 4px 0 ${INK}` }}>
-            Start free — no card needed <ChevronRight className="w-4 h-4" />
+            Start free, no card needed <ChevronRight className="w-4 h-4" />
           </a>
           <a href="/car-rental" className="flex items-center gap-2 px-7 py-4 rounded-full font-bold text-sm border-2 bg-white transition-transform hover:-translate-y-0.5" style={{ ...display, color: INK, borderColor: INK }}>View all features</a>
         </div>
@@ -131,7 +131,7 @@ function Features() {
         <Animate className="text-center mb-16">
           <p className="text-sm font-bold uppercase tracking-widest mb-3" style={{ color: BLUE }}>Features</p>
           <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight" style={{ color: INK }}>Full control over your rental operation</h2>
-          <p className="mt-4 max-w-xl mx-auto" style={{ color: "#54514c" }}>Every tool you need to run a rental business — nothing you don't.</p>
+          <p className="mt-4 max-w-xl mx-auto" style={{ color: "#54514c" }}>Every tool you need to run a rental business, nothing you don't.</p>
         </Animate>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {FEATURES.map(({ icon: Icon, title, desc }, i) => {
@@ -279,7 +279,7 @@ function PaymentModal({ plan, isPhilippines, onClose }: { plan: { name: string; 
         <div className="px-6 py-5 flex items-center justify-between" style={{ background: INK }}>
           <div className="flex items-center gap-3">
             {step === "payment" && !token && <button onClick={() => setStep("details")} className="text-white/70 hover:text-white transition"><svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}><path d="M19 12H5M12 5l-7 7 7 7"/></svg></button>}
-            <div><h2 className="text-white font-extrabold text-lg">{step === "details" ? "Create your account" : "Choose payment method"}</h2><p className="text-sm mt-0.5" style={{ color: "rgba(255,255,255,.7)" }}>{plan.name} plan — <span className="font-bold" style={{ color: AMBER }}>{displayPrice}</span>{plan.period}</p></div>
+            <div><h2 className="text-white font-extrabold text-lg">{step === "details" ? "Create your account" : "Choose payment method"}</h2><p className="text-sm mt-0.5" style={{ color: "rgba(255,255,255,.7)" }}>{plan.name} plan, <span className="font-bold" style={{ color: AMBER }}>{displayPrice}</span>{plan.period}</p></div>
           </div>
           <button onClick={onClose} className="text-white/70 hover:text-white transition-colors"><X className="w-5 h-5" /></button>
         </div>

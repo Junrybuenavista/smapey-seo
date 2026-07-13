@@ -10,8 +10,8 @@ const faqs = [
   { q: "Can solo attorneys use legal billing software?", a: "Yes, legal billing software is ideal for solo attorneys and small firms. Smapey's free plan gives you everything you need to invoice clients and track payments without extra overhead." },
   { q: "How does legal invoicing software work?", a: "Legal invoicing software lets you create itemized invoices by matter, track payments, and send automated reminders to clients. It replaces manual billing with an efficient digital workflow." },
   { q: "Does legal billing software support online payments?", a: "Yes, modern legal billing platforms integrate with online payment providers so clients can pay invoices directly, reducing delays and improving cash flow." },
-  { q: "Can legal billing software track client payments?", a: "Yes, real-time payment tracking shows which client invoices are paid, outstanding, or overdue — giving you full visibility across all active matters." },
-  { q: "Is legal billing software worth it for small law firms?", a: "Absolutely. Even small law firms benefit from automated invoicing, payment reminders, and digital records — reducing administrative overhead and improving collections." },
+  { q: "Can legal billing software track client payments?", a: "Yes, real-time payment tracking shows which client invoices are paid, outstanding, or overdue, giving you full visibility across all active matters." },
+  { q: "Is legal billing software worth it for small law firms?", a: "Absolutely. Even small law firms benefit from automated invoicing, payment reminders, and digital records, reducing administrative overhead and improving collections." },
 ]
 
 export default function InvoicingContent() {
@@ -60,9 +60,9 @@ export default function InvoicingContent() {
             <div className="relative bg-white/5 border border-white/10 rounded-2xl p-8 w-full max-w-md space-y-5">
               <p className="text-xs text-gray-500 uppercase tracking-widest">Legal Client Invoices</p>
               {[
-                { label: "Contract review — Acme Inc.", amount: "$3,200", status: "Paid", color: "text-green-400 bg-green-500/10" },
-                { label: "Litigation support — Q2", amount: "$7,800", status: "Pending", color: "text-yellow-400 bg-yellow-500/10" },
-                { label: "IP consultation — startup", amount: "$1,500", status: "Sent", color: "text-blue-400 bg-blue-500/10" },
+                { label: "Contract review, Acme Inc.", amount: "$3,200", status: "Paid", color: "text-green-400 bg-green-500/10" },
+                { label: "Litigation support, Q2", amount: "$7,800", status: "Pending", color: "text-yellow-400 bg-yellow-500/10" },
+                { label: "IP consultation, startup", amount: "$1,500", status: "Sent", color: "text-blue-400 bg-blue-500/10" },
               ].map(item => (
                 <div key={item.label} className="flex items-center justify-between py-3 border-b border-white/5 last:border-0">
                   <div>
@@ -108,7 +108,7 @@ export default function InvoicingContent() {
             <span className="text-sm font-semibold text-blue-600 uppercase tracking-widest">Why Smapey</span>
             <h2 className="text-4xl font-bold text-gray-900">A Complete Legal Billing Solution</h2>
             <p className="text-gray-500 text-lg max-w-2xl mx-auto">
-              More than just legal billing software — a complete invoicing platform for attorneys, law firms, and legal consultants to manage clients and collect payments efficiently.
+              More than just legal billing software, a complete invoicing platform for attorneys, law firms, and legal consultants to manage clients and collect payments efficiently.
             </p>
           </div>
           <div className="grid md:grid-cols-2 gap-5">

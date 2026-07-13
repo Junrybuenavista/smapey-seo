@@ -8,12 +8,12 @@ const variant: RestaurantVariant = {
     titleLead: "A food ordering system",
     titleAccent: "built for small restaurants.",
     subtitle:
-      "Smapey is a food order management system for restaurants, cafés, canteens, and food stalls. Build your menu, intake dine-in and takeaway orders, manage the kitchen queue, and track daily sales — free.",
+      "Smapey is a food order management system for restaurants, cafés, canteens, and food stalls. Build your menu, intake dine-in and takeaway orders, manage the kitchen queue, and track daily sales, free.",
   },
   features: {
     eyebrow: "Food Order Management",
     heading: "Everything a food ordering system should do",
-    sub: "From menu creation to completed order — every feature a small food business needs to manage orders without paper tickets or group chats.",
+    sub: "From menu creation to completed order, every feature a small food business needs to manage orders without paper tickets or group chats.",
   },
   cta: {
     heading: "The food order management system built for your size.",

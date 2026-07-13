@@ -10,7 +10,7 @@ const faqs = [
   { q: "Is there free invoicing software for consultants?", a: "Yes, Smapey offers a free plan for consultants with core invoicing features including invoice creation, payment tracking, and client management." },
   { q: "How do consultants create invoices?", a: "Consultants can use invoicing software to add client details, describe services, and set rates. Automation tools like Smapey reduce manual work and send invoices faster." },
   { q: "Can invoicing software handle retainer billing?", a: "Yes, modern invoicing apps support recurring invoices perfect for monthly retainer clients. This automates your billing and ensures consistent cash flow." },
-  { q: "Does consulting invoice software track payments?", a: "Yes, invoicing software tracks payment status in real time — showing which invoices are paid, pending, or overdue — so you can follow up at the right time." },
+  { q: "Does consulting invoice software track payments?", a: "Yes, invoicing software tracks payment status in real time (showing which invoices are paid, pending, or overdue) so you can follow up at the right time." },
 ]
 
 export default function InvoicingContent() {
@@ -30,7 +30,7 @@ export default function InvoicingContent() {
               <Briefcase size={13} /> Built for Consultants
             </div>
             <h1 className="text-4xl lg:text-5xl font-bold leading-tight">
-              Invoicing Software for Consultants —{" "}
+              Invoicing Software for Consultants:{" "}
               <span className="bg-gradient-to-r from-violet-400 to-purple-400 bg-clip-text text-transparent">Get Paid On Time</span>
             </h1>
             <p className="text-gray-400 text-lg leading-relaxed max-w-xl">
@@ -59,8 +59,8 @@ export default function InvoicingContent() {
             <div className="relative bg-white/5 border border-white/10 rounded-2xl p-8 w-full max-w-md space-y-5">
               <p className="text-xs text-gray-500 uppercase tracking-widest">Consulting Invoices</p>
               {[
-                { label: "Strategy consulting — Q1 retainer", amount: "$4,500", status: "Paid", color: "text-green-400 bg-green-500/10" },
-                { label: "Marketing audit — TechCorp", amount: "$2,200", status: "Pending", color: "text-yellow-400 bg-yellow-500/10" },
+                { label: "Strategy consulting, Q1 retainer", amount: "$4,500", status: "Paid", color: "text-green-400 bg-green-500/10" },
+                { label: "Marketing audit, TechCorp", amount: "$2,200", status: "Pending", color: "text-yellow-400 bg-yellow-500/10" },
                 { label: "Workshop facilitation", amount: "$1,800", status: "Sent", color: "text-blue-400 bg-blue-500/10" },
               ].map(item => (
                 <div key={item.label} className="flex items-center justify-between py-3 border-b border-white/5 last:border-0">
@@ -107,7 +107,7 @@ export default function InvoicingContent() {
             <span className="text-sm font-semibold text-blue-600 uppercase tracking-widest">Why Smapey</span>
             <h2 className="text-4xl font-bold text-gray-900">Your All-in-One Consulting Invoice App</h2>
             <p className="text-gray-500 text-lg max-w-2xl mx-auto">
-              More than just invoicing software for consultants — a complete platform to manage clients, estimates, invoices, and payments in one place.
+              More than just invoicing software for consultants, a complete platform to manage clients, estimates, invoices, and payments in one place.
             </p>
           </div>
           <div className="grid md:grid-cols-2 gap-5">

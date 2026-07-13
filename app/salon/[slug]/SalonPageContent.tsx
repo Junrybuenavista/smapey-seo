@@ -30,7 +30,7 @@ interface PageProps {
 }
 
 // ─── BLUSH · Soft Pink Spa ───────────────────────────────────────────────────
-// Colors: pink / rose — white background, pink accents, rounded pill shapes
+// Colors: pink / rose, white background, pink accents, rounded pill shapes
 // Layout: stacked service list with thumbnail, floating form card
 
 function BlushPage({ data, form, setForm, handleSubmit, submitting, submitted, setSubmitted, error, sym }: PageProps) {
@@ -211,7 +211,7 @@ function BlushPage({ data, form, setForm, handleSubmit, submitting, submitted, s
 }
 
 // ─── ROSE · Coral Editorial ──────────────────────────────────────────────────
-// Colors: coral / red-orange — light gray bg, bold coral headline, strong contrast
+// Colors: coral / red-orange, light gray bg, bold coral headline, strong contrast
 // Layout: big hero section, services as horizontal chips, single-column form
 
 function RosePage({ data, form, setForm, handleSubmit, submitting, submitted, setSubmitted, error, sym }: PageProps) {
@@ -264,7 +264,7 @@ function RosePage({ data, form, setForm, handleSubmit, submitting, submitted, se
 
       <div className="max-w-xl mx-auto px-4 py-6 space-y-5">
 
-        {/* Services — card grid */}
+        {/* Services, card grid */}
         <div className="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
           <div className="px-5 py-3.5 border-b border-slate-100 flex items-center justify-between">
             <h2 className="font-bold text-slate-800 text-sm">Services</h2>
@@ -398,7 +398,7 @@ function RosePage({ data, form, setForm, handleSubmit, submitting, submitted, se
 }
 
 // ─── SLATE · Indigo Professional ─────────────────────────────────────────────
-// Colors: indigo / blue — white bg, indigo accents, clean corporate feel
+// Colors: indigo / blue, white bg, indigo accents, clean corporate feel
 // Layout: sidebar-style two-column on desktop, service pills, structured form
 
 function SlatePage({ data, form, setForm, handleSubmit, submitting, submitted, setSubmitted, error, sym }: PageProps) {
@@ -463,7 +463,7 @@ function SlatePage({ data, form, setForm, handleSubmit, submitting, submitted, s
 
       <div className="max-w-2xl mx-auto px-5 py-6 space-y-5">
 
-        {/* Services — horizontal scroll pills or list */}
+        {/* Services, horizontal scroll pills or list */}
         <div className="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm">
           <div className="flex items-center gap-3 px-5 py-3 border-b border-slate-100">
             <div className="w-6 h-6 rounded-md flex items-center justify-center text-white" style={{ background: accent }}>
@@ -606,7 +606,7 @@ function SlatePage({ data, form, setForm, handleSubmit, submitting, submitted, s
 }
 
 // ─── NOIR · Violet Elegance ───────────────────────────────────────────────────
-// Colors: deep violet / purple — warm white bg, thin violet lines, elegant
+// Colors: deep violet / purple, warm white bg, thin violet lines, elegant
 // Layout: centered single column, service cards with left accent stripe, refined spacing
 
 function NoirPage({ data, form, setForm, handleSubmit, submitting, submitted, setSubmitted, error, sym }: PageProps) {
@@ -797,7 +797,7 @@ function NoirPage({ data, form, setForm, handleSubmit, submitting, submitted, se
 }
 
 // ─── GOLD · Warm Amber Luxe ───────────────────────────────────────────────────
-// Colors: amber / teal — warm white bg, amber accents, premium feel
+// Colors: amber / teal, warm white bg, amber accents, premium feel
 // Layout: magazine two-tone header, service cards with price badge, clean form
 
 function GoldPage({ data, form, setForm, handleSubmit, submitting, submitted, setSubmitted, error, sym }: PageProps) {

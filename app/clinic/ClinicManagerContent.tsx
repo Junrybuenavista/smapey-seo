@@ -18,23 +18,23 @@ const CREAM = "#fbf7f0"
 const display = { fontFamily: "'Hanken Grotesk', system-ui, sans-serif" }
 
 const FEATURES = [
-  { icon: Users, title: "Patient Records", desc: "Register patients with full profiles — name, contact, date of birth, allergies, and clinical notes. Everything your front desk needs in one place." },
+  { icon: Users, title: "Patient Records", desc: "Register patients with full profiles - name, contact, date of birth, allergies, and clinical notes. Everything your front desk needs in one place." },
   { icon: Stethoscope, title: "Doctor Management", desc: "Add doctors with specialties, contact info, and per-day availability slots. Activate or deactivate doctors without deleting their history." },
-  { icon: CalendarDays, title: "Appointment Booking", desc: "Book appointments by patient, doctor, date, and time. Attach a chief complaint and notes — no paper log, no scattered spreadsheets." },
-  { icon: ListOrdered, title: "Live Queue Board", desc: "A real-time kanban board that shows every patient in Waiting, In Consultation, or Done — for every doctor in your clinic, all at once." },
-  { icon: BarChart3, title: "Analytics & Dashboard", desc: "Today's appointments, weekly completion trends, in-queue counts, and monthly totals — visualized on a clean dashboard you can read in seconds." },
-  { icon: Clock, title: "Doctor Schedules", desc: "Set availability per doctor by day of week and time slot. The system knows who's available and when — reducing double-bookings." },
+  { icon: CalendarDays, title: "Appointment Booking", desc: "Book appointments by patient, doctor, date, and time. Attach a chief complaint and notes - no paper log, no scattered spreadsheets." },
+  { icon: ListOrdered, title: "Live Queue Board", desc: "A real-time kanban board that shows every patient in Waiting, In Consultation, or Done - for every doctor in your clinic, all at once." },
+  { icon: BarChart3, title: "Analytics & Dashboard", desc: "Today's appointments, weekly completion trends, in-queue counts, and monthly totals - visualized on a clean dashboard you can read in seconds." },
+  { icon: Clock, title: "Doctor Schedules", desc: "Set availability per doctor by day of week and time slot. The system knows who's available and when - reducing double-bookings." },
   { icon: HeartPulse, title: "Status Workflow", desc: "Move patients through Pending → Confirmed → In Queue → In Progress → Completed with one click. Track no-shows and cancellations automatically." },
   { icon: UserCheck, title: "Team Roles & Access", desc: "Invite receptionists, nurses, and clinic admins with role-based permissions. Control exactly who can book, edit, or only view appointments." },
   { icon: Shield, title: "Secure & Isolated", desc: "Each clinic gets its own isolated data space. Your patient list, doctor profiles, and appointment history are never shared with anyone else." },
 ]
 
 const FAQS = [
-  { q: "What is a clinic management system?", a: "A clinic management system is software that helps medical practices track patients, manage doctor schedules, book appointments, and run a patient queue — all in one place instead of spreadsheets and paper logs." },
+  { q: "What is a clinic management system?", a: "A clinic management system is software that helps medical practices track patients, manage doctor schedules, book appointments, and run a patient queue, all in one place instead of spreadsheets and paper logs." },
   { q: "Can I manage multiple doctors in one clinic?", a: "Yes. You can add multiple doctors with individual schedules and specialties. Appointments are assigned to specific doctors, and the queue board shows all active patients per doctor at a glance." },
-  { q: "How does the live queue board work?", a: "The queue board is a real-time kanban view with three columns: Waiting, In Consultation, and Done. You can move patients between columns with one click — Confirm, Enqueue, Start, Complete, or mark No Show." },
+  { q: "How does the live queue board work?", a: "The queue board is a real-time kanban view with three columns: Waiting, In Consultation, and Done. You can move patients between columns with one click, Confirm, Enqueue, Start, Complete, or mark No Show." },
   { q: "Is this built for a specific clinic type?", a: "Smapey Clinic Manager works for general practice clinics, dental clinics, dermatology offices, pediatric clinics, physiotherapy centers, and any medical practice that manages patient appointments." },
-  { q: "How is patient data protected?", a: "Every clinic account is fully isolated — your patient records, appointment history, and doctor data are never visible to other businesses on the platform. Data is encrypted at rest and in transit." },
+  { q: "How is patient data protected?", a: "Every clinic account is fully isolated, your patient records, appointment history, and doctor data are never visible to other businesses on the platform. Data is encrypted at rest and in transit." },
 ]
 
 function useInView(options?: IntersectionObserverInit) {
@@ -136,12 +136,12 @@ function Hero() {
             The clinic management system <span style={{ color: BLUE }}>your staff will actually use</span>
           </h1>
           <p className="text-lg max-w-xl mb-8 leading-relaxed" style={{ color: "#54514c" }}>
-            Smapey Clinic Manager handles patients, doctors, appointments, and a live queue board —
+            Smapey Clinic Manager handles patients, doctors, appointments, and a live queue board,
             all in one clean dashboard your team can run from day one.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 mb-8">
             <a href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=CLINIC&plan=FREE`} className="flex items-center justify-center gap-2 px-7 py-4 rounded-full font-bold text-sm border-2 transition-transform hover:-translate-y-0.5" style={{ ...display, background: AMBER, color: INK, borderColor: INK, boxShadow: `4px 4px 0 ${INK}` }}>
-              Start free — no card needed <ChevronRight className="w-4 h-4" />
+              Start free, no card needed <ChevronRight className="w-4 h-4" />
             </a>
             <a href="/clinic" className="flex items-center justify-center px-7 py-4 rounded-full font-bold text-sm border-2 bg-white transition-transform hover:-translate-y-0.5" style={{ ...display, color: INK, borderColor: INK }}>
               View all features
@@ -197,7 +197,7 @@ function Features() {
         <Animate className="text-center mb-16">
           <p className="text-sm font-bold uppercase tracking-widest mb-3" style={{ color: BLUE }}>Features</p>
           <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight" style={{ color: INK }}>Everything a modern clinic needs</h2>
-          <p className="mt-4 max-w-xl mx-auto" style={{ color: "#54514c" }}>From patient registration to live queue management — Smapey Clinic Manager keeps your practice running without paper logbooks or scattered tools.</p>
+          <p className="mt-4 max-w-xl mx-auto" style={{ color: "#54514c" }}>From patient registration to live queue management, Smapey Clinic Manager keeps your practice running without paper logbooks or scattered tools.</p>
         </Animate>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {FEATURES.map(({ icon: Icon, title, desc }, i) => {
@@ -221,9 +221,9 @@ function Features() {
 }
 
 const STEPS = [
-  { step: "01", title: "Set up your clinic", desc: "Add your doctors, set their weekly schedules, and define the services your clinic offers — takes about 5 minutes." },
+  { step: "01", title: "Set up your clinic", desc: "Add your doctors, set their weekly schedules, and define the services your clinic offers - takes about 5 minutes." },
   { step: "02", title: "Register patients & book appointments", desc: "Create patient profiles once, then book appointments with the right doctor, date, and time in a few clicks." },
-  { step: "03", title: "Run your queue live", desc: "Use the live queue board to move patients from Waiting to In Consultation to Done — every step tracked in real time." },
+  { step: "03", title: "Run your queue live", desc: "Use the live queue board to move patients from Waiting to In Consultation to Done - every step tracked in real time." },
 ]
 
 function HowItWorks() {
@@ -376,7 +376,7 @@ function PaymentModal({ plan, isPhilippines, onClose }: { plan: { name: string; 
         <div className="px-6 py-5 flex items-center justify-between" style={{ background: INK }}>
           <div className="flex items-center gap-3">
             {step === "payment" && !token && <button onClick={() => setStep("details")} className="text-white/70 hover:text-white transition"><svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}><path d="M19 12H5M12 5l-7 7 7 7"/></svg></button>}
-            <div><h2 className="text-white font-extrabold text-lg">{step === "details" ? "Create your account" : "Choose payment method"}</h2><p className="text-sm mt-0.5" style={{ color: "rgba(255,255,255,.7)" }}>{plan.name} plan — <span className="font-bold" style={{ color: AMBER }}>{displayPrice}</span>{plan.period}</p></div>
+            <div><h2 className="text-white font-extrabold text-lg">{step === "details" ? "Create your account" : "Choose payment method"}</h2><p className="text-sm mt-0.5" style={{ color: "rgba(255,255,255,.7)" }}>{plan.name} plan, <span className="font-bold" style={{ color: AMBER }}>{displayPrice}</span>{plan.period}</p></div>
           </div>
           <button onClick={onClose} className="text-white/70 hover:text-white transition-colors"><X className="w-5 h-5" /></button>
         </div>

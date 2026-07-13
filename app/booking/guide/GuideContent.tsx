@@ -111,7 +111,7 @@ const SECTION_CONTENT: Record<string, React.ReactNode> = {
   overview: (
     <div className="space-y-6">
       <p className="leading-relaxed" style={{ color: "#54514c" }}>
-        Smapey Booking is an internal appointment management tool for service-based businesses — dental clinics, hair salons, massage studios, tutoring centers, and more. Your staff manages everything from the dashboard. Clients book by calling or walking in, and your team enters the appointment.
+        Smapey Booking is an internal appointment management tool for service-based businesses, dental clinics, hair salons, massage studios, tutoring centers, and more. Your staff manages everything from the dashboard. Clients book by calling or walking in, and your team enters the appointment.
       </p>
       <div className="grid sm:grid-cols-3 gap-4">
         {[
@@ -155,14 +155,14 @@ const SECTION_CONTENT: Record<string, React.ReactNode> = {
         <Step n={2} title="Click 'Add Service'">
           <p>Fill in the service details:</p>
           <CheckList items={[
-            "Name — e.g. \"Dental Checkup\", \"30-min Massage\", \"Haircut\"",
-            "Duration — how long the service takes in minutes",
-            "Price — the full price clients pay",
-            "Capacity — how many clients can be booked at the same time slot",
-            "Description (optional) — internal notes about the service",
+            "Name, e.g. \"Dental Checkup\", \"30-min Massage\", \"Haircut\"",
+            "Duration, how long the service takes in minutes",
+            "Price, the full price clients pay",
+            "Capacity, how many clients can be booked at the same time slot",
+            "Description (optional), internal notes about the service",
           ]} />
         </Step>
-        <Step n={3} title="Set status to Active"><p>Only <strong>Active</strong> services can be selected when creating appointments. You can deactivate a service anytime without deleting it — useful for seasonal or retired services.</p></Step>
+        <Step n={3} title="Set status to Active"><p>Only <strong>Active</strong> services can be selected when creating appointments. You can deactivate a service anytime without deleting it - useful for seasonal or retired services.</p></Step>
       </div>
       <Tip>Start with your 3–5 most common services. You can always add more later.</Tip>
       <Note>Capacity controls how many simultaneous appointments can exist for that service in the same time slot. Set it to 1 for one-on-one services.</Note>
@@ -179,33 +179,33 @@ const SECTION_CONTENT: Record<string, React.ReactNode> = {
         <Step n={2} title="Add availability slots">
           <p>For each day you&apos;re open, add a slot with:</p>
           <CheckList items={[
-            "Day of the week — Monday through Sunday",
-            "Start time and End time — your operating hours for that day",
-            "Staff name (optional) — which team member covers this slot",
+            "Day of the week, Monday through Sunday",
+            "Start time and End time, your operating hours for that day",
+            "Staff name (optional), which team member covers this slot",
           ]} />
         </Step>
         <Step n={3} title="Multiple slots per day"><p>You can add more than one availability slot per day. For example, a morning shift (8am–12pm) and an afternoon shift (1pm–6pm), each assigned to different staff.</p></Step>
       </div>
-      <Tip>If you have the same schedule every day, just add 7 slots — one per day — with the same hours.</Tip>
-      <Note>Availability is for your reference and dashboard display. The system doesn&apos;t automatically block bookings outside these hours — that&apos;s handled by your staff at entry time.</Note>
+      <Tip>If you have the same schedule every day, just add 7 slots (one per day) with the same hours.</Tip>
+      <Note>Availability is for your reference and dashboard display. The system doesn&apos;t automatically block bookings outside these hours, that&apos;s handled by your staff at entry time.</Note>
     </div>
   ),
 
   appointments: (
     <div className="space-y-4">
       <p className="leading-relaxed" style={{ color: "#54514c" }}>
-        Appointments are created by your staff through the dashboard — not by clients online. When a client calls or walks in, your receptionist enters the booking.
+        Appointments are created by your staff through the dashboard, not by clients online. When a client calls or walks in, your receptionist enters the booking.
       </p>
       <div className="space-y-0">
         <Step n={1} title="Click 'New Appointment'"><p>From the Appointments page or Dashboard, click the <strong>New Appointment</strong> button.</p></Step>
         <Step n={2} title="Fill in the appointment details">
           <CheckList items={[
-            "Client name — who the appointment is for",
-            "Service — select from your active services",
-            "Date & Time — when the appointment is scheduled",
-            "Staff (optional) — which team member will handle it",
-            "Deposit amount (optional) — how much was paid upfront",
-            "Notes (optional) — any special instructions or reminders",
+            "Client name, who the appointment is for",
+            "Service, select from your active services",
+            "Date & Time, when the appointment is scheduled",
+            "Staff (optional), which team member will handle it",
+            "Deposit amount (optional), how much was paid upfront",
+            "Notes (optional), any special instructions or reminders",
           ]} />
         </Step>
         <Step n={3} title="Save the appointment"><p>New appointments are saved with a <strong>Pending</strong> status by default. You can change the status immediately if the client is confirmed.</p></Step>
@@ -247,7 +247,7 @@ const SECTION_CONTENT: Record<string, React.ReactNode> = {
   deposits: (
     <div className="space-y-4">
       <p className="leading-relaxed" style={{ color: "#54514c" }}>
-        Deposit tracking lets you record upfront payments from clients — no payment processing involved. It&apos;s a simple record-keeping field so your team knows who has paid and who hasn&apos;t.
+        Deposit tracking lets you record upfront payments from clients, no payment processing involved. It&apos;s a simple record-keeping field so your team knows who has paid and who hasn&apos;t.
       </p>
       <div className="space-y-0">
         <Step n={1} title="Add a deposit when booking"><p>When creating or editing an appointment, enter the deposit amount in the <strong>Deposit</strong> field.</p></Step>
@@ -260,7 +260,7 @@ const SECTION_CONTENT: Record<string, React.ReactNode> = {
         </Step>
         <Step n={3} title="View on the appointment card"><p>The deposit amount and status are visible on each appointment card in the list view, so any staff member can see at a glance who still owes a deposit.</p></Step>
       </div>
-      <Note>Smapey Booking does not process payments. The deposit field is for tracking purposes only — your staff collects deposits in person or via your own payment method (GCash, cash, etc.).</Note>
+      <Note>Smapey Booking does not process payments. The deposit field is for tracking purposes only, your staff collects deposits in person or via your own payment method (GCash, cash, etc.).</Note>
     </div>
   ),
 
@@ -270,9 +270,9 @@ const SECTION_CONTENT: Record<string, React.ReactNode> = {
         Each appointment can be assigned to a specific staff member. This helps with coordination, especially if you have multiple practitioners or service staff.
       </p>
       <div className="space-y-0">
-        <Step n={1} title="Enter the staff name when booking"><p>When creating an appointment, fill in the <strong>Staff</strong> field with the name of the person handling the appointment — e.g. &quot;Dr. Santos&quot;, &quot;Maria&quot;, &quot;James&quot;.</p></Step>
+        <Step n={1} title="Enter the staff name when booking"><p>When creating an appointment, fill in the <strong>Staff</strong> field with the name of the person handling the appointment - e.g. &quot;Dr. Santos&quot;, &quot;Maria&quot;, &quot;James&quot;.</p></Step>
         <Step n={2} title="View by staff on the dashboard"><p>The Appointments list shows the assigned staff on each card. Your team can filter or scan by name to see their own schedule for the day.</p></Step>
-        <Step n={3} title="Set staff in Availability"><p>In the Availability section, you can also assign staff names to specific time slots. This serves as your shift schedule — who works Monday morning vs. Tuesday afternoon.</p></Step>
+        <Step n={3} title="Set staff in Availability"><p>In the Availability section, you can also assign staff names to specific time slots. This serves as your shift schedule - who works Monday morning vs. Tuesday afternoon.</p></Step>
       </div>
       <Tip>Use consistent staff name formats (e.g. always &quot;Dr. Reyes&quot; not sometimes &quot;Reyes&quot; or &quot;Doc Reyes&quot;) so filtering stays clean.</Tip>
     </div>
@@ -289,7 +289,7 @@ const SECTION_CONTENT: Record<string, React.ReactNode> = {
           <p>Enter their email address and choose a role:</p>
           <div className="space-y-2 mt-3">
             {[
-              { role: "Owner", desc: "Full access — billing, settings, team management, all features" },
+              { role: "Owner", desc: "Full access, billing, settings, team management, all features" },
               { role: "Admin", desc: "Can manage appointments, services, and availability. Cannot manage billing." },
               { role: "Member", desc: "Can view and create appointments. Cannot edit services or settings." },
             ].map(({ role, desc }) => (
@@ -309,7 +309,7 @@ const SECTION_CONTENT: Record<string, React.ReactNode> = {
   dashboard: (
     <div className="space-y-4">
       <p className="leading-relaxed" style={{ color: "#54514c" }}>
-        The Booking Dashboard gives you a real-time overview of your appointment activity — what&apos;s happening today, this month, and across your whole schedule.
+        The Booking Dashboard gives you a real-time overview of your appointment activity, what&apos;s happening today, this month, and across your whole schedule.
       </p>
       <div className="grid sm:grid-cols-2 gap-4 my-4">
         {[
@@ -341,7 +341,7 @@ const SECTION_CONTENT: Record<string, React.ReactNode> = {
           { icon: Zap, title: "Set up everything before your first booking", desc: "Add all your services and availability slots before you start entering appointments. This avoids having to go back and edit things mid-workflow." },
           { icon: CalendarDays, title: "Use consistent naming", desc: "Keep service names, staff names, and client names consistent. \"Dr. Santos\" vs \"Doc Santos\" creates confusion when filtering." },
           { icon: CheckCircle2, title: "Mark completed appointments daily", desc: "Don't let 'Confirmed' appointments pile up. Mark them as Completed at end of day so your dashboard stats stay accurate." },
-          { icon: CreditCard, title: "Record deposits at booking time", desc: "Enter the deposit amount immediately when the client pays. Don't rely on memory — it'll be lost." },
+          { icon: CreditCard, title: "Record deposits at booking time", desc: "Enter the deposit amount immediately when the client pays. Don't rely on memory - it'll be lost." },
           { icon: Users, title: "Assign staff at every booking", desc: "Even if you only have one staff member, always fill in the staff field. It creates better records and makes it easier to scale your team later." },
           { icon: Bell, title: "Use the Notes field generously", desc: "Add allergies, preferences, follow-up reminders, or special instructions. Any staff member who opens the appointment will see this context." },
           { icon: Settings, title: "Deactivate, don't delete", desc: "If you stop offering a service temporarily, deactivate it instead of deleting. Your historical appointments that used that service will stay intact." },
@@ -425,7 +425,7 @@ export default function GuideContent() {
             <BookOpen className="w-3 h-3" /> User Guide
           </div>
           <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight mb-3" style={{ color: INK }}>How to use Smapey Booking</h1>
-          <p className="max-w-xl leading-relaxed" style={{ color: "#54514c" }}>Everything you need to know — from setting up your services to managing appointments and tracking your team.</p>
+          <p className="max-w-xl leading-relaxed" style={{ color: "#54514c" }}>Everything you need to know, from setting up your services to managing appointments and tracking your team.</p>
         </div>
       </div>
 

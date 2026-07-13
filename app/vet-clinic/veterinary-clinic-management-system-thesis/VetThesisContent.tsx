@@ -58,14 +58,14 @@ function Navbar() {
 }
 
 const MODULES = [
-  { icon: PawPrint, title: "Pet Management Module", desc: "Stores complete pet profiles — name, species, breed, date of birth, weight, sex, owner contact, and medical notes. Supports search by pet name or owner name. Each pet is linked to an organization and can have multiple appointments and vaccination records." },
-  { icon: Users, title: "Veterinarian Module", desc: "Manages vet personnel — name, specialty, contact info, per-day availability schedules, and active/inactive status. Appointments are assigned per vet, and the queue board is filtered per vet at runtime." },
-  { icon: CalendarDays, title: "Appointment Management Module", desc: "Handles booking — linking a pet to a vet, date, start time, and chief complaint. Supports a multi-status workflow: Pending → Confirmed → In Queue → In Progress → Completed, Cancelled, or No Show." },
+  { icon: PawPrint, title: "Pet Management Module", desc: "Stores complete pet profiles - name, species, breed, date of birth, weight, sex, owner contact, and medical notes. Supports search by pet name or owner name. Each pet is linked to an organization and can have multiple appointments and vaccination records." },
+  { icon: Users, title: "Veterinarian Module", desc: "Manages vet personnel - name, specialty, contact info, per-day availability schedules, and active/inactive status. Appointments are assigned per vet, and the queue board is filtered per vet at runtime." },
+  { icon: CalendarDays, title: "Appointment Management Module", desc: "Handles booking - linking a pet to a vet, date, start time, and chief complaint. Supports a multi-status workflow: Pending → Confirmed → In Queue → In Progress → Completed, Cancelled, or No Show." },
   { icon: ListOrdered, title: "Queue Management Module", desc: "A real-time board that tracks the active patient queue per vet. Pets are moved between Waiting, In Progress, and Done by staff actions. Queue number is auto-assigned on confirmation." },
   { icon: Syringe, title: "Vaccination Records Module", desc: "Logs each vaccination per pet with the vaccine name, date given, and next due date. A 30-day upcoming vaccination report is exposed on the dashboard for proactive owner reminders." },
-  { icon: Receipt, title: "Billing & Payment Module", desc: "Creates itemized bills per pet per visit — with line items (description, quantity, unit price, computed amount). Tracks payment status (Unpaid, Partial, Paid), amount paid, payment method, and outstanding balance." },
-  { icon: BarChart3, title: "Analytics & Reporting Module", desc: "Aggregates clinic data into dashboard metrics — monthly appointment counts, completion rates, upcoming vaccinations, unpaid bill totals, and 7-day trend charts for appointments and completions." },
-  { icon: Shield, title: "User Authentication & Roles Module", desc: "Multi-tenant system — each vet clinic is an isolated organization. Supports role-based access control (Admin, Member) with feature-level permissions per product. Accounts are managed per organization." },
+  { icon: Receipt, title: "Billing & Payment Module", desc: "Creates itemized bills per pet per visit - with line items (description, quantity, unit price, computed amount). Tracks payment status (Unpaid, Partial, Paid), amount paid, payment method, and outstanding balance." },
+  { icon: BarChart3, title: "Analytics & Reporting Module", desc: "Aggregates clinic data into dashboard metrics - monthly appointment counts, completion rates, upcoming vaccinations, unpaid bill totals, and 7-day trend charts for appointments and completions." },
+  { icon: Shield, title: "User Authentication & Roles Module", desc: "Multi-tenant system - each vet clinic is an isolated organization. Supports role-based access control (Admin, Member) with feature-level permissions per product. Accounts are managed per organization." },
 ]
 
 const ENTITIES = [
@@ -104,10 +104,10 @@ export default function VetThesisContent() {
             <BookOpen className="w-3 h-3" /> Thesis Reference
           </div>
           <h1 className="text-4xl sm:text-5xl font-extrabold leading-tight tracking-tight mb-6" style={{ color: INK }}>
-            Veterinary Clinic Management System — thesis documentation guide
+            Veterinary Clinic Management System, thesis documentation guide
           </h1>
           <p className="text-lg max-w-2xl mx-auto mb-8" style={{ color: "#54514c" }}>
-            A practical reference for students writing a thesis on a veterinary clinic management system — covering system modules, database entities, architecture patterns, and suggested thesis titles.
+            A practical reference for students writing a thesis on a veterinary clinic management system, covering system modules, database entities, architecture patterns, and suggested thesis titles.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
             <a href={REGISTER_URL} className="flex items-center gap-2 px-7 py-3.5 rounded-full font-bold text-sm border-2 transition-transform hover:-translate-y-0.5" style={{ ...display, background: AMBER, color: INK, borderColor: INK, boxShadow: `4px 4px 0 ${INK}` }}>
@@ -126,7 +126,7 @@ export default function VetThesisContent() {
           <Animate className="text-center mb-12">
             <p className="text-sm font-bold uppercase tracking-widest mb-3" style={{ color: BLUE }}>System Modules</p>
             <h2 className="text-3xl font-extrabold" style={{ color: INK }}>Core modules of a veterinary clinic management system</h2>
-            <p className="mt-3 max-w-xl mx-auto" style={{ color: "#54514c" }}>These are the standard modules your thesis system should include — each covering a key operational area of a vet clinic.</p>
+            <p className="mt-3 max-w-xl mx-auto" style={{ color: "#54514c" }}>These are the standard modules your thesis system should include, each covering a key operational area of a vet clinic.</p>
           </Animate>
           <div className="grid sm:grid-cols-2 gap-5">
             {MODULES.map(({ icon: Icon, title, desc }, i) => {
@@ -150,7 +150,7 @@ export default function VetThesisContent() {
           <Animate className="text-center mb-12">
             <p className="text-sm font-bold uppercase tracking-widest mb-3" style={{ color: BLUE }}>Database Design</p>
             <h2 className="text-3xl font-extrabold" style={{ color: INK }}>Key database entities</h2>
-            <p className="mt-3 max-w-xl mx-auto" style={{ color: "#54514c" }}>The core tables (entities) your system needs and their main attributes — useful for your ER diagram and schema design.</p>
+            <p className="mt-3 max-w-xl mx-auto" style={{ color: "#54514c" }}>The core tables (entities) your system needs and their main attributes, useful for your ER diagram and schema design.</p>
           </Animate>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {ENTITIES.map(({ name, attrs }, i) => (
@@ -201,9 +201,9 @@ export default function VetThesisContent() {
             <div className="rounded-[20px] border-2 p-8 flex flex-col sm:flex-row items-center gap-6" style={{ background: "#fff", borderColor: INK, boxShadow: `8px 8px 0 ${BLUE}` }}>
               <div className="flex-1">
                 <h3 className="text-xl font-extrabold mb-2" style={{ color: INK }}>Use Smapey as your live working demo</h3>
-                <p className="text-sm leading-relaxed" style={{ color: "#54514c" }}>Instead of building a prototype from scratch, use Smapey&apos;s free plan to demonstrate a fully working veterinary clinic management system — with real pet records, appointments, vaccinations, and billing.</p>
+                <p className="text-sm leading-relaxed" style={{ color: "#54514c" }}>Instead of building a prototype from scratch, use Smapey&apos;s free plan to demonstrate a fully working veterinary clinic management system, with real pet records, appointments, vaccinations, and billing.</p>
                 <ul className="mt-4 space-y-1.5">
-                  {["All 8 modules already built and working", "Free plan — no credit card required", "Show live features during your thesis defense"].map(f => (
+                  {["All 8 modules already built and working", "Free plan, no credit card required", "Show live features during your thesis defense"].map(f => (
                     <li key={f} className="flex items-center gap-2 text-sm" style={{ color: "#54514c" }}><CheckCircle2 className="w-4 h-4 shrink-0" style={{ color: BLUE }} />{f}</li>
                   ))}
                 </ul>

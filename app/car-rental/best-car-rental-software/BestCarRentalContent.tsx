@@ -12,23 +12,23 @@ const CREAM = "#fbf7f0"
 const display = { fontFamily: "'Hanken Grotesk', system-ui, sans-serif" }
 
 const FEATURES = [
-  { icon: Car, title: "Fleet at a glance", desc: "See every vehicle's status — available, rented, or in maintenance — from one screen. No spreadsheets, no guessing." },
+  { icon: Car, title: "Fleet at a glance", desc: "See every vehicle's status (available, rented, or in maintenance) from one screen. No spreadsheets, no guessing." },
   { icon: Key, title: "Reservation management", desc: "Create rentals with pickup dates, return dates, locations, and deposit tracking. Activate, return, or cancel with a single click." },
   { icon: AlertCircle, title: "Overdue alerts", desc: "Rentals past their return date are automatically flagged so you can act fast. No more chasing customers manually." },
   { icon: BarChart3, title: "Revenue dashboard", desc: "Track monthly revenue, rental counts, and fleet utilization from one clean dashboard. Know what's earning and what's sitting idle." },
-  { icon: Users, title: "Customer history", desc: "Every customer has a full rental history. Deactivate without losing records — your data stays protected." },
+  { icon: Users, title: "Customer history", desc: "Every customer has a full rental history. Deactivate without losing records - your data stays protected." },
   { icon: Shield, title: "Secure & isolated", desc: "Your data is fully isolated per business. Nothing is shared across accounts. Your fleet stays yours." },
-  { icon: Globe, title: "Public Booking Page", desc: "Share a public link where customers can browse your fleet and submit booking inquiries 24/7 — no login required on their end." },
+  { icon: Globe, title: "Public Booking Page", desc: "Share a public link where customers can browse your fleet and submit booking inquiries 24/7 - no login required on their end." },
   { icon: MessageSquare, title: "Booking Inquiries", desc: "Review incoming booking requests from your public page. Approve or reject each inquiry and convert approved ones to rentals in one click." },
-  { icon: QrCode, title: "Deposit QR Code", desc: "Upload your GCash, Maya, or bank QR code to your booking page so customers can scan and pay their deposit instantly — no back-and-forth messaging." },
-  { icon: Palette, title: "Page Personalization", desc: "Choose from 5 themes — Midnight, Clean, Ocean, Forest, Luxury — then personalize any theme with a cover photo, tagline, and accent color to match your brand." },
-  { icon: Bell, title: "Instant Booking Alerts", desc: "Get notified the moment a customer submits a booking inquiry. A badge appears on your notification bell — click it to jump straight to the inquiry." },
+  { icon: QrCode, title: "Deposit QR Code", desc: "Upload your GCash, Maya, or bank QR code to your booking page so customers can scan and pay their deposit instantly - no back-and-forth messaging." },
+  { icon: Palette, title: "Page Personalization", desc: "Choose from 5 themes (Midnight, Clean, Ocean, Forest, Luxury) then personalize any theme with a cover photo, tagline, and accent color to match your brand." },
+  { icon: Bell, title: "Instant Booking Alerts", desc: "Get notified the moment a customer submits a booking inquiry. A badge appears on your notification bell - click it to jump straight to the inquiry." },
   { icon: ImagePlus, title: "Vehicle Photos", desc: "Upload a photo for each vehicle in your fleet. Photos display on your public booking page so customers see exactly what they're renting before they inquire." },
 ]
 
 const FAQS = [
-  { q: "Is Smapey really the best car rental software for small operators?", a: "It's built specifically for small to mid-sized rental businesses. You get fleet tracking, reservation management, overdue detection, and revenue dashboards — without paying for features you don't need." },
-  { q: "How is it different from generic rental tools?", a: "Smapey is purpose-built for car rental, not a generic service booking tool. Every feature — vehicle status, return date tracking, maintenance flags — is designed around how a rental business actually works." },
+  { q: "Is Smapey really the best car rental software for small operators?", a: "It's built specifically for small to mid-sized rental businesses. You get fleet tracking, reservation management, overdue detection, and revenue dashboards, without paying for features you don't need." },
+  { q: "How is it different from generic rental tools?", a: "Smapey is purpose-built for car rental, not a generic service booking tool. Every feature (vehicle status, return date tracking, maintenance flags) is designed around how a rental business actually works." },
   { q: "Can I try it before paying?", a: "Yes. The free plan gives you up to 5 vehicles and 20 rentals per month with no credit card required. Upgrade when you're ready to grow." },
   { q: "Does it handle deposits?", a: "Yes. Each rental has a deposit amount field so you can track what's been collected before a vehicle leaves the lot." },
 ]
@@ -109,10 +109,10 @@ function Hero() {
         <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.04] tracking-tight mb-6" style={{ color: INK }}>
           The best car rental software <span style={{ color: BLUE }}>built for real operators</span>
         </h1>
-        <p className="text-lg max-w-2xl mx-auto mb-10 leading-relaxed" style={{ color: "#54514c" }}>Smapey gives you everything you need to manage your fleet, track rentals, and grow your car rental business — without paying for features you'll never use.</p>
+        <p className="text-lg max-w-2xl mx-auto mb-10 leading-relaxed" style={{ color: "#54514c" }}>Smapey gives you everything you need to manage your fleet, track rentals, and grow your car rental business, without paying for features you'll never use.</p>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
           <a href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=CAR_RENTAL&plan=FREE`} className="flex items-center gap-2 px-7 py-4 rounded-full font-bold text-sm border-2 transition-transform hover:-translate-y-0.5" style={{ ...display, background: AMBER, color: INK, borderColor: INK, boxShadow: `4px 4px 0 ${INK}` }}>
-            Start free — no card needed <ChevronRight className="w-4 h-4" />
+            Start free, no card needed <ChevronRight className="w-4 h-4" />
           </a>
           <a href="/car-rental" className="flex items-center gap-2 px-7 py-4 rounded-full font-bold text-sm border-2 bg-white transition-transform hover:-translate-y-0.5" style={{ ...display, color: INK, borderColor: INK }}>View all features</a>
         </div>
@@ -279,7 +279,7 @@ function PaymentModal({ plan, isPhilippines, onClose }: { plan: { name: string; 
         <div className="px-6 py-5 flex items-center justify-between" style={{ background: INK }}>
           <div className="flex items-center gap-3">
             {step === "payment" && !token && <button onClick={() => setStep("details")} className="text-white/70 hover:text-white transition"><svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}><path d="M19 12H5M12 5l-7 7 7 7"/></svg></button>}
-            <div><h2 className="text-white font-extrabold text-lg">{step === "details" ? "Create your account" : "Choose payment method"}</h2><p className="text-sm mt-0.5" style={{ color: "rgba(255,255,255,.7)" }}>{plan.name} plan — <span className="font-bold" style={{ color: AMBER }}>{displayPrice}</span>{plan.period}</p></div>
+            <div><h2 className="text-white font-extrabold text-lg">{step === "details" ? "Create your account" : "Choose payment method"}</h2><p className="text-sm mt-0.5" style={{ color: "rgba(255,255,255,.7)" }}>{plan.name} plan, <span className="font-bold" style={{ color: AMBER }}>{displayPrice}</span>{plan.period}</p></div>
           </div>
           <button onClick={onClose} className="text-white/70 hover:text-white transition-colors"><X className="w-5 h-5" /></button>
         </div>

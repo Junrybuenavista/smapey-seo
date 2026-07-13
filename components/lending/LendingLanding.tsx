@@ -17,28 +17,28 @@ const display = { fontFamily: "'Hanken Grotesk', system-ui, sans-serif" }
 
 const FEATURES = [
   { icon: Users, title: "Borrower Profiles", desc: "Build a complete borrower database with contact details, ID info, and notes. Every borrower's loan history, total borrowed, and outstanding balance update automatically." },
-  { icon: HandCoins, title: "Loan Issuance", desc: "Issue a loan in seconds — set the principal, interest rate, term, and start date. The system records everything and links it to the borrower's profile." },
-  { icon: CalendarRange, title: "Amortization Schedules", desc: "Auto-generate a full repayment schedule with due dates and amounts the moment a loan is created. No spreadsheets, no manual math — every installment is laid out for you." },
+  { icon: HandCoins, title: "Loan Issuance", desc: "Issue a loan in seconds - set the principal, interest rate, term, and start date. The system records everything and links it to the borrower's profile." },
+  { icon: CalendarRange, title: "Amortization Schedules", desc: "Auto-generate a full repayment schedule with due dates and amounts the moment a loan is created. No spreadsheets, no manual math - every installment is laid out for you." },
   { icon: Wallet, title: "Payment Tracking", desc: "Record repayments by Cash, GCash, or Bank Transfer. Handle partial payments, and watch each loan's outstanding balance drop in real time as borrowers pay." },
-  { icon: AlertTriangle, title: "Overdue & Collections", desc: "Loans with missed due dates are flagged automatically. See who's late, how much they owe, and how many days overdue — so you can follow up before it becomes a bad debt." },
+  { icon: AlertTriangle, title: "Overdue & Collections", desc: "Loans with missed due dates are flagged automatically. See who's late, how much they owe, and how many days overdue - so you can follow up before it becomes a bad debt." },
   { icon: Percent, title: "Interest & Fees", desc: "Set the interest rate per loan and let the system compute totals and installment amounts. Your terms, applied consistently across every loan you issue." },
-  { icon: CheckCircle2, title: "Loan Lifecycle", desc: "Move every loan through a clear status — Active, Fully Paid, or Defaulted. Know exactly where your portfolio stands at any moment, no guesswork." },
-  { icon: BarChart3, title: "Lending Analytics", desc: "A live dashboard with monthly collections, total outstanding, repayment rate, default rate, and a 6-month collections-vs-disbursed chart — so you always know how your lending business is performing." },
+  { icon: CheckCircle2, title: "Loan Lifecycle", desc: "Move every loan through a clear status - Active, Fully Paid, or Defaulted. Know exactly where your portfolio stands at any moment, no guesswork." },
+  { icon: BarChart3, title: "Lending Analytics", desc: "A live dashboard with monthly collections, total outstanding, repayment rate, default rate, and a 6-month collections-vs-disbursed chart - so you always know how your lending business is performing." },
 ]
 
 const STEPS = [
   { num: "01", title: "Add your borrowers", desc: "Record each borrower once with their contact info and ID details. Their loan history and balance follow them across every future loan automatically." },
-  { num: "02", title: "Issue a loan", desc: "Pick a borrower, set the principal, interest rate, and term — and the amortization schedule generates itself with every due date and amount." },
+  { num: "02", title: "Issue a loan", desc: "Pick a borrower, set the principal, interest rate, and term - and the amortization schedule generates itself with every due date and amount." },
   { num: "03", title: "Track repayments", desc: "Log each payment by Cash, GCash, or Bank Transfer. Partial payments are supported and the outstanding balance updates instantly." },
   { num: "04", title: "Monitor collections", desc: "Spot overdue loans, follow up on collections, and watch your monthly collections, repayment rate, and outstanding balance in real time." },
 ]
 
 const FAQS = [
-  { q: "Is this a loan app for borrowers, or for lenders?", a: "It's for lenders. Smapey Lending is the software you use to run your own lending business — issuing loans, tracking borrowers, and managing repayments. It is not a place to borrow money; it's the system that lending businesses and individual lenders use to manage the money they lend out." },
-  { q: "Is there really a free plan?", a: "Yes. The free plan includes up to 20 borrowers, 30 active loans, amortization schedules, payment tracking, and the full analytics dashboard — no credit card required, no trial timer. Upgrade only when your portfolio grows." },
-  { q: "Does it calculate the amortization schedule automatically?", a: "Yes. The moment you create a loan with a principal, interest rate, and term, the system generates a complete repayment schedule — every due date and installment amount — so you never have to compute it by hand." },
+  { q: "Is this a loan app for borrowers, or for lenders?", a: "It's for lenders. Smapey Lending is the software you use to run your own lending business, issuing loans, tracking borrowers, and managing repayments. It is not a place to borrow money; it's the system that lending businesses and individual lenders use to manage the money they lend out." },
+  { q: "Is there really a free plan?", a: "Yes. The free plan includes up to 20 borrowers, 30 active loans, amortization schedules, payment tracking, and the full analytics dashboard, no credit card required, no trial timer. Upgrade only when your portfolio grows." },
+  { q: "Does it calculate the amortization schedule automatically?", a: "Yes. The moment you create a loan with a principal, interest rate, and term, the system generates a complete repayment schedule (every due date and installment amount) so you never have to compute it by hand." },
   { q: "Can I record GCash and bank transfer payments?", a: "Yes. Every payment can be logged as Cash, GCash, or Bank Transfer. Partial payments are supported, and each loan's outstanding balance updates the instant you record a payment." },
-  { q: "How does overdue and collections tracking work?", a: "Loans with a missed due date are flagged automatically. Your dashboard shows who is late, how much they owe, and how many days overdue — so you can follow up early and keep your default rate low." },
+  { q: "How does overdue and collections tracking work?", a: "Loans with a missed due date are flagged automatically. Your dashboard shows who is late, how much they owe, and how many days overdue, so you can follow up early and keep your default rate low." },
 ]
 
 export type LendingVariant = {
@@ -139,12 +139,12 @@ function Hero() {
             Run your lending business <span style={{ color: BLUE }}>without the spreadsheets</span>
           </h1>
           <p className="text-lg max-w-2xl mx-auto mb-8 leading-relaxed" style={{ color: "#54514c" }}>
-            Borrowers, loans, amortization schedules, payments, and collections analytics —
+            Borrowers, loans, amortization schedules, payments, and collections analytics,
             everything an independent lender needs, in one clean dashboard. No spreadsheets, no missed dues.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-7">
             <a href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=LENDING&plan=FREE`} className="flex items-center gap-2 px-7 py-4 rounded-full font-bold text-sm border-2 transition-transform hover:-translate-y-0.5" style={{ ...display, background: AMBER, color: INK, borderColor: INK, boxShadow: `4px 4px 0 ${INK}` }}>
-              Start free — no card needed <ChevronRight className="w-4 h-4" />
+              Start free, no card needed <ChevronRight className="w-4 h-4" />
             </a>
             <a href="/lending" className="flex items-center gap-2 px-7 py-4 rounded-full font-bold text-sm border-2 bg-white transition-transform hover:-translate-y-0.5" style={{ ...display, color: INK, borderColor: INK }}>
               View all features
@@ -361,7 +361,7 @@ function PaymentModal({ plan, isPhilippines, onClose }: { plan: { name: string; 
         <div className="px-6 py-5 flex items-center justify-between" style={{ background: INK }}>
           <div className="flex items-center gap-3">
             {step === "payment" && !token && <button onClick={() => setStep("details")} className="text-white/70 hover:text-white transition"><svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}><path d="M19 12H5M12 5l-7 7 7 7"/></svg></button>}
-            <div><h2 className="text-white font-extrabold text-lg">{step === "details" ? "Create your account" : "Choose payment method"}</h2><p className="text-sm mt-0.5" style={{ color: "rgba(255,255,255,.7)" }}>{plan.name} plan — <span className="font-bold" style={{ color: AMBER }}>{displayPrice}</span>{plan.period}</p></div>
+            <div><h2 className="text-white font-extrabold text-lg">{step === "details" ? "Create your account" : "Choose payment method"}</h2><p className="text-sm mt-0.5" style={{ color: "rgba(255,255,255,.7)" }}>{plan.name} plan, <span className="font-bold" style={{ color: AMBER }}>{displayPrice}</span>{plan.period}</p></div>
           </div>
           <button onClick={onClose} className="text-white/70 hover:text-white transition-colors"><X className="w-5 h-5" /></button>
         </div>

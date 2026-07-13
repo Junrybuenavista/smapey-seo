@@ -21,9 +21,9 @@ const SECTIONS = [
     icon: Stethoscope,
     title: "1. Set Up Your Clinic",
     steps: [
-      { title: "Create your Smapey account", desc: "Sign up at smapey.com and select Clinic Manager as your product. Your clinic account is created immediately — no credit card required on the free plan." },
+      { title: "Create your Smapey account", desc: "Sign up at smapey.com and select Clinic Manager as your product. Your clinic account is created immediately - no credit card required on the free plan." },
       { title: "Add doctors", desc: "Go to the Doctors page. Click Add Doctor and fill in the doctor's name, specialty (e.g. General Practitioner, Dentist), phone, and email. Save to add them to your clinic roster." },
-      { title: "Set doctor schedules", desc: "Click on a doctor's name to expand their schedule. Use the Add Slot form to define which days and hours they're available — e.g. Monday 8:00–17:00. Repeat for each day they work." },
+      { title: "Set doctor schedules", desc: "Click on a doctor's name to expand their schedule. Use the Add Slot form to define which days and hours they're available - e.g. Monday 8:00–17:00. Repeat for each day they work." },
       { title: "Invite your team", desc: "Go to Settings → Team and invite receptionists or nurses. They'll receive an email and can log in with their own account. Assign them Admin or Member access based on their role." },
     ],
   },
@@ -33,10 +33,10 @@ const SECTIONS = [
     title: "2. Register Patients",
     steps: [
       { title: "Open the Patients page", desc: "Navigate to Clinic → Patients from the sidebar." },
-      { title: "Enter patient details", desc: "Click Register Patient and fill in their demographics — first and last name, date of birth, gender, phone, email, and home address. Only the name is required, so you can register a walk-in fast and complete the rest later." },
+      { title: "Enter patient details", desc: "Click Register Patient and fill in their demographics - first and last name, date of birth, gender, phone, email, and home address. Only the name is required, so you can register a walk-in fast and complete the rest later." },
       { title: "Record medical & emergency info", desc: "Add the patient's blood type, any allergies (e.g. Penicillin, peanuts), and an emergency contact name and phone. Allergies are surfaced prominently in the patient's record so they're never missed at the point of care." },
-      { title: "Save the profile", desc: "The patient is now stored in your clinic's records. Search for them anytime by name or phone — the list pages results so it stays fast even with thousands of patients." },
-      { title: "Open a patient's record", desc: "Click Details on any patient to see their full chart — demographics, a highlighted allergy alert, emergency contact, notes, and their complete visit history with the status of every past appointment. Click Edit to update any of it at any time." },
+      { title: "Save the profile", desc: "The patient is now stored in your clinic's records. Search for them anytime by name or phone - the list pages results so it stays fast even with thousands of patients." },
+      { title: "Open a patient's record", desc: "Click Details on any patient to see their full chart - demographics, a highlighted allergy alert, emergency contact, notes, and their complete visit history with the status of every past appointment. Click Edit to update any of it at any time." },
     ],
   },
   {
@@ -46,7 +46,7 @@ const SECTIONS = [
     steps: [
       { title: "Open the Appointments page", desc: "Navigate to Clinic → Appointments from the sidebar." },
       { title: "Click Book Appointment", desc: "Select the patient (from your registered patient list), the doctor, the date, and the start time." },
-      { title: "Add a chief complaint", desc: "Optionally enter the reason for the visit — e.g. Annual check-up, Toothache, Follow-up. This helps the doctor prepare before the consultation." },
+      { title: "Add a chief complaint", desc: "Optionally enter the reason for the visit - e.g. Annual check-up, Toothache, Follow-up. This helps the doctor prepare before the consultation." },
       { title: "Save the appointment", desc: "The appointment is created with a Pending status and a queue number. You can filter appointments by doctor, date, or status at any time." },
     ],
   },
@@ -58,7 +58,7 @@ const SECTIONS = [
       { title: "Open the Queue page", desc: "Navigate to Clinic → Queue from the sidebar. This shows today's patient queue in a live kanban board." },
       { title: "Confirm & enqueue patients", desc: "Click Confirm on a pending appointment, then Enqueue when the patient arrives. The card moves to the Waiting column." },
       { title: "Start the consultation", desc: "When the doctor is ready, click Call In. The patient's card moves to In Consultation with an active pulse indicator." },
-      { title: "Complete or handle exceptions", desc: "When the consultation is done, click Done. If the patient didn't show, click No Show. If cancelled, click Cancel. The board follows a guided workflow — a completed visit can't accidentally be moved back into the queue — and every action is logged automatically." },
+      { title: "Complete or handle exceptions", desc: "When the consultation is done, click Done. If the patient didn't show, click No Show. If cancelled, click Cancel. The board follows a guided workflow (a completed visit can't accidentally be moved back into the queue) and every action is logged automatically." },
     ],
   },
   {
@@ -68,16 +68,16 @@ const SECTIONS = [
     steps: [
       { title: "Open the Analytics page", desc: "Navigate to Clinic → Analytics from the sidebar." },
       { title: "Review stat cards", desc: "See totals for: active doctors, registered patients, today's appointments, completed consultations, and monthly totals." },
-      { title: "Check the 7-day chart", desc: "The bar chart shows total appointments and completions for each of the last 7 days — helpful for spotting busy vs. slow periods." },
+      { title: "Check the 7-day chart", desc: "The bar chart shows total appointments and completions for each of the last 7 days - helpful for spotting busy vs. slow periods." },
       { title: "Monitor today's schedule", desc: "The bottom section of the analytics page shows today's queued patients with their doctor, time, and current status." },
     ],
   },
 ]
 
 const TIPS = [
-  { icon: Clock, tip: "Set up doctor schedules before booking — this prevents confusion about who's available on which days." },
-  { icon: UserCheck, tip: "Fill in allergies and an emergency contact when you register a patient — the allergy alert shows at the top of their record, so it's never missed during a consult." },
-  { icon: ClipboardList, tip: "Use the chief complaint field when booking — it helps doctors prepare and makes appointment notes more useful over time." },
+  { icon: Clock, tip: "Set up doctor schedules before booking, this prevents confusion about who's available on which days." },
+  { icon: UserCheck, tip: "Fill in allergies and an emergency contact when you register a patient, the allergy alert shows at the top of their record, so it's never missed during a consult." },
+  { icon: ClipboardList, tip: "Use the chief complaint field when booking, it helps doctors prepare and makes appointment notes more useful over time." },
   { icon: HeartPulse, tip: "Keep the Queue page open on a clinic tablet or screen throughout the day for real-time visibility." },
 ]
 
@@ -166,7 +166,7 @@ export default function ClinicGuideContent() {
             Smapey Clinic Manager <span style={{ color: BLUE }}>Guide</span>
           </h1>
           <p className="text-lg max-w-2xl mx-auto mb-8" style={{ color: "#54514c" }}>
-            Everything you need to set up your clinic, manage patients and doctors, book appointments, and run a live queue — step by step.
+            Everything you need to set up your clinic, manage patients and doctors, book appointments, and run a live queue, step by step.
           </p>
           <div className="flex flex-wrap items-center justify-center gap-6 text-xs font-semibold" style={{ color: "#54514c" }}>
             {["5-minute setup", "No training required", "Free plan available"].map((t) => (

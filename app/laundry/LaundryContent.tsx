@@ -25,18 +25,18 @@ const FEATURES = [
   { icon: Package, title: "Order Tracking", desc: "Manage every order through a clear status pipeline: Received → Washing → Drying → Ready → Released. Know exactly where each order stands at a glance." },
   { icon: MessageSquare, title: "Customer SMS Notifications", desc: "Automatically notify customers by SMS when their order is received and again when it's ready for pickup. No manual texting required." },
   { icon: Hash, title: "Ticket System", desc: "Every order gets an auto-generated ticket number in YYMMDD-NNN format (e.g. 260518-001). Unique per shop per day so customers can track their orders easily." },
-  { icon: Users, title: "Customer Management", desc: "Find or create customers by phone number. View a customer's full order history, spending totals, and contact details — all in one place." },
+  { icon: Users, title: "Customer Management", desc: "Find or create customers by phone number. View a customer's full order history, spending totals, and contact details - all in one place." },
   { icon: CreditCard, title: "Multi-Payment", desc: "Accept Cash, GCash, Maya, Bank Transfer, and more. Record payment method per order and track outstanding balances on a per-order basis." },
-  { icon: BarChart3, title: "Laundry Dashboard", desc: "See today's orders, daily revenue, pending pickups, and a 7-day revenue trend chart — everything you need to run your shop from a single screen." },
+  { icon: BarChart3, title: "Laundry Dashboard", desc: "See today's orders, daily revenue, pending pickups, and a 7-day revenue trend chart - everything you need to run your shop from a single screen." },
   { icon: Plus, title: "Add-ons Support", desc: "Track add-on services like fabric conditioner, stain treatment, or express processing. Price them individually and attach them to any order." },
-  { icon: StickyNote, title: "Order Notes", desc: "Add internal notes per order for special instructions — delicate fabrics, allergies, special folding preferences, or customer-specific requests." },
+  { icon: StickyNote, title: "Order Notes", desc: "Add internal notes per order for special instructions - delicate fabrics, allergies, special folding preferences, or customer-specific requests." },
   { icon: UserPlus, title: "Team Collaboration", desc: "Invite staff to your laundry dashboard with role-based access. Cashiers, washers, and managers each see only what they need." },
 ]
 
 const STEPS = [
   { step: "01", title: "Set up your shop", desc: "Create service types (Wash Dry Fold, Dry Clean, Steam Press, etc.) and set your pricing per kilogram or per piece." },
-  { step: "02", title: "Accept orders", desc: "Enter customer info, kilos, and service type. A ticket number is auto-generated instantly — no manual numbering needed." },
-  { step: "03", title: "Notify & collect", desc: "Customers get an SMS when their laundry is ready for pickup. Mark orders as paid via Cash, GCash, or Maya — done." },
+  { step: "02", title: "Accept orders", desc: "Enter customer info, kilos, and service type. A ticket number is auto-generated instantly - no manual numbering needed." },
+  { step: "03", title: "Notify & collect", desc: "Customers get an SMS when their laundry is ready for pickup. Mark orders as paid via Cash, GCash, or Maya - done." },
 ]
 
 const FAQS = [
@@ -144,7 +144,7 @@ function Hero() {
       </div>
 
       <div className="relative w-full max-w-6xl mx-auto px-6 py-24 grid lg:grid-cols-[1.05fr_0.95fr] gap-12 lg:gap-16 items-center">
-        {/* LEFT — copy */}
+        {/* LEFT, copy */}
         <div className="min-w-0 text-center lg:text-left">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border-2 text-xs font-bold mb-7" style={{ color: INK, borderColor: INK, boxShadow: `3px 3px 0 ${BLUE}` }}>
             <Zap className="w-3 h-3" />
@@ -161,7 +161,7 @@ function Hero() {
           </h1>
 
           <p className="text-lg max-w-md mx-auto lg:mx-0 mb-9 leading-relaxed" style={{ color: "#54514c" }}>
-            LaundryOS handles order tracking, ticket numbers, auto-SMS updates, and payment collection — so you can focus on giving customers clean laundry on time.
+            LaundryOS handles order tracking, ticket numbers, auto-SMS updates, and payment collection, so you can focus on giving customers clean laundry on time.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center lg:justify-start justify-center gap-3 mb-9">
@@ -180,7 +180,7 @@ function Hero() {
           </div>
         </div>
 
-        {/* RIGHT — order ticket + status timeline */}
+        {/* RIGHT, order ticket + status timeline */}
         <div className="relative min-w-0 w-full max-w-sm mx-auto">
           {/* floating SMS bubble */}
           <div className="absolute z-10 max-w-[210px] bg-white border-2 rounded-2xl rounded-bl-sm px-4 py-3" style={{ top: -28, right: -18, borderColor: INK, boxShadow: `4px 4px 0 ${BLUE}`, transform: "rotate(3deg)" }}>
@@ -260,7 +260,7 @@ function Features() {
         <Animate className="text-center mb-16">
           <p className="text-sm font-bold uppercase tracking-widest mb-3" style={{ color: BLUE }}>Features</p>
           <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight" style={{ color: INK }}>Everything your laundry shop needs</h2>
-          <p className="mt-4 max-w-xl mx-auto" style={{ color: "#54514c" }}>From accepting orders to notifying customers — LaundryOS covers your entire shop operation.</p>
+          <p className="mt-4 max-w-xl mx-auto" style={{ color: "#54514c" }}>From accepting orders to notifying customers, LaundryOS covers your entire shop operation.</p>
         </Animate>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {FEATURES.map(({ icon: Icon, title, desc }, i) => {
@@ -461,7 +461,7 @@ function PaymentModal({ plan, isPhilippines, onClose }: { plan: { name: string; 
             {step === "payment" && !token && <button onClick={() => setStep("details")} className="text-white/70 hover:text-white transition"><svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}><path d="M19 12H5M12 5l-7 7 7 7"/></svg></button>}
             <div>
               <h2 className="text-white font-extrabold text-lg">{step === "details" ? "Create your account" : "Choose payment method"}</h2>
-              <p className="text-sm mt-0.5" style={{ color: "rgba(255,255,255,.7)" }}>{plan.name} plan — <span className="font-bold" style={{ color: AMBER }}>{displayPrice}</span>{plan.period}</p>
+              <p className="text-sm mt-0.5" style={{ color: "rgba(255,255,255,.7)" }}>{plan.name} plan, <span className="font-bold" style={{ color: AMBER }}>{displayPrice}</span>{plan.period}</p>
             </div>
           </div>
           <button onClick={onClose} className="text-white/70 hover:text-white transition-colors"><X className="w-5 h-5" /></button>

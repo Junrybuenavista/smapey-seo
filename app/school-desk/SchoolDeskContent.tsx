@@ -17,19 +17,19 @@ const display = { fontFamily: "'Hanken Grotesk', system-ui, sans-serif" }
 
 const FEATURES = [
   { icon: Users, title: "Student Enrollment & Profiles", desc: "Register every student with their name, grade level, guardian contact, and notes. See their active program, tuition balance, and full attendance history at a glance." },
-  { icon: BookOpen, title: "Programs & Tuition Setup", desc: "Create programs for each subject or grade level — Grade 3 Math, UPCAT Review, English for Kids — each with its own tuition fee and billing type (monthly, per session, or fixed)." },
+  { icon: BookOpen, title: "Programs & Tuition Setup", desc: "Create programs for each subject or grade level (Grade 3 Math, UPCAT Review, English for Kids) each with its own tuition fee and billing type (monthly, per session, or fixed)." },
   { icon: CalendarCheck, title: "Session Scheduling", desc: "Schedule class sessions per program, assign a teacher, and set the date and duration. Mark sessions as done or cancelled and track how many sessions each program has held." },
-  { icon: ClipboardList, title: "Attendance Tracking", desc: "Take attendance per session — mark each enrolled student as present, absent, late, or excused. Attendance history is stored per student so you always have a record." },
-  { icon: CreditCard, title: "Tuition Fee Monitoring", desc: "Record tuition payments per enrollment — cash, GCash, bank transfer. The dashboard shows who has a balance, how much is outstanding, and this month's total collections." },
+  { icon: ClipboardList, title: "Attendance Tracking", desc: "Take attendance per session - mark each enrolled student as present, absent, late, or excused. Attendance history is stored per student so you always have a record." },
+  { icon: CreditCard, title: "Tuition Fee Monitoring", desc: "Record tuition payments per enrollment - cash, GCash, bank transfer. The dashboard shows who has a balance, how much is outstanding, and this month's total collections." },
   { icon: NotebookPen, title: "Teacher Management", desc: "Add your teachers or tutors, assign them to programs and sessions, and give each one a subject or specialization. Admins and members see only what they need." },
-  { icon: BookOpen, title: "Progress Notes", desc: "Write a quick progress note per student after each session — what was covered, how they performed, a 1–5 rating. Parents love the transparency; teachers love the record." },
-  { icon: BarChart3, title: "Dashboard & Collections", desc: "See today's collections, monthly totals, active enrollments, upcoming sessions, and unpaid balances — all on one clean screen. No spreadsheet needed." },
+  { icon: BookOpen, title: "Progress Notes", desc: "Write a quick progress note per student after each session - what was covered, how they performed, a 1–5 rating. Parents love the transparency; teachers love the record." },
+  { icon: BarChart3, title: "Dashboard & Collections", desc: "See today's collections, monthly totals, active enrollments, upcoming sessions, and unpaid balances - all on one clean screen. No spreadsheet needed." },
 ]
 
 const FAQS = [
   { q: "Who is Smapey SchoolDesk for?", a: "Tutorial centers, review centers, home-based tutors, and private learning centers in the Philippines. Whether you have 5 students or 500, SchoolDesk replaces your notebook and spreadsheet with one clean system." },
-  { q: "Can I track multiple subjects or programs?", a: "Yes. You can create as many programs as you need — one per subject, grade level, or course. Each program has its own tuition fee, teacher assignment, and session schedule." },
-  { q: "How does tuition tracking work?", a: "Each enrollment has a tuition fee and a running total of payments recorded. You can see the balance at any time — who's fully paid, who still owes, and how much you've collected this month." },
+  { q: "Can I track multiple subjects or programs?", a: "Yes. You can create as many programs as you need, one per subject, grade level, or course. Each program has its own tuition fee, teacher assignment, and session schedule." },
+  { q: "How does tuition tracking work?", a: "Each enrollment has a tuition fee and a running total of payments recorded. You can see the balance at any time, who's fully paid, who still owes, and how much you've collected this month." },
   { q: "Can multiple teachers use the system?", a: "Yes. You can invite team members and assign them roles. Teachers can view their assigned programs and sessions; the owner sees everything including financials." },
   { q: "Is there a printable report card or summary?", a: "The progress notes feature lets you add written notes and a rating per student after each session. Printable reports are on the roadmap for a future update." },
   { q: "Is there a free plan?", a: "Yes. The Free plan lets you manage up to 50 students at no cost. Upgrade to Pro when your center grows." },
@@ -140,12 +140,12 @@ function Hero() {
           Manage your tutorial center <span style={{ color: BLUE }}>without the spreadsheet</span>
         </h1>
         <p className="text-lg max-w-2xl mx-auto mb-10 leading-relaxed" style={{ color: "#54514c" }}>
-          Smapey SchoolDesk tracks student enrollments, sessions, tuition fees, attendance, and progress notes —
+          Smapey SchoolDesk tracks student enrollments, sessions, tuition fees, attendance, and progress notes,
           all in one place your tutors can actually keep up with.
         </p>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
           <a href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=SCHOOL_DESK&plan=FREE`} className="flex items-center gap-2 px-7 py-4 rounded-full font-bold text-sm border-2 transition-transform hover:-translate-y-0.5" style={{ ...display, background: AMBER, color: INK, borderColor: INK, boxShadow: `4px 4px 0 ${INK}` }}>
-            Start free — no card needed <ChevronRight className="w-4 h-4" />
+            Start free, no card needed <ChevronRight className="w-4 h-4" />
           </a>
           <a href="/school-desk" className="flex items-center gap-2 px-7 py-4 rounded-full font-bold text-sm border-2 bg-white transition-transform hover:-translate-y-0.5" style={{ ...display, color: INK, borderColor: INK }}>
             View all features
@@ -192,8 +192,8 @@ function Features() {
 }
 
 const STEPS = [
-  { step: "01", title: "Set up your programs", desc: "Create a program for each subject or course you offer — set the name, tuition fee, and billing type. Add your teachers and their subjects." },
-  { step: "02", title: "Enroll students", desc: "Register each student, assign them to a program and a teacher. Their tuition fee is tracked automatically — see what's paid and what's still outstanding at any time." },
+  { step: "01", title: "Set up your programs", desc: "Create a program for each subject or course you offer - set the name, tuition fee, and billing type. Add your teachers and their subjects." },
+  { step: "02", title: "Enroll students", desc: "Register each student, assign them to a program and a teacher. Their tuition fee is tracked automatically - see what's paid and what's still outstanding at any time." },
   { step: "03", title: "Run sessions & collect", desc: "Schedule sessions, mark attendance, record tuition payments, and add progress notes. Your dashboard shows the full picture every day." },
 ]
 
@@ -347,7 +347,7 @@ function PaymentModal({ plan, isPhilippines, onClose }: { plan: { name: string; 
         <div className="px-6 py-5 flex items-center justify-between" style={{ background: INK }}>
           <div className="flex items-center gap-3">
             {step === "payment" && !token && <button onClick={() => setStep("details")} className="text-white/70 hover:text-white transition"><svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}><path d="M19 12H5M12 5l-7 7 7 7"/></svg></button>}
-            <div><h2 className="text-white font-extrabold text-lg">{step === "details" ? "Create your account" : "Choose payment method"}</h2><p className="text-sm mt-0.5" style={{ color: "rgba(255,255,255,.7)" }}>{plan.name} plan — <span className="font-bold" style={{ color: AMBER }}>{displayPrice}</span>{plan.period}</p></div>
+            <div><h2 className="text-white font-extrabold text-lg">{step === "details" ? "Create your account" : "Choose payment method"}</h2><p className="text-sm mt-0.5" style={{ color: "rgba(255,255,255,.7)" }}>{plan.name} plan, <span className="font-bold" style={{ color: AMBER }}>{displayPrice}</span>{plan.period}</p></div>
           </div>
           <button onClick={onClose} className="text-white/70 hover:text-white transition-colors"><X className="w-5 h-5" /></button>
         </div>

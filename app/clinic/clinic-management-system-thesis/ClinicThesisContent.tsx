@@ -18,12 +18,12 @@ const accentFor = (i: number) => (i % 2 === 0 ? BLUE : AMBER)
 const onAccent = (c: string) => (c === AMBER ? INK : "#fff")
 
 const MODULES = [
-  { icon: Users, title: "Patient Management Module", desc: "Stores and retrieves patient demographic data — full name, contact number, date of birth, medical notes, and visit history. Supports search by name or phone." },
-  { icon: Stethoscope, title: "Doctor & Staff Module", desc: "Manages medical personnel — their specialties, contact information, availability schedules (per day of week), and active/inactive status." },
-  { icon: CalendarDays, title: "Appointment Management Module", desc: "Handles appointment booking — linking a patient to a doctor, date, time, and chief complaint. Supports multi-status workflow: Pending, Confirmed, In Queue, In Progress, Completed, Cancelled, No Show." },
-  { icon: ListOrdered, title: "Queue Management Module", desc: "A real-time board that tracks the active patient queue per doctor. Patients are moved between Waiting, In Consultation, and Done — triggered by staff actions." },
-  { icon: BarChart3, title: "Analytics & Reporting Module", desc: "Aggregates appointment data into dashboard metrics — total appointments today, weekly trend charts, monthly counts, completion rates, and in-queue counts." },
-  { icon: Shield, title: "User Authentication & Roles Module", desc: "Manages user accounts per clinic organization. Supports role-based access control — Admin, Member — with feature-level permissions per product module." },
+  { icon: Users, title: "Patient Management Module", desc: "Stores and retrieves patient demographic data - full name, contact number, date of birth, medical notes, and visit history. Supports search by name or phone." },
+  { icon: Stethoscope, title: "Doctor & Staff Module", desc: "Manages medical personnel - their specialties, contact information, availability schedules (per day of week), and active/inactive status." },
+  { icon: CalendarDays, title: "Appointment Management Module", desc: "Handles appointment booking - linking a patient to a doctor, date, time, and chief complaint. Supports multi-status workflow: Pending, Confirmed, In Queue, In Progress, Completed, Cancelled, No Show." },
+  { icon: ListOrdered, title: "Queue Management Module", desc: "A real-time board that tracks the active patient queue per doctor. Patients are moved between Waiting, In Consultation, and Done - triggered by staff actions." },
+  { icon: BarChart3, title: "Analytics & Reporting Module", desc: "Aggregates appointment data into dashboard metrics - total appointments today, weekly trend charts, monthly counts, completion rates, and in-queue counts." },
+  { icon: Shield, title: "User Authentication & Roles Module", desc: "Manages user accounts per clinic organization. Supports role-based access control (Admin, Member) with feature-level permissions per product module." },
 ]
 
 const ENTITIES = [
@@ -43,9 +43,9 @@ const THESIS_TOPICS = [
 ]
 
 const ARCHITECTURE = [
-  { layer: "Frontend", desc: "Web-based UI — a responsive dashboard where clinic staff book appointments, manage patients, and view the queue board. Built with React or Next.js.", icon: ClipboardList },
-  { layer: "Backend / API", desc: "RESTful API that handles business logic — authentication, appointment CRUD, queue state transitions, analytics aggregation. Built with Node.js or similar.", icon: Database },
-  { layer: "Database", desc: "Relational database (PostgreSQL / MySQL) storing all entities — organizations, doctors, patients, appointments, and schedules.", icon: Shield },
+  { layer: "Frontend", desc: "Web-based UI, a responsive dashboard where clinic staff book appointments, manage patients, and view the queue board. Built with React or Next.js.", icon: ClipboardList },
+  { layer: "Backend / API", desc: "RESTful API that handles business logic, authentication, appointment CRUD, queue state transitions, analytics aggregation. Built with Node.js or similar.", icon: Database },
+  { layer: "Database", desc: "Relational database (PostgreSQL / MySQL) storing all entities, organizations, doctors, patients, appointments, and schedules.", icon: Shield },
 ]
 
 function useFont() {
@@ -122,7 +122,7 @@ export default function ClinicThesisContent() {
             Clinic Management System <span style={{ color: BLUE }}>Thesis Guide</span>
           </h1>
           <p className="text-lg max-w-2xl mx-auto mb-10 leading-relaxed" style={{ color: "#54514c" }}>
-            A complete reference for building a clinic management system — key modules, data models, system architecture, and a working implementation you can explore today.
+            A complete reference for building a clinic management system, key modules, data models, system architecture, and a working implementation you can explore today.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
             <a href="#modules" className="flex items-center gap-2 px-7 py-3.5 rounded-full font-bold text-sm border-2 transition-transform hover:-translate-y-0.5" style={{ ...display, background: AMBER, color: INK, borderColor: INK, boxShadow: `4px 4px 0 ${INK}` }}>Explore the modules <ChevronRight className="w-4 h-4" /></a>
@@ -138,7 +138,7 @@ export default function ClinicThesisContent() {
             <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight mb-6" style={{ color: INK }}>What is a Clinic Management System?</h2>
             <p className="leading-relaxed mb-4" style={{ color: "#54514c" }}>A <strong style={{ color: INK }}>clinic management system</strong> (CMS) is a software application that automates and centralizes the operational processes of a medical clinic. It replaces paper-based patient logbooks, manual appointment registers, and disconnected spreadsheets with a unified digital system.</p>
             <p className="leading-relaxed mb-4" style={{ color: "#54514c" }}>At its core, a clinic management system handles three primary functions: <strong style={{ color: INK }}>patient information management</strong> (storing and retrieving patient records), <strong style={{ color: INK }}>appointment scheduling</strong> (booking and tracking patient visits), and <strong style={{ color: INK }}>queue management</strong> (real-time tracking of who is waiting, in consultation, and done).</p>
-            <p className="leading-relaxed" style={{ color: "#54514c" }}>Modern systems also include analytics dashboards, role-based staff access, doctor schedule management, and secure data storage — making the clinic management system a comprehensive operational backbone for small to mid-size medical practices.</p>
+            <p className="leading-relaxed" style={{ color: "#54514c" }}>Modern systems also include analytics dashboards, role-based staff access, doctor schedule management, and secure data storage, making the clinic management system a comprehensive operational backbone for small to mid-size medical practices.</p>
           </Animate>
         </div>
       </section>
@@ -250,7 +250,7 @@ export default function ClinicThesisContent() {
                   <HeartPulse className="w-5 h-5 text-white" />
                   <span className="text-white font-extrabold text-lg">See a working implementation</span>
                 </div>
-                <p className="text-sm" style={{ color: "rgba(255,255,255,.85)" }}>Smapey Clinic Manager is a production-ready clinic management system — all the modules described above are live and usable for free.</p>
+                <p className="text-sm" style={{ color: "rgba(255,255,255,.85)" }}>Smapey Clinic Manager is a production-ready clinic management system, all the modules described above are live and usable for free.</p>
               </div>
               <div className="px-8 py-6 bg-white">
                 <div className="grid md:grid-cols-2 gap-4 mb-6">

@@ -19,13 +19,13 @@ const GUIDES = [
     icon: Smartphone,
     title: "What Is a Laundry App?",
     badge: "Introduction",
-    description: "A laundry app is software that helps laundry shop owners manage orders, customers, and payments in one place — replacing notebooks, whiteboards, and manual SMS.",
+    description: "A laundry app is software that helps laundry shop owners manage orders, customers, and payments in one place, replacing notebooks, whiteboards, and manual SMS.",
     steps: [
-      { title: "Replaces manual recordkeeping", detail: "Instead of writing orders in a notebook or tracking them on a whiteboard, a laundry app stores every order digitally — including service type, weight, status, and payment." },
-      { title: "Connects shop and customer", detail: "The app sends SMS notifications to customers when their order is received and when it's ready for pickup — no manual texting from the owner needed." },
+      { title: "Replaces manual recordkeeping", detail: "Instead of writing orders in a notebook or tracking them on a whiteboard, a laundry app stores every order digitally - including service type, weight, status, and payment." },
+      { title: "Connects shop and customer", detail: "The app sends SMS notifications to customers when their order is received and when it's ready for pickup - no manual texting from the owner needed." },
       { title: "Gives you a real-time dashboard", detail: "At any moment, you can open the dashboard and see how many orders are active, how much revenue you've collected today, and which orders are pending pickup." },
     ],
-    tip: "You don't need a computer. LaundryOS runs in any web browser — a smartphone or tablet is enough to manage your entire shop.",
+    tip: "You don't need a computer. LaundryOS runs in any web browser, a smartphone or tablet is enough to manage your entire shop.",
   },
   {
     id: "key-features",
@@ -35,8 +35,8 @@ const GUIDES = [
     description: "Not all laundry apps are the same. Here's what to look for when choosing software for a small laundry shop in the Philippines.",
     steps: [
       { title: "Order ticket system", detail: "A good laundry app auto-generates unique ticket numbers for each order (like YYMMDD-001). This prevents confusion at pickup and helps customers track their orders without calling you." },
-      { title: "SMS notifications", detail: "The app should send automatic SMS to customers — at minimum when the order is accepted and when it's ready. Manual texting from your personal number looks unprofessional and wastes time." },
-      { title: "Payment flexibility", detail: "Your app should support Cash, GCash, Maya, and Bank Transfer. In the Philippines, most customers pay via GCash — your system should record and track this per order." },
+      { title: "SMS notifications", detail: "The app should send automatic SMS to customers - at minimum when the order is accepted and when it's ready. Manual texting from your personal number looks unprofessional and wastes time." },
+      { title: "Payment flexibility", detail: "Your app should support Cash, GCash, Maya, and Bank Transfer. In the Philippines, most customers pay via GCash - your system should record and track this per order." },
       { title: "Free plan for small shops", detail: "If you're just starting out, a free plan with no time limit is essential. Avoid apps with 14-day trials that pressure you to upgrade before you've tested the product." },
     ],
     tip: "LaundryOS offers a free plan with no credit card required. You can test every feature before deciding to upgrade.",
@@ -49,7 +49,7 @@ const GUIDES = [
     description: "Order tracking is the foundation of any laundry app. It lets you and your staff know exactly where each order is at every stage of the process.",
     steps: [
       { title: "Received", detail: "When a customer drops off laundry, you create an order: phone number, kilos, service type (e.g. Wash Dry Fold), and payment method. A ticket number is generated automatically." },
-      { title: "Washing → Drying → Ready", detail: "As laundry moves through your shop, you update the status. Staff can see the current state of every order without asking you — reducing confusion during busy hours." },
+      { title: "Washing → Drying → Ready", detail: "As laundry moves through your shop, you update the status. Staff can see the current state of every order without asking you - reducing confusion during busy hours." },
       { title: "Released", detail: "When a customer picks up their order and pays, you mark it Released. The order moves to your completed records and is counted in your daily revenue." },
       { title: "Full order history", detail: "Every order is permanently stored. You can search by ticket number, customer phone, or date to find past orders, resolve disputes, or review payment history." },
     ],
@@ -63,7 +63,7 @@ const GUIDES = [
     description: "Automatic SMS notifications are one of the most impactful features a laundry shop can use. They reduce incoming calls and improve customer satisfaction.",
     steps: [
       { title: "Order received notification", detail: "When you accept a new order, an SMS is automatically sent to the customer's phone number confirming their order and ticket number. This sets expectations and builds trust." },
-      { title: "Ready for pickup notification", detail: "When you mark an order as Ready, the customer gets an SMS immediately. This reduces the need for customers to call and ask — and gets them in the door faster." },
+      { title: "Ready for pickup notification", detail: "When you mark an order as Ready, the customer gets an SMS immediately. This reduces the need for customers to call and ask - and gets them in the door faster." },
       { title: "No app needed for customers", detail: "SMS goes directly to the customer's phone. They don't need to download an app, create an account, or check a website. Plain text works on all phones, even older ones." },
       { title: "Toggle on or off", detail: "If you want to control when SMS is sent, you can toggle auto-notifications on or off from the admin panel. You can also send SMS manually at any point during an order." },
     ],
@@ -77,7 +77,7 @@ const GUIDES = [
     description: "In the Philippines, customers pay via a mix of cash and digital wallets. Your laundry app should handle all of them without extra setup.",
     steps: [
       { title: "Cash", detail: "The most common payment method for walk-in customers. Record cash payments per order and track outstanding balances from your dashboard." },
-      { title: "GCash", detail: "GCash is widely used across the Philippines. Mark orders as paid via GCash with one tap — no QR code integration needed for recording purposes." },
+      { title: "GCash", detail: "GCash is widely used across the Philippines. Mark orders as paid via GCash with one tap - no QR code integration needed for recording purposes." },
       { title: "Maya", detail: "Maya (formerly PayMaya) is the second most popular digital wallet in the country. Supported as a payment option the same way as GCash." },
       { title: "Bank Transfer & Others", detail: "For customers who prefer bank transfer, you can record the payment method and confirm it manually before marking the order as paid." },
     ],
@@ -91,10 +91,10 @@ const GUIDES = [
     description: "Getting started with Smapey LaundryOS takes less than 5 minutes. No training, no installation, no complicated setup.",
     steps: [
       { title: "Create your free account", detail: "Go to smapey.com/laundry and click Get Started. Select the LaundryOS product and the Free plan. No credit card required." },
-      { title: "Set up your service types", detail: "Add the services your shop offers — Wash Dry Fold, Dry Clean, Steam Press, etc. Set a price per kilogram or per piece for each service." },
+      { title: "Set up your service types", detail: "Add the services your shop offers - Wash Dry Fold, Dry Clean, Steam Press, etc. Set a price per kilogram or per piece for each service." },
       { title: "Accept your first order", detail: "Click New Order. Enter the customer's phone number and name. Choose the service type, enter the weight in kilos, and submit. Ticket number is auto-generated." },
-      { title: "Update order status as you go", detail: "As your laundry moves through washing and drying, update the status. When it's ready, mark it Ready — the customer gets an SMS automatically." },
-      { title: "Collect payment and release", detail: "When the customer arrives, confirm payment via Cash, GCash, or Maya. Mark the order as Released — it's counted in your daily revenue." },
+      { title: "Update order status as you go", detail: "As your laundry moves through washing and drying, update the status. When it's ready, mark it Ready - the customer gets an SMS automatically." },
+      { title: "Collect payment and release", detail: "When the customer arrives, confirm payment via Cash, GCash, or Maya. Mark the order as Released - it's counted in your daily revenue." },
     ],
     tip: "Your first order takes about 30 seconds to create. Most shop owners are fully set up within 10 minutes of signing up.",
   },
@@ -131,7 +131,7 @@ function Hero() {
           How to Run a Laundry Shop with Software
         </h1>
         <p className="max-w-2xl text-lg leading-relaxed" style={{ color: "#54514c" }}>
-          Everything you need to know about laundry shop management — from tracking orders to collecting GCash payments and growing your customer base.
+          Everything you need to know about laundry shop management, from tracking orders to collecting GCash payments and growing your customer base.
         </p>
           <div className="flex flex-wrap items-center justify-start gap-6 text-xs font-semibold mt-8" style={{ color: "#54514c" }}>
             {["5-minute setup", "No training required", "Free plan available"].map((t) => (
@@ -238,7 +238,7 @@ function CTA() {
         <div className="rounded-[28px] border-2 p-10 flex flex-col md:flex-row items-center justify-between gap-6" style={{ background: AMBER, borderColor: INK, boxShadow: `10px 10px 0 ${INK}` }}>
           <div>
             <h3 className="text-2xl font-extrabold mb-2" style={{ color: INK }}>Ready to set up your laundry shop?</h3>
-            <p className="text-sm font-medium" style={{ color: "#5c4a28" }}>Start for free — no credit card required. Cancel anytime.</p>
+            <p className="text-sm font-medium" style={{ color: "#5c4a28" }}>Start for free, no credit card required. Cancel anytime.</p>
           </div>
           <a href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=LAUNDRY&plan=FREE`} className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full font-bold text-sm border-2 transition-transform hover:-translate-y-0.5 shrink-0" style={{ ...display, background: INK, color: "#fff", borderColor: INK }}>
             Create your laundry shop for free <ChevronRight className="w-4 h-4" />

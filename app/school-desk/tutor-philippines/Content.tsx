@@ -21,11 +21,11 @@ const FAQS = [
   },
   {
     q: "How do I keep track of multiple students and payments?",
-    a: "Once you pass a handful of students, GCash receipts and a notebook stop working. Smapey SchoolDesk is free to start and tracks every student, their tuition balance, session schedule, and attendance — from your phone.",
+    a: "Once you pass a handful of students, GCash receipts and a notebook stop working. Smapey SchoolDesk is free to start and tracks every student, their tuition balance, session schedule, and attendance, from your phone.",
   },
   {
     q: "Can I tutor online and in person with the same system?",
-    a: "Yes. Smapey doesn't care whether your session is at a kitchen table or over Zoom — you still schedule sessions, take attendance, and collect tuition the same way.",
+    a: "Yes. Smapey doesn't care whether your session is at a kitchen table or over Zoom, you still schedule sessions, take attendance, and collect tuition the same way.",
   },
 ]
 
@@ -37,25 +37,25 @@ export default function Content() {
       <ArticleHero
         badge="Philippines · Tutoring"
         title={<>How to become a tutor in the Philippines (and run it like a business)</>}
-        intro="Tutoring is one of the easiest businesses to start in the Philippines — you already have the knowledge, and demand is everywhere. Here's how to find students, set your rates, run sessions professionally, and get paid on time."
+        intro="Tutoring is one of the easiest businesses to start in the Philippines, you already have the knowledge, and demand is everywhere. Here's how to find students, set your rates, run sessions professionally, and get paid on time."
       />
 
       <article className="max-w-3xl mx-auto px-6 py-16">
         <Animate>
           <AH2>Why tutoring is a great business in the Philippines</AH2>
           <AP>
-            Filipino parents invest heavily in education, and demand for tutors spans every level — from grade-school
+            Filipino parents invest heavily in education, and demand for tutors spans every level, from grade-school
             reading and math to UPCAT and board-exam review. You don't need capital or a storefront: a single tutor with a
-            few subjects can build a steady income from home or online. The hard part isn't teaching — it's staying
+            few subjects can build a steady income from home or online. The hard part isn't teaching, it's staying
             organized as students pile up.
           </AP>
 
           <AH2>Step 1: Pick your subjects and level</AH2>
           <AP>Focus where you're strongest and where demand is high. Popular tutoring niches in the Philippines include:</AP>
           <Bullets items={[
-            "Grade-school core subjects — Math, English, Science, Reading",
+            "Grade-school core subjects, Math, English, Science, Reading",
             "High-school Math and Science (Algebra, Geometry, Chemistry, Physics)",
-            "Entrance exam review — UPCAT, ACET, DLSUCET, USTET",
+            "Entrance exam review, UPCAT, ACET, DLSUCET, USTET",
             "Board exam and licensure review",
             "English fluency / ESL for kids and professionals",
             "Music, art, and coding for kids",
@@ -76,9 +76,9 @@ export default function Content() {
           <AH2>Step 3: Find your first students</AH2>
           <AP>You don't need ads. The most reliable channels in the Philippines are:</AP>
           <Bullets items={[
-            "Facebook — post in barangay, village, and school parent groups",
-            "Referrals — ask happy students and parents to recommend you",
-            "Your old school — teachers and guidance offices refer struggling students",
+            "Facebook, post in barangay, village, and school parent groups",
+            "Referrals, ask happy students and parents to recommend you",
+            "Your old school, teachers and guidance offices refer struggling students",
             "A simple rate sheet you can send on Messenger in one tap",
           ]} />
 

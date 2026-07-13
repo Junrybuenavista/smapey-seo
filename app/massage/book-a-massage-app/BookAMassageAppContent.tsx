@@ -15,12 +15,12 @@ const CREAM = "#fbf7f0"
 const display = { fontFamily: "'Hanken Grotesk', system-ui, sans-serif" }
 
 const FEATURES = [
-  { icon: Smartphone, title: "Booking in 3 Taps", desc: "Clients tap your link, pick a treatment, pick a time, and they're done. No accounts to create, no apps to download — just a clean mobile-first booking experience." },
-  { icon: Users, title: "Pick a Favorite Therapist", desc: "Clients can choose their preferred massage therapist when booking — by specialty, name, or just whoever they liked last time. Builds loyalty without you lifting a finger." },
-  { icon: Sparkles, title: "See Treatments + Prices Clearly", desc: "Your full menu — Swedish, deep tissue, Thai, hot stone — with prices, durations, and photos. Clients know exactly what they're booking, no awkward calls." },
-  { icon: Wallet, title: "Pay Deposit on the Spot", desc: "Show your GCash, Maya, or bank QR code at checkout. Clients send the deposit, paste the reference, and submit — you confirm only verified bookings." },
+  { icon: Smartphone, title: "Booking in 3 Taps", desc: "Clients tap your link, pick a treatment, pick a time, and they're done. No accounts to create, no apps to download - just a clean mobile-first booking experience." },
+  { icon: Users, title: "Pick a Favorite Therapist", desc: "Clients can choose their preferred massage therapist when booking - by specialty, name, or just whoever they liked last time. Builds loyalty without you lifting a finger." },
+  { icon: Sparkles, title: "See Treatments + Prices Clearly", desc: "Your full menu (Swedish, deep tissue, Thai, hot stone) with prices, durations, and photos. Clients know exactly what they're booking, no awkward calls." },
+  { icon: Wallet, title: "Pay Deposit on the Spot", desc: "Show your GCash, Maya, or bank QR code at checkout. Clients send the deposit, paste the reference, and submit - you confirm only verified bookings." },
   { icon: MousePointerClick, title: "Branded, Not Generic", desc: "Your booking page carries your business name, logo, cover photo, and accent color. Clients see a polished page that feels like an extension of your spa." },
-  { icon: Globe, title: "Share Anywhere", desc: "Instagram bio, Facebook page, WhatsApp, Google Maps — drop your booking link anywhere and clients can book a massage in seconds. No website builder needed." },
+  { icon: Globe, title: "Share Anywhere", desc: "Instagram bio, Facebook page, WhatsApp, Google Maps - drop your booking link anywhere and clients can book a massage in seconds. No website builder needed." },
 ]
 
 const COMPARISON = [
@@ -34,10 +34,10 @@ const COMPARISON = [
 ]
 
 const FAQS = [
-  { q: "Do my clients need to download an app to book a massage?", a: "No. The booking page is a regular web link — clients tap it in their browser on any phone, tablet, or desktop. There's no app to install, no account to create, and no friction." },
-  { q: "Can clients book a massage outside business hours?", a: "Yes. The booking page is online 24/7. Clients can book at midnight if they want — the inquiry waits in your dashboard until you review and confirm in the morning." },
+  { q: "Do my clients need to download an app to book a massage?", a: "No. The booking page is a regular web link, clients tap it in their browser on any phone, tablet, or desktop. There's no app to install, no account to create, and no friction." },
+  { q: "Can clients book a massage outside business hours?", a: "Yes. The booking page is online 24/7. Clients can book at midnight if they want, the inquiry waits in your dashboard until you review and confirm in the morning." },
   { q: "What does the client see when they book?", a: "They see your branded page with your treatments, prices, durations, and (optionally) your therapists. They pick a service, optionally request a therapist, choose a date and time, fill in name + phone, and submit. That's it." },
-  { q: "Can I block bookings during my off-hours?", a: "The current setup uses a request-and-confirm model — you review every inquiry before it becomes an appointment. That gives you flexibility without strict calendar rules. Most small spas prefer this over rigid availability slots." },
+  { q: "Can I block bookings during my off-hours?", a: "The current setup uses a request-and-confirm model, you review every inquiry before it becomes an appointment. That gives you flexibility without strict calendar rules. Most small spas prefer this over rigid availability slots." },
 ]
 
 function useInView(options?: IntersectionObserverInit) {
@@ -116,10 +116,10 @@ function Hero() {
         <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.04] tracking-tight mb-6" style={{ color: INK }}>
           The book-a-massage app <span style={{ color: BLUE }}>your clients will actually use</span>
         </h1>
-        <p className="text-lg max-w-2xl mx-auto mb-10 leading-relaxed" style={{ color: "#54514c" }}>A clean, mobile-first booking page where clients pick a treatment, choose a therapist, and pay a deposit — all in under a minute. Built for spas that respect their clients' time.</p>
+        <p className="text-lg max-w-2xl mx-auto mb-10 leading-relaxed" style={{ color: "#54514c" }}>A clean, mobile-first booking page where clients pick a treatment, choose a therapist, and pay a deposit, all in under a minute. Built for spas that respect their clients' time.</p>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
           <a href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=MASSAGE&plan=FREE`} className="flex items-center gap-2 px-7 py-4 rounded-full font-bold text-sm border-2 transition-transform hover:-translate-y-0.5" style={{ ...display, background: AMBER, color: INK, borderColor: INK, boxShadow: `4px 4px 0 ${INK}` }}>
-            Start free — no card needed <ChevronRight className="w-4 h-4" />
+            Start free, no card needed <ChevronRight className="w-4 h-4" />
           </a>
           <a href="/massage" className="flex items-center gap-2 px-7 py-4 rounded-full font-bold text-sm border-2 bg-white transition-transform hover:-translate-y-0.5" style={{ ...display, color: INK, borderColor: INK }}>View all features</a>
         </div>
@@ -330,7 +330,7 @@ function PaymentModal({ plan, isPhilippines, onClose }: { plan: { name: string; 
         <div className="px-6 py-5 flex items-center justify-between" style={{ background: INK }}>
           <div className="flex items-center gap-3">
             {step === "payment" && !token && <button onClick={() => setStep("details")} className="text-white/70 hover:text-white transition"><svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}><path d="M19 12H5M12 5l-7 7 7 7"/></svg></button>}
-            <div><h2 className="text-white font-extrabold text-lg">{step === "details" ? "Create your account" : "Choose payment method"}</h2><p className="text-sm mt-0.5" style={{ color: "rgba(255,255,255,.7)" }}>{plan.name} plan — <span className="font-bold" style={{ color: AMBER }}>{displayPrice}</span>{plan.period}</p></div>
+            <div><h2 className="text-white font-extrabold text-lg">{step === "details" ? "Create your account" : "Choose payment method"}</h2><p className="text-sm mt-0.5" style={{ color: "rgba(255,255,255,.7)" }}>{plan.name} plan, <span className="font-bold" style={{ color: AMBER }}>{displayPrice}</span>{plan.period}</p></div>
           </div>
           <button onClick={onClose} className="text-white/70 hover:text-white transition-colors"><X className="w-5 h-5" /></button>
         </div>

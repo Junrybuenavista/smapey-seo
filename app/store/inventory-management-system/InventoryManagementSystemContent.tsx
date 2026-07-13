@@ -8,12 +8,12 @@ const variant: StoreVariant = {
     titleLead: "The inventory management system",
     titleAccent: "built for small stores.",
     subtitle:
-      "Smapey is an inventory management system for sari-sari stores, boutiques, hardware shops, and mini groceries. Track stock in real time, get low stock alerts, run a POS, and view daily sales — all from one browser-based dashboard.",
+      "Smapey is an inventory management system for sari-sari stores, boutiques, hardware shops, and mini groceries. Track stock in real time, get low stock alerts, run a POS, and view daily sales, all from one browser-based dashboard.",
   },
   features: {
     eyebrow: "Inventory Management System",
     heading: "Manage your inventory without the enterprise price tag",
-    sub: "Most inventory management systems are built for warehouses with a thousand SKUs. Smapey is built for the store with one shelf — and priced accordingly.",
+    sub: "Most inventory management systems are built for warehouses with a thousand SKUs. Smapey is built for the store with one shelf, and priced accordingly.",
   },
   cta: {
     heading: "An inventory management system that fits your store.",

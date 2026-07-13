@@ -37,7 +37,7 @@ export default function Content() {
       <ArticleHero
         badge="Philippines · Requirements"
         title={<>Tutorial center requirements in the Philippines</>}
-        intro="Before you open your doors, you need the right registrations and permits. Here's a clear checklist of the requirements to legally start and run a tutorial center in the Philippines — plus what you'll need to operate once the paperwork is done."
+        intro="Before you open your doors, you need the right registrations and permits. Here's a clear checklist of the requirements to legally start and run a tutorial center in the Philippines, plus what you'll need to operate once the paperwork is done."
       />
 
       <article className="max-w-3xl mx-auto px-6 py-16">
@@ -83,19 +83,19 @@ export default function Content() {
           <AP>
             This is the most common confusion. A <strong>tutorial or review center</strong> that supplements a student's
             regular schooling generally does <strong>not</strong> require DepEd accreditation. If you offer formal, graded,
-            or diploma-track instruction — effectively acting like a school — you may face DepEd or additional LGU
+            or diploma-track instruction (effectively acting like a school) you may face DepEd or additional LGU
             requirements. When in doubt, ask your local government before you advertise.
           </AP>
 
           <AH2>What you need beyond the permits</AH2>
           <AP>
-            Paperwork gets you legal — but it doesn't run the center. Once you're open, you need a dependable way to track
+            Paperwork gets you legal, but it doesn't run the center. Once you're open, you need a dependable way to track
             who's enrolled, who's paid tuition, who attended which session, and how each student is progressing. Starting on
             notebooks and GCash screenshots works for a week, then turns into chaos.
           </AP>
           <Bullets items={[
             "Student enrollment records and guardian contacts",
-            "Tuition tracking — paid vs. outstanding balances",
+            "Tuition tracking, paid vs. outstanding balances",
             "Session scheduling and tutor assignment",
             "Attendance per session",
             "Progress notes parents can trust",

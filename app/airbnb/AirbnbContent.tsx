@@ -17,24 +17,24 @@ const CREAM = "#fbf7f0"
 const display = { fontFamily: "'Hanken Grotesk', system-ui, sans-serif" }
 
 const FEATURES = [
-  { icon: CalendarDays, title: "Availability Calendar", desc: "See every property's month at a glance — color-coded bars show booked, checked-in, and completed stays. Click any open day to create a booking for that property on the spot." },
+  { icon: CalendarDays, title: "Availability Calendar", desc: "See every property's month at a glance - color-coded bars show booked, checked-in, and completed stays. Click any open day to create a booking for that property on the spot." },
   { icon: Home, title: "Property Listings", desc: "Add each property with type, address, bedrooms, bathrooms, max guests, nightly rate, and cleaning fee. Browse them as photo cards with the nightly rate front and center." },
-  { icon: Users, title: "Guest Profiles", desc: "Build a guest database with contact info and notes. Track each guest's total stays, total spent, and last stay date — all updated automatically after every checkout." },
+  { icon: Users, title: "Guest Profiles", desc: "Build a guest database with contact info and notes. Track each guest's total stays, total spent, and last stay date - all updated automatically after every checkout." },
   { icon: CalendarRange, title: "Reservation Management", desc: "Create reservations with check-in and check-out dates. Auto-calculate the total cost from nightly rate, cleaning fee, and extra charges. Attach notes for your team." },
   { icon: ShieldCheck, title: "Double-Booking Protection", desc: "The system checks for date overlaps when you create a reservation. Conflicting bookings are blocked before they can cause a bad guest experience." },
   { icon: BedDouble, title: "Check-in & Check-out Tracking", desc: "Move reservations through a clear lifecycle: Booked → Checked In → Checked Out (or Cancelled / No Show). Every status change is logged for your records." },
-  { icon: Wallet, title: "Payments Ledger", desc: "Record every payment against a reservation — GCash, Maya, cash, or bank, with date and note. The balance updates instantly and the status flips to Partial or Paid automatically." },
-  { icon: Sparkles, title: "Multi-Source Booking Tracking", desc: "Log where each booking came from — Airbnb, Booking.com, Agoda, Direct, Facebook, or Referral. See which channels drive the most revenue at a glance." },
-  { icon: BarChart3, title: "Revenue & Occupancy Analytics", desc: "Live dashboard with monthly revenue, occupancy rate, total reservations, average nightly rate, and pending check-ins — so you always know how your rentals are performing." },
+  { icon: Wallet, title: "Payments Ledger", desc: "Record every payment against a reservation - GCash, Maya, cash, or bank, with date and note. The balance updates instantly and the status flips to Partial or Paid automatically." },
+  { icon: Sparkles, title: "Multi-Source Booking Tracking", desc: "Log where each booking came from - Airbnb, Booking.com, Agoda, Direct, Facebook, or Referral. See which channels drive the most revenue at a glance." },
+  { icon: BarChart3, title: "Revenue & Occupancy Analytics", desc: "Live dashboard with monthly revenue, occupancy rate, total reservations, average nightly rate, and pending check-ins - so you always know how your rentals are performing." },
 ]
 
 const FAQS = [
-  { q: "Is there really a free plan?", a: "Yes. The free plan includes up to 2 properties, 10 reservations per month, and the full dashboard — no credit card required, no trial timer. Upgrade only when your portfolio grows." },
+  { q: "Is there really a free plan?", a: "Yes. The free plan includes up to 2 properties, 10 reservations per month, and the full dashboard, no credit card required, no trial timer. Upgrade only when your portfolio grows." },
   { q: "Is there a calendar view of my bookings?", a: "Yes. The availability calendar shows all your properties as rows and the days of the month as columns, with color-coded bars for booked, checked-in, and completed stays. Click any empty day to create a booking for that property and date, or click a bar to check the guest in or out." },
   { q: "Does it actually prevent double bookings?", a: "Yes. When you create a reservation, the system checks whether the selected property has any overlapping confirmed bookings for those dates. If a conflict is found, the reservation is blocked before it's saved." },
   { q: "Can I track bookings from Airbnb and Booking.com separately?", a: "Yes. Every reservation has a source field: Airbnb, Booking.com, Agoda, Direct, Facebook, Referral, or Other. You can filter by source and see which channels bring in the most revenue." },
-  { q: "How does payment tracking work?", a: "Every reservation has a payment ledger. Record each payment as it comes in — a GCash deposit today, the cash balance at check-in — with the amount, method, and date. Smapey totals the ledger, shows the remaining balance, and sets the status to Unpaid, Partial, or Paid automatically." },
-  { q: "Can I manage multiple properties from one account?", a: "Yes. The Pro plan supports up to 10 properties and the Enterprise plan is unlimited. Each property has its own listing, photos, and pricing — and all reservations flow into a single shared calendar and dashboard." },
+  { q: "How does payment tracking work?", a: "Every reservation has a payment ledger. Record each payment as it comes in (a GCash deposit today, the cash balance at check-in) with the amount, method, and date. Smapey totals the ledger, shows the remaining balance, and sets the status to Unpaid, Partial, or Paid automatically." },
+  { q: "Can I manage multiple properties from one account?", a: "Yes. The Pro plan supports up to 10 properties and the Enterprise plan is unlimited. Each property has its own listing, photos, and pricing, and all reservations flow into a single shared calendar and dashboard." },
 ]
 
 function useInView(options?: IntersectionObserverInit) {
@@ -116,7 +116,7 @@ function Hero() {
       </div>
 
       <div className="relative w-full max-w-6xl mx-auto px-6 py-24 grid lg:grid-cols-[1fr_1fr] gap-12 lg:gap-16 items-center">
-        {/* LEFT — copy */}
+        {/* LEFT, copy */}
         <div className="min-w-0 text-center lg:text-left">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border-2 text-xs font-bold mb-7" style={{ color: INK, borderColor: INK, boxShadow: `3px 3px 0 ${BLUE}` }}>
             <Zap className="w-3 h-3" />
@@ -152,7 +152,7 @@ function Hero() {
           </div>
         </div>
 
-        {/* RIGHT — property + calendar card */}
+        {/* RIGHT, property + calendar card */}
         <div className="relative min-w-0 w-full max-w-md mx-auto">
           {/* floating new-reservation chip */}
           <div className="absolute z-10 flex items-center gap-2 bg-white border-2 rounded-full px-3.5 py-2" style={{ top: -20, right: -16, borderColor: INK, boxShadow: `4px 4px 0 ${BLUE}`, transform: "rotate(4deg)" }}>
@@ -223,7 +223,7 @@ function Features() {
         <Animate className="text-center mb-16">
           <p className="text-sm font-bold uppercase tracking-widest mb-3" style={{ color: BLUE }}>Features</p>
           <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight" style={{ color: INK }}>Built for short-term rental hosts</h2>
-          <p className="mt-4 max-w-xl mx-auto" style={{ color: "#54514c" }}>From the first inquiry to the final checkout — every essential a small rental host needs, without the enterprise price tag.</p>
+          <p className="mt-4 max-w-xl mx-auto" style={{ color: "#54514c" }}>From the first inquiry to the final checkout, every essential a small rental host needs, without the enterprise price tag.</p>
         </Animate>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {FEATURES.map(({ icon: Icon, title, desc }, i) => {
@@ -371,7 +371,7 @@ function PaymentModal({ plan, isPhilippines, onClose }: { plan: { name: string; 
         <div className="px-6 py-5 flex items-center justify-between" style={{ background: INK }}>
           <div className="flex items-center gap-3">
             {step === "payment" && !token && <button onClick={() => setStep("details")} className="text-white/70 hover:text-white transition"><svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}><path d="M19 12H5M12 5l-7 7 7 7"/></svg></button>}
-            <div><h2 className="text-white font-extrabold text-lg">{step === "details" ? "Create your account" : "Choose payment method"}</h2><p className="text-sm mt-0.5" style={{ color: "rgba(255,255,255,.7)" }}>{plan.name} plan — <span className="font-bold" style={{ color: AMBER }}>{displayPrice}</span>{plan.period}</p></div>
+            <div><h2 className="text-white font-extrabold text-lg">{step === "details" ? "Create your account" : "Choose payment method"}</h2><p className="text-sm mt-0.5" style={{ color: "rgba(255,255,255,.7)" }}>{plan.name} plan, <span className="font-bold" style={{ color: AMBER }}>{displayPrice}</span>{plan.period}</p></div>
           </div>
           <button onClick={onClose} className="text-white/70 hover:text-white transition-colors"><X className="w-5 h-5" /></button>
         </div>

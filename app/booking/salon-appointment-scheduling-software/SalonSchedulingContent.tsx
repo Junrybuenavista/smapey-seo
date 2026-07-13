@@ -16,9 +16,9 @@ const CREAM = "#fbf7f0"
 const display = { fontFamily: "'Hanken Grotesk', system-ui, sans-serif" }
 
 const FEATURES = [
-  { icon: CalendarCheck, title: "Full Appointment Scheduling", desc: "Manage your entire salon's appointment book from one dashboard. Book, confirm, reschedule, and complete — all in one place." },
+  { icon: CalendarCheck, title: "Full Appointment Scheduling", desc: "Manage your entire salon's appointment book from one dashboard. Book, confirm, reschedule, and complete - all in one place." },
   { icon: Scissors, title: "Stylist Scheduling", desc: "Set each stylist's working hours per day and assign appointments accordingly. No more manual coordination or whiteboard calendars." },
-  { icon: Clock, title: "Service Duration Control", desc: "Set custom durations per service so your schedule never overlaps. A blowout takes 30 mins; a full color takes 2 hours — handled automatically." },
+  { icon: Clock, title: "Service Duration Control", desc: "Set custom durations per service so your schedule never overlaps. A blowout takes 30 mins; a full color takes 2 hours - handled automatically." },
   { icon: CreditCard, title: "Deposit Tracking", desc: "Collect deposits at booking time to reduce no-shows. Track payment status without a separate spreadsheet or cash register log." },
   { icon: Bell, title: "Appointment Status Workflow", desc: "Move appointments through Pending → Confirmed → Completed with one click. Track cancellations and no-shows automatically." },
   { icon: UserCheck, title: "Client-Stylist Assignment", desc: "Assign every appointment to a specific stylist. Clients always see who they're booked with, and your team stays coordinated." },
@@ -28,10 +28,10 @@ const FEATURES = [
 ]
 
 const FAQS = [
-  { q: "Can I schedule appointments for multiple stylists at the same time?", a: "Yes. Each stylist has their own availability schedule. When you book a client, you assign them to a specific stylist — preventing double bookings automatically." },
+  { q: "Can I schedule appointments for multiple stylists at the same time?", a: "Yes. Each stylist has their own availability schedule. When you book a client, you assign them to a specific stylist, preventing double bookings automatically." },
   { q: "How does service duration affect scheduling?", a: "Each service has a custom duration you define. The system uses that duration to block off the right amount of time for each appointment, preventing overlap." },
   { q: "Can I require a deposit when booking?", a: "Yes. You can record a deposit amount when creating an appointment and mark it as paid or unpaid. This helps reduce no-shows significantly." },
-  { q: "Is this for online booking or internal scheduling?", a: "It's an internal scheduling tool — your staff books appointments through the dashboard when clients call or walk in. Ideal for salons that prefer to control their own booking process." },
+  { q: "Is this for online booking or internal scheduling?", a: "It's an internal scheduling tool, your staff books appointments through the dashboard when clients call or walk in. Ideal for salons that prefer to control their own booking process." },
 ]
 
 function useInView(options?: IntersectionObserverInit) {
@@ -110,10 +110,10 @@ function Hero() {
         <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.04] tracking-tight mb-6" style={{ color: INK }}>
           Salon appointment scheduling software <span style={{ color: BLUE }}>for your whole team</span>
         </h1>
-        <p className="text-lg max-w-2xl mx-auto mb-10 leading-relaxed" style={{ color: "#54514c" }}>Smapey Booking gives your salon a complete appointment scheduling system — manage your full book, assign stylists, track deposits, and run your schedule without chaos.</p>
+        <p className="text-lg max-w-2xl mx-auto mb-10 leading-relaxed" style={{ color: "#54514c" }}>Smapey Booking gives your salon a complete appointment scheduling system, manage your full book, assign stylists, track deposits, and run your schedule without chaos.</p>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
           <a href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=BOOKING&plan=FREE`} className="flex items-center gap-2 px-7 py-4 rounded-full font-bold text-sm border-2 transition-transform hover:-translate-y-0.5" style={{ ...display, background: AMBER, color: INK, borderColor: INK, boxShadow: `4px 4px 0 ${INK}` }}>
-            Start free — no card needed <ChevronRight className="w-4 h-4" />
+            Start free, no card needed <ChevronRight className="w-4 h-4" />
           </a>
           <a href="/booking" className="flex items-center gap-2 px-7 py-4 rounded-full font-bold text-sm border-2 bg-white transition-transform hover:-translate-y-0.5" style={{ ...display, color: INK, borderColor: INK }}>View all features</a>
         </div>
@@ -132,7 +132,7 @@ function Features() {
         <Animate className="text-center mb-16">
           <p className="text-sm font-bold uppercase tracking-widest mb-3" style={{ color: BLUE }}>Features</p>
           <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight" style={{ color: INK }}>Complete salon appointment scheduling</h2>
-          <p className="mt-4 max-w-xl mx-auto" style={{ color: "#54514c" }}>Everything you need to manage your salon's full schedule — from the first booking to the final checkout.</p>
+          <p className="mt-4 max-w-xl mx-auto" style={{ color: "#54514c" }}>Everything you need to manage your salon's full schedule, from the first booking to the final checkout.</p>
         </Animate>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {FEATURES.map(({ icon: Icon, title, desc }, i) => {
@@ -157,7 +157,7 @@ function Features() {
 
 const STEPS = [
   { step: "01", title: "Configure your salon", desc: "Add your services with durations, set stylist working hours, and get your schedule ready in minutes." },
-  { step: "02", title: "Start booking appointments", desc: "Book client appointments, assign stylists, and collect deposits — all from one screen." },
+  { step: "02", title: "Start booking appointments", desc: "Book client appointments, assign stylists, and collect deposits - all from one screen." },
   { step: "03", title: "Run your full schedule", desc: "Confirm, complete, and track every appointment across your entire team from your live dashboard." },
 ]
 
@@ -311,7 +311,7 @@ function PaymentModal({ plan, isPhilippines, onClose }: { plan: { name: string; 
         <div className="px-6 py-5 flex items-center justify-between" style={{ background: INK }}>
           <div className="flex items-center gap-3">
             {step === "payment" && !token && <button onClick={() => setStep("details")} className="text-white/70 hover:text-white transition"><svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}><path d="M19 12H5M12 5l-7 7 7 7"/></svg></button>}
-            <div><h2 className="text-white font-extrabold text-lg">{step === "details" ? "Create your account" : "Choose payment method"}</h2><p className="text-sm mt-0.5" style={{ color: "rgba(255,255,255,.7)" }}>{plan.name} plan — <span className="font-bold" style={{ color: AMBER }}>{displayPrice}</span>{plan.period}</p></div>
+            <div><h2 className="text-white font-extrabold text-lg">{step === "details" ? "Create your account" : "Choose payment method"}</h2><p className="text-sm mt-0.5" style={{ color: "rgba(255,255,255,.7)" }}>{plan.name} plan, <span className="font-bold" style={{ color: AMBER }}>{displayPrice}</span>{plan.period}</p></div>
           </div>
           <button onClick={onClose} className="text-white/70 hover:text-white transition-colors"><X className="w-5 h-5" /></button>
         </div>

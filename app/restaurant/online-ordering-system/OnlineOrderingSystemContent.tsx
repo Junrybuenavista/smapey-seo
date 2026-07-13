@@ -13,7 +13,7 @@ const variant: RestaurantVariant = {
   features: {
     eyebrow: "Online Ordering System",
     heading: "QR ordering and management from any device",
-    sub: "No app to install, no hardware to buy. Customers scan, browse your live menu, and order from their phone — and your staff can take orders from any browser too.",
+    sub: "No app to install, no hardware to buy. Customers scan, browse your live menu, and order from their phone, and your staff can take orders from any browser too.",
   },
   cta: {
     heading: "Start taking orders online in five minutes.",

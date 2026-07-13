@@ -30,7 +30,7 @@ export default function InvoicingContent() {
               <Zap size={13} /> Built for Contractors
             </div>
             <h1 className="text-4xl lg:text-5xl font-bold leading-tight">
-              Invoicing Software for Contractors —{" "}
+              Invoicing Software for Contractors:{" "}
               <span className="bg-gradient-to-r from-indigo-400 to-blue-400 bg-clip-text text-transparent">Stop Chasing Payments</span>
             </h1>
             <p className="text-gray-400 text-lg leading-relaxed max-w-xl">
@@ -59,7 +59,7 @@ export default function InvoicingContent() {
             <div className="relative bg-white/5 border border-white/10 rounded-2xl p-8 w-full max-w-md space-y-5">
               <p className="text-xs text-gray-500 uppercase tracking-widest">Contractor Invoices</p>
               {[
-                { label: "Kitchen remodel — Phase 1", amount: "$8,500", status: "Paid", color: "text-green-400 bg-green-500/10" },
+                { label: "Kitchen remodel, Phase 1", amount: "$8,500", status: "Paid", color: "text-green-400 bg-green-500/10" },
                 { label: "Deck construction", amount: "$3,200", status: "Pending", color: "text-yellow-400 bg-yellow-500/10" },
                 { label: "Bathroom renovation", amount: "$5,400", status: "Sent", color: "text-blue-400 bg-blue-500/10" },
               ].map(item => (
@@ -107,7 +107,7 @@ export default function InvoicingContent() {
             <span className="text-sm font-semibold text-blue-600 uppercase tracking-widest">Why Smapey</span>
             <h2 className="text-4xl font-bold text-gray-900">Your All-in-One Contractor Invoicing App</h2>
             <p className="text-gray-500 text-lg max-w-2xl mx-auto">
-              Invoicing software for contractors that helps you manage estimates, invoices, payments, and reports — all in one place. Built for electricians, plumbers, and construction professionals.
+              Invoicing software for contractors that helps you manage estimates, invoices, payments, and reports, all in one place. Built for electricians, plumbers, and construction professionals.
             </p>
           </div>
           <div className="grid md:grid-cols-2 gap-5">

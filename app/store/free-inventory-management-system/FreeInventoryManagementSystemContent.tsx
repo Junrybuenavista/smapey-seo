@@ -8,16 +8,16 @@ const variant: StoreVariant = {
     titleLead: "Free inventory management",
     titleAccent: "for small stores.",
     subtitle:
-      "Smapey's free plan gives you 50 products, 200 sales per month, low stock alerts, a built-in POS, and supplier management — permanently free, no credit card, no trial expiry.",
+      "Smapey's free plan gives you 50 products, 200 sales per month, low stock alerts, a built-in POS, and supplier management, permanently free, no credit card, no trial expiry.",
   },
   features: {
     eyebrow: "Free Inventory Management",
     heading: "Everything you need, free forever",
-    sub: "The free plan isn't a 14-day trial. It's a real plan with real limits that work for most small stores — upgrade only when your volume grows.",
+    sub: "The free plan isn't a 14-day trial. It's a real plan with real limits that work for most small stores, upgrade only when your volume grows.",
   },
   cta: {
     heading: "Start with a free inventory management system today.",
-    sub: "50 products, 200 sales per month, full POS — free forever. No card needed.",
+    sub: "50 products, 200 sales per month, full POS, free forever. No card needed.",
   },
 }
 

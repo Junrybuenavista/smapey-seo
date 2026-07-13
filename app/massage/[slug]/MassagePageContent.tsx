@@ -30,7 +30,7 @@ interface PageProps {
   sym: string
 }
 
-// Compact therapist picker — reused inside each theme with theme-specific styling
+// Compact therapist picker, reused inside each theme with theme-specific styling
 function TherapistPicker({
   therapists, value, onChange, accent, variant = "light",
 }: {
@@ -104,7 +104,7 @@ function TherapistPicker({
 }
 
 // ─── ZEN · Soft Green Spa ────────────────────────────────────────────────────
-// Colors: emerald / teal — white background, soft green accents, calm spa feel
+// Colors: emerald / teal, white background, soft green accents, calm spa feel
 // Layout: stacked service list with thumbnail, floating form card
 
 function ZenPage({ data, form, setForm, handleSubmit, submitting, submitted, setSubmitted, error, sym }: PageProps) {
@@ -302,7 +302,7 @@ function ZenPage({ data, form, setForm, handleSubmit, submitting, submitted, set
 }
 
 // ─── STONE · Slate Minimal ───────────────────────────────────────────────────
-// Colors: slate gray — neutral minimal corporate spa feel
+// Colors: slate gray, neutral minimal corporate spa feel
 // Layout: sidebar two-column on desktop, service radio list, structured form
 
 function StonePage({ data, form, setForm, handleSubmit, submitting, submitted, setSubmitted, error, sym }: PageProps) {
@@ -526,7 +526,7 @@ function StonePage({ data, form, setForm, handleSubmit, submitting, submitted, s
 }
 
 // ─── BAMBOO · Lime Earth ─────────────────────────────────────────────────────
-// Colors: lime / yellow-green — warm cream bg, earthy lime accents
+// Colors: lime / yellow-green, warm cream bg, earthy lime accents
 // Layout: card grid for services, single-column form
 
 function BambooPage({ data, form, setForm, handleSubmit, submitting, submitted, setSubmitted, error, sym }: PageProps) {
@@ -578,7 +578,7 @@ function BambooPage({ data, form, setForm, handleSubmit, submitting, submitted, 
 
       <div className="max-w-xl mx-auto px-4 py-6 space-y-5">
 
-        {/* Services — card grid */}
+        {/* Services, card grid */}
         <div className="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
           <div className="px-5 py-3.5 border-b border-slate-100 flex items-center justify-between">
             <h2 className="font-bold text-slate-800 text-sm">Services</h2>
@@ -726,7 +726,7 @@ function BambooPage({ data, form, setForm, handleSubmit, submitting, submitted, 
 }
 
 // ─── IVORY · Cream Luxe ──────────────────────────────────────────────────────
-// Colors: amber / cream — warm white bg, amber accents, premium feel
+// Colors: amber / cream, warm white bg, amber accents, premium feel
 // Layout: magazine two-tone header, service cards with price badge, clean form
 
 function IvoryPage({ data, form, setForm, handleSubmit, submitting, submitted, setSubmitted, error, sym }: PageProps) {
@@ -945,7 +945,7 @@ function IvoryPage({ data, form, setForm, handleSubmit, submitting, submitted, s
 }
 
 // ─── CHARCOAL · Dark Sophisticated ───────────────────────────────────────────
-// Colors: deep charcoal bg with emerald accent — moody, sophisticated, premium
+// Colors: deep charcoal bg with emerald accent, moody, sophisticated, premium
 // Layout: dark theme, glowing emerald accents, refined typography
 
 function CharcoalPage({ data, form, setForm, handleSubmit, submitting, submitted, setSubmitted, error, sym }: PageProps) {

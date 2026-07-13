@@ -20,19 +20,19 @@ const SECTIONS: { icon: React.ComponentType<{ className?: string; style?: React.
     icon: Package,
     title: "1. Add your products",
     body: [
-      "Open Products in the dashboard and start with Categories — Beverages, Snacks, Household, Cleaning Supplies, or whatever fits your store. Categories keep your catalog organized and make it faster to find products at the POS.",
-      "Inside each category, click Add Product. Give it a name, SKU (optional), selling price, cost price, and initial stock quantity. Set a reorder threshold — when stock drops to or below this number, a low stock alert will appear on your dashboard.",
+      "Open Products in the dashboard and start with Categories, Beverages, Snacks, Household, Cleaning Supplies, or whatever fits your store. Categories keep your catalog organized and make it faster to find products at the POS.",
+      "Inside each category, click Add Product. Give it a name, SKU (optional), selling price, cost price, and initial stock quantity. Set a reorder threshold, when stock drops to or below this number, a low stock alert will appear on your dashboard.",
       {
         type: "tip",
         icon: ScanBarcode,
         label: "Scan the barcode with your camera",
-        text: "Tap the scan icon next to the Barcode field. Your phone's back camera opens — point it at the barcode on the product packaging and the number fills in automatically. Supports EAN-13, EAN-8, UPC-A, Code 128, Code 39, and more. You can still type the barcode manually if you prefer.",
+        text: "Tap the scan icon next to the Barcode field. Your phone's back camera opens, point it at the barcode on the product packaging and the number fills in automatically. Supports EAN-13, EAN-8, UPC-A, Code 128, Code 39, and more. You can still type the barcode manually if you prefer.",
       },
       {
         type: "tip",
         icon: Camera,
         label: "Take the product photo with your camera",
-        text: "Tap Take Photo to open your phone's camera directly inside the app — no need to save an image to your gallery first. Frame the product, tap the white shutter button to capture, and it's set instantly. Use the flip button to switch between front and back cameras. Or tap Upload Photo to pick an existing image from your gallery.",
+        text: "Tap Take Photo to open your phone's camera directly inside the app, no need to save an image to your gallery first. Frame the product, tap the white shutter button to capture, and it's set instantly. Use the flip button to switch between front and back cameras. Or tap Upload Photo to pick an existing image from your gallery.",
       },
     ],
   },
@@ -40,7 +40,7 @@ const SECTIONS: { icon: React.ComponentType<{ className?: string; style?: React.
     icon: Truck,
     title: "2. Set up suppliers",
     body: [
-      "Open the Suppliers tab inside Products and add your regular suppliers — name, contact person, phone number, email, and address. You can add notes for any special terms or details.",
+      "Open the Suppliers tab inside Products and add your regular suppliers, name, contact person, phone number, email, and address. You can add notes for any special terms or details.",
       "When you create or edit a product, you can link it to a supplier. This means when a low stock alert fires, you can see immediately who to call or message to reorder.",
     ],
   },
@@ -48,9 +48,9 @@ const SECTIONS: { icon: React.ComponentType<{ className?: string; style?: React.
     icon: ScanLine,
     title: "3. Ring up a sale on POS",
     body: [
-      "Open the POS screen. Products are shown in a grid filtered by category. Tap a product to add it to the cart — or tap the Scan button in the search bar to open your phone camera and scan any product barcode to add it instantly.",
+      "Open the POS screen. Products are shown in a grid filtered by category. Tap a product to add it to the cart, or tap the Scan button in the search bar to open your phone camera and scan any product barcode to add it instantly.",
       "Adjust quantities using the + / − buttons or type a number directly. Apply a discount in the Discount field if needed.",
-      "Choose a payment method — Cash or QR:",
+      "Choose a payment method, Cash or QR:",
       {
         type: "tip",
         icon: ScanLine,
@@ -61,7 +61,7 @@ const SECTIONS: { icon: React.ComponentType<{ className?: string; style?: React.
         type: "tip",
         icon: QrCode,
         label: "QR payment",
-        text: "Tap Checkout and your QR code pops up full-screen showing the exact total. The customer scans it with GCash, Maya, or their bank app and sends the payment. Once paid, tap Payment Received — Complete Sale to record it.",
+        text: "Tap Checkout and your QR code pops up full-screen showing the exact total. The customer scans it with GCash, Maya, or their bank app and sends the payment. Once paid, tap Payment Received, Complete Sale to record it.",
       },
     ],
   },
@@ -96,11 +96,11 @@ const SECTIONS: { icon: React.ComponentType<{ className?: string; style?: React.
         type: "tip",
         icon: TrendingUp,
         label: "Today's Profit on the dashboard",
-        text: "Profit is calculated as your total revenue minus the cost of goods sold — using the cost price you entered for each product. It's recorded at the time of sale, so it stays accurate even if you change the cost price later. Products without a cost price set will not contribute to the profit total.",
+        text: "Profit is calculated as your total revenue minus the cost of goods sold, using the cost price you entered for each product. It's recorded at the time of sale, so it stays accurate even if you change the cost price later. Products without a cost price set will not contribute to the profit total.",
       },
       "The Analytics page shows a 7-day revenue trend line chart, a horizontal bar chart of your top-selling products by quantity, and a pie chart breaking down sales by payment method.",
       "The Sales page shows every transaction with its total, profit, payment method, and status. Click View on any sale to see the full breakdown including per-item detail and total profit for that sale.",
-      "Plan Usage shows how many products and sales you've used against your plan's limits — useful if you're on the Free plan and approaching your cap.",
+      "Plan Usage shows how many products and sales you've used against your plan's limits, useful if you're on the Free plan and approaching your cap.",
     ],
   },
 ]
@@ -196,7 +196,7 @@ export default function GuideContent() {
             How to use Smapey Inventory &amp; POS Manager
           </h1>
           <p className="text-lg leading-relaxed" style={{ color: "#54514c" }}>
-            Add products, scan barcodes, accept QR payments, and track daily profit — this guide walks through every step.
+            Add products, scan barcodes, accept QR payments, and track daily profit, this guide walks through every step.
           </p>
           <div className="flex flex-wrap items-center justify-center gap-6 text-xs font-semibold mt-8" style={{ color: "#54514c" }}>
             {["5-minute setup", "No training required", "Free plan available"].map((t) => (

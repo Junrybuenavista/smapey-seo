@@ -172,7 +172,7 @@ function CTA() {
         <div className="rounded-[28px] border-2 p-10 flex flex-col md:flex-row items-center justify-between gap-6" style={{ background: AMBER, borderColor: INK, boxShadow: `10px 10px 0 ${INK}` }}>
           <div>
             <h3 className="text-2xl font-extrabold mb-2" style={{ color: INK }}>Ready to run your tutorial center smarter?</h3>
-            <p className="text-sm font-medium" style={{ color: "#5c4a28" }}>Join tutors and center owners who manage students, tuition, and sessions on Smapey — no spreadsheets, no notebooks.</p>
+            <p className="text-sm font-medium" style={{ color: "#5c4a28" }}>Join tutors and center owners who manage students, tuition, and sessions on Smapey, no spreadsheets, no notebooks.</p>
           </div>
           <a href={REGISTER_URL} className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full font-bold text-sm border-2 transition-transform hover:-translate-y-0.5 shrink-0" style={{ ...display, background: INK, color: "#fff", borderColor: INK }}>
             Get started for free <ChevronRight className="w-4 h-4" />
@@ -226,7 +226,7 @@ export default function GuideContent() {
           </h1>
           <p className="text-lg leading-relaxed" style={{ color: "#54514c" }}>
             Whether you run a one-room review center or tutor from home, this guide walks you through the whole system in
-            plain language — programs, students, sessions, attendance, tuition, and progress notes. Follow it top to bottom.
+            plain language, programs, students, sessions, attendance, tuition, and progress notes. Follow it top to bottom.
           </p>
           <div className="flex flex-wrap items-center justify-center gap-6 text-xs font-semibold mt-8" style={{ color: "#54514c" }}>
             {["5-minute setup", "No training required", "Free plan available"].map((t) => (
@@ -263,9 +263,9 @@ export default function GuideContent() {
           </P>
           <div className="grid sm:grid-cols-3 gap-4 my-6">
             {[
-              { icon: BookOpen, c: BLUE, n: "1. Programs", d: <>The courses you offer — a subject, grade level, or review track. Each has a tuition fee.</> },
+              { icon: BookOpen, c: BLUE, n: "1. Programs", d: <>The courses you offer, a subject, grade level, or review track. Each has a tuition fee.</> },
               { icon: Users, c: AMBER, n: "2. Students", d: <>The people you teach. A student becomes an <strong>enrollment</strong> when joined to a program.</> },
-              { icon: CalendarCheck, c: BLUE, n: "3. Sessions", d: <>The actual classes you hold per program — where you take attendance and write progress notes.</> },
+              { icon: CalendarCheck, c: BLUE, n: "3. Sessions", d: <>The actual classes you hold per program, where you take attendance and write progress notes.</> },
             ].map((card, i) => (
               <div key={i} className="rounded-[18px] border-2 p-5" style={{ background: "#fff", borderColor: INK, boxShadow: `5px 5px 0 ${card.c}` }}>
                 <div className="w-10 h-10 rounded-[12px] border-2 flex items-center justify-center mb-3" style={{ background: card.c, borderColor: INK }}>
@@ -278,7 +278,7 @@ export default function GuideContent() {
           </div>
           <Callout title="The simplest way to think about it">
             A <strong>program</strong> is the course (Grade 5 Math). An <strong>enrollment</strong> is one student joining
-            that course — and it carries the tuition. A <strong>session</strong> is one class meeting where you mark who
+            that course, and it carries the tuition. A <strong>session</strong> is one class meeting where you mark who
             showed up. Set up programs once, then enroll students and run sessions all term.
           </Callout>
         </Animate>
@@ -289,7 +289,7 @@ export default function GuideContent() {
           <P>Do this first. A program is anything you charge tuition for.</P>
           <Steps items={[
             { t: "Go to SchoolDesk → Programs → New Program", d: "Give it a clear name like 'Grade 3 Math Tutoring' or 'UPCAT Review Batch A'." },
-            { t: "Set the tuition fee", d: "Enter the amount you charge for this program — e.g. ₱1,500." },
+            { t: "Set the tuition fee", d: "Enter the amount you charge for this program, e.g. ₱1,500." },
             { t: "Choose the billing type", d: "Monthly (recurring tuition), Per Session (pay per class), or Fixed (one-time fee for the whole course)." },
           ]} />
           <Callout title="Make one program per offering">
@@ -301,7 +301,7 @@ export default function GuideContent() {
         {/* TEACHERS */}
         <Animate>
           <H2 id="teachers" icon={NotebookPen}>2. Add your teachers</H2>
-          <P>If you teach solo, you can skip this — but most centers have more than one tutor.</P>
+          <P>If you teach solo, you can skip this, but most centers have more than one tutor.</P>
           <Steps items={[
             { t: "Go to Teachers → Add Teacher", d: "Enter the teacher's name, phone, email, and subject or specialization." },
             { t: "Assign teachers to programs and sessions", d: "When you enroll a student or schedule a session, you can pick which teacher handles it." },
@@ -314,7 +314,7 @@ export default function GuideContent() {
           <P>Add every student once. Their profile follows them across every program they join.</P>
           <Steps items={[
             { t: "Go to Students → Add Student", d: "Only the full name is required. Add grade level, phone, and the guardian's name and number so parents are easy to reach." },
-            { t: "Add notes if useful", d: "Anything you want to remember — learning style, schedule preferences, special needs." },
+            { t: "Add notes if useful", d: "Anything you want to remember, learning style, schedule preferences, special needs." },
           ]} />
           <Callout title="Guardian info pays off later">
             Filling in the guardian's name and number now means that when tuition is due or you need to reach a parent, the
@@ -325,11 +325,11 @@ export default function GuideContent() {
         {/* ENROLL */}
         <Animate>
           <H2 id="enroll" icon={CreditCard}>4. Enroll a student &amp; set tuition</H2>
-          <P>An enrollment is what connects a student to a program — and it&apos;s where tuition lives.</P>
+          <P>An enrollment is what connects a student to a program, and it&apos;s where tuition lives.</P>
           <Steps items={[
             { t: "Go to Enrollments → Enroll Student", d: "Pick the student and the program. The tuition fee auto-fills from the program, but you can override it for scholarships or discounts." },
             { t: "Assign a teacher (optional)", d: "Choose who'll handle this student. Set a start date." },
-            { t: "Track the balance", d: "From now on, the enrollment shows the tuition fee, total paid, and the outstanding balance — updated every time you record a payment." },
+            { t: "Track the balance", d: "From now on, the enrollment shows the tuition fee, total paid, and the outstanding balance, updated every time you record a payment." },
           ]} />
           <Example title="Example: Maria">
             <p>• Maria enrolls in &apos;Grade 5 Math&apos; → tuition ₱1,500, paid ₱0, balance <strong>₱1,500</strong>.</p>
@@ -344,7 +344,7 @@ export default function GuideContent() {
           <P>A session is one class meeting for a program.</P>
           <Steps items={[
             { t: "Go to Sessions → Schedule Session", d: "Pick the program, assign a teacher, set the date, time, and duration. Add a title like 'Chapter 3 Review' if you like." },
-            { t: "Manage its status", d: "Sessions start as Scheduled. After class, mark them Done — or Cancelled if it didn't happen." },
+            { t: "Manage its status", d: "Sessions start as Scheduled. After class, mark them Done, or Cancelled if it didn't happen." },
           ]} />
           <Callout title="Upcoming sessions on the dashboard">
             Every scheduled session shows in the dashboard&apos;s &quot;Upcoming Sessions&quot; list so you and your teachers always know
@@ -396,7 +396,7 @@ export default function GuideContent() {
             { t: "Collections", d: "Today's and this month's tuition collected, at a glance." },
             { t: "Students & enrollments", d: "Total and active students, plus active enrollments." },
             { t: "Sessions", d: "How many sessions today and this month, plus your upcoming schedule." },
-            { t: "Unpaid balances", d: "A live list of enrollments that still owe tuition — so nobody slips through the cracks." },
+            { t: "Unpaid balances", d: "A live list of enrollments that still owe tuition, so nobody slips through the cracks." },
           ]} />
         </Animate>
 
@@ -405,10 +405,10 @@ export default function GuideContent() {
           <H2 id="glossary" icon={BookOpen}>Glossary</H2>
           <div className="my-6 space-y-3">
             {[
-              ["Program", "A course you offer and charge for — a subject, grade level, or review track. Has a tuition fee and billing type."],
+              ["Program", "A course you offer and charge for, a subject, grade level, or review track. Has a tuition fee and billing type."],
               ["Student", "A person you teach. Their profile holds contact info, guardian details, attendance, and progress notes."],
               ["Enrollment", "A student joined to a program. Carries the tuition fee, total paid, and outstanding balance."],
-              ["Session", "One class meeting for a program — where you take attendance and add progress notes."],
+              ["Session", "One class meeting for a program, where you take attendance and add progress notes."],
               ["Attendance", "The per-session record of who was present, absent, late, or excused."],
               ["Progress note", "A written note (with optional 1–5 rating) about a student's performance."],
               ["Billing type", "How a program charges: Monthly, Per Session, or Fixed (one-time)."],

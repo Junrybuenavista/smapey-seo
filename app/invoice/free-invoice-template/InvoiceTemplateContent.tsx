@@ -151,7 +151,7 @@ const downloadHTML = async (html: string) => {
   {/* SUBTEXT */}
   <p className="text-gray-600 mt-4 text-lg leading-relaxed">
     Generate professional invoices instantly using our free invoice template generator.
-    Download as PDF, Word, or Excel — perfect for freelancers, agencies, and businesses.
+    Download as PDF, Word, or Excel, perfect for freelancers, agencies, and businesses.
   </p>
 
   {/* TRUST LINE */}
@@ -544,7 +544,7 @@ const downloadHTML = async (html: string) => {
       Multi-Currency Support
     </h3>
     <p className="text-sm">
-      Create invoices in USD, PHP, EUR, GBP, and more — perfect for international clients.
+      Create invoices in USD, PHP, EUR, GBP, and more, perfect for international clients.
     </p>
   </div>
 </div>
@@ -700,7 +700,7 @@ const downloadHTML = async (html: string) => {
     <p className="text-gray-600 leading-relaxed">
       Create professional invoices instantly using our free invoice template generator.
       Whether you need a PDF invoice, Word template, or simple billing format,
-      Smapey helps you generate clean, modern invoices in seconds — no signup required.
+      Smapey helps you generate clean, modern invoices in seconds, no signup required.
     </p>
   </div>
 
@@ -731,7 +731,7 @@ const downloadHTML = async (html: string) => {
         Instant Invoice Generator
       </h3>
       <p className="text-sm text-gray-600">
-        Fill out your invoice details and download instantly — no design skills required.
+        Fill out your invoice details and download instantly, no design skills required.
       </p>
     </div>
 

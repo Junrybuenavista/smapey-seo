@@ -15,12 +15,12 @@ const CREAM = "#fbf7f0"
 const display = { fontFamily: "'Hanken Grotesk', system-ui, sans-serif" }
 
 const FEATURES = [
-  { icon: CalendarPlus, title: "Online Booking, Built In", desc: "Your massage business gets a branded booking page out of the box. Clients pick a treatment, a therapist, a time — and the booking lands in your dashboard automatically." },
-  { icon: Users, title: "Therapist Assignment", desc: "Assign every booking to the right therapist — Swedish, deep tissue, Thai, prenatal — based on their specialties. Clients can request a preferred therapist on the booking page." },
-  { icon: Sparkles, title: "Treatments with Real Durations", desc: "Define each treatment with its true session length, price, and image. No more 60-minute slots that should have been 90 — the booking page shows clients exactly what to expect." },
+  { icon: CalendarPlus, title: "Online Booking, Built In", desc: "Your massage business gets a branded booking page out of the box. Clients pick a treatment, a therapist, a time - and the booking lands in your dashboard automatically." },
+  { icon: Users, title: "Therapist Assignment", desc: "Assign every booking to the right therapist (Swedish, deep tissue, Thai, prenatal) based on their specialties. Clients can request a preferred therapist on the booking page." },
+  { icon: Sparkles, title: "Treatments with Real Durations", desc: "Define each treatment with its true session length, price, and image. No more 60-minute slots that should have been 90 - the booking page shows clients exactly what to expect." },
   { icon: Wallet, title: "Deposit Collection", desc: "Reduce no-shows. Upload your GCash or bank QR code, set a deposit amount, and require a reference number on the booking form. Premium treatments are protected." },
-  { icon: Inbox, title: "Inquiries In One Inbox", desc: "Every booking request — name, phone, preferred date, deposit reference — lands in one tab. Accept, decline, or convert it to a confirmed appointment in a single click." },
-  { icon: BarChart3, title: "Revenue at a Glance", desc: "Live dashboard shows monthly revenue, today's sessions, completion rate, and pending inquiries. Know exactly how your booking app is performing — no spreadsheets needed." },
+  { icon: Inbox, title: "Inquiries In One Inbox", desc: "Every booking request (name, phone, preferred date, deposit reference) lands in one tab. Accept, decline, or convert it to a confirmed appointment in a single click." },
+  { icon: BarChart3, title: "Revenue at a Glance", desc: "Live dashboard shows monthly revenue, today's sessions, completion rate, and pending inquiries. Know exactly how your booking app is performing - no spreadsheets needed." },
 ]
 
 const COMPARISON = [
@@ -34,10 +34,10 @@ const COMPARISON = [
 ]
 
 const FAQS = [
-  { q: "How is this different from other massage booking apps?", a: "Most booking apps are designed for hair salons or general appointments. Smapey is built around what spas actually need — therapist specialties, treatment durations, client intake notes, and deposit collection — without enterprise complexity or pricing." },
+  { q: "How is this different from other massage booking apps?", a: "Most booking apps are designed for hair salons or general appointments. Smapey is built around what spas actually need, therapist specialties, treatment durations, client intake notes, and deposit collection, without enterprise complexity or pricing." },
   { q: "Can clients book a specific therapist online?", a: "Yes. Your booking page lets clients optionally pick their preferred therapist before submitting the inquiry. The choice flows into your inbox so you can honor it on confirmation." },
   { q: "Do I need to install anything?", a: "No. Smapey runs entirely in the cloud. You sign in from any browser on any device, and your data is always in sync. No app store download, no installs, no IT setup." },
-  { q: "Is there really a free plan?", a: "Yes — no expiration, no card required. The free plan supports up to 50 appointments per month, 10 treatments, and 2 therapists. Perfect for a solo therapist or a small studio." },
+  { q: "Is there really a free plan?", a: "Yes, no expiration, no card required. The free plan supports up to 50 appointments per month, 10 treatments, and 2 therapists. Perfect for a solo therapist or a small studio." },
 ]
 
 function useInView(options?: IntersectionObserverInit) {
@@ -116,10 +116,10 @@ function Hero() {
         <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.04] tracking-tight mb-6" style={{ color: INK }}>
           The massage booking app <span style={{ color: BLUE }}>built for spas and therapists</span>
         </h1>
-        <p className="text-lg max-w-2xl mx-auto mb-10 leading-relaxed" style={{ color: "#54514c" }}>Let clients book massages on your branded page — pick a therapist, pick a treatment, pay a deposit. Every booking lands in your inbox, ready to confirm in one click.</p>
+        <p className="text-lg max-w-2xl mx-auto mb-10 leading-relaxed" style={{ color: "#54514c" }}>Let clients book massages on your branded page, pick a therapist, pick a treatment, pay a deposit. Every booking lands in your inbox, ready to confirm in one click.</p>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
           <a href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=MASSAGE&plan=FREE`} className="flex items-center gap-2 px-7 py-4 rounded-full font-bold text-sm border-2 transition-transform hover:-translate-y-0.5" style={{ ...display, background: AMBER, color: INK, borderColor: INK, boxShadow: `4px 4px 0 ${INK}` }}>
-            Start free — no card needed <ChevronRight className="w-4 h-4" />
+            Start free, no card needed <ChevronRight className="w-4 h-4" />
           </a>
           <a href="/massage" className="flex items-center gap-2 px-7 py-4 rounded-full font-bold text-sm border-2 bg-white transition-transform hover:-translate-y-0.5" style={{ ...display, color: INK, borderColor: INK }}>View all features</a>
         </div>
@@ -138,7 +138,7 @@ function Features() {
         <Animate className="text-center mb-16">
           <p className="text-sm font-bold uppercase tracking-widest mb-3" style={{ color: BLUE }}>Features</p>
           <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight" style={{ color: INK }}>Everything a massage booking app should do</h2>
-          <p className="mt-4 max-w-xl mx-auto" style={{ color: "#54514c" }}>From the first inquiry to the final session — built around how a real spa runs.</p>
+          <p className="mt-4 max-w-xl mx-auto" style={{ color: "#54514c" }}>From the first inquiry to the final session, built around how a real spa runs.</p>
         </Animate>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {FEATURES.map(({ icon: Icon, title, desc }, i) => {
@@ -330,7 +330,7 @@ function PaymentModal({ plan, isPhilippines, onClose }: { plan: { name: string; 
         <div className="px-6 py-5 flex items-center justify-between" style={{ background: INK }}>
           <div className="flex items-center gap-3">
             {step === "payment" && !token && <button onClick={() => setStep("details")} className="text-white/70 hover:text-white transition"><svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}><path d="M19 12H5M12 5l-7 7 7 7"/></svg></button>}
-            <div><h2 className="text-white font-extrabold text-lg">{step === "details" ? "Create your account" : "Choose payment method"}</h2><p className="text-sm mt-0.5" style={{ color: "rgba(255,255,255,.7)" }}>{plan.name} plan — <span className="font-bold" style={{ color: AMBER }}>{displayPrice}</span>{plan.period}</p></div>
+            <div><h2 className="text-white font-extrabold text-lg">{step === "details" ? "Create your account" : "Choose payment method"}</h2><p className="text-sm mt-0.5" style={{ color: "rgba(255,255,255,.7)" }}>{plan.name} plan, <span className="font-bold" style={{ color: AMBER }}>{displayPrice}</span>{plan.period}</p></div>
           </div>
           <button onClick={onClose} className="text-white/70 hover:text-white transition-colors"><X className="w-5 h-5" /></button>
         </div>

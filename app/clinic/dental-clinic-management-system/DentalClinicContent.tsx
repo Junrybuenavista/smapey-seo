@@ -15,19 +15,19 @@ const CREAM = "#fbf7f0"
 const display = { fontFamily: "'Hanken Grotesk', system-ui, sans-serif" }
 
 const FEATURES = [
-  { icon: CalendarDays, title: "Dental Appointment Scheduling", desc: "Book patient appointments by dentist, date, and time. Attach procedure notes — cleaning, extraction, filling, root canal — so the right chair is always ready." },
-  { icon: Stethoscope, title: "Dentist & Staff Management", desc: "Add multiple dentists with individual schedules and specialties. Assign each appointment to the right practitioner — general dentist, orthodontist, or oral surgeon." },
-  { icon: ListOrdered, title: "Live Patient Queue", desc: "Track every patient in real time — Waiting, In Chair, Done. No more calling out names or checking a paper list. One screen, every status." },
-  { icon: Users, title: "Patient Records", desc: "Keep a patient profile for every regular visitor — contact info, date of birth, notes on conditions or allergies. Pull it up in seconds when they arrive." },
-  { icon: BarChart3, title: "Clinic Dashboard", desc: "Today's appointments at a glance — who's in, who's waiting, what's complete. Weekly charts show appointment trends so you can plan ahead." },
-  { icon: Shield, title: "Secure Patient Data", desc: "Patient records are fully isolated per dental clinic. Your data is never mixed with other businesses — encrypted at rest and in transit." },
+  { icon: CalendarDays, title: "Dental Appointment Scheduling", desc: "Book patient appointments by dentist, date, and time. Attach procedure notes (cleaning, extraction, filling, root canal) so the right chair is always ready." },
+  { icon: Stethoscope, title: "Dentist & Staff Management", desc: "Add multiple dentists with individual schedules and specialties. Assign each appointment to the right practitioner - general dentist, orthodontist, or oral surgeon." },
+  { icon: ListOrdered, title: "Live Patient Queue", desc: "Track every patient in real time - Waiting, In Chair, Done. No more calling out names or checking a paper list. One screen, every status." },
+  { icon: Users, title: "Patient Records", desc: "Keep a patient profile for every regular visitor - contact info, date of birth, notes on conditions or allergies. Pull it up in seconds when they arrive." },
+  { icon: BarChart3, title: "Clinic Dashboard", desc: "Today's appointments at a glance - who's in, who's waiting, what's complete. Weekly charts show appointment trends so you can plan ahead." },
+  { icon: Shield, title: "Secure Patient Data", desc: "Patient records are fully isolated per dental clinic. Your data is never mixed with other businesses - encrypted at rest and in transit." },
 ]
 
 const FAQS = [
   { q: "Is this specifically built for dental clinics?", a: "The system works for any clinic type, including dental. You can name your practitioners as dentists, add procedure types as services, and use the queue board to manage chairs instead of rooms." },
   { q: "Can I manage multiple dentists?", a: "Yes. Add each dentist with their own schedule slots, specialty, and contact info. Appointments are assigned per dentist so the queue board stays clear." },
-  { q: "Does it handle appointment reminders?", a: "Currently the system is front-desk operated — staff create and manage appointments. The dashboard shows today's schedule so your team is always prepared." },
-  { q: "Is there a free plan?", a: "Yes. The free plan lets you run a small dental practice with core features — patient records, appointment booking, and the live queue board — at no cost." },
+  { q: "Does it handle appointment reminders?", a: "Currently the system is front-desk operated, staff create and manage appointments. The dashboard shows today's schedule so your team is always prepared." },
+  { q: "Is there a free plan?", a: "Yes. The free plan lets you run a small dental practice with core features (patient records, appointment booking, and the live queue board) at no cost." },
 ]
 
 function useInView(options?: IntersectionObserverInit) {
@@ -106,10 +106,10 @@ function Hero() {
         <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.04] tracking-tight mb-6" style={{ color: INK }}>
           Dental clinic management system <span style={{ color: BLUE }}>without the complexity</span>
         </h1>
-        <p className="text-lg max-w-2xl mx-auto mb-10 leading-relaxed" style={{ color: "#54514c" }}>Manage dental appointments, track patients, assign dentists, and run a live chair queue — from one simple dashboard. No steep learning curve, no expensive licenses.</p>
+        <p className="text-lg max-w-2xl mx-auto mb-10 leading-relaxed" style={{ color: "#54514c" }}>Manage dental appointments, track patients, assign dentists, and run a live chair queue, from one simple dashboard. No steep learning curve, no expensive licenses.</p>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
           <a href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=CLINIC&plan=FREE`} className="flex items-center gap-2 px-7 py-4 rounded-full font-bold text-sm border-2 transition-transform hover:-translate-y-0.5" style={{ ...display, background: AMBER, color: INK, borderColor: INK, boxShadow: `4px 4px 0 ${INK}` }}>
-            Start free — no card needed <ChevronRight className="w-4 h-4" />
+            Start free, no card needed <ChevronRight className="w-4 h-4" />
           </a>
           <a href="/clinic" className="flex items-center gap-2 px-7 py-4 rounded-full font-bold text-sm border-2 bg-white transition-transform hover:-translate-y-0.5" style={{ ...display, color: INK, borderColor: INK }}>View all features</a>
         </div>
@@ -128,7 +128,7 @@ function Features() {
         <Animate className="text-center mb-16">
           <p className="text-sm font-bold uppercase tracking-widest mb-3" style={{ color: BLUE }}>Features</p>
           <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight" style={{ color: INK }}>Everything your dental clinic needs</h2>
-          <p className="mt-4 max-w-xl mx-auto" style={{ color: "#54514c" }}>From scheduling a cleaning to managing an orthodontist's full day — Smapey keeps your dental practice organized.</p>
+          <p className="mt-4 max-w-xl mx-auto" style={{ color: "#54514c" }}>From scheduling a cleaning to managing an orthodontist's full day, Smapey keeps your dental practice organized.</p>
         </Animate>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {FEATURES.map(({ icon: Icon, title, desc }, i) => {
@@ -154,7 +154,7 @@ function Features() {
 const STEPS = [
   { step: "01", title: "Set up your dental practice", desc: "Add your dentists and assistants, set their availability per day, and add the procedures your clinic offers." },
   { step: "02", title: "Register patients & book appointments", desc: "Create a patient profile once, then book their next visit by selecting the dentist, date, and time." },
-  { step: "03", title: "Run the chair queue", desc: "Use the live queue board to track who's waiting, who's in the chair, and who's done — all day, every day." },
+  { step: "03", title: "Run the chair queue", desc: "Use the live queue board to track who's waiting, who's in the chair, and who's done - all day, every day." },
 ]
 
 function HowItWorks() {
@@ -307,7 +307,7 @@ function PaymentModal({ plan, isPhilippines, onClose }: { plan: { name: string; 
         <div className="px-6 py-5 flex items-center justify-between" style={{ background: INK }}>
           <div className="flex items-center gap-3">
             {step === "payment" && !token && <button onClick={() => setStep("details")} className="text-white/70 hover:text-white transition"><svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}><path d="M19 12H5M12 5l-7 7 7 7"/></svg></button>}
-            <div><h2 className="text-white font-extrabold text-lg">{step === "details" ? "Create your account" : "Choose payment method"}</h2><p className="text-sm mt-0.5" style={{ color: "rgba(255,255,255,.7)" }}>{plan.name} plan — <span className="font-bold" style={{ color: AMBER }}>{displayPrice}</span>{plan.period}</p></div>
+            <div><h2 className="text-white font-extrabold text-lg">{step === "details" ? "Create your account" : "Choose payment method"}</h2><p className="text-sm mt-0.5" style={{ color: "rgba(255,255,255,.7)" }}>{plan.name} plan, <span className="font-bold" style={{ color: AMBER }}>{displayPrice}</span>{plan.period}</p></div>
           </div>
           <button onClick={onClose} className="text-white/70 hover:text-white transition-colors"><X className="w-5 h-5" /></button>
         </div>

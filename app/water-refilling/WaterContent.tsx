@@ -17,22 +17,22 @@ const CREAM = "#fbf7f0"
 const display = { fontFamily: "'Hanken Grotesk', system-ui, sans-serif" }
 
 const FEATURES = [
-  { icon: Truck, title: "Delivery Orders", desc: "Take refill orders in seconds — pick the customer, enter gallons delivered and empties returned, and move each order from Pending → Out for Delivery → Delivered. Every order gets an auto ticket number." },
+  { icon: Truck, title: "Delivery Orders", desc: "Take refill orders in seconds - pick the customer, enter gallons delivered and empties returned, and move each order from Pending → Out for Delivery → Delivered. Every order gets an auto ticket number." },
   { icon: Users, title: "Customers & Container Deposits", desc: "Keep a profile for every customer with their own price per gallon and container deposit. Smapey tracks exactly how many of your containers each customer is holding at any time." },
-  { icon: PackageOpen, title: "Empties Return Tracking", desc: "When a customer hands back empty containers — with a delivery or just dropping by — record it on the Returns page. Their outstanding container count updates instantly, no manual tally." },
+  { icon: PackageOpen, title: "Empties Return Tracking", desc: "When a customer hands back empty containers (with a delivery or just dropping by) record it on the Returns page. Their outstanding container count updates instantly, no manual tally." },
   { icon: Boxes, title: "Inventory & Refills", desc: "See filled stock, gallons reserved for pending deliveries, and empties on hand waiting to be refilled. One click turns refilled empties back into sellable stock." },
-  { icon: MessageSquare, title: "Customer SMS Notifications", desc: "Automatically text customers when their water delivery is on the way. SMS is an optional toggle — turn it on or off whenever you like." },
+  { icon: MessageSquare, title: "Customer SMS Notifications", desc: "Automatically text customers when their water delivery is on the way. SMS is an optional toggle - turn it on or off whenever you like." },
   { icon: MapPin, title: "Delivery Routes & Zones", desc: "Group customers by route or barangay so your delivery rider always knows where to go. Filter today's orders by route to plan the run." },
-  { icon: Settings, title: "Station Defaults", desc: "Set one default price per gallon, deposit per gallon, and low-stock threshold. New customers inherit them automatically — override per customer only when you need to." },
-  { icon: BarChart3, title: "Dashboard & Revenue", desc: "See today's orders, pending deliveries, unpaid balances, current stock, outstanding containers, and a 7-day revenue trend — everything on one screen." },
+  { icon: Settings, title: "Station Defaults", desc: "Set one default price per gallon, deposit per gallon, and low-stock threshold. New customers inherit them automatically - override per customer only when you need to." },
+  { icon: BarChart3, title: "Dashboard & Revenue", desc: "See today's orders, pending deliveries, unpaid balances, current stock, outstanding containers, and a 7-day revenue trend - everything on one screen." },
 ]
 
 const FAQS = [
-  { q: "What does water refilling station software actually do?", a: "It replaces the notebook. Smapey tracks every delivery order, how many gallons you have in stock, how much each customer owes, and — the tricky part — how many of your containers each customer is still holding. It also handles payments and a simple revenue dashboard." },
+  { q: "What does water refilling station software actually do?", a: "It replaces the notebook. Smapey tracks every delivery order, how many gallons you have in stock, how much each customer owes, and (the tricky part) how many of your containers each customer is still holding. It also handles payments and a simple revenue dashboard." },
   { q: "How does container deposit tracking work?", a: "Every customer has a running count: containers you've lent out minus containers they've returned. When you deliver gallons, the count goes up; when they return empties (on the Returns page or with a delivery), it goes down. You always know who is holding your bottles." },
   { q: "What happens to empty containers when they come back?", a: "Returned empties lower the customer's outstanding count but don't become sellable stock until they're refilled. Smapey shows an 'Empties on Hand' number, and a one-click Refill turns them back into filled, sellable gallons." },
   { q: "Do my customers need to install an app?", a: "No. Customers don't need anything. Optional SMS notifications go straight to their phone number when a delivery is on the way." },
-  { q: "Can I use it on my phone during deliveries?", a: "Yes. Smapey runs in any web browser on your phone, tablet, or computer — nothing to download. Your rider can update order status from the road." },
+  { q: "Can I use it on my phone during deliveries?", a: "Yes. Smapey runs in any web browser on your phone, tablet, or computer, nothing to download. Your rider can update order status from the road." },
   { q: "Is there a free plan?", a: "Yes. The Free plan lets you run a small station at no cost with no credit card. Upgrade to Pro only when you outgrow the limits." },
 ]
 
@@ -122,7 +122,7 @@ function Hero() {
       </div>
 
       <div className="relative w-full max-w-6xl mx-auto px-6 py-24 grid lg:grid-cols-[1fr_1fr] gap-12 lg:gap-16 items-center">
-        {/* LEFT — copy (light text) */}
+        {/* LEFT, copy (light text) */}
         <div className="min-w-0 text-center lg:text-left">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border-2 text-xs font-bold mb-7" style={{ color: "#fff", borderColor: "rgba(255,255,255,.25)", background: "rgba(255,255,255,.06)" }}>
             <Zap className="w-3 h-3" style={{ color: AMBER }} />
@@ -139,7 +139,7 @@ function Hero() {
           </h1>
 
           <p className="text-lg max-w-md mx-auto lg:mx-0 mb-9 leading-relaxed" style={{ color: "rgba(255,255,255,.65)" }}>
-            Track orders, delivery runs, container returns, and customer balances from one screen. Smapey keeps every drop accounted for — from station to doorstep.
+            Track orders, delivery runs, container returns, and customer balances from one screen. Smapey keeps every drop accounted for, from station to doorstep.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center lg:justify-start justify-center gap-3 mb-9">
@@ -158,7 +158,7 @@ function Hero() {
           </div>
         </div>
 
-        {/* RIGHT — delivery-run dispatch card (light card pops on dark) */}
+        {/* RIGHT, delivery-run dispatch card (light card pops on dark) */}
         <div className="relative min-w-0 w-full max-w-md mx-auto">
           {/* floating order chip */}
           <div className="absolute z-10 flex items-center gap-2 bg-white border-2 rounded-full px-3.5 py-2" style={{ top: -20, right: -16, borderColor: INK, boxShadow: `4px 4px 0 ${BLUE}`, transform: "rotate(4deg)" }}>
@@ -259,7 +259,7 @@ function Features() {
 }
 
 const STEPS = [
-  { step: "01", title: "Set your station defaults", desc: "Enter your default price per gallon and container deposit once. Add your delivery routes and your first customers — each one inherits your defaults automatically." },
+  { step: "01", title: "Set your station defaults", desc: "Enter your default price per gallon and container deposit once. Add your delivery routes and your first customers - each one inherits your defaults automatically." },
   { step: "02", title: "Take orders & deliveries", desc: "Create a delivery order, enter gallons delivered and empties returned, and mark it delivered. Stock goes down automatically and the customer's container balance updates." },
   { step: "03", title: "Track returns, refills & cash", desc: "Log empties customers drop off, refill them back into stock with one click, and record Cash or GCash payments. Your dashboard shows exactly where the money and the bottles are." },
 ]
@@ -414,7 +414,7 @@ function PaymentModal({ plan, isPhilippines, onClose }: { plan: { name: string; 
         <div className="px-6 py-5 flex items-center justify-between" style={{ background: INK }}>
           <div className="flex items-center gap-3">
             {step === "payment" && !token && <button onClick={() => setStep("details")} className="text-white/70 hover:text-white transition"><svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}><path d="M19 12H5M12 5l-7 7 7 7"/></svg></button>}
-            <div><h2 className="text-white font-extrabold text-lg">{step === "details" ? "Create your account" : "Choose payment method"}</h2><p className="text-sm mt-0.5" style={{ color: "rgba(255,255,255,.7)" }}>{plan.name} plan — <span className="font-bold" style={{ color: AMBER }}>{displayPrice}</span>{plan.period}</p></div>
+            <div><h2 className="text-white font-extrabold text-lg">{step === "details" ? "Create your account" : "Choose payment method"}</h2><p className="text-sm mt-0.5" style={{ color: "rgba(255,255,255,.7)" }}>{plan.name} plan, <span className="font-bold" style={{ color: AMBER }}>{displayPrice}</span>{plan.period}</p></div>
           </div>
           <button onClick={onClose} className="text-white/70 hover:text-white transition-colors"><X className="w-5 h-5" /></button>
         </div>

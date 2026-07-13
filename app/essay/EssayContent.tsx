@@ -20,9 +20,9 @@ const display = { fontFamily: "'Hanken Grotesk', system-ui, sans-serif" }
 const FEATURES = [
   { icon: Zap, title: "Instant AI Grading", desc: "Submit an essay and receive a detailed score with structured feedback in seconds. No more waiting days for grades." },
   { icon: Camera, title: "Camera & Image OCR", desc: "Snap a photo of a handwritten essay with your phone camera. AI reads the text and grades it automatically." },
-  { icon: Target, title: "Rubric-Based Scoring", desc: "Essays are evaluated across multiple dimensions: content, grammar, structure, clarity, and creativity — all in one report." },
+  { icon: Target, title: "Rubric-Based Scoring", desc: "Essays are evaluated across multiple dimensions: content, grammar, structure, clarity, and creativity - all in one report." },
   { icon: ClipboardList, title: "Assignment Management", desc: "Create assignments with custom topics, deadlines, and grading criteria. All student submissions in one organized place." },
-  { icon: MessageSquare, title: "Detailed Feedback", desc: "Students get actionable suggestions — not just a score. Every essay comes with specific tips to improve their writing." },
+  { icon: MessageSquare, title: "Detailed Feedback", desc: "Students get actionable suggestions - not just a score. Every essay comes with specific tips to improve their writing." },
   { icon: BarChart3, title: "Class Analytics", desc: "See score distributions, class averages, and individual progress across all assignments in a clear visual dashboard." },
   { icon: FileText, title: "Student Results Tracking", desc: "Filter and review every student's submission history. Identify who needs extra support with a single glance." },
   { icon: Shield, title: "Consistent & Fair Grading", desc: "Remove grading bias. Every essay is evaluated by the same AI model using the same rubric, every single time." },
@@ -31,7 +31,7 @@ const FEATURES = [
 
 const FAQS = [
   { q: "Can it grade handwritten essays?", a: "Yes. Students or teachers can photograph a handwritten essay using the built-in camera feature. The AI reads the text via OCR and grades it like any typed submission." },
-  { q: "How accurate is the AI grading?", a: "The AI uses the same rubric criteria every time — content, grammar, structure, clarity, and creativity — producing consistent, bias-free results comparable to human graders." },
+  { q: "How accurate is the AI grading?", a: "The AI uses the same rubric criteria every time (content, grammar, structure, clarity, and creativity) producing consistent, bias-free results comparable to human graders." },
   { q: "Can students see their own feedback?", a: "Yes. You control what's shared. Students can view their score and feedback comments once the teacher releases results." },
   { q: "What languages are supported?", a: "English is fully supported. Other languages depend on the AI model's capabilities. Most major languages work well for basic grading." },
   { q: "Can I customize the grading rubric?", a: "Enterprise plan users can set custom rubric weights per assignment. All plans include the standard multi-dimension rubric out of the box." },
@@ -119,7 +119,7 @@ function Hero() {
       </div>
 
       <div className="relative w-full max-w-6xl mx-auto px-6 py-24 grid lg:grid-cols-[1.15fr_0.85fr] gap-12 lg:gap-[72px] items-center">
-        {/* LEFT — headline column */}
+        {/* LEFT, headline column */}
         <div className="min-w-0 text-center lg:text-left">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border-2 text-xs font-bold mb-7" style={{ color: INK, borderColor: INK, boxShadow: `3px 3px 0 ${BLUE}` }}>
             <Zap className="w-3 h-3" />
@@ -135,12 +135,12 @@ function Hero() {
           </h1>
 
           <p className="text-lg max-w-md mx-auto lg:mx-0 mb-9 leading-relaxed" style={{ color: "#54514c" }}>
-            Smapey Essay scores student writing against a clear rubric and returns structured, actionable feedback — typed or handwritten, every essay graded the same fair way.
+            Smapey Essay scores student writing against a clear rubric and returns structured, actionable feedback, typed or handwritten, every essay graded the same fair way.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center lg:justify-start justify-center gap-3 mb-9">
             <a href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=ESSAY&plan=FREE`} className="flex items-center gap-2 px-7 py-4 rounded-full font-bold text-sm border-2 transition-transform hover:-translate-y-0.5" style={{ ...display, background: AMBER, color: INK, borderColor: INK, boxShadow: `4px 4px 0 ${INK}` }}>
-              Start free — no card needed <ChevronRight className="w-4 h-4" />
+              Start free, no card needed <ChevronRight className="w-4 h-4" />
             </a>
             <a href="#how-it-works" className="flex items-center gap-2 px-7 py-4 rounded-full font-bold text-sm border-2 bg-white transition-transform hover:-translate-y-0.5" style={{ ...display, color: INK, borderColor: INK }}>See how it works</a>
           </div>
@@ -152,7 +152,7 @@ function Hero() {
           </div>
         </div>
 
-        {/* RIGHT — graded-essay preview card */}
+        {/* RIGHT, graded-essay preview card */}
         <div className="relative min-w-0 max-w-md w-full mx-auto">
           {/* score badge */}
           <div className="absolute z-10 flex flex-col items-center justify-center text-white rounded-full border-2" style={{ top: -26, right: -14, width: 96, height: 96, background: BLUE, borderColor: INK, boxShadow: `4px 4px 0 ${INK}`, transform: "rotate(-8deg)" }}>
@@ -193,7 +193,7 @@ function Hero() {
             {/* AI feedback note */}
             <div className="mt-4 flex gap-2.5 items-start border-2 rounded-[14px] px-3.5 py-3" style={{ background: BLUE, borderColor: INK, boxShadow: `4px 4px 0 ${INK}` }}>
               <MessageSquare className="w-4 h-4 shrink-0 text-white" />
-              <p className="text-xs font-semibold text-white leading-snug m-0">Strong thesis and clear structure. Tighten paragraph 4 — the counter-argument needs supporting evidence.</p>
+              <p className="text-xs font-semibold text-white leading-snug m-0">Strong thesis and clear structure. Tighten paragraph 4, the counter-argument needs supporting evidence.</p>
             </div>
           </div>
 
@@ -215,7 +215,7 @@ function Features() {
         <Animate className="text-center mb-16">
           <p className="text-sm font-bold uppercase tracking-widest mb-3" style={{ color: BLUE }}>Features</p>
           <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight" style={{ color: INK }}>Everything a teacher needs</h2>
-          <p className="mt-4 max-w-xl mx-auto" style={{ color: "#54514c" }}>From assignment creation to detailed analytics — Smapey Essay handles the grading so you can focus on teaching.</p>
+          <p className="mt-4 max-w-xl mx-auto" style={{ color: "#54514c" }}>From assignment creation to detailed analytics, Smapey Essay handles the grading so you can focus on teaching.</p>
         </Animate>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {FEATURES.map(({ icon: Icon, title, desc }, i) => {
@@ -394,7 +394,7 @@ function PaymentModal({ plan, isPhilippines, onClose }: { plan: { name: string; 
         <div className="px-6 py-5 flex items-center justify-between" style={{ background: INK }}>
           <div className="flex items-center gap-3">
             {step === "payment" && !token && <button onClick={() => setStep("details")} className="text-white/70 hover:text-white transition"><svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}><path d="M19 12H5M12 5l-7 7 7 7"/></svg></button>}
-            <div><h2 className="text-white font-extrabold text-lg">{step === "details" ? "Create your account" : "Choose payment method"}</h2><p className="text-sm mt-0.5" style={{ color: "rgba(255,255,255,.7)" }}>{plan.name} plan — <span className="font-bold" style={{ color: AMBER }}>{displayPrice}</span>{plan.period}</p></div>
+            <div><h2 className="text-white font-extrabold text-lg">{step === "details" ? "Create your account" : "Choose payment method"}</h2><p className="text-sm mt-0.5" style={{ color: "rgba(255,255,255,.7)" }}>{plan.name} plan, <span className="font-bold" style={{ color: AMBER }}>{displayPrice}</span>{plan.period}</p></div>
           </div>
           <button onClick={onClose} className="text-white/70 hover:text-white transition-colors"><X className="w-5 h-5" /></button>
         </div>

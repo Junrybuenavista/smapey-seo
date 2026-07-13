@@ -8,7 +8,7 @@ const variant: LendingVariant = {
     titleLead: "The lending money app",
     titleAccent: "for lenders in the Philippines",
     subtitle:
-      "If you lend money for a living, Smapey is your app. Track who borrowed how much, generate amortization schedules automatically, and record every repayment by GCash, cash, or bank transfer — all in one place.",
+      "If you lend money for a living, Smapey is your app. Track who borrowed how much, generate amortization schedules automatically, and record every repayment by GCash, cash, or bank transfer, all in one place.",
   },
   features: {
     eyebrow: "For people who lend money",

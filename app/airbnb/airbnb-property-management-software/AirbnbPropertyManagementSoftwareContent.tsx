@@ -16,9 +16,9 @@ const display = { fontFamily: "'Hanken Grotesk', system-ui, sans-serif" }
 
 const FEATURES = [
   { icon: Home, title: "Multi-Property Management", desc: "List every unit with its own photos, property type, address, room counts, nightly rate, and cleaning fee. The Pro plan supports 10 properties; Enterprise is unlimited." },
-  { icon: ShieldCheck, title: "Double-Booking Protection", desc: "The system validates date ranges against all confirmed reservations for that property. Overlapping bookings are rejected before they save — no more uncomfortable double-booking calls." },
+  { icon: ShieldCheck, title: "Double-Booking Protection", desc: "The system validates date ranges against all confirmed reservations for that property. Overlapping bookings are rejected before they save - no more uncomfortable double-booking calls." },
   { icon: CalendarRange, title: "Reservation Per Property", desc: "Each reservation is tied to a specific property. Filter the reservation list by property to see exactly what's booked, checked in, or available on any date." },
-  { icon: Users, title: "Guest History Per Property", desc: "See which guests have stayed at each property. Guest profiles track total stays and spend across all your properties — useful for returning guest discounts." },
+  { icon: Users, title: "Guest History Per Property", desc: "See which guests have stayed at each property. Guest profiles track total stays and spend across all your properties - useful for returning guest discounts." },
   { icon: Wallet, title: "Per-Reservation Cost Breakdown", desc: "Every reservation auto-calculates: nights × nightly rate + cleaning fee + extra charges. Deposit tracking and payment status are per-reservation, not per property." },
   { icon: BarChart3, title: "Occupancy & Revenue Dashboard", desc: "Monthly revenue and occupancy rate roll up across all your properties. See your full portfolio's performance at a glance from one live dashboard." },
 ]
@@ -38,7 +38,7 @@ const FAQS = [
   { q: "Can I manage multiple Airbnb properties from one account?", a: "Yes. Each property gets its own listing with photos, pricing, and room details. The free plan supports 2 properties, Pro supports 10, and Enterprise is unlimited." },
   { q: "How do I see which properties are available on a given date?", a: "Filter the Reservations list by property and status. You can quickly see what's booked, checked in, or open for a specific unit without checking a separate calendar." },
   { q: "Does each property have its own cleaning fee?", a: "Yes. Each property carries its own nightly rate and cleaning fee. When a reservation is created for that property, the cleaning fee is automatically included in the total cost." },
-  { q: "What's the difference between Pro and Enterprise?", a: "Pro supports 10 properties and 3 team users with unlimited reservations. Enterprise removes all limits — unlimited properties, users, and reservations — plus priority support." },
+  { q: "What's the difference between Pro and Enterprise?", a: "Pro supports 10 properties and 3 team users with unlimited reservations. Enterprise removes all limits (unlimited properties, users, and reservations) plus priority support." },
 ]
 
 function useInView(options?: IntersectionObserverInit) {
@@ -117,10 +117,10 @@ function Hero() {
         <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.04] tracking-tight mb-6" style={{ color: INK }}>
           Airbnb property management software <span style={{ color: BLUE }}>for independent hosts</span>
         </h1>
-        <p className="text-lg max-w-2xl mx-auto mb-10 leading-relaxed" style={{ color: "#54514c" }}>Track every property, guest, and booking from a single dashboard. Know your occupancy rate, revenue per property, and upcoming check-ins — without a single spreadsheet.</p>
+        <p className="text-lg max-w-2xl mx-auto mb-10 leading-relaxed" style={{ color: "#54514c" }}>Track every property, guest, and booking from a single dashboard. Know your occupancy rate, revenue per property, and upcoming check-ins, without a single spreadsheet.</p>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
           <a href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=AIRBNB&plan=FREE`} className="flex items-center gap-2 px-7 py-4 rounded-full font-bold text-sm border-2 transition-transform hover:-translate-y-0.5" style={{ ...display, background: AMBER, color: INK, borderColor: INK, boxShadow: `4px 4px 0 ${INK}` }}>
-            Start free — no card needed <ChevronRight className="w-4 h-4" />
+            Start free, no card needed <ChevronRight className="w-4 h-4" />
           </a>
           <a href="/airbnb" className="flex items-center gap-2 px-7 py-4 rounded-full font-bold text-sm border-2 bg-white transition-transform hover:-translate-y-0.5" style={{ ...display, color: INK, borderColor: INK }}>View all features</a>
         </div>
@@ -139,7 +139,7 @@ function Features() {
         <Animate className="text-center mb-16">
           <p className="text-sm font-bold uppercase tracking-widest mb-3" style={{ color: BLUE }}>Features</p>
           <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight" style={{ color: INK }}>Track every property from one dashboard</h2>
-          <p className="mt-4 max-w-xl mx-auto" style={{ color: "#54514c" }}>Property listings, double-booking protection, occupancy analytics, and guest history — built for hosts managing multiple units.</p>
+          <p className="mt-4 max-w-xl mx-auto" style={{ color: "#54514c" }}>Property listings, double-booking protection, occupancy analytics, and guest history, built for hosts managing multiple units.</p>
         </Animate>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {FEATURES.map(({ icon: Icon, title, desc }, i) => {
@@ -331,7 +331,7 @@ function PaymentModal({ plan, isPhilippines, onClose }: { plan: { name: string; 
         <div className="px-6 py-5 flex items-center justify-between" style={{ background: INK }}>
           <div className="flex items-center gap-3">
             {step === "payment" && !token && <button onClick={() => setStep("details")} className="text-white/70 hover:text-white transition"><svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}><path d="M19 12H5M12 5l-7 7 7 7"/></svg></button>}
-            <div><h2 className="text-white font-extrabold text-lg">{step === "details" ? "Create your account" : "Choose payment method"}</h2><p className="text-sm mt-0.5" style={{ color: "rgba(255,255,255,.7)" }}>{plan.name} plan — <span className="font-bold" style={{ color: AMBER }}>{displayPrice}</span>{plan.period}</p></div>
+            <div><h2 className="text-white font-extrabold text-lg">{step === "details" ? "Create your account" : "Choose payment method"}</h2><p className="text-sm mt-0.5" style={{ color: "rgba(255,255,255,.7)" }}>{plan.name} plan, <span className="font-bold" style={{ color: AMBER }}>{displayPrice}</span>{plan.period}</p></div>
           </div>
           <button onClick={onClose} className="text-white/70 hover:text-white transition-colors"><X className="w-5 h-5" /></button>
         </div>

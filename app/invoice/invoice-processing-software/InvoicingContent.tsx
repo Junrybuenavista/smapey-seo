@@ -7,8 +7,8 @@ import InternalLinks from "@/components/InternalLinks"
 
 const faqs = [
   { q: "What is invoice processing software?", a: "Invoice processing software automates the creation, sending, tracking, and approval of invoices. It reduces manual work, speeds up billing cycles, and helps businesses get paid faster." },
-  { q: "How does invoice processing software work?", a: "It automates the full invoice lifecycle — from creation and delivery to payment tracking and reminders. Smapey handles each step so your team can focus on higher-value work." },
-  { q: "What are the benefits of automated invoice processing?", a: "Automated invoice processing reduces errors, speeds up payment cycles, improves cash flow visibility, and eliminates manual data entry — saving businesses significant time and money." },
+  { q: "How does invoice processing software work?", a: "It automates the full invoice lifecycle, from creation and delivery to payment tracking and reminders. Smapey handles each step so your team can focus on higher-value work." },
+  { q: "What are the benefits of automated invoice processing?", a: "Automated invoice processing reduces errors, speeds up payment cycles, improves cash flow visibility, and eliminates manual data entry, saving businesses significant time and money." },
   { q: "Is invoice processing software good for small businesses?", a: "Yes, invoice processing software scales to any size. Smapey is particularly useful for small businesses wanting to automate billing without complex setup or high cost." },
   { q: "Does invoice processing software integrate with payments?", a: "Yes, most invoice processing platforms integrate with payment providers like Stripe and PayPal so customers can pay directly from the invoice." },
 ]
@@ -30,7 +30,7 @@ export default function InvoicingContent() {
               <RefreshCcw size={13} /> Automate Invoice Processing
             </div>
             <h1 className="text-4xl lg:text-5xl font-bold leading-tight">
-              Invoice Processing Software —{" "}
+              Invoice Processing Software:{" "}
               <span className="bg-gradient-to-r from-teal-400 to-cyan-400 bg-clip-text text-transparent">Automate Your Billing</span>
             </h1>
             <p className="text-gray-400 text-lg leading-relaxed max-w-xl">
@@ -59,8 +59,8 @@ export default function InvoicingContent() {
             <div className="relative bg-white/5 border border-white/10 rounded-2xl p-8 w-full max-w-md space-y-5">
               <p className="text-xs text-gray-500 uppercase tracking-widest">Processed Invoices</p>
               {[
-                { label: "SaaS subscription — Enterprise", amount: "$12,000", status: "Paid", color: "text-green-400 bg-green-500/10" },
-                { label: "Professional services — Q2", amount: "$6,400", status: "Pending", color: "text-yellow-400 bg-yellow-500/10" },
+                { label: "SaaS subscription, Enterprise", amount: "$12,000", status: "Paid", color: "text-green-400 bg-green-500/10" },
+                { label: "Professional services, Q2", amount: "$6,400", status: "Pending", color: "text-yellow-400 bg-yellow-500/10" },
                 { label: "Support contract renewal", amount: "$2,800", status: "Sent", color: "text-blue-400 bg-blue-500/10" },
               ].map(item => (
                 <div key={item.label} className="flex items-center justify-between py-3 border-b border-white/5 last:border-0">
@@ -107,7 +107,7 @@ export default function InvoicingContent() {
             <span className="text-sm font-semibold text-blue-600 uppercase tracking-widest">Why Smapey</span>
             <h2 className="text-4xl font-bold text-gray-900">Smarter Invoice Processing for Every Business</h2>
             <p className="text-gray-500 text-lg max-w-2xl mx-auto">
-              Smapey automates the entire invoice processing workflow — from creation to payment collection — so your team spends less time on admin and more time on growth.
+              Smapey automates the entire invoice processing workflow (from creation to payment collection) so your team spends less time on admin and more time on growth.
             </p>
           </div>
           <div className="grid md:grid-cols-2 gap-5">

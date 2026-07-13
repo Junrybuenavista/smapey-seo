@@ -60,9 +60,9 @@ export default function HvacContent() {
             <div className="relative bg-white/5 border border-white/10 rounded-2xl p-8 w-full max-w-md space-y-5">
               <p className="text-xs text-gray-500 uppercase tracking-widest">HVAC Job Invoices</p>
               {[
-                { label: "AC Unit Install — Smith Residence", amount: "$3,400", status: "Paid", color: "text-green-400 bg-green-500/10" },
-                { label: "Furnace repair — Office Building", amount: "$780", status: "Pending", color: "text-yellow-400 bg-yellow-500/10" },
-                { label: "Duct cleaning — Retail Store", amount: "$520", status: "Sent", color: "text-blue-400 bg-blue-500/10" },
+                { label: "AC Unit Install, Smith Residence", amount: "$3,400", status: "Paid", color: "text-green-400 bg-green-500/10" },
+                { label: "Furnace repair, Office Building", amount: "$780", status: "Pending", color: "text-yellow-400 bg-yellow-500/10" },
+                { label: "Duct cleaning, Retail Store", amount: "$520", status: "Sent", color: "text-blue-400 bg-blue-500/10" },
               ].map(item => (
                 <div key={item.label} className="flex items-center justify-between py-3 border-b border-white/5 last:border-0">
                   <div>
@@ -108,7 +108,7 @@ export default function HvacContent() {
             <span className="text-sm font-semibold text-blue-600 uppercase tracking-widest">Why Smapey</span>
             <h2 className="text-4xl font-bold text-gray-900">A Complete HVAC Billing Solution</h2>
             <p className="text-gray-500 text-lg max-w-2xl mx-auto">
-              More than just HVAC invoice software — a complete contractor invoicing app designed for service professionals. Manage estimates, invoices, payments, and reports all in one place.
+              More than just HVAC invoice software, a complete contractor invoicing app designed for service professionals. Manage estimates, invoices, payments, and reports all in one place.
             </p>
           </div>
           <div className="grid md:grid-cols-2 gap-5">
@@ -117,7 +117,7 @@ export default function HvacContent() {
               "Convert estimates into invoices instantly",
               "Accept Stripe, PayPal & card payments",
               "Real-time tracking of paid and overdue invoices",
-              "Automated payment reminders — no manual follow-up",
+              "Automated payment reminders, no manual follow-up",
               "Works for HVAC, plumbing, electrical, and more",
             ].map(item => (
               <div key={item} className="flex items-center gap-3 bg-white border border-gray-100 rounded-xl px-4 py-3 shadow-sm text-sm text-gray-700">

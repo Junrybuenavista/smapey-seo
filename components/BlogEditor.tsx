@@ -32,11 +32,11 @@ export default function BlogEditor({ value, onChange, minHeight = "560px", place
   const toggleSource = () => {
     if (!editor) return
     if (!sourceMode) {
-      // entering source mode — snapshot current HTML
+      // entering source mode, snapshot current HTML
       setSourceHtml(editor.getHTML())
       setSourceMode(true)
     } else {
-      // leaving source mode — push raw HTML into editor
+      // leaving source mode, push raw HTML into editor
       editor.commands.setContent(sourceHtml, { emitUpdate: false })
       onChange(sourceHtml)
       setSourceMode(false)

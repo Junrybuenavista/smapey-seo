@@ -9,7 +9,7 @@ import {
 const FAQS = [
   {
     q: "Do I need a business plan to start a tutorial center?",
-    a: "You don't legally need one, but a simple plan keeps you focused — it forces you to think through your market, pricing, costs, and break-even point before you spend money. Even a one-page plan dramatically improves your odds.",
+    a: "You don't legally need one, but a simple plan keeps you focused, it forces you to think through your market, pricing, costs, and break-even point before you spend money. Even a one-page plan dramatically improves your odds.",
   },
   {
     q: "How much profit can a tutorial center make?",
@@ -21,11 +21,11 @@ const FAQS = [
   },
   {
     q: "How do I project income in my business plan?",
-    a: "Estimate students × monthly tuition, minus tutor pay, rent, utilities, and materials. Build a conservative case (low enrollment) and a target case. Then track actuals against it — which is far easier with software than spreadsheets.",
+    a: "Estimate students × monthly tuition, minus tutor pay, rent, utilities, and materials. Build a conservative case (low enrollment) and a target case. Then track actuals against it, which is far easier with software than spreadsheets.",
   },
   {
     q: "What tool should I use to run the center after planning?",
-    a: "Smapey SchoolDesk is free to start and manages the operations your plan describes — enrollments, tuition tracking, sessions, and attendance — so your real numbers stay visible.",
+    a: "Smapey SchoolDesk is free to start and manages the operations your plan describes (enrollments, tuition tracking, sessions, and attendance) so your real numbers stay visible.",
   },
 ]
 
@@ -37,7 +37,7 @@ export default function Content() {
       <ArticleHero
         badge="Philippines · Business Plan"
         title={<>A sample tutorial center business plan for the Philippines</>}
-        intro="A business plan turns a good idea into a real business. Here's a simple, practical tutorial center business plan template for the Philippines — covering market, services, pricing, costs, marketing, and operations you can adapt in an afternoon."
+        intro="A business plan turns a good idea into a real business. Here's a simple, practical tutorial center business plan template for the Philippines, covering market, services, pricing, costs, marketing, and operations you can adapt in an afternoon."
       />
 
       <article className="max-w-3xl mx-auto px-6 py-16">
@@ -54,23 +54,23 @@ export default function Content() {
           <AH2>2. Market analysis</AH2>
           <AP>Show you understand your local demand and competition:</AP>
           <Bullets items={[
-            "Target customers — parents of grade-school and high-school students in your area",
-            "Demand drivers — competitive school standards, entrance exams, working parents",
-            "Competition — other centers nearby, their pricing, and what they lack",
-            "Your differentiator — location, specialization, results, or better organization",
+            "Target customers, parents of grade-school and high-school students in your area",
+            "Demand drivers, competitive school standards, entrance exams, working parents",
+            "Competition, other centers nearby, their pricing, and what they lack",
+            "Your differentiator, location, specialization, results, or better organization",
           ]} />
 
           <AH2>3. Services & programs</AH2>
           <AP>List exactly what you'll offer and how it's structured:</AP>
           <Bullets items={[
-            "Subject tutoring — Math, English, Science (per grade level)",
+            "Subject tutoring, Math, English, Science (per grade level)",
             "Homework help and after-school supervision",
-            "Entrance exam review — UPCAT, ACET, and high-school admission tests",
+            "Entrance exam review, UPCAT, ACET, and high-school admission tests",
             "Small-group vs. one-on-one options",
           ]} />
 
           <AH2>4. Pricing</AH2>
-          <AP>Define your tuition model — most centers mix monthly packages with per-session rates:</AP>
+          <AP>Define your tuition model, most centers mix monthly packages with per-session rates:</AP>
           <CostTable
             rows={[
               ["Per-session (one-on-one)", "₱250 – ₱500"],
@@ -104,16 +104,16 @@ export default function Content() {
 
           <AH2>7. Operations plan</AH2>
           <AP>
-            This is where plans usually go vague — and where centers actually fail. Spell out how you'll handle daily
+            This is where plans usually go vague, and where centers actually fail. Spell out how you'll handle daily
             operations: enrolling students, scheduling sessions, assigning tutors, taking attendance, collecting tuition,
             and tracking progress. A center that can't tell you who owes money or who skipped class is leaking profit.
           </AP>
           <Bullets items={[
-            "Enrollment — register each student and the program they join",
-            "Scheduling — plan sessions per program and assign tutors",
-            "Attendance — record who attends every session",
-            "Tuition — track balances and collect on time",
-            "Progress — keep notes parents can see at renewal",
+            "Enrollment, register each student and the program they join",
+            "Scheduling, plan sessions per program and assign tutors",
+            "Attendance, record who attends every session",
+            "Tuition, track balances and collect on time",
+            "Progress, keep notes parents can see at renewal",
           ]} />
 
           <AH2>8. Financial projection</AH2>

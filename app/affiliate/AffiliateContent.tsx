@@ -101,17 +101,17 @@ export default function AffiliateContent() {
   ]
 
   const steps = [
-    { Icon: Share2, title: "Share your link", desc: "Copy your unique referral link and drop it anywhere — Stories, bios, group chats, your link-in-bio." },
+    { Icon: Share2, title: "Share your link", desc: "Copy your unique referral link and drop it anywhere - Stories, bios, group chats, your link-in-bio." },
     { Icon: Users, title: "They sign up", desc: "Anyone who taps your link and creates an account is tagged to you automatically for 60 days." },
     { Icon: BadgeCheck, title: "They subscribe", desc: "When your referral starts a paid plan, the sale is credited to you and a commission is recorded." },
     { Icon: HandCoins, title: "You get paid", desc: "After a short hold, earnings unlock. Cash out via GCash, bank, or account credit." },
   ]
 
   const whys = [
-    { Icon: Repeat, title: "Recurring income", desc: `You don't earn once — you keep earning ${durationLabel} as your referrals stay subscribed.` },
+    { Icon: Repeat, title: "Recurring income", desc: `You don't earn once - you keep earning ${durationLabel} as your referrals stay subscribed.` },
     { Icon: ShieldCheck, title: "Fair 60-day tracking", desc: "We remember your referral for 60 days, so you still get credit even if they sign up later." },
-    { Icon: Banknote, title: "Real payouts", desc: "GCash, bank transfer, or account credit. Low minimum, no hoops — genuinely cashable." },
-    { Icon: Megaphone, title: "Easy to promote", desc: "Smapey fits gyms, salons, clinics, rentals, lending — a fit for almost any audience." },
+    { Icon: Banknote, title: "Real payouts", desc: "GCash, bank transfer, or account credit. Low minimum, no hoops - genuinely cashable." },
+    { Icon: Megaphone, title: "Easy to promote", desc: "Smapey fits gyms, salons, clinics, rentals, lending - a fit for almost any audience." },
     { Icon: Clock, title: "Always-on dashboard", desc: "Clicks, sign-ups, conversions and earnings update in real time. No spreadsheets." },
     { Icon: Sparkles, title: "Free to start", desc: "No fees, no quotas. Grab your link and start sharing in minutes." },
   ]
@@ -131,7 +131,7 @@ export default function AffiliateContent() {
             Refer once.<br />Earn <span style={{ color: BLUE }}>again</span> &amp; <span style={{ color: AMBER }}>again.</span>
           </h1>
           <p className="text-[18px] md:text-[19px] leading-relaxed mt-5 max-w-[460px]" style={{ color: "#54514c" }}>
-            Drop your Smapey link in your bio and earn <strong style={{ color: INK }}>{commissionHeadline(program)}</strong> — paid out via GCash, bank, or credit.
+            Drop your Smapey link in your bio and earn <strong style={{ color: INK }}>{commissionHeadline(program)}</strong>, paid out via GCash, bank, or credit.
           </p>
           <div className="flex flex-wrap gap-3 mt-8">
             <Link href={`${APP}/login`} className="inline-flex items-center gap-2 font-bold text-[17px] px-7 py-4 rounded-full border-2"
@@ -309,7 +309,7 @@ function EarningsCalculator({ program, months }: { program: Program; months: num
         </div>
       </div>
       <p className="text-center text-xs mt-4" style={{ color: "#8a857d" }}>
-        Based on your {commissionHeadline(program)} commission. Illustrative — real earnings depend on the plans your referrals choose and how long they stay.
+        Based on your {commissionHeadline(program)} commission. Illustrative, real earnings depend on the plans your referrals choose and how long they stay.
       </p>
     </section>
   )
@@ -320,9 +320,9 @@ function EarningsCalculator({ program, months }: { program: Program; months: num
 function FAQ({ program, months }: { program: Program; months: number }) {
   const { currency } = program.commission
   const items = [
-    { q: "How do I join the affiliate program?", a: program.whoCanJoin === "existing_customers" ? "Sign in to your Smapey account, open the Affiliate Program page from your account menu, and click Join to get your link instantly. No account yet? Create a free one first." : program.whoCanJoin === "invite_only" ? "The program is currently invite-only. Get in touch and we'll set you up." : "Just create a free account, open the Affiliate Program page, and grab your link — no approval needed." },
+    { q: "How do I join the affiliate program?", a: program.whoCanJoin === "existing_customers" ? "Sign in to your Smapey account, open the Affiliate Program page from your account menu, and click Join to get your link instantly. No account yet? Create a free one first." : program.whoCanJoin === "invite_only" ? "The program is currently invite-only. Get in touch and we'll set you up." : "Just create a free account, open the Affiliate Program page, and grab your link, no approval needed." },
     { q: "How much can I earn?", a: `You earn ${commissionHeadline(program)} on each referral. There's no cap on how many businesses you can refer, so your income scales with how much you share.` },
-    { q: "How long does my referral stay tracked?", a: "When someone taps your link, we remember it for 60 days. As long as they sign up within that window, you get the credit — even if they don't subscribe right away." },
+    { q: "How long does my referral stay tracked?", a: "When someone taps your link, we remember it for 60 days. As long as they sign up within that window, you get the credit, even if they don't subscribe right away." },
     { q: "When and how do I get paid?", a: `New commissions are held briefly to cover refunds, then approved. Once your approved balance reaches ${money(currency, program.payout.minThreshold)}, you can request a payout via GCash, bank transfer, or account credit.` },
     { q: "What happens if my referral cancels or refunds?", a: "If a referral cancels or refunds before a commission clears the hold period, that commission is reversed. Earnings already approved and paid are yours to keep." },
   ]

@@ -8,12 +8,12 @@ const variant: StoreVariant = {
     titleLead: "Inventory management systems",
     titleAccent: "made simple.",
     subtitle:
-      "Most inventory management systems are over-engineered and overpriced. Smapey gives small stores real-time stock tracking, low stock alerts, a built-in POS, and daily revenue summaries — without the complexity or the cost.",
+      "Most inventory management systems are over-engineered and overpriced. Smapey gives small stores real-time stock tracking, low stock alerts, a built-in POS, and daily revenue summaries, without the complexity or the cost.",
   },
   features: {
     eyebrow: "Inventory Management Systems",
     heading: "What a good inventory management system actually needs",
-    sub: "You need to know what you have, when to reorder, and what's selling. Smapey does exactly that — nothing more, nothing less.",
+    sub: "You need to know what you have, when to reorder, and what's selling. Smapey does exactly that, nothing more, nothing less.",
   },
   cta: {
     heading: "The inventory management system your store actually needs.",

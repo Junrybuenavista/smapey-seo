@@ -16,10 +16,10 @@ const CREAM = "#fbf7f0"
 const display = { fontFamily: "'Hanken Grotesk', system-ui, sans-serif" }
 
 const FEATURES = [
-  { icon: Sparkles, title: "Beauty Service Catalogue", desc: "List all your beauty services — hair coloring, keratin treatment, blowout, facial, makeup, lashes, and more. Each service shows price and duration on your booking page." },
-  { icon: Users, title: "Client History & Preferences", desc: "Store client notes alongside their appointment history — preferred hair color formulas, skin sensitivities, makeup preferences, and allergy information." },
+  { icon: Sparkles, title: "Beauty Service Catalogue", desc: "List all your beauty services - hair coloring, keratin treatment, blowout, facial, makeup, lashes, and more. Each service shows price and duration on your booking page." },
+  { icon: Users, title: "Client History & Preferences", desc: "Store client notes alongside their appointment history - preferred hair color formulas, skin sensitivities, makeup preferences, and allergy information." },
   { icon: Scissors, title: "Staff Assignment", desc: "Assign appointments to specific stylists, colorists, or beauty specialists. Clients can request their preferred staff when they submit a booking inquiry." },
-  { icon: Globe, title: "Public Beauty Booking Page", desc: "Your beauty salon gets a unique URL. Share it on Instagram, Facebook, or WhatsApp — clients browse your services and send booking requests directly." },
+  { icon: Globe, title: "Public Beauty Booking Page", desc: "Your beauty salon gets a unique URL. Share it on Instagram, Facebook, or WhatsApp - clients browse your services and send booking requests directly." },
   { icon: Inbox, title: "Booking Inquiry Management", desc: "All incoming booking requests appear in your Inquiries tab. Review and confirm bookings in seconds, and convert them into scheduled appointments." },
   { icon: BarChart3, title: "Beauty Business Analytics", desc: "Track total revenue, most-booked services, appointment volume, and pending inquiries from your dashboard. Understand which services drive the most income." },
 ]
@@ -35,10 +35,10 @@ const COMPARISON = [
 ]
 
 const FAQS = [
-  { q: "Can I store client hair color formulas in the app?", a: "Yes. Each client profile has a notes field where you can record specific information — including hair color formulas, skin type, allergies, and any preferences your staff should know before the appointment." },
-  { q: "How does the booking page work for beauty salons?", a: "Your beauty salon gets a unique URL. Clients visit the page, see your full service menu with prices, and submit a booking inquiry. You review and confirm it from your dashboard — no phone tag required." },
+  { q: "Can I store client hair color formulas in the app?", a: "Yes. Each client profile has a notes field where you can record specific information, including hair color formulas, skin type, allergies, and any preferences your staff should know before the appointment." },
+  { q: "How does the booking page work for beauty salons?", a: "Your beauty salon gets a unique URL. Clients visit the page, see your full service menu with prices, and submit a booking inquiry. You review and confirm it from your dashboard, no phone tag required." },
   { q: "Is the app suitable for a home-based beauty studio?", a: "Yes. The free plan is perfect for solo beauticians working from home. Add your services, share your booking link, and manage all your appointments from your phone." },
-  { q: "Can I list different services for hair, skin, and nails?", a: "Yes. You can add as many service categories as you offer. The free plan supports up to 5 services, and the Pro plan supports up to 20 — enough for most full-service beauty salons." },
+  { q: "Can I list different services for hair, skin, and nails?", a: "Yes. You can add as many service categories as you offer. The free plan supports up to 5 services, and the Pro plan supports up to 20, enough for most full-service beauty salons." },
 ]
 
 function useInView(options?: IntersectionObserverInit) {
@@ -117,10 +117,10 @@ function Hero() {
         <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.04] tracking-tight mb-6" style={{ color: INK }}>
           The beauty salon management app <span style={{ color: BLUE }}>your clients will love</span>
         </h1>
-        <p className="text-lg max-w-2xl mx-auto mb-10 leading-relaxed" style={{ color: "#54514c" }}>Manage hair, skin, makeup, and nail appointments from one dashboard. Store client preferences, publish a booking page, and track your beauty business revenue — all for free.</p>
+        <p className="text-lg max-w-2xl mx-auto mb-10 leading-relaxed" style={{ color: "#54514c" }}>Manage hair, skin, makeup, and nail appointments from one dashboard. Store client preferences, publish a booking page, and track your beauty business revenue, all for free.</p>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
           <a href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=SALON&plan=FREE`} className="flex items-center gap-2 px-7 py-4 rounded-full font-bold text-sm border-2 transition-transform hover:-translate-y-0.5" style={{ ...display, background: AMBER, color: INK, borderColor: INK, boxShadow: `4px 4px 0 ${INK}` }}>
-            Start free — no card needed <ChevronRight className="w-4 h-4" />
+            Start free, no card needed <ChevronRight className="w-4 h-4" />
           </a>
           <a href="/salon" className="flex items-center gap-2 px-7 py-4 rounded-full font-bold text-sm border-2 bg-white transition-transform hover:-translate-y-0.5" style={{ ...display, color: INK, borderColor: INK }}>View all features</a>
         </div>
@@ -138,7 +138,7 @@ function BeautyFeatures() {
       <div className="max-w-6xl mx-auto px-6">
         <Animate className="text-center mb-16">
           <p className="text-sm font-bold uppercase tracking-widest mb-3" style={{ color: BLUE }}>Features</p>
-          <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight" style={{ color: INK }}>Built for beauty — hair, skin, nails, and more</h2>
+          <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight" style={{ color: INK }}>Built for beauty, hair, skin, nails, and more</h2>
           <p className="mt-4 max-w-xl mx-auto" style={{ color: "#54514c" }}>Everything a beauty salon needs to manage clients, bookings, and revenue in one place.</p>
         </Animate>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -331,7 +331,7 @@ function PaymentModal({ plan, isPhilippines, onClose }: { plan: { name: string; 
         <div className="px-6 py-5 flex items-center justify-between" style={{ background: INK }}>
           <div className="flex items-center gap-3">
             {step === "payment" && !token && <button onClick={() => setStep("details")} className="text-white/70 hover:text-white transition"><svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}><path d="M19 12H5M12 5l-7 7 7 7"/></svg></button>}
-            <div><h2 className="text-white font-extrabold text-lg">{step === "details" ? "Create your account" : "Choose payment method"}</h2><p className="text-sm mt-0.5" style={{ color: "rgba(255,255,255,.7)" }}>{plan.name} plan — <span className="font-bold" style={{ color: AMBER }}>{displayPrice}</span>{plan.period}</p></div>
+            <div><h2 className="text-white font-extrabold text-lg">{step === "details" ? "Create your account" : "Choose payment method"}</h2><p className="text-sm mt-0.5" style={{ color: "rgba(255,255,255,.7)" }}>{plan.name} plan, <span className="font-bold" style={{ color: AMBER }}>{displayPrice}</span>{plan.period}</p></div>
           </div>
           <button onClick={onClose} className="text-white/70 hover:text-white transition-colors"><X className="w-5 h-5" /></button>
         </div>

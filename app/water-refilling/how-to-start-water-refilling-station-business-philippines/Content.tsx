@@ -13,7 +13,7 @@ const FAQS = [
   },
   {
     q: "Is a water refilling station business profitable?",
-    a: "Yes — it's a low-cost, repeat-purchase business. Customers buy water every week, and a single round (5-gallon) container costs a few pesos to produce and sells for ₱20–₱30. The key to profit is volume, controlling container losses, and collecting on time — which is exactly what management software helps with.",
+    a: "Yes, it's a low-cost, repeat-purchase business. Customers buy water every week, and a single round (5-gallon) container costs a few pesos to produce and sells for ₱20–₱30. The key to profit is volume, controlling container losses, and collecting on time, which is exactly what management software helps with.",
   },
   {
     q: "What permits do I need?",
@@ -21,11 +21,11 @@ const FAQS = [
   },
   {
     q: "Should I buy a franchise or build my own?",
-    a: "A franchise or business package gives you proven equipment and a brand but costs more upfront and may include royalties. Building your own is cheaper and more flexible. Either way, you'll still need a system to run daily operations — deliveries, customers, containers, and cash.",
+    a: "A franchise or business package gives you proven equipment and a brand but costs more upfront and may include royalties. Building your own is cheaper and more flexible. Either way, you'll still need a system to run daily operations, deliveries, customers, containers, and cash.",
   },
   {
     q: "How do I keep track of my containers and deliveries?",
-    a: "This is where most stations struggle. Smapey Water is free to start and tracks every delivery order, how many containers each customer is holding, your filled stock and empties, plus payments — all from your phone or computer.",
+    a: "This is where most stations struggle. Smapey Water is free to start and tracks every delivery order, how many containers each customer is holding, your filled stock and empties, plus payments, all from your phone or computer.",
   },
 ]
 
@@ -37,7 +37,7 @@ export default function Content() {
       <ArticleHero
         badge="Philippines · Step-by-step"
         title={<>How to start a water refilling station business in the Philippines</>}
-        intro="A water refilling station is one of the most popular small businesses in the Philippines — low startup cost, daily demand, and repeat customers. Here's exactly how to start one, from capital and permits to equipment, pricing, and running the day-to-day."
+        intro="A water refilling station is one of the most popular small businesses in the Philippines, low startup cost, daily demand, and repeat customers. Here's exactly how to start one, from capital and permits to equipment, pricing, and running the day-to-day."
       />
 
       <article className="max-w-3xl mx-auto px-6 py-16">
@@ -69,7 +69,7 @@ export default function Content() {
           <Bullets items={[
             <><strong>DTI</strong> (sole proprietor) or <strong>SEC</strong> (corporation/partnership) registration for your business name.</>,
             <><strong>Barangay Clearance</strong> and <strong>Mayor's / Business Permit</strong> from your LGU.</>,
-            <><strong>Sanitary Permit</strong> and a <strong>water potability test</strong> — your output must pass DOH/LGU water quality standards.</>,
+            <><strong>Sanitary Permit</strong> and a <strong>water potability test</strong>, your output must pass DOH/LGU water quality standards.</>,
             <><strong>BIR registration</strong> for your TIN, official receipts, and books of accounts.</>,
             <>Health certificates for staff who handle the water and containers.</>,
           ]} />
@@ -83,7 +83,7 @@ export default function Content() {
 
           <AH2>Step 4: Set up your equipment</AH2>
           <Bullets items={[
-            "A purification system — reverse osmosis (RO) is the most common for purified water; add a mineralizer if you want mineral water.",
+            "A purification system, reverse osmosis (RO) is the most common for purified water; add a mineralizer if you want mineral water.",
             "Storage tanks, a filling station, and sealing/cap equipment.",
             "An initial fleet of clean 5-gallon (round) containers to lend and sell.",
             "Optional delivery vehicle for home and office delivery routes.",
@@ -98,13 +98,13 @@ export default function Content() {
 
           <AH2>Step 6: Run the day-to-day without a notebook</AH2>
           <AP>
-            Once you open, the real work begins: tracking who ordered, who paid, how much stock you have, and — the
-            tricky one — <strong>which customers are still holding your containers</strong>. Doing this on paper is where
+            Once you open, the real work begins: tracking who ordered, who paid, how much stock you have, and, the
+            tricky one, <strong>which customers are still holding your containers</strong>. Doing this on paper is where
             stations lose money. Software keeps it all straight:
           </AP>
           <Bullets items={[
             "Record every delivery order and move it from pending to delivered.",
-            "Track each customer's container deposit — bottles lent out minus returned.",
+            "Track each customer's container deposit, bottles lent out minus returned.",
             "Log empties customers drop off, and refill them back into sellable stock.",
             "Accept Cash or GCash and see unpaid balances at a glance.",
             "Watch daily revenue and low-stock alerts on one dashboard.",

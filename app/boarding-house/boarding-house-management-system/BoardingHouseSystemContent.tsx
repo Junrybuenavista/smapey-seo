@@ -17,26 +17,26 @@ const display = { fontFamily: "'Hanken Grotesk', system-ui, sans-serif" }
 
 const FEATURES = [
   { icon: BedDouble, title: "Visual Room Cards", desc: "Every room is a card showing who's inside and which beds or slots are free. Move tenants in and out without leaving the page." },
-  { icon: BedSingle, title: "Bed-Level Tracking", desc: "Name each bed in a bedspace room — Lower A, Upper A — with its own monthly rate. See exactly which bed is vacant and fill it in one click." },
-  { icon: Users, title: "Tenants & Ledger", desc: "Complete tenant profiles plus a one-click Ledger per tenant — move-in date, deposit status, stay and transfer history, and a month-by-month payment table with totals." },
-  { icon: Banknote, title: "Rent Billing", desc: "Generate the month's bills in one click, each due on the tenant's own move-in day. Record payments — full or partial — and overdue flags update automatically." },
+  { icon: BedSingle, title: "Bed-Level Tracking", desc: "Name each bed in a bedspace room (Lower A, Upper A) with its own monthly rate. See exactly which bed is vacant and fill it in one click." },
+  { icon: Users, title: "Tenants & Ledger", desc: "Complete tenant profiles plus a one-click Ledger per tenant - move-in date, deposit status, stay and transfer history, and a month-by-month payment table with totals." },
+  { icon: Banknote, title: "Rent Billing", desc: "Generate the month's bills in one click, each due on the tenant's own move-in day. Record payments (full or partial) and overdue flags update automatically." },
   { icon: Zap, title: "Utility Billing", desc: "Create separate electricity, water, and internet bills per room per month. Keeps rent and utilities clearly itemized." },
-  { icon: Wrench, title: "Maintenance Tracking", desc: "Log repairs with category, priority, and status — Open to Resolved — and record repair costs so you know your true monthly expenses." },
-  { icon: QrCode, title: "QR Issue Reporting", desc: "Print a QR poster per room. Tenants scan it — no app, no login — to report leaks or busted outlets with photos, and see the status of past reports for their room." },
-  { icon: Building2, title: "Transfers, Swaps & Stay History", desc: "Transfer tenants to another room or bed, or swap two tenants even with no vacancy — deposits carry over, and every move stays on record with dates and rates." },
+  { icon: Wrench, title: "Maintenance Tracking", desc: "Log repairs with category, priority, and status (Open to Resolved) and record repair costs so you know your true monthly expenses." },
+  { icon: QrCode, title: "QR Issue Reporting", desc: "Print a QR poster per room. Tenants scan it (no app, no login) to report leaks or busted outlets with photos, and see the status of past reports for their room." },
+  { icon: Building2, title: "Transfers, Swaps & Stay History", desc: "Transfer tenants to another room or bed, or swap two tenants even with no vacancy - deposits carry over, and every move stays on record with dates and rates." },
   { icon: BarChart3, title: "Occupancy Dashboard", desc: "Real-time view of occupancy rate, overdue bills, open maintenance, rent collected, and utility collected. Monthly revenue trend chart included." },
 ]
 
 const FAQS = [
   { q: "What does a boarding house management system do?", a: "It replaces spreadsheets and paper records by centralizing room and bed setup, tenant registration, move-in/move-out tracking, monthly rent billing, utility billing, payment recording, maintenance requests, and occupancy analytics in one dashboard. Philippine boarding house owners use it to collect rent faster and reduce manual follow-up." },
-  { q: "Can it handle bedspace with different deck rates?", a: "Yes. In a bedspace room you add each bed by name — Lower A, Upper A — with its own monthly rate. When a tenant moves into a bed, their rent defaults to that bed's rate, so lower-deck and upper-deck pricing is handled automatically." },
-  { q: "How do tenants report maintenance problems?", a: "Each room has a printable QR code poster. Tenants scan it with their phone camera — no app or account needed — and submit a short report with up to 3 photos. It appears on the owner's Maintenance page instantly with an in-app notification, tagged with the reporter's name. The report page also shows the room's recent reports and their status, so tenants don't re-report issues that are already being fixed." },
+  { q: "Can it handle bedspace with different deck rates?", a: "Yes. In a bedspace room you add each bed by name (Lower A, Upper A) with its own monthly rate. When a tenant moves into a bed, their rent defaults to that bed's rate, so lower-deck and upper-deck pricing is handled automatically." },
+  { q: "How do tenants report maintenance problems?", a: "Each room has a printable QR code poster. Tenants scan it with their phone camera (no app or account needed) and submit a short report with up to 3 photos. It appears on the owner's Maintenance page instantly with an in-app notification, tagged with the reporter's name. The report page also shows the room's recent reports and their status, so tenants don't re-report issues that are already being fixed." },
   { q: "Can the system separate rent from utilities?", a: "Yes. Rent bills and utility bills are created separately so tenants always know which amount is rent and which is for electricity or water. Both types appear on the dashboard's revenue breakdown." },
   { q: "Does it support partial payments?", a: "Yes. You can record partial payments on any rent or utility bill. The system calculates the outstanding balance and marks the bill as partially paid. Overdue balances surface automatically on the dashboard." },
-  { q: "Is there a per-tenant statement of account?", a: "Yes — the Tenant Ledger. One click shows a tenant's original move-in date, deposit and its status, every room and bed they've occupied including transfers and swaps, and a month-by-month payment table with billed, paid, balance, and running totals." },
+  { q: "Is there a per-tenant statement of account?", a: "Yes, the Tenant Ledger. One click shows a tenant's original move-in date, deposit and its status, every room and bed they've occupied including transfers and swaps, and a month-by-month payment table with billed, paid, balance, and running totals." },
   { q: "Can tenants change rooms or beds?", a: "Yes. Transfer moves a tenant to any vacant room or bed with the deposit carried over, and Swap lets two tenants trade places in one step even when there's no vacancy. Every movement is preserved in Stay History with dates and rates." },
-  { q: "How is occupancy rate calculated?", a: "The system counts every occupied bed or slot against total capacity — for bedspace rooms, capacity is the number of beds. Occupancy rate is shown as a percentage on the dashboard and updates the moment someone moves in or out." },
-  { q: "Is it free to use?", a: "Yes — Smapey Boarding House Manager has a free plan. You can manage rooms and beds, tenants, rent billing, utility billing, and maintenance tracking with QR reporting at no cost. Upgrade to PRO or ENTERPRISE when your boarding house needs more capacity." },
+  { q: "How is occupancy rate calculated?", a: "The system counts every occupied bed or slot against total capacity, for bedspace rooms, capacity is the number of beds. Occupancy rate is shown as a percentage on the dashboard and updates the moment someone moves in or out." },
+  { q: "Is it free to use?", a: "Yes, Smapey Boarding House Manager has a free plan. You can manage rooms and beds, tenants, rent billing, utility billing, and maintenance tracking with QR reporting at no cost. Upgrade to PRO or ENTERPRISE when your boarding house needs more capacity." },
 ]
 
 function useInView(options?: IntersectionObserverInit) {
@@ -118,7 +118,7 @@ function Hero() {
         <p className="text-lg max-w-2xl mx-auto mb-10 leading-relaxed" style={{ color: "#54514c" }}>Smapey is a boarding house management system that replaces paper records and spreadsheets with a clean dashboard for rooms, tenants, rent billing, utility billing, and occupancy tracking.</p>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
           <a href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=BOARDING_HOUSE&plan=FREE`} className="flex items-center gap-2 px-7 py-4 rounded-full font-bold text-sm border-2 transition-transform hover:-translate-y-0.5" style={{ ...display, background: AMBER, color: INK, borderColor: INK, boxShadow: `4px 4px 0 ${INK}` }}>
-            Start free — no card needed <ChevronRight className="w-4 h-4" />
+            Start free, no card needed <ChevronRight className="w-4 h-4" />
           </a>
           <a href="/boarding-house" className="flex items-center gap-2 px-7 py-4 rounded-full font-bold text-sm border-2 bg-white transition-transform hover:-translate-y-0.5" style={{ ...display, color: INK, borderColor: INK }}>View all features</a>
         </div>
@@ -285,7 +285,7 @@ function PaymentModal({ plan, isPhilippines, onClose }: { plan: { name: string; 
         <div className="px-6 py-5 flex items-center justify-between" style={{ background: INK }}>
           <div className="flex items-center gap-3">
             {step === "payment" && !token && <button onClick={() => setStep("details")} className="text-white/70 hover:text-white transition"><svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}><path d="M19 12H5M12 5l-7 7 7 7"/></svg></button>}
-            <div><h2 className="text-white font-extrabold text-lg">{step === "details" ? "Create your account" : "Choose payment method"}</h2><p className="text-sm mt-0.5" style={{ color: "rgba(255,255,255,.7)" }}>{plan.name} plan — <span className="font-bold" style={{ color: AMBER }}>{displayPrice}</span>{plan.period}</p></div>
+            <div><h2 className="text-white font-extrabold text-lg">{step === "details" ? "Create your account" : "Choose payment method"}</h2><p className="text-sm mt-0.5" style={{ color: "rgba(255,255,255,.7)" }}>{plan.name} plan, <span className="font-bold" style={{ color: AMBER }}>{displayPrice}</span>{plan.period}</p></div>
           </div>
           <button onClick={onClose} className="text-white/70 hover:text-white transition-colors"><X className="w-5 h-5" /></button>
         </div>

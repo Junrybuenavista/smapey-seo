@@ -9,7 +9,7 @@ import {
 const FAQS = [
   {
     q: "What is a tutorial center?",
-    a: "A tutorial center is a small learning business that offers after-school tutoring, homework help, and exam review to students — usually in groups or one-on-one. In the Philippines they range from a single room in a subdivision to multi-branch review centers.",
+    a: "A tutorial center is a small learning business that offers after-school tutoring, homework help, and exam review to students, usually in groups or one-on-one. In the Philippines they range from a single room in a subdivision to multi-branch review centers.",
   },
   {
     q: "Is a tutorial center profitable in the Philippines?",
@@ -21,11 +21,11 @@ const FAQS = [
   },
   {
     q: "What permits does a tutorial center need in the Philippines?",
-    a: "Typically DTI business name registration, a Barangay Clearance, a Mayor's/Business Permit, and BIR registration. Larger centers offering formal instruction may need additional LGU or DepEd-related requirements — confirm with your local city hall.",
+    a: "Typically DTI business name registration, a Barangay Clearance, a Mayor's/Business Permit, and BIR registration. Larger centers offering formal instruction may need additional LGU or DepEd-related requirements, confirm with your local city hall.",
   },
   {
     q: "How do tutorial centers manage students and tuition?",
-    a: "Most start with notebooks and GCash receipts, which break down fast. Smapey SchoolDesk tracks every student enrollment, tuition balance, session, and attendance record in one place — free to start.",
+    a: "Most start with notebooks and GCash receipts, which break down fast. Smapey SchoolDesk tracks every student enrollment, tuition balance, session, and attendance record in one place, free to start.",
   },
 ]
 
@@ -37,7 +37,7 @@ export default function Content() {
       <ArticleHero
         badge="Philippines · Tutorial Centers"
         title={<>Running a tutorial center in the Philippines: the complete guide</>}
-        intro="Tutorial centers are everywhere in the Philippines — from one-room review centers in the provinces to home-based tutors in every subdivision. Here's what a tutorial center is, how it makes money, and how to run one without drowning in paperwork."
+        intro="Tutorial centers are everywhere in the Philippines, from one-room review centers in the provinces to home-based tutors in every subdivision. Here's what a tutorial center is, how it makes money, and how to run one without drowning in paperwork."
       />
 
       <article className="max-w-3xl mx-auto px-6 py-16">
@@ -52,11 +52,11 @@ export default function Content() {
 
           <AH2>Why tutorial centers thrive in the Philippines</AH2>
           <Bullets items={[
-            "Education-first culture — parents invest heavily in their kids' academic success",
-            "Recurring revenue — most students pay monthly and stay for a whole term or school year",
-            "Low overhead — a single room and a few tutors can serve dozens of students",
-            "High demand for review — entrance exams (UPCAT, ACET) and board reviews fill seats every year",
-            "Word-of-mouth growth — happy parents refer their friends in the same village",
+            "Education-first culture, parents invest heavily in their kids' academic success",
+            "Recurring revenue, most students pay monthly and stay for a whole term or school year",
+            "Low overhead, a single room and a few tutors can serve dozens of students",
+            "High demand for review, entrance exams (UPCAT, ACET) and board reviews fill seats every year",
+            "Word-of-mouth growth, happy parents refer their friends in the same village",
           ]} />
 
           <AH2>How a tutorial center makes money</AH2>

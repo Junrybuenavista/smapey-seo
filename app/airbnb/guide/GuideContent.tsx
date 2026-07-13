@@ -18,15 +18,15 @@ const SECTIONS = [
     body: [
       "Open Properties in the dashboard and click Add Property. Fill in the name, property type (Apartment, House, Condo, Villa, Room, Studio, or Cabin), address, and description.",
       "Set the number of bedrooms, bathrooms, maximum guests, nightly rate, and cleaning fee. The cleaning fee is automatically added to the reservation total.",
-      "Upload a cover photo for each property — your properties display as photo cards with the nightly rate, beds, baths, and max guests at a glance. Toggle properties active or inactive; only active properties can take new bookings.",
+      "Upload a cover photo for each property, your properties display as photo cards with the nightly rate, beds, baths, and max guests at a glance. Toggle properties active or inactive; only active properties can take new bookings.",
     ],
   },
   {
     icon: Users,
     title: "2. Build your guest profiles",
     body: [
-      "Open Guests and add each guest's full name, phone number, email, and any notes. Guest profiles are reusable — you create them once and attach them to any number of reservations.",
-      "The dashboard automatically tracks each guest's total stays, total amount spent, and last stay date — updated every time a reservation reaches Checked Out status.",
+      "Open Guests and add each guest's full name, phone number, email, and any notes. Guest profiles are reusable, you create them once and attach them to any number of reservations.",
+      "The dashboard automatically tracks each guest's total stays, total amount spent, and last stay date, updated every time a reservation reaches Checked Out status.",
       "Mark guests inactive if they should no longer appear in the reservation guest picker, without losing their history.",
     ],
   },
@@ -36,15 +36,15 @@ const SECTIONS = [
     body: [
       "Open Reservations and click New Reservation. Select a property and a guest, then set the check-in and check-out date. The number of nights, nightly cost, cleaning fee, and total are calculated automatically.",
       "Add extra charges if needed (airport pick-up, early check-in fee, etc.) and enter a deposit amount. Tick Deposit Paid when the guest has settled it.",
-      "Set the booking source — Airbnb, Booking.com, Agoda, Direct, Facebook, Referral, or Other — and the number of guests. The system checks for date conflicts on that property before saving.",
+      "Set the booking source, Airbnb, Booking.com, Agoda, Direct, Facebook, Referral, or Other, and the number of guests. The system checks for date conflicts on that property before saving.",
     ],
   },
   {
     icon: CalendarDays,
     title: "4. See everything on the calendar",
     body: [
-      "Open Calendar to see the whole month for every property at once — each property is a row, each day a column, and every stay appears as a color-coded bar: blue for Booked, amber for Checked In, green for Checked Out.",
-      "Click any empty day to create a booking for that property with the date already filled in — the fastest way to take a booking over the phone or from a Facebook message.",
+      "Open Calendar to see the whole month for every property at once, each property is a row, each day a column, and every stay appears as a color-coded bar: blue for Booked, amber for Checked In, green for Checked Out.",
+      "Click any empty day to create a booking for that property with the date already filled in, the fastest way to take a booking over the phone or from a Facebook message.",
       "Click a reservation bar to see the guest, dates, and total, and check them in or out right from the calendar. Use the arrows to move between months; Today jumps you back.",
     ],
   },
@@ -62,7 +62,7 @@ const SECTIONS = [
     title: "6. Record payments as they come in",
     body: [
       "Every reservation has a payment ledger. Click Payments on any booking to see the total, what's been paid, and the remaining balance.",
-      "Record each payment with its amount, method (Cash, GCash, Maya, or Bank), date, and an optional note — for example a ₱1,000 GCash deposit today and the cash balance at check-in.",
+      "Record each payment with its amount, method (Cash, GCash, Maya, or Bank), date, and an optional note, for example a ₱1,000 GCash deposit today and the cash balance at check-in.",
       "The payment status updates itself: Unpaid until the first payment, Partial while a balance remains, and Paid the moment the ledger covers the total. No more guessing who still owes you.",
     ],
   },
@@ -79,9 +79,9 @@ const SECTIONS = [
     icon: BarChart3,
     title: "8. Monitor revenue and occupancy",
     body: [
-      "The dashboard shows monthly revenue, occupancy rate, total reservations, average nightly rate, and pending check-ins — all updated in real time.",
+      "The dashboard shows monthly revenue, occupancy rate, total reservations, average nightly rate, and pending check-ins, all updated in real time.",
       "Revenue totals pull from Checked Out and Checked In reservations with Paid or Partial payment status, giving you an accurate picture of earned income.",
-      "Use the source tracking to see whether Airbnb, Booking.com, Direct, or another channel is generating the most revenue — and decide where to focus your marketing.",
+      "Use the source tracking to see whether Airbnb, Booking.com, Direct, or another channel is generating the most revenue, and decide where to focus your marketing.",
     ],
   },
 ]
@@ -242,7 +242,7 @@ export default function GuideContent() {
           <div className="rounded-[28px] border-2 p-10 flex flex-col md:flex-row items-center justify-between gap-6" style={{ background: AMBER, borderColor: INK, boxShadow: `10px 10px 0 ${INK}` }}>
             <div>
               <h3 className="text-2xl font-extrabold mb-2" style={{ color: INK }}>Ready to get started?</h3>
-              <p className="text-sm font-medium" style={{ color: "#5c4a28" }}>Free plan — 2 properties, 10 reservations/month. No credit card required.</p>
+              <p className="text-sm font-medium" style={{ color: "#5c4a28" }}>Free plan, 2 properties, 10 reservations/month. No credit card required.</p>
             </div>
             <a href={REGISTER_URL} className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full font-bold text-sm border-2 transition-transform hover:-translate-y-0.5 shrink-0" style={{ ...display, background: INK, color: "#fff", borderColor: INK }}>
               Start free <ChevronRight className="w-4 h-4" />

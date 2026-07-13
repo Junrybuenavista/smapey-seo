@@ -21,9 +21,9 @@ const SECTIONS = [
     icon: Building2,
     title: "1. Set Up Your Boarding House",
     steps: [
-      { title: "Create your Smapey account", desc: "Sign up at smapey.com and select Boarding House Manager as your product. Your private workspace is created instantly — no credit card required on the free plan." },
-      { title: "Add your rooms", desc: "Go to the Rooms page and click Add Room. Enter the room name (e.g. Room 101), the type — Bedspace, Shared Room, or Private Room — the floor, and the monthly rate. Each room appears as a card showing who's inside and which slots are free." },
-      { title: "Add beds to bedspace rooms", desc: "On a Bedspace room card, click Add Bed to name each bed (e.g. Lower A, Upper A) and optionally set a different rate per bed — handy when lower decks cost more. A bed without its own rate uses the room's default. The room's capacity is simply its number of beds." },
+      { title: "Create your Smapey account", desc: "Sign up at smapey.com and select Boarding House Manager as your product. Your private workspace is created instantly - no credit card required on the free plan." },
+      { title: "Add your rooms", desc: "Go to the Rooms page and click Add Room. Enter the room name (e.g. Room 101), the type (Bedspace, Shared Room, or Private Room) the floor, and the monthly rate. Each room appears as a card showing who's inside and which slots are free." },
+      { title: "Add beds to bedspace rooms", desc: "On a Bedspace room card, click Add Bed to name each bed (e.g. Lower A, Upper A) and optionally set a different rate per bed - handy when lower decks cost more. A bed without its own rate uses the room's default. The room's capacity is simply its number of beds." },
       { title: "Invite your team", desc: "Go to Settings → Team and invite a co-owner or assistant by email. They can log in with their own account and access the same live system. Assign Admin or Member roles based on their level of access." },
       { title: "Configure your currency symbol", desc: "In Settings → Organization, confirm your currency symbol (₱ for Philippine Peso). This appears on all bills and the revenue dashboard." },
     ],
@@ -34,9 +34,9 @@ const SECTIONS = [
     title: "2. Register Tenants",
     steps: [
       { title: "Open the Tenants page", desc: "Navigate to Boarding House → Tenants from the sidebar. This is where all your tenant records live." },
-      { title: "Click Add Tenant", desc: "Enter the tenant's full name, contact number, and email address. Add an emergency contact name and phone number — important if you ever need to reach someone on their behalf." },
+      { title: "Click Add Tenant", desc: "Enter the tenant's full name, contact number, and email address. Add an emergency contact name and phone number - important if you ever need to reach someone on their behalf." },
       { title: "Add ID information", desc: "Record the tenant's government ID type and ID number for verification purposes. This stays stored in their profile and is useful for move-out documentation or disputes." },
-      { title: "Open a tenant's ledger", desc: "Click Ledger on any tenant for their full statement of account — original move-in date, deposit with paid/unpaid status, every stay and transfer they've made, and a month-by-month payment table with billed, paid, balance, and totals." },
+      { title: "Open a tenant's ledger", desc: "Click Ledger on any tenant for their full statement of account - original move-in date, deposit with paid/unpaid status, every stay and transfer they've made, and a month-by-month payment table with billed, paid, balance, and totals." },
     ],
   },
   {
@@ -44,10 +44,10 @@ const SECTIONS = [
     icon: BedDouble,
     title: "3. Move-ins, Move-outs & Stay History",
     steps: [
-      { title: "Move a tenant in from the Rooms page", desc: "Click any vacant bed or slot on a room card and the move-in form opens with the room (and bed) already selected. Pick the tenant, set the move-in date, and confirm the rate — it defaults from the bed or room. Record the deposit amount and whether it's been paid." },
-      { title: "Move a tenant out from the Rooms page", desc: "Click an occupied bed, avatar, or occupant on a room card to see their details — phone, move-in date, rate, and deposit status — then click Move Out. The bed or slot is freed instantly and the dashboard occupancy updates." },
-      { title: "Transfer a tenant to another room or bed", desc: "In that same occupant popup, click Transfer. Pick the target room and bed, the date, and optionally a new rate — it defaults from the new spot. The old stay closes, a new one opens, and the deposit carries over automatically." },
-      { title: "Swap two tenants", desc: "Want to trade an upper deck for a lower deck, or exchange two rooms, even with zero vacancy? In the Transfer dialog choose 'Swap With Another Tenant' — both tenants trade places in one step, each keeping their own deposit and taking their new spot's rate." },
+      { title: "Move a tenant in from the Rooms page", desc: "Click any vacant bed or slot on a room card and the move-in form opens with the room (and bed) already selected. Pick the tenant, set the move-in date, and confirm the rate - it defaults from the bed or room. Record the deposit amount and whether it's been paid." },
+      { title: "Move a tenant out from the Rooms page", desc: "Click an occupied bed, avatar, or occupant on a room card to see their details (phone, move-in date, rate, and deposit status) then click Move Out. The bed or slot is freed instantly and the dashboard occupancy updates." },
+      { title: "Transfer a tenant to another room or bed", desc: "In that same occupant popup, click Transfer. Pick the target room and bed, the date, and optionally a new rate - it defaults from the new spot. The old stay closes, a new one opens, and the deposit carries over automatically." },
+      { title: "Swap two tenants", desc: "Want to trade an upper deck for a lower deck, or exchange two rooms, even with zero vacancy? In the Transfer dialog choose 'Swap With Another Tenant' - both tenants trade places in one step, each keeping their own deposit and taking their new spot's rate." },
       { title: "Review Stay History", desc: "Navigate to Boarding House → Stay History for the full ledger of stays. Filter by Active or Moved Out to see who lived in which room and bed, for how long, at what rate, and their deposit status. Your paper trail for disputes." },
       { title: "Fix a record", desc: "Click Edit on any row in Stay History to correct the move-in date, monthly rate, deposit amount or paid status, bed assignment, or notes. On moved-out records you can also fix the move-out date. Rate changes only affect future bills." },
     ],
@@ -58,10 +58,10 @@ const SECTIONS = [
     title: "4. Rent Billing",
     steps: [
       { title: "Open the Rent Bills page", desc: "Navigate to Boarding House → Rent Bills from the sidebar. This is where you create and manage all monthly rent bills." },
-      { title: "Generate the month's bills in one click", desc: "Click Generate and pick the month — a bill is created for every active tenant, each due on their own move-in day of the month (or tick 'one due day for everyone'). Already-billed tenants and anyone who moved in later are skipped automatically." },
+      { title: "Generate the month's bills in one click", desc: "Click Generate and pick the month - a bill is created for every active tenant, each due on their own move-in day of the month (or tick 'one due day for everyone'). Already-billed tenants and anyone who moved in later are skipped automatically." },
       { title: "Record a payment", desc: "Click Pay on any unpaid or partially paid bill. Enter the amount received and select the payment method: Cash, GCash, Maya, Card, or Bank Transfer. If the amount is less than the total, the bill is marked Partial and the remaining balance is tracked until it's settled." },
-      { title: "Overdue is automatic", desc: "Any bill past its due date with an outstanding balance flips to Overdue on its own the moment you open the Rent Bills page or dashboard — no button to press. The dashboard's Overdue panel lists tenant, room, due date, and amount." },
-      { title: "Fix mistakes safely", desc: "Created a bill by accident? Delete removes it — but only while no payment has been recorded. Once money is received, the bill becomes part of your records and can't be deleted, protecting your payment history." },
+      { title: "Overdue is automatic", desc: "Any bill past its due date with an outstanding balance flips to Overdue on its own the moment you open the Rent Bills page or dashboard - no button to press. The dashboard's Overdue panel lists tenant, room, due date, and amount." },
+      { title: "Fix mistakes safely", desc: "Created a bill by accident? Delete removes it - but only while no payment has been recorded. Once money is received, the bill becomes part of your records and can't be deleted, protecting your payment history." },
     ],
   },
   {
@@ -70,9 +70,9 @@ const SECTIONS = [
     title: "5. Utility Billing",
     steps: [
       { title: "Open the Utility Bills page", desc: "Navigate to Boarding House → Utility Bills from the sidebar. Utility bills are created separately from rent so tenants can clearly see what they owe for electricity, water, or internet." },
-      { title: "Create a utility bill", desc: "Click New Utility Bill. Select the room, choose the utility type (Electricity, Water, Internet, or Other), enter the billing month and amount. Pick 'Other' and a Label field appears — name it Cable TV, Garbage, or Association dues and that name shows on the bill instead of a generic 'Other'." },
-      { title: "Record utility payments", desc: "Same as rent — click Pay, enter the amount received, and select the payment method. Partial utility payments are tracked just like rent." },
-      { title: "Review utility history", desc: "A tenant's profile shows all their utility bills alongside their rent bills in a single view — so you can see their full payment history at a glance without switching pages." },
+      { title: "Create a utility bill", desc: "Click New Utility Bill. Select the room, choose the utility type (Electricity, Water, Internet, or Other), enter the billing month and amount. Pick 'Other' and a Label field appears - name it Cable TV, Garbage, or Association dues and that name shows on the bill instead of a generic 'Other'." },
+      { title: "Record utility payments", desc: "Same as rent - click Pay, enter the amount received, and select the payment method. Partial utility payments are tracked just like rent." },
+      { title: "Review utility history", desc: "A tenant's profile shows all their utility bills alongside their rent bills in a single view - so you can see their full payment history at a glance without switching pages." },
     ],
   },
   {
@@ -80,12 +80,12 @@ const SECTIONS = [
     icon: Wrench,
     title: "6. Maintenance & QR Reporting",
     steps: [
-      { title: "Report an issue", desc: "Navigate to Boarding House → Maintenance and click Report Issue. Enter a title (e.g. 'Leaking faucet in Room 2'), select the room, choose a category — Plumbing, Electrical, Appliance, Furniture, Pest Control, Cleaning, Structural, or Other — and a priority from Low to Urgent." },
-      { title: "Work the request", desc: "Click Start when the repair begins — the request moves to In Progress. When it's fixed, click Resolve and optionally enter the repair cost. Resolved costs are summed on the dashboard so you know what maintenance costs you each month." },
-      { title: "Print a QR poster for each room", desc: "On any room card, click the QR icon, then Print Poster, and stick it inside the room. Tenants scan it with their phone camera — no app or login — and fill in a short form: name, issue type, what's wrong, and up to 3 photos of the problem." },
+      { title: "Report an issue", desc: "Navigate to Boarding House → Maintenance and click Report Issue. Enter a title (e.g. 'Leaking faucet in Room 2'), select the room, choose a category - Plumbing, Electrical, Appliance, Furniture, Pest Control, Cleaning, Structural, or Other - and a priority from Low to Urgent." },
+      { title: "Work the request", desc: "Click Start when the repair begins - the request moves to In Progress. When it's fixed, click Resolve and optionally enter the repair cost. Resolved costs are summed on the dashboard so you know what maintenance costs you each month." },
+      { title: "Print a QR poster for each room", desc: "On any room card, click the QR icon, then Print Poster, and stick it inside the room. Tenants scan it with their phone camera (no app or login) and fill in a short form: name, issue type, what's wrong, and up to 3 photos of the problem." },
       { title: "Receive reports instantly", desc: "QR reports land on your Maintenance page tagged 'Via QR' and you get an in-app notification the moment one is submitted. If the reporter's name matches a current tenant, the report links to their profile automatically." },
-      { title: "Tenants see the room's report history", desc: "The report page also lists the room's recent reports — who reported what, when, and whether it's Open, In Progress, or Resolved. Tenants can see a fix is already on the way, so you don't get the same issue reported five times." },
-      { title: "Cancel or reopen", desc: "Cancel requests that turn out to be non-issues. If a 'fixed' problem comes back, open the request and click Reopen — the full history stays intact." },
+      { title: "Tenants see the room's report history", desc: "The report page also lists the room's recent reports - who reported what, when, and whether it's Open, In Progress, or Resolved. Tenants can see a fix is already on the way, so you don't get the same issue reported five times." },
+      { title: "Cancel or reopen", desc: "Cancel requests that turn out to be non-issues. If a 'fixed' problem comes back, open the request and click Reopen - the full history stays intact." },
     ],
   },
   {
@@ -93,33 +93,33 @@ const SECTIONS = [
     icon: BarChart3,
     title: "7. Dashboard & Analytics",
     steps: [
-      { title: "Open the Dashboard", desc: "Navigate to Boarding House → Dashboard from the sidebar. This is your home screen — it loads every time you open the app and gives you the full picture of your boarding house at a glance." },
+      { title: "Open the Dashboard", desc: "Navigate to Boarding House → Dashboard from the sidebar. This is your home screen - it loads every time you open the app and gives you the full picture of your boarding house at a glance." },
       { title: "Read the stat cards", desc: "The top row shows: Total Rooms, Active Rooms, Active Tenants, Occupancy Rate (%), Overdue Bills count, Unpaid Bills count, Total Capacity (occupied / total), and Open Maintenance. These update in real time as you add rooms, tenants, and payments." },
       { title: "Check monthly revenue", desc: "Below the stat cards are three revenue cards for the current month: Rent Collected, Utilities Collected, and Total Collected (the combined sum). This tells you exactly how much cash came in this month and from which source." },
-      { title: "Read the 6-month revenue chart", desc: "The stacked bar chart shows the last 6 months of collections — orange bars for rent, cyan bars for utilities, stacked per month. Hover on a bar to see the exact amounts. Use this to spot seasonal patterns and set rent collection targets." },
-      { title: "Review overdue bills", desc: "The Overdue Rent Bills table shows every rent bill past its due date — tenant name, room, billing month, due date, and amount. Click through to the bill directly from this panel to record a payment." },
-      { title: "Track open maintenance", desc: "The Open Maintenance panel lists unresolved repair issues sorted by priority, with an urgent counter — so the leaking faucet never gets forgotten. Resolved repair costs for the month are tracked alongside revenue." },
-      { title: "Monitor move-ins and move-outs", desc: "The bottom section shows Recent Move-ins (active tenancies) and Recent Move-outs (tenancies ended this month) side by side — so you can track tenant turnover at a glance." },
+      { title: "Read the 6-month revenue chart", desc: "The stacked bar chart shows the last 6 months of collections - orange bars for rent, cyan bars for utilities, stacked per month. Hover on a bar to see the exact amounts. Use this to spot seasonal patterns and set rent collection targets." },
+      { title: "Review overdue bills", desc: "The Overdue Rent Bills table shows every rent bill past its due date - tenant name, room, billing month, due date, and amount. Click through to the bill directly from this panel to record a payment." },
+      { title: "Track open maintenance", desc: "The Open Maintenance panel lists unresolved repair issues sorted by priority, with an urgent counter - so the leaking faucet never gets forgotten. Resolved repair costs for the month are tracked alongside revenue." },
+      { title: "Monitor move-ins and move-outs", desc: "The bottom section shows Recent Move-ins (active tenancies) and Recent Move-outs (tenancies ended this month) side by side - so you can track tenant turnover at a glance." },
     ],
   },
 ]
 
 const TIPS = [
-  { icon: Clock, tip: "Add rooms and their beds before moving tenants in — a bedspace room needs at least one bed before it can accept a move-in." },
+  { icon: Clock, tip: "Add rooms and their beds before moving tenants in, a bedspace room needs at least one bed before it can accept a move-in." },
   { icon: Lightbulb, tip: "Record a new move-in every time a tenant arrives, even a returning tenant. Past stays are never deleted, so your Stay History stays accurate for disputes." },
-  { icon: Wrench, tip: "Print the QR poster for every room on day one. Tenants report issues the moment they spot them — before a small leak becomes a big repair bill." },
-  { icon: AlertTriangle, tip: "Issue rent and utility bills as separate entries each month — this makes collections clearer and avoids arguments over what each payment was for." },
-  { icon: Shield, tip: "Check the Overdue Rent Bills panel on the dashboard weekly. The sooner you follow up, the easier it is to collect — don't let overdue accounts accumulate." },
-  { icon: Banknote, tip: "Always log the repair cost when resolving a maintenance request — the dashboard sums them monthly so you know your true operating expenses." },
+  { icon: Wrench, tip: "Print the QR poster for every room on day one. Tenants report issues the moment they spot them, before a small leak becomes a big repair bill." },
+  { icon: AlertTriangle, tip: "Issue rent and utility bills as separate entries each month, this makes collections clearer and avoids arguments over what each payment was for." },
+  { icon: Shield, tip: "Check the Overdue Rent Bills panel on the dashboard weekly. The sooner you follow up, the easier it is to collect, don't let overdue accounts accumulate." },
+  { icon: Banknote, tip: "Always log the repair cost when resolving a maintenance request, the dashboard sums them monthly so you know your true operating expenses." },
 ]
 
 const WORKFLOW = [
-  { step: "1st", title: "Create rent bills", desc: "Issue a rent bill for every active tenant — amount, billing month, and due date." },
+  { step: "1st", title: "Create rent bills", desc: "Issue a rent bill for every active tenant - amount, billing month, and due date." },
   { step: "2nd", title: "Create utility bills", desc: "Issue separate electricity and water bills per tenant based on meter readings or flat allocation." },
-  { step: "3rd", title: "Record payments", desc: "As tenants pay throughout the month, record each payment — cash, GCash, or bank transfer." },
+  { step: "3rd", title: "Record payments", desc: "As tenants pay throughout the month, record each payment - cash, GCash, or bank transfer." },
   { step: "4th", title: "Follow up overdue", desc: "Check the Overdue Bills panel on the dashboard and follow up with tenants who haven't paid." },
-  { step: "5th", title: "Clear maintenance backlog", desc: "Work through open maintenance requests — start, resolve, and log repair costs so nothing stays broken for long." },
-  { step: "6th", title: "Check revenue trend", desc: "Review the 6-month chart to see if rent collected is growing, flat, or declining — and act accordingly." },
+  { step: "5th", title: "Clear maintenance backlog", desc: "Work through open maintenance requests - start, resolve, and log repair costs so nothing stays broken for long." },
+  { step: "6th", title: "Check revenue trend", desc: "Review the 6-month chart to see if rent collected is growing, flat, or declining - and act accordingly." },
 ]
 
 const accentFor = (i: number) => (i % 2 === 0 ? BLUE : AMBER)
@@ -207,7 +207,7 @@ export default function BoardingHouseGuideContent() {
             Smapey Boarding House Manager <span style={{ color: BLUE }}>Guide</span>
           </h1>
           <p className="text-lg max-w-2xl mx-auto mb-8" style={{ color: "#54514c" }}>
-            Everything you need to set up your rooms and beds, register tenants, handle move-ins and move-outs, issue rent and utility bills, track maintenance with QR reporting, and read the occupancy dashboard — step by step.
+            Everything you need to set up your rooms and beds, register tenants, handle move-ins and move-outs, issue rent and utility bills, track maintenance with QR reporting, and read the occupancy dashboard, step by step.
           </p>
           <div className="flex flex-wrap items-center justify-center gap-6 text-xs font-semibold" style={{ color: "#54514c" }}>
             {["5-minute setup", "No training required", "Free plan available"].map((t) => (
