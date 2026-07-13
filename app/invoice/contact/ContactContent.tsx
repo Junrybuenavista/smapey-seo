@@ -81,7 +81,7 @@ export default function ContactPage() {
               <Mail className="w-5 h-5 mt-1" />
               <div>
                 <p className="font-medium">Email</p>
-                <p className="text-gray-600">support@smapeyinvoicing.com</p>
+                <p className="text-gray-600">support@smapey.com</p>
               </div>
             </div>
 

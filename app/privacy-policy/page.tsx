@@ -2,9 +2,9 @@ import { Metadata } from "next"
 import PrivacyContent from "./PrivacyContent"
 
 export const metadata: Metadata = {
-  title: "Privacy Policy | Smapey Invoicing Software",
+  title: "Privacy Policy | Smapey",
   description:
-    "Learn how Smapey collects, uses, and protects your personal data when using our invoicing software.",
+    "Learn how Smapey collects, uses, and protects your personal data across all Smapey business management tools.",
   alternates: {
     canonical:
       "https://smapey.com/privacy-policy",
