@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from "react"
 import InternalLinks from "@/components/InternalLinks"
 import {
   Building2, CheckCircle2, ChevronRight,
-  Banknote, Zap, AlertTriangle, BarChart3, Receipt, Users, Menu, X,
+  Banknote, Zap, AlertTriangle, BarChart3, Receipt, Users, Menu, X, QrCode,
 } from "lucide-react"
 
 const INK = "#161616"
@@ -90,12 +90,13 @@ const BILLING_FEATURES = [
   { icon: AlertTriangle, title: "Overdue Bill Alerts", desc: "Every overdue rent bill surfaces on the dashboard with tenant name, room, amount, and due date. You always know who hasn't paid without having to check manually." },
   { icon: BarChart3, title: "Revenue Dashboard", desc: "See rent collected and utilities collected this month - plus a 6-month stacked bar chart showing rent vs. utility revenue trends." },
   { icon: Users, title: "Tenant-linked Bills", desc: "Every bill is linked to a specific tenant and tenancy. Payment history is stored per tenant - you always have a complete record for any dispute or query." },
+  { icon: QrCode, title: "Pay & Report by QR", desc: "Tenants scan the room's QR, see their exact balance for the month (rent plus their utility share), pay via GCash or bank, and report it with a screenshot. You verify from a live Payments Inbox in one tap and it posts to the right bills." },
 ]
 
 const HOW_IT_WORKS = [
   { step: "1", title: "Set up rooms and assign tenants", desc: "Add your rooms once. Assign tenants with a move-in date and monthly rate. The system links every bill to the right tenant automatically." },
   { step: "2", title: "Generate bills each month", desc: "Create a rent bill and utility bill per tenant. Set amounts and due dates. It takes under a minute per tenant." },
-  { step: "3", title: "Record payments as they come in", desc: "When a tenant pays (cash, GCash, Maya, or bank transfer) mark the payment on their bill. Partial payments are tracked. Overdue balances flag themselves." },
+  { step: "3", title: "Record payments as they come in", desc: "When a tenant pays (cash, GCash, Maya, or bank transfer) mark the payment on their bill - or let tenants report it themselves by scanning the room's QR, so you just verify from the Payments Inbox in one tap. Partial payments are tracked and overdue balances flag themselves." },
 ]
 
 export default function BoardingHouseBillingContent() {

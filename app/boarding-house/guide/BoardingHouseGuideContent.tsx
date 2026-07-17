@@ -7,6 +7,7 @@ import {
   Menu, X, Banknote, Zap, BarChart3, Clock, Lightbulb, Shield, AlertTriangle, ArrowLeft,
   Wrench,
   Scale,
+  Receipt,
 } from "lucide-react"
 
 const INK = "#161616"
@@ -104,9 +105,23 @@ const SECTIONS = [
     ],
   },
   {
+    id: "payments",
+    icon: Receipt,
+    title: "8. Tenant Payments & QR Reporting",
+    steps: [
+      { title: "Set your payment QR", desc: "On the Rent Bills page, open the Payment QR settings and upload your GCash or bank QR code, plus a short payment note (e.g. your account name and number). This is the QR tenants actually pay to." },
+      { title: "Print the room's two-QR poster", desc: "From any room card, click the QR icon and Print Poster. The poster carries two QRs side by side: one to PAY (your GCash/bank QR) and one to REPORT the payment. A tenant with a single phone pays and reports from the same sheet - no app, no login." },
+      { title: "Tenants see their exact balance", desc: "When a tenant scans the report QR and types their name, they instantly see their balance for the month: rent plus their own share of each utility. In shared and bedspace rooms every utility is split by the number of active tenants, with the math shown (e.g. 'Electric - P2,000 / 2'). The amount is filled in automatically so there's no guessing." },
+      { title: "They choose a month if more than one is open", desc: "If a tenant has more than one unpaid month, a month picker appears so they can pay a single month at a time. With one open month, that month is shown as a label so they always know exactly what they're paying for." },
+      { title: "They report the payment", desc: "The tenant taps 'I Paid My Bill', keeps the auto-computed amount, picks how they paid (GCash, Maya, Bank, or Cash), attaches a screenshot of the receipt, and submits. It's instant and needs no account." },
+      { title: "Verify from the Payments Inbox", desc: "New reports land in the Payments Inbox on your Rent Bills page with a live unread badge that updates without refreshing. Open a report to see the name, amount, method, screenshot, and which month it's for." },
+      { title: "Post it in one tap", desc: "Click Post and the payment is applied to the right bills automatically - rent and each utility get this tenant's fixed share, so a roommate's payment never changes what anyone else owes. The report is marked Posted and the bills update. Reject any report that's a mistake or a duplicate." },
+    ],
+  },
+  {
     id: "dashboard",
     icon: BarChart3,
-    title: "8. Dashboard & Analytics",
+    title: "9. Dashboard & Analytics",
     steps: [
       { title: "Open the Dashboard", desc: "Navigate to Boarding House → Dashboard from the sidebar. This is your home screen - it loads every time you open the app and gives you the full picture of your boarding house at a glance." },
       { title: "Read the stat cards", desc: "The top row shows: Total Rooms, Active Rooms, Active Tenants, Occupancy Rate (%), Overdue Bills count, Unpaid Bills count, Total Capacity (occupied / total), and Open Maintenance. These update in real time as you add rooms, tenants, and payments." },
@@ -123,6 +138,7 @@ const TIPS = [
   { icon: Clock, tip: "Add rooms and their beds before moving tenants in, a bedspace room needs at least one bed before it can accept a move-in." },
   { icon: Lightbulb, tip: "Record a new move-in every time a tenant arrives, even a returning tenant. Past stays are never deleted, so your Stay History stays accurate for disputes." },
   { icon: Wrench, tip: "Print the QR poster for every room on day one. Tenants report issues the moment they spot them, before a small leak becomes a big repair bill." },
+  { icon: Receipt, tip: "Upload your GCash QR once, then print each room's two-QR poster. Tenants pay and report from the same sheet, and every payment lands in your inbox for one-tap verification, no more chasing screenshots on Messenger." },
   { icon: AlertTriangle, tip: "Issue rent and utility bills as separate entries each month, this makes collections clearer and avoids arguments over what each payment was for." },
   { icon: Shield, tip: "Check the Overdue Rent Bills panel on the dashboard weekly. The sooner you follow up, the easier it is to collect, don't let overdue accounts accumulate." },
   { icon: Banknote, tip: "Always log the repair cost when resolving a maintenance request, the dashboard sums them monthly so you know your true operating expenses." },
