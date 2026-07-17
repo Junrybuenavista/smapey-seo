@@ -5,7 +5,7 @@ import {
   Building2, Users, BedDouble, CheckCircle2, ChevronRight,
   Menu, X, Star, BarChart3, Shield, Clock, Zap,
   Banknote, AlertTriangle, BookOpen, Receipt,
-  CalendarCheck, BedSingle, Wrench, QrCode,
+  CalendarCheck, BedSingle, Wrench, QrCode, Mail, Scale,
 } from "lucide-react"
 import { usePricing, type Plan } from "@/lib/usePricing"
 import InternalLinks from "@/components/InternalLinks"
@@ -20,15 +20,15 @@ const display = { fontFamily: "'Hanken Grotesk', system-ui, sans-serif" }
 const FEATURES = [
   { icon: BedDouble, title: "Visual Room Cards", desc: "Every room is a card showing exactly who's inside and which beds or slots are free. Move tenants in, transfer them to another room or bed, swap two tenants, or move them out - all without leaving the page." },
   { icon: BedSingle, title: "Bed-Level Tracking", desc: "For bedspace rooms, add named beds (Lower A, Upper A) each with its own rate. Charge more for lower decks, see which exact bed is vacant, and fill it in one click." },
-  { icon: Users, title: "Tenant Profiles", desc: "Register each tenant with full name, contact number, emergency contact, and ID information. Every detail is stored and searchable - no more paper folders." },
+  { icon: Users, title: "Tenants & Ledger", desc: "Full tenant profiles plus a one-click Ledger per tenant - original move-in date, deposit status, every stay and transfer, and a month-by-month payment table with running totals. A statement of account, always ready." },
   { icon: Banknote, title: "Rent Billing", desc: "Generate a month's bills in one click - each tenant's due date follows their own move-in day. Record full or partial payments via Cash, GCash, Maya, Card, or Bank Transfer; balances and overdue flags update automatically." },
-  { icon: Zap, title: "Utility Billing", desc: "Log separate utility bills (electricity, water, or internet) per room per month. Itemized billing keeps rent and utilities clearly separated so tenants always know what they owe." },
+  { icon: Zap, title: "Utility Billing", desc: "Enter a whole month's water and electric in seconds with Quick Fill - your rooms listed, just type the amounts - or import from an Excel template. Itemized per room, clearly separated from rent." },
   { icon: Wrench, title: "Maintenance Tracking", desc: "Log every repair (leaks, busted outlets, pests) with category, priority, and status. Track jobs from Open to Resolved and record repair costs so you know what maintenance really costs each month." },
   { icon: QrCode, title: "QR Issue Reporting", desc: "Print a QR code poster for each room. Tenants scan it with their phone (no app, no login) and report issues with photos straight to your Maintenance page. They also see what's already been reported and its status, so you don't get the same leak five times." },
-  { icon: AlertTriangle, title: "Overdue Alerts", desc: "The dashboard surfaces every overdue rent bill at a glance - tenant name, room, amount, and how many days past due. No more manually checking who hasn't paid." },
+  { icon: Mail, title: "Email Billing Statements", desc: "The moment you create bills, every tenant with an email gets a clean statement: rent, their share of utilities, total, and due date. In shared rooms, utilities are split per tenant with the math shown - no more 'magkano ulit ako?'." },
   { icon: BarChart3, title: "Occupancy Dashboard", desc: "See total rooms, active tenants, occupancy rate, overdue count, open maintenance, rent collected, and utility collected - all on one dashboard. Monthly revenue trend chart included." },
   { icon: Clock, title: "Stay History", desc: "Every move-in, transfer, swap, and move-out is a permanent record - who lived in which room and bed, for how long, at what rate, with deposit status. Your paper trail for disputes, always intact." },
-  { icon: Building2, title: "Tenant Ledger", desc: "One click on any tenant shows their full statement of account - original move-in date, deposit and its status, every stay and transfer, and a month-by-month payment table with running totals." },
+  { icon: Scale, title: "Cashflow & Expenses", desc: "Your cashbook, automated: rent, utility payments, and deposits flow in by themselves; log repairs and expenses in seconds. One chronological ledger with a running balance and a monthly Money In / Out / Net summary." },
   { icon: Shield, title: "Secure & Isolated", desc: "Each boarding house gets its own isolated data space. Your tenant records, billing history, and occupancy data are never shared with anyone else." },
 ]
 
@@ -40,6 +40,8 @@ const FAQS = [
   { q: "Can I bill tenants separately for utilities?", a: "Yes. Utility bills (electricity, water, internet) are created separately from rent bills. This keeps rent and utility charges clearly itemized so tenants always know exactly what each bill is for." },
   { q: "Can I see a tenant's complete payment record?", a: "Yes, every tenant has a Ledger: their original move-in date, deposit and whether it's paid, every room and bed they've stayed in, and a month-by-month table of rent bills showing billed, paid, balance, and payment dates, with running totals. It's a statement of account you can pull up in one click." },
   { q: "Can tenants transfer or swap rooms and beds?", a: "Yes. Transfer moves a tenant to any vacant room or bed, the deposit carries over and the rate updates to the new spot. And if two tenants want to trade places (like upper deck for lower deck) even with no vacancy, Swap exchanges them in one step. Every move is recorded in Stay History." },
+  { q: "Do tenants receive their bill automatically?", a: "Yes. When you create the month's bills, every tenant with an email address instantly receives a billing statement: rent, their share of the room's utilities, the total, and the due date. In bedspace and shared rooms, utilities are split evenly per tenant with the computation shown right on the statement." },
+  { q: "Can it track my expenses and tell me if I made money?", a: "Yes. The Cashflow page is an automatic cashbook: rent payments, utility payments, and deposits appear as money in on their own; you log expenses (repairs, replacements, supplies) in seconds, and resolved maintenance costs flow in automatically. Every month shows Money In, Money Out, and Net with a running balance." },
   { q: "Does it track occupancy automatically?", a: "Yes. When you move a tenant into a room or bed, that slot is marked occupied. When you record a move-out, it's freed instantly. Occupancy rate, active tenants, and total capacity are all calculated and shown on the dashboard in real time." },
   { q: "Is there a free plan?", a: "Yes. The free plan lets you manage a small boarding house with core features, rooms and beds, tenant registration, rent billing, utility billing, maintenance tracking with QR reporting, and the occupancy dashboard, at no cost." },
 ]
@@ -272,7 +274,7 @@ function Features() {
 const STEPS = [
   { step: "01", title: "Set up rooms & beds", desc: "Add each room with a name, floor, and monthly rate. For bedspace rooms, add named beds with their own rates - lower deck, upper deck, whatever your setup is. Takes about 5 minutes." },
   { step: "02", title: "Move tenants in from the room card", desc: "Create tenant profiles once, then click any vacant bed or slot to move someone in. Occupancy, rates, and deposits are tracked automatically - and each room's QR poster lets tenants report issues." },
-  { step: "03", title: "Generate bills & collect payments", desc: "Issue rent and utility bills each month. Record payments (full or partial) and the dashboard shows you exactly who still owes, plus any open maintenance jobs." },
+  { step: "03", title: "Generate bills & collect payments", desc: "Enter utilities with Quick Fill, hit Generate, and every tenant gets an emailed statement automatically. Record payments (full or partial) and the Cashflow page shows exactly what came in, what went out, and your net for the month." },
 ]
 
 function HowItWorks() {

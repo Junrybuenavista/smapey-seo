@@ -6,6 +6,7 @@ import {
   BookOpen, Building2, Users, BedDouble, CheckCircle2, ChevronRight,
   Menu, X, Banknote, Zap, BarChart3, Clock, Lightbulb, Shield, AlertTriangle, ArrowLeft,
   Wrench,
+  Scale,
 } from "lucide-react"
 
 const INK = "#161616"
@@ -59,6 +60,7 @@ const SECTIONS = [
     steps: [
       { title: "Open the Rent Bills page", desc: "Navigate to Boarding House → Rent Bills from the sidebar. This is where you create and manage all monthly rent bills." },
       { title: "Generate the month's bills in one click", desc: "Click Generate and pick the month - a bill is created for every active tenant, each due on their own move-in day of the month (or tick 'one due day for everyone'). Already-billed tenants and anyone who moved in later are skipped automatically." },
+      { title: "Tenants get an emailed statement automatically", desc: "The moment a bill is created, every tenant with an email receives a clean billing statement: rent, their share of the room's utilities, the total, and the due date. In bedspace and shared rooms, utilities are split evenly per tenant with the computation shown (e.g. 'Electricity - P555 / 3 tenants'). Tip: enter utilities first, then Generate, so statements go out complete." },
       { title: "Record a payment", desc: "Click Pay on any unpaid or partially paid bill. Enter the amount received and select the payment method: Cash, GCash, Maya, Card, or Bank Transfer. If the amount is less than the total, the bill is marked Partial and the remaining balance is tracked until it's settled." },
       { title: "Overdue is automatic", desc: "Any bill past its due date with an outstanding balance flips to Overdue on its own the moment you open the Rent Bills page or dashboard - no button to press. The dashboard's Overdue panel lists tenant, room, due date, and amount." },
       { title: "Fix mistakes safely", desc: "Created a bill by accident? Delete removes it - but only while no payment has been recorded. Once money is received, the bill becomes part of your records and can't be deleted, protecting your payment history." },
@@ -71,6 +73,7 @@ const SECTIONS = [
     steps: [
       { title: "Open the Utility Bills page", desc: "Navigate to Boarding House → Utility Bills from the sidebar. Utility bills are created separately from rent so tenants can clearly see what they owe for electricity, water, or internet." },
       { title: "Create a utility bill", desc: "Click New Utility Bill. Select the room, choose the utility type (Electricity, Water, Internet, or Other), enter the billing month and amount. Pick 'Other' and a Label field appears - name it Cable TV, Garbage, or Association dues and that name shows on the bill instead of a generic 'Other'." },
+      { title: "Enter the whole month in seconds with Quick Fill", desc: "Click Import Excel and the Quick Fill table appears with all your rooms listed - pick the utility, type the amounts (leave blank to skip a room), and save. Prefer a spreadsheet? Switch to the Excel tab, download the template pre-filled with your room names, fill it in any app, and upload it back. Re-importing never duplicates bills." },
       { title: "Record utility payments", desc: "Same as rent - click Pay, enter the amount received, and select the payment method. Partial utility payments are tracked just like rent." },
       { title: "Review utility history", desc: "A tenant's profile shows all their utility bills alongside their rent bills in a single view - so you can see their full payment history at a glance without switching pages." },
     ],
@@ -89,9 +92,21 @@ const SECTIONS = [
     ],
   },
   {
+    id: "cashflow",
+    icon: Scale,
+    title: "7. Cashflow & Expenses",
+    steps: [
+      { title: "Open the Cashflow page", desc: "Navigate to Boarding House → Cashflow. It's your cashbook: every peso in and out, in date order, with a running balance - like the ledger notebook, but it writes itself. Pick any month with the month selector." },
+      { title: "Money in is automatic", desc: "Rent payments, utility payments, and deposits you've recorded appear as income rows on their payment dates. No re-typing, no copy-paste from other pages." },
+      { title: "Record expenses in seconds", desc: "Click Add Expense for money going out - repairs, replacements (a new electric fan), supplies, utilities you pay yourself, or anything else. Description, category, amount, date, and optionally the room. Expenses can be edited or deleted anytime." },
+      { title: "Maintenance costs flow in automatically", desc: "Resolve a maintenance request with a repair cost and it appears in the cashflow as money out on the resolution date - no double entry." },
+      { title: "Read the bottom line", desc: "The top cards show Money In, Money Out, and Net for the selected month - so you always know whether the boarding house actually made money, not just what was collected." },
+    ],
+  },
+  {
     id: "dashboard",
     icon: BarChart3,
-    title: "7. Dashboard & Analytics",
+    title: "8. Dashboard & Analytics",
     steps: [
       { title: "Open the Dashboard", desc: "Navigate to Boarding House → Dashboard from the sidebar. This is your home screen - it loads every time you open the app and gives you the full picture of your boarding house at a glance." },
       { title: "Read the stat cards", desc: "The top row shows: Total Rooms, Active Rooms, Active Tenants, Occupancy Rate (%), Overdue Bills count, Unpaid Bills count, Total Capacity (occupied / total), and Open Maintenance. These update in real time as you add rooms, tenants, and payments." },

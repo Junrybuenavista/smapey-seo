@@ -19,12 +19,12 @@ const FEATURES = [
   { icon: BedDouble, title: "Visual Room Cards", desc: "Every room is a card showing who's inside and which beds or slots are free. Move tenants in and out without leaving the page." },
   { icon: BedSingle, title: "Bed-Level Tracking", desc: "Name each bed in a bedspace room (Lower A, Upper A) with its own monthly rate. See exactly which bed is vacant and fill it in one click." },
   { icon: Users, title: "Tenants & Ledger", desc: "Complete tenant profiles plus a one-click Ledger per tenant - move-in date, deposit status, stay and transfer history, and a month-by-month payment table with totals." },
-  { icon: Banknote, title: "Rent Billing", desc: "Generate the month's bills in one click, each due on the tenant's own move-in day. Record payments (full or partial) and overdue flags update automatically." },
-  { icon: Zap, title: "Utility Billing", desc: "Create separate electricity, water, and internet bills per room per month. Keeps rent and utilities clearly itemized." },
+  { icon: Banknote, title: "Rent Billing & Email Statements", desc: "Generate the month's bills in one click, each due on the tenant's own move-in day - and every tenant with an email instantly gets a statement with rent, their utility share, total, and due date." },
+  { icon: Zap, title: "Utility Billing", desc: "Enter the whole month in seconds with Quick Fill (rooms listed, just type amounts) or import from an Excel template. In shared rooms, emailed statements split utilities per tenant automatically." },
   { icon: Wrench, title: "Maintenance Tracking", desc: "Log repairs with category, priority, and status (Open to Resolved) and record repair costs so you know your true monthly expenses." },
   { icon: QrCode, title: "QR Issue Reporting", desc: "Print a QR poster per room. Tenants scan it (no app, no login) to report leaks or busted outlets with photos, and see the status of past reports for their room." },
   { icon: Building2, title: "Transfers, Swaps & Stay History", desc: "Transfer tenants to another room or bed, or swap two tenants even with no vacancy - deposits carry over, and every move stays on record with dates and rates." },
-  { icon: BarChart3, title: "Occupancy Dashboard", desc: "Real-time view of occupancy rate, overdue bills, open maintenance, rent collected, and utility collected. Monthly revenue trend chart included." },
+  { icon: BarChart3, title: "Dashboard & Cashflow", desc: "Occupancy, overdue bills, open maintenance, and collections at a glance - plus an automatic cashbook: money in, expenses out, running balance, and monthly Net." },
 ]
 
 const FAQS = [
@@ -34,6 +34,8 @@ const FAQS = [
   { q: "Can the system separate rent from utilities?", a: "Yes. Rent bills and utility bills are created separately so tenants always know which amount is rent and which is for electricity or water. Both types appear on the dashboard's revenue breakdown." },
   { q: "Does it support partial payments?", a: "Yes. You can record partial payments on any rent or utility bill. The system calculates the outstanding balance and marks the bill as partially paid. Overdue balances surface automatically on the dashboard." },
   { q: "Is there a per-tenant statement of account?", a: "Yes, the Tenant Ledger. One click shows a tenant's original move-in date, deposit and its status, every room and bed they've occupied including transfers and swaps, and a month-by-month payment table with billed, paid, balance, and running totals." },
+  { q: "Are tenants notified of their monthly bill?", a: "Yes. Creating the month's bills automatically emails each tenant a billing statement: rent, their share of the room's utilities (split evenly per tenant in shared and bedspace rooms, with the computation shown), the total, and the due date." },
+  { q: "Does it track expenses and profit?", a: "Yes. The Cashflow page is an automatic cashbook: rent, utility payments, and deposits flow in on their own, repairs and expenses are logged in seconds, and each month shows Money In, Money Out, and Net with a running balance." },
   { q: "Can tenants change rooms or beds?", a: "Yes. Transfer moves a tenant to any vacant room or bed with the deposit carried over, and Swap lets two tenants trade places in one step even when there's no vacancy. Every movement is preserved in Stay History with dates and rates." },
   { q: "How is occupancy rate calculated?", a: "The system counts every occupied bed or slot against total capacity, for bedspace rooms, capacity is the number of beds. Occupancy rate is shown as a percentage on the dashboard and updates the moment someone moves in or out." },
   { q: "Is it free to use?", a: "Yes, Smapey Boarding House Manager has a free plan. You can manage rooms and beds, tenants, rent billing, utility billing, and maintenance tracking with QR reporting at no cost. Upgrade to PRO or ENTERPRISE when your boarding house needs more capacity." },
