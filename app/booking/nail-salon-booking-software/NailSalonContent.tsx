@@ -7,6 +7,7 @@ import {
 Zap } from "lucide-react"
 import { usePricing, type Plan } from "@/lib/usePricing"
 import InternalLinks from "@/components/InternalLinks"
+import { FAQS } from "./faqs"
 
 const INK = "#161616"
 const BLUE = "#2f6bff"
@@ -24,13 +25,6 @@ const FEATURES = [
   { icon: BarChart3, title: "Booking Dashboard", desc: "See today's nail appointments, monthly totals, and completion rates at a glance. Know your busiest days and plan accordingly." },
   { icon: Users, title: "Team Collaboration", desc: "Invite your nail techs and front desk staff with role-based access. Control who can book, edit, or view appointments." },
   { icon: Shield, title: "Secure & Isolated", desc: "Your client list and appointment records are fully isolated. No data is ever shared with other nail salons or businesses." },
-]
-
-const FAQS = [
-  { q: "Can I manage multiple nail techs on one account?", a: "Yes. Invite your nail techs as team members and assign each appointment to the right person. Everyone sees their own schedule." },
-  { q: "How does deposit tracking work?", a: "When booking an appointment, you can record a deposit amount and mark it as paid or unpaid. It reduces no-shows and keeps your cash flow visible." },
-  { q: "Can I list different nail services with different prices?", a: "Yes. Each service (manicure, pedicure, gel, acrylics) has its own name, duration, and price." },
-  { q: "Do clients book online themselves?", a: "Currently appointments are created by your staff through the dashboard. It's an internal scheduling tool, ideal for salons where clients call or walk in." },
 ]
 
 function useInView(options?: IntersectionObserverInit) {

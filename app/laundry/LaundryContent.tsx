@@ -11,6 +11,7 @@ import {
 import { usePricing, type Plan } from "@/lib/usePricing"
 import InternalLinks from "@/components/InternalLinks"
 import LaundryVideo from "@/components/LaundryVideo"
+import { FAQS } from "./faqs"
 
 // ── Layered Pop design tokens ──
 const INK = "#161616"
@@ -37,13 +38,6 @@ const STEPS = [
   { step: "01", title: "Set up your shop", desc: "Create service types (Wash Dry Fold, Dry Clean, Steam Press, etc.) and set your pricing per kilogram or per piece." },
   { step: "02", title: "Accept orders", desc: "Enter customer info, kilos, and service type. A ticket number is auto-generated instantly - no manual numbering needed." },
   { step: "03", title: "Notify & collect", desc: "Customers get an SMS when their laundry is ready for pickup. Mark orders as paid via Cash, GCash, or Maya - done." },
-]
-
-const FAQS = [
-  { q: "Do customers need to install an app?", a: "No. SMS notifications go directly to their phone number. Customers don't need to download or install anything." },
-  { q: "How are ticket numbers generated?", a: "Automatically in YYMMDD-NNN format (e.g., 260518-001), unique per shop per day. You never have to think about numbering again." },
-  { q: "What payment methods are supported?", a: "Cash, GCash, Maya, Bank Transfer, and Other. You can record the payment method for each order separately." },
-  { q: "Can I disable SMS notifications?", a: "Yes. SMS is an optional feature you can toggle on or off from the admin panel. You stay in full control of when messages are sent." },
 ]
 
 function useInView(options?: IntersectionObserverInit) {

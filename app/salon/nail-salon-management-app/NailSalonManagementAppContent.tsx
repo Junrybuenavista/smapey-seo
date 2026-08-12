@@ -8,6 +8,7 @@ import {
 import { usePricing, type Plan } from "@/lib/usePricing"
 import InternalLinks from "@/components/InternalLinks"
 import SalonVideo from "@/components/SalonVideo"
+import { FAQS } from "./faqs"
 
 const INK = "#161616"
 const BLUE = "#2f6bff"
@@ -32,13 +33,6 @@ const COMPARISON = [
   { feature: "Inquiry management", free: true, pro: true, enterprise: true },
   { feature: "Analytics dashboard", free: true, pro: true, enterprise: true },
   { feature: "Priority support", free: false, pro: false, enterprise: true },
-]
-
-const FAQS = [
-  { q: "Can I track each client's nail preferences?", a: "Yes. Each client profile includes a notes section where you can record preferred nail shape, favorite gel colors, acrylic vs. gel preference, and any sensitivities or allergies." },
-  { q: "How does online booking work for nail salons?", a: "Your nail salon gets a unique booking page URL. Clients browse your service menu and submit a booking inquiry with their preferred date, time, and service. You confirm it from your dashboard." },
-  { q: "Can I manage multiple nail technicians?", a: "Yes. Add your nail techs as team members and assign appointments to specific individuals. The Pro plan supports up to 5 team members." },
-  { q: "Does the app work for home-based nail technicians?", a: "Absolutely. The free plan is ideal for solo nail technicians. Add your services, share your booking link, and manage all appointments from your phone." },
 ]
 
 function useInView(options?: IntersectionObserverInit) {

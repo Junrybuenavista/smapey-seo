@@ -10,6 +10,7 @@ Zap } from "lucide-react"
 import { usePricing, type Plan } from "@/lib/usePricing"
 import InternalLinks from "@/components/InternalLinks"
 import BookDemoForm from "@/components/BookDemoForm"
+import { FAQS } from "./faqs"
 
 const INK = "#161616"
 const BLUE = "#2f6bff"
@@ -33,14 +34,6 @@ const FEATURES = [
   { icon: Palette, title: "Page Personalization", desc: "Choose from 5 themes (Midnight, Clean, Ocean, Forest, Luxury) then personalize any theme with a cover photo, tagline, and accent color to match your brand." },
   { icon: Bell, title: "Instant Booking Alerts", desc: "Get notified the moment a customer submits a booking inquiry. A badge appears on your notification bell - click it to jump straight to the inquiry." },
   { icon: ImagePlus, title: "Vehicle Photos", desc: "Upload a photo for each vehicle in your fleet. Photos display on your public booking page so customers see exactly what they're renting before they inquire." },
-]
-
-const FAQS = [
-  { q: "Can I track which vehicles are available right now?", a: "Yes. The fleet page shows every vehicle's current status, Available, Rented, or Maintenance. The dashboard also shows a live count so you always know your fleet state at a glance." },
-  { q: "What happens when a rental goes past its return date?", a: "Smapey automatically flags it as Overdue. You'll see overdue rentals highlighted on your dashboard so you can follow up with customers immediately." },
-  { q: "Can I delete a customer who completed their rental?", a: "Customers with rental history can't be hard-deleted to protect your revenue records. Instead, you can deactivate them, they're hidden from active views but their history is preserved." },
-  { q: "How do I track revenue?", a: "Each rental has a total amount field. Your dashboard shows monthly revenue from active and returned rentals, plus a 7-day trend chart." },
-  { q: "Can my team use this too?", a: "Yes. You can invite staff with role-based access. Owners and admins can manage everything, while members can handle day-to-day rental operations." },
 ]
 
 function useInView(options?: IntersectionObserverInit) {

@@ -10,6 +10,7 @@ import {
 import { usePricing, type Plan } from "@/lib/usePricing"
 import InternalLinks from "@/components/InternalLinks"
 import BookDemoForm from "@/components/BookDemoForm"
+import { FAQS } from "./faqs"
 
 const INK = "#161616"
 const BLUE = "#2f6bff"
@@ -31,21 +32,6 @@ const FEATURES = [
   { icon: Clock, title: "Stay History", desc: "Every move-in, transfer, swap, and move-out is a permanent record - who lived in which room and bed, for how long, at what rate, with deposit status. Your paper trail for disputes, always intact." },
   { icon: Scale, title: "Cashflow & Expenses", desc: "Your cashbook, automated: rent, utility payments, and deposits flow in by themselves; log repairs and expenses in seconds. One chronological ledger with a running balance and a monthly Money In / Out / Net summary." },
   { icon: Shield, title: "Secure & Isolated", desc: "Each boarding house gets its own isolated data space. Your tenant records, billing history, and occupancy data are never shared with anyone else." },
-]
-
-const FAQS = [
-  { q: "What is a boarding house management system?", a: "A boarding house management system is software that helps boarding house owners in the Philippines track rooms and beds, register tenants, record move-ins and move-outs, generate monthly rent and utility bills, accept payments, handle maintenance requests, and monitor occupancy, all in one place instead of spreadsheets and paper records." },
-  { q: "Can I charge different rates for upper and lower deck beds?", a: "Yes. In a bedspace room you add each bed by name (Lower A, Upper A) and give it its own monthly rate. Lower decks can cost more than upper decks, and when a tenant moves into a bed, their rent defaults to that bed's rate automatically." },
-  { q: "How do tenants report maintenance issues?", a: "Each room gets its own QR code that you can print and post inside the room. Tenants scan it with their phone camera (no app or login needed) and fill in a short form describing the issue, with up to 3 photos of the problem. The report lands on your Maintenance page instantly and you get an in-app notification. The same page shows the room's recent reports with their status (Open, In Progress, or Resolved) so tenants can see a fix is already on the way instead of reporting it again." },
-  { q: "How does rent billing work?", a: "You generate a monthly rent bill per tenant with a due date and amount. Tenants pay via Cash, GCash, Maya, Card, or Bank Transfer. The system records full or partial payments and tracks outstanding balances, overdue bills appear on the dashboard automatically." },
-  { q: "Can I bill tenants separately for utilities?", a: "Yes. Utility bills (electricity, water, internet) are created separately from rent bills. This keeps rent and utility charges clearly itemized so tenants always know exactly what each bill is for." },
-  { q: "Can I see a tenant's complete payment record?", a: "Yes, every tenant has a Ledger: their original move-in date, deposit and whether it's paid, every room and bed they've stayed in, and a month-by-month table of rent bills showing billed, paid, balance, and payment dates, with running totals. It's a statement of account you can pull up in one click." },
-  { q: "Can tenants transfer or swap rooms and beds?", a: "Yes. Transfer moves a tenant to any vacant room or bed, the deposit carries over and the rate updates to the new spot. And if two tenants want to trade places (like upper deck for lower deck) even with no vacancy, Swap exchanges them in one step. Every move is recorded in Stay History." },
-  { q: "Do tenants receive their bill automatically?", a: "Yes. When you create the month's bills, every tenant with an email address instantly receives a billing statement: rent, their share of the room's utilities, the total, and the due date. In bedspace and shared rooms, utilities are split evenly per tenant with the computation shown right on the statement." },
-  { q: "How do tenants pay and report their payment?", a: "Print the room's payment QR next to your GCash or bank QR on the same poster. A tenant scans it (no app, no login), types their name, and sees their exact balance for the month, rent plus their own share of each utility, computed automatically so there's no guessing the amount. They pay via GCash, Maya, Bank, or Cash, attach a screenshot of the receipt, and tap 'I Paid My Bill'. It lands in your Payments Inbox with a live unread badge; one tap verifies it and posts the payment to the correct rent and utility bills. If more than one month is open, the tenant can pick which month they're paying for." },
-  { q: "Can it track my expenses and tell me if I made money?", a: "Yes. The Cashflow page is an automatic cashbook: rent payments, utility payments, and deposits appear as money in on their own; you log expenses (repairs, replacements, supplies) in seconds, and resolved maintenance costs flow in automatically. Every month shows Money In, Money Out, and Net with a running balance." },
-  { q: "Does it track occupancy automatically?", a: "Yes. When you move a tenant into a room or bed, that slot is marked occupied. When you record a move-out, it's freed instantly. Occupancy rate, active tenants, and total capacity are all calculated and shown on the dashboard in real time." },
-  { q: "Is there a free plan?", a: "Yes. The free plan lets you manage a small boarding house with core features, rooms and beds, tenant registration, rent billing, utility billing, maintenance tracking with QR reporting, and the occupancy dashboard, at no cost." },
 ]
 
 function useInView(options?: IntersectionObserverInit) {

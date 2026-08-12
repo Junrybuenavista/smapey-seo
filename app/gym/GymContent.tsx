@@ -11,6 +11,7 @@ import {
 } from "lucide-react"
 import { usePricing, type Plan } from "@/lib/usePricing"
 import InternalLinks from "@/components/InternalLinks"
+import { FAQS } from "./faqs"
 
 // ── Layered Pop design tokens ──
 const INK = "#161616"
@@ -37,13 +38,6 @@ const STEPS = [
   { step: "01", title: "Create your gym", desc: "Sign up and set up your gym profile in under 2 minutes." },
   { step: "02", title: "Add members & plans", desc: "Register members and create subscription plans that fit your pricing." },
   { step: "03", title: "Start checking in", desc: "Members scan their QR code and you track everything automatically." },
-]
-
-const FAQS = [
-  { q: "Do members need to install an app?", a: "No. Members receive a QR code they can save to their phone or print. No app needed." },
-  { q: "Can I track walk-in revenue separately?", a: "Yes. Walk-in revenue is tracked separately from subscription revenue in your dashboard." },
-  { q: "What happens when a subscription expires?", a: "Expired members are flagged on your dashboard. You can renew them with one click." },
-  { q: "Can I assign different trainers to different members?", a: "Yes. You can assign any active trainer to any member and change assignments anytime." },
 ]
 
 //////////////////////////////////////////////////////

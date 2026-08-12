@@ -8,6 +8,7 @@ import {
 } from "lucide-react"
 import { usePricing, type Plan } from "@/lib/usePricing"
 import InternalLinks from "@/components/InternalLinks"
+import { FAQS } from "./faqs"
 
 const INK = "#161616"
 const BLUE = "#2f6bff"
@@ -22,14 +23,6 @@ const FEATURES = [
   { icon: MessageSquare, title: "Feedback students can act on", desc: "Students receive specific improvement suggestions - not just a score. Every essay includes comments on what to fix and why." },
   { icon: BarChart3, title: "Class analytics dashboard", desc: "Track score distributions, class averages, and individual student progress across all your assignments at a glance." },
   { icon: Shield, title: "Fair, bias-free grading", desc: "The same AI model grades every essay with the same rubric - removing unconscious bias and ensuring consistent results." },
-]
-
-const FAQS = [
-  { q: "How much time does it actually save teachers?", a: "Teachers report saving 3–5 hours per assignment batch. Instead of reading and scoring each essay manually, you review the AI's feedback and approve or adjust, the heavy lifting is done for you." },
-  { q: "Can I customize the grading rubric for my class?", a: "Enterprise plan users can set custom rubric weights per assignment. All plans include the standard multi-dimension rubric (content, grammar, structure, clarity, creativity) out of the box." },
-  { q: "Do students see their feedback?", a: "Yes, once you release results. You control when students can view their score and comments, so you can review AI feedback before sharing." },
-  { q: "Can it grade handwritten essays?", a: "Yes. Students or teachers photograph a handwritten essay. The AI reads the text via OCR and grades it the same as any typed submission." },
-  { q: "Is the AI grading accurate enough to trust?", a: "The AI evaluates essays against a fixed rubric every time, producing consistent, structured scores comparable to human graders. Most teachers use it as a first pass and adjust if needed." },
 ]
 
 function useInView(options?: IntersectionObserverInit) {

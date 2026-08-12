@@ -10,6 +10,7 @@ Zap } from "lucide-react"
 import { usePricing, type Plan } from "@/lib/usePricing"
 import InternalLinks from "@/components/InternalLinks"
 import BookDemoForm from "@/components/BookDemoForm"
+import { FAQS } from "./faqs"
 
 const INK = "#161616"
 const BLUE = "#2f6bff"
@@ -27,14 +28,6 @@ const FEATURES = [
   { icon: HeartPulse, title: "Status Workflow", desc: "Move patients through Pending → Confirmed → In Queue → In Progress → Completed with one click. Track no-shows and cancellations automatically." },
   { icon: UserCheck, title: "Team Roles & Access", desc: "Invite receptionists, nurses, and clinic admins with role-based permissions. Control exactly who can book, edit, or only view appointments." },
   { icon: Shield, title: "Secure & Isolated", desc: "Each clinic gets its own isolated data space. Your patient list, doctor profiles, and appointment history are never shared with anyone else." },
-]
-
-const FAQS = [
-  { q: "What is a clinic management system?", a: "A clinic management system is software that helps medical practices track patients, manage doctor schedules, book appointments, and run a patient queue, all in one place instead of spreadsheets and paper logs." },
-  { q: "Can I manage multiple doctors in one clinic?", a: "Yes. You can add multiple doctors with individual schedules and specialties. Appointments are assigned to specific doctors, and the queue board shows all active patients per doctor at a glance." },
-  { q: "How does the live queue board work?", a: "The queue board is a real-time kanban view with three columns: Waiting, In Consultation, and Done. You can move patients between columns with one click, Confirm, Enqueue, Start, Complete, or mark No Show." },
-  { q: "Is this built for a specific clinic type?", a: "Smapey Clinic Manager works for general practice clinics, dental clinics, dermatology offices, pediatric clinics, physiotherapy centers, and any medical practice that manages patient appointments." },
-  { q: "How is patient data protected?", a: "Every clinic account is fully isolated, your patient records, appointment history, and doctor data are never visible to other businesses on the platform. Data is encrypted at rest and in transit." },
 ]
 
 function useInView(options?: IntersectionObserverInit) {

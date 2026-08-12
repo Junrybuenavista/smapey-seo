@@ -8,6 +8,7 @@ import {
 import { usePricing, type Plan } from "@/lib/usePricing"
 import InternalLinks from "@/components/InternalLinks"
 import SalonVideo from "@/components/SalonVideo"
+import { FAQS } from "./faqs"
 
 const INK = "#161616"
 const BLUE = "#2f6bff"
@@ -32,13 +33,6 @@ const COMPARISON = [
   { feature: "Inquiry management", free: true, pro: true, enterprise: true },
   { feature: "Analytics dashboard", free: true, pro: true, enterprise: true },
   { feature: "Priority support", free: false, pro: false, enterprise: true },
-]
-
-const FAQS = [
-  { q: "How does the inquiry-to-appointment flow work?", a: "Clients visit your public booking page and submit a booking inquiry with their preferred service, date, and time. The inquiry appears in your Inquiries tab. You review it, accept it, and it converts into a confirmed appointment automatically." },
-  { q: "Can clients book directly without me approving?", a: "Currently, all bookings go through an inquiry flow where you confirm the appointment. This gives you full control over your schedule and prevents conflicts." },
-  { q: "What appointment statuses are available?", a: "Appointments move through three statuses: Booked (confirmed), In Progress (client is currently being served), and Completed (service is done and payment recorded)." },
-  { q: "Can I see all appointments for the week at once?", a: "Yes. The appointment dashboard gives you a full list view that you can filter by date range, staff member, or service type, so you can plan ahead and avoid scheduling conflicts." },
 ]
 
 function useInView(options?: IntersectionObserverInit) {

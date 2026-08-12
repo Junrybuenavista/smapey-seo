@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from "react"
 import { Car, CheckCircle2, ChevronRight, Menu, X, Star, BarChart3, Users, Shield, Key, Wrench, CreditCard, Globe, MessageSquare, Palette, QrCode, Bell, ImagePlus , Zap } from "lucide-react"
 import { usePricing, type Plan } from "@/lib/usePricing"
 import InternalLinks from "@/components/InternalLinks"
+import { FAQS } from "./faqs"
 
 const INK = "#161616"
 const BLUE = "#2f6bff"
@@ -24,14 +25,6 @@ const FEATURES = [
   { icon: Palette, title: "Page Personalization", desc: "Choose from 5 themes (Midnight, Clean, Ocean, Forest, Luxury) then personalize any theme with a cover photo, tagline, and accent color to match your brand." },
   { icon: Bell, title: "Instant Booking Alerts", desc: "Get notified the moment a customer submits a booking inquiry. A badge appears on your notification bell - click it to jump straight to the inquiry." },
   { icon: ImagePlus, title: "Vehicle Photos", desc: "Upload a photo for each vehicle in your fleet. Photos display on your public booking page so customers see exactly what they're renting before they inquire." },
-]
-
-const FAQS = [
-  { q: "Is this really built for small businesses?", a: "Yes. Smapey was built for small to mid-sized operators who need fleet management without paying for enterprise software. The free plan covers up to 5 vehicles and 20 rentals a month, enough to start." },
-  { q: "How long does it take to set up?", a: "Most users have their fleet added and first rental created within 10 minutes. There's no complex configuration, just add your vehicles, register your customers, and start renting." },
-  { q: "Do I need to hire a developer or IT person?", a: "No. Smapey is a web app you access from any browser. No installation, no servers, no technical setup required." },
-  { q: "Can I cancel anytime?", a: "Yes. There are no long-term contracts. You can upgrade, downgrade, or cancel your plan at any time from the billing page." },
-  { q: "What if my fleet grows beyond the free plan?", a: "Upgrade to Pro (up to 30 vehicles, unlimited rentals) or Enterprise (unlimited everything) anytime. Your data stays intact when you upgrade." },
 ]
 
 function useInView(options?: IntersectionObserverInit) {

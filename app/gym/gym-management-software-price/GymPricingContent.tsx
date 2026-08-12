@@ -8,6 +8,7 @@ import {
 
 import { usePricing, type Plan } from "@/lib/usePricing"
 import InternalLinks from "@/components/InternalLinks"
+import { FAQS } from "./faqs"
 
 // ── Layered Pop design tokens ──
 const INK = "#161616"
@@ -15,29 +16,6 @@ const BLUE = "#2f6bff"
 const AMBER = "#ff9e2c"
 const CREAM = "#fbf7f0"
 const display = { fontFamily: "'Hanken Grotesk', system-ui, sans-serif" }
-
-const FAQS = [
-  {
-    q: "Is the free plan really free forever?",
-    a: "Yes. The Free plan has no time limit. You can run your gym on it as long as you like. Upgrade only when you need more capacity.",
-  },
-  {
-    q: "Are there any hidden fees?",
-    a: "No. The price you see is what you pay. No setup fees, no per-member fees, no surprise charges.",
-  },
-  {
-    q: "Can I cancel my subscription anytime?",
-    a: "Yes. Cancel anytime from your dashboard. You keep access until the end of your billing period.",
-  },
-  {
-    q: "Do you offer annual billing?",
-    a: "Monthly billing is available now. Annual plans with a discount are coming soon, contact us if you need one today.",
-  },
-  {
-    q: "What payment methods do you accept?",
-    a: "We accept PayPal worldwide. For Philippine customers, we also accept GCash, QR Ph, and card payments via PayMongo.",
-  },
-]
 
 function useInView(options?: IntersectionObserverInit) {
   const ref = useRef<HTMLDivElement>(null)

@@ -9,6 +9,7 @@ import {
 import { usePricing, type Plan } from "@/lib/usePricing"
 import InternalLinks from "@/components/InternalLinks"
 import BookDemoForm from "@/components/BookDemoForm"
+import { FAQS } from "./faqs"
 
 const INK = "#161616"
 const BLUE = "#2f6bff"
@@ -25,14 +26,6 @@ const FEATURES = [
   { icon: Inbox, title: "Inquiry Management", desc: "Booking requests land in one inbox. Approve, reject, or convert them into confirmed appointments (with optional deposit collection) in one click." },
   { icon: BarChart3, title: "Analytics Dashboard", desc: "Live numbers - monthly revenue, session count, completion rate, therapist utilization, and pending inquiries - without a spreadsheet in sight." },
   { icon: Users, title: "Team Roles & Permissions", desc: "Owners see everything. Therapists see only their own bookings. Receptionists see the schedule. Role-based access keeps data clean and private." },
-]
-
-const FAQS = [
-  { q: "Is there really a free plan?", a: "Yes. The free plan includes up to 10 treatments, 30 appointments per month, 2 team members, and a full public booking page. No credit card required, no time limit, no surprise upgrades." },
-  { q: "Can clients book online?", a: "Yes. Every business gets a unique public URL (e.g. smapey.com/massage/your-spa) where clients can browse treatments, optionally request a therapist, and send a booking inquiry. Approve or decline from your dashboard." },
-  { q: "Can I track therapist assignments?", a: "Yes. Add your therapists, assign them to appointments, and filter the schedule by therapist. Each appointment also captures the client's pressure preference and focus areas." },
-  { q: "Do you store health information securely?", a: "Yes. Health notes are stored on each client profile and only visible to authenticated staff in your organization. They never appear on the public booking page." },
-  { q: "Can I take deposits?", a: "On Pro and Enterprise plans, you can upload a payment QR (GCash, Maya, bank) and require a reference number before clients can submit a booking request, reducing no-shows on premium treatments." },
 ]
 
 function useInView(options?: IntersectionObserverInit) {

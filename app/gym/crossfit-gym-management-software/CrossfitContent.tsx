@@ -10,6 +10,7 @@ import {
 
 import { usePricing, type Plan } from "@/lib/usePricing"
 import InternalLinks from "@/components/InternalLinks"
+import { FAQS } from "./faqs"
 
 // ── Layered Pop design tokens ──
 const INK = "#161616"
@@ -34,13 +35,6 @@ const STEPS = [
   { step: "01", title: "Set up your box", desc: "Sign up and configure your CrossFit gym profile in under 2 minutes." },
   { step: "02", title: "Add athletes & plans", desc: "Register members and create the membership plans your box offers." },
   { step: "03", title: "Track every class", desc: "Athletes scan QR codes, check-ins are logged, and you see it all in real time." },
-]
-
-const FAQS = [
-  { q: "Is this built specifically for CrossFit gyms?", a: "GymOS works for any gym type, including CrossFit boxes. Features like drop-in tracking, QR check-in, and coach assignment map directly to how CrossFit boxes operate." },
-  { q: "Can I track drop-in athletes separately from members?", a: "Yes. Walk-in/drop-in visits are tracked separately from subscriptions, with their own revenue line in your dashboard." },
-  { q: "Do athletes need to download an app?", a: "No. Athletes receive a personal QR code they can save to their phone or print. No app install required." },
-  { q: "Can I assign coaches to specific athletes?", a: "Yes. You can assign any active coach to any member and update assignments anytime." },
 ]
 
 function useInView(options?: IntersectionObserverInit) {

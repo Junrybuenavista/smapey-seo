@@ -7,6 +7,7 @@ import {
 Zap } from "lucide-react"
 import { usePricing, type Plan } from "@/lib/usePricing"
 import InternalLinks from "@/components/InternalLinks"
+import { FAQS } from "./faqs"
 
 const INK = "#161616"
 const BLUE = "#2f6bff"
@@ -21,14 +22,6 @@ const FEATURES = [
   { icon: Syringe, title: "Vaccination Records", desc: "Log vaccines per pet with the date given and next due date. The system flags upcoming vaccinations so your team can proactively remind pet owners." },
   { icon: Receipt, title: "Billing & Invoicing", desc: "Generate itemized bills after each visit - consultation, medicines, procedures. Accept partial and full payments across multiple payment methods." },
   { icon: BarChart3, title: "Analytics Dashboard", desc: "Today's appointments, weekly trends, completion rates, unpaid bills, and upcoming vaccinations - all visible on your clinic dashboard." },
-]
-
-const FAQS = [
-  { q: "What is a veterinary clinic management system?", a: "It is software that centralizes all clinic operations, pet records, vet schedules, appointment booking, a live patient queue, vaccination tracking, and billing, in one place instead of paper cards and spreadsheets." },
-  { q: "Does it work for both dog and cat clinics?", a: "Yes. Pet profiles include a species and breed field, so the system works for any animal, dogs, cats, birds, reptiles, rabbits, and more. There are no species restrictions." },
-  { q: "Can I track vaccination schedules per pet?", a: "Yes. Each vaccination entry stores the vaccine name, date given, and next due date. A 30-day upcoming vaccinations list appears on the dashboard so your team can remind owners in advance." },
-  { q: "How does billing work?", a: "After a visit, create a bill with line items, consultation fee, medications, procedures. Set quantity and unit price per item. Record payments via Cash, GCash, Maya, Card, or Bank Transfer. The system tracks unpaid and partial balances." },
-  { q: "Is there a free plan?", a: "Yes. The free plan includes core features, pet records, appointment scheduling, live queue, vaccination tracking, and billing, at no cost. Upgrade when your clinic needs more capacity." },
 ]
 
 function useInView(options?: IntersectionObserverInit) {

@@ -9,6 +9,7 @@ Zap , Menu , X } from "lucide-react"
 import { usePricing, type Plan } from "@/lib/usePricing"
 import InternalLinks from "@/components/InternalLinks"
 import BookDemoForm from "@/components/BookDemoForm"
+import { FAQS } from "./faqs"
 
 const INK = "#161616"
 const BLUE = "#2f6bff"
@@ -25,15 +26,6 @@ const FEATURES = [
   { icon: MapPin, title: "Delivery Routes & Zones", desc: "Group customers by route or barangay so your delivery rider always knows where to go. Filter today's orders by route to plan the run." },
   { icon: Settings, title: "Station Defaults", desc: "Set one default price per gallon, deposit per gallon, and low-stock threshold. New customers inherit them automatically - override per customer only when you need to." },
   { icon: BarChart3, title: "Dashboard & Revenue", desc: "See today's orders, pending deliveries, unpaid balances, current stock, outstanding containers, and a 7-day revenue trend - everything on one screen." },
-]
-
-const FAQS = [
-  { q: "What does water refilling station software actually do?", a: "It replaces the notebook. Smapey tracks every delivery order, how many gallons you have in stock, how much each customer owes, and (the tricky part) how many of your containers each customer is still holding. It also handles payments and a simple revenue dashboard." },
-  { q: "How does container deposit tracking work?", a: "Every customer has a running count: containers you've lent out minus containers they've returned. When you deliver gallons, the count goes up; when they return empties (on the Returns page or with a delivery), it goes down. You always know who is holding your bottles." },
-  { q: "What happens to empty containers when they come back?", a: "Returned empties lower the customer's outstanding count but don't become sellable stock until they're refilled. Smapey shows an 'Empties on Hand' number, and a one-click Refill turns them back into filled, sellable gallons." },
-  { q: "Do my customers need to install an app?", a: "No. Customers don't need anything. Optional SMS notifications go straight to their phone number when a delivery is on the way." },
-  { q: "Can I use it on my phone during deliveries?", a: "Yes. Smapey runs in any web browser on your phone, tablet, or computer, nothing to download. Your rider can update order status from the road." },
-  { q: "Is there a free plan?", a: "Yes. The Free plan lets you run a small station at no cost with no credit card. Upgrade to Pro only when you outgrow the limits." },
 ]
 
 function useInView(options?: IntersectionObserverInit) {
