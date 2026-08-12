@@ -2,11 +2,17 @@ import "./globals.css"
 import Script from "next/script"
 import PageTracker from "../components/PageTracker"
 import ReferralCapture from "../components/ReferralCapture"
+import JsonLd from "../components/JsonLd"
+import { organizationSchema, webSiteSchema } from "../lib/seo"
 
 export const metadata = {
   metadataBase: new URL("https://smapey.com"),
-  title: "Smapey",
-  description: "Invoicing software that helps you get paid faster",
+  // No `template` here on purpose: all 148 pages already carry their own
+  // brand suffix (including sub-brands like "Smapey GymOS"), so a template
+  // would double it. This default only covers pages that set no title.
+  title: "Smapey - Simple Management Software for Small Businesses",
+  description:
+    "Smapey builds simple management software for small businesses - invoicing, gyms, salons, rentals, clinics, boarding houses, and more. Free plan available.",
 }
 
 export default function RootLayout({
@@ -17,6 +23,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
+        <JsonLd schema={[organizationSchema(), webSiteSchema()]} />
 
         {/* Google Analytics */}
         <Script

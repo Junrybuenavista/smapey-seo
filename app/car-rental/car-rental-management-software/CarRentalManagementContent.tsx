@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from "react"
 import { Car, CheckCircle2, ChevronRight, Menu, X, Star, BarChart3, Wrench, AlertCircle, Calendar, Key, Users, Globe, MessageSquare, Palette, QrCode, Bell, ImagePlus , Zap } from "lucide-react"
 import { usePricing, type Plan } from "@/lib/usePricing"
 import InternalLinks from "@/components/InternalLinks"
+import { FAQS } from "./faqs"
 
 const INK = "#161616"
 const BLUE = "#2f6bff"
@@ -24,13 +25,6 @@ const FEATURES = [
   { icon: Palette, title: "Page Personalization", desc: "Choose from 5 themes (Midnight, Clean, Ocean, Forest, Luxury) then personalize any theme with a cover photo, tagline, and accent color to match your brand." },
   { icon: Bell, title: "Instant Booking Alerts", desc: "Get notified the moment a customer submits a booking inquiry. A badge appears on your notification bell - click it to jump straight to the inquiry." },
   { icon: ImagePlus, title: "Vehicle Photos", desc: "Upload a photo for each vehicle in your fleet. Photos display on your public booking page so customers see exactly what they're renting before they inquire." },
-]
-
-const FAQS = [
-  { q: "Can I manage vehicles across different statuses?", a: "Yes. Each vehicle is always in one of three states, Available, Rented, or Maintenance. You can change status manually, and the system updates automatically when a rental is activated or returned." },
-  { q: "How does overdue detection work?", a: "When a rental's return date passes and it's still Active, Smapey automatically changes its status to Overdue. You'll see it highlighted on your dashboard so you can follow up with the customer." },
-  { q: "Can I see which vehicles earn the most?", a: "Your dashboard shows monthly revenue and rental counts. You can see how much each month has brought in and track trends over time." },
-  { q: "How many team members can I add?", a: "Free plan supports 2. Pro supports 5. Enterprise has no limit. All team members have role-based access, owners control everything, members handle day-to-day operations." },
 ]
 
 function useInView(options?: IntersectionObserverInit) {

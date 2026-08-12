@@ -8,6 +8,7 @@ import {
 } from "lucide-react"
 import { usePricing, type Plan } from "@/lib/usePricing"
 import InternalLinks from "@/components/InternalLinks"
+import { FAQS } from "./faqs"
 
 const INK = "#161616"
 const BLUE = "#2f6bff"
@@ -22,14 +23,6 @@ const FEATURES = [
   { icon: Shield, title: "Consistent, unbiased grading", desc: "The same AI model grades every essay using the same rubric - no mood, no fatigue, no favouritism. Just fair, consistent feedback every time." },
   { icon: FileText, title: "Submission history", desc: "Every draft you submit is saved. Compare your scores across revisions and see exactly how your writing has improved over time." },
   { icon: ClipboardList, title: "Handwritten essay support", desc: "Take a photo of your handwritten essay with your phone. The AI reads it via OCR and grades it the same as any typed submission." },
-]
-
-const FAQS = [
-  { q: "Can I grade my own essay with AI for free?", a: "Yes. Smapey Essay's free plan lets you grade up to 30 essays per month at no cost. No credit card required, just sign up and submit." },
-  { q: "What subjects or essay types can it grade?", a: "Any written essay, academic essays, argumentative writing, narrative essays, college application essays, descriptive writing. The AI adapts to the content." },
-  { q: "How accurate is AI essay grading?", a: "The AI evaluates against a fixed multi-dimension rubric every time, producing consistent results comparable to experienced human graders. Most users find it more consistent than human marking." },
-  { q: "Can I submit multiple drafts of the same essay?", a: "Yes. You can revise and resubmit as many times as you want. Each submission is graded independently and saved so you can track your improvement." },
-  { q: "Do I need to create an account to grade my essay?", a: "Yes, a free account is required to submit and receive graded feedback. Sign up takes under a minute with no payment details needed." },
 ]
 
 function useInView(options?: IntersectionObserverInit) {

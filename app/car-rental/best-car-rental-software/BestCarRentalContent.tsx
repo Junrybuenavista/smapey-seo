@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from "react"
 import { Car, CheckCircle2, ChevronRight, Menu, X, Star, BarChart3, Users, Shield, Key, AlertCircle, Globe, MessageSquare, Palette, QrCode, Bell, ImagePlus , Zap } from "lucide-react"
 import { usePricing, type Plan } from "@/lib/usePricing"
 import InternalLinks from "@/components/InternalLinks"
+import { FAQS } from "./faqs"
 
 const INK = "#161616"
 const BLUE = "#2f6bff"
@@ -24,13 +25,6 @@ const FEATURES = [
   { icon: Palette, title: "Page Personalization", desc: "Choose from 5 themes (Midnight, Clean, Ocean, Forest, Luxury) then personalize any theme with a cover photo, tagline, and accent color to match your brand." },
   { icon: Bell, title: "Instant Booking Alerts", desc: "Get notified the moment a customer submits a booking inquiry. A badge appears on your notification bell - click it to jump straight to the inquiry." },
   { icon: ImagePlus, title: "Vehicle Photos", desc: "Upload a photo for each vehicle in your fleet. Photos display on your public booking page so customers see exactly what they're renting before they inquire." },
-]
-
-const FAQS = [
-  { q: "Is Smapey really the best car rental software for small operators?", a: "It's built specifically for small to mid-sized rental businesses. You get fleet tracking, reservation management, overdue detection, and revenue dashboards, without paying for features you don't need." },
-  { q: "How is it different from generic rental tools?", a: "Smapey is purpose-built for car rental, not a generic service booking tool. Every feature (vehicle status, return date tracking, maintenance flags) is designed around how a rental business actually works." },
-  { q: "Can I try it before paying?", a: "Yes. The free plan gives you up to 5 vehicles and 20 rentals per month with no credit card required. Upgrade when you're ready to grow." },
-  { q: "Does it handle deposits?", a: "Yes. Each rental has a deposit amount field so you can track what's been collected before a vehicle leaves the lot." },
 ]
 
 function useInView(options?: IntersectionObserverInit) {

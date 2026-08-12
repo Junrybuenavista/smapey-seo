@@ -1,10 +1,9 @@
 import "../globals.css"
-import Script from "next/script"
-
 
 export const metadata = {
-  title: "Smapey",
-  description: "Invoicing software that helps you get paid faster",
+  title: "Smapey GymOS",
+  description:
+    "Gym management software for member tracking, QR check-ins, subscriptions, and revenue reporting.",
 }
 
 export default function RootLayout({
@@ -13,24 +12,8 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
-      <body>
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-KJHG5R9G1S"
-          strategy="afterInteractive"
-        />
-        <Script id="google-analytics" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-KJHG5R9G1S');
-          `}
-        </Script>
-
-
-        {children}
-      </body>
-    </html>
+    <>
+      {children}
+    </>
   )
 }

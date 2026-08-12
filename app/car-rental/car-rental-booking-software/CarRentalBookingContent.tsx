@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from "react"
 import { Car, CheckCircle2, ChevronRight, Menu, X, Star, Key, Calendar, CreditCard, AlertCircle, Users, BarChart3, Globe, MessageSquare, Palette, QrCode, Bell, ImagePlus , Zap } from "lucide-react"
 import { usePricing, type Plan } from "@/lib/usePricing"
 import InternalLinks from "@/components/InternalLinks"
+import { FAQS } from "./faqs"
 
 const INK = "#161616"
 const BLUE = "#2f6bff"
@@ -24,13 +25,6 @@ const FEATURES = [
   { icon: Palette, title: "Page Personalization", desc: "Choose from 5 themes (Midnight, Clean, Ocean, Forest, Luxury) then personalize any theme with a cover photo, tagline, and accent color to match your brand." },
   { icon: Bell, title: "Instant Booking Alerts", desc: "Get notified the moment a customer submits a booking inquiry. A badge appears on your notification bell - click it to jump straight to the inquiry." },
   { icon: ImagePlus, title: "Vehicle Photos", desc: "Upload a photo for each vehicle in your fleet. Photos display on your public booking page so customers see exactly what they're renting before they inquire." },
-]
-
-const FAQS = [
-  { q: "Can two customers book the same car at the same time?", a: "No. Once a vehicle is in an Active or Reserved rental, it's marked as Rented and can't be booked again until it's returned or the rental is cancelled." },
-  { q: "How do I track deposits?", a: "Each rental has a deposit amount field. You enter the expected deposit when creating the booking and mark it as collected. No separate sheet required." },
-  { q: "What happens when a booking goes overdue?", a: "If the return date passes and the rental is still Active, Smapey automatically flags it as Overdue. It appears on your dashboard so you can contact the customer immediately." },
-  { q: "Can I set different pickup and return locations?", a: "Yes. Each rental has separate pickup and return location fields so you can track one-way rentals or cross-location pickups." },
 ]
 
 function useInView(options?: IntersectionObserverInit) {

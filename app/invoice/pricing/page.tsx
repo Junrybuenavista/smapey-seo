@@ -1,15 +1,26 @@
-import { Metadata } from "next"
+import JsonLd from "@/components/JsonLd"
+import { buildMetadata, breadcrumbSchema } from "@/lib/seo"
 import PricingContent from "./PricingContent"
 
-export const metadata: Metadata = {
-  title: "Invoice Software Pricing | Smapey",
-  description:
-    "Simple and affordable invoicing software pricing. Create invoices, track payments, and grow your business with Smapey.",
-  alternates: {
-    canonical: "https://smapey.com/invoice/pricing",
-  },
-}
+const PATH = "/invoice/pricing"
+const TITLE = "Invoice Software Pricing | Smapey"
+const DESCRIPTION = "Simple and affordable invoicing software pricing. Create invoices, track payments, and grow your business with Smapey."
+
+export const metadata = buildMetadata({
+  title: TITLE,
+  description: DESCRIPTION,
+  path: PATH,
+})
 
 export default function Page() {
-  return <PricingContent />
+  return (
+    <>
+      <JsonLd
+        schema={[
+          breadcrumbSchema(PATH),
+        ]}
+      />
+      <PricingContent />
+    </>
+  )
 }

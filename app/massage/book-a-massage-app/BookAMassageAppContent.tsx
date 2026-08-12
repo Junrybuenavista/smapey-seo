@@ -7,6 +7,7 @@ import {
 } from "lucide-react"
 import { usePricing, type Plan } from "@/lib/usePricing"
 import InternalLinks from "@/components/InternalLinks"
+import { FAQS } from "./faqs"
 
 const INK = "#161616"
 const BLUE = "#2f6bff"
@@ -31,13 +32,6 @@ const COMPARISON = [
   { feature: "Bookings / month", free: "20 inquiries", pro: "200 inquiries", enterprise: "Unlimited" },
   { feature: "Page themes", free: "1", pro: "3", enterprise: "5" },
   { feature: "Priority support", free: false, pro: false, enterprise: true },
-]
-
-const FAQS = [
-  { q: "Do my clients need to download an app to book a massage?", a: "No. The booking page is a regular web link, clients tap it in their browser on any phone, tablet, or desktop. There's no app to install, no account to create, and no friction." },
-  { q: "Can clients book a massage outside business hours?", a: "Yes. The booking page is online 24/7. Clients can book at midnight if they want, the inquiry waits in your dashboard until you review and confirm in the morning." },
-  { q: "What does the client see when they book?", a: "They see your branded page with your treatments, prices, durations, and (optionally) your therapists. They pick a service, optionally request a therapist, choose a date and time, fill in name + phone, and submit. That's it." },
-  { q: "Can I block bookings during my off-hours?", a: "The current setup uses a request-and-confirm model, you review every inquiry before it becomes an appointment. That gives you flexibility without strict calendar rules. Most small spas prefer this over rigid availability slots." },
 ]
 
 function useInView(options?: IntersectionObserverInit) {

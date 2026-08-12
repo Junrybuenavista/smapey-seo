@@ -8,6 +8,7 @@ import {
 import { usePricing, type Plan } from "@/lib/usePricing"
 import InternalLinks from "@/components/InternalLinks"
 import LaundryVideo from "@/components/LaundryVideo"
+import { FAQS } from "./faqs"
 
 const INK = "#161616"
 const BLUE = "#2f6bff"
@@ -22,13 +23,6 @@ const FEATURES = [
   { icon: CreditCard, title: "GCash & Cash at Pickup", desc: "Collect payment when customers arrive - via Cash, GCash, Maya, or Bank Transfer. Mark orders as paid with one tap." },
   { icon: BarChart3, title: "Real-Time Order Dashboard", desc: "See all active on-demand orders in one dashboard - Received, In Progress, Ready, and Released. Know exactly what's waiting at any moment." },
   { icon: Zap, title: "Add-on Services", desc: "Offer express processing, stain removal, or fabric conditioner as on-demand add-ons. Price them separately and track them per order." },
-]
-
-const FAQS = [
-  { q: "How fast can I accept a new on-demand order?", a: "Under 30 seconds. Enter the customer's phone number (or select a returning customer), choose the service type, enter kilos, and submit. Ticket number is auto-generated instantly." },
-  { q: "Do customers get notified automatically?", a: "Yes. On the Pro plan, customers receive an automatic SMS when you accept their order and another when it's ready for pickup. On the Free plan, SMS can be sent manually." },
-  { q: "Can I handle multiple on-demand orders at the same time?", a: "Yes. All open orders appear in your dashboard. You can update each order's status independently, there's no limit to how many you can have in progress simultaneously (on Pro)." },
-  { q: "What if a customer wants express processing?", a: "Add express processing as an add-on service with its own price. It's attached to the specific order and shown in the customer's receipt." },
 ]
 
 function useInView(options?: IntersectionObserverInit) {

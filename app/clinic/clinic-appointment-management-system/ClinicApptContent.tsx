@@ -7,6 +7,7 @@ import {
 Zap } from "lucide-react"
 import { usePricing, type Plan } from "@/lib/usePricing"
 import InternalLinks from "@/components/InternalLinks"
+import { FAQS } from "./faqs"
 
 const INK = "#161616"
 const BLUE = "#2f6bff"
@@ -21,13 +22,6 @@ const FEATURES = [
   { icon: Clock, title: "Status Workflow", desc: "Move appointments through Pending → Confirmed → In Queue → In Progress → Completed. Track cancellations and no-shows without any manual logging." },
   { icon: BarChart3, title: "Appointment Analytics", desc: "See today's totals, weekly completion trends, and monthly booking volumes - all on a single dashboard. Know when your clinic is busiest." },
   { icon: Shield, title: "Secure Records", desc: "Every appointment, patient record, and note is stored securely in your isolated clinic account - encrypted and inaccessible to other businesses." },
-]
-
-const FAQS = [
-  { q: "What is a clinic appointment management system?", a: "It's software that handles the full lifecycle of a clinic appointment, from booking and doctor assignment through to completion or cancellation. It replaces paper appointment books and scattered spreadsheets." },
-  { q: "Can I filter appointments by doctor or date?", a: "Yes. The appointments page lets you filter by doctor, date, status, or search by patient name, so you always find exactly what you need." },
-  { q: "What statuses can an appointment go through?", a: "Appointments move through: Pending → Confirmed → In Queue → In Progress → Completed. You can also mark a patient as Cancelled or No Show at any stage." },
-  { q: "How many appointments can I manage per month?", a: "The free plan includes a monthly appointment limit. Pro and Enterprise plans have higher or unlimited appointment quotas, check the pricing section above." },
 ]
 
 function useInView(options?: IntersectionObserverInit) {

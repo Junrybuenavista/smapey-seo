@@ -8,6 +8,7 @@ import {
 Zap } from "lucide-react"
 import { usePricing, type Plan } from "@/lib/usePricing"
 import InternalLinks from "@/components/InternalLinks"
+import { FAQS } from "./faqs"
 
 const INK = "#161616"
 const BLUE = "#2f6bff"
@@ -25,13 +26,6 @@ const FEATURES = [
   { icon: BarChart3, title: "Salon Dashboard", desc: "See today's bookings, monthly totals, stylist workloads, and completion rates at a glance from your salon dashboard." },
   { icon: Users, title: "Team Collaboration", desc: "Invite receptionists and staff with role-based access. Control who can create, edit, or view your booking calendar." },
   { icon: Shield, title: "Secure & Isolated", desc: "Your client list and appointment records are fully isolated. No data is ever shared with other salons or businesses." },
-]
-
-const FAQS = [
-  { q: "Can I manage multiple stylists on one account?", a: "Yes. You can invite your stylists as team members and assign each appointment to the right person. Everyone sees only what they need." },
-  { q: "How does deposit tracking help reduce no-shows?", a: "When you require a deposit at booking, clients have skin in the game. You record the deposit amount and mark it as paid, giving you a clear record and reducing last-minute cancellations." },
-  { q: "Can I list different services with different durations?", a: "Yes. Each service has its own name, duration, and price. You can set a haircut to 45 mins and a color treatment to 2 hours, and availability is managed accordingly." },
-  { q: "Do clients book online themselves?", a: "Currently appointments are created by your staff through the dashboard. It's designed as an internal scheduling tool, ideal for salons where clients call or walk in and staff enters the booking." },
 ]
 
 function useInView(options?: IntersectionObserverInit) {

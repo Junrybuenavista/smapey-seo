@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react"
 import InternalLinks from "@/components/InternalLinks"
 import { ChefHat, CheckCircle2, ChevronRight, Menu, X } from "lucide-react"
+import { FAQS } from "./faqs"
 
 const INK = "#161616"
 const BLUE = "#2f6bff"
@@ -116,14 +117,6 @@ const STEPS = [
     "Use a catering management system from your very first booking, not after you've outgrown your notebook. This means: every booking has a record, every payment milestone is tracked, every supply requirement is noted, and your monthly revenue is visible at a glance.",
     "Smapey's free catering management plan is designed for exactly this stage, a small catering business that needs structure without a subscription fee.",
   ] },
-]
-
-const FAQS = [
-  { q: "How much capital do you need to start a catering business in the Philippines?", a: "A home-based catering startup can begin with as little as ₱15,000–₱30,000 for basic equipment, permits, and initial supplies. If you rent equipment for your first few events rather than buying, startup costs drop further. Capital scales with ambition, full commercial kitchen setups can require ₱200,000–₱500,000 or more." },
-  { q: "Do I need to have a commercial kitchen to start a catering business?", a: "For most small home-based catering businesses in the Philippines, a home kitchen is sufficient to get started. However, if you plan to cater for large corporate events or obtain certain permits, a commercial kitchen may be required. Some caterers rent commercial kitchen space per booking to keep overhead low." },
-  { q: "What permits do I need to start a catering business in the Philippines?", a: "At minimum: DTI registration (sole proprietorship), barangay clearance, mayor's permit, and BIR registration. If you're serving food publicly, a sanitary permit is typically required. Check specific requirements with your local government unit, as these vary by city and municipality." },
-  { q: "How do I price my catering packages?", a: "Calculate food cost per head (target 30–40% of selling price), add labor, transport, and rentals. The remainder is your gross margin. Research local competitor pricing to ensure you're in range. Start with two or three clearly defined packages rather than quoting custom menus for every inquiry." },
-  { q: "What software should I use to manage a catering business in the Philippines?", a: "Start with a dedicated catering management system that handles bookings, packages, payment milestones, supply catalog, and staff assignment. Smapey's catering module covers all of these on a free plan, no credit card required. Using spreadsheets and chat apps works early on but creates serious operational gaps as your volume grows." },
 ]
 
 const CHECKLIST = [

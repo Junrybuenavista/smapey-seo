@@ -1,14 +1,26 @@
-export const metadata = {
-  title: "Tutorial Center Software Guide | How to Use Smapey SchoolDesk",
-  description:
-    "A plain-English, step-by-step guide to running a tutorial center or tutoring business with Smapey SchoolDesk, programs, student enrollment, session scheduling, attendance, tuition tracking, progress notes, and the dashboard.",
-  alternates: {
-    canonical: "https://smapey.com/school-desk/guide",
-  },
-}
-
+import JsonLd from "@/components/JsonLd"
+import { buildMetadata, breadcrumbSchema } from "@/lib/seo"
 import GuideContent from "./GuideContent"
 
+const PATH = "/school-desk/guide"
+const TITLE = "Tutorial Center Software Guide | How to Use Smapey SchoolDesk"
+const DESCRIPTION = "A plain-English, step-by-step guide to running a tutorial center or tutoring business with Smapey SchoolDesk, programs, student enrollment, session scheduling, attendance, tuition tracking, progress notes, and the dashboard."
+
+export const metadata = buildMetadata({
+  title: TITLE,
+  description: DESCRIPTION,
+  path: PATH,
+})
+
 export default function Page() {
-  return <GuideContent />
+  return (
+    <>
+      <JsonLd
+        schema={[
+          breadcrumbSchema(PATH),
+        ]}
+      />
+      <GuideContent />
+    </>
+  )
 }

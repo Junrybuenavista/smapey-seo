@@ -1,13 +1,26 @@
-export const metadata = {
-  title: "How to Make an Invoice (Simple Beginner Guide)",
-  description: "Learn how to make an invoice quickly and easily. Includes examples and tips for freelancers and small businesses.",
-  alternates: {
-    canonical: "https://smapey.com/invoice/how-to-make-invoice",
-  },
-}
-
+import JsonLd from "@/components/JsonLd"
+import { buildMetadata, breadcrumbSchema } from "@/lib/seo"
 import Content from "./HowToMakeInvoiceContent"
 
+const PATH = "/invoice/how-to-make-invoice"
+const TITLE = "How to Make an Invoice (Simple Beginner Guide)"
+const DESCRIPTION = "Learn how to make an invoice quickly and easily. Includes examples and tips for freelancers and small businesses."
+
+export const metadata = buildMetadata({
+  title: TITLE,
+  description: DESCRIPTION,
+  path: PATH,
+})
+
 export default function Page() {
-  return <Content />
+  return (
+    <>
+      <JsonLd
+        schema={[
+          breadcrumbSchema(PATH),
+        ]}
+      />
+      <Content />
+    </>
+  )
 }

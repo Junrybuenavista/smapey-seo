@@ -1,16 +1,26 @@
-import { Metadata } from "next"
+import JsonLd from "@/components/JsonLd"
+import { buildMetadata, breadcrumbSchema } from "@/lib/seo"
 import PrivacyContent from "./PrivacyContent"
 
-export const metadata: Metadata = {
-  title: "Privacy Policy | Smapey",
-  description:
-    "Learn how Smapey collects, uses, and protects your personal data across all Smapey business management tools.",
-  alternates: {
-    canonical:
-      "https://smapey.com/privacy-policy",
-  },
-}
+const PATH = "/privacy-policy"
+const TITLE = "Privacy Policy | Smapey"
+const DESCRIPTION = "Learn how Smapey collects, uses, and protects your personal data across all Smapey business management tools."
+
+export const metadata = buildMetadata({
+  title: TITLE,
+  description: DESCRIPTION,
+  path: PATH,
+})
 
 export default function Page() {
-  return <PrivacyContent />
+  return (
+    <>
+      <JsonLd
+        schema={[
+          breadcrumbSchema(PATH),
+        ]}
+      />
+      <PrivacyContent />
+    </>
+  )
 }

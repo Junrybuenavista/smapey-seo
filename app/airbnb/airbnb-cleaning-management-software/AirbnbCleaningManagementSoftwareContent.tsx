@@ -7,6 +7,7 @@ import {
 } from "lucide-react"
 import { usePricing, type Plan } from "@/lib/usePricing"
 import InternalLinks from "@/components/InternalLinks"
+import { FAQS } from "./faqs"
 
 const INK = "#161616"
 const BLUE = "#2f6bff"
@@ -32,13 +33,6 @@ const COMPARISON = [
   { feature: "Double-booking protection", free: true, pro: true, enterprise: true },
   { feature: "Team members", free: "1", pro: "3", enterprise: "Unlimited" },
   { feature: "Priority support", free: false, pro: false, enterprise: true },
-]
-
-const FAQS = [
-  { q: "Does Smapey have a dedicated cleaning schedule feature?", a: "Not as a standalone module, Smapey tracks cleaning through the reservation lifecycle. When a reservation is Checked Out, the property needs a turnover. The Checked Out filter and Staff Notes cover most cleaning coordination without a separate schedule tool." },
-  { q: "How do I track which properties have been cleaned?", a: "Use the Staff Notes field on the outgoing reservation to log cleaning completion. When the next reservation is confirmed ready, your team knows the unit is prepared. For multi-property operations, filter by Checked Out status daily to see the full turnover queue." },
-  { q: "Can I give my cleaner access to the dashboard?", a: "Yes. On Pro and Enterprise plans, add team members with limited permissions. Role-based access means your cleaner can see reservation notes and dates without touching billing or guest financial records." },
-  { q: "What happens between a checkout and the next check-in?", a: "The reservation status sits at Checked Out until the next reservation is created. The upcoming check-in on the dashboard shows you the gap, and the Staff Notes field on both reservations is where you coordinate the turnover." },
 ]
 
 function useInView(options?: IntersectionObserverInit) {

@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from "react"
 import { ChefHat, CheckCircle2, ChevronRight, CalendarDays, Package, Banknote, FlaskConical, UserCheck, BarChart3 , Zap , Menu , X } from "lucide-react"
 import { usePricing, type Plan } from "@/lib/usePricing"
 import InternalLinks from "@/components/InternalLinks"
+import { FAQS } from "./faqs"
 
 const INK = "#161616"
 const BLUE = "#2f6bff"
@@ -18,15 +19,6 @@ const FEATURES = [
   { icon: BarChart3, title: "Revenue Dashboard", desc: "See total revenue this month, payments collected, pending milestones, and overdue amounts - all on one screen. Monthly trend chart so you can see peak and slow seasons." },
   { icon: FlaskConical, title: "Supply Cost Tracking", desc: "Maintain a supply catalog with unit costs to estimate procurement expenses per event. Know your food cost before you finalize a booking." },
   { icon: UserCheck, title: "Staff & Operations", desc: "Assign staff per booking, track event status from Pending to Completed, and get auto-settlement of outstanding milestones when a booking is marked done." },
-]
-
-const FAQS = [
-  { q: "What is a catering management and billing system?", a: "A catering management and billing system combines event booking management with payment tracking in one tool. It handles client registration, event booking, package assignment, payment milestone creation and collection, supply catalog management, and staff assignment, replacing separate spreadsheets, paper records, and manual invoicing." },
-  { q: "How does billing work in Smapey's catering system?", a: "Billing is milestone-based per booking. You create milestones for each booking (e.g., 30% reservation fee, 50% partial payment two weeks before the event, 20% balance on event day). Each milestone records the amount, due date, payment method, and paid/unpaid status. The dashboard shows all outstanding milestones at a glance." },
-  { q: "Does the billing system support partial payments?", a: "Yes. Each milestone can be marked as paid, partially paid, pending, or overdue. This matches how Philippine catering payments typically work, clients rarely pay in full upfront, so milestone tracking is central to the billing process." },
-  { q: "What payment methods can I log?", a: "You can record collections as Cash, GCash, Maya, Card, or Bank Transfer. Smapey doesn't process payments, it records what you collect and keeps your milestone history accurate." },
-  { q: "Is there a difference between the management system and billing system?", a: "In Smapey, they're the same system. The catering management module handles the operational side (bookings, packages, staff, supplies) and the billing side (payment milestones, collections, revenue tracking) together. You don't need separate software for each." },
-  { q: "Is it free?", a: "Yes, Smapey's free plan includes full catering management and billing capabilities. Upgrade to PRO or ENTERPRISE when your business needs higher limits." },
 ]
 
 function useInView(options?: IntersectionObserverInit) {

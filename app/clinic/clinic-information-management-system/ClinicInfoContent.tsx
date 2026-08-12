@@ -7,6 +7,7 @@ import {
 Zap } from "lucide-react"
 import { usePricing, type Plan } from "@/lib/usePricing"
 import InternalLinks from "@/components/InternalLinks"
+import { FAQS } from "./faqs"
 
 const INK = "#161616"
 const BLUE = "#2f6bff"
@@ -21,13 +22,6 @@ const FEATURES = [
   { icon: BarChart3, title: "Analytics & Reporting", desc: "Turn your clinic's data into insights - daily totals, weekly trends, monthly volumes, completion rates, and cancellation counts - all in real time." },
   { icon: Database, title: "Centralized Data", desc: "All clinic information lives in one system - patients, doctors, appointments, and queue history. No more scattered spreadsheets or disconnected tools." },
   { icon: Shield, title: "Secure & Isolated Storage", desc: "Your clinic's information is encrypted at rest and in transit, stored in a fully isolated account. No sharing, no leakage to other businesses." },
-]
-
-const FAQS = [
-  { q: "What information does the system store?", a: "It stores patient profiles (name, contact, DOB, notes), doctor records (specialty, schedule, contact), appointment history (dates, doctors, status, chief complaints), and queue logs." },
-  { q: "Can I search for a specific patient?", a: "Yes. The patient directory has a real-time search by name or phone number. Results appear as you type, no need to scroll through a long list." },
-  { q: "Is appointment history saved permanently?", a: "Yes. Every appointment, including completed and cancelled ones, is retained in your clinic's history. You can filter by date range, doctor, or status." },
-  { q: "How is the data backed up?", a: "Your clinic's data is stored in a managed cloud database with regular automated backups. You don't need to manage backups yourself." },
 ]
 
 function useInView(options?: IntersectionObserverInit) {

@@ -7,6 +7,7 @@ import {
 } from "lucide-react"
 import { usePricing, type Plan } from "@/lib/usePricing"
 import InternalLinks from "@/components/InternalLinks"
+import { FAQS } from "./faqs"
 
 const INK = "#161616"
 const BLUE = "#2f6bff"
@@ -33,13 +34,6 @@ const COMPARISON = [
   { feature: "Guest profiles & history", free: true, pro: true, enterprise: true },
   { feature: "Revenue & occupancy analytics", free: true, pro: true, enterprise: true },
   { feature: "Priority support", free: false, pro: false, enterprise: true },
-]
-
-const FAQS = [
-  { q: "What makes Smapey the best Airbnb management software for small hosts?", a: "Smapey focuses on what independent hosts actually need: a place to track their properties, guests, and bookings without paying for features built for hotel chains. It's free to start, simple to set up, and covers double-booking protection, payment tracking, and revenue analytics out of the box." },
-  { q: "How does Smapey compare to channel managers?", a: "Channel managers sync your calendar across Airbnb, Booking.com, and other OTAs automatically. Smapey doesn't sync channels, instead, it's a single dashboard where you manually log each reservation after it's confirmed, regardless of which platform it came from. It's best for hosts who prefer a lightweight, centralized record over automated multi-platform sync." },
-  { q: "Is there a free plan?", a: "Yes. The free plan includes 2 properties, 10 reservations per month, and the full analytics dashboard, no credit card required." },
-  { q: "Can I upgrade later?", a: "Yes. Start on the free plan and upgrade to Pro (10 properties, 3 team users, unlimited reservations) or Enterprise (unlimited everything) whenever your portfolio grows." },
 ]
 
 function useInView(options?: IntersectionObserverInit) {

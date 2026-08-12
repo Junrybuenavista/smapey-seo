@@ -8,6 +8,7 @@ import {
 } from "lucide-react"
 import { usePricing, type Plan } from "@/lib/usePricing"
 import InternalLinks from "@/components/InternalLinks"
+import { FAQS } from "./faqs"
 
 const INK = "#161616"
 const BLUE = "#2f6bff"
@@ -22,14 +23,6 @@ const FEATURES = [
   { icon: BookOpen, title: "Grammar & Mechanics", desc: "Catches sentence-level errors, punctuation issues, and awkward phrasing - so students submit polished, error-free essays." },
   { icon: Award, title: "Theme & Self-Reflection", desc: "Evaluates whether the essay reveals meaningful insight about the student - the depth of reflection that distinguishes memorable applications." },
   { icon: BarChart3, title: "Overall Admissions Readiness", desc: "Gives a composite score and summary recommendation - whether the essay is ready to submit or needs another revision pass." },
-]
-
-const FAQS = [
-  { q: "Is this designed specifically for college application essays?", a: "Yes. The college essay grader evaluates criteria that matter to admissions officers (authentic voice, narrative clarity, self-reflection depth) not just grammar and structure." },
-  { q: "Can it handle Common App and other essay prompts?", a: "Yes. You can set any prompt when creating the assignment, Common App, Coalition App, school-specific supplemental essays, or custom prompts." },
-  { q: "How many drafts can a student submit?", a: "Unlimited on Pro and Enterprise plans. Students can revise and resubmit as many times as they need, and you can track which draft improved the most." },
-  { q: "Can students submit directly, or does everything go through the teacher?", a: "Both. Teachers share an assignment link with students. Students submit directly, and the teacher sees all submissions in the dashboard." },
-  { q: "Does it work for international students writing in English?", a: "Yes. The AI grades English-language essays regardless of the student's background, and gives feedback that's especially useful for non-native speakers improving their college writing." },
 ]
 
 function useInView(options?: IntersectionObserverInit) {
