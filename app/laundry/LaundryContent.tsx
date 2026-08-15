@@ -6,7 +6,7 @@ import {
   Package, MessageSquare, Hash, Users, CreditCard,
   BarChart3, Plus, StickyNote, UserPlus,
   Zap, CheckCircle2, ChevronRight, Menu, X,
-  CalendarCheck,
+  CalendarCheck, Printer, QrCode, Scale, History,
 } from "lucide-react"
 import { usePricing, type Plan } from "@/lib/usePricing"
 import InternalLinks from "@/components/InternalLinks"
@@ -23,9 +23,13 @@ const display = { fontFamily: "'Hanken Grotesk', system-ui, sans-serif" }
 const NAV_LINKS = ["Features", "How it Works", "Pricing", "FAQ", "Guide"]
 
 const FEATURES = [
-  { icon: Package, title: "Order Tracking", desc: "Manage every order through a clear status pipeline: Received → Washing → Drying → Ready → Released. Know exactly where each order stands at a glance." },
+  { icon: Package, title: "Order Tracking", desc: "Manage every order through a clear status pipeline: Received → Washing → Drying → Folding → Ready → Released. Know exactly where each order stands at a glance." },
+  { icon: Printer, title: "Printable Claim Stubs", desc: "Print a proper claim stub for every drop-off on a standard 80mm receipt printer - ticket number, service, weight, total, and a QR code. No more handwritten stubs that get lost." },
+  { icon: QrCode, title: "Customer Order Tracking", desc: "Customers scan the QR on their stub and see exactly which stage their laundry is at, plus what they owe. No app to install, no account to create - and far fewer 'is it ready po?' calls." },
   { icon: MessageSquare, title: "Customer SMS Notifications", desc: "Automatically notify customers by SMS when their order is received and again when it's ready for pickup. No manual texting required." },
-  { icon: Hash, title: "Ticket System", desc: "Every order gets an auto-generated ticket number in YYMMDD-NNN format (e.g. 260518-001). Unique per shop per day so customers can track their orders easily." },
+  { icon: Hash, title: "Ticket System", desc: "Every order gets an auto-generated ticket number in YYMMDD-NNN format (e.g. 260518-001). Unique per shop per day, and it never repeats or collides - even with two staff encoding at once." },
+  { icon: Scale, title: "Per-Kilo Pricing with Minimums", desc: "Set your rate per kilo for each service, plus a minimum weight so a 1kg load doesn't cost you money to run. Both the real and billed weight show on the stub, so nobody argues at the counter." },
+  { icon: History, title: "Edit, Void & Audit Trail", desc: "Mis-typed a weight? Correct the ticket and the total recalculates. Void a duplicate with a reason. Every change is logged with who made it and when - real accountability on cash orders." },
   { icon: Users, title: "Customer Management", desc: "Find or create customers by phone number. View a customer's full order history, spending totals, and contact details - all in one place." },
   { icon: CreditCard, title: "Multi-Payment", desc: "Accept Cash, GCash, Maya, Bank Transfer, and more. Record payment method per order and track outstanding balances on a per-order basis." },
   { icon: BarChart3, title: "Laundry Dashboard", desc: "See today's orders, daily revenue, pending pickups, and a 7-day revenue trend chart - everything you need to run your shop from a single screen." },
@@ -35,9 +39,9 @@ const FEATURES = [
 ]
 
 const STEPS = [
-  { step: "01", title: "Set up your shop", desc: "Create service types (Wash Dry Fold, Dry Clean, Steam Press, etc.) and set your pricing per kilogram or per piece." },
-  { step: "02", title: "Accept orders", desc: "Enter customer info, kilos, and service type. A ticket number is auto-generated instantly - no manual numbering needed." },
-  { step: "03", title: "Notify & collect", desc: "Customers get an SMS when their laundry is ready for pickup. Mark orders as paid via Cash, GCash, or Maya - done." },
+  { step: "01", title: "Set up your shop", desc: "Create service types (Wash Dry Fold, Dry Clean, Steam Press, etc.), set your price per kilogram, and add a minimum weight if you need one." },
+  { step: "02", title: "Accept orders", desc: "Enter customer info, kilos, and service type. A ticket number is auto-generated instantly - then print the claim stub and hand it over." },
+  { step: "03", title: "Notify & collect", desc: "Customers scan their stub to track progress, and get an SMS when their laundry is ready. Mark orders as paid via Cash, GCash, or Maya - done." },
 ]
 
 function useInView(options?: IntersectionObserverInit) {
@@ -127,6 +131,7 @@ function Hero() {
     { label: "Received", done: true },
     { label: "Washing",  done: true },
     { label: "Drying",   done: true },
+    { label: "Folding",  done: true },
     { label: "Ready for pickup", done: false, active: true },
   ]
   return (

@@ -19,7 +19,7 @@ const display = { fontFamily: "'Hanken Grotesk', system-ui, sans-serif" }
 const FEATURES = [
   { icon: MapPin, title: "Local Customer Reach", desc: "Build a customer base in your barangay or city. Store every customer's phone number and order history so repeat customers are always recognized." },
   { icon: MessageSquare, title: "SMS Notifications to Nearby Customers", desc: "Send automatic SMS alerts when orders are ready - no app download needed. Customers get a text on their phone, wherever they are in your area." },
-  { icon: Package, title: "Pickup & Delivery Tracking", desc: "Track whether an order is a walk-in pickup or a delivery. Add delivery addresses and notes per order so your rider knows exactly where to go." },
+  { icon: Package, title: "Claim Stubs Customers Can Scan", desc: "Print a claim stub at drop-off with a QR code on it. Customers scan it to see which stage their laundry is at and what they owe - so your staff aren't answering the same phone call all day." },
   { icon: Users, title: "Customer Profiles by Phone", desc: "Every customer is identified by their phone number. Find returning customers instantly - no account, no login needed from their side." },
   { icon: CreditCard, title: "Local Payment Methods", desc: "Accept the payment methods your customers actually use: Cash, GCash, Maya, and Bank Transfer. No foreign card required." },
   { icon: BarChart3, title: "Shop Dashboard", desc: "See how your local shop is performing (today's orders, revenue, and pending pickups) from a single screen you check every morning." },

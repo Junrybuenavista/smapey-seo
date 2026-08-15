@@ -22,7 +22,7 @@ const FEATURES = [
   { icon: CreditCard, title: "Payment Tracking", desc: "Record Cash, GCash, Maya, or Bank Transfer per order. Mark orders as paid and track outstanding balances - no spreadsheet needed." },
   { icon: BarChart3, title: "Basic Dashboard", desc: "See today's orders, pending pickups, and daily revenue from a single live dashboard. Everything you need to start your day." },
   { icon: Shield, title: "2 Team Members", desc: "Invite one staff member to help manage your shop. Role-based access ensures each person only sees what they need." },
-  { icon: MessageSquare, title: "Manual SMS", desc: "Send SMS notifications manually when orders are ready. Auto-SMS (triggered at status changes) is available on the Pro plan." },
+  { icon: MessageSquare, title: "Claim Stubs & QR Tracking", desc: "Print a claim stub for every drop-off and let customers scan its QR code to check their own laundry status - free on every plan. SMS notifications run on credits, included with Pro or available as a top-up." },
 ]
 
 const COMPARISON = [

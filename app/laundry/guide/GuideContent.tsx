@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react"
 import { CheckCircle2,
   Smartphone, Hash, MessageSquare, CreditCard, BarChart3, Rocket,
-  ChevronRight, Zap, BookOpen, ArrowLeft,
+  ChevronRight, Zap, BookOpen, ArrowLeft, Printer, History, Scale,
 } from "lucide-react"
 import InternalLinks from "@/components/InternalLinks"
 
@@ -37,6 +37,8 @@ const GUIDES = [
       { title: "Order ticket system", detail: "A good laundry app auto-generates unique ticket numbers for each order (like YYMMDD-001). This prevents confusion at pickup and helps customers track their orders without calling you." },
       { title: "SMS notifications", detail: "The app should send automatic SMS to customers - at minimum when the order is accepted and when it's ready. Manual texting from your personal number looks unprofessional and wastes time." },
       { title: "Payment flexibility", detail: "Your app should support Cash, GCash, Maya, and Bank Transfer. In the Philippines, most customers pay via GCash - your system should record and track this per order." },
+      { title: "Printed claim stubs", detail: "Look for software that prints a proper claim stub on a normal 80mm receipt printer, ideally with a QR code the customer can scan to check their own status. Handwritten stubs get lost and cause arguments at pickup." },
+      { title: "An edit and audit trail", detail: "Mistakes happen at a busy counter. You need to be able to correct a ticket - and to see afterwards who changed it and what changed. Software that lets staff edit amounts silently is a liability on cash orders." },
       { title: "Free plan for small shops", detail: "If you're just starting out, a free plan with no time limit is essential. Avoid apps with 14-day trials that pressure you to upgrade before you've tested the product." },
     ],
     tip: "LaundryOS offers a free plan with no credit card required. You can test every feature before deciding to upgrade.",
@@ -49,11 +51,53 @@ const GUIDES = [
     description: "Order tracking is the foundation of any laundry app. It lets you and your staff know exactly where each order is at every stage of the process.",
     steps: [
       { title: "Received", detail: "When a customer drops off laundry, you create an order: phone number, kilos, service type (e.g. Wash Dry Fold), and payment method. A ticket number is generated automatically." },
-      { title: "Washing → Drying → Ready", detail: "As laundry moves through your shop, you update the status. Staff can see the current state of every order without asking you - reducing confusion during busy hours." },
+      { title: "Washing → Drying → Folding → Ready", detail: "As laundry moves through your shop, you update the status through each stage. Staff can see the current state of every order without asking you - reducing confusion during busy hours. Tapped the wrong stage? You can move a ticket back a step." },
       { title: "Released", detail: "When a customer picks up their order and pays, you mark it Released. The order moves to your completed records and is counted in your daily revenue." },
       { title: "Full order history", detail: "Every order is permanently stored. You can search by ticket number, customer phone, or date to find past orders, resolve disputes, or review payment history." },
     ],
     tip: "Teach your staff to update order status in real time. Customers who call to check on their laundry can be answered in seconds.",
+  },
+  {
+    id: "claim-stubs",
+    icon: Printer,
+    title: "Claim Stubs & Customer Order Tracking",
+    badge: "Customer Experience",
+    description: "Print a claim stub for every drop-off and let customers check their own laundry status by scanning it - no phone calls, no app to install.",
+    steps: [
+      { title: "Print a stub at drop-off", detail: "After you create an order, print a claim stub and hand it to the customer. It shows your shop name, the ticket number, the service, the weight, the total, and whether they've paid. It replaces the handwritten stubs most shops still use." },
+      { title: "Works on a receipt printer", detail: "The stub is sized for a standard 80mm thermal receipt printer, the same kind used at any sari-sari store or carinderia POS. If you only have a normal printer, it still prints on A4 with a cut line." },
+      { title: "Customers scan the QR code", detail: "Every stub carries a QR code. The customer scans it with their phone camera and sees a page showing exactly which stage their laundry is at - washing, drying, folding, or ready for pickup - plus the amount due." },
+      { title: "No account, no app, no login", detail: "The tracking page opens straight in their browser. Customers never create an account or download anything. The link works on any phone, and each stub has its own private code, so nobody can see another customer's order." },
+    ],
+    tip: "This is the fastest way to cut down 'is my laundry ready po?' phone calls - and because customers check for themselves, you spend fewer SMS credits chasing them.",
+  },
+  {
+    id: "fixing-mistakes",
+    icon: History,
+    title: "Fixing Mistakes & Staff Accountability",
+    badge: "Operations",
+    description: "Staff mis-type weights during a busy morning. You need a way to correct a ticket without losing the record of what changed - especially for cash orders.",
+    steps: [
+      { title: "Edit any ticket", detail: "Weighed 5.5kg but typed 55? Open the ticket and edit it. You can change the service, the weight, the add-ons, the pickup time, and the notes. The total recalculates automatically, so your revenue figures stay correct." },
+      { title: "Cancel with a reason", detail: "For a duplicate ticket or a customer who never came back, cancel the ticket and record why. A cancelled ticket stops counting toward that customer's visits and lifetime kilos, so your reports don't get padded." },
+      { title: "Every change is logged", detail: "Each ticket keeps a history of what happened: who created it, who edited it and which fields changed, who marked it paid, and who cancelled it - with a timestamp on each. Nothing is edited silently." },
+      { title: "Paid tickets are protected", detail: "Once a ticket is marked paid, the weight, service, and add-ons lock. Changing what a customer already paid needs the payment reversed first, and only an owner or admin can do that. Notes and pickup times stay editable." },
+    ],
+    tip: "This matters most for cash. The history log means you can always see who changed an amount and when, which is the only real control you have over a cash counter.",
+  },
+  {
+    id: "pricing-and-minimums",
+    icon: Scale,
+    title: "Pricing & Minimum Kilos",
+    badge: "Billing",
+    description: "Most laundry shops price per kilo but won't run a machine for a single kilo. Setting a minimum protects you on small loads.",
+    steps: [
+      { title: "Set a price per kilo", detail: "Each service type has its own rate - for example Wash Dry Fold at ₱60/kg and Dry Clean at a higher rate. You can add as many service types as your shop offers and deactivate ones you no longer run." },
+      { title: "Add a minimum charge", detail: "Give a service a minimum weight, say 3kg. A customer who brings 1.5kg is billed as 3kg, because the machine, water, and detergent cost you the same either way." },
+      { title: "The stub explains the charge", detail: "When a minimum applies, both the real weight and the billed weight appear on the claim stub and in the SMS. The customer sees 'billed at 3kg minimum' instead of a total that looks like the wrong arithmetic - which prevents arguments at the counter." },
+      { title: "Add-ons on top", detail: "Charge separately for fabric conditioner, hangers, stain treatment, or express handling. Add-ons are recorded per order with their own note, so you can see what customers actually pay extra for." },
+    ],
+    tip: "If you're not sure what minimum to set, look at your smallest profitable load. Most shops in the Philippines use 3kg to 5kg.",
   },
   {
     id: "sms-notifications",
@@ -65,9 +109,9 @@ const GUIDES = [
       { title: "Order received notification", detail: "When you accept a new order, an SMS is automatically sent to the customer's phone number confirming their order and ticket number. This sets expectations and builds trust." },
       { title: "Ready for pickup notification", detail: "When you mark an order as Ready, the customer gets an SMS immediately. This reduces the need for customers to call and ask - and gets them in the door faster." },
       { title: "No app needed for customers", detail: "SMS goes directly to the customer's phone. They don't need to download an app, create an account, or check a website. Plain text works on all phones, even older ones." },
-      { title: "Toggle on or off", detail: "If you want to control when SMS is sent, you can toggle auto-notifications on or off from the admin panel. You can also send SMS manually at any point during an order." },
+      { title: "You only pay for what sends", detail: "Each notification uses one SMS credit. The Pro plan includes 1,000 credits and you can top up a prepaid balance at any time. If a message can't be delivered, no credit is used - the ticket shows you why instead." },
     ],
-    tip: "On the Pro plan, SMS is sent automatically when order status changes. On the Free plan, you can trigger SMS manually with one tap.",
+    tip: "The Free plan doesn't include SMS credits, so notifications start once you top up or move to Pro. Printed claim stubs with QR tracking work on every plan, including Free - many shops start there and add SMS later.",
   },
   {
     id: "payment-options",
@@ -91,9 +135,10 @@ const GUIDES = [
     description: "Getting started with Smapey LaundryOS takes less than 5 minutes. No training, no installation, no complicated setup.",
     steps: [
       { title: "Create your free account", detail: "Go to smapey.com/laundry and click Get Started. Select the LaundryOS product and the Free plan. No credit card required." },
-      { title: "Set up your service types", detail: "Add the services your shop offers - Wash Dry Fold, Dry Clean, Steam Press, etc. Set a price per kilogram or per piece for each service." },
+      { title: "Set up your service types", detail: "Add the services your shop offers - Wash Dry Fold, Dry Clean, Steam Press, etc. Set a price per kilogram for each one, and a minimum weight if you don't want to run a machine for a single kilo." },
       { title: "Accept your first order", detail: "Click New Order. Enter the customer's phone number and name. Choose the service type, enter the weight in kilos, and submit. Ticket number is auto-generated." },
-      { title: "Update order status as you go", detail: "As your laundry moves through washing and drying, update the status. When it's ready, mark it Ready - the customer gets an SMS automatically." },
+      { title: "Print the claim stub", detail: "Hand the customer their stub. They can scan the QR on it to check their own laundry status later, instead of calling your shop." },
+      { title: "Update order status as you go", detail: "As your laundry moves through washing, drying, and folding, update the status. When it's ready, mark it Ready - the customer's tracking page updates immediately." },
       { title: "Collect payment and release", detail: "When the customer arrives, confirm payment via Cash, GCash, or Maya. Mark the order as Released - it's counted in your daily revenue." },
     ],
     tip: "Your first order takes about 30 seconds to create. Most shop owners are fully set up within 10 minutes of signing up.",
