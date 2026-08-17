@@ -13,7 +13,7 @@ const variant: StoreVariant = {
   features: {
     eyebrow: "Inventory System Examples",
     heading: "How different stores use an inventory management system",
-    sub: "Whether you sell beverages, clothes, or hardware, the core job is the same: know what you have, know when to reorder, and know what's selling.",
+    sub: "Whether you sell beverages, clothes, or hardware, the core job is the same: know what you have, know when to reorder, know what's selling, and know who still owes you.",
   },
   cta: {
     heading: "See your own inventory management system in action.",

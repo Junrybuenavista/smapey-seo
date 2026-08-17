@@ -4,11 +4,12 @@ import { useState, useEffect, useRef } from "react"
 import {
   Package, ScanLine, BarChart3, AlertCircle, Truck,
   ClipboardList, RefreshCw, Users, ScanBarcode, Camera, QrCode, TrendingUp,
-  Zap, CheckCircle2, ChevronRight, Menu, X,
+  Zap, CheckCircle2, ChevronRight, Menu, X, HandCoins, History,
 } from "lucide-react"
 import { usePricing, type Plan } from "@/lib/usePricing"
 import InternalLinks from "@/components/InternalLinks"
 import BookDemoForm from "@/components/BookDemoForm"
+import { FAQS } from "@/app/store/faqs"
 
 const INK = "#161616"
 const BLUE = "#2f6bff"
@@ -21,7 +22,9 @@ const FEATURES = [
   { icon: ScanLine, title: "Point of Sale (POS)", desc: "Tap a product to add it to the cart, adjust quantities by typing or using +/− buttons, apply a discount, choose a payment method, enter cash tendered, and the change calculates automatically." },
   { icon: AlertCircle, title: "Low Stock Alerts", desc: "Set a reorder threshold for any product. When stock drops at or below that level, an alert appears on your dashboard so you can restock before you run out." },
   { icon: Truck, title: "Supplier Management", desc: "Keep a contact list of your suppliers - name, contact person, phone, email, and address. Link products to suppliers so you always know who to call when stock runs low." },
-  { icon: RefreshCw, title: "Stock Adjustments", desc: "Log restocks and manual adjustments with a reason and quantity. Every movement is recorded so you have a full audit trail of how stock levels changed over time." },
+  { icon: HandCoins, title: "Customer Records & Utang", desc: "Keep a customer list with phone, address, and an optional credit limit. Sell on utang straight from the POS, see who owes what at a glance, and record payments as they come in. Unlimited customers on every plan, including free." },
+  { icon: History, title: "Stock Movement History", desc: "Every restock, sale, adjustment, and voided sale is logged with the date, quantity, supplier, and your note. Filter by product or movement type to answer \"where did my stock go?\" in seconds." },
+  { icon: RefreshCw, title: "Stock Adjustments", desc: "Log a supplier delivery as a restock, or run a stock take and enter the quantity you actually counted, Smapey works out the difference and records it. Spoilage, breakage, and miscounts all leave a trail." },
   { icon: ClipboardList, title: "Sales History", desc: "Every completed sale is logged with its items, totals, payment method, and sale number. Filter by date or method, open any sale to view the full breakdown, or void it if needed." },
   { icon: BarChart3, title: "Sales Analytics", desc: "7-day revenue trend, top-selling products, payment method breakdown, and plan usage on one analytics screen. All charts refresh automatically with every new sale." },
   { icon: Users, title: "Team Access", desc: "Invite staff as Admin or Member and control which features each role can access - cashier staff get POS access, managers get analytics and product management." },
@@ -34,21 +37,10 @@ const FEATURES = [
 const STEPS = [
   { num: "01", title: "Add your products", desc: "Create categories first (beverages, snacks, cleaning supplies) then add products with price, cost, stock, and a reorder threshold. Scan the barcode with your phone camera to fill it in instantly, and snap a product photo directly from the camera." },
   { num: "02", title: "Set up suppliers", desc: "Add your regular suppliers and link products to them. When stock runs low and an alert fires, you know exactly who to contact to restock." },
-  { num: "03", title: "Ring up sales on POS", desc: "Open POS, scan a barcode or tap a product to add it to the cart. Choose Cash (enter amount tendered, change auto-calculated) or QR (your QR code pops up for the customer to scan). Tap checkout when done." },
-  { num: "04", title: "Track revenue & profit", desc: "Your dashboard shows today's revenue, profit, sales count, and low stock items. The Analytics page shows your 7-day revenue trend and top-selling products. Sales history shows per-sale profit." },
+  { num: "03", title: "Ring up sales on POS", desc: "Open POS, scan a barcode or tap a product to add it to the cart. Choose Cash (enter amount tendered, change auto-calculated) or QR (your QR code pops up for the customer to scan). Selling to a suki on utang? Pick the customer, enter how much they're paying now, and the rest is recorded as their balance." },
+  { num: "04", title: "Track revenue, profit & utang", desc: "Your dashboard shows today's revenue, profit, sales count, low stock items, and how much utang is still out there. The Analytics page shows your 7-day revenue trend and top sellers, and the Customers page shows exactly who owes what." },
 ]
 
-const FAQS = [
-  { q: "Can I scan barcodes with my phone camera?", a: "Yes. When adding or editing a product, tap the scan icon next to the Barcode field. Your phone's back camera opens, just point it at the barcode on the packaging and it's detected and filled in automatically. Supports EAN-13, EAN-8, UPC-A, UPC-E, Code 128, Code 39, Code 93, and QR codes. You can also type the barcode manually if you prefer." },
-  { q: "Can I take product photos without leaving the app?", a: "Yes. In the Add/Edit Product form, tap Take Photo to open your phone's camera directly inside the app. Frame the shot, tap the shutter button, and the photo is set instantly. You can also tap Upload Photo to pick an existing image from your gallery instead." },
-  { q: "Can I track inventory with the free plan?", a: "Yes. The free plan includes up to 50 products with full stock tracking, reorder thresholds, low stock alerts, stock adjustment logs, and supplier links. You only need to upgrade when your product count or sales volume grows." },
-  { q: "Is there really a free plan?", a: "Yes, permanently free, not a trial. The free plan includes 50 products, 200 sales per month, the full POS, stock adjustments, low stock alerts, and 2 team members. No credit card required." },
-  { q: "How does the POS work?", a: "Open the POS screen, tap any product to add it to the cart, type or use +/− to change quantities. Apply a discount if needed, choose Cash, GCash, Maya, Bank, or Other as the payment method. For cash, enter the amount tendered and the change is calculated instantly. Tap Checkout to complete the sale and deduct stock." },
-  { q: "Does it automatically deduct stock when I make a sale?", a: "Yes. Every time you complete a sale through the POS, the stock for each product in the cart is reduced automatically. If you void a sale later, the stock is restored." },
-  { q: "What payment methods does the POS support?", a: "Cash and QR. For Cash, enter the amount tendered and the change is calculated instantly. For QR, your uploaded QR code (GCash, Maya, bank, whatever you set up) is shown full-screen for the customer to scan. Once they pay, you tap Payment Received to complete the sale." },
-  { q: "How does QR payment work?", a: "Go to Store → QR Setup and upload a screenshot of your GCash, Maya, or bank QR code. From then on, when a customer chooses QR at the POS, your QR code appears on screen with the total amount. The customer scans it on their phone and sends the payment. You tap Payment Received to confirm and complete the sale." },
-  { q: "Can I track profit per sale?", a: "Yes. When you add a product, set its cost price. Smapey records that cost at the time of each sale so your profit stays accurate even if you change the price later. You'll see today's profit on the dashboard and a profit column on every sale in your sales history." },
-]
 
 export type StoreVariant = {
   currentPath: string
@@ -130,7 +122,7 @@ function Navbar({ variant }: { variant: StoreVariant }) {
 function Hero() {
   const strip = [
     { title: "Sale #318", tag: "PAID", tagBg: "#0d9f6e", tagC: "#fff", sub: "3 items · Cash", val: "₱640", valC: INK, border: INK },
-    { title: "Coke 1.5L", tag: "IN STOCK", tagBg: "#eafaf0", tagC: "#059669", sub: "Beverages", val: "128 left", valC: INK, border: INK },
+    { title: "Aling Nena", tag: "UTANG", tagBg: "#fde8e8", tagC: "#c02626", sub: "2 unpaid sales", val: "₱240 owed", valC: "#c02626", border: INK },
     { title: "Lucky Me", tag: "LOW STOCK", tagBg: AMBER, tagC: INK, sub: "Noodles", val: "7 left · reorder", valC: "#b07219", border: AMBER },
     { title: "Today", tag: "POS", tagBg: "#fff", tagC: BLUE, sub: "42 sales · 137 items", val: "₱24,180", valC: "#fff", border: INK, dark: true },
   ]
@@ -222,6 +214,16 @@ const SHOWCASE = [
     title: "Know your profit at a glance",
     desc: "Your dashboard shows today's revenue, profit, sales count, and low-stock alerts in one view. Profit is calculated from the cost price recorded at each sale, so the numbers stay accurate over time.",
     bullets: ["Today's profit, live", "Low-stock alerts before you run out", "7-day revenue trend & top sellers"],
+  },
+  {
+    // Cloudinary transform: the source is 2720x1536 / 3.7MB, far heavier than the
+    // rest of the set. f_auto,q_auto,w_1360 serves it at ~97KB, identical at display size.
+    img: "https://res.cloudinary.com/dxhwfv0jo/image/upload/f_auto,q_auto,w_1360/v1786939005/Store_utang_wcl9uz.png",
+    alt: "Store owner counting cash at closing time with her customer utang list open on her phone",
+    eyebrow: "Customers & Utang",
+    title: "Never lose track of who owes you",
+    desc: "Sell to a suki on utang straight from the POS and the balance is recorded against their name, no notebook to reconcile later. Take payments as they come in and each sale settles itself, oldest debt first.",
+    bullets: ["Utang recorded at checkout", "Payments clear the oldest debt first", "Total receivable on your dashboard"],
   },
 ]
 

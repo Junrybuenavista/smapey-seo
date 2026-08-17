@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect, useRef } from "react"
-import { CheckCircle2, Package, ScanLine, RefreshCw, BarChart3, Truck, ChevronRight, ScanBarcode, Camera, QrCode, TrendingUp, Menu, X, ArrowLeft, BookOpen } from "lucide-react"
+import { CheckCircle2, Package, ScanLine, RefreshCw, BarChart3, Truck, ChevronRight, ScanBarcode, Camera, QrCode, TrendingUp, Menu, X, ArrowLeft, BookOpen, HandCoins, History, Users } from "lucide-react"
 import InternalLinks from "@/components/InternalLinks"
 
 const INK = "#161616"
@@ -63,6 +63,12 @@ const SECTIONS: { icon: React.ComponentType<{ className?: string; style?: React.
         label: "QR payment",
         text: "Tap Checkout and your QR code pops up full-screen showing the exact total. The customer scans it with GCash, Maya, or their bank app and sends the payment. Once paid, tap Payment Received, Complete Sale to record it.",
       },
+      {
+        type: "tip",
+        icon: HandCoins,
+        label: "Selling on utang",
+        text: "Pick the customer in the Customer field first, a Paying now box appears. Leave it blank to settle the whole sale, or type a smaller amount (even 0) and the rest becomes their utang. The summary shows exactly how much is being paid and how much is left owing, and the button changes to Checkout on utang so you can't do it by accident. Walk-ins without a customer record always pay in full.",
+      },
     ],
   },
   {
@@ -83,13 +89,52 @@ const SECTIONS: { icon: React.ComponentType<{ className?: string; style?: React.
     icon: RefreshCw,
     title: "5. Adjust stock manually",
     body: [
-      "Open any product and use the Adjust Stock button to log a RESTOCK (adding stock from a supplier delivery) or an ADJUSTMENT (correcting a discrepancy, writing off spoilage, etc.).",
-      "Enter the quantity, choose the type, add a reason, and save. All stock movements are logged so you have a full audit trail and can see how stock levels changed over time.",
+      "Open Products and tap the stock icon on any product, on desktop it's the Stock button in the row, on your phone it's the box icon on the product card. Choose Restock or Adjustment.",
+      {
+        type: "tip",
+        icon: RefreshCw,
+        label: "Restock vs Adjustment",
+        text: "Restock ADDS to what you have, use it for a supplier delivery: 20 on hand plus a restock of 50 becomes 70. Adjustment SETS the total to what you actually counted, use it for a stock take: 20 on hand and you count 17, enter 17 and Smapey records the −3 for you. That's how you write off spoilage, breakage, or a miscount.",
+      },
+      "Before you save, the modal spells out what will happen, for example \"Stock will go from 20 to 17 (−3)\", so there's no guessing which mode you're in. Add a note explaining the change while you remember it.",
+      {
+        type: "tip",
+        icon: History,
+        label: "Check the Stock History page",
+        text: "Store → Stock History lists every movement: restocks, sales, adjustments, and stock returned by a voided sale, each with the date, quantity, supplier, and your note. Filter by product or by movement type when you need to trace where a product's stock actually went.",
+      },
+    ],
+  },
+  {
+    icon: HandCoins,
+    title: "6. Track utang and customer payments",
+    body: [
+      "Open Store → Customers and tap Add Customer. Name is all you need, but phone and address help when it's time to follow up. You can also set a credit limit, the most utang you'll allow that person to carry.",
+      "Once a customer exists, you can sell to them on utang at the POS (see step 3). Their balance builds up automatically as unpaid sales accumulate, so there's no separate notebook to keep in sync.",
+      {
+        type: "tip",
+        icon: Users,
+        label: "Seeing who owes you",
+        text: "The Customers page shows each person's outstanding balance, lifetime spend, and last purchase. Tap With utang only to filter down to just the people who owe you. Your total receivable also appears on the Store dashboard as Utang Receivable, so you can see at a glance how much money is still out there.",
+      },
+      {
+        type: "tip",
+        icon: HandCoins,
+        label: "Recording a payment",
+        text: "Tap Pay next to the customer, enter the amount, choose how they paid, and save. The payment is applied to their oldest unpaid sale first, so the debt clears in the order it built up. You'll see the resulting balance before you confirm, and each sale moves from Utang to Partial to Paid as it's settled. Smapey won't accept more than the person actually owes.",
+      },
+      "Tap a customer's name any time to see their full history, every purchase with its payment status, and every payment they've made.",
+      {
+        type: "tip",
+        icon: CheckCircle2,
+        label: "Credit limits",
+        text: "If you set a limit, the POS shows how much room is left before you ring up the sale and blocks checkout if it would go over. Leave the limit blank for regulars you trust and there's no cap at all.",
+      },
     ],
   },
   {
     icon: BarChart3,
-    title: "6. Track sales, profit, and analytics",
+    title: "7. Track sales, profit, and analytics",
     body: [
       "The Dashboard shows today's total revenue, profit, number of sales, and any products currently below their reorder threshold. Hit Refresh any time to pull the latest numbers.",
       {
@@ -99,7 +144,7 @@ const SECTIONS: { icon: React.ComponentType<{ className?: string; style?: React.
         text: "Profit is calculated as your total revenue minus the cost of goods sold, using the cost price you entered for each product. It's recorded at the time of sale, so it stays accurate even if you change the cost price later. Products without a cost price set will not contribute to the profit total.",
       },
       "The Analytics page shows a 7-day revenue trend line chart, a horizontal bar chart of your top-selling products by quantity, and a pie chart breaking down sales by payment method.",
-      "The Sales page shows every transaction with its total, profit, payment method, and status. Click View on any sale to see the full breakdown including per-item detail and total profit for that sale.",
+      "The Sales page shows every transaction with its total, profit, payment method, and status. Sales made on utang carry an Utang or Partial badge next to the customer's name, so unpaid business never hides inside a list of completed sales. Click View on any sale to see the full breakdown including per-item detail, total profit, and how much of it is still owed.",
       "Plan Usage shows how many products and sales you've used against your plan's limits, useful if you're on the Free plan and approaching your cap.",
     ],
   },
@@ -196,7 +241,7 @@ export default function GuideContent() {
             How to use Smapey Inventory &amp; POS Manager
           </h1>
           <p className="text-lg leading-relaxed" style={{ color: "#54514c" }}>
-            Add products, scan barcodes, accept QR payments, and track daily profit, this guide walks through every step.
+            Add products, scan barcodes, accept QR payments, record utang, and track daily profit, this guide walks through every step.
           </p>
           <div className="flex flex-wrap items-center justify-center gap-6 text-xs font-semibold mt-8" style={{ color: "#54514c" }}>
             {["5-minute setup", "No training required", "Free plan available"].map((t) => (

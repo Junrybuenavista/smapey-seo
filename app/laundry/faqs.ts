@@ -1,9 +1,12 @@
 // Kept out of the "use client" content module so the server page can
 // read it directly to emit FAQPage JSON-LD.
 export const FAQS: { q: string; a: string }[] = [
-  { q: "Do customers need to install an app?", a: "No. SMS notifications go directly to their phone number. Customers don't need to download or install anything." },
-  { q: "How are ticket numbers generated?", a: "Automatically in YYMMDD-NNN format (e.g., 260518-001), unique per shop per day. You never have to think about numbering again." },
-  { q: "What payment methods are supported?", a: "Cash, GCash, Maya, Bank Transfer, and Other. You can record the payment method for each order separately." },
-  { q: "Can I disable SMS notifications?", a: "Yes. SMS is an optional feature you can toggle on or off from the admin panel. You stay in full control of when messages are sent." },
+  { q: "Do customers need to install an app?", a: "No. Customers scan the QR code on their printed claim stub to see their laundry status in any phone browser, and SMS notifications go directly to their phone number. There is nothing to download and no account to create." },
+  { q: "Can customers check their order status themselves?", a: "Yes. Every claim stub has a QR code linking to a private tracking page for that order. It shows the current stage - washing, drying, folding, or ready for pickup - and the amount due. Each stub has its own private code, so no customer can see another customer's order." },
+  { q: "Can I print claim stubs?", a: "Yes. Claim stubs are sized for a standard 80mm thermal receipt printer and include your shop name and logo, the ticket number, service, weight, total, payment status, and a tracking QR code. If you only have a regular printer, the stub prints on A4 with a cut line." },
+  { q: "How are ticket numbers generated?", a: "Automatically in YYMMDD-NNN format (e.g., 260518-001), unique per shop per day. Numbers never repeat or collide, even when two staff encode orders at the same moment." },
+  { q: "What if my staff types the wrong weight?", a: "You can edit any ticket - service, weight, add-ons, pickup time, and notes - and the total recalculates automatically. Every edit is recorded with who made it and which fields changed, so corrections are traceable. Once a ticket is paid, the amount locks until an owner or admin reverses the payment." },
+  { q: "Can I set a minimum charge per load?", a: "Yes. Each service type can have a minimum weight. If a customer brings 1.5kg to a service with a 3kg minimum, the order bills as 3kg. The stub and the SMS both show the real weight and the billed weight, so the charge is clear to the customer." },
+  { q: "What payment methods are supported?", a: "Cash, GCash, Maya, Bank Transfer, and Other. You can record the payment method for each order separately, and an owner or admin can reverse a payment that was recorded by mistake." },
+  { q: "Is SMS included in the free plan?", a: "The Free plan does not include SMS credits. The Pro plan includes 1,000, and you can top up a prepaid balance on any plan. Printed claim stubs and customer QR tracking work on every plan, including Free, so many shops start there and add SMS later." },
 ]
-

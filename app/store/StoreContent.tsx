@@ -8,12 +8,12 @@ const variant: StoreVariant = {
     titleLead: "Smarter inventory,",
     titleAccent: "faster sales.",
     subtitle:
-      "Track stock levels, ring up sales on a tap-to-add POS, manage suppliers, and get daily revenue summaries, everything a small retail store needs, free forever.",
+      "Track stock levels, ring up sales on a tap-to-add POS, record who owes you utang, manage suppliers, and get daily revenue summaries, everything a small retail store needs, free forever.",
   },
   features: {
     eyebrow: "Features",
     heading: "Built for sari-sari stores, retail shops, and boutiques",
-    sub: "From your first product to your hundredth daily sale, every essential a small store needs, without the enterprise price tag.",
+    sub: "From your first product to your hundredth daily sale, and every peso of utang in between, every essential a small store needs, without the enterprise price tag.",
   },
   cta: {
     heading: "Ready to take control of your inventory?",

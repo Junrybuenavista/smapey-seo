@@ -19,9 +19,9 @@ const display = { fontFamily: "'Hanken Grotesk', system-ui, sans-serif" }
 const FEATURES = [
   { icon: Package, title: "Complete Order Management", desc: "Accept walk-in orders, assign service types, and move orders through a clear status pipeline - Received, Washing, Drying, Ready, Released." },
   { icon: MessageSquare, title: "Automatic SMS Updates", desc: "Customers get an SMS when you accept their order and another when it's ready for pickup. No manual texting - it all happens automatically." },
-  { icon: Hash, title: "Auto-Generated Ticket Numbers", desc: "Every order gets a unique ticket number in YYMMDD-NNN format. Customers use this to check their order status without calling you." },
+  { icon: Hash, title: "Auto-Generated Ticket Numbers", desc: "Every order gets a unique ticket number in YYMMDD-NNN format, printed on a claim stub with a QR code. Customers scan it to check their order status instead of calling you." },
   { icon: Users, title: "Customer Profiles & History", desc: "Find or create customers by phone number in seconds. Every order they've placed (including amounts and status) is stored in their profile." },
-  { icon: CreditCard, title: "Flexible Payment Tracking", desc: "Record Cash, GCash, Maya, or Bank Transfer per order. Mark orders as paid or partially paid and see outstanding balances at a glance." },
+  { icon: CreditCard, title: "Flexible Payment Tracking", desc: "Record Cash, GCash, Maya, or Bank Transfer per order, and see your total unpaid balance at a glance. Recorded a payment by mistake? An owner or admin can reverse it, and the change is logged." },
   { icon: StickyNote, title: "Special Order Notes", desc: "Add internal notes for customer preferences - delicate fabrics, specific detergents, folding styles. Staff can see notes without contacting the customer." },
 ]
 
