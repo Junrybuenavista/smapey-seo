@@ -1,6 +1,6 @@
 import Link from "next/link"
 import SiteNavbar from "@/components/SiteNavbar"
-import Footer from "@/components/Footer"
+import SiloFooter from "./SiloFooter"
 import SiloBreadcrumbs from "./SiloBreadcrumbs"
 import SiloChildren from "./SiloChildren"
 import SiloUpwardLinks from "./SiloUpwardLinks"
@@ -135,7 +135,7 @@ export default function SiloGuide({
       {isHub ? <SiloRelatedHubs path={path} /> : <SiloSiblings ctx={ctx} />}
 
       <SiloUpwardLinks ctx={ctx} />
-      <Footer />
+      <SiloFooter />
     </main>
   )
 }
