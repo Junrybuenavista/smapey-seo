@@ -129,7 +129,7 @@
       "anchors": [
         "boarding house utility billing"
       ],
-      "built": false
+      "built": true
     },
     {
       "path": "/boarding-house/boarding-house-occupancy-tracking",
@@ -151,10 +151,10 @@
       "anchors": [
         "boarding house occupancy tracking"
       ],
-      "built": false
+      "built": true
     },
     {
-      "path": "/boarding-house/boarding-house-business-plan-sample-philippines",
+      "path": "/boarding-house/boarding-house-permits-and-roi",
       "tier": 3,
       "branch": "C",
       "parent": "/boarding-house/boarding-house-business-philippines",
@@ -165,7 +165,7 @@
         1500,
         2000
       ],
-      "source": "rewrite",
+      "source": "new",
       "schema": [
         "Article",
         "BreadcrumbList"
@@ -173,7 +173,29 @@
       "anchors": [
         "boarding house permits and roi"
       ],
-      "note": "UNRESOLVED: this existing page ranks for 'boarding house business plan sample philippines', which is not the Tier 3 C primary keyword. Slug and PK disagree. Either accept the mismatch, or build a new /boarding-house/boarding-house-permits-and-roi and demote this page to a Tier 4 post under it. Decide before the Phase 3 rewrite.",
+      "built": true
+    },
+    {
+      "path": "/boarding-house/boarding-house-business-plan-sample-philippines",
+      "tier": 4,
+      "branch": "C",
+      "parent": "/boarding-house/boarding-house-permits-and-roi",
+      "title": "Business Plan Sample",
+      "h1": "Boarding house business plan sample (Philippines)",
+      "primaryKeyword": "boarding house business plan sample philippines",
+      "words": [
+        1200,
+        1800
+      ],
+      "source": "rewrite",
+      "schema": [
+        "Article",
+        "BreadcrumbList"
+      ],
+      "anchors": [
+        "a sample boarding house business plan",
+        "boarding house business plan sample"
+      ],
       "built": true
     },
     {
@@ -358,7 +380,7 @@
       "path": "/blog/boarding-house-permit-requirements-philippines",
       "tier": 4,
       "branch": "C",
-      "parent": "/boarding-house/boarding-house-business-plan-sample-philippines",
+      "parent": "/boarding-house/boarding-house-permits-and-roi",
       "cms": true,
       "post": 8,
       "title": "Boarding House Permits and Requirements in the Philippines: 2026 Checklist",
@@ -386,7 +408,7 @@
       "path": "/blog/how-much-boarding-house-earn-philippines",
       "tier": 4,
       "branch": "C",
-      "parent": "/boarding-house/boarding-house-business-plan-sample-philippines",
+      "parent": "/boarding-house/boarding-house-permits-and-roi",
       "cms": true,
       "post": 9,
       "title": "How Much Can a Boarding House Earn? A Real ROI Breakdown",

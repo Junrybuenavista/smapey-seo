@@ -1,8 +1,13 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react"
-import InternalLinks from "@/components/InternalLinks"
+import SiloBreadcrumbs from "@/components/silo/SiloBreadcrumbs"
+import SiloSiblings from "@/components/silo/SiloSiblings"
+import SiloUpwardLinks from "@/components/silo/SiloUpwardLinks"
+import { siloContextFor } from "@/lib/silo"
 import { Building2, CheckCircle2, ChevronRight, Banknote, BedDouble, Zap, Menu, X } from "lucide-react"
+
+const PATH = "/boarding-house/boarding-house-business-plan-sample-philippines"
 
 const INK = "#161616"
 const BLUE = "#2f6bff"
@@ -97,6 +102,7 @@ export default function BoardingHousePlanContent() {
   return (
     <main style={{ fontFamily: display.fontFamily }}>
       <Navbar />
+      <SiloBreadcrumbs ctx={siloContextFor(PATH)} />
 
       {/* HERO */}
       <section className="relative overflow-hidden py-20 px-6" style={{ background: CREAM }}>
@@ -263,7 +269,10 @@ export default function BoardingHousePlanContent() {
         </Animate>
       </section>
 
-      <InternalLinks cluster="boarding-house" currentPath="/boarding-house/boarding-house-business-plan-sample-philippines" />
+      {/* A Tier 4 leaf: laterally within branch C only, then up to its parent
+          and the money page. The cluster-wide module linked across branches. */}
+      <SiloSiblings ctx={siloContextFor(PATH)} />
+      <SiloUpwardLinks ctx={siloContextFor(PATH)} />
 
       <footer className="px-6 py-8" style={{ background: CREAM, borderTop: `2px solid ${INK}` }}>
         <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">

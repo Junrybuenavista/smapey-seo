@@ -1,5 +1,6 @@
 import JsonLd from "@/components/JsonLd"
-import { buildMetadata, breadcrumbSchema } from "@/lib/seo"
+import { buildMetadata, breadcrumbSchema, SITE } from "@/lib/seo"
+import { siloNode } from "@/lib/silo"
 import BoardingHousePlanContent from "./BoardingHousePlanContent"
 
 const PATH = "/boarding-house/boarding-house-business-plan-sample-philippines"
@@ -10,6 +11,7 @@ export const metadata = buildMetadata({
   title: TITLE,
   description: DESCRIPTION,
   path: PATH,
+  type: "article",
 })
 
 export default function Page() {
@@ -17,6 +19,14 @@ export default function Page() {
     <>
       <JsonLd
         schema={[
+          {
+            "@context": "https://schema.org",
+            "@type": "Article",
+            headline: siloNode(PATH)?.h1 ?? TITLE,
+            description: DESCRIPTION,
+            mainEntityOfPage: { "@type": "WebPage", "@id": `${SITE}${PATH}` },
+            publisher: { "@id": `${SITE}/#organization` },
+          },
           breadcrumbSchema(PATH),
         ]}
       />
