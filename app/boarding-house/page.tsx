@@ -9,7 +9,7 @@ import BoardingHouseContent from "./BoardingHouseContent"
 import { FAQS } from "./faqs"
 
 const PATH = "/boarding-house"
-const TITLE = "Boarding House Management System - Free for Philippine Boarding Houses | Smapey"
+const TITLE = "Boarding House Management System for Philippine Landlords | Smapey"
 const DESCRIPTION = "Smapey Boarding House Manager is a free boarding house management system for the Philippines. Rooms and beds, tenant ledgers, rent billing with automatic email statements, utility Quick Fill and Excel import, cashflow and expense tracking, and maintenance with QR issue reporting."
 
 export const metadata = buildMetadata({

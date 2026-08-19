@@ -13,8 +13,8 @@
       "branch": null,
       "parent": null,
       "title": "Boarding House Management System",
-      "h1": "Boarding House Management System for Philippine Landlords",
-      "primaryKeyword": "boarding house management system philippines",
+      "h1": "Boarding house management system for Philippine landlords",
+      "primaryKeyword": "boarding house management system",
       "words": [
         1200,
         1800
@@ -32,7 +32,14 @@
         "boarding house software built for the Philippines",
         "manage your boarding house in one place"
       ],
-      "built": true
+      "built": true,
+      "secondaryKeywords": [
+        "boarder management system",
+        "boarding house rental management system",
+        "boarding house billing system",
+        "bedspace management system",
+        "boarding house software philippines"
+      ]
     },
     {
       "path": "/boarding-house/boarding-house-management-and-billing-system",

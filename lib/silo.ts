@@ -31,6 +31,8 @@ export type SiloNode = {
   title: string
   h1: string
   primaryKeyword: string
+  /** Related terms the page should also read for. Synonyms only. */
+  secondaryKeywords?: string[]
   /** [min, max] target word count from the build spec. */
   words: [number, number]
   /** Anchor text other pages use when linking TO this node. Rotated, not repeated. */
