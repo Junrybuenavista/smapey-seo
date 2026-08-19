@@ -1,5 +1,5 @@
 import JsonLd from "@/components/JsonLd"
-import { buildMetadata, faqSchema, breadcrumbSchema } from "@/lib/seo"
+import { buildMetadata, faqSchema, breadcrumbSchema, softwareApplicationSchema } from "@/lib/seo"
 import BoardingHouseSystemContent from "./BoardingHouseSystemContent"
 import { FAQS } from "./faqs"
 
@@ -18,6 +18,13 @@ export default function Page() {
     <>
       <JsonLd
         schema={[
+          // The money page carries SoftwareApplication + FAQPage; Organization
+          // is already emitted once in the root layout and referenced by @id.
+          softwareApplicationSchema({
+            name: "Smapey Boarding House Manager",
+            description: DESCRIPTION,
+            path: PATH,
+          }),
           faqSchema(FAQS),
           breadcrumbSchema(PATH),
         ]}

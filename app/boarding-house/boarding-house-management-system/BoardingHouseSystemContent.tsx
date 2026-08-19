@@ -7,7 +7,8 @@ import {
   Wrench, QrCode, BedSingle,
 Menu , X } from "lucide-react"
 import { usePricing, type Plan } from "@/lib/usePricing"
-import InternalLinks from "@/components/InternalLinks"
+import ApexHubLinks from "@/components/silo/ApexHubLinks"
+import BookDemoForm from "@/components/BookDemoForm"
 import { FAQS } from "./faqs"
 
 const INK = "#161616"
@@ -110,10 +111,105 @@ function Hero() {
           <a href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=BOARDING_HOUSE&plan=FREE`} className="flex items-center gap-2 px-7 py-4 rounded-full font-bold text-sm border-2 transition-transform hover:-translate-y-0.5" style={{ ...display, background: AMBER, color: INK, borderColor: INK, boxShadow: `4px 4px 0 ${INK}` }}>
             Start free, no card needed <ChevronRight className="w-4 h-4" />
           </a>
-          <a href="/boarding-house" className="flex items-center gap-2 px-7 py-4 rounded-full font-bold text-sm border-2 bg-white transition-transform hover:-translate-y-0.5" style={{ ...display, color: INK, borderColor: INK }}>View all features</a>
+          <a href="#book-demo" className="flex items-center gap-2 px-7 py-4 rounded-full font-bold text-sm border-2 bg-white transition-transform hover:-translate-y-0.5" style={{ ...display, color: INK, borderColor: INK }}>Book a demo</a>
         </div>
         <div className="mt-16 flex flex-wrap items-center justify-center gap-6 text-xs font-semibold" style={{ color: "#54514c" }}>
           {["No credit card required", "Free plan forever", "Setup in minutes"].map((t) => (<span key={t} className="flex items-center gap-1.5"><CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />{t}</span>))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+function Problem() {
+  const breaks = [
+    "Two people edit the same file and one copy quietly goes stale.",
+    "Nothing tells you a bill is overdue - you have to remember to look.",
+    "A bedspace room is one row, so you cannot see which deck is free.",
+    "Splitting one electric bill across four tenants is manual every month.",
+    "When a tenant disputes a balance, there is no history to point at.",
+  ]
+  return (
+    <section className="py-24" style={{ background: "#fff", fontFamily: display.fontFamily }}>
+      <div className="max-w-4xl mx-auto px-6">
+        <Animate>
+          <p className="text-sm font-bold uppercase tracking-widest mb-3" style={{ color: BLUE }}>The problem</p>
+          <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight mb-6" style={{ color: INK }}>
+            A spreadsheet works until about ten tenants
+          </h2>
+          <p className="text-lg leading-relaxed mb-4" style={{ color: "#54514c" }}>
+            Most boarding houses start in a notebook, then graduate to Excel. That is fine while
+            you can hold the whole house in your head. Past roughly ten tenants - especially once
+            you are renting per bed rather than per room - the spreadsheet stops keeping up:
+          </p>
+        </Animate>
+        <Animate delay={100}>
+          <ul className="space-y-3 mb-6">
+            {breaks.map((line) => (
+              <li key={line} className="flex items-start gap-3 text-base" style={{ color: "#54514c" }}>
+                <AlertTriangle className="w-4 h-4 mt-1 shrink-0" style={{ color: AMBER }} />
+                {line}
+              </li>
+            ))}
+          </ul>
+          <p className="text-lg leading-relaxed font-medium" style={{ color: INK }}>
+            None of that is a discipline problem. It is a tool problem - a grid of cells has no
+            idea what a bed, a tenant, or a due date is.
+          </p>
+        </Animate>
+      </div>
+    </section>
+  )
+}
+
+function BuiltForPH() {
+  const points = [
+    {
+      icon: Banknote,
+      title: "Peso pricing and the payment apps you already use",
+      body: "Rates, bills, deposits, and your cashbook are all in pesos. Print your GCash or Maya QR beside each room's report QR - a tenant scans, sees their exact balance, pays, and attaches the screenshot. Bank transfer and cash are recorded the same way.",
+    },
+    {
+      icon: BedSingle,
+      title: "Bedspacers, and upper versus lower deck",
+      body: "A bedspace room is not one unit at one price. Name each bed - Lower A, Upper A - and give it its own monthly rate, so a lower deck can carry its usual premium. Occupancy counts beds, not rooms, so a room with one free upper deck reads as partly vacant, which is what it is.",
+    },
+    {
+      icon: Zap,
+      title: "Shared utilities, split the way you actually split them",
+      body: "One Meralco or water bill arrives for the whole room. Enter it once and each tenant's statement shows their own share with the computation spelled out, so nobody has to take your word for the arithmetic. Each share is fixed - a roommate paying early never changes what anyone else owes.",
+    },
+    {
+      icon: Shield,
+      title: "Records you can produce when someone asks",
+      body: "Running a boarding house means paperwork - barangay clearance, your mayor's permit, BIR registration - and the questions that come with it. Every tenancy, transfer, deposit, and payment stays on record with dates and amounts, so a tenant ledger or a month of collections is one click, not an evening of scrolling.",
+    },
+  ]
+  return (
+    <section className="py-24" style={{ background: CREAM, fontFamily: display.fontFamily }}>
+      <div className="max-w-5xl mx-auto px-6">
+        <Animate className="text-center mb-14">
+          <p className="text-sm font-bold uppercase tracking-widest mb-3" style={{ color: BLUE }}>Built for the Philippines</p>
+          <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight mb-4" style={{ color: INK }}>
+            Not a foreign rental app with a peso sign
+          </h2>
+          <p className="text-lg max-w-2xl mx-auto leading-relaxed" style={{ color: "#54514c" }}>
+            International property software assumes one tenant, one unit, one bank transfer.
+            Philippine boarding houses do not work that way.
+          </p>
+        </Animate>
+        <div className="grid sm:grid-cols-2 gap-6">
+          {points.map((p, i) => (
+            <Animate key={p.title} delay={i * 80}>
+              <div className="h-full rounded-[22px] border-2 bg-white p-7" style={{ borderColor: INK, boxShadow: `6px 6px 0 ${i % 2 === 0 ? BLUE : AMBER}` }}>
+                <div className="w-11 h-11 rounded-xl border-2 flex items-center justify-center mb-4" style={{ borderColor: INK, background: i % 2 === 0 ? BLUE : AMBER }}>
+                  <p.icon className="w-5 h-5" style={{ color: i % 2 === 0 ? "#fff" : INK }} />
+                </div>
+                <h3 className="text-lg font-extrabold mb-2" style={{ color: INK }}>{p.title}</h3>
+                <p className="text-sm leading-relaxed" style={{ color: "#54514c" }}>{p.body}</p>
+              </div>
+            </Animate>
+          ))}
         </div>
       </div>
     </section>
@@ -209,8 +305,28 @@ function FAQ() {
           {FAQS.map(({ q, a }, i) => (
             <Animate key={i} delay={i * 60}>
               <div className="rounded-[18px] overflow-hidden border-2 bg-white" style={{ borderColor: INK }}>
-                <button onClick={() => setOpen(open === i ? null : i)} className="w-full flex items-center justify-between px-5 py-4 text-left font-bold text-sm" style={{ color: INK }}>{q}<ChevronRight className="w-4 h-4 transition-transform duration-200 shrink-0" style={{ color: BLUE, transform: open === i ? "rotate(90deg)" : "rotate(0deg)" }} /></button>
-                {open === i && <div className="px-5 pb-4 text-sm leading-relaxed pt-3" style={{ color: "#54514c", borderTop: "1px solid rgba(22,22,22,.1)" }}>{a}</div>}
+                <button
+                  onClick={() => setOpen(open === i ? null : i)}
+                  aria-expanded={open === i}
+                  aria-controls={`faq-answer-${i}`}
+                  className="w-full flex items-center justify-between px-5 py-4 text-left font-bold text-sm"
+                  style={{ color: INK }}
+                >
+                  {q}
+                  <ChevronRight className="w-4 h-4 transition-transform duration-200 shrink-0" style={{ color: BLUE, transform: open === i ? "rotate(90deg)" : "rotate(0deg)" }} />
+                </button>
+                {/* Always in the DOM, collapsed with CSS. Rendering the answer
+                    only when open would hide it from crawlers, which cannot
+                    click - and the page asserts FAQPage schema for exactly this
+                    text, so it has to be findable in the markup. */}
+                <div
+                  id={`faq-answer-${i}`}
+                  role="region"
+                  className="px-5 pb-4 text-sm leading-relaxed pt-3"
+                  style={{ color: "#54514c", borderTop: "1px solid rgba(22,22,22,.1)", display: open === i ? "block" : "none" }}
+                >
+                  {a}
+                </div>
               </div>
             </Animate>
           ))}
@@ -301,11 +417,16 @@ export default function BoardingHouseSystemContent() {
     <main>
       <Navbar />
       <Hero />
+      <Problem />
       <Features />
+      <BuiltForPH />
       <Pricing />
       <FAQ />
+      <BookDemoForm product="BOARDING_HOUSE" />
       <CTA />
-      <InternalLinks cluster="boarding-house" currentPath="/boarding-house/boarding-house-management-system" />
+      {/* The money page links only to the three hubs - never to a blog post,
+          which would leak the equity the silo exists to accumulate. */}
+      <ApexHubLinks />
       <Footer />
     </main>
   )
