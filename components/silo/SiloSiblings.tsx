@@ -11,7 +11,9 @@ import { INK, BLUE, AMBER, MUTED, display } from "./tokens"
 export default function SiloSiblings({
   ctx,
   heading = "Related in this series",
-  limit = 3,
+  // The spec allows 1-2 lateral links per post; more dilutes each one, and
+  // scripts/check-silo.mjs warns past two.
+  limit = 2,
 }: {
   ctx: SiloContext | null
   heading?: string
