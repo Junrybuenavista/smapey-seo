@@ -1,22 +1,35 @@
 import JsonLd from "@/components/JsonLd"
-import { buildMetadata, breadcrumbSchema } from "@/lib/seo"
+import { buildMetadata, breadcrumbSchema, SITE } from "@/lib/seo"
+import { siloNode } from "@/lib/silo"
 import BoardingHouseBusinessContent from "./BoardingHouseBusinessContent"
 
 const PATH = "/boarding-house/boarding-house-business-philippines"
-const TITLE = "Boarding House Business in the Philippines - How to Run One Profitably | Smapey"
-const DESCRIPTION = "Starting a boarding house business in the Philippines? Learn how to manage rooms, tenants, rent collection, and utility billing, and how Smapey makes it easier."
+const TITLE = "Starting and Running a Boarding House Business | Smapey"
+const DESCRIPTION =
+  "How the boarding house business works in the Philippines - the model, capital, registration and permits, tenant screening, house rules, contracts, maintenance, and what actually drives profit."
 
 export const metadata = buildMetadata({
   title: TITLE,
   description: DESCRIPTION,
   path: PATH,
+  type: "article",
 })
 
 export default function Page() {
+  const node = siloNode(PATH)
+
   return (
     <>
       <JsonLd
         schema={[
+          {
+            "@context": "https://schema.org",
+            "@type": "Article",
+            headline: node?.h1 ?? TITLE,
+            description: DESCRIPTION,
+            mainEntityOfPage: { "@type": "WebPage", "@id": `${SITE}${PATH}` },
+            publisher: { "@id": `${SITE}/#organization` },
+          },
           breadcrumbSchema(PATH),
         ]}
       />
