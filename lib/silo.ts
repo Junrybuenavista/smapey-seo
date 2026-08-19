@@ -47,6 +47,12 @@ export type SiloNode = {
   requiresLastVerified?: boolean
   requiresDisclaimer?: boolean
   note?: string
+  /**
+   * Whether this page exists as a real route yet. The silo ships in phases, so
+   * modules render only built pages - linking at a page that has not been
+   * written is a 404, and scripts/check-silo.mjs fails the build for it.
+   */
+  built?: boolean
 }
 
 export const APEX: string = raw.apex
@@ -164,11 +170,20 @@ export function childrenOf(path: string): SiloNode[] {
   return SILO_NODES.filter((n) => n.parent === path)
 }
 
+/** Children that actually exist - what a "deeper guides" module may link to. */
+export function builtChildrenOf(path: string): SiloNode[] {
+  return childrenOf(path).filter((n) => n.built)
+}
+
+export function builtHubs(): SiloNode[] {
+  return hubs().filter((n) => n.built)
+}
+
 /** Same branch, same tier - the "related in this series" pool. */
 export function siblingsFor(ctx: SiloContext): SiloNode[] {
   if (!ctx.branch) return []
   return SILO_NODES.filter(
-    (n) => n.path !== ctx.path && n.branch === ctx.branch && n.tier === ctx.tier
+    (n) => n.path !== ctx.path && n.branch === ctx.branch && n.tier === ctx.tier && n.built
   )
 }
 

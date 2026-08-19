@@ -31,7 +31,8 @@
         "Philippine boarding house management system",
         "boarding house software built for the Philippines",
         "manage your boarding house in one place"
-      ]
+      ],
+      "built": true
     },
     {
       "path": "/boarding-house/boarding-house-management-and-billing-system",
@@ -55,7 +56,8 @@
         "rent collection and billing",
         "boarding house rent collection",
         "how boarding house billing works"
-      ]
+      ],
+      "built": true
     },
     {
       "path": "/boarding-house/bed-space-and-room-management",
@@ -79,7 +81,8 @@
         "bed space and room management",
         "managing rooms and bed spaces",
         "bed-level tenant tracking"
-      ]
+      ],
+      "built": true
     },
     {
       "path": "/boarding-house/boarding-house-business-philippines",
@@ -103,7 +106,8 @@
         "starting a boarding house business",
         "running a boarding house",
         "the boarding house business in the Philippines"
-      ]
+      ],
+      "built": true
     },
     {
       "path": "/boarding-house/boarding-house-utility-billing",
@@ -124,7 +128,8 @@
       ],
       "anchors": [
         "boarding house utility billing"
-      ]
+      ],
+      "built": false
     },
     {
       "path": "/boarding-house/boarding-house-occupancy-tracking",
@@ -145,7 +150,8 @@
       ],
       "anchors": [
         "boarding house occupancy tracking"
-      ]
+      ],
+      "built": false
     },
     {
       "path": "/boarding-house/boarding-house-business-plan-sample-philippines",
@@ -167,7 +173,8 @@
       "anchors": [
         "boarding house permits and roi"
       ],
-      "note": "UNRESOLVED: this existing page ranks for 'boarding house business plan sample philippines', which is not the Tier 3 C primary keyword. Slug and PK disagree. Either accept the mismatch, or build a new /boarding-house/boarding-house-permits-and-roi and demote this page to a Tier 4 post under it. Decide before the Phase 3 rewrite."
+      "note": "UNRESOLVED: this existing page ranks for 'boarding house business plan sample philippines', which is not the Tier 3 C primary keyword. Slug and PK disagree. Either accept the mismatch, or build a new /boarding-house/boarding-house-permits-and-roi and demote this page to a Tier 4 post under it. Decide before the Phase 3 rewrite.",
+      "built": true
     },
     {
       "path": "/blog/how-to-compute-electricity-bill-boarding-house",
@@ -192,7 +199,8 @@
       ],
       "anchors": [
         "how to compute the electricity bill per room"
-      ]
+      ],
+      "built": false
     },
     {
       "path": "/blog/sub-meter-vs-fixed-rate-utility-billing",
@@ -216,7 +224,8 @@
       ],
       "anchors": [
         "sub-meter vs fixed rate billing"
-      ]
+      ],
+      "built": false
     },
     {
       "path": "/blog/boarding-house-rent-collection-template",
@@ -240,7 +249,8 @@
       ],
       "anchors": [
         "free rent collection template"
-      ]
+      ],
+      "built": false
     },
     {
       "path": "/blog/gcash-maya-qr-code-rent-payment",
@@ -265,7 +275,8 @@
       ],
       "anchors": [
         "GCash and Maya QR codes for rent"
-      ]
+      ],
+      "built": false
     },
     {
       "path": "/blog/upper-lower-deck-bed-space-rates",
@@ -289,7 +300,8 @@
       ],
       "anchors": [
         "upper and lower deck bed space rates"
-      ]
+      ],
+      "built": false
     },
     {
       "path": "/blog/boarding-house-occupancy-rate-formula",
@@ -313,7 +325,8 @@
       ],
       "anchors": [
         "the occupancy rate formula"
-      ]
+      ],
+      "built": false
     },
     {
       "path": "/blog/bed-space-rental-business-philippines",
@@ -338,7 +351,8 @@
       "anchors": [
         "starting a bed space rental business"
       ],
-      "note": "Tag these leads separately - they convert three to six months later."
+      "note": "Tag these leads separately - they convert three to six months later.",
+      "built": false
     },
     {
       "path": "/blog/boarding-house-permit-requirements-philippines",
@@ -365,7 +379,8 @@
       "requiresDisclaimer": true,
       "anchors": [
         "boarding house permit requirements"
-      ]
+      ],
+      "built": false
     },
     {
       "path": "/blog/how-much-boarding-house-earn-philippines",
@@ -391,7 +406,8 @@
       "requiresDisclaimer": true,
       "anchors": [
         "how much a boarding house earns"
-      ]
+      ],
+      "built": false
     },
     {
       "path": "/blog/boarding-house-contract-of-lease-sample",
@@ -416,7 +432,8 @@
       "requiresDisclaimer": true,
       "anchors": [
         "a sample contract of lease"
-      ]
+      ],
+      "built": false
     }
   ]
 }

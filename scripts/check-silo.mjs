@@ -120,11 +120,26 @@ function checkGraph() {
 
 // ─── Pass 2: the crawl ────────────────────────────────────────────────────────
 
+/**
+ * Strips <nav> and <footer> before reading links.
+ *
+ * The linking rules govern editorial links - what the body of a page chooses to
+ * point at. Site chrome is different: this site's footer renders every page in
+ * every product cluster, and each page carries its own navbar and breadcrumb.
+ * Counting those would fail every page in the silo for boilerplate that search
+ * engines already discount, and would drown the real findings.
+ */
+function stripChrome(html) {
+  return html
+    .replace(/<nav\b[\s\S]*?<\/nav>/gi, "")
+    .replace(/<footer\b[\s\S]*?<\/footer>/gi, "")
+}
+
 function extractLinks(html) {
   const out = []
   const re = /<a\b[^>]*?href=["']([^"']+)["'][^>]*>/gi
   let m
-  while ((m = re.exec(html)) !== null) out.push(m[1])
+  while ((m = re.exec(stripChrome(html))) !== null) out.push(m[1])
   return out
 }
 
@@ -158,6 +173,17 @@ async function fetchPage(p) {
   return { status: res.status, html }
 }
 
+/** Paths that returned 404 during this crawl - nothing live may link to them. */
+const unbuilt = new Set()
+
+function checkDeadSiloLinks(where, links) {
+  for (const link of new Set(links)) {
+    if (unbuilt.has(link)) {
+      err(where, `links to ${link}, which is not built yet (404) - build the parent before the page that points at it`)
+    }
+  }
+}
+
 function checkApexLinks(links) {
   const hubPaths = new Set(nodes.filter((n) => n.tier === 2).map((n) => n.path))
   const allow = new Set([...APEX_ALLOW, APEX])
@@ -177,6 +203,7 @@ function checkApexLinks(links) {
   }
 
   for (const hub of hubPaths) {
+    if (!byPath.get(hub).built) continue
     if (!links.includes(hub)) err(APEX, `missing its link to hub ${hub}`)
   }
 }
@@ -219,7 +246,9 @@ function checkNodeLinks(node, links) {
 }
 
 async function checkCrawl() {
-  let reachable = 0
+  // Pass A - fetch everything first, so a link can be judged against what is
+  // actually live rather than against what the graph hopes exists.
+  const live = []
 
   for (const node of nodes) {
     let page
@@ -231,6 +260,10 @@ async function checkCrawl() {
     }
 
     if (page.status === 404) {
+      unbuilt.add(node.path)
+      if (node.built) {
+        err(node.path, "marked built:true in silo.nodes.json but returns 404 - modules will link into a dead page")
+      }
       const msg = `not built yet (404)${node.cms ? " - lives in the blog CMS" : ""}`
       if (STRICT) err(node.path, msg)
       else note(node.path, msg)
@@ -241,14 +274,21 @@ async function checkCrawl() {
       continue
     }
 
-    reachable++
-    const links = extractLinks(page.html).map(normalize).filter(Boolean)
+    if (node.built === false) {
+      warn(node.path, "is live but still marked built:false - modules will not link to it until the flag is flipped")
+    }
 
+    live.push({ node, links: extractLinks(page.html).map(normalize).filter(Boolean) })
+  }
+
+  // Pass B - now the linking rules, including links into pages that 404
+  for (const { node, links } of live) {
+    checkDeadSiloLinks(node.path, links)
     if (node.tier === 1) checkApexLinks(links)
     else checkNodeLinks(node, links)
   }
 
-  return reachable
+  return live.length
 }
 
 // ─── Report ───────────────────────────────────────────────────────────────────
