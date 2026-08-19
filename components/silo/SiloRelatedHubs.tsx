@@ -1,6 +1,6 @@
 import Link from "next/link"
 import { builtHubs, anchorFor } from "@/lib/silo"
-import { INK, BLUE, MUTED, display } from "./tokens"
+import { INK, MUTED, display } from "./tokens"
 
 /**
  * "Related hubs" - the other two branches.
