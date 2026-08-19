@@ -1,270 +1,209 @@
-"use client"
+import Link from "next/link"
+import SiteNavbar from "@/components/SiteNavbar"
+import Footer from "@/components/Footer"
+import SiloBreadcrumbs from "@/components/silo/SiloBreadcrumbs"
+import SiloChildren from "@/components/silo/SiloChildren"
+import SiloUpwardLinks from "@/components/silo/SiloUpwardLinks"
+import SiloRelatedHubs from "@/components/silo/SiloRelatedHubs"
+import { siloContextFor, anchorFor, APEX } from "@/lib/silo"
 
-import { useState, useEffect, useRef } from "react"
-import InternalLinks from "@/components/InternalLinks"
-import {
-  Building2, CheckCircle2, ChevronRight,
-  Banknote, Zap, AlertTriangle, BarChart3, Receipt, Users, Menu, X, QrCode,
-} from "lucide-react"
+const PATH = "/boarding-house/boarding-house-management-and-billing-system"
 
 const INK = "#161616"
 const BLUE = "#2f6bff"
 const AMBER = "#ff9e2c"
 const CREAM = "#fbf7f0"
+const MUTED = "#54514c"
 const display = { fontFamily: "'Hanken Grotesk', system-ui, sans-serif" }
-const REGISTER_URL = `${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=BOARDING_HOUSE&plan=FREE`
-const accentFor = (i: number) => (i % 2 === 0 ? BLUE : AMBER)
-const onAccent = (c: string) => (c === AMBER ? INK : "#fff")
 
-function useFont() {
-  useEffect(() => {
-    const id = "smapey-pop-fonts"
-    if (!document.getElementById(id)) {
-      const l = document.createElement("link"); l.id = id; l.rel = "stylesheet"
-      l.href = "https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap"
-      document.head.appendChild(l)
-    }
-  }, [])
-}
+type Block = { id: string; h2: string; body: string[]; aside?: { title: string; lines: string[] } }
 
-function useInView(opts?: IntersectionObserverInit) {
-  const ref = useRef<HTMLDivElement>(null)
-  const [inView, setInView] = useState(false)
-  useEffect(() => {
-    const el = ref.current
-    if (!el) return
-    const observer = new IntersectionObserver(([entry]) => { if (entry.isIntersecting) { setInView(true); observer.disconnect() } }, { threshold: 0.12, ...opts })
-    observer.observe(el)
-    return () => observer.disconnect()
-  }, [])
-  return { ref, inView }
-}
-
-function Animate({ children, className = "", delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) {
-  const { ref, inView } = useInView()
-  return (
-    <div ref={ref} className={className} style={{ transitionProperty: "opacity, transform", transitionDuration: "600ms", transitionTimingFunction: "cubic-bezier(0.4,0,0.2,1)", transitionDelay: `${delay}ms`, opacity: inView ? 1 : 0, transform: inView ? "translateY(0)" : "translateY(24px)" }}>
-      {children}
-    </div>
-  )
-}
-
-function Navbar() {
-  const [open, setOpen] = useState(false)
-  const links = [
-    { href: "/boarding-house#features", label: "Features" },
-    { href: "/boarding-house#pricing", label: "Pricing" },
-    { href: "/boarding-house#faq", label: "FAQ" },
-    { href: "/boarding-house/guide", label: "Guide" },
-  ]
-  return (
-    <nav className="sticky top-0 z-40" style={{ background: CREAM, borderBottom: `2px solid ${INK}`, fontFamily: display.fontFamily }}>
-      <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-        <a href="/boarding-house" className="flex items-center gap-2.5">
-          <img src="/logo.png" alt="Smapey" className="w-8 h-8 rounded-lg object-cover" />
-          <span className="font-extrabold tracking-tight" style={{ color: INK }}>Smapey Boarding House</span>
-        </a>
-        <div className="hidden md:flex items-center gap-8">
-          {links.map((l) => (<a key={l.label} href={l.href} className="text-sm font-semibold hover:opacity-60 transition-opacity" style={{ color: INK }}>{l.label}</a>))}
-        </div>
-        <div className="hidden md:flex items-center gap-3">
-          <a href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/login`} className="text-sm font-semibold hover:opacity-60 transition-opacity px-2 py-2" style={{ color: INK }}>Sign in</a>
-          <a href={REGISTER_URL} className="text-sm font-bold px-5 py-2.5 rounded-full border-2 transition-transform hover:-translate-y-0.5" style={{ ...display, background: AMBER, color: INK, borderColor: INK, boxShadow: `3px 3px 0 ${INK}` }}>Try free</a>
-        </div>
-        <button onClick={() => setOpen(!open)} className="md:hidden" style={{ color: INK }}>{open ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}</button>
-      </div>
-      {open && (
-        <div className="md:hidden px-6 py-4 flex flex-col gap-4" style={{ background: CREAM, borderTop: `2px solid ${INK}` }}>
-          {links.map((l) => (<a key={l.label} href={l.href} className="text-sm font-semibold" style={{ color: INK }}>{l.label}</a>))}
-          <a href={REGISTER_URL} className="text-sm font-bold px-4 py-2.5 rounded-full border-2 text-center" style={{ ...display, background: AMBER, color: INK, borderColor: INK }}>Try free</a>
-        </div>
-      )}
-    </nav>
-  )
-}
-
-const BILLING_FEATURES = [
-  { icon: Banknote, title: "Monthly Rent Billing", desc: "Generate a rent bill for each tenant at the start of the month. Set the amount, due date, and payment method. The system tracks the balance automatically." },
-  { icon: Zap, title: "Utility Billing", desc: "Create separate electricity, water, or internet bills per tenant per month. Utilities are clearly separated from rent so tenants always understand what they owe." },
-  { icon: Receipt, title: "Partial Payment Support", desc: "Record partial payments on any bill. The remaining balance is tracked automatically - no manual calculations needed." },
-  { icon: AlertTriangle, title: "Overdue Bill Alerts", desc: "Every overdue rent bill surfaces on the dashboard with tenant name, room, amount, and due date. You always know who hasn't paid without having to check manually." },
-  { icon: BarChart3, title: "Revenue Dashboard", desc: "See rent collected and utilities collected this month - plus a 6-month stacked bar chart showing rent vs. utility revenue trends." },
-  { icon: Users, title: "Tenant-linked Bills", desc: "Every bill is linked to a specific tenant and tenancy. Payment history is stored per tenant - you always have a complete record for any dispute or query." },
-  { icon: QrCode, title: "Pay & Report by QR", desc: "Tenants scan the room's QR, see their exact balance for the month (rent plus their utility share), pay via GCash or bank, and report it with a screenshot. You verify from a live Payments Inbox in one tap and it posts to the right bills." },
-]
-
-const HOW_IT_WORKS = [
-  { step: "1", title: "Set up rooms and assign tenants", desc: "Add your rooms once. Assign tenants with a move-in date and monthly rate. The system links every bill to the right tenant automatically." },
-  { step: "2", title: "Generate bills each month", desc: "Create a rent bill and utility bill per tenant. Set amounts and due dates. It takes under a minute per tenant." },
-  { step: "3", title: "Record payments as they come in", desc: "When a tenant pays (cash, GCash, Maya, or bank transfer) mark the payment on their bill - or let tenants report it themselves by scanning the room's QR, so you just verify from the Payments Inbox in one tap. Partial payments are tracked and overdue balances flag themselves." },
+const SECTIONS: Block[] = [
+  {
+    id: "what-each-tenant-owes",
+    h2: "Working out what each tenant owes this month",
+    body: [
+      "Rent itself is the easy part - a tenant agreed to a monthly rate and that rate is what appears on their bill. The complications arrive at the edges of the month, and they arrive every month.",
+      "Somebody moves in on the 14th. Do they owe a full month, or half? Most houses prorate: divide the monthly rate by the days in that month and charge for the days actually occupied. It is worth writing your rule down and applying it consistently, because the alternative is renegotiating the same question with every new tenant and being remembered as inconsistent.",
+      "Then there are utilities, which behave differently from rent. Rent is per tenant and fixed. A power or water bill arrives for the whole room and has to be divided among whoever is in it. The tenant's total for the month is their rent plus their share of the room's utilities, and the two should stay visible as separate lines - a tenant who cannot see which part is rent and which is kuryente will assume you rounded something in your favour.",
+      "The last piece is anything one-off: a replaced padlock, a share of a repair caused by damage, an agreed penalty. These belong on the bill as their own line with a plain description, never folded silently into the rent figure.",
+    ],
+    aside: {
+      title: "A tenant's monthly total, in order",
+      lines: [
+        "Rent for the month - prorated if they moved in or out mid-month.",
+        "Their share of each room utility, with the division shown.",
+        "Any one-off charges, described in plain words.",
+        "Less anything already paid, including partial payments.",
+      ],
+    },
+  },
+  {
+    id: "due-dates",
+    h2: "Due dates: one date for the house, or each tenant's own?",
+    body: [
+      "There are two workable systems and they suit different houses. A single house-wide due date - everyone pays on the 5th, say - is simple to remember and makes chasing arrears a single weekly task rather than a daily one. The drawback is that a tenant who moved in on the 20th pays an awkward part-month at the start, and every tenant's money leaves their hands at the same time, which for a house full of people on the same payroll cycle can be fine or can be a problem.",
+      "The alternative is to bill each tenant on their own move-in day. Someone who moved in on the 14th is due on the 14th every month. It matches how the tenant thinks about their own rent, it spreads your collections through the month, and it avoids part-month awkwardness after the first bill. The cost is that you no longer have one date to plan around - there is always someone due.",
+      "Whichever you choose, the due date has to be on the bill, and the bill has to reach the tenant before the date rather than after it. A great deal of what owners experience as tenants paying late is really tenants being told late.",
+      "One practical detail: if you bill on a tenant's move-in day and someone moved in on the 31st, decide now what happens in February. Clamping to the last day of the month is the usual answer and it should be automatic, not something you remember each year.",
+    ],
+  },
+  {
+    id: "deposits-and-advances",
+    h2: "Deposits and advances are not the same money",
+    body: [
+      "These two get conflated constantly, and the confusion is almost always expensive at move-out. An advance is rent paid ahead of time - it covers a month of occupancy. A deposit is security: it is held against unpaid bills or damage and, if nothing is owed, it goes back to the tenant when they leave.",
+      "The reason to keep them distinct in your records is that they behave differently. Advance rent gets consumed by a month of living there. A deposit sits untouched, and it is still the tenant's money the whole time it sits with you. Recording both as one lump labelled \"deposit\" is how a house ends up in an argument it cannot win, because nobody can reconstruct which portion was which.",
+      "At move-out the deposit has to be reconciled against something concrete: outstanding rent, an unpaid utility share for the final month, an agreed cost for damage beyond fair wear. Each deduction should be a line the tenant can read. A returned deposit with an unexplained amount missing is the single most common source of bad feeling in this business, and it is entirely avoidable with records you already have.",
+      "Write the terms into the contract - how much, what it covers, and how long after move-out it is returned - and then follow them. Predictability here is worth more than any individual deduction you might win.",
+    ],
+    aside: {
+      title: "Keep these separate on the record",
+      lines: [
+        "Advance rent - prepaid occupancy, consumed by a month of staying.",
+        "Security deposit - held, still the tenant's money, returned or itemised.",
+        "Whether each was actually paid, and on what date.",
+      ],
+    },
+  },
+  {
+    id: "recording-payments",
+    h2: "Recording payments, including the partial ones",
+    body: [
+      "Money arrives in a boarding house through several channels at once. Cash from the tenant who works nearby, GCash from the one on night shift, a bank transfer from a parent paying for a student, Maya from somebody who prefers it. All of it is rent, and all of it has to land against the right bill.",
+      "The digital channels are the ones that go wrong quietly. A GCash transfer arrives with a name that may not match the tenant's name on your records, no reference to which month it covers, and no indication of whether it is the whole amount or part of it. Reconciling a screen of transfers to a list of tenants at the end of the month, from memory, is where errors get baked in.",
+      "The habit that prevents most of it: record the payment against a specific bill at the moment you see it, not in a batch later. Which tenant, which month, how much, by what method. If the amount does not clear the bill, the balance carries and the bill stays open rather than being mentally filed as handled.",
+      "Partial payments deserve their own mention because refusing to accept them is worse than tracking them. A tenant who can pay sixty percent this week and the rest on payday will pay sixty percent this week if you let them - or nothing at all if the only option is the full amount. What matters is that the remainder stays visible as a balance rather than becoming a thing you were supposed to remember.",
+    ],
+  },
+  {
+    id: "arrears",
+    h2: "Arrears: catching late rent while it is still small",
+    body: [
+      "Almost no tenant decides to stop paying. What happens is that one month slips, then the next bill arrives on top of the unpaid one, and at some point the total is larger than anything the tenant can clear in one go. At that point their options narrow to a payment plan or leaving, and neither is good for you.",
+      "The intervention that works is early and unremarkable: a short message the day after a due date passes. Not a warning - just a note that the bill is outstanding. Most of the time it was genuinely forgotten, and it is settled the same day. The value is in it being automatic and unemotional, so it stays a routine reminder rather than an accusation.",
+      "For that to happen you need to know a bill is overdue without checking. A list you have to remember to look at is a list you will look at when you have time, which is not the same as when it matters. Overdue balances should present themselves.",
+      "When arrears do build up, deal with them as a stated plan with amounts and dates rather than a vague understanding that they will catch up. A tenant who knows they owe eight thousand pesos across three agreed payments behaves differently from one who knows only that they are behind.",
+    ],
+  },
+  {
+    id: "statements-and-ledger",
+    h2: "Statements and the tenant ledger",
+    body: [
+      "A statement is what you send the tenant: this month's rent, this month's utility share with the arithmetic visible, anything one-off, the total, and the date it is due. Sent before the due date, it removes nearly every reason for a late payment that is not simply lack of money.",
+      "The ledger is the other direction - it is what you keep. Every bill raised for a tenant and every payment recorded against it, in order, with a running balance. It is unglamorous and it is the thing that settles disputes in under a minute.",
+      "The test of a ledger is whether it can answer a question about a specific month eight months ago without anyone relying on memory. What was billed, what was paid, when, and what was left. If the answer requires reconstructing from bank messages and recollection, the ledger is not doing its job.",
+      "This protects the tenant as much as the owner, and it is worth saying so out loud when a tenant moves in. People are markedly more relaxed about paying into a system that can show them exactly what they have paid.",
+    ],
+  },
 ]
 
 export default function BoardingHouseBillingContent() {
-  useFont()
+  const ctx = siloContextFor(PATH)
+
   return (
-    <main style={{ fontFamily: display.fontFamily }}>
-      <Navbar />
+    <main style={display}>
+      <SiteNavbar />
+      <SiloBreadcrumbs ctx={ctx} />
 
-      {/* HERO */}
-      <section className="relative overflow-hidden py-20 px-6" style={{ background: CREAM }}>
-        <div className="absolute inset-0 pointer-events-none hidden md:block" aria-hidden>
-          <div className="absolute rounded-[22px] border-2" style={{ top: "22%", left: "-70px", width: 240, height: 70, background: AMBER, borderColor: INK, transform: "rotate(-9deg)" }} />
-          <div className="absolute rounded-[22px] border-2" style={{ bottom: "14%", right: "-70px", width: 260, height: 74, background: BLUE, borderColor: INK, transform: "rotate(8deg)", boxShadow: "5px 5px 0 rgba(22,22,22,.12)" }} />
-        </div>
-        <div className="relative max-w-4xl mx-auto text-center">
-          <Animate>
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border-2 text-xs font-bold mb-5" style={{ color: INK, borderColor: INK, boxShadow: `3px 3px 0 ${BLUE}` }}>
-              <Building2 className="w-3.5 h-3.5" /> Management + billing · Philippines
-            </div>
-            <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight leading-tight mb-5" style={{ color: INK }}>
-              Boarding House Management<br />
-              <span style={{ color: BLUE }}>and Billing System</span>
-            </h1>
-            <p className="text-lg max-w-2xl mx-auto mb-8 leading-relaxed" style={{ color: "#54514c" }}>
-              Smapey combines boarding house management and billing in one system, rooms, tenants, rent bills, utility bills, payment tracking, and overdue alerts. Built for Philippine landlords who want the whole operation in one place.
+      <section className="py-16 px-6" style={{ background: CREAM }}>
+        <div className="max-w-3xl mx-auto">
+          <p className="text-sm font-bold uppercase tracking-widest mb-3" style={{ color: BLUE }}>
+            Rent &amp; billing
+          </p>
+          <h1 className="text-4xl sm:text-5xl font-extrabold leading-[1.06] tracking-tight mb-6" style={{ color: INK }}>
+            Rent collection and billing for boarding houses
+          </h1>
+          <div className="space-y-4 text-lg leading-relaxed" style={{ color: MUTED }}>
+            <p>
+              Collecting rent is the part of a boarding house that decides whether the business
+              works. Everything else - the rooms, the beds, the repairs - is in service of money
+              arriving predictably each month, from a group of people whose own pay arrives on
+              different days through different apps.
             </p>
-            <div className="flex flex-col sm:flex-row gap-3 justify-center">
-              <a href={REGISTER_URL} className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full font-bold text-sm border-2 transition-transform hover:-translate-y-0.5" style={{ ...display, background: AMBER, color: INK, borderColor: INK, boxShadow: `4px 4px 0 ${INK}` }}>
-                Start free, no credit card <ChevronRight className="w-4 h-4" />
-              </a>
-              <a href="/boarding-house" className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full border-2 bg-white font-bold text-sm transition-transform hover:-translate-y-0.5" style={{ ...display, color: INK, borderColor: INK }}>
-                See full product overview
-              </a>
+            <p>
+              Most of the difficulty is not the rent itself. It is the surrounding detail: what a
+              tenant owes when they moved in mid-month, whose share of the electric bill is whose,
+              which deposit is really an advance, and how to notice that someone is behind while
+              the amount is still small enough to fix.
+            </p>
+            <p>
+              This guide covers how rent collection and billing actually works in a Philippine
+              boarding house - computing the monthly total, choosing due dates, handling deposits,
+              recording payments across cash and e-wallets, managing arrears, and keeping a ledger
+              that can answer questions months later.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <article className="py-16 px-6 bg-white">
+        <div className="max-w-3xl mx-auto space-y-14">
+          {SECTIONS.map((section) => (
+            <section key={section.id} id={section.id}>
+              <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight mb-5" style={{ color: INK }}>
+                {section.h2}
+              </h2>
+              <div className="space-y-4 text-base leading-relaxed" style={{ color: MUTED }}>
+                {section.body.map((para, i) => (
+                  <p key={i}>{para}</p>
+                ))}
+              </div>
+              {section.aside && (
+                <div className="mt-6 rounded-[22px] border-2 p-6" style={{ borderColor: INK, background: CREAM, boxShadow: `6px 6px 0 ${AMBER}` }}>
+                  <p className="text-sm font-extrabold mb-3" style={{ color: INK }}>{section.aside.title}</p>
+                  <ul className="space-y-2">
+                    {section.aside.lines.map((line) => (
+                      <li key={line} className="text-sm leading-relaxed flex gap-2" style={{ color: MUTED }}>
+                        <span aria-hidden style={{ color: BLUE }}>—</span>
+                        {line}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </section>
+          ))}
+
+          <section id="how-smapey-handles-this" className="rounded-[26px] border-2 p-8" style={{ borderColor: INK, background: CREAM, boxShadow: `8px 8px 0 ${BLUE}` }}>
+            <h2 className="text-2xl font-extrabold tracking-tight mb-4" style={{ color: INK }}>
+              How Smapey handles this
+            </h2>
+            <div className="space-y-4 text-base leading-relaxed" style={{ color: MUTED }}>
+              <p>
+                Smapey generates the month&apos;s rent bills in one action, each due on the
+                tenant&apos;s own move-in day and clamped sensibly for short months. Every tenant
+                with an email gets a statement showing rent, their share of the room&apos;s
+                utilities with the division spelled out, the total, and the due date - before the
+                date, not after it.
+              </p>
+              <p>
+                Payments record against a specific bill by cash, GCash, Maya, or bank, and partial
+                payments leave the balance visible instead of relying on memory. Bills past their
+                due date mark themselves overdue and surface on the dashboard. Each tenant has a
+                ledger showing every bill and payment with a running balance, so a question about
+                a month last year is one lookup.
+              </p>
+              <p>
+                Billing is one part of a{" "}
+                <Link href={APEX} className="font-bold underline" style={{ color: BLUE }}>
+                  {anchorFor(APEX, PATH)}
+                </Link>{" "}
+                that also covers rooms and beds, maintenance, and your monthly cashflow.
+              </p>
             </div>
-          </Animate>
+          </section>
         </div>
-      </section>
+      </article>
 
-      {/* WHAT IS IT */}
-      <section className="py-20 px-6" style={{ background: "#fff" }}>
-        <div className="max-w-4xl mx-auto">
-          <Animate>
-            <h2 className="text-2xl sm:text-3xl font-extrabold mb-5" style={{ color: INK }}>What is a boarding house management and billing system?</h2>
-            <p className="leading-relaxed mb-4" style={{ color: "#54514c" }}>A <strong style={{ color: INK }}>boarding house management and billing system</strong> combines two things that most Philippine landlords still handle separately: (1) managing their property (rooms, tenants, occupancy) and (2) billing tenants for rent and utilities every month.</p>
-            <p className="leading-relaxed mb-4" style={{ color: "#54514c" }}>When these two things are in the same system, everything connects automatically. A tenant is assigned to a room, their billing details are already there. They move out, the room is freed and billing stops. They pay a bill, the payment is recorded against their account instantly.</p>
-            <p className="leading-relaxed" style={{ color: "#54514c" }}>Smapey is exactly that: a combined boarding house management and billing system that keeps every room, tenant, and payment connected, so you always know the full picture without manually reconciling records.</p>
-          </Animate>
-        </div>
-      </section>
+      <SiloChildren
+        path={PATH}
+        subheading="Detailed guides on the parts of billing that cause the most questions."
+      />
 
-      {/* BILLING FEATURES */}
-      <section className="py-20 px-6" style={{ background: CREAM, borderTop: `2px solid ${INK}` }}>
-        <div className="max-w-6xl mx-auto">
-          <Animate className="text-center mb-14">
-            <h2 className="text-2xl sm:text-3xl font-extrabold" style={{ color: INK }}>Billing features built for boarding houses</h2>
-            <p className="mt-3 max-w-lg mx-auto" style={{ color: "#54514c" }}>Every billing feature is designed around the way Philippine boarding houses actually collect rent.</p>
-          </Animate>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {BILLING_FEATURES.map(({ icon: Icon, title, desc }, i) => {
-              const c = accentFor(i)
-              return (
-                <Animate key={title} delay={i * 70}>
-                  <div className="rounded-[20px] border-2 p-6 hover:-translate-y-1 transition-transform h-full" style={{ background: "#fff", borderColor: INK, boxShadow: `6px 6px 0 ${c}` }}>
-                    <div className="w-11 h-11 rounded-[12px] border-2 flex items-center justify-center mb-4" style={{ background: c, borderColor: INK }}>
-                      <Icon className="w-5 h-5" style={{ color: onAccent(c) }} />
-                    </div>
-                    <h3 className="font-extrabold mb-2" style={{ color: INK }}>{title}</h3>
-                    <p className="text-sm leading-relaxed" style={{ color: "#54514c" }}>{desc}</p>
-                  </div>
-                </Animate>
-              )
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* HOW IT WORKS */}
-      <section className="py-20 px-6" style={{ background: "#fff", borderTop: `2px solid ${INK}` }}>
-        <div className="max-w-5xl mx-auto">
-          <Animate className="text-center mb-14">
-            <h2 className="text-2xl sm:text-3xl font-extrabold" style={{ color: INK }}>How the billing system works</h2>
-          </Animate>
-          <div className="grid md:grid-cols-3 gap-8">
-            {HOW_IT_WORKS.map(({ step, title, desc }, i) => {
-              const c = accentFor(i)
-              return (
-                <Animate key={step} delay={i * 100}>
-                  <div className="text-center">
-                    <div className="inline-flex items-center justify-center w-14 h-14 rounded-[16px] border-2 font-extrabold text-lg mb-5" style={{ background: c, color: onAccent(c), borderColor: INK }}>{step}</div>
-                    <h3 className="font-extrabold mb-2" style={{ color: INK }}>{title}</h3>
-                    <p className="text-sm leading-relaxed" style={{ color: "#54514c" }}>{desc}</p>
-                  </div>
-                </Animate>
-              )
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* COMPARISON */}
-      <section className="py-20 px-6" style={{ background: CREAM, borderTop: `2px solid ${INK}` }}>
-        <div className="max-w-4xl mx-auto">
-          <Animate className="text-center mb-12">
-            <h2 className="text-2xl sm:text-3xl font-extrabold" style={{ color: INK }}>Manual billing vs. using Smapey</h2>
-          </Animate>
-          <div className="grid sm:grid-cols-2 gap-6">
-            <Animate>
-              <div className="rounded-[20px] border-2 p-6 h-full" style={{ background: "#fff", borderColor: INK, boxShadow: `6px 6px 0 ${INK}` }}>
-                <p className="font-extrabold text-sm uppercase tracking-widest mb-4" style={{ color: "#d4351c" }}>Manual billing</p>
-                {[
-                  "Writing bills by hand in a notebook",
-                  "Texting tenants individually about rent",
-                  "Forgetting who paid and who didn't",
-                  "Calculating utility shares with a calculator",
-                  "No clear record of payment history",
-                  "Overdue accounts slip through the cracks",
-                ].map(t => (
-                  <div key={t} className="flex items-center gap-2 py-2 text-sm last:border-0" style={{ borderBottom: "1px solid rgba(22,22,22,.08)", color: "#54514c" }}>
-                    <span className="font-bold" style={{ color: "#d4351c" }}>✗</span> {t}
-                  </div>
-                ))}
-              </div>
-            </Animate>
-            <Animate delay={100}>
-              <div className="rounded-[20px] border-2 p-6 h-full" style={{ background: "#fff", borderColor: INK, boxShadow: `6px 6px 0 ${AMBER}` }}>
-                <p className="font-extrabold text-sm uppercase tracking-widest mb-4" style={{ color: BLUE }}>With Smapey</p>
-                {[
-                  "Bills created in seconds per tenant",
-                  "Overdue accounts flagged automatically",
-                  "Every payment recorded and tracked",
-                  "Rent and utilities clearly separated",
-                  "Full payment history per tenant",
-                  "Real-time dashboard with monthly revenue",
-                ].map(t => (
-                  <div key={t} className="flex items-center gap-2 py-2 text-sm last:border-0" style={{ borderBottom: "1px solid rgba(22,22,22,.08)", color: INK }}>
-                    <CheckCircle2 className="w-3.5 h-3.5 shrink-0" style={{ color: "#0d9f6e" }} /> {t}
-                  </div>
-                ))}
-              </div>
-            </Animate>
-          </div>
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section className="py-20 px-6" style={{ background: "#fff" }}>
-        <Animate className="max-w-3xl mx-auto">
-          <div className="rounded-[28px] border-2 p-10 text-center" style={{ background: AMBER, borderColor: INK, boxShadow: `10px 10px 0 ${INK}` }}>
-            <h2 className="text-3xl font-extrabold mb-4" style={{ color: INK }}>Try the boarding house billing system for free</h2>
-            <p className="mb-8 max-w-lg mx-auto font-medium" style={{ color: "#5c4a28" }}>Free plan available. Issue your first rent and utility bills in under 10 minutes.</p>
-            <a href={REGISTER_URL} className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full font-bold text-sm border-2 transition-transform hover:-translate-y-0.5" style={{ ...display, background: INK, color: "#fff", borderColor: INK }}>
-              Get started free <ChevronRight className="w-4 h-4" />
-            </a>
-          </div>
-        </Animate>
-      </section>
-
-      <InternalLinks cluster="boarding-house" currentPath="/boarding-house/boarding-house-management-and-billing-system" />
-
-      <footer className="px-6 py-8" style={{ background: CREAM, borderTop: `2px solid ${INK}` }}>
-        <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-2">
-            <img src="/logo.png" alt="Smapey" className="w-6 h-6 rounded-md object-cover" />
-            <span className="text-sm font-extrabold" style={{ color: INK }}>Boarding House Manager by Smapey</span>
-          </div>
-          <p className="text-xs" style={{ color: "#9a948b" }}>© {new Date().getFullYear()} Smapey. All rights reserved.</p>
-        </div>
-      </footer>
+      <SiloRelatedHubs path={PATH} />
+      <SiloUpwardLinks ctx={ctx} />
+      <Footer />
     </main>
   )
 }
