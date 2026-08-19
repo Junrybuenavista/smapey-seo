@@ -1,7 +1,7 @@
 import Link from "next/link"
 import JsonLd from "@/components/JsonLd"
 import SiteNavbar from "@/components/SiteNavbar"
-import Footer from "@/components/Footer"
+import SiloFooter from "@/components/silo/SiloFooter"
 import { buildMetadata, SITE } from "@/lib/seo"
 import { APEX, anchorFor } from "@/lib/silo"
 import RoiCalculator from "./RoiCalculator"
@@ -104,7 +104,7 @@ export default function Page() {
         </section>
 
         <EmbedSnippet />
-        <Footer />
+        <SiloFooter />
       </main>
     </>
   )

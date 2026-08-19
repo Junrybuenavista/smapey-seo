@@ -1,6 +1,6 @@
 import Link from "next/link"
 import SiteNavbar from "@/components/SiteNavbar"
-import Footer from "@/components/Footer"
+import SiloFooter from "@/components/silo/SiloFooter"
 import SiloBreadcrumbs from "@/components/silo/SiloBreadcrumbs"
 import SiloChildren from "@/components/silo/SiloChildren"
 import SiloUpwardLinks from "@/components/silo/SiloUpwardLinks"
@@ -202,7 +202,7 @@ export default function BoardingHouseBillingContent() {
 
       <SiloRelatedHubs path={PATH} />
       <SiloUpwardLinks ctx={ctx} />
-      <Footer />
+      <SiloFooter />
     </main>
   )
 }
