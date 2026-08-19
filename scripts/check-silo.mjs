@@ -157,7 +157,11 @@ function normalize(href) {
       return null
     }
     if (!/(^|\.)smapey\.com$/i.test(parsed.hostname) && parsed.hostname !== "localhost") return null
-    if (parsed.hostname.toLowerCase() === "app.smapey.com") return href.split("#")[0]
+    // Keep the app host but drop query and hash, so a signup link carrying
+    // ?product=...&plan=... still matches the allowlist entry for it.
+    if (parsed.hostname.toLowerCase() === "app.smapey.com") {
+      return `${parsed.origin}${parsed.pathname.replace(/\/$/, "")}`
+    }
     url = parsed.pathname
   }
 
