@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "check:silo": "node scripts/check-silo.mjs"
   },
   "dependencies": {
     "@sparticuz/chromium-min": "^143.0.4",

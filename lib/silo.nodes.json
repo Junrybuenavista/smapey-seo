@@ -1,0 +1,422 @@
+{
+  "apex": "/boarding-house/boarding-house-management-system",
+  "apexOutboundAllow": [
+    "https://app.smapey.com/register",
+    "https://app.smapey.com/login",
+    "/register",
+    "/login"
+  ],
+  "nodes": [
+    {
+      "path": "/boarding-house/boarding-house-management-system",
+      "tier": 1,
+      "branch": null,
+      "parent": null,
+      "title": "Boarding House Management System",
+      "h1": "Boarding house management system built for the Philippines",
+      "primaryKeyword": "boarding house management system philippines",
+      "words": [
+        1200,
+        1800
+      ],
+      "source": "rewrite",
+      "schema": [
+        "SoftwareApplication",
+        "FAQPage",
+        "Organization"
+      ],
+      "anchors": [
+        "boarding house management system",
+        "boarding house management software",
+        "Philippine boarding house management system",
+        "boarding house software built for the Philippines",
+        "manage your boarding house in one place"
+      ]
+    },
+    {
+      "path": "/boarding-house/boarding-house-management-and-billing-system",
+      "tier": 2,
+      "branch": "A",
+      "parent": "/boarding-house/boarding-house-management-system",
+      "title": "Rent & Billing",
+      "h1": "Rent collection and billing for boarding houses",
+      "primaryKeyword": "boarding house rent collection",
+      "words": [
+        2000,
+        2500
+      ],
+      "source": "rewrite",
+      "schema": [
+        "Article",
+        "BreadcrumbList"
+      ],
+      "covers": "Rent computation, due dates, partial payments, deposits, receipts, payment methods, arrears, statements, the ledger",
+      "anchors": [
+        "rent collection and billing",
+        "boarding house rent collection",
+        "how boarding house billing works"
+      ]
+    },
+    {
+      "path": "/boarding-house/bed-space-and-room-management",
+      "tier": 2,
+      "branch": "B",
+      "parent": "/boarding-house/boarding-house-management-system",
+      "title": "Bed Space & Rooms",
+      "h1": "Bed space and room management",
+      "primaryKeyword": "bed space and room management",
+      "words": [
+        2000,
+        2500
+      ],
+      "source": "new",
+      "schema": [
+        "Article",
+        "BreadcrumbList"
+      ],
+      "covers": "Room vs bed inventory, deck pricing, move-in and move-out, transfers and swaps, vacancy, occupancy measurement, stay history",
+      "anchors": [
+        "bed space and room management",
+        "managing rooms and bed spaces",
+        "bed-level tenant tracking"
+      ]
+    },
+    {
+      "path": "/boarding-house/boarding-house-business-philippines",
+      "tier": 2,
+      "branch": "C",
+      "parent": "/boarding-house/boarding-house-management-system",
+      "title": "Business Setup",
+      "h1": "Starting and running a boarding house business",
+      "primaryKeyword": "boarding house business philippines",
+      "words": [
+        2000,
+        2500
+      ],
+      "source": "rewrite",
+      "schema": [
+        "Article",
+        "BreadcrumbList"
+      ],
+      "covers": "Business model, capital, registration and permits, house rules, contracts, tenant screening, maintenance, profitability",
+      "anchors": [
+        "starting a boarding house business",
+        "running a boarding house",
+        "the boarding house business in the Philippines"
+      ]
+    },
+    {
+      "path": "/boarding-house/boarding-house-utility-billing",
+      "tier": 3,
+      "branch": "A",
+      "parent": "/boarding-house/boarding-house-management-and-billing-system",
+      "title": "Utility Billing",
+      "h1": "Boarding house utility billing explained",
+      "primaryKeyword": "boarding house utility billing",
+      "words": [
+        1500,
+        2000
+      ],
+      "source": "new",
+      "schema": [
+        "Article",
+        "BreadcrumbList"
+      ],
+      "anchors": [
+        "boarding house utility billing"
+      ]
+    },
+    {
+      "path": "/boarding-house/boarding-house-occupancy-tracking",
+      "tier": 3,
+      "branch": "B",
+      "parent": "/boarding-house/bed-space-and-room-management",
+      "title": "Occupancy Tracking",
+      "h1": "Tracking occupancy in a boarding house",
+      "primaryKeyword": "boarding house occupancy tracking",
+      "words": [
+        1500,
+        2000
+      ],
+      "source": "new",
+      "schema": [
+        "Article",
+        "BreadcrumbList"
+      ],
+      "anchors": [
+        "boarding house occupancy tracking"
+      ]
+    },
+    {
+      "path": "/boarding-house/boarding-house-business-plan-sample-philippines",
+      "tier": 3,
+      "branch": "C",
+      "parent": "/boarding-house/boarding-house-business-philippines",
+      "title": "Permits & ROI",
+      "h1": "Boarding house permits, costs, and returns",
+      "primaryKeyword": "boarding house permits and roi",
+      "words": [
+        1500,
+        2000
+      ],
+      "source": "rewrite",
+      "schema": [
+        "Article",
+        "BreadcrumbList"
+      ],
+      "anchors": [
+        "boarding house permits and roi"
+      ],
+      "note": "UNRESOLVED: this existing page ranks for 'boarding house business plan sample philippines', which is not the Tier 3 C primary keyword. Slug and PK disagree. Either accept the mismatch, or build a new /boarding-house/boarding-house-permits-and-roi and demote this page to a Tier 4 post under it. Decide before the Phase 3 rewrite."
+    },
+    {
+      "path": "/blog/how-to-compute-electricity-bill-boarding-house",
+      "tier": 4,
+      "branch": "A",
+      "parent": "/boarding-house/boarding-house-utility-billing",
+      "cms": true,
+      "post": 1,
+      "title": "How to Compute the Electricity Bill Per Room in a Boarding House",
+      "h1": "How to Compute the Electricity Bill Per Room in a Boarding House",
+      "primaryKeyword": "how to compute electricity bill for boarding house",
+      "words": [
+        1500,
+        1500
+      ],
+      "intent": "Informational",
+      "magnet": "utility-split-calculator",
+      "schema": [
+        "Article",
+        "BreadcrumbList",
+        "HowTo"
+      ],
+      "anchors": [
+        "how to compute the electricity bill per room"
+      ]
+    },
+    {
+      "path": "/blog/sub-meter-vs-fixed-rate-utility-billing",
+      "tier": 4,
+      "branch": "A",
+      "parent": "/boarding-house/boarding-house-utility-billing",
+      "cms": true,
+      "post": 2,
+      "title": "Sub-Meter vs Fixed Rate: Which Utility Billing Method Should You Use?",
+      "h1": "Sub-Meter vs Fixed Rate: Which Utility Billing Method Should You Use?",
+      "primaryKeyword": "boarding house utility billing",
+      "words": [
+        1400,
+        1400
+      ],
+      "intent": "Commercial investigation",
+      "magnet": "utility-split-calculator",
+      "schema": [
+        "Article",
+        "BreadcrumbList"
+      ],
+      "anchors": [
+        "sub-meter vs fixed rate billing"
+      ]
+    },
+    {
+      "path": "/blog/boarding-house-rent-collection-template",
+      "tier": 4,
+      "branch": "A",
+      "parent": "/boarding-house/boarding-house-management-and-billing-system",
+      "cms": true,
+      "post": 3,
+      "title": "Free Boarding House Rent Collection Template (Excel)",
+      "h1": "Free Boarding House Rent Collection Template (Excel)",
+      "primaryKeyword": "boarding house rent collection template",
+      "words": [
+        1200,
+        1200
+      ],
+      "intent": "Transactional",
+      "magnet": "rent-tracker",
+      "schema": [
+        "Article",
+        "BreadcrumbList"
+      ],
+      "anchors": [
+        "free rent collection template"
+      ]
+    },
+    {
+      "path": "/blog/gcash-maya-qr-code-rent-payment",
+      "tier": 4,
+      "branch": "A",
+      "parent": "/boarding-house/boarding-house-management-and-billing-system",
+      "cms": true,
+      "post": 4,
+      "title": "GCash and Maya QR Codes for Rent Payments: A Landlord's Setup Guide",
+      "h1": "GCash and Maya QR Codes for Rent Payments: A Landlord's Setup Guide",
+      "primaryKeyword": "gcash qr code for rent payment",
+      "words": [
+        1400,
+        1400
+      ],
+      "intent": "Informational to commercial",
+      "magnet": "rent-tracker",
+      "schema": [
+        "Article",
+        "BreadcrumbList",
+        "HowTo"
+      ],
+      "anchors": [
+        "GCash and Maya QR codes for rent"
+      ]
+    },
+    {
+      "path": "/blog/upper-lower-deck-bed-space-rates",
+      "tier": 4,
+      "branch": "B",
+      "parent": "/boarding-house/bed-space-and-room-management",
+      "cms": true,
+      "post": 5,
+      "title": "Upper vs Lower Deck Bed Space Pricing (With Sample Rate Cards)",
+      "h1": "Upper vs Lower Deck Bed Space Pricing (With Sample Rate Cards)",
+      "primaryKeyword": "upper and lower deck bed space rate",
+      "words": [
+        1300,
+        1300
+      ],
+      "intent": "Informational",
+      "magnet": "rent-tracker",
+      "schema": [
+        "Article",
+        "BreadcrumbList"
+      ],
+      "anchors": [
+        "upper and lower deck bed space rates"
+      ]
+    },
+    {
+      "path": "/blog/boarding-house-occupancy-rate-formula",
+      "tier": 4,
+      "branch": "B",
+      "parent": "/boarding-house/boarding-house-occupancy-tracking",
+      "cms": true,
+      "post": 6,
+      "title": "How to Compute Boarding House Occupancy Rate (Formula + Free Tracker)",
+      "h1": "How to Compute Boarding House Occupancy Rate (Formula + Free Tracker)",
+      "primaryKeyword": "occupancy rate formula",
+      "words": [
+        1300,
+        1300
+      ],
+      "intent": "Informational",
+      "magnet": "rent-tracker",
+      "schema": [
+        "Article",
+        "BreadcrumbList"
+      ],
+      "anchors": [
+        "the occupancy rate formula"
+      ]
+    },
+    {
+      "path": "/blog/bed-space-rental-business-philippines",
+      "tier": 4,
+      "branch": "B",
+      "parent": "/boarding-house/bed-space-and-room-management",
+      "cms": true,
+      "post": 7,
+      "title": "How to Start a Bed Space Rental Business in the Philippines",
+      "h1": "How to Start a Bed Space Rental Business in the Philippines",
+      "primaryKeyword": "bedspace rental business philippines",
+      "words": [
+        1800,
+        1800
+      ],
+      "intent": "Informational - TOFU",
+      "magnet": "permits-checklist",
+      "schema": [
+        "Article",
+        "BreadcrumbList"
+      ],
+      "anchors": [
+        "starting a bed space rental business"
+      ],
+      "note": "Tag these leads separately - they convert three to six months later."
+    },
+    {
+      "path": "/blog/boarding-house-permit-requirements-philippines",
+      "tier": 4,
+      "branch": "C",
+      "parent": "/boarding-house/boarding-house-business-plan-sample-philippines",
+      "cms": true,
+      "post": 8,
+      "title": "Boarding House Permits and Requirements in the Philippines: 2026 Checklist",
+      "h1": "Boarding House Permits and Requirements in the Philippines: 2026 Checklist",
+      "primaryKeyword": "boarding house business permit requirements philippines",
+      "words": [
+        1700,
+        1700
+      ],
+      "intent": "Informational",
+      "magnet": "permits-checklist",
+      "schema": [
+        "Article",
+        "BreadcrumbList",
+        "HowTo"
+      ],
+      "requiresLastVerified": true,
+      "requiresDisclaimer": true,
+      "anchors": [
+        "boarding house permit requirements"
+      ]
+    },
+    {
+      "path": "/blog/how-much-boarding-house-earn-philippines",
+      "tier": 4,
+      "branch": "C",
+      "parent": "/boarding-house/boarding-house-business-plan-sample-philippines",
+      "cms": true,
+      "post": 9,
+      "title": "How Much Can a Boarding House Earn? A Real ROI Breakdown",
+      "h1": "How Much Can a Boarding House Earn? A Real ROI Breakdown",
+      "primaryKeyword": "boarding house income philippines",
+      "words": [
+        1800,
+        1800
+      ],
+      "intent": "Commercial investigation",
+      "magnet": "roi-calculator",
+      "schema": [
+        "Article",
+        "BreadcrumbList"
+      ],
+      "requiresLastVerified": true,
+      "requiresDisclaimer": true,
+      "anchors": [
+        "how much a boarding house earns"
+      ]
+    },
+    {
+      "path": "/blog/boarding-house-contract-of-lease-sample",
+      "tier": 4,
+      "branch": "C",
+      "parent": "/boarding-house/boarding-house-business-philippines",
+      "cms": true,
+      "post": 10,
+      "title": "Boarding House Contract of Lease: Free Sample Template",
+      "h1": "Boarding House Contract of Lease: Free Sample Template",
+      "primaryKeyword": "boarding house contract sample philippines",
+      "words": [
+        1400,
+        1400
+      ],
+      "intent": "Transactional",
+      "magnet": "contract-pack",
+      "schema": [
+        "Article",
+        "BreadcrumbList"
+      ],
+      "requiresDisclaimer": true,
+      "anchors": [
+        "a sample contract of lease"
+      ]
+    }
+  ]
+}

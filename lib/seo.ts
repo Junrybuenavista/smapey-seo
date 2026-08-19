@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 import { CLUSTERS, clusterForPath } from "./routes"
+import { isSiloPath, siloTrail, trailFor, type SiloContext } from "./silo"
 
 export const SITE = "https://smapey.com"
 export const SITE_NAME = "Smapey"
@@ -110,11 +111,33 @@ export function faqSchema(faqs: readonly Faq[]) {
 }
 
 /**
- * Builds a breadcrumb trail from the cluster map, so the crumbs always match
- * the real hub-and-spoke structure instead of being hand-maintained per page.
+ * Builds a breadcrumb trail so the crumbs always match the real structure
+ * instead of being hand-maintained per page.
+ *
+ * Pages inside the boarding-house silo follow the silo hierarchy, which is
+ * deliberately not the URL path - a Tier 4 post lives at /blog/<slug> but
+ * belongs under its sub-topic page, hub, and money page. Everything else falls
+ * back to the flat hub-and-spoke cluster map.
  */
-export function breadcrumbSchema(path: string) {
+export function breadcrumbSchema(target: string | SiloContext) {
   const items: { name: string; item: string }[] = [{ name: "Home", item: SITE }]
+
+  // A blog post passes its context directly - its place in the silo comes from
+  // CMS fields, so it cannot be looked up by path.
+  if (typeof target !== "string") {
+    for (const node of trailFor(target)) {
+      items.push({ name: node.title, item: `${SITE}${node.path}` })
+    }
+    return breadcrumbList(items)
+  }
+
+  const path = target
+  if (isSiloPath(path)) {
+    for (const node of siloTrail(path)) {
+      items.push({ name: node.title, item: `${SITE}${node.path}` })
+    }
+    return breadcrumbList(items)
+  }
 
   const key = clusterForPath(path)
   if (key) {
@@ -127,6 +150,10 @@ export function breadcrumbSchema(path: string) {
     }
   }
 
+  return breadcrumbList(items)
+}
+
+function breadcrumbList(items: { name: string; item: string }[]) {
   if (items.length < 2) return null
 
   return {

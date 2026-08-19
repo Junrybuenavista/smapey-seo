@@ -29,6 +29,10 @@ interface Post {
   category: string | null
   publishedAt: string
   updatedAt: string
+  // Reverse-silo fields, set by the writer in the blog admin
+  parentPage?: string | null
+  branch?: string | null
+  lastVerifiedAt?: string | null
 }
 
 interface Comment {
@@ -111,7 +115,20 @@ function renderContent(content: string) {
   return isHtml ? <RichContent html={normalized} /> : <PlainContent content={normalized} />
 }
 
-export default function BlogPostContent({ post }: { post: Post }) {
+export default function BlogPostContent({
+  post,
+  toc = [],
+  breadcrumbs,
+  related,
+}: {
+  post: Post
+  /** Auto-generated from the post's H2s. Empty for plain-text posts. */
+  toc?: { id: string; text: string }[]
+  /** Silo breadcrumb bar, server-rendered. Falls back to Home > Blog > Title. */
+  breadcrumbs?: React.ReactNode
+  /** Sibling + upward-link modules. Rendered from the silo graph, not by hand. */
+  related?: React.ReactNode
+}) {
   const [comments, setComments]       = useState<Comment[]>([])
   const [commentsLoading, setCommentsLoading] = useState(true)
   const [form, setForm]               = useState({ authorName: "", authorEmail: "", body: "" })
@@ -222,20 +239,56 @@ export default function BlogPostContent({ post }: { post: Post }) {
         )}
       </div>
 
-      {/* BREADCRUMB */}
-      <div className="px-6 py-3" style={{ background: CREAM, borderTop: `2px solid ${INK}`, borderBottom: `2px solid ${INK}` }}>
-        <div className="max-w-3xl mx-auto flex items-center gap-2 text-xs font-semibold" style={{ color: "#9a948b" }}>
-          <Link href="/" className="hover:opacity-60 transition-opacity">Home</Link>
-          <ChevronRight className="w-3 h-3" />
-          <Link href="/blog" className="hover:opacity-60 transition-opacity">Blog</Link>
-          <ChevronRight className="w-3 h-3" />
-          <span className="truncate max-w-[200px]" style={{ color: INK }}>{post.title}</span>
+      {/* BREADCRUMB - silo trail when the post is in a silo, flat trail otherwise */}
+      {breadcrumbs ?? (
+        <div className="px-6 py-3" style={{ background: CREAM, borderTop: `2px solid ${INK}`, borderBottom: `2px solid ${INK}` }}>
+          <div className="max-w-3xl mx-auto flex items-center gap-2 text-xs font-semibold" style={{ color: "#9a948b" }}>
+            <Link href="/" className="hover:opacity-60 transition-opacity">Home</Link>
+            <ChevronRight className="w-3 h-3" />
+            <Link href="/blog" className="hover:opacity-60 transition-opacity">Blog</Link>
+            <ChevronRight className="w-3 h-3" />
+            <span className="truncate max-w-[200px]" style={{ color: INK }}>{post.title}</span>
+          </div>
         </div>
-      </div>
+      )}
 
       {/* CONTENT */}
       <article className="py-14 px-6" style={{ background: "#fff" }}>
         <div className="max-w-3xl mx-auto">
+          {post.lastVerifiedAt && (
+            <p
+              className="inline-flex items-center gap-1.5 text-xs font-bold px-3 py-1.5 rounded-full border-2 mb-6"
+              style={{ ...display, color: INK, borderColor: INK, background: AMBER }}
+            >
+              <CheckCircle2 className="w-3.5 h-3.5" />
+              Figures last verified{" "}
+              {new Date(post.lastVerifiedAt).toLocaleDateString("en-PH", {
+                year: "numeric", month: "long", day: "numeric",
+              })}
+            </p>
+          )}
+
+          {toc.length > 1 && (
+            <nav
+              aria-label="On this page"
+              className="mb-10 p-5 rounded-[22px] border-2"
+              style={{ ...display, borderColor: INK, background: CREAM }}
+            >
+              <p className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color: BLUE }}>
+                On this page
+              </p>
+              <ol className="space-y-2 list-decimal list-inside">
+                {toc.map((entry) => (
+                  <li key={entry.id} className="text-sm">
+                    <a href={`#${entry.id}`} className="hover:underline" style={{ color: INK }}>
+                      {entry.text}
+                    </a>
+                  </li>
+                ))}
+              </ol>
+            </nav>
+          )}
+
           {post.excerpt && (
             <div
               className="text-xl leading-relaxed mb-8 pb-8 blog-content"
@@ -379,6 +432,9 @@ export default function BlogPostContent({ post }: { post: Post }) {
           </div>
         </div>
       </section>
+
+      {/* Related + upward links - rendered from the silo graph, never hand-placed */}
+      {related}
 
       {/* CTA */}
       <section className="py-20 px-6" style={{ background: "#fff" }}>

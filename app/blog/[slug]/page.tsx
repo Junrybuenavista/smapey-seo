@@ -1,6 +1,13 @@
 import { Metadata } from "next"
 import { notFound } from "next/navigation"
 import BlogPostContent from "./BlogPostContent"
+import JsonLd from "@/components/JsonLd"
+import SiloBreadcrumbs from "@/components/silo/SiloBreadcrumbs"
+import SiloSiblings from "@/components/silo/SiloSiblings"
+import SiloUpwardLinks from "@/components/silo/SiloUpwardLinks"
+import { siloContextFromPost } from "@/lib/silo"
+import { breadcrumbSchema } from "@/lib/seo"
+import { extractToc } from "@/lib/toc"
 
 const API = process.env.NEXT_PUBLIC_API_URL
 const SITE = "https://smapey.com"
@@ -22,11 +29,13 @@ export async function generateMetadata(
   const post = await getPost(params.slug)
   if (!post) return { title: "Post Not Found | Smapey Blog" }
 
-  const description = post.excerpt || post.content.slice(0, 160).replace(/\n/g, " ")
+  // The writer's meta fields win when set; otherwise fall back to the post
+  const description =
+    post.metaDescription || post.excerpt || post.content.slice(0, 160).replace(/\n/g, " ")
   const url = `${SITE}/blog/${post.slug}`
 
   return {
-    title: `${post.title} | Smapey Blog`,
+    title: post.metaTitle || `${post.title} | Smapey Blog`,
     description,
     alternates: { canonical: url },
     openGraph: {
@@ -54,30 +63,50 @@ export default async function Page({ params }: { params: { slug: string } }) {
   const post = await getPost(params.slug)
   if (!post) notFound()
 
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Article",
-    headline: post.title,
-    description: post.excerpt || post.content.slice(0, 160),
-    ...(post.coverImage ? { image: post.coverImage } : {}),
-    author: { "@type": "Person", name: post.authorName },
-    publisher: {
-      "@type": "Organization",
-      name: "Smapey",
-      logo: { "@type": "ImageObject", url: `${SITE}/logo.png` },
+  // A post inside the boarding-house silo carries its own hierarchy: breadcrumbs
+  // follow parentPage rather than the URL, and the sibling and upward modules
+  // render from the graph so they cannot rot as the library grows.
+  const silo = siloContextFromPost(post)
+  const { toc, html: contentWithIds } = extractToc(post.content)
+
+  const jsonLd: Record<string, unknown>[] = [
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      headline: post.title,
+      description: post.metaDescription || post.excerpt || post.content.slice(0, 160),
+      ...(post.coverImage ? { image: post.coverImage } : {}),
+      author: { "@type": "Person", name: post.authorName },
+      publisher: {
+        "@type": "Organization",
+        name: "Smapey",
+        logo: { "@type": "ImageObject", url: `${SITE}/logo.png` },
+      },
+      datePublished: post.publishedAt,
+      dateModified: post.lastVerifiedAt || post.updatedAt,
+      mainEntityOfPage: { "@type": "WebPage", "@id": `${SITE}/blog/${post.slug}` },
     },
-    datePublished: post.publishedAt,
-    dateModified: post.updatedAt,
-    mainEntityOfPage: { "@type": "WebPage", "@id": `${SITE}/blog/${post.slug}` },
-  }
+  ]
+
+  const crumbs = silo ? breadcrumbSchema(silo) : null
+  if (crumbs) jsonLd.push(crumbs as Record<string, unknown>)
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      <JsonLd schema={jsonLd} />
+      <BlogPostContent
+        post={{ ...post, content: contentWithIds }}
+        toc={toc}
+        breadcrumbs={silo ? <SiloBreadcrumbs ctx={silo} /> : null}
+        related={
+          silo ? (
+            <>
+              <SiloSiblings ctx={silo} />
+              <SiloUpwardLinks ctx={silo} />
+            </>
+          ) : null
+        }
       />
-      <BlogPostContent post={post} />
     </>
   )
 }
