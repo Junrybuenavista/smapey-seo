@@ -1,22 +1,29 @@
 import Link from "next/link"
 import { ALL_CLUSTERS, CLUSTERS } from "../lib/routes"
 
-const FOOTER_LINKS_PER_CLUSTER = 6
-
+/**
+ * The footer links to each product's hub, not to every page inside it.
+ *
+ * It used to render six pages per cluster - about 120 links on every page of
+ * the site, which on a given page came to roughly 89% of all its links, nearly
+ * all pointing at unrelated products. That spreads link equity thinly across
+ * the whole site rather than letting it settle where a page is actually about
+ * something, and outbound links are one of the signals search engines use to
+ * work out what a page covers.
+ *
+ * Eighteen hub links keep discovery and cross-linking intact - each hub already
+ * links to its own pages, so nothing becomes unreachable.
+ */
 export default function Footer() {
   return (
     <footer className="bg-white border-t">
       <div className="max-w-7xl mx-auto px-6 py-16">
-        {/* TOP: brand + per-cluster link columns */}
         <div className="grid lg:grid-cols-6 md:grid-cols-3 sm:grid-cols-2 gap-10">
           {/* BRAND */}
           <div className="lg:col-span-1 md:col-span-3 sm:col-span-2">
             <div className="flex items-center gap-2">
-              <img
-                src="/logo.png"
-                alt="SMAPEY Logo"
-                className="w-6 h-6 object-contain"
-              />
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/logo.png" alt="SMAPEY Logo" className="w-6 h-6 object-contain" />
               <h3 className="text-xl font-extrabold text-blue-600">SMAPEY</h3>
             </div>
             <p className="text-sm text-gray-600 mt-4 leading-relaxed">
@@ -32,35 +39,19 @@ export default function Footer() {
             </Link>
           </div>
 
-          {/* CLUSTERS */}
-          {ALL_CLUSTERS.map((key) => {
-            const cluster = CLUSTERS[key]
-            const links = cluster.pages.slice(0, FOOTER_LINKS_PER_CLUSTER)
-            return (
-              <div key={key}>
-                <h4 className="font-semibold mb-4">
-                  <Link
-                    href={cluster.hub.path}
-                    className="hover:text-blue-600 transition"
-                  >
-                    {cluster.label}
+          {/* PRODUCTS - one link per cluster, to its hub */}
+          <div className="lg:col-span-5 md:col-span-3 sm:col-span-2">
+            <h4 className="font-semibold mb-4">Products</h4>
+            <ul className="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-2 text-sm text-gray-600">
+              {ALL_CLUSTERS.map((key) => (
+                <li key={key}>
+                  <Link href={CLUSTERS[key].hub.path} className="hover:text-blue-600 transition">
+                    {CLUSTERS[key].label}
                   </Link>
-                </h4>
-                <ul className="space-y-2 text-sm text-gray-600">
-                  {links.map((p) => (
-                    <li key={p.path}>
-                      <Link
-                        href={p.path}
-                        className="hover:text-blue-600 transition"
-                      >
-                        {p.title}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )
-          })}
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
 
         {/* LEGAL */}
