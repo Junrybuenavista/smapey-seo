@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { hubs, anchorFor, APEX } from "@/lib/silo"
+import { builtHubs, anchorFor, APEX } from "@/lib/silo"
 import { INK, BLUE, AMBER, CREAM, MUTED, display } from "./tokens"
 
 /**
@@ -10,7 +10,8 @@ import { INK, BLUE, AMBER, CREAM, MUTED, display } from "./tokens"
  * Use this in place of <InternalLinks/>, which cards out to the entire cluster.
  */
 export default function ApexHubLinks() {
-  const branches = hubs()
+  // Only hubs that exist - the money page must never point at a 404.
+  const branches = builtHubs()
 
   return (
     <section className="py-24" style={{ background: CREAM, ...display }}>

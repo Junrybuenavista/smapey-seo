@@ -120,11 +120,26 @@ function checkGraph() {
 
 // ─── Pass 2: the crawl ────────────────────────────────────────────────────────
 
+/**
+ * Strips <nav> and <footer> before reading links.
+ *
+ * The linking rules govern editorial links - what the body of a page chooses to
+ * point at. Site chrome is different: this site's footer renders every page in
+ * every product cluster, and each page carries its own navbar and breadcrumb.
+ * Counting those would fail every page in the silo for boilerplate that search
+ * engines already discount, and would drown the real findings.
+ */
+function stripChrome(html) {
+  return html
+    .replace(/<nav\b[\s\S]*?<\/nav>/gi, "")
+    .replace(/<footer\b[\s\S]*?<\/footer>/gi, "")
+}
+
 function extractLinks(html) {
   const out = []
   const re = /<a\b[^>]*?href=["']([^"']+)["'][^>]*>/gi
   let m
-  while ((m = re.exec(html)) !== null) out.push(m[1])
+  while ((m = re.exec(stripChrome(html))) !== null) out.push(m[1])
   return out
 }
 
@@ -188,6 +203,7 @@ function checkApexLinks(links) {
   }
 
   for (const hub of hubPaths) {
+    if (!byPath.get(hub).built) continue
     if (!links.includes(hub)) err(APEX, `missing its link to hub ${hub}`)
   }
 }
@@ -245,6 +261,9 @@ async function checkCrawl() {
 
     if (page.status === 404) {
       unbuilt.add(node.path)
+      if (node.built) {
+        err(node.path, "marked built:true in silo.nodes.json but returns 404 - modules will link into a dead page")
+      }
       const msg = `not built yet (404)${node.cms ? " - lives in the blog CMS" : ""}`
       if (STRICT) err(node.path, msg)
       else note(node.path, msg)
@@ -253,6 +272,10 @@ async function checkCrawl() {
     if (page.status >= 400) {
       err(node.path, `returned HTTP ${page.status}`)
       continue
+    }
+
+    if (node.built === false) {
+      warn(node.path, "is live but still marked built:false - modules will not link to it until the flag is flipped")
     }
 
     live.push({ node, links: extractLinks(page.html).map(normalize).filter(Boolean) })
