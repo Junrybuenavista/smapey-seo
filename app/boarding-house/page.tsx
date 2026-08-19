@@ -1,3 +1,4 @@
+import { Plus_Jakarta_Sans, JetBrains_Mono } from "next/font/google"
 import JsonLd from "@/components/JsonLd"
 import {
   buildMetadata,
@@ -5,11 +6,29 @@ import {
   faqSchema,
   breadcrumbSchema,
 } from "@/lib/seo"
-import SiteNavbar from "@/components/SiteNavbar"
-import ApexHubLinks from "@/components/silo/ApexHubLinks"
-import SiloFooter from "@/components/silo/SiloFooter"
 import BoardingHouseContent from "./BoardingHouseContent"
 import { FAQS } from "./faqs"
+
+/**
+ * Self-hosted through next/font rather than a client-injected stylesheet link,
+ * which is how the rest of the site loads its face. The fonts then arrive with
+ * the document instead of after hydration, so the text does not reflow once
+ * they land - the page is judged on Core Web Vitals, and CLS is the one this
+ * would otherwise cost.
+ */
+const jakarta = Plus_Jakarta_Sans({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800"],
+  variable: "--font-jakarta",
+  display: "swap",
+})
+
+const jetbrains = JetBrains_Mono({
+  subsets: ["latin"],
+  weight: ["500"],
+  variable: "--font-mono",
+  display: "swap",
+})
 
 const PATH = "/boarding-house"
 const TITLE = "Boarding House Management System for Philippine Landlords | Smapey"
@@ -36,12 +55,9 @@ export default function Page() {
           breadcrumbSchema(PATH),
         ]}
       />
-      <SiteNavbar />
-      <BoardingHouseContent />
-      {/* The money page links only to the three hubs - never deeper, which
-          would leak the equity the silo exists to accumulate. */}
-      <ApexHubLinks />
-      <SiloFooter />
+      <div className={`${jakarta.variable} ${jetbrains.variable}`}>
+        <BoardingHouseContent />
+      </div>
     </>
   )
 }

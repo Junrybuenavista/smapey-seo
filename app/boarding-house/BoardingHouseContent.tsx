@@ -5,14 +5,20 @@ import Link from "next/link"
 import { usePricing, type Plan } from "@/lib/usePricing"
 import BookDemoForm from "@/components/BookDemoForm"
 import { FAQS } from "./faqs"
+import { builtHubs, anchorFor, APEX } from "@/lib/silo"
 
-const INK = "#161616"
-const BLUE = "#2f6bff"
-const AMBER = "#ff9e2c"
-const CREAM = "#fbf7f0"
-const MUTED = "#54514c"
+/* Palette and type from the supplied landing-page design, kept exact. This page
+   deliberately runs its own look rather than the shared silo tokens - it is the
+   money page, and the design was specified for it. */
+const INK = "#101418"
+const BLUE = "#2f63f6"
+const AMBER = "#f5a524"
+const CREAM = "#fbf7ea"
+const MUTED = "#5c6672"
 const LINE = "#e7e2d4"
-const display = { fontFamily: "'Hanken Grotesk', system-ui, sans-serif" }
+const display = { fontFamily: "var(--font-jakarta), system-ui, -apple-system, sans-serif" }
+const mono = { fontFamily: "var(--font-mono), ui-monospace, monospace" }
+const LOGIN = `${process.env.NEXT_PUBLIC_FRONTEND_URL ?? "https://app.smapey.com"}/login`
 const REGISTER = `${process.env.NEXT_PUBLIC_FRONTEND_URL ?? "https://app.smapey.com"}/register?product=BOARDING_HOUSE&plan=FREE`
 
 /* Every claim below describes behaviour that exists today. The source design
@@ -56,6 +62,43 @@ const PH_POINTS = [
   { bg: AMBER, fg: INK, icon: "▣", title: "Records you can produce when asked", desc: "Running a boarding house comes with paperwork and the questions that follow it. Every tenancy, transfer, deposit, and payment is on record, so a tenant ledger is one click." },
 ]
 
+function Navbar() {
+  return (
+    <nav
+      className="sticky top-0 z-40 backdrop-blur"
+      style={{ background: "rgba(255,255,255,.92)", borderBottom: `1px solid ${LINE}` }}
+    >
+      <div className="max-w-6xl mx-auto px-6 flex items-center gap-6 h-[62px]">
+        <Link href="/boarding-house" className="flex items-center gap-2 font-extrabold text-sm no-underline" style={{ color: INK }}>
+          <span className="w-[22px] h-[22px] rounded-md border-2 block" style={{ background: BLUE, borderColor: INK }} />
+          Smapey Boarding House
+        </Link>
+
+        <div className="hidden lg:flex gap-6 ml-auto text-sm font-semibold">
+          {[["Features", "#features"], ["How it works", "#how"], ["Pricing", "#pricing"], ["FAQ", "#faq"], ["Guides", "#guides"]].map(([label, href]) => (
+            <a key={href} href={href} className="no-underline hover:opacity-70 transition" style={{ color: MUTED }}>
+              {label}
+            </a>
+          ))}
+        </div>
+
+        <div className="flex items-center gap-3.5 ml-auto lg:ml-0">
+          <a href={LOGIN} className="text-sm font-semibold no-underline hidden sm:inline" style={{ color: INK }}>
+            Sign in
+          </a>
+          <a
+            href={REGISTER}
+            className="inline-flex items-center gap-2 font-bold text-[0.85rem] px-4.5 py-2.5 rounded-full border-2 transition-transform hover:-translate-y-0.5"
+            style={{ background: AMBER, color: INK, borderColor: INK, boxShadow: `3px 3px 0 ${INK}`, paddingLeft: 18, paddingRight: 18 }}
+          >
+            Get started free
+          </a>
+        </div>
+      </div>
+    </nav>
+  )
+}
+
 function Card({ children, accent = INK, pad = "p-5" }: { children: React.ReactNode; accent?: string; pad?: string }) {
   return (
     <div className={`rounded-[14px] border-2 bg-white ${pad}`} style={{ borderColor: INK, boxShadow: `4px 4px 0 ${accent}` }}>
@@ -66,7 +109,7 @@ function Card({ children, accent = INK, pad = "p-5" }: { children: React.ReactNo
 
 function Eyebrow({ children }: { children: React.ReactNode }) {
   return (
-    <p className="text-xs font-bold uppercase tracking-[0.16em] mb-3" style={{ color: BLUE }}>
+    <p className="text-[0.72rem] font-medium uppercase tracking-[0.16em] mb-3" style={{ ...mono, color: BLUE }}>
       {children}
     </p>
   )
@@ -195,6 +238,8 @@ export default function BoardingHouseContent() {
 
   return (
     <main style={display}>
+      <Navbar />
+
       {/* HERO */}
       <header className="py-16 px-6" style={{ background: CREAM }}>
         <div className="max-w-6xl mx-auto grid lg:grid-cols-[1.05fr_.95fr] gap-12 items-center">
@@ -356,7 +401,7 @@ export default function BoardingHouseContent() {
           <div className="grid md:grid-cols-3 gap-5">
             {STEPS.map((s) => (
               <Card key={s.n}>
-                <span className="inline-block border-2 rounded-lg px-2.5 py-0.5 text-xs font-semibold mb-3" style={{ borderColor: INK, background: AMBER, color: INK }}>
+                <span className="inline-block border-2 rounded-lg px-2.5 py-0.5 text-xs font-medium mb-3" style={{ ...mono, borderColor: INK, background: AMBER, color: INK }}>
                   {s.n}
                 </span>
                 <h3 className="font-bold text-base" style={{ color: INK }}>{s.title}</h3>
@@ -449,6 +494,56 @@ export default function BoardingHouseContent() {
           <p className="mt-4 text-xs" style={{ color: "#4a3f22" }}>Free to start. No credit card required.</p>
         </div>
       </section>
+
+      {/* GUIDES - the money page's only internal link module. Rule 1 limits it
+          to the three hubs; the data-silo-hub attributes keep click tracking
+          and the crawl working on the design's own markup. */}
+      <section id="guides" className="py-20 px-6" style={{ background: CREAM }}>
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-12">
+            <Eyebrow>Go deeper</Eyebrow>
+            <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight" style={{ color: INK }}>
+              Guides for running a boarding house
+            </h2>
+          </div>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            {builtHubs().map((hub) => (
+              <Link
+                key={hub.path}
+                href={hub.path}
+                data-silo-hub={hub.branch ?? ""}
+                className="group rounded-[14px] border-2 bg-white p-5 flex flex-col transition-transform hover:-translate-y-1"
+                style={{ borderColor: INK, boxShadow: `4px 4px 0 ${INK}` }}
+              >
+                <h3 className="font-bold text-base mb-2" style={{ color: INK }}>
+                  {anchorFor(hub.path, APEX)}
+                </h3>
+                <p className="text-sm leading-relaxed flex-1" style={{ color: MUTED }}>
+                  {hub.covers ?? hub.h1}
+                </p>
+                <span className="text-sm font-bold mt-3 group-hover:translate-x-1 transition-transform" style={{ color: BLUE }}>
+                  Read the guide →
+                </span>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <footer className="py-7 px-6" style={{ borderTop: `2px solid ${INK}` }}>
+        <div className="max-w-6xl mx-auto flex flex-wrap justify-between items-center gap-4 text-sm" style={{ color: MUTED }}>
+          <span className="flex items-center gap-2 font-extrabold" style={{ color: INK }}>
+            <span className="w-5 h-5 rounded-md border-2 block" style={{ background: BLUE, borderColor: INK }} />
+            Boarding House by Smapey
+          </span>
+          <span className="flex items-center gap-5 text-xs font-semibold">
+            <Link href="/privacy-policy" className="hover:underline">Privacy</Link>
+            <Link href="/terms-and-conditions" className="hover:underline">Terms</Link>
+            <Link href="/invoice/contact" className="hover:underline">Contact</Link>
+          </span>
+          <span className="text-xs">© {new Date().getFullYear()} Smapey. All rights reserved.</span>
+        </div>
+      </footer>
     </main>
   )
 }
