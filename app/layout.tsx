@@ -1,6 +1,7 @@
 import "./globals.css"
 import Script from "next/script"
 import PageTracker from "../components/PageTracker"
+import SiloClickTracker from "../components/silo/SiloClickTracker"
 import ReferralCapture from "../components/ReferralCapture"
 import JsonLd from "../components/JsonLd"
 import { organizationSchema, webSiteSchema } from "../lib/seo"
@@ -42,6 +43,8 @@ export default function RootLayout({
         </Script>
 
         <PageTracker />
+        {/* Inert unless a link carries data-silo-*, so it costs nothing off-silo */}
+        <SiloClickTracker />
         <ReferralCapture />
         {children}
       </body>
