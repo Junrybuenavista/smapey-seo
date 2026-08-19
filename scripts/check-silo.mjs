@@ -237,7 +237,14 @@ function checkNodeLinks(node, links) {
       const t = byPath.get(l)
       return t.tier === 4 && t.branch === node.branch
     }).length
-    if (lateral === 0) warn(where, "has no lateral link to a sibling post; the spec asks for 1-2")
+    // Only a finding once there is actually something to link to - a leaf whose
+    // siblings are not written yet renders no module, which is correct.
+    const builtSiblings = nodes.filter(
+      (n) => n.tier === 4 && n.branch === node.branch && n.path !== node.path && n.built
+    ).length
+    if (lateral === 0 && builtSiblings > 0) {
+      warn(where, `has no lateral link to a sibling post; ${builtSiblings} are available and the spec asks for 1-2`)
+    }
     else if (lateral > 2) warn(where, `has ${lateral} lateral links; the spec allows 1-2`)
 
     const total = new Set(siloLinks).size
