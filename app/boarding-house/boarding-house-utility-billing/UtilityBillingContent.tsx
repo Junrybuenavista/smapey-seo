@@ -1,4 +1,8 @@
+import Link from "next/link"
 import SiloGuide, { type GuideSection } from "@/components/silo/SiloGuide"
+import { anchorFor } from "@/lib/silo"
+
+const HUB = "/boarding-house/boarding-house-management-and-billing-system"
 
 const PATH = "/boarding-house/boarding-house-utility-billing"
 
@@ -69,7 +73,15 @@ export default function UtilityBillingContent() {
       eyebrow="Utility billing"
       h1="Boarding house utility billing explained"
       intro={[
-        "One electricity bill arrives for a room that four people share. Splitting it sounds like arithmetic and is really a policy question - which method you use, whether tenants can check it, and what happens when somebody disagrees.",
+        <>
+          One electricity bill arrives for a room that four people share. Splitting it sounds
+          like arithmetic and is really a policy question - which method you use, whether
+          tenants can check it, and what happens when somebody disagrees. It is one half of{" "}
+          <Link href={HUB} className="font-bold underline" style={{ color: "#2f6bff" }}>
+            {anchorFor(HUB, PATH)}
+          </Link>
+          , the other being rent itself.
+        </>,
         "Get it wrong and utilities become the recurring argument of your month, every month. Get it right and it becomes a line on a statement that nobody queries.",
         "This guide covers why utilities are harder than rent, the three ways to allocate a shared bill and what each costs you, the arithmetic trap that makes shares appear to move, and how to handle a dispute when it comes.",
       ]}

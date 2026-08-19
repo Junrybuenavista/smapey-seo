@@ -1,10 +1,13 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react"
+import Link from "next/link"
 import SiloBreadcrumbs from "@/components/silo/SiloBreadcrumbs"
 import SiloSiblings from "@/components/silo/SiloSiblings"
 import SiloUpwardLinks from "@/components/silo/SiloUpwardLinks"
-import { siloContextFor } from "@/lib/silo"
+import { siloContextFor, anchorFor } from "@/lib/silo"
+
+const PARENT = "/boarding-house/boarding-house-permits-and-roi"
 import { Building2, CheckCircle2, ChevronRight, Banknote, BedDouble, Zap, Menu, X } from "lucide-react"
 
 const PATH = "/boarding-house/boarding-house-business-plan-sample-philippines"
@@ -120,8 +123,11 @@ export default function BoardingHousePlanContent() {
               <span style={{ color: BLUE }}>Sample for the Philippines</span>
             </h1>
             <p className="text-lg max-w-2xl mx-auto leading-relaxed" style={{ color: "#54514c" }}>
-              A practical business plan template for Philippine boarding house owners, covering business overview, target market, services, pricing model, and how to manage it all with a digital system.
-            </p>
+              A practical business plan template for Philippine boarding house owners, covering business overview, target market, services, pricing model, and how to manage it all with a digital system.{" "}For what the paperwork and the numbers behind it look like, see{" "}
+        <Link href={PARENT} className="font-bold underline" style={{ color: BLUE }}>
+          {anchorFor(PARENT, PATH)}
+        </Link>.
+      </p>
           </Animate>
         </div>
       </section>

@@ -52,7 +52,12 @@ export default function Page() {
             <p className="text-lg max-w-2xl leading-relaxed" style={{ color: MUTED }}>
               Most projections for a boarding house are too optimistic in the same four places:
               they assume full occupancy, forget the utilities nobody is billed for,
-              under-budget repairs, and leave out tax. This one asks for all of them.
+              under-budget repairs, and leave out tax. This one asks for all of them - the same
+              ground covered in{" "}
+              <Link href={PARENT} className="font-bold underline" style={{ color: BLUE }}>
+                boarding house permits and roi
+              </Link>
+              .
             </p>
             <p className="text-lg max-w-2xl leading-relaxed mt-3" style={{ color: MUTED }}>
               No sign-up, no email. Change any figure and the numbers update as you type.

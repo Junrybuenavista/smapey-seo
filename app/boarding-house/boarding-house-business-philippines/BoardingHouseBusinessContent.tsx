@@ -118,9 +118,14 @@ export default function BoardingHouseBusinessContent() {
           <div className="space-y-4 text-lg leading-relaxed" style={{ color: MUTED }}>
             <p>
               A boarding house looks like a simple business from the outside: you have space,
-              people need somewhere to sleep, they pay you monthly. The parts that decide whether
-              it works are less visible - which model you choose, how much capital the fit-out
-              really needs, what your LGU expects, and whether you know your actual numbers.
+              people need somewhere to sleep, they pay you monthly. The parts that decide
+              whether it works are less visible - which model you choose, how much capital the
+              fit-out really needs, what your LGU expects, and whether you run it on paper or
+              on a{" "}
+              <Link href={APEX} className="font-bold underline" style={{ color: BLUE }}>
+                {anchorFor(APEX, PATH)}
+              </Link>
+              .
             </p>
             <p>
               It is also a genuinely good business when it is run properly. Demand near schools and
@@ -191,11 +196,7 @@ export default function BoardingHouseBusinessContent() {
                 against repairs and expenses to give you money in, money out, and net per month.
               </p>
               <p>
-                It is the day-to-day layer of a{" "}
-                <Link href={APEX} className="font-bold underline" style={{ color: BLUE }}>
-                  {anchorFor(APEX, PATH)}
-                </Link>{" "}
-                that also handles rent billing, utilities, and tenant records.
+                This is the day-to-day layer of the same system that also handles rent billing, utilities, and tenant records.
               </p>
             </div>
           </section>

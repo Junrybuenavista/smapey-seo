@@ -38,9 +38,13 @@ export default function SiloGuide({
   path: string
   eyebrow: string
   h1: string
-  intro: string[]
+  intro: React.ReactNode[]
   sections: GuideSection[]
-  /** The 150-word product module. Its last paragraph gets the link up to the apex. */
+  /**
+   * Intro paragraphs. Takes nodes rather than strings so the first one can
+   * carry a contextual link - an internal link high on the page is read as
+   * more editorial, and weighted more, than the same link near the footer.
+   */
   product: { paragraphs: string[]; closing: string }
   /** Rendered above the product module, for pages carrying figures or legal content. */
   disclaimer?: string

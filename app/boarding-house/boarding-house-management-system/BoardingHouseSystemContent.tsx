@@ -7,7 +7,9 @@ import {
   Wrench, QrCode, BedSingle,
 Menu , X } from "lucide-react"
 import { usePricing, type Plan } from "@/lib/usePricing"
+import Link from "next/link"
 import ApexHubLinks from "@/components/silo/ApexHubLinks"
+import { hubForBranch, anchorFor, APEX } from "@/lib/silo"
 import BookDemoForm from "@/components/BookDemoForm"
 import { FAQS } from "./faqs"
 
@@ -140,7 +142,11 @@ function Problem() {
           <p className="text-lg leading-relaxed mb-4" style={{ color: "#54514c" }}>
             Most boarding houses start in a notebook, then graduate to Excel. That is fine while
             you can hold the whole house in your head. Past roughly ten tenants - especially once
-            you are renting per bed rather than per room - the spreadsheet stops keeping up:
+            you are{" "}
+            <Link href={hubForBranch("B")!.path} className="font-bold underline" style={{ color: BLUE }}>
+              {anchorFor(hubForBranch("B")!.path, APEX)}
+            </Link>{" "}
+            rather than letting whole rooms - the spreadsheet stops keeping up:
           </p>
         </Animate>
         <Animate delay={100}>

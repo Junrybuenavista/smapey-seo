@@ -1,4 +1,8 @@
+import Link from "next/link"
 import SiloGuide, { type GuideSection } from "@/components/silo/SiloGuide"
+import { anchorFor } from "@/lib/silo"
+
+const HUB = "/boarding-house/boarding-house-business-philippines"
 
 const PATH = "/boarding-house/boarding-house-permits-and-roi"
 
@@ -72,7 +76,16 @@ export default function PermitsAndRoiContent() {
       eyebrow="Permits & ROI"
       h1="Boarding house permits, costs, and returns"
       intro={[
-        "Two questions decide whether a boarding house happens: what the paperwork requires, and whether the numbers work. They are usually researched separately and they belong together, because the permits and the fit-out are a large part of what the returns have to pay back.",
+        <>
+          Two questions decide whether a boarding house happens: what the paperwork requires,
+          and whether the numbers work. They are usually researched separately and belong
+          together, because the permits and the fit-out are a large part of what the returns
+          have to pay back - and both are early decisions in{" "}
+          <Link href={HUB} className="font-bold underline" style={{ color: "#2f6bff" }}>
+            {anchorFor(HUB, PATH)}
+          </Link>
+          .
+        </>,
         "Both are areas where confident published figures do more harm than good. Permit costs and processes vary by LGU and change; returns depend on your building, your location, and an occupancy rate nobody can promise you.",
         "This guide covers what registration typically involves, where the capital actually goes, the cost lines most projections leave out, and how to model returns in a way that survives contact with a real year.",
       ]}

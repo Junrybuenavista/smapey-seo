@@ -216,11 +216,20 @@ export function upwardTargets(path: string): { parent: SiloNode | null; apex: Si
   return ctx ? upwardFor(ctx) : { parent: null, apex: null }
 }
 
-function hash(input: string): number {
+/**
+ * Position of a page in the node list, used to rotate anchor text.
+ *
+ * Rotating by list position rather than by a hash of the path guarantees that
+ * neighbouring pages draw different anchors - a hash spreads unevenly and
+ * happily gives two sibling pages the same phrase, which is the repetition the
+ * spec asks us to avoid. Falls back to a hash for pages outside the graph.
+ */
+function rotationIndex(path: string): number {
+  const i = SILO_NODES.findIndex((n) => n.path === path)
+  if (i !== -1) return i
+
   let h = 0
-  for (let i = 0; i < input.length; i++) {
-    h = (h * 31 + input.charCodeAt(i)) | 0
-  }
+  for (let c = 0; c < path.length; c++) h = (h * 31 + path.charCodeAt(c)) | 0
   return Math.abs(h)
 }
 
@@ -239,7 +248,7 @@ export function anchorFor(toPath: string, fromPath: string): string {
   const target = siloNode(toPath)
   if (!target || target.anchors.length === 0) return target?.title ?? toPath
   if (target.anchors.length === 1) return target.anchors[0]
-  return target.anchors[hash(fromPath) % target.anchors.length]
+  return target.anchors[rotationIndex(fromPath) % target.anchors.length]
 }
 
 /**

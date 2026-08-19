@@ -118,8 +118,13 @@ export default function BedSpaceRoomsContent() {
           <div className="space-y-4 text-lg leading-relaxed" style={{ color: MUTED }}>
             <p>
               Managing a boarding house is mostly a question of inventory. Not stock on a shelf -
-              rooms, beds, and the people occupying them, changing a little every month as tenants
-              arrive, move between beds, and leave.
+              rooms, beds, and the people occupying them, changing a little every month as
+              tenants arrive, move between beds, and leave. It is the foundation everything
+              else in a{" "}
+              <Link href={APEX} className="font-bold underline" style={{ color: BLUE }}>
+                {anchorFor(APEX, PATH)}
+              </Link>{" "}
+              is built on.
             </p>
             <p>
               Get that inventory right and the rest of the business gets easier: you can see what is
@@ -187,11 +192,7 @@ export default function BedSpaceRoomsContent() {
                 free upper deck reads as partly vacant - which is what it is.
               </p>
               <p>
-                It is one part of a{" "}
-                <Link href={APEX} className="font-bold underline" style={{ color: BLUE }}>
-                  {anchorFor(APEX, PATH)}
-                </Link>{" "}
-                that also covers rent billing, utilities, maintenance, and your monthly cashflow.
+                Room and bed tracking is one part of the same system that also covers rent billing, utilities, maintenance, and your monthly cashflow.
               </p>
             </div>
           </section>

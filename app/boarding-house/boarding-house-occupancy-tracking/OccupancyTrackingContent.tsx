@@ -1,4 +1,8 @@
+import Link from "next/link"
 import SiloGuide, { type GuideSection } from "@/components/silo/SiloGuide"
+import { anchorFor } from "@/lib/silo"
+
+const HUB = "/boarding-house/bed-space-and-room-management"
 
 const PATH = "/boarding-house/boarding-house-occupancy-tracking"
 
@@ -61,7 +65,16 @@ export default function OccupancyTrackingContent() {
       eyebrow="Occupancy tracking"
       h1="Tracking occupancy in a boarding house"
       intro={[
-        "Occupancy is the number every boarding house owner quotes and very few compute the same way. The formula is simple. What counts as a slot, what counts as capacity, and what the resulting figure is compared against are where it goes wrong.",
+        <>
+          Occupancy is the number every boarding house owner quotes and very few compute the
+          same way. The formula is simple. What counts as a slot, what counts as capacity, and
+          what the figure is compared against are where it goes wrong - which makes it
+          inseparable from{" "}
+          <Link href={HUB} className="font-bold underline" style={{ color: "#2f6bff" }}>
+            {anchorFor(HUB, PATH)}
+          </Link>
+          .
+        </>,
         "It matters because occupancy is the strongest lever you have on profit. An empty bed earns nothing while still carrying its share of the loan, the caretaker, and the electricity - so knowing precisely how full you are, and when you are emptiest, is worth more than most cost savings you could make.",
         "This guide covers choosing what to count, what belongs in capacity, reading the trend over time including seasonality, and what a vacancy actually costs you each month.",
       ]}

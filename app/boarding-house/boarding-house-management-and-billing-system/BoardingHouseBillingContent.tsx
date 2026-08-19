@@ -118,8 +118,11 @@ export default function BoardingHouseBillingContent() {
             <p>
               Collecting rent is the part of a boarding house that decides whether the business
               works. Everything else - the rooms, the beds, the repairs - is in service of money
-              arriving predictably each month, from a group of people whose own pay arrives on
-              different days through different apps.
+              arriving predictably each month, and it is the half of a{" "}
+              <Link href={APEX} className="font-bold underline" style={{ color: BLUE }}>
+                {anchorFor(APEX, PATH)}
+              </Link>{" "}
+              that owners feel first.
             </p>
             <p>
               Most of the difficulty is not the rent itself. It is the surrounding detail: what a
@@ -185,11 +188,7 @@ export default function BoardingHouseBillingContent() {
                 a month last year is one lookup.
               </p>
               <p>
-                Billing is one part of a{" "}
-                <Link href={APEX} className="font-bold underline" style={{ color: BLUE }}>
-                  {anchorFor(APEX, PATH)}
-                </Link>{" "}
-                that also covers rooms and beds, maintenance, and your monthly cashflow.
+                Billing is one part of the same system that also covers rooms and beds, maintenance, and your monthly cashflow.
               </p>
             </div>
           </section>
