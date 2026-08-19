@@ -1,14 +1,8 @@
 "use client"
 
-import { useState, useEffect, useRef } from "react"
-import {
-  Building2, Users, BedDouble, CheckCircle2, ChevronRight,
-  Menu, X, Star, BarChart3, Shield, Clock, Zap,
-  Banknote, AlertTriangle, BookOpen, Receipt,
-  CalendarCheck, BedSingle, Wrench, QrCode, Mail, Scale,
-} from "lucide-react"
+import { useState } from "react"
+import Link from "next/link"
 import { usePricing, type Plan } from "@/lib/usePricing"
-import InternalLinks from "@/components/InternalLinks"
 import BookDemoForm from "@/components/BookDemoForm"
 import { FAQS } from "./faqs"
 
@@ -16,439 +10,445 @@ const INK = "#161616"
 const BLUE = "#2f6bff"
 const AMBER = "#ff9e2c"
 const CREAM = "#fbf7f0"
+const MUTED = "#54514c"
+const LINE = "#e7e2d4"
 const display = { fontFamily: "'Hanken Grotesk', system-ui, sans-serif" }
+const REGISTER = `${process.env.NEXT_PUBLIC_FRONTEND_URL ?? "https://app.smapey.com"}/register?product=BOARDING_HOUSE&plan=FREE`
 
+/* Every claim below describes behaviour that exists today. The source design
+   also advertised a tenant portal, online bed booking, PayPal, sub-metered
+   utility splits, document uploads, and a suite of dormitory tools - none of
+   which are built, so none of them appear here. */
 const FEATURES = [
-  { icon: BedDouble, title: "Visual Room Cards", desc: "Every room is a card showing exactly who's inside and which beds or slots are free. Move tenants in, transfer them to another room or bed, swap two tenants, or move them out - all without leaving the page." },
-  { icon: BedSingle, title: "Bed-Level Tracking", desc: "For bedspace rooms, add named beds (Lower A, Upper A) each with its own rate. Charge more for lower decks, see which exact bed is vacant, and fill it in one click." },
-  { icon: Users, title: "Tenants & Ledger", desc: "Full tenant profiles plus a one-click Ledger per tenant - original move-in date, deposit status, every stay and transfer, and a month-by-month payment table with running totals. A statement of account, always ready." },
-  { icon: Banknote, title: "Rent Billing", desc: "Generate a month's bills in one click - each tenant's due date follows their own move-in day. Record full or partial payments via Cash, GCash, Maya, Card, or Bank Transfer; balances and overdue flags update automatically." },
-  { icon: Zap, title: "Utility Billing", desc: "Enter a whole month's water and electric in seconds with Quick Fill - your rooms listed, just type the amounts - or import from an Excel template. Itemized per room, clearly separated from rent." },
-  { icon: Wrench, title: "Maintenance Tracking", desc: "Log every repair (leaks, busted outlets, pests) with category, priority, and status. Track jobs from Open to Resolved and record repair costs so you know what maintenance really costs each month." },
-  { icon: QrCode, title: "QR Issue Reporting", desc: "Print a QR code poster for each room. Tenants scan it with their phone (no app, no login) and report issues with photos straight to your Maintenance page. They also see what's already been reported and its status, so you don't get the same leak five times." },
-  { icon: Mail, title: "Email Billing Statements", desc: "The moment you create bills, every tenant with an email gets a clean statement: rent, their share of utilities, total, and due date. In shared rooms, utilities are split per tenant with the math shown - no more 'magkano ulit ako?'." },
-  { icon: Receipt, title: "Tenant Payment Reporting", desc: "Print the room's payment QR beside your GCash QR. Tenants scan, see their exact balance for the month - rent plus their split of each utility - pay, attach a screenshot, and tap 'I Paid My Bill'. You get a live Payments Inbox; one tap verifies it and posts to the right bills automatically." },
-  { icon: BarChart3, title: "Occupancy Dashboard", desc: "See total rooms, active tenants, occupancy rate, overdue count, open maintenance, rent collected, and utility collected - all on one dashboard. Monthly revenue trend chart included." },
-  { icon: Clock, title: "Stay History", desc: "Every move-in, transfer, swap, and move-out is a permanent record - who lived in which room and bed, for how long, at what rate, with deposit status. Your paper trail for disputes, always intact." },
-  { icon: Scale, title: "Cashflow & Expenses", desc: "Your cashbook, automated: rent, utility payments, and deposits flow in by themselves; log repairs and expenses in seconds. One chronological ledger with a running balance and a monthly Money In / Out / Net summary." },
-  { icon: Shield, title: "Secure & Isolated", desc: "Each boarding house gets its own isolated data space. Your tenant records, billing history, and occupancy data are never shared with anyone else." },
+  { bg: BLUE,  fg: "#fff", icon: "▦", title: "Visual room cards", desc: "Every room is a card showing who is inside and which beds or slots are free. Move a tenant in, transfer them, swap two boarders, or move them out without leaving the page." },
+  { bg: AMBER, fg: INK,    icon: "▤", title: "Bed-level tracking", desc: "In a bedspace room each bed is named and priced on its own - Lower A, Upper A - so a lower deck can carry its usual premium. Occupancy counts beds, not rooms." },
+  { bg: "#dce6ff", fg: INK, icon: "◧", title: "Move-ins from the vacancy view", desc: "Click any vacant bed to place a tenant against it. Capacity is the beds that exist, so a room with one free upper deck reads as partly vacant rather than full." },
+  { bg: AMBER, fg: INK,    icon: "☰", title: "Tenant profiles and ledger", desc: "Contact and emergency details, move-in date, deposit and its status, plus a one-click ledger: every room and bed occupied, and a month-by-month table of billed, paid, and balance." },
+  { bg: BLUE,  fg: "#fff", icon: "₱", title: "Rent billing and email statements", desc: "Generate the month's bills in one action, each due on the tenant's own move-in day. Every tenant with an email gets a statement showing rent, their utility share, the total, and the due date." },
+  { bg: "#dce6ff", fg: INK, icon: "◔", title: "Utility billing", desc: "Enter the whole month with Quick Fill or import from an Excel template. Each tenant's share is the room's bill divided by its occupants, fixed when the bill is created and shown with the computation." },
+  { bg: AMBER, fg: INK,    icon: "⚒", title: "Maintenance tracking", desc: "Log repairs with a category, priority, and status from Open to Resolved, and record the repair cost so your monthly expenses reflect what the house actually costs to run." },
+  { bg: BLUE,  fg: "#fff", icon: "▩", title: "QR issue reporting", desc: "Print a QR poster per room. Tenants scan it - no app, no login - to report a leak or a busted outlet with photos, and to see the status of the room's recent reports." },
+  { bg: "#dce6ff", fg: INK, icon: "◫", title: "Tenants report their own payments", desc: "Put your GCash or bank QR beside the report QR. A tenant scans, sees their exact balance for the month, pays, and attaches a screenshot. It lands in your Payments Inbox and one tap posts it to the right bills." },
+  { bg: AMBER, fg: INK,    icon: "⇄", title: "Transfers, swaps and stay history", desc: "Move a tenant to another room or bed with the deposit carried over, or swap two tenants in one step even when the house is full. Every movement stays on record with dates and rates." },
+  { bg: BLUE,  fg: "#fff", icon: "◨", title: "Dashboard and occupancy", desc: "Occupancy, active tenants, overdue bills, open maintenance, and what you have collected this month, with a six-month view of rent against utility revenue." },
+  { bg: "#dce6ff", fg: INK, icon: "▣", title: "Cashflow and expenses", desc: "Rent, utility payments, and deposits flow in on their own; repairs and expenses are logged in seconds. Each month shows Money In, Money Out, and Net with a running balance." },
 ]
 
-function useInView(options?: IntersectionObserverInit) {
-  const ref = useRef<HTMLDivElement>(null)
-  const [inView, setInView] = useState(false)
-  useEffect(() => {
-    const el = ref.current
-    if (!el) return
-    const observer = new IntersectionObserver(([entry]) => { if (entry.isIntersecting) { setInView(true); observer.disconnect() } }, { threshold: 0.15, ...options })
-    observer.observe(el)
-    return () => observer.disconnect()
-  }, [])
-  return { ref, inView }
-}
+const COMPARISON: [string, string, string][] = [
+  ["Bed-level detail", "One row per room", "Each bed named, priced, and tracked on its own"],
+  ["Billing", "Retyped every month", "The month's bills generated in one action"],
+  ["Payments", "Noted manually", "Cash, GCash, Maya, bank transfer - partial payments supported"],
+  ["Utilities", "Calculator and memory", "Entered once per room and split across its tenants"],
+  ["Record-keeping", "Overwritten as you go", "Every tenancy, transfer, and payment kept with its dates"],
+  ["Transparency", "Your word for it", "A statement showing the computation, emailed to the tenant"],
+]
 
-function Animate({ children, className = "", delay = 0, style }: { children: React.ReactNode; className?: string; delay?: number; style?: React.CSSProperties }) {
-  const { ref, inView } = useInView()
+const STEPS = [
+  { n: "01", title: "Set up rooms and beds", desc: "Add each room with a name, floor, and monthly rate. For bedspacers, name each bed and give it its own rate - lower deck, upper deck, whatever you charge." },
+  { n: "02", title: "Move tenants in", desc: "Create a tenant once, then click any vacant bed to place them. Deposits and rates are recorded against the tenancy, and each room gets a QR poster for reporting." },
+  { n: "03", title: "Bill and collect", desc: "Generate the month's bills, statements go out by email, and payments post against the right bill - whether you record them or the tenant reports their own." },
+]
+
+const PH_POINTS = [
+  { bg: BLUE, fg: "#fff", icon: "₱", title: "Peso pricing and the payment apps you already use", desc: "Rates, bills, deposits, and your cashbook are all in pesos. Record cash, GCash, Maya, or a bank transfer - or let the tenant scan, pay, and attach the screenshot for you to verify." },
+  { bg: AMBER, fg: INK, icon: "▤", title: "Bedspacers, and upper versus lower deck", desc: "A bedspace room is not one unit at one price. Each bed carries its own monthly rate, and occupancy counts beds - so a half-empty room reads as half empty." },
+  { bg: "#dce6ff", fg: INK, icon: "◔", title: "Shared utilities, split and shown", desc: "One Meralco or water bill goes in once and each tenant's statement shows their share with the arithmetic spelled out, so nobody has to take your word for it." },
+  { bg: AMBER, fg: INK, icon: "▣", title: "Records you can produce when asked", desc: "Running a boarding house comes with paperwork and the questions that follow it. Every tenancy, transfer, deposit, and payment is on record, so a tenant ledger is one click." },
+]
+
+function Card({ children, accent = INK, pad = "p-5" }: { children: React.ReactNode; accent?: string; pad?: string }) {
   return (
-    <div ref={ref} className={className} style={{ ...style, transitionProperty: "opacity, transform", transitionDuration: "600ms", transitionTimingFunction: "cubic-bezier(0.4,0,0.2,1)", transitionDelay: `${delay}ms`, opacity: inView ? 1 : 0, transform: inView ? "translateY(0)" : "translateY(28px)" }}>
+    <div className={`rounded-[14px] border-2 bg-white ${pad}`} style={{ borderColor: INK, boxShadow: `4px 4px 0 ${accent}` }}>
       {children}
     </div>
   )
 }
 
-function Navbar() {
-  const [open, setOpen] = useState(false)
-  useEffect(() => {
-    const id = "smapey-pop-fonts"
-    if (!document.getElementById(id)) {
-      const l = document.createElement("link"); l.id = id; l.rel = "stylesheet"
-      l.href = "https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap"
-      document.head.appendChild(l)
-    }
-  }, [])
+function Eyebrow({ children }: { children: React.ReactNode }) {
   return (
-    <nav className="fixed top-0 inset-x-0 z-50" style={{ background: CREAM, borderBottom: `2px solid ${INK}`, fontFamily: display.fontFamily }}>
-      <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-        <a href="/boarding-house" className="flex items-center gap-2.5">
-          <img src="/logo.png" alt="Smapey" className="w-8 h-8 rounded-lg object-cover" />
-          <span className="font-extrabold tracking-tight" style={{ color: INK }}>Smapey Boarding House</span>
-        </a>
-        <div className="hidden md:flex items-center gap-8">
-          <a href="/boarding-house" className="text-sm font-semibold hover:opacity-60 transition-opacity" style={{ color: INK }}>Home</a>
-          <a href="#features" className="text-sm font-semibold hover:opacity-60 transition-opacity" style={{ color: INK }}>Features</a>
-          <a href="#how-it-works" className="text-sm font-semibold hover:opacity-60 transition-opacity" style={{ color: INK }}>How it Works</a>
-          <a href="#pricing" className="text-sm font-semibold hover:opacity-60 transition-opacity" style={{ color: INK }}>Pricing</a>
-          <a href="#faq" className="text-sm font-semibold hover:opacity-60 transition-opacity" style={{ color: INK }}>FAQ</a>
-          <a href="/boarding-house/guide" className="text-sm font-semibold hover:opacity-60 transition-opacity" style={{ color: INK }}>Guide</a>
-        </div>
-        <div className="hidden md:flex items-center gap-3">
-          <a href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/login`} className="text-sm font-semibold hover:opacity-60 transition-opacity px-2 py-2" style={{ color: INK }}>Sign in</a>
-          <a href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=BOARDING_HOUSE&plan=FREE`} className="text-sm font-bold px-5 py-2.5 rounded-full border-2 transition-transform hover:-translate-y-0.5" style={{ ...display, background: AMBER, color: INK, borderColor: INK, boxShadow: `3px 3px 0 ${INK}` }}>Get started free</a>
-        </div>
-        <button onClick={() => setOpen(!open)} className="md:hidden" style={{ color: INK }}>{open ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}</button>
-      </div>
-      {open && (
-        <div className="md:hidden px-6 py-4 flex flex-col gap-4" style={{ background: CREAM, borderTop: `2px solid ${INK}` }}>
-          <a href="/boarding-house" className="text-sm font-semibold" style={{ color: INK }}>Home</a>
-          <a href="#features" className="text-sm font-semibold" style={{ color: INK }}>Features</a>
-          <a href="#how-it-works" className="text-sm font-semibold" style={{ color: INK }}>How it Works</a>
-          <a href="#pricing" className="text-sm font-semibold" style={{ color: INK }}>Pricing</a>
-          <a href="#faq" className="text-sm font-semibold" style={{ color: INK }}>FAQ</a>
-          <a href="/boarding-house/guide" className="text-sm font-semibold" style={{ color: INK }}>Guide</a>
-          <a href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=BOARDING_HOUSE&plan=FREE`} className="text-sm font-bold px-4 py-2.5 rounded-full border-2 text-center" style={{ ...display, background: AMBER, color: INK, borderColor: INK }}>Get started free</a>
-        </div>
-      )}
-    </nav>
+    <p className="text-xs font-bold uppercase tracking-[0.16em] mb-3" style={{ color: BLUE }}>
+      {children}
+    </p>
   )
 }
 
-function Hero() {
-  // room board, occupancy tiles
-  const rooms = [
-    { no: "101", state: "occupied" }, { no: "102", state: "occupied" },
-    { no: "103", state: "due" },      { no: "104", state: "occupied" },
-    { no: "105", state: "vacant" },   { no: "106", state: "occupied" },
-    { no: "201", state: "occupied" }, { no: "202", state: "due" },
-    { no: "203", state: "occupied" }, { no: "204", state: "occupied" },
-    { no: "205", state: "occupied" }, { no: "206", state: "vacant" },
-  ]
-  const tile = {
-    occupied: { bg: BLUE, fg: "#fff", label: "In" },
-    due:      { bg: AMBER, fg: INK, label: "Due" },
-    vacant:   { bg: "#fff", fg: "#9a948b", label: "—" },
-  }
+/* ── Hero occupancy mock ──────────────────────────────────────────────────── */
+const BEDS = [
+  ["1A", "occ"], ["1B", "occ"], ["2A", "res"], ["2B", "occ"], ["3A", "vac"], ["3B", "occ"],
+  ["4A", "occ"], ["4B", "vac"], ["5A", "occ"], ["5B", "occ"], ["6A", "res"], ["6B", "vac"],
+] as const
+const BED_BG: Record<string, string> = { occ: BLUE, res: AMBER, vac: "#efead9" }
 
+function OccupancyMock() {
   return (
-    <section className="relative min-h-screen flex items-center pt-16 overflow-hidden" style={{ background: CREAM, fontFamily: display.fontFamily }}>
-      <div className="absolute inset-0 pointer-events-none hidden lg:block" aria-hidden>
-        <div className="absolute rounded-full border-2" style={{ top: "-130px", left: "-90px", width: 360, height: 360, borderColor: INK, opacity: 0.06 }} />
-        <div className="absolute rounded-full border-2" style={{ bottom: "-150px", right: "-70px", width: 300, height: 300, borderColor: INK, opacity: 0.05 }} />
+    <div className="rounded-[18px] border-2 bg-white p-4" style={{ borderColor: INK, boxShadow: `7px 7px 0 ${INK}` }} aria-label="Product preview: occupancy dashboard">
+      <div className="flex justify-between items-start mb-3.5">
+        <div>
+          <div className="font-extrabold text-sm" style={{ color: INK }}>Sunrise Boarding House</div>
+          <div className="text-xs" style={{ color: MUTED }}>12 rooms · 24 beds</div>
+        </div>
+        <span className="text-[0.65rem] font-bold border-2 rounded-full px-2.5 py-0.5" style={{ borderColor: INK, background: AMBER, color: INK }}>
+          2 bills due today
+        </span>
       </div>
 
-      <div className="relative w-full max-w-6xl mx-auto px-6 py-24 grid lg:grid-cols-[1fr_1fr] gap-12 lg:gap-16 items-center">
-        {/* LEFT, copy */}
-        <div className="min-w-0 text-center lg:text-left">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border-2 text-xs font-bold mb-7" style={{ color: INK, borderColor: INK, boxShadow: `3px 3px 0 ${BLUE}` }}>
-            <Zap className="w-3 h-3" />
-            Built for boarding house &amp; dorm owners
-          </div>
-
-          <h1 className="font-extrabold tracking-tight mb-6" style={{ color: INK, fontSize: "clamp(44px,6vw,78px)", lineHeight: 0.97, letterSpacing: "-0.03em" }}>
-            Every room,{" "}
-            <span className="relative inline-block" style={{ color: BLUE }}>
-              every rent
-              <span className="absolute left-0 right-0" style={{ bottom: 6, height: 14, background: AMBER, zIndex: -1, transform: "rotate(-1.2deg)" }} />
-            </span>
-            , tracked
-          </h1>
-
-          <p className="text-lg max-w-md mx-auto lg:mx-0 mb-9 leading-relaxed" style={{ color: "#54514c" }}>
-            See who's in, who's due, and which beds are open at a glance. Smapey logs tenants, tracks rent per bed, flags overdue payments, and lets tenants report issues by scanning a QR code, so collection day runs itself.
-          </p>
-
-          <div className="flex flex-col sm:flex-row items-center lg:justify-start justify-center gap-3 mb-9">
-            <a href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=BOARDING_HOUSE&plan=FREE`} className="flex items-center gap-2 px-7 py-4 rounded-full font-bold text-sm border-2 transition-transform hover:-translate-y-0.5" style={{ ...display, background: AMBER, color: INK, borderColor: INK, boxShadow: `4px 4px 0 ${INK}` }}>
-              Start for free <ChevronRight className="w-4 h-4" />
-            </a>
-            <a href="#book-demo" onClick={(e) => { e.preventDefault(); document.getElementById("book-demo")?.scrollIntoView({ behavior: "smooth" }) }} className="flex items-center gap-2 px-7 py-4 rounded-full font-bold text-sm border-2 bg-white transition-transform hover:-translate-y-0.5" style={{ ...display, color: INK, borderColor: INK }}>
-              <CalendarCheck className="w-4 h-4" /> Book a Demo
-            </a>
-          </div>
-
-          <div className="flex flex-wrap items-center lg:justify-start justify-center gap-x-6 gap-y-2 text-xs font-semibold" style={{ color: "#54514c" }}>
-            {["No credit card required", "Free plan forever", "Setup in minutes"].map((t) => (
-              <span key={t} className="flex items-center gap-1.5"><CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />{t}</span>
-            ))}
-          </div>
-        </div>
-
-        {/* RIGHT, room board card */}
-        <div className="relative min-w-0 w-full max-w-md mx-auto">
-          {/* floating overdue chip */}
-          <div className="absolute z-10 flex items-center gap-2 bg-white border-2 rounded-full px-3.5 py-2" style={{ top: -20, left: -16, borderColor: INK, boxShadow: `4px 4px 0 ${AMBER}`, transform: "rotate(-5deg)" }}>
-            <span className="w-6 h-6 rounded-full flex items-center justify-center" style={{ background: AMBER, border: `2px solid ${INK}` }}><AlertTriangle className="w-3 h-3" style={{ color: INK }} /></span>
-            <span className="text-[11px] font-extrabold" style={{ color: INK }}>2 rooms due today</span>
-          </div>
-
-          <div className="relative bg-white border-2 rounded-[24px] p-6" style={{ borderColor: INK, boxShadow: `9px 9px 0 ${INK}` }}>
-            {/* header */}
-            <div className="flex items-center justify-between mb-5">
-              <div className="flex items-center gap-2.5">
-                <span className="w-9 h-9 rounded-xl border-2 flex items-center justify-center" style={{ background: BLUE, borderColor: INK }}><Building2 className="w-4 h-4 text-white" /></span>
-                <div className="leading-tight">
-                  <div className="text-[13px] font-extrabold" style={{ color: INK }}>Sunrise Boarding House</div>
-                  <div className="text-[11px] font-semibold" style={{ color: "#9a948b" }}>12 rooms · 2 floors</div>
-                </div>
-              </div>
-              <span className="text-[10px] font-extrabold tracking-widest rounded-full px-2.5 py-1 border" style={{ color: BLUE, borderColor: BLUE }}>OCT</span>
-            </div>
-
-            {/* room grid */}
-            <div className="grid grid-cols-6 gap-2 mb-5">
-              {rooms.map((r) => {
-                const t = tile[r.state as keyof typeof tile]
-                return (
-                  <div key={r.no} className="aspect-square rounded-[10px] border-2 flex flex-col items-center justify-center" style={{ background: t.bg, borderColor: INK }}>
-                    <span className="text-[11px] font-extrabold leading-none" style={{ color: t.fg }}>{r.no}</span>
-                    <span className="text-[8px] font-bold mt-0.5" style={{ color: t.fg, opacity: 0.85 }}>{t.label}</span>
-                  </div>
-                )
-              })}
-            </div>
-
-            {/* legend */}
-            <div className="flex items-center gap-4 mb-5 text-[10px] font-bold" style={{ color: "#54514c" }}>
-              <span className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 rounded-sm border" style={{ background: BLUE, borderColor: INK }} />Occupied</span>
-              <span className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 rounded-sm border" style={{ background: AMBER, borderColor: INK }} />Rent due</span>
-              <span className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 rounded-sm border" style={{ background: "#fff", borderColor: INK }} />Vacant</span>
-            </div>
-
-            {/* rent collection meter */}
-            <div className="rounded-[14px] border-2 px-4 py-3.5" style={{ background: CREAM, borderColor: INK }}>
-              <div className="flex items-center justify-between mb-2">
-                <span className="flex items-center gap-1.5 text-[12px] font-bold" style={{ color: INK }}><Banknote className="w-3.5 h-3.5" style={{ color: "#059669" }} />Rent collected</span>
-                <span className="text-[12px] font-extrabold" style={{ color: INK }}>₱42,000 <span style={{ color: "#9a948b", fontWeight: 600 }}>/ ₱50,000</span></span>
-              </div>
-              <span className="block h-2.5 rounded-full overflow-hidden border" style={{ background: "#efe9de", borderColor: INK }}>
-                <span className="block h-full" style={{ width: "84%", background: "#10b981" }} />
-              </span>
-            </div>
-          </div>
-
-          {/* floating occupancy chip */}
-          <div className="absolute z-10 flex items-center gap-2 bg-white border-2 rounded-2xl px-3.5 py-2.5" style={{ bottom: -22, right: -16, borderColor: INK, boxShadow: `4px 4px 0 ${INK}`, transform: "rotate(4deg)" }}>
-            <span className="w-7 h-7 rounded-lg border-2 flex items-center justify-center" style={{ background: BLUE, borderColor: INK }}><BedDouble className="w-3.5 h-3.5 text-white" /></span>
-            <div className="leading-tight">
-              <div className="text-[10px] font-bold" style={{ color: "#9a948b" }}>Occupancy</div>
-              <div className="text-[12px] font-extrabold" style={{ color: INK }}>10 / 12</div>
-            </div>
-          </div>
-        </div>
+      <div className="grid grid-cols-4 sm:grid-cols-6 gap-1.5 mb-3.5">
+        {BEDS.map(([label, state]) => (
+          <span
+            key={label}
+            className="aspect-square rounded-lg border-2 grid place-items-center text-[0.6rem] font-bold"
+            style={{ borderColor: INK, background: BED_BG[state], color: state === "occ" ? "#fff" : INK }}
+          >
+            {label}
+          </span>
+        ))}
       </div>
-    </section>
-  )
-}
 
-function Features() {
-  return (
-    <section id="features" className="py-24" style={{ background: "#fff", fontFamily: display.fontFamily }}>
-      <div className="max-w-6xl mx-auto px-6">
-        <Animate className="text-center mb-16">
-          <p className="text-sm font-bold uppercase tracking-widest mb-3" style={{ color: BLUE }}>Features</p>
-          <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight" style={{ color: INK }}>Everything a Philippine boarding house needs</h2>
-          <p className="mt-4 max-w-xl mx-auto" style={{ color: "#54514c" }}>From room setup to monthly billing, Smapey Boarding House Manager keeps your property running without paper records or scattered spreadsheets.</p>
-        </Animate>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {FEATURES.map(({ icon: Icon, title, desc }, i) => {
-            const c = i % 2 === 0 ? BLUE : AMBER
-            return (
-              <Animate key={title} delay={i * 80}>
-                <div className="rounded-[22px] p-6 border-2 h-full transition-transform hover:-translate-y-1" style={{ background: CREAM, borderColor: INK, boxShadow: `6px 6px 0 ${c}` }}>
-                  <div className="w-12 h-12 rounded-[14px] border-2 flex items-center justify-center mb-4" style={{ background: c, borderColor: INK }}>
-                    <Icon className="w-5 h-5" style={{ color: c === AMBER ? INK : "#fff" }} />
-                  </div>
-                  <h3 className="font-extrabold mb-2" style={{ color: INK }}>{title}</h3>
-                  <p className="text-sm leading-relaxed" style={{ color: "#54514c" }}>{desc}</p>
-                </div>
-              </Animate>
-            )
-          })}
-        </div>
+      <div className="flex gap-3.5 text-[0.66rem] font-semibold mb-3.5" style={{ color: MUTED }}>
+        {[["Occupied", BLUE], ["Reserved", AMBER], ["Vacant", "#efead9"]].map(([l, c]) => (
+          <span key={l} className="flex items-center gap-1.5">
+            <i className="w-2.5 h-2.5 rounded-[3px] border" style={{ background: c, borderColor: INK }} />
+            {l}
+          </span>
+        ))}
       </div>
-    </section>
-  )
-}
 
-const STEPS = [
-  { step: "01", title: "Set up rooms & beds", desc: "Add each room with a name, floor, and monthly rate. For bedspace rooms, add named beds with their own rates - lower deck, upper deck, whatever your setup is. Takes about 5 minutes." },
-  { step: "02", title: "Move tenants in from the room card", desc: "Create tenant profiles once, then click any vacant bed or slot to move someone in. Occupancy, rates, and deposits are tracked automatically - and each room's QR poster lets tenants report issues." },
-  { step: "03", title: "Generate bills & collect payments", desc: "Enter utilities with Quick Fill, hit Generate, and every tenant gets an emailed statement automatically. Tenants scan the room's payment QR to see their exact balance and report what they paid; you verify it from the Payments Inbox in one tap, and the Cashflow page shows exactly what came in, what went out, and your net for the month." },
-]
-
-function HowItWorks() {
-  const acc = [BLUE, AMBER, BLUE, AMBER]
-  return (
-    <section id="how-it-works" className="py-24" style={{ background: CREAM, fontFamily: display.fontFamily }}>
-      <div className="max-w-6xl mx-auto px-6">
-        <Animate className="text-center mb-16">
-          <p className="text-sm font-bold uppercase tracking-widest mb-3" style={{ color: BLUE }}>How it Works</p>
-          <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight" style={{ color: INK }}>Up and running in minutes</h2>
-        </Animate>
-        <div className="grid md:grid-cols-3 gap-6">
-          {STEPS.map(({ step, title, desc }, i) => (
-            <Animate key={step} delay={i * 120}>
-              <div className="rounded-[22px] border-2 p-8 h-full transition-transform hover:-translate-y-1" style={{ background: "#fff", borderColor: INK, boxShadow: `6px 6px 0 ${acc[i % acc.length]}` }}>
-                <div className="inline-flex items-center justify-center w-14 h-14 rounded-[16px] border-2 font-extrabold text-lg mb-5" style={{ background: acc[i % acc.length], color: acc[i % acc.length] === AMBER ? INK : "#fff", borderColor: INK }}>{step}</div>
-                <h3 className="font-extrabold mb-2" style={{ color: INK }}>{title}</h3>
-                <p className="text-sm leading-relaxed" style={{ color: "#54514c" }}>{desc}</p>
-              </div>
-            </Animate>
-          ))}
+      <div className="border-2 rounded-[10px] p-3" style={{ borderColor: INK }}>
+        <div className="flex justify-between text-xs font-bold mb-2" style={{ color: INK }}>
+          <span>Rent collected</span>
+          <span>₱41,200 / ₱110,000</span>
         </div>
-      </div>
-    </section>
-  )
-}
-
-function Pricing() {
-  const [selectedPlan, setSelectedPlan] = useState<Plan | null>(null)
-  const { plans, isPhilippines } = usePricing("BOARDING_HOUSE")
-  const handleSelect = (p: Plan) => { if (p.planKey === "FREE") { window.location.href = `${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=${p.product}&plan=FREE`; return } setSelectedPlan(p) }
-  return (
-    <section id="pricing" className="py-24" style={{ background: CREAM, fontFamily: display.fontFamily }}>
-      <div className="max-w-6xl mx-auto px-6">
-        <Animate className="text-center mb-16">
-          <p className="text-sm font-bold uppercase tracking-widest mb-3" style={{ color: BLUE }}>Pricing</p>
-          <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight" style={{ color: INK }}>Start free. Upgrade when ready.</h2>
-          <p className="mt-4" style={{ color: "#54514c" }}>The free plan stays free forever.</p>
-          {isPhilippines !== null && (
-            <div className="inline-flex items-center gap-1.5 mt-4 px-3 py-1 rounded-full bg-white border-2 text-xs font-semibold" style={{ borderColor: INK, color: INK }}>
-              <span>{isPhilippines ? "🇵🇭" : "🌍"}</span>
-              <span>Prices in <span className="font-extrabold">{isPhilippines ? "Philippine Peso (₱)" : "US Dollar ($)"}</span></span>
-            </div>
-          )}
-        </Animate>
-        <div className="grid md:grid-cols-3 gap-6 items-stretch">
-          {plans.map((p, i) => {
-            const displayPrice = isPhilippines === null ? "..." : isPhilippines ? p.phpPrice : p.usdPrice
-            return (
-              <Animate key={p.name} delay={i * 100}>
-                <div className="rounded-[24px] p-8 border-2 h-full transition-transform hover:-translate-y-1" style={p.highlight ? { background: BLUE, borderColor: INK, boxShadow: `8px 8px 0 ${INK}`, color: "#fff" } : { background: "#fff", borderColor: INK, boxShadow: `8px 8px 0 ${AMBER}` }}>
-                  {p.highlight && <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full border-2 text-xs font-bold mb-4" style={{ background: AMBER, color: INK, borderColor: INK }}><Zap className="w-3 h-3" /> Most popular</span>}
-                  <p className="font-extrabold text-lg mb-1" style={{ color: p.highlight ? "#fff" : INK }}>{p.name}</p>
-                  <p className="text-sm mb-4" style={{ color: p.highlight ? "rgba(255,255,255,.7)" : "#9a948b" }}>{p.desc}</p>
-                  <div className="flex items-end gap-1 mb-6">
-                    <span className="text-4xl font-extrabold tracking-tight" style={{ color: p.highlight ? "#fff" : INK }}>{displayPrice}</span>
-                    <span className="text-sm mb-1" style={{ color: p.highlight ? "rgba(255,255,255,.6)" : "#9a948b" }}>{p.period}</span>
-                  </div>
-                  <ul className="space-y-3 mb-8">
-                    {p.features.map((f) => (<li key={f} className="flex items-center gap-2.5 text-sm"><CheckCircle2 className="w-4 h-4 shrink-0" style={{ color: p.highlight ? AMBER : BLUE }} /><span style={{ color: p.highlight ? "rgba(255,255,255,.85)" : "#3f3b36" }}>{f}</span></li>))}
-                  </ul>
-                  <button onClick={() => handleSelect(p)} className="w-full text-center py-3 rounded-full text-sm font-bold border-2 transition-transform hover:-translate-y-0.5" style={p.highlight ? { ...display, background: AMBER, color: INK, borderColor: INK } : { ...display, background: INK, color: "#fff", borderColor: INK }}>{p.cta}</button>
-                </div>
-              </Animate>
-            )
-          })}
-        </div>
-      </div>
-      {selectedPlan && <PaymentModal plan={selectedPlan} isPhilippines={isPhilippines ?? false} onClose={() => setSelectedPlan(null)} />}
-    </section>
-  )
-}
-
-function FAQ() {
-  const [open, setOpen] = useState<number | null>(null)
-  return (
-    <section id="faq" className="py-24" style={{ background: "#fff", fontFamily: display.fontFamily }}>
-      <div className="max-w-2xl mx-auto px-6">
-        <Animate className="text-center mb-16">
-          <p className="text-sm font-bold uppercase tracking-widest mb-3" style={{ color: BLUE }}>FAQ</p>
-          <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight" style={{ color: INK }}>Common questions</h2>
-        </Animate>
-        <div className="flex flex-col gap-3">
-          {FAQS.map(({ q, a }, i) => (
-            <Animate key={i} delay={i * 60}>
-              <div className="rounded-[18px] overflow-hidden border-2 bg-white" style={{ borderColor: INK }}>
-                <button onClick={() => setOpen(open === i ? null : i)} className="w-full flex items-center justify-between px-5 py-4 text-left font-bold text-sm" style={{ color: INK }}>{q}<ChevronRight className="w-4 h-4 transition-transform duration-200 shrink-0" style={{ color: BLUE, transform: open === i ? "rotate(90deg)" : "rotate(0deg)" }} /></button>
-                {open === i && <div className="px-5 pb-4 text-sm leading-relaxed pt-3" style={{ color: "#54514c", borderTop: "1px solid rgba(22,22,22,.1)" }}>{a}</div>}
-              </div>
-            </Animate>
-          ))}
-        </div>
-      </div>
-    </section>
-  )
-}
-
-function CTA() {
-  return (
-    <section className="py-24 px-6" style={{ background: "#fff", fontFamily: display.fontFamily }}>
-      <Animate className="relative max-w-3xl mx-auto rounded-[30px] border-2 p-12 md:p-16 text-center" style={{ background: AMBER, borderColor: INK, boxShadow: `10px 10px 0 ${INK}` }}>
-        <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight mb-4" style={{ color: INK }}>Ready to modernize your boarding house?</h2>
-        <p className="mb-8 font-medium" style={{ color: "#5c4a28" }}>Join boarding house owners across the Philippines using Smapey to manage rooms, tenants, rent, and utility bills without the chaos.</p>
-        <a href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=BOARDING_HOUSE&plan=FREE`} className="inline-flex items-center gap-2 px-8 py-4 rounded-full font-bold border-2 transition-transform hover:-translate-y-0.5" style={{ ...display, background: INK, color: "#fff", borderColor: INK }}>Get started for free <ChevronRight className="w-4 h-4" /></a>
-      </Animate>
-    </section>
-  )
-}
-
-function Footer() {
-  return (
-    <footer className="px-6 py-8" style={{ background: CREAM, borderTop: `2px solid ${INK}`, fontFamily: display.fontFamily }}>
-      <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
-        <div className="flex items-center gap-2"><img src="/logo.png" alt="Smapey" className="w-6 h-6 rounded-md object-cover" /><span className="text-sm font-extrabold" style={{ color: INK }}>Boarding House by Smapey</span></div>
-        <p className="text-xs" style={{ color: "#9a948b" }}>© {new Date().getFullYear()} Smapey. All rights reserved.</p>
-      </div>
-    </footer>
-  )
-}
-
-type CheckoutMethod = "paypal" | "paymongo"
-const Spinner = () => (<svg className="w-4 h-4 animate-spin" viewBox="0 0 24 24" fill="none"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" /><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z" /></svg>)
-
-function PaymentModal({ plan, isPhilippines, onClose }: { plan: { name: string; phpPrice: string; usdPrice: string; period: string; planKey: string; product: string } | null; isPhilippines: boolean; onClose: () => void }) {
-  const [step, setStep] = useState<"details" | "payment">("details")
-  const [name, setName] = useState(""); const [email, setEmail] = useState("")
-  const [loading, setLoading] = useState<CheckoutMethod | null>(null)
-  const [token, setToken] = useState<string | null>(null)
-  useEffect(() => { const t = localStorage.getItem("accessToken"); setToken(t); if (t) setStep("payment") }, [])
-  if (!plan) return null
-  const displayPrice = isPhilippines ? plan.phpPrice : plan.usdPrice
-  const inputStyle = { borderColor: INK, color: INK } as React.CSSProperties
-  const checkout = async (method: CheckoutMethod) => {
-    try {
-      setLoading(method)
-      const endpoint = token ? (method === "paypal" ? "/api/billing/subscribe/paypal" : "/api/billing/subscribe/paymongo") : (method === "paypal" ? "/api/billing/newaccount/paypal" : "/api/billing/newaccount/paymongo")
-      const payload = token ? { product: plan.product, plan: plan.planKey } : { name, email, product: plan.product, plan: plan.planKey }
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}${endpoint}`, { method: "POST", headers: { "Content-Type": "application/json", ...(token ? { Authorization: `Bearer ${token}` } : {}) }, body: JSON.stringify(payload) })
-      const data = await res.json()
-      if (!res.ok) throw new Error(data.message || JSON.stringify(data))
-      const redirectUrl = data.approveUrl || data.checkoutUrl
-      if (!redirectUrl) throw new Error("No redirect URL returned")
-      window.location.href = redirectUrl
-    } catch (err: any) { alert(err?.message || "Checkout failed. Please try again.") } finally { setLoading(null) }
-  }
-  const handleContinue = () => { if (!name.trim() || !email.trim()) { alert("Name and email are required"); return } if (!isPhilippines) { checkout("paypal") } else { setStep("payment") } }
-  return (
-    <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4" style={{ fontFamily: display.fontFamily }}>
-      <div className="bg-white rounded-[22px] w-full max-w-md overflow-hidden border-2" style={{ borderColor: INK, boxShadow: `10px 10px 0 ${AMBER}` }}>
-        <div className="px-6 py-5 flex items-center justify-between" style={{ background: INK }}>
-          <div className="flex items-center gap-3">
-            {step === "payment" && !token && <button onClick={() => setStep("details")} className="text-white/70 hover:text-white transition"><svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}><path d="M19 12H5M12 5l-7 7 7 7"/></svg></button>}
-            <div><h2 className="text-white font-extrabold text-lg">{step === "details" ? "Create your account" : "Choose payment method"}</h2><p className="text-sm mt-0.5" style={{ color: "rgba(255,255,255,.7)" }}>{plan.name} plan, <span className="font-bold" style={{ color: AMBER }}>{displayPrice}</span>{plan.period}</p></div>
-          </div>
-          <button onClick={onClose} className="text-white/70 hover:text-white transition-colors"><X className="w-5 h-5" /></button>
-        </div>
-        <div className="p-6 flex flex-col gap-4">
-          {step === "details" && (<>
-            <input placeholder="Full name" value={name} onChange={(e) => setName(e.target.value)} className="w-full border-2 rounded-xl px-4 py-2.5 text-sm focus:outline-none" style={inputStyle} />
-            <input type="email" placeholder="Email address" value={email} onChange={(e) => setEmail(e.target.value)} className="w-full border-2 rounded-xl px-4 py-2.5 text-sm focus:outline-none" style={inputStyle} />
-            <button onClick={handleContinue} disabled={loading !== null} className="w-full py-3 rounded-full border-2 font-bold text-sm flex items-center justify-center gap-2 transition-transform hover:-translate-y-0.5 disabled:opacity-60" style={{ ...display, background: AMBER, color: INK, borderColor: INK }}>{loading ? <><Spinner /> Redirecting…</> : <>Continue <ChevronRight className="w-4 h-4" /></>}</button>
-          </>)}
-          {step === "payment" && (<>
-            {isPhilippines && (<button onClick={() => checkout("paymongo")} disabled={loading !== null} className="w-full flex items-center gap-4 px-5 py-4 border-2 rounded-2xl transition-all group" style={{ borderColor: INK }}><div className="w-10 h-10 rounded-xl bg-green-600 flex items-center justify-center shrink-0"><svg viewBox="0 0 24 24" className="w-5 h-5 fill-white"><path d="M3 3h7v7H3zm0 11h7v7H3zm11-11h7v7h-7zm0 11h7v7h-7z"/></svg></div><div className="flex-1 text-left"><p className="text-sm font-bold" style={{ color: INK }}>QR Ph / GCash / Card</p><p className="text-xs" style={{ color: "#9a948b" }}>Philippine payment methods</p></div>{loading === "paymongo" ? <Spinner /> : <ChevronRight className="w-4 h-4" style={{ color: INK }} />}</button>)}
-            <button onClick={() => checkout("paypal")} disabled={loading !== null} className="w-full flex items-center gap-4 px-5 py-4 border-2 rounded-2xl transition-all group" style={{ borderColor: INK }}><div className="w-10 h-10 rounded-xl bg-[#003087] flex items-center justify-center shrink-0"><svg viewBox="0 0 24 24" className="w-5 h-5 fill-white"><path d="M7.076 21.337H2.47a.641.641 0 0 1-.633-.74L4.944.901C5.026.382 5.474 0 5.998 0h7.46c2.57 0 4.578.543 5.69 1.81 1.01 1.15 1.304 2.42 1.012 4.287-.023.143-.047.288-.077.437-.983 5.05-4.349 6.797-8.647 6.797h-2.19c-.524 0-.968.382-1.05.9l-1.12 7.106zm14.146-14.42a3.35 3.35 0 0 0-.607-.541c1.379 8.883-5.43 11.61-10.377 11.61H8.23l-1.133 7.184h3.78c.458 0 .848-.332.92-.783l.038-.196.728-4.617.047-.252a.93.93 0 0 1 .919-.784h.578c3.746 0 6.678-1.522 7.534-5.927.358-1.833.173-3.363-.42-4.494z"/></svg></div><div className="flex-1 text-left"><p className="text-sm font-bold" style={{ color: INK }}>PayPal</p><p className="text-xs" style={{ color: "#9a948b" }}>Pay with your PayPal account</p></div>{loading === "paypal" ? <Spinner /> : <ChevronRight className="w-4 h-4" style={{ color: INK }} />}</button>
-          </>)}
-          <p className="text-center text-xs flex items-center justify-center gap-1" style={{ color: "#9a948b" }}><svg className="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}><rect x="3" y="11" width="18" height="11" rx="2" /><path d="M7 11V7a5 5 0 0 1 10 0v4" /></svg>Secure checkout · Cancel anytime · No hidden fees</p>
+        <div className="h-2.5 rounded-full border-2 overflow-hidden" style={{ borderColor: INK, background: "#efead9" }}>
+          <i className="block h-full" style={{ width: "37%", background: BLUE }} />
         </div>
       </div>
     </div>
   )
 }
 
-export default function BoardingHouseContent() {
+/* ── Pricing, from the live plan configuration ────────────────────────────── */
+function Pricing() {
+  const { plans, isPhilippines } = usePricing("BOARDING_HOUSE")
+
   return (
-    <main>
-      <Navbar />
-      <Hero />
-      <Features />
-      <HowItWorks />
+    <section id="pricing" className="py-20 px-6 bg-white" style={display}>
+      <div className="max-w-5xl mx-auto">
+        <div className="text-center mb-12">
+          <Eyebrow>Pricing</Eyebrow>
+          <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight" style={{ color: INK }}>
+            Start free. Upgrade when ready.
+          </h2>
+          <p className="mt-3" style={{ color: MUTED }}>The free plan stays free.</p>
+          <span className="inline-flex items-center border-2 rounded-full px-3.5 py-1 text-xs font-bold mt-4" style={{ borderColor: INK, background: "#fff", color: INK }}>
+            All prices in {isPhilippines ? "Philippine Pesos (₱)" : "US Dollars ($)"}
+          </span>
+        </div>
+
+        <div className="grid md:grid-cols-3 gap-5 items-start">
+          {plans.map((plan: Plan) => {
+            const hot = plan.highlight
+            return (
+              <div
+                key={plan.planKey}
+                className="relative rounded-[14px] border-2 p-6"
+                style={{ borderColor: INK, background: hot ? BLUE : "#fff", color: hot ? "#fff" : INK, boxShadow: `4px 4px 0 ${INK}` }}
+              >
+                {hot && (
+                  <span className="absolute -top-3 left-6 border-2 rounded-full px-3 py-0.5 text-[0.7rem] font-extrabold" style={{ borderColor: INK, background: AMBER, color: INK }}>
+                    Most popular
+                  </span>
+                )}
+                <div className="font-extrabold text-lg">{plan.name}</div>
+                <p className="text-sm mt-1 mb-4 min-h-[34px]" style={{ color: hot ? "rgba(255,255,255,.86)" : MUTED }}>
+                  {plan.desc}
+                </p>
+                <div className="text-4xl font-extrabold tracking-tight">
+                  {isPhilippines ? plan.phpPrice : plan.usdPrice}
+                  <span className="text-sm font-semibold opacity-70">{plan.period}</span>
+                </div>
+                <ul className="list-none p-0 my-5 text-sm space-y-1.5" style={{ color: hot ? "rgba(255,255,255,.86)" : MUTED }}>
+                  {plan.features.map((f) => (
+                    <li key={f} className="pl-5 relative">
+                      <span className="absolute left-0 font-extrabold" style={{ color: hot ? "#fff" : AMBER }}>✓</span>
+                      {f}
+                    </li>
+                  ))}
+                </ul>
+                <a
+                  href={REGISTER}
+                  className="flex items-center justify-center gap-2 w-full font-bold text-sm px-6 py-3 rounded-full border-2 transition-transform hover:-translate-y-0.5"
+                  style={{ borderColor: INK, background: hot ? AMBER : INK, color: hot ? INK : "#fff" }}
+                >
+                  {plan.cta}
+                </a>
+              </div>
+            )
+          })}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+export default function BoardingHouseContent() {
+  const [open, setOpen] = useState<number | null>(0)
+
+  return (
+    <main style={display}>
+      {/* HERO */}
+      <header className="py-16 px-6" style={{ background: CREAM }}>
+        <div className="max-w-6xl mx-auto grid lg:grid-cols-[1.05fr_.95fr] gap-12 items-center">
+          <div>
+            <span className="inline-flex items-center gap-2 bg-white border-2 rounded-full px-4 py-1.5 text-xs font-bold mb-5" style={{ borderColor: INK, color: INK }}>
+              🏠 Built for boarding houses and bedspacers
+            </span>
+            <h1 className="text-4xl sm:text-5xl font-extrabold leading-[1.08] tracking-tight" style={{ color: INK }}>
+              Boarding House Management System{" "}
+              <span style={{ color: BLUE }}>for Philippine Landlords</span>
+            </h1>
+            <p className="font-bold text-lg mt-4 mb-2" style={{ color: INK }}>
+              Every room, every bed, every peso — tracked.
+            </p>
+            <p className="text-base leading-relaxed mb-6 max-w-xl" style={{ color: MUTED }}>
+              Smapey replaces paper records and scattered spreadsheets with one dashboard for
+              rooms and beds, tenant records, rent billing, utility billing, and maintenance.
+              Set up in minutes — no demo call, no manual, no IT setup.
+            </p>
+            <div className="flex gap-3 flex-wrap">
+              <a href={REGISTER} className="inline-flex items-center gap-2 font-bold text-sm px-6 py-3.5 rounded-full border-2 transition-transform hover:-translate-y-0.5" style={{ background: AMBER, color: INK, borderColor: INK, boxShadow: `3px 3px 0 ${INK}` }}>
+                Start free, no card needed →
+              </a>
+              <a href="#book-demo" className="inline-flex items-center gap-2 font-bold text-sm px-6 py-3.5 rounded-full border-2 bg-white transition-transform hover:-translate-y-0.5" style={{ color: INK, borderColor: INK, boxShadow: `3px 3px 0 ${INK}` }}>
+                Book a demo
+              </a>
+            </div>
+            <div className="flex gap-5 flex-wrap mt-6 text-xs font-semibold" style={{ color: MUTED }}>
+              {["No credit card required", "Free plan with 5 rooms and 20 tenants", "Set up in minutes"].map((t) => (
+                <span key={t}><span style={{ color: BLUE, fontWeight: 800 }}>✓</span> {t}</span>
+              ))}
+            </div>
+          </div>
+
+          <OccupancyMock />
+        </div>
+      </header>
+
+      {/* PROBLEM */}
+      <section className="py-20 px-6 bg-white">
+        <div className="max-w-3xl mx-auto">
+          <Eyebrow>The problem</Eyebrow>
+          <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight mb-4" style={{ color: INK }}>
+            A spreadsheet works until about ten tenants
+          </h2>
+          <p className="text-lg leading-relaxed" style={{ color: MUTED }}>
+            Most boarding houses start in a notebook, then graduate to Excel. That is fine while
+            you can hold the whole house in your head. Past roughly ten tenants — especially once
+            you are doing{" "}
+            <Link href="/boarding-house/bed-space-and-room-management" className="font-bold underline" style={{ color: BLUE }}>
+              bed space and room management
+            </Link>{" "}
+            rather than letting whole rooms — the spreadsheet stops keeping up.
+          </p>
+          <ul className="list-none p-0 my-6">
+            {[
+              "Two people edit the same file and one copy quietly goes stale.",
+              "Nothing tells you a bill is overdue — you have to remember to look.",
+              "A bedspace room is one row, so you cannot see which deck is free.",
+              "Splitting one electric bill across four tenants is manual arithmetic every month.",
+              "When a tenant disputes a balance, there is no history to point at.",
+            ].map((line) => (
+              <li key={line} className="text-sm py-2.5 pl-8 relative" style={{ color: MUTED, borderBottom: `1px solid ${LINE}` }}>
+                <span className="absolute left-0 top-3 w-4 h-4 rounded-[5px] border-2 grid place-items-center text-[0.6rem] font-extrabold" style={{ background: AMBER, borderColor: INK, color: INK }}>!</span>
+                {line}
+              </li>
+            ))}
+          </ul>
+          <p className="text-lg leading-relaxed" style={{ color: INK }}>
+            None of that is a discipline problem. It is a tool problem — a grid of cells has no
+            idea what a bed, a tenant, or a due date is.
+          </p>
+        </div>
+      </section>
+
+      {/* DEFINITION + COMPARISON */}
+      <section className="py-20 px-6" style={{ background: CREAM }}>
+        <div className="max-w-5xl mx-auto">
+          <div className="max-w-3xl mb-12">
+            <Eyebrow>What it is</Eyebrow>
+            <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight mb-4" style={{ color: INK }}>
+              What is a boarding house management system?
+            </h2>
+            <p className="text-lg leading-relaxed mb-3" style={{ color: MUTED }}>
+              It is software a landlord or property manager uses to run a rental property at the
+              bed and room level instead of on paper. It holds tenant records, assigns each
+              boarder to a room and a bed, generates the monthly bill, records payments, splits
+              utilities, and keeps a permanent record of who stayed where and what they paid.
+            </p>
+            <p className="text-lg leading-relaxed" style={{ color: MUTED }}>
+              You will also see it called a boarder management system or a boarding house rental
+              management system. It is the same job: knowing what is occupied, what is owed, and
+              what has been paid, without holding any of it in your head.
+            </p>
+          </div>
+
+          <div className="rounded-[14px] border-2 overflow-hidden bg-white" style={{ borderColor: INK, boxShadow: `4px 4px 0 ${INK}` }}>
+            <div className="overflow-x-auto">
+              <table className="w-full text-sm border-collapse" style={{ minWidth: 520 }}>
+                <thead>
+                  <tr style={{ background: INK }}>
+                    {["What you need", "Spreadsheet", "Boarding house management system"].map((h) => (
+                      <th key={h} className="text-left px-4 py-3 text-xs uppercase tracking-wide font-semibold text-white">{h}</th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {COMPARISON.map(([need, sheet, system]) => (
+                    <tr key={need} style={{ borderBottom: `1px solid ${LINE}` }}>
+                      <td className="px-4 py-3 font-bold" style={{ color: INK }}>{need}</td>
+                      <td className="px-4 py-3" style={{ color: MUTED }}>{sheet}</td>
+                      <td className="px-4 py-3" style={{ color: INK }}>{system}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FEATURES */}
+      <section id="features" className="py-20 px-6 bg-white">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-12">
+            <Eyebrow>Features</Eyebrow>
+            <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight" style={{ color: INK }}>
+              Everything a Philippine boarding house needs
+            </h2>
+            <p className="mt-4 max-w-2xl mx-auto leading-relaxed" style={{ color: MUTED }}>
+              Deliberately simple software for owner-operators. Switch on what you need and
+              ignore the rest.
+            </p>
+          </div>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            {FEATURES.map((f) => (
+              <Card key={f.title}>
+                <div className="w-9 h-9 rounded-[9px] border-2 grid place-items-center text-base mb-3" style={{ borderColor: INK, background: f.bg, color: f.fg }}>
+                  {f.icon}
+                </div>
+                <h3 className="font-bold text-base" style={{ color: INK }}>{f.title}</h3>
+                <p className="text-sm mt-2 leading-relaxed" style={{ color: MUTED }}>{f.desc}</p>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* HOW IT WORKS */}
+      <section id="how" className="py-20 px-6" style={{ background: CREAM }}>
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-12">
+            <Eyebrow>How it works</Eyebrow>
+            <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight" style={{ color: INK }}>
+              Up and running in minutes
+            </h2>
+            <p className="mt-4" style={{ color: MUTED }}>No demo calls, manuals, rollouts, or IT setup required.</p>
+          </div>
+          <div className="grid md:grid-cols-3 gap-5">
+            {STEPS.map((s) => (
+              <Card key={s.n}>
+                <span className="inline-block border-2 rounded-lg px-2.5 py-0.5 text-xs font-semibold mb-3" style={{ borderColor: INK, background: AMBER, color: INK }}>
+                  {s.n}
+                </span>
+                <h3 className="font-bold text-base" style={{ color: INK }}>{s.title}</h3>
+                <p className="text-sm mt-2 leading-relaxed" style={{ color: MUTED }}>{s.desc}</p>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* BUILT FOR THE PHILIPPINES */}
+      <section className="py-20 px-6 bg-white">
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-12">
+            <Eyebrow>Built for the Philippines</Eyebrow>
+            <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight" style={{ color: INK }}>
+              Not a foreign rental app with a peso sign
+            </h2>
+            <p className="mt-4 max-w-2xl mx-auto leading-relaxed" style={{ color: MUTED }}>
+              International property software assumes one tenant, one unit, one bank transfer.
+              Philippine boarding houses do not work that way.
+            </p>
+          </div>
+          <div className="grid sm:grid-cols-2 gap-5">
+            {PH_POINTS.map((p) => (
+              <Card key={p.title} accent={p.bg === AMBER ? AMBER : BLUE} pad="p-6">
+                <div className="w-10 h-10 rounded-xl border-2 grid place-items-center text-base mb-3" style={{ borderColor: INK, background: p.bg, color: p.fg }}>
+                  {p.icon}
+                </div>
+                <h3 className="font-bold text-base" style={{ color: INK }}>{p.title}</h3>
+                <p className="text-sm mt-2 leading-relaxed" style={{ color: MUTED }}>{p.desc}</p>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <Pricing />
-      <FAQ />
+
+      {/* FAQ */}
+      <section id="faq" className="py-20 px-6" style={{ background: CREAM }}>
+        <div className="max-w-3xl mx-auto">
+          <div className="text-center mb-10">
+            <Eyebrow>FAQ</Eyebrow>
+            <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight" style={{ color: INK }}>Common questions</h2>
+          </div>
+          <div className="flex flex-col gap-2.5">
+            {FAQS.map(({ q, a }, i) => (
+              <div key={q} className="rounded-[11px] border-2 bg-white overflow-hidden" style={{ borderColor: INK }}>
+                <button
+                  onClick={() => setOpen(open === i ? null : i)}
+                  aria-expanded={open === i}
+                  aria-controls={`bh-faq-${i}`}
+                  className="w-full flex items-center justify-between gap-4 px-5 py-4 text-left font-bold text-sm"
+                  style={{ color: INK }}
+                >
+                  {q}
+                  <span className="text-lg font-bold shrink-0" style={{ color: BLUE }}>{open === i ? "–" : "+"}</span>
+                </button>
+                {/* Kept in the DOM and collapsed with CSS: the page asserts FAQPage
+                    schema for this text, and crawlers cannot click to reveal it. */}
+                <div
+                  id={`bh-faq-${i}`}
+                  role="region"
+                  className="px-5 pb-4 text-sm leading-relaxed"
+                  style={{ color: MUTED, display: open === i ? "block" : "none" }}
+                >
+                  {a}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <BookDemoForm product="BOARDING_HOUSE" />
-      <CTA />
-      <InternalLinks cluster="boarding-house" currentPath="/boarding-house" />
-      <Footer />
+
+      {/* CTA */}
+      <section className="py-20 px-6 bg-white">
+        <div className="max-w-2xl mx-auto rounded-[20px] border-2 p-10 md:p-12 text-center" style={{ background: AMBER, borderColor: INK, boxShadow: `7px 7px 0 ${INK}` }}>
+          <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight mb-3" style={{ color: INK }}>
+            Ready to modernise your boarding house?
+          </h2>
+          <p className="mb-6 max-w-md mx-auto text-sm leading-relaxed" style={{ color: "#4a3f22" }}>
+            Manage rooms, tenants, rent, and utility bills without the paperwork.
+          </p>
+          <a href={REGISTER} className="inline-flex items-center gap-2 font-bold px-7 py-3.5 rounded-full border-2 transition-transform hover:-translate-y-0.5" style={{ background: INK, color: "#fff", borderColor: INK }}>
+            Get started for free →
+          </a>
+          <p className="mt-4 text-xs" style={{ color: "#4a3f22" }}>Free to start. No credit card required.</p>
+        </div>
+      </section>
     </main>
   )
 }

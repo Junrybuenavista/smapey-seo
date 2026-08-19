@@ -5,12 +5,16 @@ import {
   faqSchema,
   breadcrumbSchema,
 } from "@/lib/seo"
+import SiteNavbar from "@/components/SiteNavbar"
+import ApexHubLinks from "@/components/silo/ApexHubLinks"
+import SiloFooter from "@/components/silo/SiloFooter"
 import BoardingHouseContent from "./BoardingHouseContent"
 import { FAQS } from "./faqs"
 
 const PATH = "/boarding-house"
-const TITLE = "Boarding House Management System - Free for Philippine Boarding Houses | Smapey"
-const DESCRIPTION = "Smapey Boarding House Manager is a free boarding house management system for the Philippines. Rooms and beds, tenant ledgers, rent billing with automatic email statements, utility Quick Fill and Excel import, cashflow and expense tracking, and maintenance with QR issue reporting."
+const TITLE = "Boarding House Management System for Philippine Landlords | Smapey"
+const DESCRIPTION =
+  "Smapey is a boarding house management system for Philippine landlords. Track rooms and beds, collect rent via GCash or Maya, split utilities, and handle maintenance. Free plan available."
 
 export const metadata = buildMetadata({
   title: TITLE,
@@ -24,7 +28,7 @@ export default function Page() {
       <JsonLd
         schema={[
           softwareApplicationSchema({
-            name: "Boarding House Management System",
+            name: "Smapey Boarding House Manager",
             description: DESCRIPTION,
             path: PATH,
           }),
@@ -32,7 +36,12 @@ export default function Page() {
           breadcrumbSchema(PATH),
         ]}
       />
+      <SiteNavbar />
       <BoardingHouseContent />
+      {/* The money page links only to the three hubs - never deeper, which
+          would leak the equity the silo exists to accumulate. */}
+      <ApexHubLinks />
+      <SiloFooter />
     </>
   )
 }
