@@ -133,17 +133,24 @@ function Hero() {
             Built for boarding house &amp; dorm owners
           </div>
 
-          <h1 className="font-extrabold tracking-tight mb-6" style={{ color: INK, fontSize: "clamp(44px,6vw,78px)", lineHeight: 0.97, letterSpacing: "-0.03em" }}>
-            Every room,{" "}
+          <h1 className="font-extrabold tracking-tight mb-4" style={{ color: INK, fontSize: "clamp(34px,4.6vw,58px)", lineHeight: 1.02, letterSpacing: "-0.03em" }}>
+            Boarding house{" "}
             <span className="relative inline-block" style={{ color: BLUE }}>
-              every rent
+              management system
               <span className="absolute left-0 right-0" style={{ bottom: 6, height: 14, background: AMBER, zIndex: -1, transform: "rotate(-1.2deg)" }} />
-            </span>
-            , tracked
+            </span>{" "}
+            for Philippine landlords
           </h1>
 
+          <p className="font-bold mb-5" style={{ color: INK, fontSize: "clamp(18px,2vw,22px)" }}>
+            Every room, every rent, tracked.
+          </p>
+
           <p className="text-lg max-w-md mx-auto lg:mx-0 mb-9 leading-relaxed" style={{ color: "#54514c" }}>
-            See who's in, who's due, and which beds are open at a glance. Smapey logs tenants, tracks rent per bed, flags overdue payments, and lets tenants report issues by scanning a QR code, so collection day runs itself.
+            Smapey is a boarding house management system built for Philippine landlords. See
+            who&apos;s in, who&apos;s due, and which beds are open at a glance: it logs tenants,
+            tracks rent per bed, splits utility bills, flags overdue payments, and lets tenants
+            report issues by scanning a QR code, so collection day runs itself.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center lg:justify-start justify-center gap-3 mb-9">
@@ -235,7 +242,7 @@ function Features() {
       <div className="max-w-6xl mx-auto px-6">
         <Animate className="text-center mb-16">
           <p className="text-sm font-bold uppercase tracking-widest mb-3" style={{ color: BLUE }}>Features</p>
-          <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight" style={{ color: INK }}>Everything a Philippine boarding house needs</h2>
+          <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight" style={{ color: INK }}>What a boarding house management system should do</h2>
           <p className="mt-4 max-w-xl mx-auto" style={{ color: "#54514c" }}>From room setup to monthly billing, Smapey Boarding House Manager keeps your property running without paper records or scattered spreadsheets.</p>
         </Animate>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -264,6 +271,42 @@ const STEPS = [
   { step: "02", title: "Move tenants in from the room card", desc: "Create tenant profiles once, then click any vacant bed or slot to move someone in. Occupancy, rates, and deposits are tracked automatically - and each room's QR poster lets tenants report issues." },
   { step: "03", title: "Generate bills & collect payments", desc: "Enter utilities with Quick Fill, hit Generate, and every tenant gets an emailed statement automatically. Tenants scan the room's payment QR to see their exact balance and report what they paid; you verify it from the Payments Inbox in one tap, and the Cashflow page shows exactly what came in, what went out, and your net for the month." },
 ]
+
+/* The same product goes by several names in search. These are genuine
+   synonyms for what this is - nothing here claims a capability the product
+   does not have, which is why dormitory tooling is absent. */
+function AlsoCalled() {
+  return (
+    <section id="also-called" className="py-20" style={{ background: "#fff", fontFamily: display.fontFamily }}>
+      <div className="max-w-3xl mx-auto px-6">
+        <Animate>
+          <p className="text-sm font-bold uppercase tracking-widest mb-3" style={{ color: BLUE }}>Also called</p>
+          <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight mb-5" style={{ color: INK }}>
+            Boarder management system, BHRMS, boarding house software
+          </h2>
+          <p className="text-base leading-relaxed mb-4" style={{ color: "#54514c" }}>
+            The same tool goes by several names. You will see it called a{" "}
+            <strong style={{ color: INK }}>boarder management system</strong>, a{" "}
+            <strong style={{ color: INK }}>boarding house rental management system</strong>, a{" "}
+            <strong style={{ color: INK }}>boarding house billing system</strong> when the focus
+            is rent and utilities, or simply{" "}
+            <strong style={{ color: INK }}>boarding house software</strong>.
+          </p>
+          <p className="text-base leading-relaxed mb-4" style={{ color: "#54514c" }}>
+            Landlords letting per bed rather than per room often search for{" "}
+            <strong style={{ color: INK }}>bedspace management</strong> instead. That is the same
+            job with a smaller unit: the bed is what you rent, price, and count, so occupancy has
+            to be measured per bed rather than per room.
+          </p>
+          <p className="text-base leading-relaxed" style={{ color: "#54514c" }}>
+            Whichever term you use, the work is identical — knowing what is occupied, what is
+            owed, and what has been paid, without holding any of it in your head.
+          </p>
+        </Animate>
+      </div>
+    </section>
+  )
+}
 
 function HowItWorks() {
   const acc = [BLUE, AMBER, BLUE, AMBER]
@@ -442,6 +485,7 @@ export default function BoardingHouseContent() {
       <Navbar />
       <Hero />
       <Features />
+      <AlsoCalled />
       <HowItWorks />
       <Pricing />
       <FAQ />
