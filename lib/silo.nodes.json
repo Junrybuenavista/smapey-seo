@@ -1,5 +1,5 @@
 {
-  "apex": "/boarding-house/boarding-house-management-system",
+  "apex": "/boarding-house",
   "apexOutboundAllow": [
     "https://app.smapey.com/register",
     "https://app.smapey.com/login",
@@ -8,12 +8,12 @@
   ],
   "nodes": [
     {
-      "path": "/boarding-house/boarding-house-management-system",
+      "path": "/boarding-house",
       "tier": 1,
       "branch": null,
       "parent": null,
       "title": "Boarding House Management System",
-      "h1": "Boarding house management system built for the Philippines",
+      "h1": "Boarding House Management System for Philippine Landlords",
       "primaryKeyword": "boarding house management system philippines",
       "words": [
         1200,
@@ -38,7 +38,7 @@
       "path": "/boarding-house/boarding-house-management-and-billing-system",
       "tier": 2,
       "branch": "A",
-      "parent": "/boarding-house/boarding-house-management-system",
+      "parent": "/boarding-house",
       "title": "Rent & Billing",
       "h1": "Rent collection and billing for boarding houses",
       "primaryKeyword": "boarding house rent collection",
@@ -63,7 +63,7 @@
       "path": "/boarding-house/bed-space-and-room-management",
       "tier": 2,
       "branch": "B",
-      "parent": "/boarding-house/boarding-house-management-system",
+      "parent": "/boarding-house",
       "title": "Bed Space & Rooms",
       "h1": "Bed space and room management",
       "primaryKeyword": "bed space and room management",
@@ -88,7 +88,7 @@
       "path": "/boarding-house/boarding-house-business-philippines",
       "tier": 2,
       "branch": "C",
-      "parent": "/boarding-house/boarding-house-management-system",
+      "parent": "/boarding-house",
       "title": "Business Setup",
       "h1": "Starting and running a boarding house business",
       "primaryKeyword": "boarding house business philippines",
