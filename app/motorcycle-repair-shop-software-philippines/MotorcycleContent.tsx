@@ -4,8 +4,8 @@ import {
   ClipboardList, Bike, Package, Percent, BellRing, MessageSquare, ChevronRight, CheckCircle2,
 } from "lucide-react"
 import {
-  Navbar, Pricing, CTA, Footer, Eyebrow, TrustRow, HeroShell, HeroBadge, FAQList,
-  REGISTER_URL, CAR_PATH, MOTO_PATH,
+  Navbar, Pricing, CTA, Footer, Eyebrow, FAQList, PlateHero,
+  CAR_PATH, MOTO_PATH,
 } from "@/components/repair-shop/shared"
 import { FAQS } from "./faqs"
 
@@ -32,30 +32,21 @@ const STEPS = [
 
 function Hero() {
   return (
-    <HeroShell>
-      <div className="max-w-3xl">
-        <HeroBadge>Built for Philippine motor shops</HeroBadge>
-        <h1 className="text-4xl sm:text-6xl font-extrabold leading-[1.05] tracking-tight mb-6" style={{ color: INK }}>
-          Motorcycle repair shop software that knows two wheels
-        </h1>
-        <p className="text-lg leading-relaxed mb-8" style={{ color: "#54514c" }}>
-          Chain and sprocket, valve adjustment, carburetor cleaning - your service list is set up for
-          motorcycles from the first day, with oil due at 2,000&nbsp;km rather than a car&apos;s 5,000.
-          Free to start, no card.
-        </p>
-        <div className="flex flex-col sm:flex-row gap-3">
-          <a href={REGISTER_URL} className="inline-flex items-center justify-center gap-2 px-7 py-4 rounded-full font-bold border-2 transition-transform hover:-translate-y-0.5"
-             style={{ ...display, background: AMBER, color: INK, borderColor: INK, boxShadow: `5px 5px 0 ${INK}` }}>
-            Start free <ChevronRight className="w-4 h-4" />
-          </a>
-          <a href="#features" className="inline-flex items-center justify-center gap-2 px-7 py-4 rounded-full font-bold border-2 bg-white transition-transform hover:-translate-y-0.5"
-             style={{ ...display, color: INK, borderColor: INK }}>
-            See what it does
-          </a>
-        </div>
-        <TrustRow />
-      </div>
-    </HeroShell>
+    <PlateHero
+      badge="Built for Philippine motor shops"
+      title={<>Motorcycle repair shop software that knows two wheels</>}
+      subtitle="Chain and sprocket, valve adjustment, carburetor cleaning - your service list is set up for motorcycles from day one, with oil due at 2,000 km. Type a plate and the whole history comes back."
+      plate="NBC 4821"
+      vehicle="Honda Click 125i · 2022"
+      meta="Ana Reyes · 6 visits · last reading 18,400 km"
+      history={[
+        { date: "19 Aug", job: "Change oil + oil filter", amount: "₱620" },
+        { date: "27 Jun", job: "Chain & sprocket replacement", amount: "₱2,150" },
+        { date: "14 Apr", job: "Valve adjustment + tune-up", amount: "₱950" },
+        { date: "02 Feb", job: "Front brake pads", amount: "₱540" },
+      ]}
+      ctaNote="Free plan covers 25 units and 50 job orders a month."
+    />
   )
 }
 

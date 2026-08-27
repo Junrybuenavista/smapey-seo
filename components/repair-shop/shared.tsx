@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect, useRef } from "react"
-import { CheckCircle2, ChevronRight, Menu, X, Zap, Wrench } from "lucide-react"
+import { CheckCircle2, ChevronRight, Menu, X, Zap, Wrench, Search } from "lucide-react"
 import { usePricing, type Plan } from "@/lib/usePricing"
 
 //////////////////////////////////////////////////////
@@ -224,6 +224,96 @@ export function HeroShell({ children }: { children: React.ReactNode }) {
         <div className="absolute rounded-[22px] border-2" style={{ bottom: "16%", right: "-70px", width: 260, height: 74, background: BLUE, borderColor: INK, transform: "rotate(8deg)", boxShadow: "5px 5px 0 rgba(22,22,22,.12)" }} />
       </div>
       <div className="relative max-w-6xl mx-auto px-6 py-24 w-full">{children}</div>
+    </section>
+  )
+}
+
+/**
+ * Hero built around a plate lookup rather than a stock illustration.
+ *
+ * The product's founding idea is that history follows the plate, not the
+ * customer - so the hero shows that happening instead of claiming it. The
+ * right-hand card is the search a counter actually does: type a plate, get
+ * back everything ever done to that unit.
+ */
+export function PlateHero({
+  badge, title, subtitle, plate, vehicle, meta, history, ctaNote,
+}: {
+  badge: string
+  title: React.ReactNode
+  subtitle: string
+  plate: string
+  vehicle: string
+  meta: string
+  history: { date: string; job: string; amount: string }[]
+  ctaNote?: string
+}) {
+  return (
+    <section className="relative overflow-hidden pt-16" style={{ background: CREAM, fontFamily: display.fontFamily }}>
+      {/* One shape, bled off the edge - enough to read as Layered Pop without
+          competing with the card, which is the thing worth looking at. */}
+      <div className="absolute inset-0 pointer-events-none hidden lg:block" aria-hidden>
+        <div className="absolute rounded-[26px] border-2" style={{ top: "18%", left: "-90px", width: 260, height: 78, background: AMBER, borderColor: INK, transform: "rotate(-8deg)" }} />
+      </div>
+
+      <div className="relative max-w-6xl mx-auto px-6 py-20 lg:py-24 grid lg:grid-cols-[1.05fr_.95fr] gap-14 lg:gap-10 items-center">
+        <div className="min-w-0">
+          <HeroBadge>{badge}</HeroBadge>
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.05] tracking-tight mb-6" style={{ color: INK }}>
+            {title}
+          </h1>
+          <p className="text-lg leading-relaxed mb-8 max-w-xl" style={{ color: "#54514c" }}>{subtitle}</p>
+          <div className="flex flex-col sm:flex-row gap-3">
+            <a href={REGISTER_URL} className="inline-flex items-center justify-center gap-2 px-7 py-4 rounded-full font-bold border-2 transition-transform hover:-translate-y-0.5"
+               style={{ ...display, background: AMBER, color: INK, borderColor: INK, boxShadow: `5px 5px 0 ${INK}` }}>
+              Start free <ChevronRight className="w-4 h-4" />
+            </a>
+            <a href="#features" className="inline-flex items-center justify-center gap-2 px-7 py-4 rounded-full font-bold border-2 bg-white transition-transform hover:-translate-y-0.5"
+               style={{ ...display, color: INK, borderColor: INK }}>
+              See what it does
+            </a>
+          </div>
+          {ctaNote && <p className="mt-4 text-xs font-semibold" style={{ color: "#9a948b" }}>{ctaNote}</p>}
+          <div className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-3 text-xs font-semibold" style={{ color: "#54514c" }}>
+            {["No credit card required", "Free plan forever", "Setup in 5 minutes"].map((t) => (
+              <span key={t} className="flex items-center gap-1.5"><CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />{t}</span>
+            ))}
+          </div>
+        </div>
+
+        {/* The lookup */}
+        <div className="relative min-w-0">
+          <div className="rounded-[26px] border-2 bg-white overflow-hidden" style={{ borderColor: INK, boxShadow: `10px 10px 0 ${INK}` }}>
+            <div className="px-5 py-4 border-b-2 flex items-center gap-3" style={{ borderColor: INK, background: CREAM }}>
+              <Search className="w-4 h-4 shrink-0" style={{ color: "#9a948b" }} />
+              <span className="text-lg font-extrabold tracking-wider" style={{ color: INK }}>{plate}</span>
+              <span className="ml-auto text-[10px] font-bold uppercase tracking-widest px-2 py-1 rounded-full border-2"
+                    style={{ background: "#fff", color: INK, borderColor: INK }}>On file</span>
+            </div>
+
+            <div className="px-5 py-4 border-b-2" style={{ borderColor: "#eee7db" }}>
+              <p className="font-extrabold" style={{ color: INK }}>{vehicle}</p>
+              <p className="text-xs mt-0.5" style={{ color: "#9a948b" }}>{meta}</p>
+            </div>
+
+            <ul>
+              {history.map((h, i) => (
+                <li key={h.date} className="px-5 py-3.5 flex items-center gap-3"
+                    style={{ borderTop: i === 0 ? "none" : "1px solid #f2ece1" }}>
+                  <span className="w-2 h-2 rounded-full shrink-0" style={{ background: i === 0 ? BLUE : "#d8d2c6" }} />
+                  <span className="text-xs font-semibold w-14 sm:w-16 shrink-0" style={{ color: "#9a948b" }}>{h.date}</span>
+                  <span className="text-sm font-medium truncate min-w-0" style={{ color: INK }}>{h.job}</span>
+                  <span className="ml-auto text-sm font-extrabold shrink-0" style={{ color: INK }}>{h.amount}</span>
+                </li>
+              ))}
+            </ul>
+
+            <div className="px-5 py-3 border-t-2 text-xs font-semibold" style={{ borderColor: INK, background: CREAM, color: "#54514c" }}>
+              Every job, every part, every reading - kept against the plate.
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
   )
 }
