@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation"
 import {
   FileText, Dumbbell, BookOpen, CalendarDays, Car, Shirt, Scissors,
   CalendarPlus, Home, Landmark, UtensilsCrossed, ShoppingBag, Stethoscope, PawPrint,
-  Building2, ChefHat, Droplets, GraduationCap,
+  Building2, ChefHat, Droplets, GraduationCap, Wrench,
   ArrowRight, CheckCircle2, Zap, Shield, TrendingUp,
   Clock, ChevronDown, Menu, X, Users, Sparkles,
   MousePointerClick, LayoutDashboard, Star,
@@ -258,7 +258,25 @@ const PRODUCTS = [
     features: ["Student enrollment & profiles", "Session scheduling & attendance", "Tuition fee monitoring", "Progress notes & dashboard"],
     stat: { value: "₱0", label: "missed tuition" },
   },
+  {
+    key: "AUTO_SHOP",
+    name: "Auto & Motorcycle Repair Shop",
+    tagline: "Know every unit's history.",
+    desc: "Job orders, parts stock, mechanic commissions, and the full service history of every car and motorcycle, built for repair shops in the Philippines.",
+    href: "/auto-repair-shop-software-philippines",
+    register: `${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=AUTO_SHOP&plan=FREE`,
+    accent: "#b91c1c",
+    accentLight: "#fef2f2",
+    Icon: Wrench,
+    features: ["Job orders with photo evidence", "Parts stock that deducts itself", "Mechanic commission tracking", "Plate lookup & service history"],
+    stat: { value: "1 plate", label: "to the whole history" },
+  },
 ]
+
+const COUNT_WORD: Record<number, string> = {
+  17: "Seventeen", 18: "Eighteen", 19: "Nineteen", 20: "Twenty",
+  21: "Twenty-one", 22: "Twenty-two", 23: "Twenty-three", 24: "Twenty-four",
+}
 
 const STATS = [
   { value: "2,400+", label: "small businesses" },
@@ -282,6 +300,7 @@ const FOR_WHO = [
   { emoji: "🏘️", label: "Boarding House Owners" },
   { emoji: "🍳", label: "Catering Businesses" },
   { emoji: "💧", label: "Water Station Owners" },
+  { emoji: "🏍️", label: "Auto & Moto Shop Owners" },
 ]
 
 const STEPS = [
@@ -496,12 +515,13 @@ const HERO_CHIPS = [
   { emoji: "🧾", label: "Invoice Manager", bg: BLUE,   chipBg: "#fff",    color: "#fff", rotate: "3deg",  shift: "-34px" },
   { emoji: "🏋️", label: "Gym Management", bg: AMBER,  chipBg: "#fff",    color: INK,   rotate: "-2deg", shift: "6px" },
   { emoji: "💧", label: "Water Refilling", bg: "#fff", chipBg: "#ecfeff", color: INK,   rotate: "4deg",  shift: "-48px" },
+  { emoji: "🔧", label: "Repair Shop",     bg: "#fff", chipBg: "#fef2f2", color: INK,   rotate: "-3deg", shift: "-14px" },
 ]
 
 const HERO_STATS = [
   { value: "2,400+", label: <>small businesses<br />run on Smapey</>, accent: true },
   { value: "5 min",  label: <>average time<br />to full setup</>, accent: false },
-  { value: "18",     label: <>tools, one login,<br />pick what you need</>, accent: true },
+  { value: String(PRODUCTS.length), label: <>tools, one login,<br />pick what you need</>, accent: true },
   { value: "₱0",     label: <>to start,<br />free plan forever</>, accent: false },
 ]
 
@@ -523,7 +543,7 @@ function Hero() {
             <span className="text-[13.5px] font-extrabold" style={{ color: c.color }}>{c.label}</span>
           </div>
         ))}
-        <span className="text-[13px] font-extrabold mt-1.5" style={{ color: "#9a948b", transform: "rotate(-2deg)" }}>+ 14 more tools</span>
+        <span className="text-[13px] font-extrabold mt-1.5" style={{ color: "#9a948b", transform: "rotate(-2deg)" }}>+ {PRODUCTS.length - HERO_CHIPS.length} more tools</span>
       </div>
 
         {/* BADGE */}
@@ -567,7 +587,7 @@ function Hero() {
             className="inline-flex items-center gap-2 font-extrabold text-[15px] px-7 py-4 rounded-full border-2 bg-white transition-transform hover:-translate-y-0.5 whitespace-nowrap"
             style={{ ...display, color: INK, borderColor: INK }}
           >
-            Browse 18 tools
+            Browse {PRODUCTS.length} tools
           </a>
           <span className="text-[13.5px] font-bold ml-1" style={{ color: "#54514c" }}>
             Free plan forever · No card needed
@@ -727,7 +747,7 @@ function Products() {
         <Reveal>
           <p className="text-xs font-bold tracking-widest uppercase mb-3" style={{ color: "#9a948b" }}>Our products</p>
           <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight leading-tight max-w-2xl" style={{ color: INK }}>
-            Eighteen tools. Every small business covered.
+            {COUNT_WORD[PRODUCTS.length] ?? PRODUCTS.length} tools. Every small business covered.
           </h2>
           <p className="mt-4 text-lg max-w-xl" style={{ color: "#54514c" }}>
             Pick the one you need today. Each product is fully standalone, no bundles, no bloat, no paying for things you don't use.
