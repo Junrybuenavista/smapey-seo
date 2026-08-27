@@ -1,0 +1,14 @@
+// Kept out of the "use client" content module so the server page can
+// read it directly to emit FAQPage JSON-LD.
+export const FAQS: { q: string; a: string }[] = [
+  { q: "Is there a free plan?", a: "Yes, and it does not expire. The Free plan covers 25 units on file and 50 job orders a month, with two team members. No credit card is asked for at signup." },
+  { q: "Is this built for motorcycles or is it car software with the labels changed?", a: "You choose motorcycle when you set up, and the service list is seeded for two wheels - change oil, chain and sprocket, valve adjustment, carburetor cleaning, tune-up - with the intervals that actually apply. Oil comes due at 2,000 km, not the 5,000 a car shop would use. Tricycles are in the vehicle list alongside motorcycles." },
+  { q: "What if the unit has no plate yet?", a: "Record it under the conduction sticker. Plenty of new units run for months before plates arrive, and the field takes whatever identifies the bike on your floor." },
+  { q: "What if the odometer is broken?", a: "It is optional. A unit with a dead odometer still gets service reminders - they fall back to a date instead of kilometres, rather than refusing to schedule at all." },
+  { q: "How does the service history work?", a: "History follows the plate, not the owner. Type it and you see every job ever done to that unit - what was replaced, what was charged, the reading at the time. When a unit is sold, the history stays with the bike while each past job still names who paid for it." },
+  { q: "Can customers approve a quote themselves?", a: "Yes. You text them a link, they see the itemised quote on their phone, and they tap approve or decline. It is recorded with the time and marked as coming from the customer rather than from your staff." },
+  { q: "How does the parts inventory work?", a: "You record what a part costs you and what you charge, and the shop sees the margin on every line. Stock comes off the shelf when the unit is released, not when the job is approved, so a cancelled job never leaves your count wrong. Every movement keeps a reason." },
+  { q: "Can I pay my mechanics a commission?", a: "Yes. Set a rate per mechanic and assign work per ticket, or per line when two split a unit. Commission is on labour only - parts markup stays with the shop - and counted on the day the unit is released. The payout exports to Excel." },
+  { q: "Will it remind riders when service is due?", a: "Yes. Release a unit and the next visit is scheduled from the work you did, due by kilometres or by date, whichever comes first. You pick who gets a text and when, so you control the spend." },
+  { q: "Do I need to install anything?", a: "No. It runs in the browser - on the shop laptop, a tablet at the counter, or your phone while you are standing next to the unit." },
+]

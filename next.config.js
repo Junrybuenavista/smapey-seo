@@ -11,6 +11,14 @@ const nextConfig = {
         destination: "/boarding-house",
         permanent: true,
       },
+      {
+        // The in-app Guide buttons and onboarding emails point at the product
+        // hub. There are two trade pages rather than one hub page, so send the
+        // bare path to the higher-volume of the two instead of 404ing.
+        source: "/repair-shop-software",
+        destination: "/auto-repair-shop-software-philippines",
+        permanent: false,
+      },
     ]
   },
 }
