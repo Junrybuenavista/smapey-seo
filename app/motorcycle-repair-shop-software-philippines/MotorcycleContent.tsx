@@ -7,6 +7,7 @@ import {
   Navbar, Pricing, CTA, Footer, Eyebrow, FAQList, PlateHero,
   CAR_PATH, MOTO_PATH,
 } from "@/components/repair-shop/shared"
+import InternalLinks from "@/components/InternalLinks"
 import { FAQS } from "./faqs"
 
 const INK = "#161616"
@@ -173,6 +174,7 @@ export default function MotorcycleContent() {
       <Pricing />
       <FAQ />
       <SisterPage />
+      <InternalLinks cluster="repair-shop" currentPath="/motorcycle-repair-shop-software-philippines" heading="More for repair shops" />
       <CTA
         title="Ready to stop losing what you did to that unit?"
         subtitle="Take in your first job today. Free plan, no card, and the service history starts building from the first ticket."

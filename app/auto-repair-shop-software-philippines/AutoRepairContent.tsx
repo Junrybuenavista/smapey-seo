@@ -7,6 +7,7 @@ import {
   Navbar, Pricing, CTA, Footer, Eyebrow, FAQList, PlateHero,
   CAR_PATH, MOTO_PATH,
 } from "@/components/repair-shop/shared"
+import InternalLinks from "@/components/InternalLinks"
 import { FAQS } from "./faqs"
 
 const INK = "#161616"
@@ -59,6 +60,10 @@ function Features() {
           <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight" style={{ color: INK }}>
             Everything a car shop actually does
           </h2>
+          <p className="mt-4 max-w-2xl mx-auto" style={{ color: "#54514c" }}>
+            Car repair shop software that covers the whole job, not just the bill - from the
+            moment a car comes in to the moment it is handed back.
+          </p>
         </div>
         <div className="grid md:grid-cols-3 gap-6">
           {FEATURES.map(({ icon: Icon, title, body }) => (
@@ -137,6 +142,10 @@ function LocalNote() {
         <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight mb-8" style={{ color: INK }}>
           Built around how a Philippine shop runs
         </h2>
+        <p className="mb-8 max-w-2xl mx-auto" style={{ color: "#54514c" }}>
+          Most auto repair shop software is priced in dollars and sold through a demo call.
+          This one starts free, in pesos, and you can be taking in your first car today.
+        </p>
         <div className="grid sm:grid-cols-2 gap-4 text-left">
           {points.map((p) => (
             <div key={p} className="flex items-start gap-3 rounded-[18px] border-2 bg-white p-5" style={{ borderColor: INK }}>
@@ -175,6 +184,7 @@ export default function AutoRepairContent() {
       <Pricing />
       <FAQ />
       <SisterPage />
+      <InternalLinks cluster="repair-shop" currentPath="/auto-repair-shop-software-philippines" heading="More for repair shops" />
       <CTA
         title="Ready to stop losing what you did to that car?"
         subtitle="Take in your first job today. Free plan, no card, and your service history starts building from the first ticket."

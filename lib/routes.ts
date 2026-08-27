@@ -4,7 +4,7 @@ export type RouteInfo = {
   desc: string
 }
 
-export type ClusterKey = "invoice" | "booking" | "gym" | "essay" | "car-rental" | "laundry" | "salon" | "massage" | "airbnb" | "lending" | "restaurant" | "store" | "clinic" | "vet-clinic" | "boarding-house" | "catering" | "water-refilling" | "school-desk"
+export type ClusterKey = "invoice" | "booking" | "gym" | "essay" | "car-rental" | "laundry" | "salon" | "massage" | "airbnb" | "lending" | "restaurant" | "store" | "clinic" | "vet-clinic" | "boarding-house" | "catering" | "water-refilling" | "school-desk" | "repair-shop"
 
 export type RouteCluster = {
   label: string
@@ -113,6 +113,23 @@ export const CLUSTERS: Record<ClusterKey, RouteCluster> = {
       { path: "/car-rental/car-rental-management-software", title: "Car Rental Management Software", desc: "Fleet, reservation, and revenue management in one dashboard." },
       { path: "/car-rental/car-rental-booking-software", title: "Car Rental Booking Software", desc: "Reservation flows that let customers book vehicles online." },
       { path: "/car-rental/car-rental-software-for-small-business", title: "Car Rental Software for Small Business", desc: "Built for small rental fleets - affordable, simple, complete." },
+    ],
+  },
+
+  // Two trade pages and one shared guide. There is no hub page - the product
+  // is one thing, but a car shop and a motorcycle shop will not read the same
+  // headline, so each trade gets its own money page and they link to each other.
+  "repair-shop": {
+    label: "Repair Shop Software",
+    hub: {
+      path: "/auto-repair-shop-software-philippines",
+      title: "Auto Repair Shop Software",
+      desc: "Job orders, parts and labour, and service history by plate number for car shops.",
+    },
+    pages: [
+      { path: "/motorcycle-repair-shop-software-philippines", title: "Motorcycle Repair Shop Software", desc: "Built for two wheels - chain and sprocket, valve adjustment, and oil due at 2,000 km." },
+      { path: "/repair-shop-software/guide", title: "Repair Shop Software Guide", desc: "Set-up to payout, in the order you will actually meet it." },
+      { path: "/invoice/invoicing-software-for-auto-repair", title: "Invoicing for Auto Repair", desc: "Billing a repair job - quotations, itemised invoices, and payment tracking." },
     ],
   },
 

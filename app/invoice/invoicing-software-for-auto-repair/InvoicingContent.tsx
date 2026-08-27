@@ -163,6 +163,36 @@ export default function InvoicingContent() {
         </div>
       </section>
     </div>
+
+      {/* This page covers billing a repair job. Whole-shop management - job
+          orders, parts, service history - is its own product, and sending that
+          intent onward is worth more than trying to satisfy it here. */}
+      <section className="py-16 px-6 bg-gray-50 border-t border-gray-200">
+        <div className="max-w-3xl mx-auto text-center">
+          <h2 className="text-2xl font-bold text-gray-900 mb-3">
+            Looking for more than invoicing?
+          </h2>
+          <p className="text-gray-600 leading-relaxed mb-7">
+            If you want job orders with parts and labour, service history by plate number,
+            parts inventory with margin, and quotes your customer approves from their phone,
+            that is a separate Smapey product built for repair shops.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-3 justify-center">
+            <Link
+              href="/auto-repair-shop-software-philippines"
+              className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-gray-900 text-white font-semibold hover:bg-gray-800 transition-colors"
+            >
+              Auto repair shop software <ArrowRight size={16} />
+            </Link>
+            <Link
+              href="/motorcycle-repair-shop-software-philippines"
+              className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg border border-gray-300 text-gray-900 font-semibold hover:bg-white transition-colors"
+            >
+              For motorcycle shops <ArrowRight size={16} />
+            </Link>
+          </div>
+        </div>
+      </section>
     <InternalLinks />
     </>
   )
