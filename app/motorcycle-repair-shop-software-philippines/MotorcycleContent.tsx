@@ -4,7 +4,8 @@ import {
   ClipboardList, Bike, Package, Percent, BellRing, MessageSquare, ChevronRight, CheckCircle2,
 } from "lucide-react"
 import {
-  Navbar, Pricing, CTA, Footer, Eyebrow, FAQList, PlateHero,
+  Navbar, Pricing, CTA, Footer, Eyebrow, FAQList, PlateHero, Showcase,
+  SHOT_PLATE_IMG, SHOT_JOB_ORDER_IMG, SHOT_PARTS_IMG, type Shot,
   CAR_PATH, MOTO_PATH,
 } from "@/components/repair-shop/shared"
 import InternalLinks from "@/components/InternalLinks"
@@ -50,6 +51,45 @@ function Hero() {
     />
   )
 }
+
+const SHOTS: Shot[] = [
+  {
+    img: SHOT_JOB_ORDER_IMG,
+    alt: "Mechanic in a Philippine motorcycle shop holding a phone showing a job order with photos of the scooter being repaired",
+    eyebrow: "Job orders",
+    title: "Every unit that rolls in gets a ticket",
+    desc: "Photograph the bike the way it arrived, put the chain, the sprocket and the labour on the same ticket, and hand the rider a total that matches what you quoted. Even the ten-minute jobs get recorded.",
+    bullets: [
+      "Photos of the unit as it came in",
+      "Parts and labour on one ticket",
+      "Quick jobs still leave a record",
+    ],
+  },
+  {
+    img: SHOT_PLATE_IMG,
+    alt: "Phone held beside a vehicle plate showing that unit's full repair history in motorcycle repair shop software",
+    eyebrow: "Service history",
+    title: "Plate or conduction sticker, same lookup",
+    desc: "Type whatever the unit is carrying and its whole history comes back. When a regular rides in for the third time this year, you already know what you changed and how long ago - before you ask.",
+    bullets: [
+      "Works with plates or conduction stickers",
+      "Every past job in one list",
+      "Know when the last chain went on",
+    ],
+  },
+  {
+    img: SHOT_PARTS_IMG,
+    alt: "Tablet on a workshop bench showing motorcycle parts stock counts beside brake pads, spark plugs and engine oil",
+    eyebrow: "Parts stock",
+    title: "Fast-moving parts, counted properly",
+    desc: "Chains, sprockets, brake pads and oil move quickly in a motorcycle shop. Add one to a ticket and it comes off the count when the unit is released, so what is on the screen is what is on the shelf.",
+    bullets: [
+      "Deducted on release, not on paper",
+      "Every movement logged and traceable",
+      "See what to reorder before the weekend",
+    ],
+  },
+]
 
 function Features() {
   return (
@@ -168,6 +208,7 @@ export default function MotorcycleContent() {
     <div style={{ background: "#fff" }}>
       <Navbar base={MOTO_PATH} name="Smapey Garage" />
       <Hero />
+      <Showcase shots={SHOTS} />
       <Features />
       <HowItWorks />
       <LocalNote />

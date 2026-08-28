@@ -514,3 +514,85 @@ export function PaymentModal({ plan, isPhilippines, onClose }: {
     </div>
   )
 }
+
+//////////////////////////////////////////////////////
+// SHOWCASE
+//////////////////////////////////////////////////////
+
+/**
+ * Cloudinary serves these, so the sizing and the format are decided in the
+ * URL rather than at upload time: f_auto picks AVIF or WebP per browser,
+ * q_auto picks the quality, and w_1200 covers a retina render of a frame
+ * that is only ~528px wide on desktop. The three masters are 1.1-1.9MB PNGs;
+ * this hands over about 50-130KB each.
+ *
+ * c_limit means a smaller original is never upscaled.
+ */
+const CLD = "https://res.cloudinary.com/dxhwfv0jo/image/upload/f_auto,q_auto,w_1200,c_limit"
+
+export const SHOT_PLATE_IMG = `${CLD}/v1787880491/kling_20260828_IMAGE_Photoreali_2356_1_axechn.png`
+export const SHOT_PARTS_IMG = `${CLD}/v1787880492/kling_20260828_IMAGE_Photoreali_2342_0_ytsjrl.png`
+export const SHOT_JOB_ORDER_IMG = `${CLD}/v1787880492/kling_20260828_IMAGE_Photoreali_634_1_hrmjz7.png`
+
+export type Shot = {
+  img: string
+  alt: string
+  eyebrow: string
+  title: string
+  desc: string
+  bullets: string[]
+}
+
+/**
+ * The images are shared between the two trade pages but the copy around them
+ * is not - each page speaks to its own trade, and identical blocks on two
+ * URLs targeting different keywords is the thing worth avoiding. So this
+ * takes the shots as a prop and each page writes its own.
+ */
+export function Showcase({ shots }: { shots: Shot[] }) {
+  return (
+    <section className="py-24" style={{ background: "#fff", fontFamily: display.fontFamily }}>
+      <div className="max-w-6xl mx-auto px-6 flex flex-col gap-20">
+        {shots.map((s, i) => {
+          const c = i % 2 === 0 ? BLUE : AMBER
+          const reverse = i % 2 === 1
+          return (
+            <Animate key={s.title}>
+              <div className={`flex flex-col gap-8 md:gap-12 items-center ${reverse ? "md:flex-row-reverse" : "md:flex-row"}`}>
+                <div className="w-full md:w-1/2 min-w-0">
+                  <div className="rounded-[22px] border-2 overflow-hidden" style={{ borderColor: INK, boxShadow: `8px 8px 0 ${c}` }}>
+                    {/* width/height are the master's real pixels - they only
+                        need to carry the aspect ratio so the frame reserves
+                        its height before the image arrives. */}
+                    <img
+                      src={s.img}
+                      alt={s.alt}
+                      width={1360}
+                      height={768}
+                      loading="lazy"
+                      decoding="async"
+                      className="w-full h-auto block"
+                    />
+                  </div>
+                </div>
+                <div className="w-full md:w-1/2 min-w-0">
+                  <p className="text-sm font-bold uppercase tracking-widest mb-3" style={{ color: c === AMBER ? "#b06c00" : BLUE }}>{s.eyebrow}</p>
+                  <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight mb-4" style={{ color: INK }}>{s.title}</h2>
+                  <p className="leading-relaxed mb-5" style={{ color: "#54514c" }}>{s.desc}</p>
+                  <ul className="space-y-2.5">
+                    {s.bullets.map(b => (
+                      <li key={b} className="flex items-center gap-2.5 text-sm">
+                        <CheckCircle2 className="w-4 h-4 shrink-0" style={{ color: c === AMBER ? AMBER : BLUE }} />
+                        <span style={{ color: "#3f3b36" }}>{b}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </Animate>
+          )
+        })}
+      </div>
+    </section>
+  )
+}

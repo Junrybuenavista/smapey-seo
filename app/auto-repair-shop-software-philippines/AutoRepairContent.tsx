@@ -4,7 +4,8 @@ import {
   ClipboardList, Car, Package, Percent, BellRing, MessageSquare, ChevronRight, CheckCircle2,
 } from "lucide-react"
 import {
-  Navbar, Pricing, CTA, Footer, Eyebrow, FAQList, PlateHero,
+  Navbar, Pricing, CTA, Footer, Eyebrow, FAQList, PlateHero, Showcase,
+  SHOT_PLATE_IMG, SHOT_JOB_ORDER_IMG, SHOT_PARTS_IMG, type Shot,
   CAR_PATH, MOTO_PATH,
 } from "@/components/repair-shop/shared"
 import InternalLinks from "@/components/InternalLinks"
@@ -50,6 +51,45 @@ function Hero() {
     />
   )
 }
+
+const SHOTS: Shot[] = [
+  {
+    img: SHOT_PLATE_IMG,
+    alt: "Mechanic holding a phone beside a car's license plate, showing that vehicle's full service history in auto repair shop software",
+    eyebrow: "Service history",
+    title: "Type the plate, see everything",
+    desc: "History follows the unit, not the customer. Type a plate and every job that car has ever had comes back - the date, what was done, which parts went in, and who worked on it. No flipping through a notebook while the owner waits.",
+    bullets: [
+      "Every past job on one screen",
+      "Still there when the car changes owners",
+      "Nothing to dig through at the counter",
+    ],
+  },
+  {
+    img: SHOT_JOB_ORDER_IMG,
+    alt: "Mechanic in a Philippine repair shop holding a phone showing a job order with photos of the unit being worked on",
+    eyebrow: "Job orders",
+    title: "Photograph it before you touch it",
+    desc: "Open the ticket, attach photos of the unit as it came in, then add labour and parts as the work happens. When someone asks about a scratch three weeks later, the evidence is already on the job order.",
+    bullets: [
+      "Photos attached to every ticket",
+      "Labour and parts on the same order",
+      "A record of what came in, and when",
+    ],
+  },
+  {
+    img: SHOT_PARTS_IMG,
+    alt: "Repair shop parts counter with a tablet showing parts stock levels beside brake pads, engine oil and spark plugs",
+    eyebrow: "Parts stock",
+    title: "Stock that counts itself down",
+    desc: "Put a part on a job order and it leaves your stock the moment the unit is released - not whenever someone remembers to write it down. Every movement is recorded, so the number on the screen is the number on the shelf.",
+    bullets: [
+      "Deducted on release, not on paper",
+      "Every movement logged and traceable",
+      "See what to reorder before you run out",
+    ],
+  },
+]
 
 function Features() {
   return (
@@ -178,6 +218,7 @@ export default function AutoRepairContent() {
     <div style={{ background: "#fff" }}>
       <Navbar base={CAR_PATH} name="Smapey Garage" />
       <Hero />
+      <Showcase shots={SHOTS} />
       <Features />
       <HowItWorks />
       <LocalNote />
