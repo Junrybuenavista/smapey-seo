@@ -32,6 +32,7 @@ export const CLUSTERS: Record<ClusterKey, RouteCluster> = {
       { path: "/invoice/invoice-free-tool", title: "Free Invoice Tool", desc: "A free browser-based tool for creating and downloading invoices." },
       { path: "/invoice/google-docs-invoice-template", title: "Google Docs Invoice Template", desc: "Copy-and-edit Google Docs invoice templates for quick billing." },
       { path: "/invoice/pro-forma-invoice", title: "Pro Forma Invoice", desc: "What a pro forma invoice is, when to use it, and how to format one." },
+      { path: "/invoice/sales-invoice-vs-official-receipt-philippines", title: "Sales Invoice vs Official Receipt (Philippines)", desc: "What RA 11976 and RR 7-2024 changed, what must be on a valid invoice, and where the costly mistakes are." },
       { path: "/invoice/what-is-an-invoice", title: "What Is an Invoice?", desc: "A plain-English explanation of invoices and how they work." },
       { path: "/invoice/freelance-invoice", title: "Freelance Invoice", desc: "Invoicing built around the way freelancers actually get paid." },
       { path: "/invoice/invoicing-software-for-freelancers", title: "Invoicing Software for Freelancers", desc: "Lightweight invoicing tools designed for solo freelancers." },
