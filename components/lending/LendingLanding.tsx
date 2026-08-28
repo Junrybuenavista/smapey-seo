@@ -118,7 +118,7 @@ function Navbar({ variant }: { variant: LendingVariant }) {
   )
 }
 
-function Hero() {
+function Hero({ variant }: { variant: LendingVariant }) {
   const strip = [
     { title: "Loan #1042", tag: "PAID", tagBg: "#0d9f6e", tagC: "#fff", sub: "A. Reyes · wk 6/12", val: "₱2,500", valC: INK, border: INK },
     { title: "Loan #1043", tag: "CURRENT", tagBg: "#eafaf0", tagC: "#059669", sub: "B. Cruz · due Jul 2", val: "₱1,800", valC: INK, border: INK },
@@ -133,14 +133,13 @@ function Hero() {
         <div className="relative z-10 max-w-3xl">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border-2 text-xs font-bold mb-6" style={{ color: INK, borderColor: INK, boxShadow: `3px 3px 0 ${AMBER}` }}>
             <Zap className="w-3 h-3" />
-            All-in-one lending &amp; loan management
+            {variant.hero.badge}
           </div>
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.02] tracking-tight mb-5" style={{ color: INK }}>
-            Run your lending business <span style={{ color: BLUE }}>without the spreadsheets</span>
+            {variant.hero.titleLead} <span style={{ color: BLUE }}>{variant.hero.titleAccent}</span>
           </h1>
           <p className="text-lg max-w-2xl mx-auto mb-8 leading-relaxed" style={{ color: "#54514c" }}>
-            Borrowers, loans, amortization schedules, payments, and collections analytics,
-            everything an independent lender needs, in one clean dashboard. No spreadsheets, no missed dues.
+            {variant.hero.subtitle}
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-7">
             <a href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=LENDING&plan=FREE`} className="flex items-center gap-2 px-7 py-4 rounded-full font-bold text-sm border-2 transition-transform hover:-translate-y-0.5" style={{ ...display, background: AMBER, color: INK, borderColor: INK, boxShadow: `4px 4px 0 ${INK}` }}>
@@ -386,7 +385,7 @@ export default function LendingLanding({ variant }: { variant: LendingVariant })
   return (
     <main>
       <Navbar variant={variant} />
-      <Hero />
+      <Hero variant={variant} />
       <Features variant={variant} />
       <HowItWorks />
       <Pricing />

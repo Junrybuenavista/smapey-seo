@@ -123,7 +123,7 @@ function Navbar({ variant }: { variant: RestaurantVariant }) {
   )
 }
 
-function Hero() {
+function Hero({ variant }: { variant: RestaurantVariant }) {
   return (
     <section className="relative min-h-screen flex items-center pt-16 px-6 sm:px-12 lg:px-20 overflow-hidden" style={{ background: "#1a1410", fontFamily: display.fontFamily }}>
       {/* ── Full-bleed photo backdrop (replace with your image) ── */}
@@ -139,14 +139,13 @@ function Hero() {
         <div className="max-w-xl">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border-2 text-xs font-bold mb-6" style={{ background: "rgba(255,255,255,.12)", color: AMBER, borderColor: AMBER, backdropFilter: "blur(4px)" }}>
             <Zap className="w-3 h-3" />
-            Food ordering &amp; kitchen management
+            {variant.hero.badge}
           </div>
           <h1 className="text-5xl sm:text-6xl font-extrabold leading-[1.02] tracking-tight mb-6 text-white">
-            Take every order, <span style={{ color: AMBER }}>serve every table.</span>
+            {variant.hero.titleLead} <span style={{ color: AMBER }}>{variant.hero.titleAccent}</span>
           </h1>
           <p className="text-lg max-w-lg mb-8 leading-relaxed" style={{ color: "rgba(255,255,255,.8)" }}>
-            Build your menu, place dine-in and takeaway orders, manage the kitchen queue, and track daily sales,
-            all from one clean dashboard. Free forever, no card required.
+            {variant.hero.subtitle}
           </p>
           <div className="flex flex-col sm:flex-row gap-3 mb-8">
             <a href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=RESTAURANT&plan=FREE`} className="flex items-center justify-center gap-2 px-7 py-4 rounded-full font-bold text-sm border-2 transition-transform hover:-translate-y-0.5" style={{ ...display, background: AMBER, color: INK, borderColor: AMBER, boxShadow: "4px 4px 0 rgba(0,0,0,.4)" }}>
@@ -459,7 +458,7 @@ export default function RestaurantLanding({ variant }: { variant: RestaurantVari
   return (
     <main>
       <Navbar variant={variant} />
-      <Hero />
+      <Hero variant={variant} />
       <Showcase />
       <Features variant={variant} />
       <HowItWorks />

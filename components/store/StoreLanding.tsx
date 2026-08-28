@@ -120,7 +120,7 @@ function Navbar({ variant }: { variant: StoreVariant }) {
   )
 }
 
-function Hero() {
+function Hero({ variant }: { variant: StoreVariant }) {
   const strip = [
     { title: "Sale #318", tag: "PAID", tagBg: "#0d9f6e", tagC: "#fff", sub: "3 items · Cash", val: "₱640", valC: INK, border: INK },
     { title: "Aling Nena", tag: "UTANG", tagBg: "#fde8e8", tagC: "#c02626", sub: "2 unpaid sales", val: "₱240 owed", valC: "#c02626", border: INK },
@@ -135,14 +135,13 @@ function Hero() {
         <div className="relative z-10 max-w-3xl">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border-2 text-xs font-bold mb-6" style={{ color: INK, borderColor: INK, boxShadow: `3px 3px 0 ${AMBER}` }}>
             <Zap className="w-3 h-3" />
-            Inventory &amp; POS management
+            {variant.hero.badge}
           </div>
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.02] tracking-tight mb-5" style={{ color: INK }}>
-            Smarter inventory, <span style={{ color: BLUE }}>faster sales.</span>
+            {variant.hero.titleLead} <span style={{ color: BLUE }}>{variant.hero.titleAccent}</span>
           </h1>
           <p className="text-lg max-w-2xl mx-auto mb-8 leading-relaxed" style={{ color: "#54514c" }}>
-            Track stock levels, ring up sales on a tap-to-add POS, manage suppliers, and get daily revenue summaries,
-            everything a small retail store needs, free forever.
+            {variant.hero.subtitle}
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-7">
             <a href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=STORE&plan=FREE`} className="flex items-center gap-2 px-7 py-4 rounded-full font-bold text-sm border-2 transition-transform hover:-translate-y-0.5" style={{ ...display, background: AMBER, color: INK, borderColor: INK, boxShadow: `4px 4px 0 ${INK}` }}>
@@ -470,7 +469,7 @@ export default function StoreLanding({ variant }: { variant: StoreVariant }) {
   return (
     <main>
       <Navbar variant={variant} />
-      <Hero />
+      <Hero variant={variant} />
       <Showcase />
       <Features variant={variant} />
       <HowItWorks />
