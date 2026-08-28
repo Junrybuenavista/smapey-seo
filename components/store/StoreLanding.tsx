@@ -49,6 +49,17 @@ export type StoreVariant = {
   hero: { badge: string; titleLead: string; titleAccent: string; subtitle: string }
   features: { eyebrow: string; heading: string; sub: string }
   cta: { heading: string; sub: string }
+  /**
+   * Per-page editorial block. Optional on purpose: /store deliberately has
+   * none, so it stays exactly as it was. Every sub-page supplies its own so
+   * the six URLs in this cluster stop sharing 90% of their body copy.
+   */
+  unique?: {
+    eyebrow: string
+    heading: string
+    intro: string
+    blocks: { h: string; p: string }[]
+  }
 }
 
 const PRODUCT = "STORE"
@@ -264,6 +275,32 @@ function Showcase() {
   )
 }
 
+function Unique({ variant }: { variant: StoreVariant }) {
+  const u = variant.unique
+  if (!u) return null
+  return (
+    <section className="py-24" style={{ background: CREAM, fontFamily: display.fontFamily }}>
+      <div className="max-w-4xl mx-auto px-6">
+        <Animate className="mb-12">
+          <p className="text-sm font-bold uppercase tracking-widest mb-3" style={{ color: BLUE }}>{u.eyebrow}</p>
+          <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight" style={{ color: INK }}>{u.heading}</h2>
+          <p className="mt-4 text-lg leading-relaxed" style={{ color: "#54514c" }}>{u.intro}</p>
+        </Animate>
+        <div className="grid sm:grid-cols-2 gap-6">
+          {u.blocks.map(({ h, p }, i) => (
+            <Animate key={h} delay={i * 80}>
+              <div className="rounded-[22px] p-6 border-2 h-full bg-white" style={{ borderColor: INK, boxShadow: `6px 6px 0 ${i % 2 === 0 ? BLUE : AMBER}` }}>
+                <h3 className="font-extrabold mb-2" style={{ color: INK }}>{h}</h3>
+                <p className="text-sm leading-relaxed" style={{ color: "#54514c" }}>{p}</p>
+              </div>
+            </Animate>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
 function Features({ variant }: { variant: StoreVariant }) {
   return (
     <section id="features" className="py-24" style={{ background: "#fff", fontFamily: display.fontFamily }}>
@@ -471,6 +508,7 @@ export default function StoreLanding({ variant }: { variant: StoreVariant }) {
       <Navbar variant={variant} />
       <Hero variant={variant} />
       <Showcase />
+      <Unique variant={variant} />
       <Features variant={variant} />
       <HowItWorks />
       <Pricing />

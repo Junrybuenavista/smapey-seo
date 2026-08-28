@@ -19,6 +19,30 @@ const variant: StoreVariant = {
     heading: "The inventory management system your store actually needs.",
     sub: "Free plan forever. No implementation project, no training course, no annual contract.",
   },
+  unique: {
+    eyebrow: "Choosing a system",
+    heading: "Four kinds of inventory management system, and who each one suits",
+    intro:
+      "The term describes everything from a paper ledger to enterprise software costing more per month than a small shop clears in profit. The honest answer is that the right one depends on your size.",
+    blocks: [
+      {
+        h: "The notebook",
+        p: "Free, instant, and genuinely fine until more than one person is selling or you carry more products than you can hold in your head. It fails quietly: the count drifts a little at a time, and you only find out during an inventory.",
+      },
+      {
+        h: "The spreadsheet",
+        p: "A real step up, and adequate for a slow-moving catalogue. It breaks when two people need it at once, when you are away from the computer, or when a formula gets overwritten and nobody notices for a month.",
+      },
+      {
+        h: "Cloud POS with inventory built in",
+        p: "Stock, sales, and customers in one place, reachable from a phone at the counter. This is where Smapey sits and where most small retail shops land, because the selling and the counting are the same act.",
+      },
+      {
+        h: "ERP and warehouse systems",
+        p: "Purchase orders, multi-site transfers, demand forecasting, and an implementation project to match. Worth it if you run distribution across locations. Considerable overkill for a shop with one counter.",
+      },
+    ],
+  },
 }
 
 export default function InventoryManagementSystemsContent() {
