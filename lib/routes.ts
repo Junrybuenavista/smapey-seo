@@ -142,6 +142,7 @@ export const CLUSTERS: Record<ClusterKey, RouteCluster> = {
     },
     pages: [
       { path: "/laundry/guide", title: "Laundry App Guide", desc: "How laundry shop management software works end-to-end." },
+      { path: "/laundry/how-to-start-a-laundry-business-philippines", title: "How to Start a Laundry Business in the Philippines", desc: "Capital by business model, permits, the sanitation rules specific to laundries, machine sizing, and the monthly numbers." },
       { path: "/laundry/laundry-service-app", title: "Laundry Service App", desc: "Manage orders, customers, and payments for your laundry service." },
       { path: "/laundry/free-laundry-app", title: "Free Laundry App", desc: "Run your laundry shop for free - no credit card required." },
       { path: "/laundry/laundry-app-near-me", title: "Laundry App Near Me", desc: "Software for local laundry shops to manage orders and notify customers." },
