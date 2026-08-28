@@ -520,15 +520,25 @@ export function PaymentModal({ plan, isPhilippines, onClose }: {
 //////////////////////////////////////////////////////
 
 /**
- * Cloudinary serves these, so the sizing and the format are decided in the
- * URL rather than at upload time: f_auto picks AVIF or WebP per browser,
- * q_auto picks the quality, and w_1200 covers a retina render of a frame
- * that is only ~528px wide on desktop. The three masters are 1.1-1.9MB PNGs;
- * this hands over about 50-130KB each.
+ * Cloudinary serves these, so everything is decided in the URL rather than at
+ * upload time. Two steps, and the order matters - the repair runs on the
+ * full-resolution original, the delivery settings run on the result.
  *
- * c_limit means a smaller original is never upscaled.
+ * DEWATERMARK paints out the "KlingAI 3.0" badge the generator stamps into
+ * the bottom-right corner of every render. The box is the same on all three
+ * because the generator always puts it in the same place; e_gen_remove
+ * reconstructs what should be underneath rather than covering it, so no
+ * cropping is needed and nothing is lost from the frame.
+ *
+ * DELIVERY: f_auto picks AVIF or WebP per browser, q_auto picks the quality,
+ * and w_1200 covers a retina render of a frame that is only ~528px wide on
+ * desktop. c_limit means a smaller original is never upscaled. The masters
+ * are 1.1-1.9MB PNGs; this hands over roughly 50-130KB each.
  */
-const CLD = "https://res.cloudinary.com/dxhwfv0jo/image/upload/f_auto,q_auto,w_1200,c_limit"
+const CLD_BASE = "https://res.cloudinary.com/dxhwfv0jo/image/upload"
+const DEWATERMARK = "e_gen_remove:region_(x_1185;y_708;w_172;h_52)"
+const DELIVERY = "f_auto,q_auto,w_1200,c_limit"
+const CLD = `${CLD_BASE}/${DEWATERMARK}/${DELIVERY}`
 
 export const SHOT_PLATE_IMG = `${CLD}/v1787880491/kling_20260828_IMAGE_Photoreali_2356_1_axechn.png`
 export const SHOT_PARTS_IMG = `${CLD}/v1787880492/kling_20260828_IMAGE_Photoreali_2342_0_ytsjrl.png`
