@@ -10,6 +10,7 @@ import { usePricing, type Plan } from "@/lib/usePricing"
 import InternalLinks from "@/components/InternalLinks"
 import BookDemoForm from "@/components/BookDemoForm"
 import { FAQS } from "@/app/store/faqs"
+import { shot, SHOT_W, SHOT_H } from "@/lib/cloudinary"
 
 const INK = "#161616"
 const BLUE = "#2f6bff"
@@ -184,7 +185,7 @@ function Hero() {
 
 const SHOWCASE = [
   {
-    img: "https://res.cloudinary.com/dxhwfv0jo/image/upload/v1780666516/POS_at_checkout_guyg64.png",
+    img: shot("v1780666516/POS_at_checkout_guyg64.png"),
     alt: "Cashier ringing up a sale on the Smapey POS tablet",
     eyebrow: "Point of Sale",
     title: "Ring up sales in seconds",
@@ -192,7 +193,7 @@ const SHOWCASE = [
     bullets: ["Tap-to-add product grid", "Automatic change calculation", "Stock deducted in real time"],
   },
   {
-    img: "https://res.cloudinary.com/dxhwfv0jo/image/upload/v1780666510/Barcode_scanning_a_product_xxvvag.png",
+    img: shot("v1780666510/Barcode_scanning_a_product_xxvvag.png"),
     alt: "Scanning a product barcode with a phone camera",
     eyebrow: "Barcode Scanner",
     title: "Scan products with your phone",
@@ -200,7 +201,7 @@ const SHOWCASE = [
     bullets: ["Use your phone, no extra hardware", "Find products fast at checkout", "Auto-fill barcodes when adding stock"],
   },
   {
-    img: "https://res.cloudinary.com/dxhwfv0jo/image/upload/v1780666513/QR_payment_atu1d0.png",
+    img: shot("v1780666513/QR_payment_atu1d0.png"),
     alt: "Customer scanning a store QR code to pay",
     eyebrow: "QR Payment",
     title: "Accept GCash, Maya & bank QR",
@@ -208,7 +209,7 @@ const SHOWCASE = [
     bullets: ["Works with any QR, GCash, Maya, banks", "Shows the exact amount to pay", "Confirm payment to complete the sale"],
   },
   {
-    img: "https://res.cloudinary.com/dxhwfv0jo/image/upload/v1780666509/Inventory_profit_dashboard_cidfp2.png",
+    img: shot("v1780666509/Inventory_profit_dashboard_cidfp2.png"),
     alt: "Inventory and profit dashboard on a tablet",
     eyebrow: "Dashboard & Profit",
     title: "Know your profit at a glance",
@@ -216,9 +217,9 @@ const SHOWCASE = [
     bullets: ["Today's profit, live", "Low-stock alerts before you run out", "7-day revenue trend & top sellers"],
   },
   {
-    // Cloudinary transform: the source is 2720x1536 / 3.7MB, far heavier than the
-    // rest of the set. f_auto,q_auto,w_1360 serves it at ~97KB, identical at display size.
-    img: "https://res.cloudinary.com/dxhwfv0jo/image/upload/f_auto,q_auto,w_1360/v1786939005/Store_utang_wcl9uz.png",
+    // The only master that is not 1360x768 - this one is 2720x1536 / 3.7MB, so
+    // its watermark box sits at twice the coordinates.
+    img: shot("v1786939005/Store_utang_wcl9uz.png", "2x"),
     alt: "Store owner counting cash at closing time with her customer utang list open on her phone",
     eyebrow: "Customers & Utang",
     title: "Never lose track of who owes you",
@@ -239,7 +240,7 @@ function Showcase() {
               <div className={`flex flex-col gap-8 md:gap-12 items-center ${reverse ? "md:flex-row-reverse" : "md:flex-row"}`}>
                 <div className="w-full md:w-1/2">
                   <div className="rounded-[22px] border-2 overflow-hidden" style={{ borderColor: INK, boxShadow: `8px 8px 0 ${c}` }}>
-                    <img src={s.img} alt={s.alt} className="w-full h-auto block" loading="lazy" />
+                    <img src={s.img} alt={s.alt} width={SHOT_W} height={SHOT_H} loading="lazy" decoding="async" className="w-full h-auto block" />
                   </div>
                 </div>
                 <div className="w-full md:w-1/2">

@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from "react"
 import { CheckCircle2, ChevronRight, Menu, X, Zap, Wrench, Search } from "lucide-react"
 import { usePricing, type Plan } from "@/lib/usePricing"
+import { shot, SHOT_W, SHOT_H } from "@/lib/cloudinary"
 
 //////////////////////////////////////////////////////
 // CONFIG + LAYERED POP TOKENS
@@ -519,30 +520,9 @@ export function PaymentModal({ plan, isPhilippines, onClose }: {
 // SHOWCASE
 //////////////////////////////////////////////////////
 
-/**
- * Cloudinary serves these, so everything is decided in the URL rather than at
- * upload time. Two steps, and the order matters - the repair runs on the
- * full-resolution original, the delivery settings run on the result.
- *
- * DEWATERMARK paints out the "KlingAI 3.0" badge the generator stamps into
- * the bottom-right corner of every render. The box is the same on all three
- * because the generator always puts it in the same place; e_gen_remove
- * reconstructs what should be underneath rather than covering it, so no
- * cropping is needed and nothing is lost from the frame.
- *
- * DELIVERY: f_auto picks AVIF or WebP per browser, q_auto picks the quality,
- * and w_1200 covers a retina render of a frame that is only ~528px wide on
- * desktop. c_limit means a smaller original is never upscaled. The masters
- * are 1.1-1.9MB PNGs; this hands over roughly 50-130KB each.
- */
-const CLD_BASE = "https://res.cloudinary.com/dxhwfv0jo/image/upload"
-const DEWATERMARK = "e_gen_remove:region_(x_1185;y_708;w_172;h_52)"
-const DELIVERY = "f_auto,q_auto,w_1200,c_limit"
-const CLD = `${CLD_BASE}/${DEWATERMARK}/${DELIVERY}`
-
-export const SHOT_PLATE_IMG = `${CLD}/v1787880491/kling_20260828_IMAGE_Photoreali_2356_1_axechn.png`
-export const SHOT_PARTS_IMG = `${CLD}/v1787880492/kling_20260828_IMAGE_Photoreali_2342_0_ytsjrl.png`
-export const SHOT_JOB_ORDER_IMG = `${CLD}/v1787880492/kling_20260828_IMAGE_Photoreali_634_1_hrmjz7.png`
+export const SHOT_PLATE_IMG = shot("v1787880491/kling_20260828_IMAGE_Photoreali_2356_1_axechn.png")
+export const SHOT_PARTS_IMG = shot("v1787880492/kling_20260828_IMAGE_Photoreali_2342_0_ytsjrl.png")
+export const SHOT_JOB_ORDER_IMG = shot("v1787880492/kling_20260828_IMAGE_Photoreali_634_1_hrmjz7.png")
 
 export type Shot = {
   img: string
@@ -571,14 +551,11 @@ export function Showcase({ shots }: { shots: Shot[] }) {
               <div className={`flex flex-col gap-8 md:gap-12 items-center ${reverse ? "md:flex-row-reverse" : "md:flex-row"}`}>
                 <div className="w-full md:w-1/2 min-w-0">
                   <div className="rounded-[22px] border-2 overflow-hidden" style={{ borderColor: INK, boxShadow: `8px 8px 0 ${c}` }}>
-                    {/* width/height are the master's real pixels - they only
-                        need to carry the aspect ratio so the frame reserves
-                        its height before the image arrives. */}
                     <img
                       src={s.img}
                       alt={s.alt}
-                      width={1360}
-                      height={768}
+                      width={SHOT_W}
+                      height={SHOT_H}
                       loading="lazy"
                       decoding="async"
                       className="w-full h-auto block"

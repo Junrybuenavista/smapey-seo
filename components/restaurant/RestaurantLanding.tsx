@@ -9,6 +9,7 @@ import {
 import { usePricing, type Plan } from "@/lib/usePricing"
 import InternalLinks from "@/components/InternalLinks"
 import BookDemoForm from "@/components/BookDemoForm"
+import { shot, SHOT_W, SHOT_H } from "@/lib/cloudinary"
 
 const INK = "#161616"
 const BLUE = "#2f6bff"
@@ -183,7 +184,7 @@ function Hero() {
 
 const SHOWCASE = [
   {
-    img: "https://res.cloudinary.com/dxhwfv0jo/image/upload/v1780501558/qr-table-ordering.jpg_acd7i7.png",
+    img: shot("v1780501558/qr-table-ordering.jpg_acd7i7.png"),
     alt: "Customer scanning a table QR code to open the restaurant's menu on her phone",
     eyebrow: "QR Table Ordering",
     title: "Scan the table QR",
@@ -191,7 +192,7 @@ const SHOWCASE = [
     bullets: ["One QR code per table", "No app download needed", "No customer login required"],
   },
   {
-    img: "https://res.cloudinary.com/dxhwfv0jo/image/upload/v1780501566/qr-menu-flatlay.jpg_jlghqo.png",
+    img: shot("v1780501566/qr-menu-flatlay.jpg_jlghqo.png"),
     alt: "Smartphone showing a live food-ordering menu beside a table QR code and a plate of food",
     eyebrow: "Live Menu",
     title: "Order from your live menu",
@@ -199,7 +200,7 @@ const SHOWCASE = [
     bullets: ["Menu opens instantly on their phone", "Browse, customize, add to cart", "Order sent straight to the kitchen"],
   },
   {
-    img: "https://res.cloudinary.com/dxhwfv0jo/image/upload/v1780502461/kitchen_order_que_swwjp4.png",
+    img: shot("v1780502461/kitchen_order_que_swwjp4.png"),
     alt: "Restaurant chef cooking while checking the Smapey kitchen order queue on a mounted tablet",
     eyebrow: "Kitchen Display",
     title: "Work the kitchen queue",
@@ -207,7 +208,7 @@ const SHOWCASE = [
     bullets: ["Orders land instantly", "Tap to mark preparing, ready, done", "No paper tickets or missed orders"],
   },
   {
-    img: "https://res.cloudinary.com/dxhwfv0jo/image/upload/v1780506039/pay_with_gcash_kpt7xs.png",
+    img: shot("v1780506039/pay_with_gcash_kpt7xs.png"),
     alt: "Customer paying with GCash on her phone by scanning the restaurant's GCash QR code at the table",
     eyebrow: "GCash Payment",
     title: "Pay with GCash",
@@ -228,7 +229,7 @@ function Showcase() {
               <div className={`flex flex-col gap-8 md:gap-12 items-center ${reverse ? "md:flex-row-reverse" : "md:flex-row"}`}>
                 <div className="w-full md:w-1/2">
                   <div className="rounded-[22px] border-2 overflow-hidden" style={{ borderColor: INK, boxShadow: `8px 8px 0 ${c}` }}>
-                    <img src={s.img} alt={s.alt} className="w-full h-auto block" loading="lazy" />
+                    <img src={s.img} alt={s.alt} width={SHOT_W} height={SHOT_H} loading="lazy" decoding="async" className="w-full h-auto block" />
                   </div>
                 </div>
                 <div className="w-full md:w-1/2">

@@ -122,7 +122,7 @@ export default function Content() {
   {/* IMAGE */}
   <img
     src="/industry-illustration.png"
-    alt="FAQ illustration"
+    alt="Invoicing software used across construction, consulting, freelance and retail businesses"
     className="relative w-[420px] md:w-[500px] lg:w-[560px] max-w-none drop-shadow-2xl"
   />
 
