@@ -3,7 +3,7 @@
 import InternalLinks from "@/components/InternalLinks"
 import {
   Navbar, Footer, CTA, Animate, ArticleHero,
-  AH2, AP, Bullets, CostTable, FAQList, SoftwarePitch,
+  AH2, AP, Bullets, CostTable, FAQList, SoftwarePitch, Cite,
 } from "../_shared"
 import { FAQS } from "./faqs"
 
@@ -43,23 +43,78 @@ export default function Content() {
           />
 
           <AH2>Step 2: Register the business and secure permits</AH2>
-          <AP>Get your paperwork in order before you open. You'll generally need:</AP>
+          <AP>Get your paperwork in order before you open. You&apos;ll generally need:</AP>
           <Bullets items={[
             <><strong>DTI</strong> (sole proprietor) or <strong>SEC</strong> (corporation/partnership) registration for your business name.</>,
-            <><strong>Barangay Clearance</strong> and <strong>Mayor's / Business Permit</strong> from your LGU.</>,
-            <><strong>Sanitary Permit</strong> and a <strong>water potability test</strong>, your output must pass DOH/LGU water quality standards.</>,
+            <><strong>Barangay Clearance</strong> and <strong>Mayor&apos;s / Business Permit</strong> from your LGU.</>,
+            <><strong>Sanitary Permit</strong> from your Local Health Office, renewed annually.</>,
+            <>An <strong>Operational Permit</strong> and a <strong>Certificate of Potability</strong> before you sell a single gallon.</>,
             <><strong>BIR registration</strong> for your TIN, official receipts, and books of accounts.</>,
-            <>Health certificates for staff who handle the water and containers.</>,
+            <>Health certificates for staff who handle the water and containers, typically chest X-ray, urinalysis and fecalysis.</>,
           ]} />
+          <AP>
+            Budget for the paperwork itself. These are the ranges most stations report, though every LGU sets its own
+            schedule of fees and the spread between a small municipality and a city can be wide.
+          </AP>
+          <CostTable
+            rows={[
+              ["DTI business name registration", "₱500 – ₱1,000"],
+              ["Barangay clearance", "₱200 – ₱500"],
+              ["Mayor's / business permit", "₱2,000 – ₱7,000"],
+              ["Sanitary permit", "₱1,000 – ₱3,000"],
+              ["BIR registration", "₱500 – ₱1,000"],
+              ["Water quality testing (initial)", "₱1,000 – ₱5,000"],
+              ["Health and safety seminar", "₱1,000 – ₱3,000"],
+            ]}
+            note="Indicative ranges compiled from published Philippine startup guides, last updated February 2025. Fees are set per LGU and change, confirm the current schedule with your own city or municipal hall before you budget."
+          />
 
-          <AH2>Step 3: Choose a good location</AH2>
+          <AH2>Step 3: Know the water standard you are actually held to</AH2>
+          <AP>
+            This is the part most guides get wrong, and it is the part that closes stations. The rules for refilling
+            stations are set by the <strong>Philippine National Standards for Drinking Water of 2017</strong>, issued as
+            DOH Administrative Order No. 2017-0010 on 23 June 2017. It replaced the 2007 edition that a lot of older
+            advice still quotes, so check the date on anything you read, including this page.
+          </AP>
+          <AP>
+            Two of its numbers are specific to refilling stations and differ from the general drinking-water standard.
+            Your product water must sit at <strong>pH 5 to 7</strong>, and total dissolved solids must
+            <strong> not exceed 10 mg/L</strong>. The order is explicit about why: that TDS ceiling exists to prove your
+            reverse osmosis or distillation process is actually working. A station that passes on bacteria but drifts
+            above 10 mg/L is still out of compliance.
+          </AP>
+          <CostTable
+            rows={[
+              ["Total coliform", "One sample per month"],
+              ["Thermotolerant coliform / E. coli", "One sample per month"],
+              ["Heterotrophic plate count", "One sample per month"],
+              ["All mandatory physico-chemical parameters", "Two samples per year"],
+              ["Other parameters set by your LDWQMC", "One sample per year, or as required"],
+            ]}
+            note="Minimum sampling frequency for water refilling stations, PNSDW 2017, Annex C, Table C-4. Testing must be done by a DOH-accredited laboratory."
+          />
+          <AP>
+            The pass marks on the microbiological side are tight: heterotrophic plate count below{" "}
+            <strong>500 CFU/mL</strong>, and total coliform and E. coli both below <strong>1.1 MPN/100 mL</strong>.
+            Separately, DOH Administrative Order No. 2014-0027 requires every drinking-water service provider to write
+            and actually run a <strong>Water Safety Plan</strong>, which your sanitary inspector can ask to see.
+          </AP>
+          <Cite>
+            Sources: DOH Administrative Order No. 2017-0010, <em>Philippine National Standards for Drinking Water of
+            2017</em> (signed 23 June 2017), scope §III, standards §3.B and Annex C Table C-4; DOH Administrative Order
+            No. 2014-0027, <em>National Policy on Water Safety Plan</em>. Permit and fee ranges are from secondary
+            Philippine startup guides and vary by LGU. Confirm anything you are about to spend money on with your LGU
+            and a DOH-accredited laboratory.
+          </Cite>
+
+          <AH2>Step 4: Choose a good location</AH2>
           <AP>
             Location is everything. Look for a densely populated residential area with foot traffic, parking for a
             delivery vehicle, a reliable water source, and stable electricity. Avoid spots already crowded with
             competing stations. A corner near subdivisions, schools, or offices is ideal.
           </AP>
 
-          <AH2>Step 4: Set up your equipment</AH2>
+          <AH2>Step 5: Set up your equipment</AH2>
           <Bullets items={[
             "A purification system, reverse osmosis (RO) is the most common for purified water; add a mineralizer if you want mineral water.",
             "Storage tanks, a filling station, and sealing/cap equipment.",
@@ -67,14 +122,14 @@ export default function Content() {
             "Optional delivery vehicle for home and office delivery routes.",
           ]} />
 
-          <AH2>Step 5: Price your water and plan delivery routes</AH2>
+          <AH2>Step 6: Price your water and plan delivery routes</AH2>
           <AP>
             Most stations sell a 5-gallon refill for ₱20–₱30 at the store, with a small surcharge for delivery. Decide
             whether you'll charge a <strong>container deposit</strong> so customers return your bottles. Then group your
             delivery customers into routes (by barangay or street) so your rider runs an efficient round.
           </AP>
 
-          <AH2>Step 6: Run the day-to-day without a notebook</AH2>
+          <AH2>Step 7: Run the day-to-day without a notebook</AH2>
           <AP>
             Once you open, the real work begins: tracking who ordered, who paid, how much stock you have, and, the
             tricky one, <strong>which customers are still holding your containers</strong>. Doing this on paper is where

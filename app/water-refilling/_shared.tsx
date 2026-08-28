@@ -280,6 +280,19 @@ export function CostTable({ rows, note }: { rows: [string, string][]; note?: str
   )
 }
 
+/**
+ * Source attribution for a figure or requirement. Used where a page states a
+ * regulatory rule or a peso figure, so the reader can check it themselves and
+ * we can tell primary sources from dated secondary ones.
+ */
+export function Cite({ children }: { children: React.ReactNode }) {
+  return (
+    <p className="my-4 text-xs leading-relaxed pl-4 py-1" style={{ color: "#8a857e", borderLeft: `3px solid ${AMBER}` }}>
+      {children}
+    </p>
+  )
+}
+
 export function FAQList({ faqs }: { faqs: { q: string; a: string }[] }) {
   const [open, setOpen] = useState<number | null>(0)
   return (
