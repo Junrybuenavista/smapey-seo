@@ -36,9 +36,14 @@ export default function RootLayout({
           {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
 
-            gtag('config', 'G-KJHG5R9G1S');
+            // Skip the config call inside an iframe, so the thumbnails on the
+            // app's Site Pages screen don't register as pageviews. gtag.js
+            // sends nothing until a property is configured. See PageTracker.
+            if (window.top === window.self) {
+              gtag('js', new Date());
+              gtag('config', 'G-KJHG5R9G1S');
+            }
           `}
         </Script>
 
