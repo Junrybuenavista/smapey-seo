@@ -8,6 +8,8 @@ import {
 import WaterContent from "./WaterContent"
 import { FAQS } from "./faqs"
 
+import { postsForHub } from "@/lib/blog"
+
 const PATH = "/water-refilling"
 const TITLE = "Water Refilling Station Software Philippines | Smapey Water Manager"
 const DESCRIPTION = "Smapey is water refilling station management software for the Philippines. Track deliveries, customers, container deposits, returns, and inventory, and accept GCash or cash. Free plan available."
@@ -18,7 +20,9 @@ export const metadata = buildMetadata({
   path: PATH,
 })
 
-export default function Page() {
+export default async function Page() {
+  const guides = await postsForHub(PATH)
+
   return (
     <>
       <JsonLd
@@ -32,7 +36,7 @@ export default function Page() {
           breadcrumbSchema(PATH),
         ]}
       />
-      <WaterContent />
+      <WaterContent guides={guides} />
     </>
   )
 }

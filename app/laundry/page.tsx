@@ -8,6 +8,8 @@ import {
 import LaundryContent from "./LaundryContent"
 import { FAQS } from "./faqs"
 
+import { postsForHub } from "@/lib/blog"
+
 const PATH = "/laundry"
 const TITLE = "Laundry App | Laundry Shop Management Software | Smapey LaundryOS"
 const DESCRIPTION = "Smapey LaundryOS is a laundry app for small laundry shops. Track orders, send SMS notifications, manage customers, and accept GCash or cash payments. Free plan available."
@@ -18,7 +20,9 @@ export const metadata = buildMetadata({
   path: PATH,
 })
 
-export default function Page() {
+export default async function Page() {
+  const guides = await postsForHub(PATH)
+
   return (
     <>
       <JsonLd
@@ -32,7 +36,7 @@ export default function Page() {
           breadcrumbSchema(PATH),
         ]}
       />
-      <LaundryContent />
+      <LaundryContent guides={guides} />
     </>
   )
 }

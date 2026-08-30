@@ -8,6 +8,8 @@ import {
 import AirbnbContent from "./AirbnbContent"
 import { FAQS } from "./faqs"
 
+import { postsForHub } from "@/lib/blog"
+
 const PATH = "/airbnb"
 const TITLE = "Airbnb & Short-term Rental Management Software | Smapey"
 const DESCRIPTION = "Smapey Airbnb is a management app for short-term rental hosts. Track properties, guests, and reservations, with double-booking protection and revenue analytics. Free plan available."
@@ -18,7 +20,9 @@ export const metadata = buildMetadata({
   path: PATH,
 })
 
-export default function Page() {
+export default async function Page() {
+  const guides = await postsForHub(PATH)
+
   return (
     <>
       <JsonLd
@@ -32,7 +36,7 @@ export default function Page() {
           breadcrumbSchema(PATH),
         ]}
       />
-      <AirbnbContent />
+      <AirbnbContent guides={guides} />
     </>
   )
 }

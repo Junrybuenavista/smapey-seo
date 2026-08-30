@@ -8,6 +8,8 @@ import {
 } from "lucide-react"
 import { usePricing, type Plan } from "@/lib/usePricing"
 import InternalLinks from "@/components/InternalLinks"
+import HubGuides from "@/components/blog/HubGuides"
+import type { BlogPost } from "@/lib/blog"
 import BookDemoForm from "@/components/BookDemoForm"
 import { FAQS } from "./faqs"
 
@@ -326,7 +328,7 @@ function PaymentModal({ plan, isPhilippines, onClose }: { plan: { name: string; 
   )
 }
 
-export default function MassageContent() {
+export default function MassageContent({ guides = [] }: { guides?: BlogPost[] }) {
   return (
     <main>
       <Navbar />
@@ -337,6 +339,7 @@ export default function MassageContent() {
       <BookDemoForm product="MASSAGE" />
       <CTA />
       <InternalLinks cluster="massage" currentPath="/massage" />
+      <HubGuides posts={guides} hubPath="/massage" />
       <Footer />
     </main>
   )

@@ -5,6 +5,7 @@ import JsonLd from "@/components/JsonLd"
 import SiloBreadcrumbs from "@/components/silo/SiloBreadcrumbs"
 import SiloSiblings from "@/components/silo/SiloSiblings"
 import SiloUpwardLinks from "@/components/silo/SiloUpwardLinks"
+import BlogRelated from "@/components/blog/BlogRelated"
 import { siloContextFromPost } from "@/lib/silo"
 import { breadcrumbSchema } from "@/lib/seo"
 import { extractToc } from "@/lib/toc"
@@ -99,12 +100,18 @@ export default async function Page({ params }: { params: { slug: string } }) {
         toc={toc}
         breadcrumbs={silo ? <SiloBreadcrumbs ctx={silo} /> : null}
         related={
+          // A silo post links by the graph's rules, which are stricter and
+          // scripts/check-silo.mjs enforces them. Everything else - today, every
+          // published post - gets the cluster-based module instead, so no post
+          // is a dead end.
           silo ? (
             <>
               <SiloSiblings ctx={silo} />
               <SiloUpwardLinks ctx={silo} />
             </>
-          ) : null
+          ) : (
+            <BlogRelated post={post} />
+          )
         }
       />
     </>

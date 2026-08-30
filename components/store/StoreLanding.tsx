@@ -8,6 +8,8 @@ import {
 } from "lucide-react"
 import { usePricing, type Plan } from "@/lib/usePricing"
 import InternalLinks from "@/components/InternalLinks"
+import HubGuides from "@/components/blog/HubGuides"
+import type { BlogPost } from "@/lib/blog"
 import BookDemoForm from "@/components/BookDemoForm"
 import { FAQS } from "@/app/store/faqs"
 import { shot, SHOT_W, SHOT_H } from "@/lib/cloudinary"
@@ -502,7 +504,7 @@ function PaymentModal({ plan, isPhilippines, onClose }: { plan: { name: string; 
   )
 }
 
-export default function StoreLanding({ variant }: { variant: StoreVariant }) {
+export default function StoreLanding({ variant, guides = [] }: { variant: StoreVariant; guides?: BlogPost[] }) {
   return (
     <main>
       <Navbar variant={variant} />
@@ -516,6 +518,7 @@ export default function StoreLanding({ variant }: { variant: StoreVariant }) {
       <BookDemoForm product={PRODUCT} />
       <CTA variant={variant} />
       <InternalLinks cluster={CLUSTER} currentPath={variant.currentPath} />
+      <HubGuides posts={guides} hubPath="/store" />
       <Footer />
     </main>
   )

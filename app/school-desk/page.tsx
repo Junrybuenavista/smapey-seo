@@ -8,6 +8,8 @@ import {
 import SchoolDeskContent from "./SchoolDeskContent"
 import { FAQS } from "./faqs"
 
+import { postsForHub } from "@/lib/blog"
+
 const PATH = "/school-desk"
 const TITLE = "Tutorial Center & Tutor Management Software Philippines | Smapey SchoolDesk"
 const DESCRIPTION = "Smapey SchoolDesk is management software for tutorial centers and home tutors in the Philippines. Track student enrollments, sessions, tuition fees, attendance, and progress, free plan available."
@@ -18,7 +20,9 @@ export const metadata = buildMetadata({
   path: PATH,
 })
 
-export default function Page() {
+export default async function Page() {
+  const guides = await postsForHub(PATH)
+
   return (
     <>
       <JsonLd
@@ -32,7 +36,7 @@ export default function Page() {
           breadcrumbSchema(PATH),
         ]}
       />
-      <SchoolDeskContent />
+      <SchoolDeskContent guides={guides} />
     </>
   )
 }

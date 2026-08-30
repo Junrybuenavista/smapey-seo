@@ -9,6 +9,8 @@ import {
 } from "lucide-react"
 import { usePricing, type Plan } from "@/lib/usePricing"
 import InternalLinks from "@/components/InternalLinks"
+import HubGuides from "@/components/blog/HubGuides"
+import type { BlogPost } from "@/lib/blog"
 import BookDemoForm from "@/components/BookDemoForm"
 import { FAQS } from "./faqs"
 
@@ -429,7 +431,7 @@ function PaymentModal({ plan, isPhilippines, onClose }: { plan: { name: string; 
   )
 }
 
-export default function CateringContent() {
+export default function CateringContent({ guides = [] }: { guides?: BlogPost[] }) {
   return (
     <main>
       <Navbar />
@@ -441,6 +443,7 @@ export default function CateringContent() {
       <BookDemoForm product="CATERING" />
       <CTA />
       <InternalLinks cluster="catering" currentPath="/catering" />
+      <HubGuides posts={guides} hubPath="/catering" />
       <Footer />
     </main>
   )

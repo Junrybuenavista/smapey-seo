@@ -8,6 +8,8 @@ import {
 Zap , Menu , X } from "lucide-react"
 import { usePricing, type Plan } from "@/lib/usePricing"
 import InternalLinks from "@/components/InternalLinks"
+import HubGuides from "@/components/blog/HubGuides"
+import type { BlogPost } from "@/lib/blog"
 import BookDemoForm from "@/components/BookDemoForm"
 import { FAQS } from "./faqs"
 
@@ -427,7 +429,7 @@ function PaymentModal({ plan, isPhilippines, onClose }: { plan: { name: string; 
   )
 }
 
-export default function WaterContent() {
+export default function WaterContent({ guides = [] }: { guides?: BlogPost[] }) {
   return (
     <main>
       <Navbar />
@@ -439,6 +441,7 @@ export default function WaterContent() {
       <BookDemoForm product="WATER_REFILLING" />
       <CTA />
       <InternalLinks cluster="water-refilling" currentPath="/water-refilling" />
+      <HubGuides posts={guides} hubPath="/water-refilling" />
       <Footer />
     </main>
   )

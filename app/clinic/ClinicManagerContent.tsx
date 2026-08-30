@@ -9,6 +9,8 @@ import {
 Zap } from "lucide-react"
 import { usePricing, type Plan } from "@/lib/usePricing"
 import InternalLinks from "@/components/InternalLinks"
+import HubGuides from "@/components/blog/HubGuides"
+import type { BlogPost } from "@/lib/blog"
 import BookDemoForm from "@/components/BookDemoForm"
 import { FAQS } from "./faqs"
 
@@ -390,7 +392,7 @@ function PaymentModal({ plan, isPhilippines, onClose }: { plan: { name: string; 
   )
 }
 
-export default function ClinicManagerContent() {
+export default function ClinicManagerContent({ guides = [] }: { guides?: BlogPost[] }) {
   return (
     <main>
       <Navbar />
@@ -402,6 +404,7 @@ export default function ClinicManagerContent() {
       <BookDemoForm product="CLINIC" />
       <CTA />
       <InternalLinks cluster="clinic" currentPath="/clinic" />
+      <HubGuides posts={guides} hubPath="/clinic" />
       <Footer />
     </main>
   )

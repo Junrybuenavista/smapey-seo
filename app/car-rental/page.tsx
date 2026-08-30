@@ -8,6 +8,8 @@ import {
 import CarRentalContent from "./CarRentalContent"
 import { FAQS } from "./faqs"
 
+import { postsForHub } from "@/lib/blog"
+
 const PATH = "/car-rental"
 const TITLE = "Car Rental Software | Smapey"
 const DESCRIPTION = "Smapey is car rental software that helps you manage your fleet, track rentals, handle customers, and monitor revenue, all from one dashboard. Free plan available."
@@ -18,7 +20,9 @@ export const metadata = buildMetadata({
   path: PATH,
 })
 
-export default function Page() {
+export default async function Page() {
+  const guides = await postsForHub(PATH)
+
   return (
     <>
       <JsonLd
@@ -32,7 +36,7 @@ export default function Page() {
           breadcrumbSchema(PATH),
         ]}
       />
-      <CarRentalContent />
+      <CarRentalContent guides={guides} />
     </>
   )
 }

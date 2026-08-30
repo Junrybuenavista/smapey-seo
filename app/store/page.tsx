@@ -3,6 +3,8 @@ import { buildMetadata, softwareApplicationSchema, faqSchema, breadcrumbSchema }
 import StoreContent from "./StoreContent"
 import { FAQS } from "./faqs"
 
+import { postsForHub } from "@/lib/blog"
+
 const PATH = "/store"
 const TITLE = "Inventory & POS Manager for Small Stores | Free | Smapey"
 const DESCRIPTION = "Smapey Store Manager tracks your inventory, runs a tap-to-sell POS, records customer utang, manages suppliers, and shows daily sales analytics, all in one dashboard. Free forever, no card required."
@@ -13,7 +15,9 @@ export const metadata = buildMetadata({
   path: PATH,
 })
 
-export default function Page() {
+export default async function Page() {
+  const guides = await postsForHub(PATH)
+
   return (
     <>
       <JsonLd
@@ -27,7 +31,7 @@ export default function Page() {
           breadcrumbSchema(PATH),
         ]}
       />
-      <StoreContent />
+      <StoreContent guides={guides} />
     </>
   )
 }

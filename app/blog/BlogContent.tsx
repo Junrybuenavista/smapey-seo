@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef, type ReactNode } from "react"
 import Link from "next/link"
 import {
   Search, Calendar, User, Tag, ArrowRight,
@@ -40,11 +40,30 @@ interface Post {
 
 const POSTS_PER_PAGE = 9
 
-export default function BlogContent() {
-  const [posts, setPosts]           = useState<Post[]>([])
-  const [categories, setCategories] = useState<string[]>([])
-  const [loading, setLoading]       = useState(true)
-  const [total, setTotal]           = useState(0)
+/**
+ * The grid is seeded from the server rather than fetched on mount.
+ *
+ * `initialPosts` is the first page, already rendered into the HTML, so the
+ * posts are crawlable and the reader sees them without waiting on the API. The
+ * client only refetches once they actually change page or category - see the
+ * mount guard on the fetch effect below.
+ */
+export default function BlogContent({
+  initialPosts = [],
+  initialTotal = 0,
+  initialCategories = [],
+  archive = null,
+}: {
+  initialPosts?: Post[]
+  initialTotal?: number
+  initialCategories?: string[]
+  /** The full server-rendered post index, passed down from page.tsx. */
+  archive?: ReactNode
+}) {
+  const [posts, setPosts]           = useState<Post[]>(initialPosts)
+  const [categories, setCategories] = useState<string[]>(initialCategories)
+  const [loading, setLoading]       = useState(initialPosts.length === 0)
+  const [total, setTotal]           = useState(initialTotal)
   const [page, setPage]             = useState(1)
   const [search, setSearch]         = useState("")
   const [activeCategory, setActiveCategory] = useState("")
@@ -85,8 +104,24 @@ export default function BlogContent() {
     } catch {}
   }
 
-  useEffect(() => { fetchCategories() }, [])
-  useEffect(() => { fetchPosts(page, activeCategory) }, [page, activeCategory])
+  // Categories arrive with the server render; only fetch them if that failed.
+  useEffect(() => {
+    if (initialCategories.length === 0) fetchCategories()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+  // Skip the fetch on mount when the server already handed us the first page -
+  // without this guard the seeded posts are immediately replaced by an
+  // identical round trip, and the grid flashes a spinner for no reason.
+  const seeded = useRef(initialPosts.length > 0)
+  useEffect(() => {
+    if (seeded.current) {
+      seeded.current = false
+      return
+    }
+    fetchPosts(page, activeCategory)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [page, activeCategory])
 
   const handleCategory = (cat: string) => {
     setActiveCategory(cat)
@@ -286,6 +321,9 @@ export default function BlogContent() {
           )}
         </div>
       </section>
+
+      {/* FULL INDEX - server-rendered, so every post is crawlable from here */}
+      {archive}
 
       {/* CTA FOOTER */}
       <section className="py-20 px-6" style={{ background: "#fff" }}>

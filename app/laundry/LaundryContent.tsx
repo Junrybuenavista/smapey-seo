@@ -10,6 +10,8 @@ import {
 } from "lucide-react"
 import { usePricing, type Plan } from "@/lib/usePricing"
 import InternalLinks from "@/components/InternalLinks"
+import HubGuides from "@/components/blog/HubGuides"
+import type { BlogPost } from "@/lib/blog"
 import LaundryVideo from "@/components/LaundryVideo"
 import { FAQS } from "./faqs"
 
@@ -501,7 +503,7 @@ function PaymentModal({ plan, isPhilippines, onClose }: { plan: { name: string; 
   )
 }
 
-export default function LaundryContent() {
+export default function LaundryContent({ guides = [] }: { guides?: BlogPost[] }) {
   return (
     <main>
       <Navbar />
@@ -514,6 +516,7 @@ export default function LaundryContent() {
       <BookDemoForm product="LAUNDRY" />
       <CTA />
       <InternalLinks cluster="laundry" currentPath="/laundry" />
+      <HubGuides posts={guides} hubPath="/laundry" />
       <Footer />
     </main>
   )

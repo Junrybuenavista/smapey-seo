@@ -1,5 +1,7 @@
 import RestaurantLanding, { type RestaurantVariant } from "@/components/restaurant/RestaurantLanding"
 
+import type { BlogPost } from "@/lib/blog"
+
 const variant: RestaurantVariant = {
   currentPath: "/restaurant",
   navMode: "anchors",
@@ -21,6 +23,6 @@ const variant: RestaurantVariant = {
   },
 }
 
-export default function RestaurantContent() {
-  return <RestaurantLanding variant={variant} />
+export default function RestaurantContent({ guides = [] }: { guides?: BlogPost[] }) {
+  return <RestaurantLanding variant={variant} guides={guides} />
 }

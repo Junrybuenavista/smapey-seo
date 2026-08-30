@@ -8,6 +8,8 @@ import {
 import CateringContent from "./CateringContent"
 import { FAQS } from "./faqs"
 
+import { postsForHub } from "@/lib/blog"
+
 const PATH = "/catering"
 const TITLE = "Catering Services Philippines - Booking & Management Software | Smapey"
 const DESCRIPTION = "Smapey Catering Manager helps Philippine catering businesses manage bookings, packages, supply catalog, payment milestones, and staff, all in one dashboard. Start free."
@@ -18,7 +20,9 @@ export const metadata = buildMetadata({
   path: PATH,
 })
 
-export default function Page() {
+export default async function Page() {
+  const guides = await postsForHub(PATH)
+
   return (
     <>
       <JsonLd
@@ -32,7 +36,7 @@ export default function Page() {
           breadcrumbSchema(PATH),
         ]}
       />
-      <CateringContent />
+      <CateringContent guides={guides} />
     </>
   )
 }

@@ -2,6 +2,8 @@ import JsonLd from "@/components/JsonLd"
 import { buildMetadata, softwareApplicationSchema, breadcrumbSchema } from "@/lib/seo"
 import RestaurantContent from "./RestaurantContent"
 
+import { postsForHub } from "@/lib/blog"
+
 const PATH = "/restaurant"
 const TITLE = "Food Ordering Manager | Menu, Orders & Kitchen Queue | Smapey"
 const DESCRIPTION = "Smapey Food Ordering Manager handles menu building, dine-in and takeaway orders, kitchen queue tracking, and daily sales reporting for small restaurants and caf\u00e9s. Start free, no credit card required."
@@ -12,7 +14,9 @@ export const metadata = buildMetadata({
   path: PATH,
 })
 
-export default function Page() {
+export default async function Page() {
+  const guides = await postsForHub(PATH)
+
   return (
     <>
       <JsonLd
@@ -25,7 +29,7 @@ export default function Page() {
           breadcrumbSchema(PATH),
         ]}
       />
-      <RestaurantContent />
+      <RestaurantContent guides={guides} />
     </>
   )
 }

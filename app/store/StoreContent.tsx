@@ -1,5 +1,7 @@
 import StoreLanding, { type StoreVariant } from "@/components/store/StoreLanding"
 
+import type { BlogPost } from "@/lib/blog"
+
 const variant: StoreVariant = {
   currentPath: "/store",
   navMode: "anchors",
@@ -21,6 +23,6 @@ const variant: StoreVariant = {
   },
 }
 
-export default function StoreContent() {
-  return <StoreLanding variant={variant} />
+export default function StoreContent({ guides = [] }: { guides?: BlogPost[] }) {
+  return <StoreLanding variant={variant} guides={guides} />
 }

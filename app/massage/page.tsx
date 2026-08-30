@@ -8,6 +8,8 @@ import {
 import MassageContent from "./MassageContent"
 import { FAQS } from "./faqs"
 
+import { postsForHub } from "@/lib/blog"
+
 const PATH = "/massage"
 const TITLE = "Massage & Spa Management App | Booking & Therapist Software | Smapey"
 const DESCRIPTION = "Smapey Massage & Spa is a management app for massage businesses and wellness clinics. Book sessions, manage therapists and clients, publish a public booking page, and track revenue. Free plan available."
@@ -18,7 +20,9 @@ export const metadata = buildMetadata({
   path: PATH,
 })
 
-export default function Page() {
+export default async function Page() {
+  const guides = await postsForHub(PATH)
+
   return (
     <>
       <JsonLd
@@ -32,7 +36,7 @@ export default function Page() {
           breadcrumbSchema(PATH),
         ]}
       />
-      <MassageContent />
+      <MassageContent guides={guides} />
     </>
   )
 }

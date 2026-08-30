@@ -8,6 +8,8 @@ import {
 import ClinicManagerContent from "./ClinicManagerContent"
 import { FAQS } from "./faqs"
 
+import { postsForHub } from "@/lib/blog"
+
 const PATH = "/clinic"
 const TITLE = "Clinic Management System - Free for Small Clinics | Smapey"
 const DESCRIPTION = "Smapey Clinic Manager is a free clinic management system for small and mid-size medical practices. Manage patients, doctors, appointments, and a live queue board, all in one dashboard."
@@ -18,7 +20,9 @@ export const metadata = buildMetadata({
   path: PATH,
 })
 
-export default function Page() {
+export default async function Page() {
+  const guides = await postsForHub(PATH)
+
   return (
     <>
       <JsonLd
@@ -32,7 +36,7 @@ export default function Page() {
           breadcrumbSchema(PATH),
         ]}
       />
-      <ClinicManagerContent />
+      <ClinicManagerContent guides={guides} />
     </>
   )
 }
