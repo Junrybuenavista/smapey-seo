@@ -271,7 +271,7 @@ export function Bullets({ items }: { items: React.ReactNode[] }) {
   )
 }
 
-export function CostTable({ rows, note }: { rows: [string, string][]; note?: string }) {
+export function CostTable({ rows, note }: { rows: [string, React.ReactNode][]; note?: string }) {
   return (
     <div className="my-6 rounded-[16px] border-2 overflow-hidden" style={{ borderColor: INK, boxShadow: `5px 5px 0 ${BLUE}` }}>
       <table className="w-full text-sm">
@@ -299,6 +299,54 @@ export function Cite({ children }: { children: React.ReactNode }) {
     <p className="my-4 text-xs leading-relaxed pl-4 py-1" style={{ color: "#8a857e", borderLeft: `3px solid ${AMBER}` }}>
       {children}
     </p>
+  )
+}
+
+/**
+ * A figure this page needs but nobody has sourced yet.
+ *
+ * The standing rule on this site is that a peso figure is either sourced and
+ * dated or it does not appear - inventing one is worse than omitting it,
+ * because a reader budgets against it. So a draft states the shape of the
+ * number and marks the hole, rather than filling it with something plausible.
+ *
+ * Every page containing one of these must be noIndex. scripts/check-drafts.mjs
+ * enforces that and fails the build if a marked page is indexable, so a draft
+ * cannot reach Google by being forgotten about.
+ */
+export function NeedsFigure({ children }: { children: React.ReactNode }) {
+  return (
+    <mark
+      data-needs-figure
+      className="px-2 py-0.5 rounded font-bold text-xs"
+      style={{ background: "#ffe8c2", color: "#8a5200", border: `1px dashed ${AMBER}` }}
+    >
+      FIGURE NEEDED — {children}
+    </mark>
+  )
+}
+
+/** Banner for a page that is still a draft, so nobody mistakes it for live copy. */
+export function DraftNotice({ needs }: { needs: string[] }) {
+  return (
+    <div
+      className="my-8 rounded-[16px] border-2 p-6"
+      style={{ borderColor: "#8a5200", background: "#fff8ec" }}
+      data-draft-notice
+    >
+      <p className="font-extrabold text-sm mb-2" style={{ color: "#8a5200" }}>
+        Draft - not indexed, not linked
+      </p>
+      <p className="text-sm leading-relaxed mb-3" style={{ color: "#54514c" }}>
+        Everything below is written except the figures listed here. Supply these
+        with a source and a date and the page is ready to publish.
+      </p>
+      <ul className="text-sm list-disc pl-5" style={{ color: "#54514c" }}>
+        {needs.map((n, i) => (
+          <li key={i} className="mb-1">{n}</li>
+        ))}
+      </ul>
+    </div>
   )
 }
 

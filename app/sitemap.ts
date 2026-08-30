@@ -9,6 +9,11 @@ const baseUrl = "https://smapey.com"
 const API = process.env.NEXT_PUBLIC_API_URL
 
 // Static routes to exclude from the sitemap (forms, utility pages)
+//
+// Drafts also live here: a page still carrying <NeedsFigure> markers is noIndex
+// and must stay out of the sitemap, since listing a noindex URL just spends
+// crawl budget telling Google to ignore it. scripts/check-drafts.mjs keeps this
+// set and the markers in sync in both directions.
 const EXCLUDED = new Set(["/blog/submit"])
 
 function getRoutes(dir: string, basePath = ""): string[] {

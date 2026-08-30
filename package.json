@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "check:silo": "node scripts/check-silo.mjs"
+    "check:silo": "node scripts/check-silo.mjs",
+    "check:drafts": "node scripts/check-drafts.mjs"
   },
   "dependencies": {
     "@sparticuz/chromium-min": "^143.0.4",

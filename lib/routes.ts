@@ -146,6 +146,10 @@ export const CLUSTERS: Record<ClusterKey, RouteCluster> = {
     pages: [
       { path: "/laundry/guide", title: "Laundry App Guide", desc: "How laundry shop management software works end-to-end." },
       { path: "/laundry/how-to-start-a-laundry-business-philippines", title: "How to Start a Laundry Business in the Philippines", desc: "Capital by business model, permits, the sanitation rules specific to laundries, machine sizing, and the monthly numbers." },
+      { path: "/laundry/washing-machine-for-laundry-business", title: "Washing Machines for a Laundry Business", desc: "How to size and choose machines, why the dryer is your real bottleneck, and what your building has to support." },
+      { path: "/laundry/laundry-business-capital-philippines", title: "Laundry Business Capital", desc: "Startup versus working capital, how much runway to hold back, and the costs most plans leave out." },
+      { path: "/laundry/laundry-shop-business-plan-philippines", title: "Laundry Shop Business Plan", desc: "The sections that matter, the capacity calculation lenders look for, and the break-even arithmetic." },
+      { path: "/laundry/laundry-business-franchise-philippines", title: "Laundry Franchise & Business Packages", desc: "Franchise, equipment package or turnkey - what differs, what EO 169 requires, and what to ask before signing." },
       { path: "/laundry/laundry-service-app", title: "Laundry Service App", desc: "Manage orders, customers, and payments for your laundry service." },
       { path: "/laundry/free-laundry-app", title: "Free Laundry App", desc: "Run your laundry shop for free - no credit card required." },
       { path: "/laundry/laundry-app-near-me", title: "Laundry App Near Me", desc: "Software for local laundry shops to manage orders and notify customers." },
