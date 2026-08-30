@@ -250,6 +250,45 @@ export function ArticleHero({ badge, title, intro }: { badge: string; title: Rea
   )
 }
 
+/**
+ * The handful of facts a reader wants before deciding to read anything.
+ *
+ * Borrowed from the way job boards front-load type, salary and location above
+ * the body copy: someone landing here is deciding in about three seconds
+ * whether this page answers their question, and a wall of prose makes them
+ * guess. Each entry is one fact, stated as an answer rather than a label.
+ *
+ * Keep it to three or four. This is a summary, not a specification table - the
+ * moment it grows past a glance it stops doing the job it exists for.
+ */
+export function KeyFacts({ items }: { items: { k: string; v: React.ReactNode }[] }) {
+  return (
+    <dl
+      className="my-8 grid gap-px rounded-[16px] overflow-hidden border-2"
+      style={{
+        borderColor: INK,
+        background: INK,
+        gridTemplateColumns: `repeat(auto-fit, minmax(150px, 1fr))`,
+        boxShadow: `5px 5px 0 ${AMBER}`,
+      }}
+    >
+      {items.map((it, i) => (
+        <div key={i} className="p-4" style={{ background: "#fff" }}>
+          <dt
+            className="text-[10px] font-extrabold uppercase tracking-widest mb-1.5"
+            style={{ color: BLUE }}
+          >
+            {it.k}
+          </dt>
+          <dd className="m-0 text-sm font-semibold leading-snug" style={{ color: INK }}>
+            {it.v}
+          </dd>
+        </div>
+      ))}
+    </dl>
+  )
+}
+
 export function AH2({ children }: { children: React.ReactNode }) {
   return <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight mt-14 mb-4" style={{ color: INK }}>{children}</h2>
 }
