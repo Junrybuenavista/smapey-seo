@@ -53,7 +53,9 @@ export default function Content() {
           <AP>
             It is not worthless — it is just no longer the document that proves the sale for tax purposes. An official
             receipt now sits in the same category as a delivery receipt or a collection receipt: a supplementary
-            document you may issue alongside the invoice if it suits how you work.
+            document you may issue alongside the invoice if it suits how you work. What one has to look like in that
+            role, including the input-tax statement it must carry, is covered on{" "}
+            <Link href="/invoice/official-receipt-philippines" className="underline">official receipt</Link>.
           </AP>
           <AP>
             What it cannot do is support an input VAT claim. If your customer is VAT-registered and you hand them only

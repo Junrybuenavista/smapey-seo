@@ -34,6 +34,7 @@ export const CLUSTERS: Record<ClusterKey, RouteCluster> = {
       { path: "/invoice/pro-forma-invoice", title: "Pro Forma Invoice", desc: "What a pro forma invoice is, when to use it, and how to format one." },
       { path: "/invoice/sales-invoice-philippines", title: "Sales Invoice (Philippines)", desc: "What a sales invoice is, why the cash/charge/billing labels change nothing, and how to compute the VAT." },
       { path: "/invoice/sales-invoice-sample-philippines", title: "Sales Invoice Sample (Philippines)", desc: "A filled-in VAT sales invoice with every required element, and a walkthrough of how to fill one up." },
+      { path: "/invoice/official-receipt-philippines", title: "Official Receipt (Philippines)", desc: "What an official receipt is for after RR 7-2024, a correct sample, and the input-tax statement it must carry." },
       { path: "/invoice/sales-invoice-vs-official-receipt-philippines", title: "Sales Invoice vs Official Receipt (Philippines)", desc: "What RA 11976 and RR 7-2024 changed, what must be on a valid invoice, and where the costly mistakes are." },
       { path: "/invoice/what-is-an-invoice", title: "What Is an Invoice?", desc: "A plain-English explanation of invoices and how they work." },
       { path: "/invoice/freelance-invoice", title: "Freelance Invoice", desc: "Invoicing built around the way freelancers actually get paid." },
