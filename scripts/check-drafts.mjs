@@ -11,13 +11,15 @@
  * This script is the mechanism. For every page whose content contains a marker
  * it checks three things:
  *
- *   1. its page.tsx passes noIndex: true
+ *   1. its page.tsx is noindex, in either form the codebase uses
  *   2. its path is in the EXCLUDED set in app/sitemap.ts
  *   3. its path is not linked from lib/routes.ts
  *
- * and fails if any of them is false. It also fails on the reverse mistake: a
- * path parked in the drafts list that no longer has markers, which means the
- * page is finished but still hidden.
+ * and fails if any of them is false. It also fails on the reverse mistake: an
+ * indexable page parked in the sitemap exclusions with no markers left, which
+ * means it is finished but nobody unhid it. Pages that are noindex, or listed
+ * in PERMANENT_EXCLUSIONS, are exempt from that reverse check - they belong in
+ * the exclusion set for reasons unrelated to drafting.
  *
  * Usage:
  *   node scripts/check-drafts.mjs
@@ -71,6 +73,30 @@ function routeSources(dir) {
     .join("\n")
 }
 
+/**
+ * Routes that stay out of the sitemap permanently, for reasons unrelated to
+ * drafting - a submission form has nothing to rank for. These are indexable and
+ * excluded on purpose, so the "finished but still hidden" check must skip them
+ * or it reports a problem that is actually a decision.
+ */
+const PERMANENT_EXCLUSIONS = new Set(["/blog/submit"])
+
+/**
+ * Whether a page is indexable.
+ *
+ * There are two ways to say noindex in this codebase and the check needs both:
+ * `buildMetadata({ noIndex: true })`, which most pages use, and a raw
+ * `robots: { index: false }` in an exported Metadata object, which the ROI
+ * calculator's embed target uses. Reading only the first form marks the embed
+ * indexable and produces a false positive.
+ */
+function isIndexable(pageFile) {
+  const src = fs.readFileSync(pageFile, "utf8")
+  if (/noIndex:\s*true/.test(src)) return false
+  if (/robots\s*:\s*\{[^}]*index\s*:\s*false/s.test(src)) return false
+  return true
+}
+
 const routes = routeDirs(APP)
 
 const sitemapSrc = fs.readFileSync(path.join(APP, "sitemap.ts"), "utf8")
@@ -85,18 +111,24 @@ const drafts = []
 for (const { route, dir } of routes) {
   const src = routeSources(dir)
   if (!src.includes("<NeedsFigure") && !src.includes("<DraftNotice")) {
-    // Reverse check: parked in the sitemap exclusions but no longer a draft.
-    if (route !== "/blog/submit" && excludedBlock.includes(`"${route}"`)) {
-      err(route, "is in the sitemap EXCLUDED set but has no draft markers left - it looks finished, so unhide it (drop noIndex, remove from EXCLUDED, add to lib/routes.ts)")
+    // Reverse check: a finished page left hidden by mistake.
+    //
+    // Being in EXCLUDED is only wrong when the page is also indexable. A
+    // noIndex page - a form, an embed target - belongs in that set on purpose
+    // and has no markers to lose, so flagging it would be a false positive.
+    // The real mistake this catches is a page whose markers were removed and
+    // whose noIndex was dropped, but which nobody remembered to unhide.
+    if (excludedBlock.includes(`"${route}"`) && !PERMANENT_EXCLUSIONS.has(route)) {
+      if (isIndexable(path.join(dir, "page.tsx"))) {
+        err(route, "is indexable and in the sitemap EXCLUDED set, with no draft markers left - it looks finished, so unhide it (remove from EXCLUDED, add to lib/routes.ts)")
+      }
     }
     continue
   }
 
   drafts.push(route)
-  const pageSrc = fs.readFileSync(path.join(dir, "page.tsx"), "utf8")
-
-  if (!/noIndex:\s*true/.test(pageSrc)) {
-    err(route, "still has draft markers but does not set noIndex: true - an unfinished page must not be indexable")
+  if (isIndexable(path.join(dir, "page.tsx"))) {
+    err(route, "still has draft markers but is indexable - an unfinished page must set noIndex: true")
   }
   if (!excludedBlock.includes(`"${route}"`)) {
     err(route, "still has draft markers but is not in the EXCLUDED set in app/sitemap.ts - a noindex page should not be in the sitemap")

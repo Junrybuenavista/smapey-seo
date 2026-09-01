@@ -14,7 +14,14 @@ const API = process.env.NEXT_PUBLIC_API_URL
 // and must stay out of the sitemap, since listing a noindex URL just spends
 // crawl budget telling Google to ignore it. scripts/check-drafts.mjs keeps this
 // set and the markers in sync in both directions.
-const EXCLUDED = new Set(["/blog/submit"])
+const EXCLUDED = new Set([
+  "/blog/submit",
+  // An embed target for the ROI calculator: it is noindex and carries no
+  // canonical or h1 by design, because it is meant to render inside another
+  // page rather than stand on its own. Listing a noindex URL in the sitemap
+  // just spends crawl budget asking Google to ignore it.
+  "/boarding-house/roi-calculator/embed",
+])
 
 function getRoutes(dir: string, basePath = ""): string[] {
   const entries = fs.readdirSync(dir, { withFileTypes: true })
