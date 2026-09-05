@@ -313,6 +313,9 @@ export const CLUSTERS: Record<ClusterKey, RouteCluster> = {
       { path: "/restaurant/online-ordering-system", title: "Online Ordering System for Restaurants", desc: "Let customers order online via a QR code or link - no third-party app, no commission fees, just direct orders." },
       { path: "/restaurant/free-restaurant-management-software", title: "Free Restaurant Management Software", desc: "Run your restaurant on a free plan - menu builder, order tracking, and sales summary at no cost." },
       { path: "/restaurant/food-cost-calculator", title: "Food Cost Calculator", desc: "Free recipe costing tool - convert units automatically, account for trim waste, and get your food cost percentage and menu price." },
+      { path: "/restaurant/how-to-calculate-food-cost", title: "How to Calculate Food Cost", desc: "The food cost formula worked through a real recipe end to end - unit conversion, trim waste, and why theoretical and actual food cost differ." },
+      { path: "/restaurant/food-cost-percentage-calculator", title: "Food Cost Percentage Calculator", desc: "Turn cost per portion and menu price into a food cost percentage, gross profit, and the band a kitchen like yours should sit in." },
+      { path: "/restaurant/menu-price-calculator", title: "Menu Price Calculator", desc: "Work a menu price back from cost per portion and a target food cost percentage, with VAT and sensible rounding." },
     ],
   },
 

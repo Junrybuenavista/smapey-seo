@@ -131,6 +131,26 @@ export default function Page() {
               </Link>{" "}
               is for.
             </p>
+            <p className="text-base leading-relaxed" style={{ color: MUTED }}>
+              If you want the arithmetic spelled out rather than done for you,{" "}
+              <Link href="/restaurant/how-to-calculate-food-cost" className="font-bold underline" style={{ color: BLUE }}>
+                how to calculate food cost
+              </Link>{" "}
+              works the same recipe through by hand. There are also two smaller tools for when you already have the
+              cost per portion:{" "}
+              <Link
+                href="/restaurant/food-cost-percentage-calculator"
+                className="font-bold underline"
+                style={{ color: BLUE }}
+              >
+                the food cost percentage calculator
+              </Link>{" "}
+              for checking a price you already charge, and{" "}
+              <Link href="/restaurant/menu-price-calculator" className="font-bold underline" style={{ color: BLUE }}>
+                the menu price calculator
+              </Link>{" "}
+              for setting a new one.
+            </p>
           </div>
         </section>
 
