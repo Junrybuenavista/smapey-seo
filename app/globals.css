@@ -15,3 +15,27 @@
 .blog-content a:hover { color: #1d4ed8; }
 .blog-content strong { font-weight: 600; }
 .blog-content em { font-style: italic; }
+/* ── Printable document tools ─────────────────────────────────────────────
+   The template generators (repair estimate, medical certificate, rental
+   agreement) render a live A4 sheet next to their form. Printing hides the
+   whole page except that sheet, so "Print" produces the document alone with
+   no navigation, form, or article text around it - and "Save as PDF" in the
+   browser's print dialog gives the download people came for without a PDF
+   library. Visibility rather than display:none, so the sheet keeps its
+   layout instead of collapsing. */
+@media print {
+  body * { visibility: hidden !important; }
+  .doc-sheet, .doc-sheet * { visibility: visible !important; }
+  .doc-sheet {
+    position: absolute !important;
+    left: 0; top: 0;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+  }
+  .doc-no-print { display: none !important; }
+  @page { margin: 16mm; }
+}

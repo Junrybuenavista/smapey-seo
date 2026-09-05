@@ -117,6 +117,7 @@ export const CLUSTERS: Record<ClusterKey, RouteCluster> = {
       { path: "/car-rental/car-rental-management-software", title: "Car Rental Management Software", desc: "Fleet, reservation, and revenue management in one dashboard." },
       { path: "/car-rental/car-rental-booking-software", title: "Car Rental Booking Software", desc: "Reservation flows that let customers book vehicles online." },
       { path: "/car-rental/car-rental-software-for-small-business", title: "Car Rental Software for Small Business", desc: "Built for small rental fleets - affordable, simple, complete." },
+      { path: "/car-rental/car-rental-agreement-template", title: "Car Rental Agreement Template", desc: "A free printable rental contract covering renter, vehicle, period, rates, deposit, and terms." },
     ],
   },
 
@@ -134,6 +135,7 @@ export const CLUSTERS: Record<ClusterKey, RouteCluster> = {
       { path: "/motorcycle-repair-shop-software-philippines", title: "Motorcycle Repair Shop Software", desc: "Built for two wheels - chain and sprocket, valve adjustment, and oil due at 2,000 km." },
       { path: "/repair-shop-software/guide", title: "Repair Shop Software Guide", desc: "Set-up to payout, in the order you will actually meet it." },
       { path: "/invoice/invoicing-software-for-auto-repair", title: "Invoicing for Auto Repair", desc: "Billing a repair job - quotations, itemised invoices, and payment tracking." },
+      { path: "/repair-shop-software/auto-repair-estimate-template", title: "Auto Repair Estimate Template", desc: "A free printable repair estimate - itemise parts and labour, total it, and print or save as PDF." },
     ],
   },
 
@@ -236,6 +238,7 @@ export const CLUSTERS: Record<ClusterKey, RouteCluster> = {
       { path: "/clinic/clinic-appointment-management-system", title: "Clinic Appointment Management System", desc: "Book, confirm, queue, and complete clinic appointments - every status tracked in one system." },
       { path: "/clinic/clinic-information-management-system", title: "Clinic Information Management System", desc: "Patient records, doctor profiles, appointment history, and analytics - organized and secure." },
       { path: "/clinic/clinic-management-system-thesis", title: "Clinic Management System Thesis", desc: "Thesis guide covering key modules, data models, and system architecture for a clinic management system." },
+      { path: "/clinic/medical-certificate-template", title: "Medical Certificate Template", desc: "A free printable medical certificate form for clinics and licensed physicians to complete and sign." },
     ],
   },
 
