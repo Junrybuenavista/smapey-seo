@@ -365,6 +365,7 @@ export const ALL_CLUSTERS: ClusterKey[] = [
   "catering",
   "water-refilling",
   "school-desk",
+  "repair-shop",
 ]
 
 export function clusterForPath(pathname: string): ClusterKey | null {
@@ -374,5 +375,25 @@ export function clusterForPath(pathname: string): ClusterKey | null {
       return key
     }
   }
+
+  /**
+   * Fall back to an explicit page match for clusters whose pages do not sit
+   * under their hub's path. The repair shop is the case that forced this: its
+   * hub is /auto-repair-shop-software-philippines while its pages live at
+   * /motorcycle-repair-shop-software-philippines and /repair-shop-software/*,
+   * so prefix matching alone found none of them and they silently rendered
+   * without breadcrumbs.
+   *
+   * Deliberately only consulted after every hub prefix has missed, so a page
+   * cross-listed in a second cluster keeps resolving to the cluster it lives
+   * under - /invoice/invoicing-software-for-auto-repair stays with invoice
+   * rather than moving to repair-shop.
+   */
+  for (const key of ALL_CLUSTERS) {
+    if (CLUSTERS[key].pages.some((page) => page.path === pathname)) {
+      return key
+    }
+  }
+
   return null
 }
