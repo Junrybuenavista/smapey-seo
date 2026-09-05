@@ -252,6 +252,7 @@ export const CLUSTERS: Record<ClusterKey, RouteCluster> = {
       { path: "/vet-clinic/veterinary-clinic-and-pet-shop-management-system", title: "Veterinary Clinic & Pet Shop Management System", desc: "One system for your entire pet care operation - vet clinic, grooming, pet shop, and billing." },
       { path: "/vet-clinic/veterinary-clinic-management-system-thesis", title: "Veterinary Clinic Management System Thesis", desc: "Thesis guide covering key modules, database entities, and system architecture for a vet clinic management system." },
       { path: "/vet-clinic/online-veterinary-clinic-management-system", title: "Online Veterinary Clinic Management System", desc: "A cloud-based, browser-accessible vet clinic system - manage pets, appointments, and billing from anywhere." },
+      { path: "/vet-clinic/puppy-weight-calculator", title: "Puppy Weight Calculator", desc: "Estimate a puppy's adult weight from its current weight, age, and expected size - with a growth chart for every breed size." },
     ],
   },
 

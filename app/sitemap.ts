@@ -23,6 +23,8 @@ const EXCLUDED = new Set([
   "/boarding-house/roi-calculator/embed",
   // Same arrangement for the food cost calculator embed.
   "/restaurant/food-cost-calculator/embed",
+  // And for the puppy weight calculator.
+  "/vet-clinic/puppy-weight-calculator/embed",
 ])
 
 function getRoutes(dir: string, basePath = ""): string[] {
