@@ -21,6 +21,8 @@ const EXCLUDED = new Set([
   // page rather than stand on its own. Listing a noindex URL in the sitemap
   // just spends crawl budget asking Google to ignore it.
   "/boarding-house/roi-calculator/embed",
+  // Same arrangement for the food cost calculator embed.
+  "/restaurant/food-cost-calculator/embed",
 ])
 
 function getRoutes(dir: string, basePath = ""): string[] {

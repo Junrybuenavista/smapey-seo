@@ -312,6 +312,7 @@ export const CLUSTERS: Record<ClusterKey, RouteCluster> = {
       { path: "/restaurant/restaurant-pos-system", title: "Restaurant POS System", desc: "A lightweight POS system for restaurants that handles orders, payments, and daily sales without the enterprise price tag." },
       { path: "/restaurant/online-ordering-system", title: "Online Ordering System for Restaurants", desc: "Let customers order online via a QR code or link - no third-party app, no commission fees, just direct orders." },
       { path: "/restaurant/free-restaurant-management-software", title: "Free Restaurant Management Software", desc: "Run your restaurant on a free plan - menu builder, order tracking, and sales summary at no cost." },
+      { path: "/restaurant/food-cost-calculator", title: "Food Cost Calculator", desc: "Free recipe costing tool - convert units automatically, account for trim waste, and get your food cost percentage and menu price." },
     ],
   },
 
