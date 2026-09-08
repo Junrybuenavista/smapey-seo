@@ -168,7 +168,7 @@ export default function ElectricianContent() {
         </div>
       </section>
     </main>
-    <InternalLinks />
+    <InternalLinks cluster="invoice" currentPath="/invoice/electrician-invoicing-software" limit={6} />
     </>
   )
 }

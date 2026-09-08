@@ -159,7 +159,7 @@ export default function ConstructionInvoiceContent() {
       </section>
 
     </div>
-        <InternalLinks />
+        <InternalLinks cluster="invoice" currentPath="/invoice/invoice-software-for-construction" limit={6} />
       </>
   )
 }

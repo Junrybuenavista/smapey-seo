@@ -773,7 +773,7 @@ const downloadHTML = async (html: string) => {
   </div>
 
 </section>
-  <InternalLinks />
+  <InternalLinks cluster="invoice" currentPath="/invoice/free-invoice-template" limit={6} />
 </main>
 <Footer/></>
   )

@@ -177,7 +177,7 @@ export default function InvoiceFreeToolPage() {
             </Link>
           </div>
         </section>
-  <InternalLinks />
+  <InternalLinks cluster="invoice" currentPath="/invoice/invoice-free-tool" limit={6} />
       </div>
       
     </main>

@@ -135,7 +135,7 @@ export default function HowToCreateInvoicePage() {
         </div>
       </section>
 
-      <InternalLinks />
+      <InternalLinks cluster="invoice" currentPath="/invoice/how-to-create-invoice" limit={6} />
 
       {/* CTA */}
       <section className="bg-[#060D1F] py-20 px-6">

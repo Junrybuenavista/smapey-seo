@@ -174,7 +174,7 @@ export default function ProFormaInvoiceContent() {
           ))}
         </div>
       </section>
-           <InternalLinks />
+           <InternalLinks cluster="invoice" currentPath="/invoice/pro-forma-invoice" limit={6} />
     </div>
   )
 }

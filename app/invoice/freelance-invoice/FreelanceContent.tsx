@@ -187,7 +187,7 @@ export default function FreelanceInvoiceGuide() {
         </div>
       </section>
     </div>
-    <InternalLinks />
+    <InternalLinks cluster="invoice" currentPath="/invoice/freelance-invoice" limit={6} />
     <Footer />
     </>
   )

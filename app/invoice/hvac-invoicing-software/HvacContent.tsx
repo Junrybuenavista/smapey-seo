@@ -163,7 +163,7 @@ export default function HvacContent() {
         </div>
       </section>
     </div>
-    <InternalLinks />
+    <InternalLinks cluster="invoice" currentPath="/invoice/hvac-invoicing-software" limit={6} />
     </>
   )
 }

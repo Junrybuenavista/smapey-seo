@@ -162,7 +162,7 @@ export default function InvoicingContent() {
         </div>
       </section>
     </div>
-    <InternalLinks />
+    <InternalLinks cluster="invoice" currentPath="/invoice/invoicing-software-for-freelancers" limit={6} />
     </>
   )
 }

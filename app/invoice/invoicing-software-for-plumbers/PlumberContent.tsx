@@ -163,7 +163,7 @@ export default function PlumberContent() {
         </div>
       </section>
     </div>
-    <InternalLinks />
+    <InternalLinks cluster="invoice" currentPath="/invoice/invoicing-software-for-plumbers" limit={6} />
     </>
   )
 }

@@ -186,7 +186,7 @@ export default function GoogleDocsInvoiceContent() {
           ))}
         </div>
       </section>
-          <InternalLinks />
+          <InternalLinks cluster="invoice" currentPath="/invoice/google-docs-invoice-template" limit={6} />
     </div>
   )
 }

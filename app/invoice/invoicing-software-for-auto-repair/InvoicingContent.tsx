@@ -193,7 +193,7 @@ export default function InvoicingContent() {
           </div>
         </div>
       </section>
-    <InternalLinks />
+    <InternalLinks cluster="invoice" currentPath="/invoice/invoicing-software-for-auto-repair" limit={6} />
     </>
   )
 }

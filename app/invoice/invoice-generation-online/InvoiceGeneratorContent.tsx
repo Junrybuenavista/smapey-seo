@@ -804,7 +804,7 @@ const formatMoney = (value: number) => {
 
     </section>
 
-           <InternalLinks />
+           <InternalLinks cluster="invoice" currentPath="/invoice/invoice-generation-online" limit={6} />
           
     </div>
 

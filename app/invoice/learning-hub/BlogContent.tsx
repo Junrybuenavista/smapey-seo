@@ -163,7 +163,7 @@ export default function BlogSection() {
       {/* DIVIDER */}
       <div className="my-16 h-px w-full bg-gradient-to-r from-transparent via-gray-300 to-transparent" />
 
-      <InternalLinks />
+      <InternalLinks cluster="invoice" currentPath="/invoice/learning-hub" limit={6} />
 
     </section>
     <Footer/>
