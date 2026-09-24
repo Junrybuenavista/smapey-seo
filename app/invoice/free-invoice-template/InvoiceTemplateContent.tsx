@@ -108,7 +108,7 @@ const updateItem = <K extends keyof InvoiceItem>(
 
   // 📥 DOWNLOAD
 const downloadHTML = async (html: string) => {
-  const res = await fetch("https://saas-app-jwlw.onrender.com/api/pdf/generate-pdf", {
+  const res = await fetch("https://api.smapey.com/api/pdf/generate-pdf", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -481,6 +481,7 @@ const downloadHTML = async (html: string) => {
                 await downloadHTML(html) // ✅ WAIT
               } catch (err) {
                 console.error("PDF error:", err)
+                alert("Couldn't generate your invoice PDF. Please try again.")
               }
 
               setLoadingId(null) // ✅ STOP LOADING
