@@ -44,6 +44,7 @@ declare global {
         parentElement: HTMLElement
         prefill?: { name?: string; email?: string }
         utm?: { utmSource?: string; utmMedium?: string; utmCampaign?: string }
+        resize?: boolean
       }): void
     }
   }
@@ -120,11 +121,22 @@ export default function BookDemoForm({ product }: { product: string }) {
       .then(() => {
         if (cancelled || !calendarRef.current || !window.Calendly) return
         calendarRef.current.innerHTML = ""
+        // Name and email ride on the booking link too: the widget's `prefill` only
+        // posts them to the iframe once, just after it loads, and Calendly's page
+        // can miss that; link parameters are always read. encodeURIComponent, not
+        // URLSearchParams: the widget re-reads these with decodeURIComponent,
+        // which would leave a "+" for every space in the name.
+        const query = Object.entries({ hide_gdpr_banner: "1", hide_event_type_details: "1", name, email })
+          .map(([key, value]) => `${key}=${encodeURIComponent(value)}`)
+          .join("&")
         window.Calendly.initInlineWidget({
-          url: `${CALENDLY_URL}?hide_gdpr_banner=1&hide_event_type_details=1`,
+          url: `${CALENDLY_URL}?${query}`,
           parentElement: calendarRef.current,
           prefill: { name, email },
           utm: { utmSource: "smapey.com", utmMedium: "demo-form", utmCampaign: product },
+          // Calendly reports each step's height and the widget sizes our box to it,
+          // so the calendar never scrolls inside the card.
+          resize: true,
         })
       })
       .catch(() => {
@@ -237,13 +249,15 @@ export default function BookDemoForm({ product }: { product: string }) {
               </div>
             ) : (
               <>
-                <div className="relative rounded-[18px] overflow-hidden" style={{ minWidth: 320, height: 700 }}>
+                <div className="relative rounded-[18px] overflow-hidden" style={{ minWidth: 320 }}>
                   {/* Sits under the calendar until Calendly's iframe covers it */}
                   <div className="absolute inset-0 flex items-center justify-center" aria-hidden>
                     <Loader2 className="w-6 h-6 animate-spin" style={{ color: MUTED }} />
                   </div>
-                  {/* Calendly owns this node; React never renders children into it */}
-                  <div ref={calendarRef} className="relative h-full" aria-label="Pick a time for your demo" />
+                  {/* Calendly owns this node: it draws the iframe here and resets the
+                      height at every step. React never renders children into it.
+                      The floor matters while Calendly loads: it reports 26px then. */}
+                  <div ref={calendarRef} className="relative scroll-mt-24" style={{ height: 700, minHeight: 700 }} aria-label="Pick a time for your demo" />
                 </div>
                 <p className="text-center text-xs py-3" style={{ color: MUTED }}>
                   No time that works?{" "}
