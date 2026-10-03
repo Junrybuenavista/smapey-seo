@@ -25,6 +25,8 @@ const SECTIONS = [
       { title: "Build your package catalog", desc: "Go to Catering → Packages and click Add Package. Enter the package name (e.g. Basic Buffet, Premium Set Menu), a short description, and the price per head. Then add the menu items. Build out all your standard packages here - you'll attach them to bookings later instead of re-quoting every time." },
       { title: "Set up your supply catalog", desc: "Go to Catering → Supply and click Add Ingredient. Enter the ingredient name, unit type (KG, Grams, Liters, ML, Pieces, Packs, Boxes), cost per unit, and any notes (e.g. preferred supplier). Your recipes are built from these items, so add the ingredients you cook with." },
       { title: "Add recipes for your dishes", desc: "Go to Catering → Recipes and click Add Recipe. Enter the dish (e.g. Chicken Adobo), how many servings one batch makes, and what that batch takes from your supply catalog (e.g. 2 kg chicken and 0.3 L soy sauce for 10 servings). Smapey shows the cost per serving from your catalog prices." },
+      { title: "Add your staff list", desc: "Go to Catering → Staff and add the people you call for events - cooks, waiters, drivers - with their usual role, phone number, and rate per event. You'll pick them on each booking instead of retyping names." },
+      { title: "Set your daily event limit", desc: "On Catering → Calendar, tap the daily limit and enter the most events your kitchen and crew can run in one day. Smapey warns you before you book or confirm past it." },
       { title: "Invite your team", desc: "Go to Settings → Team and invite team members by email. Assign Admin or Member roles based on their access level. Team members can log in with their own account and see the live dashboard, bookings, and clients." },
       { title: "Configure your currency symbol", desc: "In Settings → Organization, confirm your currency symbol (₱ for Philippine Peso). This appears on payment milestones, quotes, and the revenue dashboard." },
     ],
@@ -46,18 +48,30 @@ const SECTIONS = [
     title: "3. Create and Manage Bookings",
     steps: [
       { title: "Open the Bookings page", desc: "Navigate to Catering → Bookings from the sidebar. This is your master event list - every booking is shown here with its status, event date, client, and guest count." },
-      { title: "Create a new booking", desc: "Click New Booking. Select the client, then enter the event date, event type, venue, and expected guest count. Add internal notes if needed. New bookings start as Inquiry." },
+      { title: "Create a new booking", desc: "Click New Booking. Select the client, then enter the event date, event type, venue, and expected guest count. Add internal notes if needed. New bookings start as Inquiry. As you pick the date, Smapey shows what else is on that day and warns you if it's already full." },
       { title: "Attach packages to a booking", desc: "Open the booking and click Add Package on the Packages tab. Select from your package catalog and enter the number of guests. Add more than one package if the client is taking, for example, a food package and a drinks package. Click the pencil on an attached package to change its pax or price per pax." },
       { title: "Add other charges and discounts", desc: "Below the packages, click Add charge for anything else on the bill: transport, styling, extra staff. Tick 'This is a discount' to subtract an amount instead. The booking total updates automatically." },
       { title: "Update the final headcount", desc: "Click Edit details on the booking and change the pax count. Leave 'Also set the package to this pax' ticked to re-price the attached packages in the same step, then recalculate the market list on the Supply tab." },
-      { title: "Update booking status", desc: "Use the buttons on the booking to move it through Inquiry → Confirmed → In Progress → Completed, or cancel it while it's still open. Marking a booking Completed never marks a payment as paid: any balance the client still owes stays open so you can record it when it arrives." },
+      { title: "Update booking status", desc: "Use the buttons on the booking to move it through Inquiry → Confirmed → In Progress → Completed, or cancel it while it's still open. Confirming on a day that's already at your daily limit asks you first. Marking a booking Completed never marks a payment as paid: any balance the client still owes stays open so you can record it when it arrives." },
       { title: "View booking details", desc: "Open any booking to see everything about the event in tabs: Packages, Quote, Supply, Payments, and Staff." },
+    ],
+  },
+  {
+    id: "calendar",
+    icon: CalendarRange,
+    title: "4. Calendar and Daily Limit",
+    steps: [
+      { title: "Open the calendar", desc: "Go to Catering → Calendar, or tap Calendar on the Bookings page. Each day shows its events, colored by status: inquiries in blue, confirmed in green, in progress in amber, completed in gray. On a phone, each event is a dot." },
+      { title: "Set how many events you can run in a day", desc: "Tap the daily limit at the top and enter a number, or leave it empty for no limit. Confirmed, in-progress, and completed events count toward it; inquiries don't, since they aren't booked yet." },
+      { title: "Spot full days", desc: "Days at your limit are tinted and marked Full, and the summary counts this month's events, inquiries, and full days. Use it before you promise a date to a client." },
+      { title: "Book from a date", desc: "Tap a day to see its events, then New booking on this day to open the booking form with the date filled in." },
+      { title: "Double-booking warnings", desc: "Smapey warns you, without blocking you, when you pick a full date for a new booking, move a booking to a full date, or confirm an inquiry on a day that's already full. You decide whether to take it." },
     ],
   },
   {
     id: "quotes",
     icon: FileText,
-    title: "4. Send Quotations",
+    title: "5. Send Quotations",
     steps: [
       { title: "Create a quote", desc: "Open a booking that has at least one package and go to the Quote tab. Click Create quote, choose how long it's valid, and review your terms. Smapey remembers your terms, so the next quote starts from them." },
       { title: "Share it with your client", desc: "Tap Share with client to send the link through Messenger, Viber, or SMS, or tap Copy message for a ready-made message with the link. Your client opens it on their phone - no account or app needed." },
@@ -70,7 +84,7 @@ const SECTIONS = [
   {
     id: "milestones",
     icon: Banknote,
-    title: "5. Payment Milestones",
+    title: "6. Payment Milestones",
     steps: [
       { title: "What is a payment milestone?", desc: "A payment milestone is a scheduled partial payment tied to a specific booking. Instead of tracking a single lump sum, you break the booking's total into stages - for example: 30% reservation fee, 50% partial payment two weeks before the event, and the 20% balance on event day." },
       { title: "Add a milestone to a booking", desc: "Open the booking and go to the Payments tab. Click Add Milestone and enter the milestone name (e.g. Reservation Fee), the amount, and the due date. Repeat for each payment stage. Your client sees this schedule on their quote." },
@@ -83,7 +97,7 @@ const SECTIONS = [
   {
     id: "supply",
     icon: FlaskConical,
-    title: "6. Supply, Recipes and Market List",
+    title: "7. Supply, Recipes and Market List",
     steps: [
       { title: "Open the Supply Catalog", desc: "Navigate to Catering → Supply from the sidebar. This is your ingredient and materials reference - not an inventory tracker, but the prices and units your recipes and market lists are calculated from." },
       { title: "Add an ingredient or supply", desc: "Click Add Ingredient. Enter the name (e.g. Chicken, Jasmine Rice, Cooking Oil), select the unit type (KG, Grams, Liters, ML, Pieces, Packs, Boxes, or Other), and enter the cost per unit. Add a notes field for supplier name, brand preference, or buying notes." },
@@ -98,17 +112,20 @@ const SECTIONS = [
   {
     id: "staff",
     icon: UserCheck,
-    title: "7. Staff Assignment",
+    title: "8. Staff and Payouts",
     steps: [
-      { title: "Assign staff to a booking", desc: "Open any booking and go to the Staff tab. Click Assign Staff and enter each person's name, so the whole team knows the roster without a separate group chat message." },
-      { title: "Set roles and confirm attendance", desc: "Pick a role for each person (Head Cook, Assistant Cook, Waiter, Server, Coordinator, Driver, or Other) and add their phone number and notes. Mark each person Confirmed once they've said yes, so you can see who's still unconfirmed." },
-      { title: "Remove a staff assignment", desc: "Click the remove icon next to any staff name on the booking to unassign them. This is useful if a team member becomes unavailable and you need to reassign the slot." },
+      { title: "Keep a staff list", desc: "In Catering → Staff, add each person once with their usual role, phone, and rate per event. Renaming someone or changing their number updates every event they're on. People who've worked events can be deactivated instead of deleted, so their history stays." },
+      { title: "Assign staff to a booking", desc: "Open the booking's Staff tab and click Assign Staff. Pick someone from your staff list - their role and rate fill in - or add a new person and tick 'Add to my staff list'. Set their call time, and any extra pay such as an allowance or overtime. Smapey warns you if the person is already on another event that day." },
+      { title: "Confirm who's coming", desc: "Tap Confirm once each person has said yes, so you can see at a glance who's still unconfirmed. Tap their phone number to call them." },
+      { title: "Record attendance", desc: "From the event day on, mark each person Present or Absent on the Staff tab. Anyone marked absent is left out of payouts. The Staff tab totals the event's staff cost and how much of it is paid." },
+      { title: "Pay your staff", desc: "Mark someone paid right on the booking, or open Catering → Staff → Payouts to see everyone you owe for past events, grouped by person. Mark all paid settles a person in one tap, and Copy gives you a breakdown to send with their GCash payment. Paid shows the last 60 days, with Undo." },
+      { title: "What payouts are not", desc: "Payouts are what you agreed to pay per event, plus extras. They aren't payroll: there are no deductions, contributions, or payslips." },
     ],
   },
   {
     id: "dashboard",
     icon: BarChart3,
-    title: "8. Dashboard & Analytics",
+    title: "9. Dashboard & Analytics",
     steps: [
       { title: "Open the Dashboard", desc: "Navigate to Catering → Dashboard from the sidebar. This is your home screen - it shows the financial and operational picture of your catering business at a glance." },
       { title: "Read the stat cards", desc: "The cards show total, upcoming, and completed bookings; your clients and active packages; how many payments are overdue or still pending; and the revenue you collected this month." },
