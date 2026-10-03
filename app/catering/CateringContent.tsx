@@ -25,10 +25,10 @@ const FEATURES = [
   { icon: Users, title: "Client Profiles", desc: "Register clients with full contact details and keep a booking history per client. Returning clients are already in the system - no re-entering the same information twice." },
   { icon: Package, title: "Package & Menu Builder", desc: "Build your catering packages with name, description, and price per head. Assign one or more packages to each booking so your team always knows what's been quoted." },
   { icon: Banknote, title: "Payment Milestones", desc: "Break each booking's payment into milestones - reservation fee, partial payment, and full settlement. Record the method (Cash, GCash, Maya, Bank Transfer) and track what's still outstanding." },
-  { icon: FlaskConical, title: "Supply Catalog", desc: "Maintain a catalog of ingredients and supplies with unit type and cost per unit. Link supplies to packages to estimate food cost and know exactly what to procure before each event." },
+  { icon: FlaskConical, title: "Recipes & Market List", desc: "Build recipes from your supply catalog and link them to your package dishes. Every booking calculates its market list and food cost for the exact headcount - 100 pax or 150, no manual multiplying." },
   { icon: UserCheck, title: "Staff Assignment", desc: "Assign staff members to each booking - head cook, waiters, coordinators. Everyone on the team knows their event roster without a separate group chat." },
   { icon: BarChart3, title: "Revenue Dashboard", desc: "See upcoming events, revenue this month, payments collected, and overdue milestones - all on one screen. Monthly revenue trend chart so you can spot your busy season at a glance." },
-  { icon: Clock, title: "Booking Status Tracking", desc: "Move bookings through Pending → Confirmed → Completed or Cancelled. The system auto-settles outstanding milestones when a booking is marked complete." },
+  { icon: Clock, title: "Client Quotations", desc: "Send a quote link your client opens on their phone - menu, charges, payment schedule, and terms. They accept with their name or ask for changes, and you're notified either way." },
   { icon: Shield, title: "Secure & Isolated", desc: "Each catering business gets its own isolated data space. Your client list, bookings, and payment history are never shared with anyone else." },
 ]
 

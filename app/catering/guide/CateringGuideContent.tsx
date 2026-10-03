@@ -5,7 +5,7 @@ import InternalLinks from "@/components/InternalLinks"
 import {
   BookOpen, ChefHat, Users, CalendarDays, Banknote,
   FlaskConical, UserCheck, BarChart3, CheckCircle2, ChevronRight,
-  Menu, X, Clock, Lightbulb, AlertTriangle, Shield, ArrowLeft,
+  Menu, X, Clock, Lightbulb, AlertTriangle, Shield, ArrowLeft, FileText,
 } from "lucide-react"
 
 const INK = "#161616"
@@ -22,10 +22,11 @@ const SECTIONS = [
     title: "1. Set Up Your Catering Account",
     steps: [
       { title: "Create your Smapey account", desc: "Sign up at smapey.com and select Catering Manager as your product. Your private catering workspace is created instantly - no credit card required on the free plan." },
-      { title: "Build your package catalog", desc: "Go to Catering → Packages and click Add Package. Enter the package name (e.g. Basic Buffet, Premium Set Menu), a short description, and the price per head. Build out all your standard packages here - you'll attach them to bookings later instead of re-quoting every time." },
-      { title: "Set up your supply catalog", desc: "Go to Catering → Supply Catalog and click Add Ingredient. Enter the ingredient name, unit type (KG, Grams, Liters, ML, Pieces, Packs, Boxes), cost per unit, and any notes (e.g. preferred supplier). Use this as your master procurement reference." },
+      { title: "Build your package catalog", desc: "Go to Catering → Packages and click Add Package. Enter the package name (e.g. Basic Buffet, Premium Set Menu), a short description, and the price per head. Then add the menu items. Build out all your standard packages here - you'll attach them to bookings later instead of re-quoting every time." },
+      { title: "Set up your supply catalog", desc: "Go to Catering → Supply and click Add Ingredient. Enter the ingredient name, unit type (KG, Grams, Liters, ML, Pieces, Packs, Boxes), cost per unit, and any notes (e.g. preferred supplier). Your recipes are built from these items, so add the ingredients you cook with." },
+      { title: "Add recipes for your dishes", desc: "Go to Catering → Recipes and click Add Recipe. Enter the dish (e.g. Chicken Adobo), how many servings one batch makes, and what that batch takes from your supply catalog (e.g. 2 kg chicken and 0.3 L soy sauce for 10 servings). Smapey shows the cost per serving from your catalog prices." },
       { title: "Invite your team", desc: "Go to Settings → Team and invite team members by email. Assign Admin or Member roles based on their access level. Team members can log in with their own account and see the live dashboard, bookings, and clients." },
-      { title: "Configure your currency symbol", desc: "In Settings → Organization, confirm your currency symbol (₱ for Philippine Peso). This appears on all payment milestones and the revenue dashboard." },
+      { title: "Configure your currency symbol", desc: "In Settings → Organization, confirm your currency symbol (₱ for Philippine Peso). This appears on payment milestones, quotes, and the revenue dashboard." },
     ],
   },
   {
@@ -45,55 +46,75 @@ const SECTIONS = [
     title: "3. Create and Manage Bookings",
     steps: [
       { title: "Open the Bookings page", desc: "Navigate to Catering → Bookings from the sidebar. This is your master event list - every booking is shown here with its status, event date, client, and guest count." },
-      { title: "Create a new booking", desc: "Click New Booking. Select or create the client, enter the event date, venue, expected guest count, and set the initial status (usually Pending for new inquiries, Confirmed for locked-in events). Add internal notes if needed. Click Save." },
-      { title: "Attach packages to a booking", desc: "Open the booking and scroll to the Packages section. Click Add Package, select from your package catalog, and enter the number of guests for that package. Add multiple packages to one booking if the client is taking both a food package and a drinks package, for example." },
-      { title: "Update booking status", desc: "Click Change Status on any booking to move it through the lifecycle: Pending → Confirmed → Completed, or Pending/Confirmed → Cancelled. When you mark a booking as Completed, all outstanding payment milestones are automatically settled - because the event happened and the money is considered collected." },
-      { title: "View booking details", desc: "Click View on any booking to see the full record - packages attached, payment milestones, assigned staff, and any notes. This is your one-stop view for everything related to an event." },
+      { title: "Create a new booking", desc: "Click New Booking. Select the client, then enter the event date, event type, venue, and expected guest count. Add internal notes if needed. New bookings start as Inquiry." },
+      { title: "Attach packages to a booking", desc: "Open the booking and click Add Package on the Packages tab. Select from your package catalog and enter the number of guests. Add more than one package if the client is taking, for example, a food package and a drinks package. Click the pencil on an attached package to change its pax or price per pax." },
+      { title: "Add other charges and discounts", desc: "Below the packages, click Add charge for anything else on the bill: transport, styling, extra staff. Tick 'This is a discount' to subtract an amount instead. The booking total updates automatically." },
+      { title: "Update the final headcount", desc: "Click Edit details on the booking and change the pax count. Leave 'Also set the package to this pax' ticked to re-price the attached packages in the same step, then recalculate the market list on the Supply tab." },
+      { title: "Update booking status", desc: "Use the buttons on the booking to move it through Inquiry → Confirmed → In Progress → Completed, or cancel it while it's still open. Marking a booking Completed never marks a payment as paid: any balance the client still owes stays open so you can record it when it arrives." },
+      { title: "View booking details", desc: "Open any booking to see everything about the event in tabs: Packages, Quote, Supply, Payments, and Staff." },
+    ],
+  },
+  {
+    id: "quotes",
+    icon: FileText,
+    title: "4. Send Quotations",
+    steps: [
+      { title: "Create a quote", desc: "Open a booking that has at least one package and go to the Quote tab. Click Create quote, choose how long it's valid, and review your terms. Smapey remembers your terms, so the next quote starts from them." },
+      { title: "Share it with your client", desc: "Tap Share with client to send the link through Messenger, Viber, or SMS, or tap Copy message for a ready-made message with the link. Your client opens it on their phone - no account or app needed." },
+      { title: "What your client sees", desc: "The event details, each package with its menu, other charges, the total, the payment schedule, and your terms. They can also print it or save it as a PDF. Your notes, costs, and supply list are never shown." },
+      { title: "Accept or request changes", desc: "Your client accepts by typing their name, which records who agreed and when, or asks for changes with a short message. You get a notification either way, and the Quote tab shows their answer. Once a quote is accepted, click Confirm booking." },
+      { title: "Send a new version", desc: "If the booking changes, click Send new version. Older links forward to the newest version, and an accepted version stays on record as what the client agreed to. The Quote tab warns you when the booking total no longer matches the latest quote." },
+      { title: "Preview before you send", desc: "Click Preview to see exactly what your client sees. Opening your own preview doesn't count as the client viewing the quote." },
     ],
   },
   {
     id: "milestones",
     icon: Banknote,
-    title: "4. Payment Milestones",
+    title: "5. Payment Milestones",
     steps: [
       { title: "What is a payment milestone?", desc: "A payment milestone is a scheduled partial payment tied to a specific booking. Instead of tracking a single lump sum, you break the booking's total into stages - for example: 30% reservation fee, 50% partial payment two weeks before the event, and the 20% balance on event day." },
-      { title: "Add a milestone to a booking", desc: "Open the booking and scroll to the Payment Milestones section. Click Add Milestone. Enter the milestone name (e.g. Reservation Fee), the amount, and the due date. Click Save. Repeat for each payment stage." },
-      { title: "Record a payment", desc: "Click Mark as Paid on any pending or overdue milestone. Select the payment method: Cash, GCash, Maya, Card, or Bank Transfer. Enter the date collected. The milestone is marked Paid and the revenue dashboard updates immediately." },
-      { title: "Handle partial collections", desc: "If a client pays only part of a milestone, record the amount actually collected. The milestone status will reflect the partial collection and the outstanding balance is tracked automatically. The dashboard will flag this as a pending collection." },
-      { title: "Overdue milestones", desc: "Any milestone past its due date that hasn't been fully paid is automatically flagged as Overdue on the dashboard. Check the Overdue Milestones panel regularly - the earlier you follow up, the easier it is to collect." },
+      { title: "Add a milestone to a booking", desc: "Open the booking and go to the Payments tab. Click Add Milestone and enter the milestone name (e.g. Reservation Fee), the amount, and the due date. Repeat for each payment stage. Your client sees this schedule on their quote." },
+      { title: "Record a payment", desc: "Click Pay on any pending or overdue milestone and choose the payment method: Cash, GCash, Maya, Bank Transfer, Check, or Other. The milestone is marked Paid with today's date and the revenue dashboard updates immediately." },
+      { title: "Collect balances after the event", desc: "Balances are often paid after the event. Completed bookings still accept payments, and the booking shows what's still unpaid until you record it." },
+      { title: "Keep the schedule matching the total", desc: "When the pax or charges change, the Payments tab tells you how much of the total isn't in the schedule yet. To change an unpaid milestone, delete it and add it again with the new amount." },
+      { title: "Overdue milestones", desc: "An unpaid milestone becomes Overdue the day after its due date, and the dashboard counts your overdue payments. Check it regularly - the earlier you follow up, the easier it is to collect." },
     ],
   },
   {
     id: "supply",
     icon: FlaskConical,
-    title: "5. Supply Catalog",
+    title: "6. Supply, Recipes and Market List",
     steps: [
-      { title: "Open the Supply Catalog", desc: "Navigate to Catering → Supply Catalog from the sidebar. This is your ingredient and materials reference - not an inventory tracker, but a cost reference you can use when planning procurement for each event." },
+      { title: "Open the Supply Catalog", desc: "Navigate to Catering → Supply from the sidebar. This is your ingredient and materials reference - not an inventory tracker, but the prices and units your recipes and market lists are calculated from." },
       { title: "Add an ingredient or supply", desc: "Click Add Ingredient. Enter the name (e.g. Chicken, Jasmine Rice, Cooking Oil), select the unit type (KG, Grams, Liters, ML, Pieces, Packs, Boxes, or Other), and enter the cost per unit. Add a notes field for supplier name, brand preference, or buying notes." },
-      { title: "Use the catalog for procurement planning", desc: "Before each event, refer to the supply catalog to estimate what needs to be procured and at what cost. If you're serving a package that requires 2 kg of chicken per 10 guests, you can quickly calculate the total quantity and cost using the catalog's per-unit pricing." },
-      { title: "Keep costs updated", desc: "Edit ingredient costs whenever your supplier prices change. Keeping the catalog up to date ensures your procurement estimates stay accurate and your package pricing remains profitable." },
+      { title: "Build recipes from your catalog", desc: "In Catering → Recipes, list what one batch of a dish takes and how many servings it makes. Quantities use each supply item's own unit (kg, L, pcs), so there's nothing to convert." },
+      { title: "Link recipes to package items", desc: "In Catering → Packages, expand a package and click Link a recipe under each dish, or pick the recipe when you add the item. Each package then shows its food cost per guest and what percent of the price that is." },
+      { title: "Calculate the market list", desc: "Open a booking, go to the Supply tab, and click Calculate from recipes. Smapey multiplies every recipe by the booking's pax, combines the same ingredient across dishes (chicken for adobo and for lumpia becomes one line), and adds an optional buffer for spillage. Click Update supply list to save it. Dishes without a recipe are flagged so you know the list is incomplete." },
+      { title: "Recalculate after headcount changes", desc: "When the final headcount changes, calculate again. Quantities update in place, items you've already marked bought keep their actual quantity and cost, and items you added by hand stay." },
+      { title: "Share the list and track spending", desc: "Tap Copy list to paste the market list into Messenger for whoever does the market run. As you buy, record the actual quantity and cost - the Supply tab shows estimated vs. actual spend and food cost as a percent of the booking total." },
+      { title: "Keep costs updated", desc: "Edit ingredient costs whenever your supplier prices change. Recipe costs, package food costs, and new market lists use the updated prices." },
     ],
   },
   {
     id: "staff",
     icon: UserCheck,
-    title: "6. Staff Assignment",
+    title: "7. Staff Assignment",
     steps: [
-      { title: "Assign staff to a booking", desc: "Open any booking and scroll to the Staff section. Click Assign Staff, then select the team members who will be working this event. Each assigned staff member is listed under the booking - so the whole team knows their roster without needing a separate group chat message." },
-      { title: "Assign different roles per booking", desc: "You can assign multiple staff to one booking - head cook, servers, coordinator, driver. The system lists each person's name under the booking. There's no role label per assignment, so add notes in the booking's notes field if you need to specify who does what." },
+      { title: "Assign staff to a booking", desc: "Open any booking and go to the Staff tab. Click Assign Staff and enter each person's name, so the whole team knows the roster without a separate group chat message." },
+      { title: "Set roles and confirm attendance", desc: "Pick a role for each person (Head Cook, Assistant Cook, Waiter, Server, Coordinator, Driver, or Other) and add their phone number and notes. Mark each person Confirmed once they've said yes, so you can see who's still unconfirmed." },
       { title: "Remove a staff assignment", desc: "Click the remove icon next to any staff name on the booking to unassign them. This is useful if a team member becomes unavailable and you need to reassign the slot." },
     ],
   },
   {
     id: "dashboard",
     icon: BarChart3,
-    title: "7. Dashboard & Analytics",
+    title: "8. Dashboard & Analytics",
     steps: [
-      { title: "Open the Dashboard", desc: "Navigate to Catering → Dashboard from the sidebar. This is your home screen - it shows the full financial and operational picture of your catering business at a glance." },
-      { title: "Read the stat cards", desc: "The top row shows key numbers: Upcoming Events (confirmed bookings not yet completed), Revenue This Month (collected milestones this month), Payments Collected (total paid-out milestones), and Pending Payments (milestones not yet collected). These update in real time." },
-      { title: "Monitor overdue milestones", desc: "The Overdue Milestones panel lists every milestone that is past its due date and unpaid - client name, booking, amount, and days overdue. Use this panel to prioritize your follow-up calls and messages." },
-      { title: "Check upcoming events", desc: "The Upcoming Events list shows all confirmed bookings in date order - event date, client name, venue, and guest count. This is your operations forward-look: what events are coming up this week and next, and are they fully prepared." },
-      { title: "Review the monthly revenue trend", desc: "The revenue chart shows your monthly collections over time. Use this to spot your peak catering season (typically April–May and October–December for Philippine events), track whether revenue is growing, and set realistic targets for the next quarter." },
+      { title: "Open the Dashboard", desc: "Navigate to Catering → Dashboard from the sidebar. This is your home screen - it shows the financial and operational picture of your catering business at a glance." },
+      { title: "Read the stat cards", desc: "The cards show total, upcoming, and completed bookings; your clients and active packages; how many payments are overdue or still pending; and the revenue you collected this month." },
+      { title: "Follow up overdue payments", desc: "When the Overdue Payments card isn't zero, open your upcoming bookings' Payments tabs and contact those clients. Following up before the event is far easier than chasing after it." },
+      { title: "Check upcoming events", desc: "The Upcoming Events list shows confirmed and in-progress bookings in the next 30 days - event date, client, packages, and staff. This is your operations forward-look: what's coming up and whether it's ready." },
+      { title: "Review the monthly revenue trend", desc: "The revenue chart shows your collections for the last six months. Use it to spot your peak catering season (typically April-May and October-December for Philippine events), track whether revenue is growing, and set realistic targets." },
     ],
   },
 ]
@@ -101,16 +122,16 @@ const SECTIONS = [
 const TIPS = [
   { icon: Clock, tip: "Build your full package catalog before taking your first booking. This saves time on every inquiry, just select and attach, no re-quoting." },
   { icon: Lightbulb, tip: "Create payment milestones at the same time you confirm a booking. Don't wait until payment is due, setting them early gives you a clear picture of expected cash flow." },
-  { icon: AlertTriangle, tip: "Check the Overdue Milestones panel at least twice a week. Philippine catering clients often pay late, early follow-up before an event is far more effective than chasing after it." },
-  { icon: Shield, tip: "Always mark a booking as Completed only after the event is done and you're satisfied. Marking Complete auto-settles all outstanding milestones, so do it only when the event actually happened." },
+  { icon: AlertTriangle, tip: "Check the Overdue Payments count on the dashboard at least twice a week. Philippine catering clients often pay late, early follow-up before an event is far more effective than chasing after it." },
+  { icon: Shield, tip: "Marking a booking Completed doesn't mark any payment as paid. If the client still owes a balance after the event, it stays open on the booking until you record the payment." },
 ]
 
 const WORKFLOW = [
   { step: "1st", title: "Review upcoming events", desc: "Check all confirmed bookings for the month - verify packages attached, milestones created, and staff assigned for each event." },
-  { step: "2nd", title: "Follow up overdue milestones", desc: "Check the Overdue Milestones panel on the dashboard and contact clients with outstanding balances before their event date." },
-  { step: "3rd", title: "Plan procurement", desc: "Use the supply catalog to estimate ingredient quantities and costs for each upcoming event. Place supplier orders with enough lead time." },
+  { step: "2nd", title: "Follow up overdue milestones", desc: "Check the Overdue Payments count on the dashboard and contact clients with outstanding balances before their event date." },
+  { step: "3rd", title: "Plan procurement", desc: "Calculate each upcoming event's market list from recipes on the Supply tab, copy it to whoever does the market run, and order with enough lead time." },
   { step: "4th", title: "Record all collections", desc: "As payments come in, mark milestones as paid with the correct method and date. Keep the dashboard accurate in real time." },
-  { step: "5th", title: "Mark completed events", desc: "After each event, update the booking status to Completed. This auto-settles any outstanding milestones and feeds the revenue dashboard." },
+  { step: "5th", title: "Mark completed events", desc: "After each event, update the booking status to Completed. Any balance the client still owes stays open on the booking until you record the payment." },
   { step: "6th", title: "Review revenue trend", desc: "Check the monthly revenue chart to see if collections are growing and identify your busiest months for forward planning." },
 ]
 

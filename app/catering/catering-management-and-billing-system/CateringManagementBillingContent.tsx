@@ -18,7 +18,7 @@ const FEATURES = [
   { icon: Package, title: "Package-Based Pricing", desc: "Attach catering packages with price per head to each booking. The system calculates the expected total automatically - no manual computation per inquiry." },
   { icon: BarChart3, title: "Revenue Dashboard", desc: "See total revenue this month, payments collected, pending milestones, and overdue amounts - all on one screen. Monthly trend chart so you can see peak and slow seasons." },
   { icon: FlaskConical, title: "Supply Cost Tracking", desc: "Maintain a supply catalog with unit costs to estimate procurement expenses per event. Know your food cost before you finalize a booking." },
-  { icon: UserCheck, title: "Staff & Operations", desc: "Assign staff per booking, track event status from Pending to Completed, and get auto-settlement of outstanding milestones when a booking is marked done." },
+  { icon: UserCheck, title: "Staff & Operations", desc: "Assign staff per booking and track event status from Inquiry to Completed. Unpaid balances stay visible after the event until they're collected." },
 ]
 
 function useInView(options?: IntersectionObserverInit) {
