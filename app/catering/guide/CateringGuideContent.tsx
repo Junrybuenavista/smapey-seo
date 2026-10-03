@@ -5,7 +5,7 @@ import InternalLinks from "@/components/InternalLinks"
 import {
   BookOpen, ChefHat, Users, CalendarDays, Banknote,
   FlaskConical, UserCheck, BarChart3, CheckCircle2, ChevronRight,
-  Menu, X, Clock, Lightbulb, AlertTriangle, Shield, ArrowLeft, FileText, CalendarRange,
+  Menu, X, Clock, AlertTriangle, ArrowLeft, FileText, CalendarRange,
 } from "lucide-react"
 
 const INK = "#161616"
@@ -137,19 +137,21 @@ const SECTIONS = [
 ]
 
 const TIPS = [
-  { icon: Clock, tip: "Build your full package catalog before taking your first booking. This saves time on every inquiry, just select and attach, no re-quoting." },
-  { icon: Lightbulb, tip: "Create payment milestones at the same time you confirm a booking. Don't wait until payment is due, setting them early gives you a clear picture of expected cash flow." },
-  { icon: AlertTriangle, tip: "Check the Overdue Payments count on the dashboard at least twice a week. Philippine catering clients often pay late, early follow-up before an event is far more effective than chasing after it." },
-  { icon: Shield, tip: "Marking a booking Completed doesn't mark any payment as paid. If the client still owes a balance after the event, it stays open on the booking until you record the payment." },
+  { icon: Clock, tip: "Add your packages, recipes, and staff list before your first booking. After that, every new inquiry takes a few taps: pick the package, then send the quote." },
+  { icon: FileText, tip: "Send the quote link instead of typing prices into Messenger. Your client sees the full menu, charges, and payment schedule, and their acceptance is recorded with their name and the time." },
+  { icon: CalendarRange, tip: "Set your daily event limit before your busy season. The calendar marks full days and warns you before you promise a date you can't staff." },
+  { icon: FlaskConical, tip: "Recalculate the market list once the final headcount is in. Quantities update in place, and anything you've already bought keeps its actual cost." },
+  { icon: AlertTriangle, tip: "Check the Overdue Payments count on the dashboard at least twice a week. Following up before the event works far better than chasing a balance after it." },
+  { icon: UserCheck, tip: "Mark staff attendance on the event day. Payouts then only include the people who showed up, and Copy gives each person a breakdown to send with their GCash payment." },
 ]
 
 const WORKFLOW = [
-  { step: "1st", title: "Review upcoming events", desc: "Check all confirmed bookings for the month - verify packages attached, milestones created, and staff assigned for each event." },
-  { step: "2nd", title: "Follow up overdue milestones", desc: "Check the Overdue Payments count on the dashboard and contact clients with outstanding balances before their event date." },
-  { step: "3rd", title: "Plan procurement", desc: "Calculate each upcoming event's market list from recipes on the Supply tab, copy it to whoever does the market run, and order with enough lead time." },
-  { step: "4th", title: "Record all collections", desc: "As payments come in, mark milestones as paid with the correct method and date. Keep the dashboard accurate in real time." },
-  { step: "5th", title: "Mark completed events", desc: "After each event, update the booking status to Completed. Any balance the client still owes stays open on the booking until you record the payment." },
-  { step: "6th", title: "Review revenue trend", desc: "Check the monthly revenue chart to see if collections are growing and identify your busiest months for forward planning." },
+  { step: "1st", title: "Check the calendar", desc: "Look at the month ahead for full days and open inquiries before you promise new dates. Each day shows what's booked and what's still tentative." },
+  { step: "2nd", title: "Follow up on quotes", desc: "Confirm bookings whose quotes were accepted, send a new version where the client asked for changes, and nudge anyone who hasn't opened theirs." },
+  { step: "3rd", title: "Lock headcounts and shop", desc: "As final headcounts come in, update the pax, then calculate each event's market list from recipes and copy it to whoever does the market run." },
+  { step: "4th", title: "Line up your crew", desc: "Assign staff from your list with call times, and confirm each person. Smapey flags anyone already booked on another event that day." },
+  { step: "5th", title: "Collect payments", desc: "Record each payment as it comes in, and contact clients with overdue balances before their event date." },
+  { step: "6th", title: "Close out each event", desc: "Mark attendance, settle staff payouts, and mark the booking Completed. Any balance still owed stays open until you record it." },
 ]
 
 const accentFor = (i: number) => (i % 2 === 0 ? BLUE : AMBER)
@@ -237,7 +239,7 @@ export default function CateringGuideContent() {
             Smapey Catering Manager <span style={{ color: BLUE }}>Guide</span>
           </h1>
           <p className="text-lg max-w-2xl mx-auto mb-8" style={{ color: "#54514c" }}>
-            Everything you need to set up packages, register clients, create bookings, track payment milestones, manage your supply catalog, assign staff, and read the revenue dashboard, step by step.
+            Everything you need to run your catering business in Smapey, step by step: packages and recipes, quotations your clients accept from their phone, the event calendar, market lists, payment milestones, and staff payouts.
           </p>
           <div className="flex flex-wrap items-center justify-center gap-6 text-xs font-semibold" style={{ color: "#54514c" }}>
             {["10-minute setup", "No training required", "Free plan available"].map((t) => (
@@ -352,7 +354,7 @@ export default function CateringGuideContent() {
           <div className="rounded-[28px] border-2 p-10 flex flex-col md:flex-row items-center justify-between gap-6" style={{ background: AMBER, borderColor: INK, boxShadow: `10px 10px 0 ${INK}` }}>
             <div>
               <h3 className="text-2xl font-extrabold mb-2" style={{ color: INK }}>Ready to get started?</h3>
-              <p className="text-sm font-medium" style={{ color: "#5c4a28" }}>Create your free catering account and have your packages, first client, and first booking set up in under 10 minutes.</p>
+              <p className="text-sm font-medium" style={{ color: "#5c4a28" }}>Create your free catering account and have your packages, first client, and first quote ready to send in under 10 minutes.</p>
             </div>
             <a href={REGISTER_URL} className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full font-bold text-sm border-2 transition-transform hover:-translate-y-0.5 shrink-0" style={{ ...display, background: INK, color: "#fff", borderColor: INK }}>
               Start for free <ChevronRight className="w-4 h-4" />

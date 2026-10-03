@@ -4,7 +4,7 @@ import CateringGuideContent from "./CateringGuideContent"
 
 const PATH = "/catering/guide"
 const TITLE = "Catering Manager Guide - How to Use Smapey Catering | Smapey"
-const DESCRIPTION = "Step-by-step guide to using Smapey Catering Manager, from setting up packages and your supply catalog to creating bookings, tracking payment milestones, assigning staff, and reading the revenue dashboard."
+const DESCRIPTION = "Step-by-step guide to Smapey Catering Manager: packages, recipes and market lists, client quotations, the event calendar, payment milestones, and staff payouts."
 
 export const metadata = buildMetadata({
   title: TITLE,
