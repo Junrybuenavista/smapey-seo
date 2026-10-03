@@ -5,7 +5,7 @@ import InternalLinks from "@/components/InternalLinks"
 import {
   BookOpen, ChefHat, Users, CalendarDays, Banknote,
   FlaskConical, UserCheck, BarChart3, CheckCircle2, ChevronRight,
-  Menu, X, Clock, Lightbulb, AlertTriangle, Shield, ArrowLeft, FileText,
+  Menu, X, Clock, Lightbulb, AlertTriangle, Shield, ArrowLeft, FileText, CalendarRange,
 } from "lucide-react"
 
 const INK = "#161616"
