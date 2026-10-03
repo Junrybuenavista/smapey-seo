@@ -5,7 +5,7 @@ import { FAQS } from "./faqs"
 
 const PATH = "/catering/catering-business-philippines"
 const TITLE = "Catering Business Philippines - Run It Smarter with Smapey"
-const DESCRIPTION = "Running a catering business in the Philippines? Smapey helps you manage bookings, packages, payment collections, supply costs, and staff, all from one dashboard."
+const DESCRIPTION = "Running a catering business in the Philippines? Smapey helps you send quotes, track bookings on a calendar, plan market lists, collect payments, and pay staff."
 
 export const metadata = buildMetadata({
   title: TITLE,

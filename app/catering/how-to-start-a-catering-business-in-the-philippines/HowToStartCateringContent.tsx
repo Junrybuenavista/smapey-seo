@@ -105,7 +105,7 @@ const STEPS = [
   { num: "04", title: "Get your equipment and kitchen set up", body: [
     "For a home-based catering startup in the Philippines, your initial equipment investment can be kept minimal. The essentials: large pots and chafing dishes, serving trays and utensils, food containers, a cooler or chiller for transport, and basic service supplies (tablecloths, serving spoons, etc.).",
     "You don't need to own everything on day one, many catering supplies can be rented per event in the Philippines. Build supplier relationships with kitchen rental and equipment rental providers in your area.",
-    "As volume grows, invest in your own equipment to reduce per-event rental costs. Your supply catalog in Smapey can track which items you own vs. rent and factor costs accordingly.",
+    "As volume grows, invest in your own equipment to reduce per-event rental costs. Until then, build rental fees into your package prices or add them to the client's bill as a separate charge.",
   ] },
   { num: "05", title: "Find your first clients", body: [
     "The fastest way to get your first catering clients in the Philippines is through personal and community networks. Tell family, friends, officemates, and church communities that you're taking bookings. Word of mouth is still the primary referral channel for Philippine catering businesses.",
@@ -199,7 +199,7 @@ export default function HowToStartCateringContent() {
               </div>
               <div className="flex-1 text-center sm:text-left">
                 <h3 className="font-extrabold text-lg mb-1" style={{ color: INK }}>Ready to put a system in place?</h3>
-                <p className="text-sm" style={{ color: "#54514c" }}>Smapey Catering Manager is free for small catering businesses. Manage your bookings, packages, payment milestones, and supply catalog from day one, no spreadsheets, no Messenger threads.</p>
+                <p className="text-sm" style={{ color: "#54514c" }}>Smapey Catering Manager is free for small catering businesses. Send quotes, track bookings on a calendar, plan market lists from your recipes, collect payments by milestone, and pay your staff from day one, no spreadsheets, no Messenger threads.</p>
               </div>
               <a href={REGISTER_URL} className="shrink-0 inline-flex items-center gap-2 px-5 py-2.5 rounded-full font-bold text-sm border-2 transition-transform hover:-translate-y-0.5" style={{ ...display, background: AMBER, color: INK, borderColor: INK }}>
                 Get started free <ChevronRight className="w-4 h-4" />

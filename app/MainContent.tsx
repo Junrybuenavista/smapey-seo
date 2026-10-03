@@ -223,7 +223,7 @@ const PRODUCTS = [
     key: "CATERING",
     name: "Catering Manager",
     tagline: "Book events. Collect every peso.",
-    desc: "Manage catering bookings, packages, payment milestones, supply catalog, and staff, everything a Philippine catering business needs in one dashboard.",
+    desc: "Send quotes clients accept online, track bookings on a calendar, plan market lists from recipes, and pay your staff, everything a Philippine catering business needs in one dashboard.",
     href: "/catering",
     register: `${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=CATERING&plan=FREE`,
     accent: "#e11d48",

@@ -12,7 +12,7 @@ import { postsForHub } from "@/lib/blog"
 
 const PATH = "/catering"
 const TITLE = "Catering Services Philippines - Booking & Management Software | Smapey"
-const DESCRIPTION = "Smapey Catering Manager helps Philippine catering businesses manage bookings, packages, supply catalog, payment milestones, and staff, all in one dashboard. Start free."
+const DESCRIPTION = "Catering software for Philippine caterers: online quotes, a booking calendar, recipes and market lists, payment milestones, and staff payouts. Start free."
 
 export const metadata = buildMetadata({
   title: TITLE,

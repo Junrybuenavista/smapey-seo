@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from "react"
 import {
   ChefHat, CalendarDays, Users, Package, CheckCircle2, ChevronRight,
   Menu, X, Star, BarChart3, Shield, Clock, Zap,
-  Banknote, BookOpen, FlaskConical, UserCheck,
+  Banknote, BookOpen, FlaskConical, UserCheck, FileText,
   CalendarCheck,
 } from "lucide-react"
 import { usePricing, type Plan } from "@/lib/usePricing"
@@ -23,12 +23,12 @@ const display = { fontFamily: "'Hanken Grotesk', system-ui, sans-serif" }
 const FEATURES = [
   { icon: CalendarDays, title: "Event Calendar & Bookings", desc: "Track every booking from inquiry to completion on a list or a month calendar. Set how many events you can run in a day, and Smapey warns you before you overbook a date." },
   { icon: Users, title: "Client Profiles", desc: "Register clients with full contact details and keep a booking history per client. Returning clients are already in the system - no re-entering the same information twice." },
-  { icon: Package, title: "Package & Menu Builder", desc: "Build your catering packages with name, description, and price per head. Assign one or more packages to each booking so your team always knows what's been quoted." },
+  { icon: Package, title: "Package & Menu Builder", desc: "Build your catering packages with a price per head and the dishes on the menu. Link recipes to the dishes and each package shows its food cost per guest." },
   { icon: Banknote, title: "Payment Milestones", desc: "Break each booking's payment into milestones - reservation fee, partial payment, and full settlement. Record the method (Cash, GCash, Maya, Bank Transfer) and track what's still outstanding." },
   { icon: FlaskConical, title: "Recipes & Market List", desc: "Build recipes from your supply catalog and link them to your package dishes. Every booking calculates its market list and food cost for the exact headcount - 100 pax or 150, no manual multiplying." },
   { icon: UserCheck, title: "Staff & Payouts", desc: "Keep a staff list with each person's usual rate, assign them per event with call times, mark who showed up, and see exactly who you still owe. Per-event pay, not payroll." },
-  { icon: BarChart3, title: "Revenue Dashboard", desc: "See upcoming events, revenue this month, payments collected, and overdue milestones - all on one screen. Monthly revenue trend chart so you can spot your busy season at a glance." },
-  { icon: Clock, title: "Client Quotations", desc: "Send a quote link your client opens on their phone - menu, charges, payment schedule, and terms. They accept with their name or ask for changes, and you're notified either way." },
+  { icon: BarChart3, title: "Revenue Dashboard", desc: "See upcoming events, revenue collected this month, and pending and overdue payments on one screen, with a six-month trend so you can spot your busy season at a glance." },
+  { icon: FileText, title: "Client Quotations", desc: "Send a quote link your client opens on their phone - menu, charges, payment schedule, and terms. They accept with their name or ask for changes, and you're notified either way." },
   { icon: Shield, title: "Secure & Isolated", desc: "Each catering business gets its own isolated data space. Your client list, bookings, and payment history are never shared with anyone else." },
 ]
 
@@ -103,9 +103,9 @@ function Navbar() {
 function Hero() {
   const menu = ["Lechon", "Pancit Bihon", "Beef Caldereta", "Garlic Rice", "Buko Pandan"]
   const prep = [
-    { label: "Menu confirmed", done: true },
-    { label: "Ingredients ordered", done: true },
-    { label: "Staff assigned (6)", done: false, active: true },
+    { label: "Quote accepted", done: true },
+    { label: "Market list bought", done: true },
+    { label: "Staff confirmed (5 of 6)", done: false, active: true },
   ]
   return (
     <section className="relative min-h-screen flex items-center pt-16 overflow-hidden" style={{ background: CREAM, fontFamily: display.fontFamily }}>
@@ -132,7 +132,7 @@ function Hero() {
           </h1>
 
           <p className="text-lg max-w-md mx-auto lg:mx-0 mb-9 leading-relaxed" style={{ color: "#54514c" }}>
-            Manage bookings, menus, headcounts, ingredients, and staff from one screen. Smapey keeps every event on schedule so nothing (and no one) gets left behind.
+            Send quotes your clients accept from their phone, turn headcounts into market lists, and line up your staff, all from one screen. Smapey keeps every event on schedule so nothing (and no one) gets left behind.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center lg:justify-start justify-center gap-3 mb-9">
@@ -255,9 +255,9 @@ function Features() {
 }
 
 const STEPS = [
-  { step: "01", title: "Set up your packages & supply catalog", desc: "Add your catering packages with pricing per head and build out your supply catalog with unit costs. Takes about 10 minutes to set up a full menu." },
-  { step: "02", title: "Create bookings & assign packages", desc: "Add client details, set the event date and guest count, attach packages, and assign staff. Every booking is tracked from confirmation to event day." },
-  { step: "03", title: "Collect payments milestone by milestone", desc: "Issue reservation fees, partial payments, and full settlement milestones. Record collections against each milestone and the dashboard shows you exactly what's still outstanding." },
+  { step: "01", title: "Set up packages, recipes & staff", desc: "Add your packages with a price per head, recipes built from your supply catalog, and the people you call for events. About 10 minutes for a full menu." },
+  { step: "02", title: "Quote it, then book it", desc: "Send the client a quote link from the booking. When they accept, confirm the date, and the calendar warns you if that day is already full." },
+  { step: "03", title: "Prep, staff & collect", desc: "Calculate the market list for the final headcount, assign staff with call times, and record payments milestone by milestone until the balance is paid." },
 ]
 
 function HowItWorks() {

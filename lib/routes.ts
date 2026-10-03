@@ -280,14 +280,14 @@ export const CLUSTERS: Record<ClusterKey, RouteCluster> = {
     hub: {
       path: "/catering",
       title: "Catering Manager",
-      desc: "Manage catering bookings, packages, payment milestones, supply catalog, and staff, all in one dashboard.",
+      desc: "Send quotes, track bookings on a calendar, plan market lists from recipes, collect payments, and pay staff, all in one dashboard.",
     },
     pages: [
-      { path: "/catering/guide",                                                title: "Catering Manager Guide",                              desc: "Step-by-step guide to setting up packages, registering clients, creating bookings, tracking payment milestones, and reading the dashboard." },
-      { path: "/catering/catering-management-system",                          title: "Catering Management System",                          desc: "A complete catering management system for Philippine catering businesses - bookings, packages, billing, and staff." },
-      { path: "/catering/catering-business-philippines",                       title: "Catering Business Philippines",                       desc: "Running a catering business in the Philippines - manage bookings, payments, and supply costs from one dashboard." },
+      { path: "/catering/guide",                                                title: "Catering Manager Guide",                              desc: "Step-by-step guide to packages, recipes, quotations, the event calendar, payment milestones, and staff payouts." },
+      { path: "/catering/catering-management-system",                          title: "Catering Management System",                          desc: "A complete catering management system for Philippine caterers - bookings, quotes, recipes, billing, and staff payouts." },
+      { path: "/catering/catering-business-philippines",                       title: "Catering Business Philippines",                       desc: "Running a catering business in the Philippines - quotes, bookings, payments, food costs, and staff from one dashboard." },
       { path: "/catering/how-to-start-a-catering-business-in-the-philippines", title: "How to Start a Catering Business in the Philippines", desc: "Step-by-step guide to starting a catering business in the Philippines - permits, pricing, clients, and operations." },
-      { path: "/catering/catering-management-and-billing-system",              title: "Catering Management and Billing System",              desc: "Catering management and billing combined in one system - bookings, milestone payments, and revenue tracking." },
+      { path: "/catering/catering-management-and-billing-system",              title: "Catering Management and Billing System",              desc: "Catering management and billing in one system - quotes, milestone payments, charges, and revenue tracking." },
     ],
   },
 

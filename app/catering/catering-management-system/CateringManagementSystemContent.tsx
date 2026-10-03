@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from "react"
 import {
   ChefHat, CalendarDays, Users, Package, CheckCircle2, ChevronRight,
-  Banknote, FlaskConical, UserCheck, BarChart3,
+  Banknote, FlaskConical, UserCheck, BarChart3, FileText, CalendarRange, Receipt,
 Zap , Menu , X } from "lucide-react"
 import { usePricing, type Plan } from "@/lib/usePricing"
 import InternalLinks from "@/components/InternalLinks"
@@ -16,12 +16,15 @@ const CREAM = "#fbf7f0"
 const display = { fontFamily: "'Hanken Grotesk', system-ui, sans-serif" }
 
 const FEATURES = [
-  { icon: CalendarDays, title: "Event Booking Management", desc: "Create bookings with client, event date, venue, guest count, and status. Track every event from Pending to Confirmed to Completed in one list." },
-  { icon: Users, title: "Client Management", desc: "Register clients once and reuse their details on every booking. Full contact history and booking records per client." },
-  { icon: Package, title: "Package & Menu Builder", desc: "Define catering packages with name, description, and price per head. Attach one or more packages to each booking." },
-  { icon: Banknote, title: "Payment Milestone Tracking", desc: "Break payments into milestones - reservation fee, partial, balance. Record each collection with method and date. Outstanding balances tracked automatically." },
-  { icon: FlaskConical, title: "Supply Catalog", desc: "Maintain a catalog of ingredients and supplies with unit type and cost per unit. Link to packages for food cost estimation." },
-  { icon: BarChart3, title: "Revenue Dashboard", desc: "See upcoming events, monthly revenue, payments collected, and overdue milestones at a glance. Monthly trend chart included." },
+  { icon: CalendarRange, title: "Event Calendar & Bookings", desc: "Track every booking from inquiry to completion on a list or a month calendar. Set a daily event limit, and Smapey warns you before you overbook a date." },
+  { icon: FileText, title: "Client Quotations", desc: "Send a quote link your client opens on their phone, with the menu, charges, payment schedule, and your terms. They accept with their name or ask for changes, and you're notified." },
+  { icon: Users, title: "Client Management", desc: "Register clients once and reuse their details on every booking. Full contact details and booking history per client." },
+  { icon: Package, title: "Package & Menu Builder", desc: "Build packages with a price per head and the dishes on the menu. Once the dishes have recipes, each package shows its food cost per guest." },
+  { icon: FlaskConical, title: "Recipes & Market List", desc: "Build recipes from your supply catalog. Each booking calculates what to buy for its exact headcount, combines ingredients across dishes, and tracks estimated vs. actual spend." },
+  { icon: Receipt, title: "Charges & Final Headcount", desc: "Add transport, styling, or a discount to any booking. Update the headcount once and the package prices and total follow; the market list recalculates in one tap." },
+  { icon: Banknote, title: "Payment Milestone Tracking", desc: "Split each bill into a reservation fee, partial payments, and a balance. Record each payment with its method, and overdue balances are flagged automatically." },
+  { icon: UserCheck, title: "Staff & Payouts", desc: "Keep a staff list with usual rates, assign people per event with call times, mark attendance, and see exactly who you still owe." },
+  { icon: BarChart3, title: "Revenue Dashboard", desc: "See upcoming events, revenue collected this month, and overdue payments at a glance, with a six-month revenue trend." },
 ]
 
 function useInView(options?: IntersectionObserverInit) {
@@ -100,7 +103,7 @@ function Hero() {
         <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.04] tracking-tight mb-6" style={{ color: INK }}>
           Catering Management System<br /> <span style={{ color: BLUE }}>for Philippine Catering Businesses</span>
         </h1>
-        <p className="text-lg max-w-2xl mx-auto mb-10 leading-relaxed" style={{ color: "#54514c" }}>Smapey is a catering management system that replaces spreadsheets and paper records with a clean dashboard for bookings, packages, payment milestones, supply catalog, and staff assignment.</p>
+        <p className="text-lg max-w-2xl mx-auto mb-10 leading-relaxed" style={{ color: "#54514c" }}>Smapey is a catering management system that replaces spreadsheets and Messenger threads with one dashboard: bookings and a calendar, quotations clients accept online, recipes and market lists, payment milestones, and staff payouts.</p>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
           <a href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=CATERING&plan=FREE`} className="flex items-center gap-2 px-7 py-4 rounded-full font-bold text-sm border-2 transition-transform hover:-translate-y-0.5" style={{ ...display, background: AMBER, color: INK, borderColor: INK, boxShadow: `4px 4px 0 ${INK}` }}>
             Start free, no card needed <ChevronRight className="w-4 h-4" />

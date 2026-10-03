@@ -82,23 +82,25 @@ function Navbar() {
 }
 
 const CHALLENGES = [
-  { icon: CalendarDays, problem: "Bookings tracked in a group chat or notebook", solution: "A centralized booking list with status, event date, guest count, and assigned packages, every booking visible at once." },
-  { icon: Banknote, problem: "Chasing clients for partial payments and balances", solution: "Payment milestones per booking (reservation fee, partial, and final balance) with status tracking and overdue alerts on the dashboard." },
-  { icon: Package, problem: "Re-quoting the same packages every inquiry", solution: "A package catalog with name, description, and price per head. Attach packages to any booking in seconds." },
-  { icon: FlaskConical, problem: "No clear picture of food costs per event", solution: "A supply catalog with unit types and cost per unit. Link ingredients to packages and estimate procurement cost before the event." },
-  { icon: UserCheck, problem: "Staff assignments scattered across messages", solution: "Assign staff to each booking directly in the system. Everyone sees their roster, no separate announcement needed." },
-  { icon: BarChart3, problem: "No clear view of monthly revenue and collections", solution: "A revenue dashboard with upcoming events, money collected this month, pending milestones, and a monthly trend chart." },
+  { icon: CalendarDays, problem: "Bookings tracked in a group chat or notebook", solution: "A booking list and month calendar with status, date, and headcount, plus a daily event limit that warns you before you overbook a date." },
+  { icon: Banknote, problem: "Chasing clients for partial payments and balances", solution: "Payment milestones per booking (reservation fee, partial payments, and the balance), with overdue payments flagged automatically and counted on the dashboard." },
+  { icon: Package, problem: "Re-quoting the same packages every inquiry", solution: "A package catalog with price per head, and a quote link your client opens on their phone and accepts with their name. No more retyping prices in Messenger." },
+  { icon: FlaskConical, problem: "No clear picture of food costs per event", solution: "Recipes built from your supply catalog give each package a food cost per guest, and each booking calculates its market list for the exact headcount." },
+  { icon: UserCheck, problem: "Staff assignments scattered across messages", solution: "A staff list with usual rates. Assign people per event with call times, track who confirmed and who showed up, and see who you still owe." },
+  { icon: BarChart3, problem: "No clear view of monthly revenue and collections", solution: "A revenue dashboard with upcoming events, money collected this month, pending and overdue payments, and a six-month trend chart." },
 ]
 
 const WHAT_YOU_GET = [
-  "Event booking management with status tracking",
+  "Booking list and month calendar with a daily event limit",
+  "Quotations clients accept online, with version history",
   "Client profiles with full booking history",
-  "Package catalog with price per head",
-  "Payment milestones per booking, reservation, partial, balance",
-  "Supply catalog with unit costs",
-  "Staff assignment per event",
+  "Package catalog with price per head and food cost per guest",
+  "Recipes and market lists scaled to each event's headcount",
+  "Payment milestones per booking: reservation, partial, balance",
+  "Extra charges and discounts on any booking",
+  "Staff list with per-event rates, attendance, and payouts",
   "Revenue dashboard with monthly trend chart",
-  "GCash, Cash, Maya, Card, Bank Transfer payment logging",
+  "Cash, GCash, Maya, Bank Transfer, and Check payment logging",
   "Free plan, no credit card required",
   "Accessible from any browser, any device",
 ]
@@ -126,7 +128,7 @@ export default function CateringBusinessPhilippinesContent() {
               <span style={{ color: BLUE }}>without the paperwork chaos</span>
             </h1>
             <p className="text-lg max-w-2xl mx-auto mb-8 leading-relaxed" style={{ color: "#54514c" }}>
-              Smapey is built for Philippine catering businesses, manage bookings, packages, payment milestones, supply costs, and staff assignments all from one clean dashboard.
+              Smapey is built for Philippine catering businesses: send quotations clients accept online, see every event on a calendar, plan market lists from your recipes, collect payments by milestone, and pay your staff, all from one clean dashboard.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <a href={REGISTER_URL} className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full font-bold text-sm border-2 transition-transform hover:-translate-y-0.5" style={{ ...display, background: AMBER, color: INK, borderColor: INK, boxShadow: `4px 4px 0 ${INK}` }}>

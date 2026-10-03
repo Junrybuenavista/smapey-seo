@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect, useRef } from "react"
-import { ChefHat, CheckCircle2, ChevronRight, CalendarDays, Package, Banknote, FlaskConical, UserCheck, BarChart3 , Zap , Menu , X } from "lucide-react"
+import { ChefHat, CheckCircle2, ChevronRight, CalendarDays, Package, Banknote, FlaskConical, UserCheck, BarChart3, FileText, CalendarRange, Receipt, Zap, Menu, X } from "lucide-react"
 import { usePricing, type Plan } from "@/lib/usePricing"
 import InternalLinks from "@/components/InternalLinks"
 import { FAQS } from "./faqs"
@@ -13,12 +13,15 @@ const CREAM = "#fbf7f0"
 const display = { fontFamily: "'Hanken Grotesk', system-ui, sans-serif" }
 
 const FEATURES = [
-  { icon: Banknote, title: "Payment Milestones per Booking", desc: "Split each booking's total into milestones - reservation fee, partial payment, and final balance. Each milestone has an amount, due date, and payment status. Outstanding balances show on the dashboard automatically." },
+  { icon: Banknote, title: "Payment Milestones per Booking", desc: "Split each booking's total into milestones - reservation fee, partial payments, and the balance. Each milestone has an amount, due date, and status, and overdue ones are flagged automatically." },
+  { icon: FileText, title: "Quotes with a Payment Schedule", desc: "Send a quote link with the full bill and payment schedule. The client accepts with their name, so you collect against amounts they agreed to." },
   { icon: CalendarDays, title: "Booking-Linked Billing", desc: "Every payment is tied to a specific booking. No standalone invoices floating in a spreadsheet - collections are always linked to the event they belong to." },
-  { icon: Package, title: "Package-Based Pricing", desc: "Attach catering packages with price per head to each booking. The system calculates the expected total automatically - no manual computation per inquiry." },
-  { icon: BarChart3, title: "Revenue Dashboard", desc: "See total revenue this month, payments collected, pending milestones, and overdue amounts - all on one screen. Monthly trend chart so you can see peak and slow seasons." },
-  { icon: FlaskConical, title: "Supply Cost Tracking", desc: "Maintain a supply catalog with unit costs to estimate procurement expenses per event. Know your food cost before you finalize a booking." },
-  { icon: UserCheck, title: "Staff & Operations", desc: "Assign staff per booking and track event status from Inquiry to Completed. Unpaid balances stay visible after the event until they're collected." },
+  { icon: Package, title: "Package-Based Pricing", desc: "Attach catering packages with price per head to each booking and the total is calculated for you. Change the headcount and the total follows." },
+  { icon: Receipt, title: "Charges & Discounts", desc: "Add transport, styling, or extra staff to the bill, or subtract a discount. The Payments tab tells you when the schedule no longer adds up to the new total." },
+  { icon: FlaskConical, title: "Recipes & Food Cost", desc: "Recipes priced from your supply catalog give each package a food cost per guest, and each booking compares estimated vs. actual spend against its total." },
+  { icon: UserCheck, title: "Staff Payouts", desc: "Set a rate per person per event, mark attendance, and see who you still owe for past events. Per-event pay, not payroll." },
+  { icon: CalendarRange, title: "Event Calendar", desc: "See every event on a month calendar with a daily event limit, so you don't take a booking you can't deliver." },
+  { icon: BarChart3, title: "Revenue Dashboard", desc: "See revenue collected this month and how many payments are pending or overdue on one screen, with a monthly trend chart for peak and slow seasons." },
 ]
 
 function useInView(options?: IntersectionObserverInit) {
@@ -97,7 +100,7 @@ function Hero() {
         <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.04] tracking-tight mb-6" style={{ color: INK }}>
           Catering Management and Billing System<br /> <span style={{ color: BLUE }}>in one dashboard</span>
         </h1>
-        <p className="text-lg max-w-2xl mx-auto mb-10 leading-relaxed" style={{ color: "#54514c" }}>Smapey combines catering management and billing in one place. Handle bookings, packages, payment milestones, supply costs, and staff assignment, without switching between tools or maintaining separate records.</p>
+        <p className="text-lg max-w-2xl mx-auto mb-10 leading-relaxed" style={{ color: "#54514c" }}>Smapey combines catering management and billing in one place. Quote the client, book the date, plan the food, collect payments milestone by milestone, and pay your staff, without switching between tools or keeping separate records.</p>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
           <a href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=CATERING&plan=FREE`} className="flex items-center gap-2 px-7 py-4 rounded-full font-bold text-sm border-2 transition-transform hover:-translate-y-0.5" style={{ ...display, background: AMBER, color: INK, borderColor: INK, boxShadow: `4px 4px 0 ${INK}` }}>
             Start free, no card needed <ChevronRight className="w-4 h-4" />
