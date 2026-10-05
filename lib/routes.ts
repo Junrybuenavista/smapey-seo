@@ -4,7 +4,7 @@ export type RouteInfo = {
   desc: string
 }
 
-export type ClusterKey = "invoice" | "booking" | "gym" | "essay" | "car-rental" | "laundry" | "salon" | "massage" | "airbnb" | "lending" | "restaurant" | "store" | "clinic" | "vet-clinic" | "boarding-house" | "catering" | "water-refilling" | "school-desk" | "repair-shop"
+export type ClusterKey = "invoice" | "booking" | "gym" | "essay" | "car-rental" | "laundry" | "salon" | "massage" | "airbnb" | "lending" | "restaurant" | "store" | "clinic" | "vet-clinic" | "boarding-house" | "catering" | "water-refilling" | "school-desk" | "repair-shop" | "car-wash"
 
 export type RouteCluster = {
   label: string
@@ -136,6 +136,23 @@ export const CLUSTERS: Record<ClusterKey, RouteCluster> = {
       { path: "/repair-shop-software/guide", title: "Repair Shop Software Guide", desc: "Set-up to payout, in the order you will actually meet it." },
       { path: "/invoice/invoicing-software-for-auto-repair", title: "Invoicing for Auto Repair", desc: "Billing a repair job - quotations, itemised invoices, and payment tracking." },
       { path: "/repair-shop-software/auto-repair-estimate-template", title: "Auto Repair Estimate Template", desc: "A free printable repair estimate - itemise parts and labour, total it, and print or save as PDF." },
+    ],
+  },
+
+  "car-wash": {
+    label: "Car Wash Software",
+    hub: {
+      path: "/car-wash",
+      title: "Car Wash POS & Management System",
+      desc: "Records by plate, a price board by vehicle size, crew share per car and end-of-day closing, for car wash and motor wash shops.",
+    },
+    pages: [
+      { path: "/car-wash/guide",                                         title: "Smapey Carwash Guide",                               desc: "Set-up to closing, in the order you will meet it: the price board, taking cars in, the queue, crew share, the stamp card and the day's count." },
+      { path: "/car-wash/car-wash-price-list-philippines",               title: "Car Wash Price List Philippines",                    desc: "Typical car wash and motor wash prices by vehicle size, from published shop price lists, and how to set your own." },
+      { path: "/car-wash/how-to-start-a-car-wash-business-philippines",  title: "How to Start a Car Wash Business in the Philippines", desc: "Capital, the permits a car wash needs, including the DENR discharge permit, equipment, water, crew pay and pricing." },
+      { path: "/car-wash/car-wash-tarpaulin-design",                     title: "Free Car Wash Tarpaulin Maker",                       desc: "Type your prices by vehicle size and download a print-ready price list tarpaulin, 2×3 ft to 4×3 ft or A4." },
+      { path: "/car-wash/car-wash-business-plan-philippines",            title: "Car Wash Business Plan Philippines",                  desc: "A sample plan to fill in, section by section, with the capacity calculation and a free break-even calculator." },
+      { path: "/car-wash/car-wash-name-ideas",                           title: "Car Wash Name Ideas",                                 desc: "Classic, catchy, Filipino and Taglish names, plus package names, taglines and how to check a name with the DTI." },
     ],
   },
 
@@ -366,6 +383,7 @@ export const ALL_CLUSTERS: ClusterKey[] = [
   "water-refilling",
   "school-desk",
   "repair-shop",
+  "car-wash",
 ]
 
 export function clusterForPath(pathname: string): ClusterKey | null {

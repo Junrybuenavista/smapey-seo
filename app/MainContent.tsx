@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation"
 import {
   FileText, Dumbbell, BookOpen, CalendarDays, Car, Shirt, Scissors,
   CalendarPlus, Home, Landmark, UtensilsCrossed, ShoppingBag, Stethoscope, PawPrint,
-  Building2, ChefHat, Droplets, GraduationCap, Wrench,
+  Building2, ChefHat, Droplets, GraduationCap, Wrench, Bubbles,
   ArrowRight, CheckCircle2, Zap, Shield, TrendingUp,
   Clock, ChevronDown, Menu, X, Users, Sparkles,
   MousePointerClick, LayoutDashboard, Star,
@@ -271,6 +271,19 @@ const PRODUCTS = [
     features: ["Job orders with photo evidence", "Parts stock that deducts itself", "Mechanic commission tracking", "Plate lookup & service history"],
     stat: { value: "1 plate", label: "to the whole history" },
   },
+  {
+    key: "CAR_WASH",
+    name: "Car & Motor Wash",
+    tagline: "Every car on record.",
+    desc: "Records by plate, a price board by vehicle size, each washer's share worked out per car, and an end-of-day cash count, built for car wash and motor wash shops in the Philippines.",
+    href: "/car-wash",
+    register: `${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=CAR_WASH&plan=FREE`,
+    accent: "#0284c7",
+    accentLight: "#f0f9ff",
+    Icon: Bubbles,
+    features: ["Plate lookup & visit history", "Price board by vehicle size", "Crew share worked out per car", "End-of-day cash count"],
+    stat: { value: "0", label: "cars off the record" },
+  },
 ]
 
 const COUNT_WORD: Record<number, string> = {
@@ -301,6 +314,7 @@ const FOR_WHO = [
   { emoji: "🍳", label: "Catering Businesses" },
   { emoji: "💧", label: "Water Station Owners" },
   { emoji: "🏍️", label: "Auto & Moto Shop Owners" },
+  { emoji: "🧽", label: "Car Wash Owners" },
 ]
 
 const STEPS = [
