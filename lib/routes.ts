@@ -114,10 +114,6 @@ export const CLUSTERS: Record<ClusterKey, RouteCluster> = {
     pages: [
       { path: "/car-rental/how-to-start-a-car-rental-business-philippines", title: "How to Start a Car Rental Business (Philippines)", desc: "Whether you supply a driver decides the permits, the insurance and the risk. The LTFRB fork, explained." },
       { path: "/car-rental/guide", title: "Car Rental Software Guide", desc: "What car rental software does and what features matter most." },
-      { path: "/car-rental/best-car-rental-software", title: "Best Car Rental Software", desc: "What to look for and how Smapey compares." },
-      { path: "/car-rental/car-rental-management-software", title: "Car Rental Management Software", desc: "Fleet, reservation, and revenue management in one dashboard." },
-      { path: "/car-rental/car-rental-booking-software", title: "Car Rental Booking Software", desc: "Reservation flows that let customers book vehicles online." },
-      { path: "/car-rental/car-rental-software-for-small-business", title: "Car Rental Software for Small Business", desc: "Built for small rental fleets - affordable, simple, complete." },
       { path: "/car-rental/car-rental-agreement-template", title: "Car Rental Agreement Template", desc: "A free printable rental contract covering renter, vehicle, period, rates, deposit, and terms." },
     ],
   },
@@ -286,7 +282,6 @@ export const CLUSTERS: Record<ClusterKey, RouteCluster> = {
     },
     pages: [
       { path: "/boarding-house/guide",                                          title: "Boarding House Manager Guide",                         desc: "Step-by-step guide to setting up rooms, registering tenants, creating tenancies, issuing rent and utility bills, and reading the dashboard." },
-      { path: "/boarding-house/boarding-house-management-system",              title: "Boarding House Management System",              desc: "A complete web-based system for managing boarding house rooms, tenants, rent bills, utility bills, and occupancy in the Philippines." },
       { path: "/boarding-house/boarding-house-business-philippines",           title: "Boarding House Business in the Philippines",    desc: "How to run a boarding house business in the Philippines - tenant management, billing, and collections made easy." },
       { path: "/boarding-house/boarding-house-business-plan-sample-philippines", title: "Boarding House Business Plan Sample Philippines", desc: "A sample boarding house business plan for the Philippines - target market, pricing model, operations plan, and management system." },
       { path: "/boarding-house/boarding-house-management-and-billing-system",  title: "Boarding House Management and Billing System",  desc: "Combine boarding house management and billing in one system - rooms, tenants, rent bills, utility bills, and payment tracking." },

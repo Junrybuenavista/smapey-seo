@@ -84,6 +84,26 @@ const nextConfig = {
         destination: "/invoice/sales-invoice-sample",
         permanent: true,
       },
+
+      // ── The four car rental software spokes, folded into the hub ──
+      //
+      // These chased "best", "booking", "management" and "for small business"
+      // car rental software. Between them they earned one click in the 28 days
+      // to 4 October: 971 of the cluster's 1,040 impressions sat on
+      // best-car-rental-software at average position 51 - seen by nobody - and
+      // car-rental-booking-software recorded no impressions at all.
+      //
+      // They were also the same page four times. Measured on the prose with
+      // the JSX stripped, their 8-gram overlap with each other is 87-89%, and
+      // 75% against the hub, on bodies of roughly 460 words each. Four
+      // near-identical thin pages competing with the hub for one term is the
+      // shape of problem that cost the invoice cluster its best page, so they
+      // consolidate upward instead. The hub carries the software terms; the
+      // owner-intent guide carries the demand that actually exists.
+      { source: "/car-rental/best-car-rental-software", destination: "/car-rental", permanent: true },
+      { source: "/car-rental/car-rental-booking-software", destination: "/car-rental", permanent: true },
+      { source: "/car-rental/car-rental-management-software", destination: "/car-rental", permanent: true },
+      { source: "/car-rental/car-rental-software-for-small-business", destination: "/car-rental", permanent: true },
     ]
   },
 }

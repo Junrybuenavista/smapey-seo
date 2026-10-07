@@ -154,11 +154,12 @@ export default function Page() {
               <Link href="/car-rental" className="font-bold underline" style={{ color: BLUE }}>
                 car rental software
               </Link>{" "}
-              tracks the fleet calendar, customers, and payments, and there is a{" "}
-              <Link href="/car-rental/car-rental-booking-software" className="font-bold underline" style={{ color: BLUE }}>
-                booking-focused version
+              tracks the fleet calendar, customers, and payments, so the reservation and the signed agreement behind
+              it sit on the same record instead of in two places. If you are still deciding whether to start, the{" "}
+              <Link href="/car-rental/how-to-start-a-car-rental-business-philippines" className="font-bold underline" style={{ color: BLUE }}>
+                self-drive and with-driver fork
               </Link>{" "}
-              if reservations are the part slowing you down.
+              is the thing to settle first.
             </p>
           </div>
         </section>
