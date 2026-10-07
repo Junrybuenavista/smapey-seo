@@ -11,8 +11,8 @@ import { FAQS } from "./faqs"
 import { postsForHub } from "@/lib/blog"
 
 const PATH = "/car-rental"
-const TITLE = "Car Rental Software | Smapey"
-const DESCRIPTION = "Smapey is car rental software that helps you manage your fleet, track rentals, handle customers, and monitor revenue, all from one dashboard. Free plan available."
+const TITLE = "Car Rental Software Philippines | Smapey"
+const DESCRIPTION = "Track which vehicle is out, with whom and when it is due, plus deposits, balances and utilisation per car. Built for Philippine operators. Free plan."
 
 export const metadata = buildMetadata({
   title: TITLE,

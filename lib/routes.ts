@@ -112,6 +112,7 @@ export const CLUSTERS: Record<ClusterKey, RouteCluster> = {
       desc: "Manage vehicles, reservations, deposits, and overdue alerts.",
     },
     pages: [
+      { path: "/car-rental/how-to-start-a-car-rental-business-philippines", title: "How to Start a Car Rental Business (Philippines)", desc: "Whether you supply a driver decides the permits, the insurance and the risk. The LTFRB fork, explained." },
       { path: "/car-rental/guide", title: "Car Rental Software Guide", desc: "What car rental software does and what features matter most." },
       { path: "/car-rental/best-car-rental-software", title: "Best Car Rental Software", desc: "What to look for and how Smapey compares." },
       { path: "/car-rental/car-rental-management-software", title: "Car Rental Management Software", desc: "Fleet, reservation, and revenue management in one dashboard." },
