@@ -4,8 +4,8 @@ import Content from "./Content"
 import { FAQS } from "./faqs"
 
 const PATH = "/invoice/official-receipt-philippines"
-const TITLE = "Official Receipt Philippines: What It's For After RR 7-2024 | Smapey"
-const DESCRIPTION = "The official receipt is no longer evidence of a sale in the Philippines - RR 7-2024 made the invoice primary for goods and services alike. What an official receipt is now, a correct sample, the input-tax statement it must carry, and how it differs from a collection receipt."
+const TITLE = "Official Receipt Philippines: What It's For Now | Smapey"
+const DESCRIPTION = "Since RR 7-2024 the invoice proves the sale, not the official receipt. What an OR is for now, a correct sample, and the input-tax line it must carry."
 
 export const metadata = buildMetadata({
   title: TITLE,

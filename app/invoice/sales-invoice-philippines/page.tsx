@@ -4,8 +4,8 @@ import Content from "./Content"
 import { FAQS } from "./faqs"
 
 const PATH = "/invoice/sales-invoice-philippines"
-const TITLE = "Sales Invoice Philippines: What It Is and What BIR Requires (2026) | Smapey"
-const DESCRIPTION = "What a sales invoice is in the Philippines, why cash, charge, credit, billing and service invoices are all the same document, how to compute the 12% VAT, when you must issue one, and what separates a valid invoice from a supplementary document."
+const TITLE = "Sales Invoice Philippines: What BIR Requires | Smapey"
+const DESCRIPTION = "Cash, charge, credit and billing invoices are the same BIR document. What a valid sales invoice must contain, and how to compute the 12% VAT."
 
 export const metadata = buildMetadata({
   title: TITLE,

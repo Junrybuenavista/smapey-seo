@@ -4,7 +4,7 @@ import LendingContent from "./LendingContent"
 
 const PATH = "/lending"
 const TITLE = "Lending & Loan Management Software | Smapey"
-const DESCRIPTION = "Smapey Lending is the software to run your own lending business, borrowers, loans, amortization schedules, payment tracking, and collections analytics. Free plan available."
+const DESCRIPTION = "Run your lending business: borrowers, loans, amortization schedules, payment tracking and collections. Software for lenders, not a loan app. Free plan."
 
 export const metadata = buildMetadata({
   title: TITLE,

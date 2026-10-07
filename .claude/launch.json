@@ -13,6 +13,12 @@
       "runtimeExecutable": "npm",
       "runtimeArgs": ["run", "dev", "--prefix", "/Users/junrybuenavista/Dev/saas-platform-frontend/frontend"],
       "port": 5173
+    },
+    {
+      "name": "smapey-api",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev", "--prefix", "/Users/junrybuenavista/Dev/saas-platform"],
+      "port": 3000
     }
   ]
 }

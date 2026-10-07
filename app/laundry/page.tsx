@@ -11,8 +11,8 @@ import { FAQS } from "./faqs"
 import { postsForHub } from "@/lib/blog"
 
 const PATH = "/laundry"
-const TITLE = "Laundry App | Laundry Shop Management Software | Smapey LaundryOS"
-const DESCRIPTION = "Smapey LaundryOS is a laundry app for small laundry shops. Track orders, send SMS notifications, manage customers, and accept GCash or cash payments. Free plan available."
+const TITLE = "Laundry App & Shop Management Software | Smapey"
+const DESCRIPTION = "Track laundry orders, send SMS when loads are ready, manage customers and accept GCash or cash. Built for small Philippine shops. Free plan."
 
 export const metadata = buildMetadata({
   title: TITLE,

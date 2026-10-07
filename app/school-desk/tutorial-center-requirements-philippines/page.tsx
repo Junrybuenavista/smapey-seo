@@ -4,8 +4,8 @@ import Content from "./Content"
 import { FAQS } from "./faqs"
 
 const PATH = "/school-desk/tutorial-center-requirements-philippines"
-const TITLE = "Tutorial Center Requirements Philippines: Permits & Checklist (2026)"
-const DESCRIPTION = "The complete requirements to open a tutorial center in the Philippines, DTI/SEC, Barangay Clearance, Mayor's Permit, BIR, and LGU/DepEd considerations. Plus the free software to run it."
+const TITLE = "Tutorial Center Requirements Philippines (2026 Checklist)"
+const DESCRIPTION = "Every permit needed to open a tutorial center in the Philippines: DTI or SEC, barangay clearance, mayor's permit, BIR, and DepEd considerations."
 
 export const metadata = buildMetadata({
   title: TITLE,

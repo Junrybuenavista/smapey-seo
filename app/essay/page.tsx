@@ -10,7 +10,7 @@ import { FAQS } from "./faqs"
 
 const PATH = "/essay"
 const TITLE = "AI Essay Grader | Instant Rubric Feedback | Smapey Essay"
-const DESCRIPTION = "Smapey Essay is an AI essay grader that scores student work instantly, rubric-based feedback, OCR for handwritten essays, and class analytics. Start free, no credit card required."
+const DESCRIPTION = "Grade student essays instantly with rubric-based AI feedback. Handwritten essays via OCR, class analytics, and a free plan with no credit card."
 
 export const metadata = buildMetadata({
   title: TITLE,
