@@ -66,6 +66,24 @@ const nextConfig = {
         destination: "/",
         permanent: true,
       },
+      {
+        // The sample page moved to a fresh URL to escape a stuck verdict.
+        //
+        // Google called the old path "Duplicate without user-selected
+        // canonical" on 10 Sep and then stopped crawling it entirely - the
+        // last crawl never moved in the four weeks after, through two indexing
+        // requests and a fix to the thing that most likely caused it. A URL in
+        // that state is self-reinforcing: Google will not recrawl what it has
+        // already filed as redundant.
+        //
+        // It was never indexed, so the move costs nothing, and `sales invoice
+        // sample` - 5,400 searches a month, the biggest term in the cluster -
+        // is currently served by no page at all. The shorter slug also matches
+        // that term more closely than the -philippines one did.
+        source: "/invoice/sales-invoice-sample-philippines",
+        destination: "/invoice/sales-invoice-sample",
+        permanent: true,
+      },
     ]
   },
 }

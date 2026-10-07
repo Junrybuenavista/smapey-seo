@@ -134,7 +134,7 @@ export default function Content() {
 
       <InternalLinks
         cluster="invoice"
-        currentPath="/invoice/sales-invoice-sample-philippines"
+        currentPath="/invoice/sales-invoice-sample"
         limit={6}
       />
       <Footer />

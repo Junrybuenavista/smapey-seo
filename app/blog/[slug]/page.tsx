@@ -24,6 +24,29 @@ async function getPost(slug: string) {
   }
 }
 
+/** Google shows roughly this much of a title before truncating it. */
+const TITLE_BUDGET = 60
+const BLOG_SUFFIX = " | Smapey Blog"
+
+/**
+ * The brand suffix, but only when it fits.
+ *
+ * Appending it unconditionally was costing most of the blog its titles in the
+ * SERP: 53 of 60 posts rendered over 60 characters, while 52 of those 60 had a
+ * bare title that already fitted. The suffix alone - fourteen characters - was
+ * the thing pushing them over, including the site's single biggest page, whose
+ * own title is a comfortable 54.
+ *
+ * A writer who wants something specific still sets metaTitle, which wins over
+ * this entirely. Eight posts have a bare title longer than the budget on their
+ * own; those need a shorter title or a metaTitle, and no code can fix them.
+ */
+function blogTitleTag(title: string): string {
+  return title.length + BLOG_SUFFIX.length <= TITLE_BUDGET
+    ? `${title}${BLOG_SUFFIX}`
+    : title
+}
+
 export async function generateMetadata(
   { params }: { params: { slug: string } }
 ): Promise<Metadata> {
@@ -36,7 +59,7 @@ export async function generateMetadata(
   const url = `${SITE}/blog/${post.slug}`
 
   return {
-    title: post.metaTitle || `${post.title} | Smapey Blog`,
+    title: post.metaTitle || blogTitleTag(post.title),
     description,
     alternates: { canonical: url },
     openGraph: {

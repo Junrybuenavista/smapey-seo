@@ -128,7 +128,7 @@ export default function Content() {
               blurb="What the Ease of Paying Taxes Act changed in 2024, what the official receipt is still good for, and the mistake with a surcharge attached."
             />
             <SpokeLink
-              href="/invoice/sales-invoice-sample-philippines"
+              href="/invoice/sales-invoice-sample"
               title="Sales invoice sample"
               blurb="A filled-in VAT invoice with every required element, and a field-by-field walkthrough of how to fill one up."
             />

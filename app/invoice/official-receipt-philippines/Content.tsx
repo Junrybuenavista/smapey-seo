@@ -132,7 +132,7 @@ export default function Content() {
             What changes is what goes on the face of it: there is no 12% VAT line to separate out, and the invoice
             should be marked as non-VAT so nobody mistakes the total for a VAT-inclusive figure. A filled example of
             the non-VAT variant is on the{" "}
-            <Link href="/invoice/sales-invoice-sample-philippines" className="underline">sales invoice sample</Link>{" "}
+            <Link href="/invoice/sales-invoice-sample" className="underline">sales invoice sample</Link>{" "}
             page.
           </AP>
 

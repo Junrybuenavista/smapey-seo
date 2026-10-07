@@ -3,7 +3,7 @@ import { buildMetadata, faqSchema, breadcrumbSchema } from "@/lib/seo"
 import Content from "./Content"
 import { FAQS } from "./faqs"
 
-const PATH = "/invoice/sales-invoice-sample-philippines"
+const PATH = "/invoice/sales-invoice-sample"
 const TITLE = "Sales Invoice Sample Philippines (2026 BIR Format) | Smapey"
 const DESCRIPTION = "A filled-in Philippine VAT sales invoice sample with every element RR 7-2024 requires, a field-by-field walkthrough of how to fill it up, the non-VAT version, and the four mistakes that come up most."
 
