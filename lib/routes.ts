@@ -4,7 +4,7 @@ export type RouteInfo = {
   desc: string
 }
 
-export type ClusterKey = "invoice" | "booking" | "gym" | "essay" | "car-rental" | "laundry" | "salon" | "massage" | "airbnb" | "lending" | "restaurant" | "store" | "clinic" | "vet-clinic" | "boarding-house" | "catering" | "water-refilling" | "school-desk" | "repair-shop" | "car-wash"
+export type ClusterKey = "invoice" | "booking" | "gym" | "essay" | "car-rental" | "laundry" | "salon" | "massage" | "airbnb" | "lending" | "restaurant" | "store" | "clinic" | "vet-clinic" | "boarding-house" | "catering" | "water-refilling" | "school-desk" | "repair-shop" | "car-wash" | "barbershop"
 
 export type RouteCluster = {
   label: string
@@ -150,6 +150,18 @@ export const CLUSTERS: Record<ClusterKey, RouteCluster> = {
       { path: "/car-wash/car-wash-tarpaulin-design",                     title: "Free Car Wash Tarpaulin Maker",                       desc: "Type your prices by vehicle size and download a print-ready price list tarpaulin, 2×3 ft to 4×3 ft or A4." },
       { path: "/car-wash/car-wash-business-plan-philippines",            title: "Car Wash Business Plan Philippines",                  desc: "A sample plan to fill in, section by section, with the capacity calculation and a free break-even calculator." },
       { path: "/car-wash/car-wash-name-ideas",                           title: "Car Wash Name Ideas",                                 desc: "Classic, catchy, Filipino and Taglish names, plus package names, taglines and how to check a name with the DTI." },
+    ],
+  },
+
+  barbershop: {
+    label: "Barbershop Software",
+    hub: {
+      path: "/barbershop",
+      title: "Barbershop Management System",
+      desc: "A walk-in queue with each barber's wait, commission worked out per cut, daily closing and customer texts, for barbershops in the Philippines.",
+    },
+    pages: [
+      { path: "/barbershop/how-to-start-a-barbershop-business-philippines", title: "How to Start a Barbershop Business in the Philippines", desc: "Capital, barber chair prices, the sanitary permit and health certificates, barber pay, haircut prices, and a business plan with a break-even calculator." },
     ],
   },
 
@@ -380,6 +392,7 @@ export const ALL_CLUSTERS: ClusterKey[] = [
   "school-desk",
   "repair-shop",
   "car-wash",
+  "barbershop",
 ]
 
 export function clusterForPath(pathname: string): ClusterKey | null {

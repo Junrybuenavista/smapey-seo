@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation"
 import {
   FileText, Dumbbell, BookOpen, CalendarDays, Car, Shirt, Scissors,
   CalendarPlus, Home, Landmark, UtensilsCrossed, ShoppingBag, Stethoscope, PawPrint,
-  Building2, ChefHat, Droplets, GraduationCap, Wrench, Bubbles,
+  Building2, ChefHat, Droplets, GraduationCap, Wrench, Bubbles, ScissorsLineDashed,
   ArrowRight, CheckCircle2, Zap, Shield, TrendingUp,
   Clock, ChevronDown, Menu, X, Users, Sparkles,
   MousePointerClick, LayoutDashboard, Star,
@@ -284,6 +284,19 @@ const PRODUCTS = [
     features: ["Plate lookup & visit history", "Price board by vehicle size", "Crew share worked out per car", "End-of-day cash count"],
     stat: { value: "0", label: "cars off the record" },
   },
+  {
+    key: "BARBERSHOP",
+    name: "Barbershop",
+    tagline: "Keep the line moving.",
+    desc: "A walk-in queue with each barber's wait, barber commission worked out per cut, daily closing, and texts when a customer is next, built for barbershops in the Philippines.",
+    href: "/barbershop",
+    register: `${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=BARBERSHOP&plan=FREE`,
+    accent: "#1e3a8a",
+    accentLight: "#eff6ff",
+    Icon: ScissorsLineDashed,
+    features: ["Walk-in queue with wait times", "Barber commission per cut", "Daily closing", "Texts when they're next"],
+    stat: { value: "0", label: "commission sums at closing" },
+  },
 ]
 
 const COUNT_WORD: Record<number, string> = {
@@ -315,6 +328,7 @@ const FOR_WHO = [
   { emoji: "💧", label: "Water Station Owners" },
   { emoji: "🏍️", label: "Auto & Moto Shop Owners" },
   { emoji: "🧽", label: "Car Wash Owners" },
+  { emoji: "💈", label: "Barbershop Owners" },
 ]
 
 const STEPS = [
