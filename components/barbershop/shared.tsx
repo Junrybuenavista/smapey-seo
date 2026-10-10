@@ -13,7 +13,8 @@ export const LOGIN_URL = `${process.env.NEXT_PUBLIC_FRONTEND_URL}/login`
 export const HUB_PATH = "/barbershop"
 export const START_PATH = "/barbershop/how-to-start-a-barbershop-business-philippines"
 export const DESIGN_PATH = "/barbershop/barbershop-design-ideas-philippines"
-export const NAV_LINKS = ["Features", "How it Works", "Pricing", "FAQ", "Start-up Guide"]
+export const GUIDE_URL = "/barbershop/guide"
+export const NAV_LINKS = ["Features", "How it Works", "Pricing", "FAQ", "Guide"]
 
 export const INK = "#161616"
 export const BLUE = "#2f6bff"
@@ -76,7 +77,7 @@ export function Navbar() {
   const [open, setOpen] = useState(false)
   useFont()
   const linkHref = (l: string) =>
-    l === "Start-up Guide" ? START_PATH : `${HUB_PATH}#${l.toLowerCase().replace(/\s+/g, "-")}`
+    l === "Guide" ? GUIDE_URL : `${HUB_PATH}#${l.toLowerCase().replace(/\s+/g, "-")}`
   return (
     <nav className="fixed top-0 inset-x-0 z-50" style={{ background: CREAM, borderBottom: `2px solid ${INK}`, fontFamily: display.fontFamily }}>
       <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
@@ -189,6 +190,7 @@ export function Footer() {
         </div>
         <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-xs font-semibold">
           <a href={HUB_PATH} className="hover:opacity-60 transition-opacity" style={{ color: FAINT }}>Overview</a>
+          <a href={GUIDE_URL} className="hover:opacity-60 transition-opacity" style={{ color: FAINT }}>Guide</a>
           <a href={START_PATH} className="hover:opacity-60 transition-opacity" style={{ color: FAINT }}>Start-up guide</a>
           <a href={DESIGN_PATH} className="hover:opacity-60 transition-opacity" style={{ color: FAINT }}>Design ideas</a>
           <Link href="/" className="hover:opacity-60 transition-opacity" style={{ color: FAINT }}>Smapey Home</Link>

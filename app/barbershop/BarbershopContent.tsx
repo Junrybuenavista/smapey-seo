@@ -26,7 +26,7 @@ const FEATURES = [
 const STEPS = [
   { n: "1", t: "Add them to the line", d: "A name, the barber they want or Anyone, and the services. A regular fills in from their name or number." },
   { n: "2", t: "Call next", d: "When a chair frees up, the right customer is called: the barber's own first, then whoever will take anyone. Text them if they stepped out." },
-  { n: "3", t: "Take payment", d: "Services and products on one bill, in cash or GCash. The barber's share is worked out as it's paid." },
+  { n: "3", t: "Take payment", d: "Services and products on one bill, in cash, GCash, Maya or card. The barber's share is worked out as it's paid." },
   { n: "4", t: "Close the day", d: "Sales, each barber's share and the products sold, already added up. Export it to Excel if you keep your own books." },
 ]
 

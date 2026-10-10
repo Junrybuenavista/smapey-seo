@@ -161,6 +161,7 @@ export const CLUSTERS: Record<ClusterKey, RouteCluster> = {
       desc: "A walk-in queue with each barber's wait, commission worked out per cut, daily closing and customer texts, for barbershops in the Philippines.",
     },
     pages: [
+      { path: "/barbershop/guide",                                          title: "Smapey Barbershop Guide",                               desc: "Set-up to closing, in the order you'll meet it: services and barbers, the walk-in queue, payment and commission, texts, the online page and products." },
       { path: "/barbershop/how-to-start-a-barbershop-business-philippines", title: "How to Start a Barbershop Business in the Philippines", desc: "Capital, barber chair prices, the sanitary permit and health certificates, barber pay, haircut prices, and a business plan with a break-even calculator." },
       { path: "/barbershop/barbershop-design-ideas-philippines",            title: "Barbershop Design Ideas and Floor Plans",               desc: "Floor plans for 2, 3 and 5 chairs drawn to scale, the DOH layout rules, and where the renovation money goes." },
     ],
