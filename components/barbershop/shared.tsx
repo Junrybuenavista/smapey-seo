@@ -12,6 +12,7 @@ export const REGISTER_URL = `${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?pr
 export const LOGIN_URL = `${process.env.NEXT_PUBLIC_FRONTEND_URL}/login`
 export const HUB_PATH = "/barbershop"
 export const START_PATH = "/barbershop/how-to-start-a-barbershop-business-philippines"
+export const DESIGN_PATH = "/barbershop/barbershop-design-ideas-philippines"
 export const NAV_LINKS = ["Features", "How it Works", "Pricing", "FAQ", "Start-up Guide"]
 
 export const INK = "#161616"
@@ -189,6 +190,7 @@ export function Footer() {
         <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-xs font-semibold">
           <a href={HUB_PATH} className="hover:opacity-60 transition-opacity" style={{ color: FAINT }}>Overview</a>
           <a href={START_PATH} className="hover:opacity-60 transition-opacity" style={{ color: FAINT }}>Start-up guide</a>
+          <a href={DESIGN_PATH} className="hover:opacity-60 transition-opacity" style={{ color: FAINT }}>Design ideas</a>
           <Link href="/" className="hover:opacity-60 transition-opacity" style={{ color: FAINT }}>Smapey Home</Link>
         </div>
         <p className="text-xs" style={{ color: FAINT }}>© {new Date().getFullYear()} Smapey. All rights reserved.</p>

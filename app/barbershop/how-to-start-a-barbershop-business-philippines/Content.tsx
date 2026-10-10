@@ -3,7 +3,7 @@
 import InternalLinks from "@/components/InternalLinks"
 import {
   Navbar, Footer, CTA, ArticleHero, AH2, AH3, AP, Bullets, KeyFacts, CostTable, Cite,
-  FAQList, SoftwarePitch, INK, AMBER, CREAM, HUB_PATH,
+  FAQList, SoftwarePitch, INK, AMBER, CREAM, HUB_PATH, DESIGN_PATH,
 } from "@/components/barbershop/shared"
 import BreakEvenCalculator from "./BreakEvenCalculator"
 import { FAQS } from "./faqs"
@@ -87,7 +87,9 @@ export default function Content() {
         ]} />
         <AP>
           You&apos;ll also want running water at the back for washing hands and tools, and at a sink if you&apos;ll offer a
-          shampoo. Confirm the rest of the layout with your health office before the renovation starts.
+          shampoo. Confirm the rest of the layout with your health office before the renovation starts. To see how it all
+          fits, our <a href={DESIGN_PATH} className="font-bold underline" style={{ color: INK }}>barbershop design ideas</a>{" "}
+          have floor plans for two, three and five chairs, drawn to scale.
         </AP>
         <Cite>
           Department of Health, Implementing Rules and Regulations of Chapter XII, &ldquo;Tonsorial and Beauty

@@ -162,6 +162,7 @@ export const CLUSTERS: Record<ClusterKey, RouteCluster> = {
     },
     pages: [
       { path: "/barbershop/how-to-start-a-barbershop-business-philippines", title: "How to Start a Barbershop Business in the Philippines", desc: "Capital, barber chair prices, the sanitary permit and health certificates, barber pay, haircut prices, and a business plan with a break-even calculator." },
+      { path: "/barbershop/barbershop-design-ideas-philippines",            title: "Barbershop Design Ideas and Floor Plans",               desc: "Floor plans for 2, 3 and 5 chairs drawn to scale, the DOH layout rules, and where the renovation money goes." },
     ],
   },
 
