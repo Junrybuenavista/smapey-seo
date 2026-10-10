@@ -10,9 +10,9 @@ import { shot, SHOT_W, SHOT_H } from "@/lib/cloudinary"
 import { FAQS } from "./faqs"
 
 // KlingAI renders made for this page from the style prompts, on Cloudinary
-// like every other showcase photograph.
-const CONCEPT_A = shot("v1791653368/kling_20261011_IMAGE_Photoreali_360_0_tassqj.png")
-const CONCEPT_B = shot("v1791653380/kling_20261011_IMAGE_Photoreali_339_1_vd3hz3.png")
+// like every other showcase photograph. Their size wasn't checked, hence "any".
+const CONCEPT_A = shot("v1791653368/kling_20261011_IMAGE_Photoreali_360_0_tassqj.png", "any")
+const CONCEPT_B = shot("v1791653380/kling_20261011_IMAGE_Photoreali_339_1_vd3hz3.png", "any")
 
 /**
  * The photographs are generated, so each one says so where it's shown. On a

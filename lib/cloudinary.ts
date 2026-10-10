@@ -27,6 +27,13 @@ const BASE = "https://res.cloudinary.com/dxhwfv0jo/image/upload"
 const DEWATERMARK = {
   "1x": "e_gen_remove:region_(x_1185;y_708;w_172;h_52)",
   "2x": "e_gen_remove:region_(x_2370;y_1416;w_344;h_104)",
+  /**
+   * For a 16:9 master whose size wasn't checked: it is scaled to 1x first, so
+   * the 1x box lands on the badge whichever size it was rendered at. Delivery
+   * caps the width at 1200 anyway, so a 2x master loses nothing it would have
+   * kept.
+   */
+  any: "c_scale,w_1360/e_gen_remove:region_(x_1185;y_708;w_172;h_52)",
 } as const
 
 /**
