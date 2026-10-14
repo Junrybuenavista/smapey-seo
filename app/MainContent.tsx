@@ -11,6 +11,7 @@ import {
   Clock, ChevronDown, Menu, X, Users, Sparkles,
   MousePointerClick, LayoutDashboard, Star,
 } from "lucide-react"
+import { Paddle } from "@/components/sports-courts/Paddle"
 
 // ── Layered Pop design tokens ───────────────────────
 const INK = "#161616"
@@ -297,6 +298,19 @@ const PRODUCTS = [
     features: ["Walk-in queue with wait times", "Barber commission per cut", "Daily closing", "Texts when they're next"],
     stat: { value: "0", label: "commission sums at closing" },
   },
+  {
+    key: "COURTS",
+    name: "Sports Courts",
+    tagline: "Never book a court twice.",
+    desc: "A schedule that can't double-book, a booking page players pay into by GCash, and daily closing, built for pickleball, badminton, tennis and padel venues in the Philippines.",
+    href: "/sports-courts",
+    register: `${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?product=COURTS&plan=FREE`,
+    accent: "#4d7c0f",
+    accentLight: "#f7fee7",
+    Icon: Paddle,
+    features: ["Schedule that can't double-book", "Booking page paid by GCash", "Peak and off-peak rates", "Daily closing"],
+    stat: { value: "0", label: "courts booked twice" },
+  },
 ]
 
 const COUNT_WORD: Record<number, string> = {
@@ -329,6 +343,7 @@ const FOR_WHO = [
   { emoji: "🏍️", label: "Auto & Moto Shop Owners" },
   { emoji: "🧽", label: "Car Wash Owners" },
   { emoji: "💈", label: "Barbershop Owners" },
+  { emoji: "🏓", label: "Court Owners" },
 ]
 
 const STEPS = [

@@ -4,7 +4,7 @@ export type RouteInfo = {
   desc: string
 }
 
-export type ClusterKey = "invoice" | "booking" | "gym" | "essay" | "car-rental" | "laundry" | "salon" | "massage" | "airbnb" | "lending" | "restaurant" | "store" | "clinic" | "vet-clinic" | "boarding-house" | "catering" | "water-refilling" | "school-desk" | "repair-shop" | "car-wash" | "barbershop"
+export type ClusterKey = "invoice" | "booking" | "gym" | "essay" | "car-rental" | "laundry" | "salon" | "massage" | "airbnb" | "lending" | "restaurant" | "store" | "clinic" | "vet-clinic" | "boarding-house" | "catering" | "water-refilling" | "school-desk" | "repair-shop" | "car-wash" | "barbershop" | "sports-courts"
 
 export type RouteCluster = {
   label: string
@@ -164,6 +164,19 @@ export const CLUSTERS: Record<ClusterKey, RouteCluster> = {
       { path: "/barbershop/guide",                                          title: "Smapey Barbershop Guide",                               desc: "Set-up to closing, in the order you'll meet it: services and barbers, the walk-in queue, payment and commission, texts, the online page and products." },
       { path: "/barbershop/how-to-start-a-barbershop-business-philippines", title: "How to Start a Barbershop Business in the Philippines", desc: "Capital, barber chair prices, the sanitary permit and health certificates, barber pay, haircut prices, and a business plan with a break-even calculator." },
       { path: "/barbershop/barbershop-design-ideas-philippines",            title: "Barbershop Design Ideas and Floor Plans",               desc: "Floor plans for 2, 3 and 5 chairs drawn to scale, the DOH layout rules, and where the renovation money goes." },
+    ],
+  },
+
+  "sports-courts": {
+    label: "Sports Courts Software",
+    hub: {
+      path: "/sports-courts",
+      title: "Court Booking System",
+      desc: "A schedule that can't double-book, a booking page players pay into by GCash, and daily closing, for pickleball, badminton, tennis and padel venues.",
+    },
+    pages: [
+      { path: "/sports-courts/pickleball-court-business-plan-philippines",    title: "Pickleball Court Business Plan Philippines",   desc: "A sample plan to fill in, court rental and open play rates, the permits, building costs, and a free ROI and break-even calculator." },
+      { path: "/sports-courts/pickleball-court-construction-cost-philippines", title: "Pickleball Court Construction Cost Philippines", desc: "What a court costs open, under a tarp or under a metal roof, line by line, and how many courts fit on your lot or basketball court." },
     ],
   },
 
@@ -395,6 +408,7 @@ export const ALL_CLUSTERS: ClusterKey[] = [
   "repair-shop",
   "car-wash",
   "barbershop",
+  "sports-courts",
 ]
 
 export function clusterForPath(pathname: string): ClusterKey | null {
