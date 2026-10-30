@@ -152,11 +152,11 @@ export default function HvacContent() {
           <div className="space-y-3">
             {faqs.map((faq, i) => (
               <div key={i} className="border border-gray-100 rounded-xl bg-white shadow-sm overflow-hidden">
-                <button onClick={() => setOpenIndex(openIndex === i ? null : i)} className="w-full flex justify-between items-center p-5 text-left">
+                <button onClick={() => setOpenIndex(openIndex === i ? null : i)} aria-expanded={openIndex === i} className="w-full flex justify-between items-center p-5 text-left">
                   <span className="font-medium text-gray-900">{faq.q}</span>
                   <ChevronDown size={18} className={`text-gray-400 transition-transform ${openIndex === i ? "rotate-180" : ""}`} />
                 </button>
-                {openIndex === i && <div className="px-5 pb-5 text-sm text-gray-600 leading-relaxed">{faq.a}</div>}
+                <div hidden={openIndex !== i} className="px-5 pb-5 text-sm text-gray-600 leading-relaxed">{faq.a}</div>
               </div>
             ))}
           </div>

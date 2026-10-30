@@ -449,7 +449,7 @@ export function FAQList({ faqs }: { faqs: { q: string; a: string }[] }) {
             {q}
             <ChevronRight className="w-4 h-4 transition-transform duration-200 shrink-0" style={{ color: BLUE, transform: open === i ? "rotate(90deg)" : "rotate(0deg)" }} />
           </button>
-          {open === i && <div className="px-5 pb-4 text-sm leading-relaxed pt-3" style={{ color: MUTED, borderTop: "1px solid rgba(22,22,22,.1)" }}>{a}</div>}
+          <div hidden={open !== i} className="px-5 pb-4 text-sm leading-relaxed pt-3" style={{ color: MUTED, borderTop: "1px solid rgba(22,22,22,.1)" }}>{a}</div>
         </div>
       ))}
     </div>

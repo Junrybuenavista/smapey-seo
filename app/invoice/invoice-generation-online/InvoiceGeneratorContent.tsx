@@ -772,7 +772,7 @@ const formatMoney = (value: number) => {
 
               {/* QUESTION */}
               <button
-                onClick={() => setOpen(open === i ? null : i)}
+                onClick={() => setOpen(open === i ? null : i)} aria-expanded={open === i}
                 className="w-full flex justify-between items-center p-5 text-left"
               >
 
@@ -789,11 +789,9 @@ const formatMoney = (value: number) => {
               </button>
 
               {/* ANSWER */}
-              {open === i && (
-                <div className="px-5 pb-5 text-sm text-gray-600">
-                  {item.a}
-                </div>
-              )}
+              <div hidden={open !== i} className="px-5 pb-5 text-sm text-gray-600">
+                {item.a}
+              </div>
 
             </div>
           ))}

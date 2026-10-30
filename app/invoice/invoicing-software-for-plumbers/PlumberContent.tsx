@@ -152,11 +152,11 @@ export default function PlumberContent() {
           <div className="space-y-3">
             {faqs.map((faq, i) => (
               <div key={i} className="border border-gray-100 rounded-xl bg-white shadow-sm overflow-hidden">
-                <button onClick={() => setOpen(open === i ? null : i)} className="w-full flex justify-between items-center p-5 text-left">
+                <button onClick={() => setOpen(open === i ? null : i)} aria-expanded={open === i} className="w-full flex justify-between items-center p-5 text-left">
                   <span className="font-medium text-gray-900">{faq.q}</span>
                   <ChevronDown size={18} className={`text-gray-400 transition-transform ${open === i ? "rotate-180" : ""}`} />
                 </button>
-                {open === i && <div className="px-5 pb-5 text-sm text-gray-600 leading-relaxed">{faq.a}</div>}
+                <div hidden={open !== i} className="px-5 pb-5 text-sm text-gray-600 leading-relaxed">{faq.a}</div>
               </div>
             ))}
           </div>
