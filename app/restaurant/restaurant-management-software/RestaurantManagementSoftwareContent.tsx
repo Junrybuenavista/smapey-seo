@@ -8,7 +8,7 @@ const variant: RestaurantVariant = {
     titleLead: "Restaurant management software",
     titleAccent: "built for small operations.",
     subtitle:
-      "Smapey is restaurant management software for small restaurants, cafés, and canteens. Build your menu, manage orders, run the kitchen queue, and track daily revenue, all from one browser-based dashboard.",
+      "Smapey is restaurant management software for small restaurants, cafés, and canteens. Build your menu, take orders at the counter or by phone, run the kitchen and cashier screens, and track daily revenue, all from one browser-based dashboard.",
   },
   features: {
     eyebrow: "Restaurant Management Software",
@@ -35,11 +35,11 @@ const variant: RestaurantVariant = {
       },
       {
         h: "Numbers that answer the real question",
-        p: "Revenue and order count for today, a seven-day trend, and a top-selling items chart. Enough to tell you which dish is carrying the menu and which one is only taking up space on it.",
+        p: "Revenue and order count for today, a seven-day trend, this month's best-sellers, and how much is dine-in versus take-out. Enough to tell you which dish is carrying the menu and which one is only taking up space on it.",
       },
       {
         h: "Two people before it costs anything",
-        p: "The free tier includes two team members, so an owner and one staff member can both be working in it before there is any cost.",
+        p: "The free tier includes two team members, so an owner and one staff member can both be working in it before there is any cost. Each person sees only what they need: the cashier gets the Cashier screen, the cook gets the Kitchen screen.",
       },
     ],
   },

@@ -4,7 +4,7 @@ import OnlineOrderingSystemContent from "./OnlineOrderingSystemContent"
 
 const PATH = "/restaurant/online-ordering-system"
 const TITLE = "Online Ordering System for Restaurants & Caf\u00e9s | Smapey"
-const DESCRIPTION = "Online ordering system for small restaurants and caf\u00e9s. Manage dine-in and takeaway orders, build your menu, track the kitchen queue, and see daily revenue, free to start."
+const DESCRIPTION = "Online ordering system for small restaurants and caf\u00e9s. Customers order from their phone with one QR code, pay by GCash, and hear their number called."
 
 export const metadata = buildMetadata({
   title: TITLE,

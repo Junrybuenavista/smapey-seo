@@ -6,9 +6,9 @@ const variant: RestaurantVariant = {
   hero: {
     badge: "Online ordering system",
     titleLead: "Let customers order from their phone",
-    titleAccent: "with a table QR code.",
+    titleAccent: "with one QR code.",
     subtitle:
-      "Smapey is an online ordering system for small restaurants, cafés, and canteens. Customers scan a QR code at the table to order and pay by GCash, staff can place orders from any device, the kitchen queue updates in real time, and daily sales are tracked automatically.",
+      "Smapey is an online ordering system for small restaurants, cafés, and canteens. Customers scan your QR code to order from their phone and pay by GCash, your cashier sends the order to the kitchen screen, a TV calls the number when it's ready, and daily sales are tracked automatically.",
   },
   features: {
     eyebrow: "Online Ordering System",
@@ -21,25 +21,25 @@ const variant: RestaurantVariant = {
   },
   unique: {
     eyebrow: "Ordering from the customer's phone",
-    heading: "Let the table place its own order, without an app",
+    heading: "Let customers place their own order, without an app",
     intro:
-      "Online ordering usually means joining a delivery platform and handing over a cut of every sale. Table QR ordering is the version where the customer does the typing and you keep the whole bill.",
+      "Online ordering usually means joining a delivery platform and handing over a cut of every sale. QR ordering is the version where the customer does the typing and you keep the whole bill.",
     blocks: [
       {
-        h: "One QR code per table",
-        p: "Print a code for each table. Customers scan it, browse your live menu, and place the order themselves. There is no app to download and no account to create, which is the step most people abandon.",
+        h: "One QR code for the whole shop",
+        p: "Put it on the counter, the walls or the tables. Customers scan it, browse your live menu, and order themselves, then show their order number at the counter. There is no app to download and no account to create, which is the step most people abandon.",
       },
       {
         h: "Your menu, updated live",
-        p: "The menu on the customer's phone is the one you edit in the dashboard. Toggle an item 86'd and it disappears from the table's view immediately, rather than being ordered and then apologised for.",
+        p: "The menu on the customer's phone is the one you edit in the dashboard. Toggle an item 86'd and it disappears from the customer's phone immediately, rather than being ordered and then apologised for.",
       },
       {
         h: "They can see where their food is",
-        p: "After ordering, the customer's phone shows Order received, then Being prepared, then Ready to serve. That one change removes most of the is-my-food-coming interruptions your floor staff field.",
+        p: "After the cashier scans their order, the customer's phone shows Being prepared, then Ready to claim, and chimes when it's ready. That one change removes most of the is-my-food-coming interruptions your staff field.",
       },
       {
         h: "Staff can still take orders too",
-        p: "QR ordering does not replace the counter. Your team places orders from the dashboard exactly as before, and both routes feed the same kitchen queue.",
+        p: "QR ordering does not replace the counter. Your cashier takes orders on the Cashier screen as before, and both routes feed the same kitchen screen and the same 01 to 99 numbers.",
       },
     ],
   },

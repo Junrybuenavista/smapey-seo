@@ -8,9 +8,9 @@ const variant: RestaurantVariant = {
   hero: {
     badge: "Food ordering & kitchen management",
     titleLead: "Take every order,",
-    titleAccent: "serve every table.",
+    titleAccent: "call every number.",
     subtitle:
-      "Build your menu, place dine-in and takeaway orders, manage the kitchen queue, and track daily sales, all from one clean dashboard. Free forever, no card required.",
+      "Build your menu, take orders at the counter or by phone, run the kitchen and cashier screens, and track daily sales, all from one clean dashboard. Free forever, no card required.",
   },
   features: {
     eyebrow: "Features",

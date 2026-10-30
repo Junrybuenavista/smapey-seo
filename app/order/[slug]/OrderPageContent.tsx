@@ -1,11 +1,10 @@
 "use client"
 
 import { useEffect, useMemo, useState, useCallback, useRef } from "react"
-import { useSearchParams } from "next/navigation"
 import {
   UtensilsCrossed, Plus, Minus, ShoppingBag, Loader2, AlertCircle,
   CheckCircle2, ChefHat, BellRing, X, ArrowLeft, Clock, XCircle, Wallet,
-  Download, Copy, Check,
+  Download, Copy, Check, QrCode, StickyNote,
 } from "lucide-react"
 
 const API = process.env.NEXT_PUBLIC_API_URL || ""
@@ -19,67 +18,85 @@ interface MenuItem {
   categoryId: string | null
 }
 interface Category { id: string; name: string }
-interface MenuData {
-  org: { companyName: string; logoUrl: string | null; currencySymbol: string; tagline: string | null; accentColor: string | null; coverUrl: string | null }
-  categories: Category[]
-  items: MenuItem[]
-}
-interface PlacedOrder {
-  id: string
-  orderNumber: string
-  status: string
-  type: string
-  tableNumber: string | null
-  customerName: string | null
-  totalAmount: number
-  paymentStatus: string | null
-  paymentMethod: string | null
-  customerPaidClaim: boolean
-  createdAt: string
-  items: { name: string; quantity: number; unitPrice: number; subtotal: number }[]
-}
 interface Gcash {
   enabled: boolean
   name?: string | null
   number?: string | null
   qrUrl?: string | null
 }
+interface MenuData {
+  org: { companyName: string; logoUrl: string | null; currencySymbol: string; tagline: string | null; accentColor: string | null; coverUrl: string | null; gcash: Gcash }
+  categories: Category[]
+  items: MenuItem[]
+}
+interface PlacedOrder {
+  publicId: string
+  ticketNumber: number | null
+  status: "PENDING" | "PREPARING" | "READY" | "COMPLETED" | "CANCELLED"
+  type: "DINE_IN" | "TAKEAWAY"
+  customerName: string | null
+  notes: string | null
+  totalAmount: number
+  paymentStatus: string | null
+  paymentMethod: string | null
+  customerPaidClaim: boolean
+  cancelReason: string | null
+  expired: boolean
+  expiresAt: string | null
+  qrDataUrl: string | null
+  createdAt: string
+  items: { name: string; quantity: number; unitPrice: number; subtotal: number; notes: string | null }[]
+}
 
-const STATUS_STEPS = [
-  { key: "PENDING",   label: "Order received", active: "Waiting for the kitchen…", icon: CheckCircle2 },
-  { key: "PREPARING", label: "Being prepared", active: "In the kitchen now…",      icon: ChefHat },
-  { key: "READY",     label: "Ready to serve", active: "Your order is ready!",     icon: BellRing },
-  { key: "COMPLETED", label: "Completed",      active: "Enjoy your meal!",          icon: CheckCircle2 },
+type OrderType = "DINE_IN" | "TAKEAWAY"
+
+const STEPS = [
+  { key: "PENDING",   label: "Show it at the counter", active: "The cashier scans your QR",       icon: QrCode },
+  { key: "PREPARING", label: "Being prepared",         active: "In the kitchen now…",             icon: ChefHat },
+  { key: "READY",     label: "Ready to claim",         active: "Claim it at the counter!",        icon: BellRing },
+  { key: "COMPLETED", label: "Done",                   active: "Enjoy your meal!",                icon: CheckCircle2 },
 ]
 
-export default function OrderPageContent({ slug }: { slug: string }) {
-  const searchParams = useSearchParams()
-  const table = searchParams.get("table") || ""
+const PAYMENT_LABEL: Record<string, string> = { CASH: "Cash", GCASH: "GCash", CARD: "Card" }
 
+// The number on the customer's screen matches the cashier's slips: 01-99.
+const orderNo = (o: { ticketNumber: number | null }) => (o.ticketNumber != null ? String(o.ticketNumber).padStart(2, "0") : "—")
+const money = (sym: string, n: number) => `${sym}${n.toFixed(2)}`
+const isActive = (s: PlacedOrder["status"]) => s === "PENDING" || s === "PREPARING" || s === "READY"
+
+export default function OrderPageContent({ slug }: { slug: string }) {
   const [data, setData]       = useState<MenuData | null>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError]     = useState("")
 
-  const [cart, setCart]         = useState<Record<string, number>>({})
-  const [showCart, setShowCart] = useState(false)
+  const [cart, setCart]           = useState<Record<string, number>>({})
+  const [lineNotes, setLineNotes] = useState<Record<string, string>>({})
+  const [noteOpen, setNoteOpen]   = useState<Record<string, boolean>>({})
+  const [showCart, setShowCart]   = useState(false)
+  const [orderType, setOrderType] = useState<OrderType>("DINE_IN")
   const [customerName, setCustomerName] = useState("")
-  const [notes, setNotes]       = useState("")
+  const [notes, setNotes]         = useState("")
   const [submitting, setSubmitting] = useState(false)
 
-  const [order, setOrder]       = useState<PlacedOrder | null>(null)
+  // Orders placed from this phone, newest first; one is shown at a time.
+  const [myOrders, setMyOrders]     = useState<string[]>([])
   const [trackingId, setTrackingId] = useState<string | null>(null)
-  const [gcash, setGcash]       = useState<Gcash | null>(null)
+  const [order, setOrder]           = useState<PlacedOrder | null>(null)
+  const [gcash, setGcash]           = useState<Gcash | null>(null)
   const [payingMark, setPayingMark] = useState(false)
-  const [copiedNum, setCopiedNum] = useState(false)
-  const [savingQr, setSavingQr] = useState(false)
+  const [copiedNum, setCopiedNum]   = useState(false)
+  const [savingQr, setSavingQr]     = useState(false)
+  const [now, setNow]               = useState(() => Date.now())
 
   const accent = data?.org.accentColor || "#f97316"
   const sym    = data?.org.currencySymbol || "₱"
-  const storageKey = `smapey_order_${slug}`
+  const storageKey = `smapey_orders_${slug}`
 
   const audioCtxRef = useRef<AudioContext | null>(null)
   const audioUnlockedRef = useRef(false)
   const prevStatusRef = useRef<string | null>(null)
+  // The QR already drawn for an order, kept while it waits at the counter.
+  const qrRef = useRef<{ id: string; url: string } | null>(null)
 
   const ensureCtx = (): AudioContext | null => {
     try {
@@ -90,34 +107,34 @@ export default function OrderPageContent({ slug }: { slug: string }) {
     } catch { return null }
   }
 
-  // Short two-tone chime via Web Audio + vibrate fallback (no asset needed).
+  // Short three-note chime via Web Audio + vibration (no asset needed).
   const playChime = useCallback(() => {
     try {
       const ctx = ensureCtx()
       if (ctx) {
         if (ctx.state === "suspended") ctx.resume()
-        const now = ctx.currentTime
+        const t0 = ctx.currentTime
         ;[{ f: 880, t: 0 }, { f: 1318.5, t: 0.14 }, { f: 1760, t: 0.28 }].forEach(({ f, t }) => {
           const osc = ctx.createOscillator()
           const gain = ctx.createGain()
           osc.type = "sine"
           osc.frequency.value = f
-          gain.gain.setValueAtTime(0.0001, now + t)
-          gain.gain.exponentialRampToValueAtTime(0.3, now + t + 0.02)
-          gain.gain.exponentialRampToValueAtTime(0.0001, now + t + 0.4)
+          gain.gain.setValueAtTime(0.0001, t0 + t)
+          gain.gain.exponentialRampToValueAtTime(0.3, t0 + t + 0.02)
+          gain.gain.exponentialRampToValueAtTime(0.0001, t0 + t + 0.4)
           osc.connect(gain).connect(ctx.destination)
-          osc.start(now + t)
-          osc.stop(now + t + 0.45)
+          osc.start(t0 + t)
+          osc.stop(t0 + t + 0.45)
         })
       }
-      // On phones with the silent switch on, Web Audio is muted by iOS,
-      // vibration is the only reliable alert (Android; iOS ignores it).
+      // With the silent switch on, iOS mutes Web Audio; vibration is the
+      // reliable alert on Android (iOS ignores it).
       if (navigator.vibrate) navigator.vibrate([250, 120, 250])
     } catch {}
   }, [])
 
-  // Fully unlock audio on the first user gesture. iOS needs a silent buffer
-  // played *inside* the gesture, not just ctx.resume().
+  // Unlock audio on the first tap. iOS needs a silent buffer played inside the
+  // gesture, not just ctx.resume().
   useEffect(() => {
     const unlock = () => {
       try {
@@ -125,9 +142,8 @@ export default function OrderPageContent({ slug }: { slug: string }) {
         if (!ctx) return
         if (ctx.state === "suspended") ctx.resume()
         if (!audioUnlockedRef.current) {
-          const buf = ctx.createBuffer(1, 1, 22050)
           const src = ctx.createBufferSource()
-          src.buffer = buf
+          src.buffer = ctx.createBuffer(1, 1, 22050)
           src.connect(ctx.destination)
           src.start(0)
           audioUnlockedRef.current = true
@@ -151,7 +167,7 @@ export default function OrderPageContent({ slug }: { slug: string }) {
       .then(async r => {
         if (!r.ok) {
           const body = await r.json().catch(() => ({} as any))
-          throw new Error(body?.message || body?.error || "Menu not available")
+          throw new Error(body?.message || "Menu not available")
         }
         return r.json()
       })
@@ -160,31 +176,68 @@ export default function OrderPageContent({ slug }: { slug: string }) {
     return () => { active = false }
   }, [slug])
 
-  // ─── Restore a tracked order from this device ───────────────────────────────
+  // ─── Orders placed from this phone ──────────────────────────────────────────
+  const saveMyOrders = useCallback((ids: string[]) => {
+    setMyOrders(ids)
+    try { localStorage.setItem(storageKey, JSON.stringify(ids)) } catch {}
+  }, [storageKey])
+
   useEffect(() => {
     try {
-      const saved = localStorage.getItem(storageKey)
-      if (saved) setTrackingId(JSON.parse(saved).id)
+      const saved = JSON.parse(localStorage.getItem(storageKey) || "[]")
+      if (Array.isArray(saved) && saved.length) {
+        setMyOrders(saved)
+        setTrackingId(saved[0])
+      }
     } catch {}
   }, [storageKey])
 
-  // ─── Poll order status while tracking ───────────────────────────────────────
+  // ─── Poll the order being shown ─────────────────────────────────────────────
   const refreshOrder = useCallback(async () => {
     if (!trackingId) return
     try {
-      const r = await fetch(`${API}/api/restaurant/public/${slug}/orders/${trackingId}`)
-      if (!r.ok) { if (r.status === 404) { localStorage.removeItem(storageKey); setTrackingId(null) } return }
-      const d = await r.json()
-      // Chime when the order status changes (skip the first load).
-      const newStatus = d.order?.status ?? null
-      if (prevStatusRef.current !== null && newStatus && newStatus !== prevStatusRef.current) {
-        playChime()
+      // The QR never changes, so once it's showing, later checks skip it (qr=0).
+      const haveQr = qrRef.current?.id === trackingId
+      const r = await fetch(`${API}/api/restaurant/public/${slug}/orders/${trackingId}${haveQr ? "?qr=0" : ""}`, { cache: "no-store" })
+      if (!r.ok) {
+        if (r.status === 404) {
+          saveMyOrders(myOrders.filter(id => id !== trackingId))
+          setTrackingId(null)
+          setOrder(null)
+        }
+        return
       }
+      const d = await r.json()
+      const newStatus = d.order?.status ?? null
+      // Chime when the status changes (not on the first load).
+      if (prevStatusRef.current !== null && newStatus && newStatus !== prevStatusRef.current) playChime()
       prevStatusRef.current = newStatus
-      setOrder(d.order)
+      if (d.order?.qrDataUrl) qrRef.current = { id: trackingId, url: d.order.qrDataUrl }
+      const keptQr = newStatus === "PENDING" && qrRef.current?.id === trackingId ? qrRef.current.url : null
+      setNow(Date.now())
+      setOrder(d.order ? { ...d.order, qrDataUrl: d.order.qrDataUrl ?? keptQr } : null)
       setGcash(d.gcash || null)
     } catch {}
-  }, [trackingId, slug, storageKey, playChime])
+  }, [trackingId, slug, playChime, myOrders, saveMyOrders])
+
+  useEffect(() => {
+    if (!trackingId) return
+    prevStatusRef.current = null
+    refreshOrder()
+    // Only while the page is on screen; it catches up the moment it's shown again.
+    const t = setInterval(() => { if (document.visibilityState === "visible") refreshOrder() }, 5000)
+    const clock = setInterval(() => setNow(Date.now()), 30000)
+    const onVisible = () => { if (document.visibilityState === "visible") refreshOrder() }
+    document.addEventListener("visibilitychange", onVisible)
+    window.addEventListener("focus", onVisible)
+    return () => {
+      clearInterval(t)
+      clearInterval(clock)
+      document.removeEventListener("visibilitychange", onVisible)
+      window.removeEventListener("focus", onVisible)
+    }
+    // refreshOrder changes with myOrders; restarting the poll for that is harmless.
+  }, [trackingId, refreshOrder])
 
   const markPaid = async () => {
     if (!trackingId) return
@@ -204,8 +257,8 @@ export default function OrderPageContent({ slug }: { slug: string }) {
     setTimeout(() => setCopiedNum(false), 1500)
   }
 
-  // Save the QR so the customer can upload it inside GCash (Scan QR → Upload from Gallery).
-  // On phones we use the native share sheet so it lands in Photos (not the Files folder).
+  // Save the GCash QR so the customer can upload it inside GCash (Scan QR →
+  // Upload from Gallery). Phones get the share sheet so it lands in Photos.
   const saveQr = async () => {
     if (!gcash?.qrUrl) return
     setSavingQr(true)
@@ -214,19 +267,14 @@ export default function OrderPageContent({ slug }: { slug: string }) {
       const blob = await res.blob()
       const file = new File([blob], `gcash-qr-${slug}.png`, { type: blob.type || "image/png" })
       const nav = navigator as any
-
-      // Mobile: open the share sheet → "Save Image" / "Save to Photos" → goes to gallery.
       if (nav.canShare && nav.canShare({ files: [file] })) {
         try {
           await nav.share({ files: [file], title: "GCash QR" })
         } catch (err: any) {
-          // User just dismissed the sheet, leave them on the page.
           if (err?.name !== "AbortError") window.open(gcash.qrUrl, "_blank")
         }
         return
       }
-
-      // Desktop (no share API): download the file.
       const url = URL.createObjectURL(blob)
       const a = document.createElement("a")
       a.href = url
@@ -236,28 +284,13 @@ export default function OrderPageContent({ slug }: { slug: string }) {
       a.remove()
       setTimeout(() => URL.revokeObjectURL(url), 1000)
     } catch {
-      // Last resort: open the image so they can long-press → Save to Photos.
       window.open(gcash.qrUrl, "_blank")
     } finally {
       setSavingQr(false)
     }
   }
 
-  useEffect(() => {
-    if (!trackingId) return
-    refreshOrder()
-    const t = setInterval(refreshOrder, 8000)
-    const onVisible = () => { if (document.visibilityState === "visible") refreshOrder() }
-    document.addEventListener("visibilitychange", onVisible)
-    window.addEventListener("focus", onVisible)
-    return () => {
-      clearInterval(t)
-      document.removeEventListener("visibilitychange", onVisible)
-      window.removeEventListener("focus", onVisible)
-    }
-  }, [trackingId, refreshOrder])
-
-  // ─── Cart helpers ───────────────────────────────────────────────────────────
+  // ─── Cart ───────────────────────────────────────────────────────────────────
   const itemsById = useMemo(() => {
     const m: Record<string, MenuItem> = {}
     data?.items.forEach(i => { m[i.id] = i })
@@ -273,16 +306,15 @@ export default function OrderPageContent({ slug }: { slug: string }) {
 
   const setQty = (id: string, delta: number) =>
     setCart(c => {
-      const next = Math.max(0, (c[id] || 0) + delta)
+      const next = Math.max(0, Math.min(99, (c[id] || 0) + delta))
       const copy = { ...c }
       if (next === 0) delete copy[id]
       else copy[id] = next
       return copy
     })
 
-  // ─── Submit order ───────────────────────────────────────────────────────────
+  // ─── Place the order ─────────────────────────────────────────────────────────
   const placeOrder = async () => {
-    if (!table) { setError("Missing table number. Please rescan the QR code on your table."); return }
     if (cartLines.length === 0) return
     setError("")
     setSubmitting(true)
@@ -291,17 +323,18 @@ export default function OrderPageContent({ slug }: { slug: string }) {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          tableNumber: table,
+          type: orderType,
           customerName: customerName.trim() || undefined,
           notes: notes.trim() || undefined,
-          items: cartLines.map(l => ({ menuItemId: l.item.id, quantity: l.qty })),
+          items: cartLines.map(l => ({ menuItemId: l.item.id, quantity: l.qty, notes: lineNotes[l.item.id]?.trim() || undefined })),
         }),
       })
-      const d = await r.json()
-      if (!r.ok) throw new Error(d?.message || d?.error || "Could not place order")
-      localStorage.setItem(storageKey, JSON.stringify({ id: d.id }))
-      setTrackingId(d.id)
-      setCart({}); setShowCart(false); setNotes(""); setCustomerName("")
+      const d = await r.json().catch(() => ({} as any))
+      if (!r.ok) throw new Error(d?.message || "Could not place order")
+      saveMyOrders([d.publicId, ...myOrders.filter(id => id !== d.publicId)].slice(0, 5))
+      setOrder(null)
+      setTrackingId(d.publicId)
+      setCart({}); setLineNotes({}); setNoteOpen({}); setShowCart(false); setNotes("")
       window.scrollTo({ top: 0, behavior: "smooth" })
     } catch (e: any) {
       setError(e.message || "Could not place order")
@@ -310,10 +343,15 @@ export default function OrderPageContent({ slug }: { slug: string }) {
     }
   }
 
-  const startNewOrder = () => {
-    localStorage.removeItem(storageKey)
+  const backToMenu = () => {
     setTrackingId(null)
     setOrder(null)
+    setError("")
+  }
+
+  const forgetOrder = () => {
+    saveMyOrders(myOrders.filter(id => id !== trackingId))
+    backToMenu()
   }
 
   // ─── Render states ──────────────────────────────────────────────────────────
@@ -332,29 +370,61 @@ export default function OrderPageContent({ slug }: { slug: string }) {
     </div>
   )
 
-  // ─── Order tracking view ────────────────────────────────────────────────────
+  // ─── Order view ─────────────────────────────────────────────────────────────
+  if (trackingId && !order) return (
+    <div className="min-h-screen flex flex-col items-center justify-center gap-3 bg-[#fbf7f0] text-orange-600">
+      <Loader2 className="w-7 h-7 animate-spin" />
+      <p className="text-sm font-medium">Loading your order…</p>
+    </div>
+  )
+
   if (trackingId && order) {
     const cancelled = order.status === "CANCELLED"
-    const activeIdx = STATUS_STEPS.findIndex(s => s.key === order.status)
+    const activeIdx = STEPS.findIndex(s => s.key === order.status)
+    const paid = order.paymentStatus === "PAID"
+    // Capped at the 30-minute window in case this phone's clock runs a little behind.
+    const minutesLeft = order.expiresAt ? Math.min(30, Math.max(0, Math.ceil((new Date(order.expiresAt).getTime() - now) / 60000))) : null
     return (
       <div className="min-h-screen bg-[#fbf7f0]">
-        <header className="px-5 pt-8 pb-6 text-white" style={{ background: `linear-gradient(135deg, ${accent}, #fbbf24)` }}>
+        <header className="px-5 pt-8 pb-7 text-white text-center" style={{ background: `linear-gradient(135deg, ${accent}, #fbbf24)` }}>
           <p className="text-sm/none opacity-90">{data?.org.companyName}</p>
-          <h1 className="text-2xl font-bold mt-1">Order {order.orderNumber}</h1>
-          {order.tableNumber && <p className="text-sm opacity-90 mt-0.5">Table {order.tableNumber}</p>}
+          <p className="text-xs font-semibold uppercase tracking-widest opacity-90 mt-4">Your order number</p>
+          <p className="font-mono font-extrabold text-7xl leading-none mt-1 tabular-nums">{orderNo(order)}</p>
+          <p className="text-sm opacity-90 mt-2">{order.type === "TAKEAWAY" ? "Take-out" : "Dine-in"}{order.customerName ? ` · ${order.customerName}` : ""}</p>
         </header>
 
-        <main className="max-w-md mx-auto px-5 -mt-3 pb-16">
+        <main className="max-w-md mx-auto px-5 -mt-3 pb-16 space-y-4">
+          {/* Status */}
           <div className="bg-white rounded-2xl border-2 border-[#161616] shadow-[5px_5px_0_#161616] p-5">
             {cancelled ? (
               <div className="flex flex-col items-center text-center gap-2 py-4">
                 <XCircle className="w-10 h-10 text-[#e11d48]" />
-                <p className="font-semibold text-[#161616]">This order was cancelled</p>
-                <p className="text-sm text-[#56524b]">Please talk to the staff if this is unexpected.</p>
+                {order.expired ? (
+                  <>
+                    <p className="font-semibold text-[#161616]">This order expired</p>
+                    <p className="text-sm text-[#56524b]">Nobody scanned it at the counter within 30 minutes. Please order again.</p>
+                  </>
+                ) : (
+                  <>
+                    <p className="font-semibold text-[#161616]">This order was cancelled</p>
+                    <p className="text-sm text-[#56524b]">Please talk to the staff if this is unexpected.</p>
+                  </>
+                )}
+              </div>
+            ) : order.status === "PENDING" ? (
+              <div className="flex flex-col items-center text-center gap-3">
+                <p className="font-bold text-lg text-[#161616]">Show this at the counter</p>
+                {order.qrDataUrl && (
+                  <img src={order.qrDataUrl} alt={`QR code for order ${orderNo(order)}`} className="w-60 h-60 max-w-full rounded-xl border-2 border-[#161616] bg-white p-1" />
+                )}
+                <p className="text-sm text-[#56524b]">The cashier scans it (or types <span className="font-bold font-mono">{orderNo(order)}</span>) and your order goes to the kitchen.</p>
+                {minutesLeft !== null && (
+                  <p className="text-xs text-[#9b9487] flex items-center gap-1"><Clock className="w-3.5 h-3.5" /> Please show it within {minutesLeft} minute{minutesLeft === 1 ? "" : "s"}.</p>
+                )}
               </div>
             ) : (
               <ol className="space-y-4">
-                {STATUS_STEPS.map((step, i) => {
+                {STEPS.map((step, i) => {
                   const done = i < activeIdx
                   const current = i === activeIdx
                   const Icon = step.icon
@@ -362,16 +432,13 @@ export default function OrderPageContent({ slug }: { slug: string }) {
                     <li key={step.key} className="flex items-center gap-3">
                       <div
                         className="w-9 h-9 rounded-full flex items-center justify-center shrink-0 transition"
-                        style={{
-                          background: done || current ? accent : "#f3f4f6",
-                          color: done || current ? "#fff" : "#9ca3af",
-                        }}
+                        style={{ background: done || current ? accent : "#f3f4f6", color: done || current ? "#fff" : "#9ca3af" }}
                       >
-                        {current ? <Icon className="w-4 h-4 animate-pulse" /> : <Icon className="w-4 h-4" />}
+                        <Icon className={`w-4 h-4 ${current ? "animate-pulse" : ""}`} />
                       </div>
                       <div className="flex-1">
                         <p className={`text-sm font-semibold ${done || current ? "text-[#161616]" : "text-[#9b9487]"}`}>{step.label}</p>
-                        {current && <p className="text-xs" style={{ color: accent }}>{step.active}</p>}
+                        {current && <p className="text-xs font-semibold" style={{ color: accent }}>{step.active}</p>}
                       </div>
                       {(done || current) && <CheckCircle2 className="w-4 h-4 text-[#0d9f6e]" />}
                     </li>
@@ -381,55 +448,58 @@ export default function OrderPageContent({ slug }: { slug: string }) {
             )}
           </div>
 
-          <div className="bg-white rounded-2xl border-2 border-[#161616] shadow-[5px_5px_0_#161616] p-5 mt-4">
+          {/* Items */}
+          <div className="bg-white rounded-2xl border-2 border-[#161616] shadow-[5px_5px_0_#161616] p-5">
             <p className="text-xs font-semibold uppercase tracking-wide text-[#9b9487] mb-3">Your order</p>
             <ul className="space-y-2">
               {order.items.map((it, i) => (
-                <li key={i} className="flex justify-between text-sm">
-                  <span className="text-[#56524b]"><span className="font-semibold" style={{ color: accent }}>{it.quantity}×</span> {it.name}</span>
-                  <span className="text-[#56524b]">{sym}{it.subtotal.toFixed(2)}</span>
+                <li key={i} className="text-sm">
+                  <div className="flex justify-between gap-3">
+                    <span className="text-[#56524b]"><span className="font-semibold" style={{ color: accent }}>{it.quantity}×</span> {it.name}</span>
+                    <span className="text-[#56524b]">{money(sym, it.subtotal)}</span>
+                  </div>
+                  {it.notes && <p className="text-xs text-[#9b9487] mt-0.5">{it.notes}</p>}
                 </li>
               ))}
             </ul>
+            {order.notes && <p className="text-xs text-[#56524b] bg-[#f7f2e9] rounded-lg px-3 py-2 mt-3">Note: {order.notes}</p>}
             <div className="border-t border-[#161616] mt-3 pt-3 flex justify-between font-bold text-[#161616]">
-              <span>Total</span><span>{sym}{order.totalAmount.toFixed(2)}</span>
+              <span>Total</span><span>{money(sym, order.totalAmount)}</span>
             </div>
           </div>
 
-          {/* GCash payment */}
-          {!cancelled && gcash?.enabled && (
-            <div className="bg-white rounded-2xl border-2 border-[#161616] shadow-[5px_5px_0_#161616] p-5 mt-4">
+          {/* Payment */}
+          {!cancelled && (
+            <div className="bg-white rounded-2xl border-2 border-[#161616] shadow-[5px_5px_0_#161616] p-5">
               <p className="text-xs font-semibold uppercase tracking-wide text-[#9b9487] mb-3 flex items-center gap-1.5">
-                <Wallet className="w-3.5 h-3.5" /> Pay with GCash
+                <Wallet className="w-3.5 h-3.5" /> Payment
               </p>
-
-              {order.paymentStatus === "PAID" ? (
-                <div className="flex flex-col items-center text-center gap-2 py-3">
-                  <CheckCircle2 className="w-10 h-10 text-[#0d9f6e]" />
-                  <p className="font-semibold text-[#161616]">Payment confirmed</p>
-                  <p className="text-sm text-[#56524b]">Thank you! Your payment has been received.</p>
+              {paid ? (
+                <div className="flex items-center gap-3">
+                  <CheckCircle2 className="w-8 h-8 text-[#0d9f6e] shrink-0" />
+                  <div>
+                    <p className="font-semibold text-[#161616]">Paid{order.paymentMethod ? ` · ${PAYMENT_LABEL[order.paymentMethod] ?? order.paymentMethod}` : ""}</p>
+                    <p className="text-sm text-[#56524b]">Thank you!</p>
+                  </div>
                 </div>
               ) : order.customerPaidClaim ? (
-                <div className="flex flex-col items-center text-center gap-2 py-3">
-                  <Clock className="w-9 h-9 text-amber-500" />
-                  <p className="font-semibold text-[#161616]">Payment submitted</p>
-                  <p className="text-sm text-[#56524b]">Waiting for the staff to confirm your GCash payment. Please keep your GCash receipt ready.</p>
+                <div className="flex items-center gap-3">
+                  <Clock className="w-8 h-8 text-amber-500 shrink-0" />
+                  <div>
+                    <p className="font-semibold text-[#161616]">GCash payment sent</p>
+                    <p className="text-sm text-[#56524b]">The cashier will check it. Keep your GCash receipt ready.</p>
+                  </div>
                 </div>
-              ) : (
+              ) : gcash?.enabled ? (
                 <>
+                  <p className="text-sm text-[#56524b] mb-3">Pay <span className="font-bold text-[#161616]">{money(sym, order.totalAmount)}</span> at the counter, or now with GCash:</p>
                   {gcash.qrUrl && (
                     <>
                       <img src={gcash.qrUrl} alt="GCash QR" className="w-44 h-44 mx-auto rounded-xl border-2 border-[#161616] object-contain" />
                       <p className="text-[11px] text-[#9b9487] text-center mt-1.5">Press and hold the QR to save it to your Photos.</p>
                     </>
                   )}
-
-                  <div className="mt-3 space-y-1 text-center">
-                    {gcash.name && <p className="text-sm text-[#56524b]"><span className="text-[#9b9487]">Account:</span> <span className="font-semibold">{gcash.name}</span></p>}
-                    <p className="text-lg font-bold text-[#161616]">Pay {sym}{order.totalAmount.toFixed(2)}</p>
-                  </div>
-
-                  {/* Number with copy */}
+                  {gcash.name && <p className="text-sm text-[#56524b] text-center mt-2"><span className="text-[#9b9487]">Account:</span> <span className="font-semibold">{gcash.name}</span></p>}
                   {gcash.number && (
                     <button
                       onClick={copyNumber}
@@ -442,8 +512,6 @@ export default function OrderPageContent({ slug }: { slug: string }) {
                       </span>
                     </button>
                   )}
-
-                  {/* Save QR for in-app scanning */}
                   {gcash.qrUrl && (
                     <button
                       onClick={saveQr}
@@ -454,18 +522,21 @@ export default function OrderPageContent({ slug }: { slug: string }) {
                       Save QR to Photos
                     </button>
                   )}
-
-                  {/* How to pay */}
                   <div className="mt-3 rounded-xl bg-[#f7f2e9] px-4 py-3">
-                    <p className="text-xs font-semibold text-[#56524b] mb-1.5">How to pay</p>
+                    <p className="text-xs font-semibold text-[#56524b] mb-1.5">How to pay with GCash</p>
                     <ol className="text-xs text-[#56524b] space-y-1 list-decimal list-inside">
-                      <li>Tap <span className="font-semibold">Save QR to Photos</span>, then choose <span className="font-semibold">Save Image</span> to add it to your gallery.</li>
-                      <li>Open <span className="font-semibold">GCash</span> → <span className="font-semibold">Scan QR</span> → <span className="font-semibold">Upload from Gallery</span> and pick the saved QR{gcash.number ? <>, or use <span className="font-semibold">Send Money</span> to the number above</> : null}.</li>
-                      <li>Enter <span className="font-semibold">{sym}{order.totalAmount.toFixed(2)}</span> and complete the payment.</li>
+                      {gcash.qrUrl ? (
+                        <>
+                          <li>Tap <span className="font-semibold">Save QR to Photos</span>, then <span className="font-semibold">Save Image</span>.</li>
+                          <li>Open <span className="font-semibold">GCash</span> → <span className="font-semibold">Scan QR</span> → <span className="font-semibold">Upload from Gallery</span>{gcash.number ? <>, or <span className="font-semibold">Send Money</span> to the number above</> : null}.</li>
+                        </>
+                      ) : (
+                        <li>Open <span className="font-semibold">GCash</span> → <span className="font-semibold">Send Money</span> to the number above.</li>
+                      )}
+                      <li>Send <span className="font-semibold">{money(sym, order.totalAmount)}</span>.</li>
                       <li>Come back here and tap <span className="font-semibold">I’ve paid via GCash</span>.</li>
                     </ol>
                   </div>
-
                   <button
                     onClick={markPaid}
                     disabled={payingMark}
@@ -476,27 +547,30 @@ export default function OrderPageContent({ slug }: { slug: string }) {
                     I’ve paid via GCash
                   </button>
                 </>
+              ) : (
+                <p className="text-sm text-[#56524b]">Pay <span className="font-bold text-[#161616]">{money(sym, order.totalAmount)}</span> at the counter.</p>
               )}
             </div>
           )}
 
-          <p className="text-center text-xs text-[#9b9487] mt-4 flex items-center justify-center gap-1.5">
-            <Clock className="w-3.5 h-3.5" /> Status updates automatically
-          </p>
+          {isActive(order.status) && (
+            <p className="text-center text-xs text-[#9b9487] flex items-center justify-center gap-1.5">
+              <Clock className="w-3.5 h-3.5" /> This page updates on its own. Keep it open.
+            </p>
+          )}
 
           <button
-            onClick={startNewOrder}
-            className="w-full mt-4 py-3 rounded-xl bg-white border-2 border-[#161616] text-[#56524b] text-sm font-semibold flex items-center justify-center gap-2 hover:bg-[#f7f2e9] transition"
+            onClick={isActive(order.status) ? backToMenu : forgetOrder}
+            className="w-full py-3 rounded-xl bg-white border-2 border-[#161616] text-[#56524b] text-sm font-semibold flex items-center justify-center gap-2 hover:bg-[#f7f2e9] transition"
           >
-            <ArrowLeft className="w-4 h-4" /> Place another order
+            <ArrowLeft className="w-4 h-4" /> {isActive(order.status) ? "Order something else" : "Place another order"}
           </button>
         </main>
       </div>
     )
   }
 
-  // ─── Menu / ordering view ───────────────────────────────────────────────────
-  const cats = data ? [{ id: "__all", name: "" }, ...data.categories] : []
+  // ─── Menu view ──────────────────────────────────────────────────────────────
   const grouped = data
     ? [
         ...data.categories.map(c => ({ cat: c, items: data.items.filter(i => i.categoryId === c.id) })),
@@ -524,13 +598,23 @@ export default function OrderPageContent({ slug }: { slug: string }) {
               {data?.org.tagline && <p className="text-sm opacity-90">{data.org.tagline}</p>}
             </div>
           </div>
-          {table
-            ? <div className="mt-4 inline-flex items-center gap-1.5 bg-white/20 backdrop-blur-sm rounded-full px-3 py-1 text-sm font-medium">Table {table}</div>
-            : <div className="mt-4 inline-flex items-center gap-1.5 bg-red-500/40 backdrop-blur-sm rounded-full px-3 py-1 text-xs font-medium"><AlertCircle className="w-3.5 h-3.5" /> No table, rescan QR</div>}
+          <div className="mt-4 inline-flex items-center gap-1.5 bg-white/20 backdrop-blur-sm rounded-full px-3 py-1 text-sm font-medium">
+            Order here, then show your number at the counter
+          </div>
         </div>
       </header>
 
       <main className="max-w-md mx-auto px-4 -mt-2">
+        {myOrders.length > 0 && (
+          <button
+            onClick={() => setTrackingId(myOrders[0])}
+            className="mt-4 w-full bg-white rounded-2xl border-2 border-[#161616] shadow-[3px_3px_0_#161616] px-4 py-3 flex items-center justify-between text-sm font-semibold text-[#161616]"
+          >
+            <span className="flex items-center gap-2"><QrCode className="w-4 h-4" style={{ color: accent }} /> Your last order</span>
+            <span style={{ color: accent }}>View →</span>
+          </button>
+        )}
+
         {grouped.map(g => (
           <section key={g.cat.id} className="mt-5">
             <h2 className="text-sm font-bold text-[#161616] mb-2 px-1">{g.cat.name}</h2>
@@ -543,17 +627,17 @@ export default function OrderPageContent({ slug }: { slug: string }) {
                     <div className="flex-1 min-w-0">
                       <p className="font-semibold text-[#161616] text-sm leading-tight">{item.name}</p>
                       {item.description && <p className="text-xs text-[#56524b] mt-0.5 line-clamp-2">{item.description}</p>}
-                      <p className="text-sm font-bold mt-1" style={{ color: accent }}>{sym}{item.price.toFixed(2)}</p>
+                      <p className="text-sm font-bold mt-1" style={{ color: accent }}>{money(sym, item.price)}</p>
                     </div>
                     <div className="flex items-center self-center">
                       {qty > 0 ? (
                         <div className="flex items-center gap-2.5">
-                          <button onClick={() => setQty(item.id, -1)} className="w-7 h-7 rounded-full bg-[#f7f2e9] text-[#56524b] flex items-center justify-center active:scale-95"><Minus className="w-4 h-4" /></button>
+                          <button onClick={() => setQty(item.id, -1)} aria-label={`One less ${item.name}`} className="w-7 h-7 rounded-full bg-[#f7f2e9] text-[#56524b] flex items-center justify-center active:scale-95"><Minus className="w-4 h-4" /></button>
                           <span className="text-sm font-bold w-4 text-center">{qty}</span>
-                          <button onClick={() => setQty(item.id, +1)} className="w-7 h-7 rounded-full text-white flex items-center justify-center active:scale-95" style={{ background: accent }}><Plus className="w-4 h-4" /></button>
+                          <button onClick={() => setQty(item.id, +1)} aria-label={`One more ${item.name}`} className="w-7 h-7 rounded-full text-white flex items-center justify-center active:scale-95" style={{ background: accent }}><Plus className="w-4 h-4" /></button>
                         </div>
                       ) : (
-                        <button onClick={() => setQty(item.id, +1)} className="w-8 h-8 rounded-full text-white flex items-center justify-center active:scale-95" style={{ background: accent }}><Plus className="w-4 h-4" /></button>
+                        <button onClick={() => setQty(item.id, +1)} aria-label={`Add ${item.name}`} className="w-8 h-8 rounded-full text-white flex items-center justify-center active:scale-95" style={{ background: accent }}><Plus className="w-4 h-4" /></button>
                       )}
                     </div>
                   </div>
@@ -576,7 +660,7 @@ export default function OrderPageContent({ slug }: { slug: string }) {
             style={{ background: accent }}
           >
             <span className="flex items-center gap-2"><ShoppingBag className="w-5 h-5" /> {cartCount} item{cartCount > 1 ? "s" : ""}</span>
-            <span>View cart · {sym}{cartTotal.toFixed(2)}</span>
+            <span>View cart · {money(sym, cartTotal)}</span>
           </button>
         </div>
       )}
@@ -584,59 +668,92 @@ export default function OrderPageContent({ slug }: { slug: string }) {
       {/* Cart sheet */}
       {showCart && (
         <div className="fixed inset-0 z-30 flex items-end justify-center bg-black/40" onClick={() => setShowCart(false)}>
-          <div className="bg-white w-full max-w-md rounded-t-3xl p-5 max-h-[88vh] overflow-y-auto" onClick={e => e.stopPropagation()}>
+          <div className="bg-white w-full max-w-md rounded-t-3xl p-5 max-h-[90vh] overflow-y-auto" onClick={e => e.stopPropagation()}>
             <div className="flex items-center justify-between mb-4">
               <h3 className="text-lg font-bold text-[#161616]">Your order</h3>
-              <button onClick={() => setShowCart(false)} className="w-8 h-8 rounded-full bg-[#f7f2e9] flex items-center justify-center"><X className="w-4 h-4 text-[#56524b]" /></button>
+              <button onClick={() => setShowCart(false)} aria-label="Close" className="w-8 h-8 rounded-full bg-[#f7f2e9] flex items-center justify-center"><X className="w-4 h-4 text-[#56524b]" /></button>
             </div>
 
             <div className="space-y-3">
               {cartLines.map(l => (
-                <div key={l.item.id} className="flex items-center gap-3">
-                  <div className="flex-1">
-                    <p className="text-sm font-semibold text-[#161616]">{l.item.name}</p>
-                    <p className="text-xs text-[#56524b]">{sym}{l.item.price.toFixed(2)}</p>
+                <div key={l.item.id} className="space-y-1.5">
+                  <div className="flex items-center gap-3">
+                    <div className="flex-1 min-w-0">
+                      <p className="text-sm font-semibold text-[#161616]">{l.item.name}</p>
+                      <p className="text-xs text-[#56524b]">{money(sym, l.item.price)}</p>
+                    </div>
+                    <button
+                      onClick={() => setNoteOpen(n => ({ ...n, [l.item.id]: !n[l.item.id] }))}
+                      aria-label={`Note for ${l.item.name}`}
+                      className="w-7 h-7 rounded-full flex items-center justify-center"
+                      style={{ color: lineNotes[l.item.id]?.trim() ? accent : "#9b9487" }}
+                    >
+                      <StickyNote className="w-4 h-4" />
+                    </button>
+                    <div className="flex items-center gap-2.5">
+                      <button onClick={() => setQty(l.item.id, -1)} aria-label={`One less ${l.item.name}`} className="w-7 h-7 rounded-full bg-[#f7f2e9] flex items-center justify-center"><Minus className="w-4 h-4" /></button>
+                      <span className="text-sm font-bold w-4 text-center">{l.qty}</span>
+                      <button onClick={() => setQty(l.item.id, +1)} aria-label={`One more ${l.item.name}`} className="w-7 h-7 rounded-full text-white flex items-center justify-center" style={{ background: accent }}><Plus className="w-4 h-4" /></button>
+                    </div>
+                    <span className="text-sm font-semibold w-16 text-right text-[#56524b]">{money(sym, l.item.price * l.qty)}</span>
                   </div>
-                  <div className="flex items-center gap-2.5">
-                    <button onClick={() => setQty(l.item.id, -1)} className="w-7 h-7 rounded-full bg-[#f7f2e9] flex items-center justify-center"><Minus className="w-4 h-4" /></button>
-                    <span className="text-sm font-bold w-4 text-center">{l.qty}</span>
-                    <button onClick={() => setQty(l.item.id, +1)} className="w-7 h-7 rounded-full text-white flex items-center justify-center" style={{ background: accent }}><Plus className="w-4 h-4" /></button>
-                  </div>
-                  <span className="text-sm font-semibold w-16 text-right text-[#56524b]">{sym}{(l.item.price * l.qty).toFixed(2)}</span>
+                  {(noteOpen[l.item.id] || lineNotes[l.item.id]) && (
+                    <input
+                      value={lineNotes[l.item.id] || ""}
+                      onChange={e => setLineNotes(n => ({ ...n, [l.item.id]: e.target.value }))}
+                      placeholder="e.g. no onions"
+                      maxLength={140}
+                      className="w-full px-3 py-2 rounded-xl bg-[#f7f2e9] border-2 border-[#161616] text-sm outline-none"
+                    />
+                  )}
                 </div>
               ))}
             </div>
 
             <div className="border-t border-[#161616] mt-4 pt-4 space-y-3">
+              <div className="grid grid-cols-2 rounded-xl border-2 border-[#161616] overflow-hidden text-sm font-semibold">
+                {(["DINE_IN", "TAKEAWAY"] as OrderType[]).map(t => (
+                  <button
+                    key={t}
+                    onClick={() => setOrderType(t)}
+                    className="py-2.5 transition"
+                    style={orderType === t ? { background: accent, color: "#fff" } : { color: "#56524b" }}
+                  >
+                    {t === "DINE_IN" ? "Dine-in" : "Take-out"}
+                  </button>
+                ))}
+              </div>
               <input
                 value={customerName}
                 onChange={e => setCustomerName(e.target.value)}
                 placeholder="Your name (optional)"
+                maxLength={60}
                 className="w-full px-4 py-2.5 rounded-xl bg-[#f7f2e9] border-2 border-[#161616] text-sm outline-none focus:border-[#161616]"
               />
               <textarea
                 value={notes}
                 onChange={e => setNotes(e.target.value)}
-                placeholder="Special requests (optional)"
+                placeholder="Note for the whole order (optional)"
                 rows={2}
+                maxLength={300}
                 className="w-full px-4 py-2.5 rounded-xl bg-[#f7f2e9] border-2 border-[#161616] text-sm outline-none focus:border-[#161616] resize-none"
               />
             </div>
 
-            {error && <p className="text-sm text-[#e11d48] mt-3 flex items-center gap-1.5"><AlertCircle className="w-4 h-4" /> {error}</p>}
+            {error && <p className="text-sm text-[#e11d48] mt-3 flex items-center gap-1.5"><AlertCircle className="w-4 h-4 shrink-0" /> {error}</p>}
 
             <div className="flex justify-between font-bold text-[#161616] mt-4 mb-3">
-              <span>Total</span><span>{sym}{cartTotal.toFixed(2)}</span>
+              <span>Total</span><span>{money(sym, cartTotal)}</span>
             </div>
             <button
               onClick={placeOrder}
-              disabled={submitting || !table}
+              disabled={submitting}
               className="w-full py-3.5 rounded-full text-white font-bold border-2 border-[#161616] shadow-[3px_3px_0_#161616] flex items-center justify-center gap-2 disabled:opacity-60 active:translate-y-0.5 active:shadow-none transition"
               style={{ background: accent }}
             >
               {submitting ? <><Loader2 className="w-5 h-5 animate-spin" /> Placing…</> : <>Place order</>}
             </button>
-            {!table && <p className="text-xs text-[#e11d48] text-center mt-2">Rescan the QR code on your table to order.</p>}
+            <p className="text-xs text-[#9b9487] text-center mt-2">You'll get an order number to show at the counter.</p>
           </div>
         </div>
       )}

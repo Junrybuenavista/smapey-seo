@@ -4,7 +4,7 @@ import RestaurantPosSystemContent from "./RestaurantPosSystemContent"
 
 const PATH = "/restaurant/restaurant-pos-system"
 const TITLE = "Restaurant POS System - Free Software for Small Restaurants | Smapey"
-const DESCRIPTION = "A free restaurant POS system for small restaurants and caf\u00e9s. Menu, orders, kitchen queue, and daily sales, no expensive hardware, no monthly POS fees. Start free."
+const DESCRIPTION = "A free restaurant POS system for small restaurants and caf\u00e9s. Cashier and kitchen screens, cash change, GCash, and daily sales. No hardware, no POS fees."
 
 export const metadata = buildMetadata({
   title: TITLE,

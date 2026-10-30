@@ -1,12 +1,13 @@
 import JsonLd from "@/components/JsonLd"
-import { buildMetadata, softwareApplicationSchema, breadcrumbSchema } from "@/lib/seo"
+import { buildMetadata, softwareApplicationSchema, breadcrumbSchema, faqSchema } from "@/lib/seo"
 import RestaurantContent from "./RestaurantContent"
+import { FAQS } from "@/components/restaurant/faqs"
 
 import { postsForHub } from "@/lib/blog"
 
 const PATH = "/restaurant"
 const TITLE = "Food Ordering Manager | Menu, Orders & Kitchen Queue | Smapey"
-const DESCRIPTION = "Smapey Food Ordering Manager handles menu building, dine-in and takeaway orders, kitchen queue tracking, and daily sales reporting for small restaurants and caf\u00e9s. Start free, no credit card required."
+const DESCRIPTION = "Smapey Food Ordering Manager: counter and QR phone orders, a kitchen screen, TV order calling, GCash, and daily sales for small restaurants. Start free."
 
 export const metadata = buildMetadata({
   title: TITLE,
@@ -27,6 +28,9 @@ export default async function Page() {
             path: PATH,
           }),
           breadcrumbSchema(PATH),
+          // Only here: the other restaurant pages show these same questions, and
+          // Google wants one marked-up copy of repeated FAQs per site.
+          faqSchema(FAQS),
         ]}
       />
       <RestaurantContent guides={guides} />

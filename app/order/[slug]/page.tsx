@@ -10,7 +10,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
   return {
     title: `Order Online - ${slug} | Smapey`,
-    description: `Scan, browse the menu and order from your table at ${slug}.`,
+    description: `Order from your phone at ${slug}, then show your order number at the counter.`,
     robots: { index: false, follow: false },
   }
 }

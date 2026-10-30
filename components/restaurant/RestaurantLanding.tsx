@@ -7,6 +7,7 @@ import {
   ChevronRight, Menu, X,
 } from "lucide-react"
 import { usePricing, type Plan } from "@/lib/usePricing"
+import { FAQS } from "./faqs"
 import InternalLinks from "@/components/InternalLinks"
 import HubGuides from "@/components/blog/HubGuides"
 import type { BlogPost } from "@/lib/blog"
@@ -21,32 +22,24 @@ const display = { fontFamily: "'Hanken Grotesk', system-ui, sans-serif" }
 
 const FEATURES = [
   { icon: UtensilsCrossed, title: "Menu Builder", desc: "Create categories and add items with photos, descriptions, and prices. Toggle items available or 86'd in seconds. Your menu updates instantly for everyone placing orders." },
-  { icon: QrCode, title: "QR Table Ordering", desc: "Print one QR code per table. Customers scan, browse your live menu, and place their own order from their phone - no app to download and no login required. Orders drop straight into your kitchen queue." },
-  { icon: Smartphone, title: "Live Order Tracking", desc: "After ordering, customers see a live status tracker on their phone - Order received, Being prepared, Ready to serve. Less asking \"is my food ready?\" and fewer interruptions for your staff." },
-  { icon: ShoppingBag, title: "Dine-in & Takeaway Orders", desc: "Place orders in under a minute. Assign a table number for dine-in or a customer name for takeaway. Add item-level notes and a per-order memo." },
-  { icon: ChefHat, title: "Kitchen Queue", desc: "Every order enters as Pending. Move it to Preparing when you start cooking, Ready when it's done, Completed when served. Your team always knows what to do next." },
-  { icon: ClipboardList, title: "Order History", desc: "Filter orders by status, type, or date. View every order's line items, total, and payment status. Cancel orders from Pending or Preparing at any time." },
-  { icon: BarChart3, title: "Sales Analytics", desc: "Today's revenue, order count, and status breakdown on one screen. A 7-day revenue trend and top-selling items chart refresh automatically with every new order." },
-  { icon: Banknote, title: "GCash & Payment Tracking", desc: "Show your own GCash QR right on the customer's phone so they can pay in seconds. Customers tap \"I've paid\" and your staff confirm - money goes straight to your wallet, no payment-gateway fees or KYC. Mark orders paid by Cash, GCash, or Card." },
-  { icon: Zap, title: "Auto Order Numbers", desc: "Each order gets a sequential number (#001, #002, …) the moment it's placed. Numbers reset cleanly so your kitchen and counter always share the same reference." },
-  { icon: CheckCircle2, title: "Team Access", desc: "Invite staff as Admin or Member. Set per-feature permissions - front-of-house can place orders, kitchen staff can advance queue status, managers get analytics." },
+  { icon: QrCode, title: "QR Phone Ordering", desc: "Put one QR code on your counter, walls or tables. Customers scan it, browse your live menu, and order from their phone - no app to download and no login required. They show their order number at the counter and it goes straight to the kitchen." },
+  { icon: Smartphone, title: "Live Order Tracking", desc: "After ordering, customers see a live status on their phone - Being prepared, then Ready to claim - and their phone chimes when the food is ready. Less asking \"is my food ready?\" and fewer interruptions for your staff." },
+  { icon: ShoppingBag, title: "Cashier Screen", desc: "Take an order in under a minute: dine-in or take-out, notes on any item, paid now or at pickup. Preparing and Ready orders sit side by side, and scanning a customer's QR sends their phone order to the kitchen." },
+  { icon: ChefHat, title: "Kitchen Screen", desc: "Every order shows up on the kitchen screen, oldest first, with a chime and its notes. The cook puts the food on a tray and taps Ready, and the order moves to the counter with its tray letter." },
+  { icon: ClipboardList, title: "Order History", desc: "Filter orders by status, type, or date. View every order's items, total, and payment. Staff can cancel unpaid orders; a paid one needs an owner or admin." },
+  { icon: BarChart3, title: "Sales Analytics", desc: "Today's revenue, order count, and status breakdown on one screen. A 7-day revenue trend and this month's best-sellers refresh with every order." },
+  { icon: Banknote, title: "GCash & Payment Tracking", desc: "Show your own GCash QR right on the customer's phone so they can pay in seconds. Customers tap \"I've paid\" and your cashier confirms - money goes straight to your wallet, no payment-gateway fees or KYC. For cash, the change is worked out for you." },
+  { icon: Zap, title: "Order Numbers & TV Calling", desc: "Each order gets a number from 01 to 99, on a paper slip or the customer's phone. A \"Now serving\" page on your TV shows the numbers, and calls each one out when the cashier taps Announce." },
+  { icon: CheckCircle2, title: "Team Access", desc: "Invite staff as Admin or Member and choose what each one sees - the cashier gets the Cashier screen, the cook gets the Kitchen screen, managers get analytics." },
 ]
 
 const STEPS = [
   { num: "01", title: "Build your menu", desc: "Create categories (Appetizers, Mains, Drinks, Desserts) and add items with photos, descriptions, and prices. Mark items available or sold-out at any time." },
-  { num: "02", title: "Print your table QR", desc: "Turn on QR ordering and print one code per table. Customers scan, browse your live menu, and place their own order - or your staff can take orders from the dashboard. New orders pop into the queue instantly." },
-  { num: "03", title: "Work the kitchen queue", desc: "New orders appear as Pending. Tap to move them to Preparing, then Ready, then Completed. Customers watch the live status on their phone. Cancel from Pending or Preparing if needed." },
-  { num: "04", title: "Get paid & track sales", desc: "Customers pay by Cash or scan your GCash QR and tap \"I've paid\" for staff to confirm. Your dashboard shows today's revenue, top items, and a 7-day trend in real time." },
+  { num: "02", title: "Put up your store QR", desc: "Turn on phone ordering and print your store QR for the counter, walls or tables. Customers order on their phone and show their number at the counter, or your cashier takes the order. Either way it goes straight to the kitchen." },
+  { num: "03", title: "Cook, then call the number", desc: "The kitchen screen shows each order with its notes. The cook puts it on a tray and taps Ready, the cashier taps Announce, and your TV calls the number. Customers also watch the status on their phone." },
+  { num: "04", title: "Get paid & track sales", desc: "Customers pay in cash or with your GCash QR, when they order or when they claim the food. Nothing is handed over unpaid. Your dashboard shows today's revenue, best-sellers, and a 7-day trend." },
 ]
 
-const FAQS = [
-  { q: "Can customers order directly from their phone?", a: "Yes. Turn on QR ordering and print one QR code per table. Customers scan it, browse your live menu, and place their own order from their phone, no app to download and no login required. Orders drop straight into your kitchen queue, and your staff can still place orders from the dashboard too. Customers also see a live status tracker (Order received → Being prepared → Ready to serve) on their phone." },
-  { q: "Can customers pay with GCash?", a: "Yes. Add your own GCash name, number, and QR code in settings and it shows right on the customer's phone after they order. They can scan it or copy your number to send payment, then tap \"I've paid via GCash.\" Your staff confirm the payment before it's marked paid, money goes straight to your own GCash wallet with no payment-gateway fees, no monthly cost, and no KYC paperwork." },
-  { q: "Is there really a free plan?", a: "Yes. The free plan includes up to 20 menu items, 100 orders per month, the full kitchen queue, the daily sales dashboard, and 2 team members, no credit card required. Upgrade only when your volume grows." },
-  { q: "How does the kitchen queue work?", a: "Every new order lands in the queue as Pending. A staff member moves it to Preparing when cooking starts, Ready when the food is done, and Completed when served or picked up. Orders can be cancelled from Pending or Preparing." },
-  { q: "Can I add photos to menu items?", a: "Yes. When you create or edit a menu item, you can upload a photo. Photos are shown to the staff member placing the order, useful for visually identifying items or matching presentation standards." },
-  { q: "What payment methods can I record?", a: "You can mark any order as paid by Cash, GCash, or Card. With GCash, customers can pay themselves by scanning your QR on their phone and tapping \"I've paid\" for staff to confirm. Payment status is tracked per order and visible on the orders list, so you know exactly what has and hasn't been settled at the end of a shift." },
-]
 
 export type RestaurantVariant = {
   currentPath: string
@@ -179,8 +172,8 @@ function Hero({ variant }: { variant: RestaurantVariant }) {
       {/* floating glass order ticket (desktop only) */}
       <div className="absolute right-[70px] top-1/2 z-10 hidden lg:block w-[280px] rounded-[20px] border-2 overflow-hidden" style={{ transform: "translateY(-50%) rotate(3deg)", background: "rgba(255,255,255,.96)", borderColor: INK, boxShadow: "8px 8px 0 rgba(0,0,0,.45)" }} aria-hidden>
         <div className="flex items-center justify-between px-[17px] py-[13px]" style={{ background: INK }}>
-          <span className="text-[13px] font-extrabold text-white">Order #042</span>
-          <span className="text-[11px] font-extrabold px-2.5 py-1 rounded-full" style={{ background: AMBER, color: INK }}>DINE-IN · T7</span>
+          <span className="text-[13px] font-extrabold text-white">Order 42</span>
+          <span className="text-[11px] font-extrabold px-2.5 py-1 rounded-full" style={{ background: AMBER, color: INK }}>DINE-IN</span>
         </div>
         <div className="px-[17px] py-4 flex flex-col gap-2.5">
           {[["2× Beef Tapa", "₱340"], ["1× Iced Latte", "₱120"], ["1× Garlic Rice", "₱55"]].map(([item, price]) => (
@@ -197,34 +190,34 @@ function Hero({ variant }: { variant: RestaurantVariant }) {
 const SHOWCASE = [
   {
     img: shot("v1780501558/qr-table-ordering.jpg_acd7i7.png"),
-    alt: "Customer scanning a table QR code to open the restaurant's menu on her phone",
-    eyebrow: "QR Table Ordering",
-    title: "Scan the table QR",
-    desc: "Each table gets its own QR code. Customers scan it with their phone camera to open your menu, no app to download and no login required.",
-    bullets: ["One QR code per table", "No app download needed", "No customer login required"],
+    alt: "Customer scanning the restaurant's QR code to open the menu on her phone",
+    eyebrow: "QR Phone Ordering",
+    title: "Scan the store QR",
+    desc: "Put your QR code on the counter, the walls or the tables. Customers scan it with their phone camera to open your menu, no app to download and no login required.",
+    bullets: ["One QR code for the whole shop", "No app download needed", "No customer login required"],
   },
   {
     img: shot("v1780501566/qr-menu-flatlay.jpg_jlghqo.png"),
-    alt: "Smartphone showing a live food-ordering menu beside a table QR code and a plate of food",
+    alt: "Smartphone showing a live food-ordering menu beside a QR code and a plate of food",
     eyebrow: "Live Menu",
     title: "Order from your live menu",
-    desc: "Your menu opens instantly on their phone. Guests browse photos and prices, add items to the cart, and send the order straight to your kitchen.",
-    bullets: ["Menu opens instantly on their phone", "Browse, customize, add to cart", "Order sent straight to the kitchen"],
+    desc: "Your menu opens instantly on their phone. Guests browse photos and prices, add a note to any dish, and get an order number to show at the counter.",
+    bullets: ["Menu opens instantly on their phone", "Notes on any dish", "An order number to show at the counter"],
   },
   {
     img: shot("v1780502461/kitchen_order_que_swwjp4.png"),
     alt: "Restaurant chef cooking while checking the Smapey kitchen order queue on a mounted tablet",
     eyebrow: "Kitchen Display",
     title: "Work the kitchen queue",
-    desc: "Orders land in your kitchen instantly. Staff tap to mark each one preparing, ready, and done, no paper tickets, no missed orders, no shouting across the floor.",
-    bullets: ["Orders land instantly", "Tap to mark preparing, ready, done", "No paper tickets or missed orders"],
+    desc: "Orders land on the kitchen screen with a chime. The cook puts the food on a tray and taps Ready, no paper tickets, no missed orders, no shouting across the floor.",
+    bullets: ["Orders land instantly, with a chime", "A tray letter for every ready order", "No paper tickets or missed orders"],
   },
   {
     img: shot("v1780506039/pay_with_gcash_kpt7xs.png"),
-    alt: "Customer paying with GCash on her phone by scanning the restaurant's GCash QR code at the table",
+    alt: "Customer paying with GCash on her phone by scanning the restaurant's GCash QR code",
     eyebrow: "GCash Payment",
     title: "Pay with GCash",
-    desc: "Customers scan your GCash QR, pay from their phone, and tap “I've paid”, you confirm it in Orders. No payment gateway to set up and no transaction fees.",
+    desc: "Customers scan your GCash QR, pay from their phone, and tap “I've paid”; the cashier confirms at the counter. No payment gateway to set up and no transaction fees.",
     bullets: ["Customers scan your GCash QR", "Pay from their own phone", "No gateway, no transaction fees"],
   },
 ]
@@ -406,8 +399,9 @@ function FAQ() {
           {FAQS.map(({ q, a }, i) => (
             <Animate key={i} delay={i * 60}>
               <div className="rounded-[18px] overflow-hidden border-2 bg-white" style={{ borderColor: INK }}>
-                <button onClick={() => setOpen(open === i ? null : i)} className="w-full flex items-center justify-between px-5 py-4 text-left font-bold text-sm" style={{ color: INK }}>{q}<ChevronRight className="w-4 h-4 transition-transform duration-200 shrink-0" style={{ color: BLUE, transform: open === i ? "rotate(90deg)" : "rotate(0deg)" }} /></button>
-                {open === i && <div className="px-5 pb-4 text-sm leading-relaxed pt-3" style={{ color: "#54514c", borderTop: "1px solid rgba(22,22,22,.1)" }}>{a}</div>}
+                <button onClick={() => setOpen(open === i ? null : i)} aria-expanded={open === i} aria-controls={`faq-answer-${i}`} className="w-full flex items-center justify-between px-5 py-4 text-left font-bold text-sm" style={{ color: INK }}>{q}<ChevronRight className="w-4 h-4 transition-transform duration-200 shrink-0" style={{ color: BLUE, transform: open === i ? "rotate(90deg)" : "rotate(0deg)" }} /></button>
+                {/* Always in the HTML, hidden until opened, so search engines can read every answer. */}
+                <div id={`faq-answer-${i}`} hidden={open !== i} className="px-5 pb-4 text-sm leading-relaxed pt-3" style={{ color: "#54514c", borderTop: "1px solid rgba(22,22,22,.1)" }}>{a}</div>
               </div>
             </Animate>
           ))}

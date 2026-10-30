@@ -4,7 +4,7 @@ import FoodOrderingSystemContent from "./FoodOrderingSystemContent"
 
 const PATH = "/restaurant/food-ordering-system"
 const TITLE = "Food Order Management System - Free for Small Restaurants | Smapey"
-const DESCRIPTION = "A food order management system built for small restaurants, caf\u00e9s, and canteens. Menu builder, kitchen queue, dine-in and takeaway orders, daily sales tracking. Free plan, no credit card."
+const DESCRIPTION = "A food order management system for small restaurants, caf\u00e9s, and canteens. Counter and QR phone orders, a kitchen screen, and daily sales. Free plan."
 
 export const metadata = buildMetadata({
   title: TITLE,

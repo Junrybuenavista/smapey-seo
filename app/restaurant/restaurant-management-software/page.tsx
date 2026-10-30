@@ -4,7 +4,7 @@ import RestaurantManagementSoftwareContent from "./RestaurantManagementSoftwareC
 
 const PATH = "/restaurant/restaurant-management-software"
 const TITLE = "Restaurant Management Software - Free for Small Restaurants | Smapey"
-const DESCRIPTION = "Restaurant management software for small restaurants, caf\u00e9s, and canteens. Menu builder, kitchen queue, sales tracking, and team access. Free plan, no credit card required."
+const DESCRIPTION = "Restaurant management software for small restaurants, caf\u00e9s, and canteens. Menu, kitchen and cashier screens, sales, and team access. Free, no card."
 
 export const metadata = buildMetadata({
   title: TITLE,
