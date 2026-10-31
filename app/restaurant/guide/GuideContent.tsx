@@ -18,7 +18,7 @@ const SECTIONS = [
     body: [
       "Open Menu in the dashboard and start with Categories, like Rice Meals, Merienda and Drinks. Categories keep your menu organized for your staff and your customers.",
       "Inside each category, click Add Item. Give it a name, a description, a price, and optionally a photo (upload one or take it with the camera). Photos show on the cashier's order screen and on the customer's phone.",
-      "Tap Hide on any item that sells out and it disappears from ordering right away. Switching off a whole category hides every item in it. You can delete an item even if it was ordered before; past orders keep its name and price.",
+      "Tap Hide on any item that sells out and it disappears from ordering right away; the kitchen can do this too, from the kitchen screen. Switching off a whole category hides every item in it. You can delete an item even if it was ordered before; past orders keep its name and price.",
     ],
   },
   {
@@ -55,14 +55,15 @@ const SECTIONS = [
     body: [
       "Open Kitchen on a tablet or phone in the kitchen. Every order being prepared shows up oldest first, with its item notes and how long it has waited. New orders chime; tap the screen once after opening it to turn sound on.",
       "When an order is done, tap Choose tray and pick the tray you're putting it on. Trays holding another order are greyed out, and a big order can take two.",
-      "Tap Ready and the order leaves the kitchen screen and moves to the cashier's Ready column with its tray letter. Tapped Ready by mistake? Tap Undo.",
+      "Tap Ready and the order leaves the kitchen screen and moves to the cashier's Ready column with its tray letter. A few seconds later your TV calls the number by itself. Tapped Ready by mistake? Tap Undo on the message that appears, and the number is never called.",
+      "Ran out of something? Tap Sold out at the top of the kitchen screen and mark the dish sold out. It disappears from New order and the customers' phones right away; tap Available when there's more.",
     ],
   },
   {
     icon: Monitor,
     title: "6. Call the number and hand it over",
     body: [
-      "On the Cashier screen, ready orders show their tray letter. Tap Announce and your TV screen chimes and says \"Order number 07, your order is ready.\" Tap it again to repeat.",
+      "On the Cashier screen, ready orders show their tray letter. Your TV screen has already called the number: it chimes and says \"Order number 07, your order is ready.\" If the customer doesn't come, tap Call again. Only the TV makes sound, so plug the speaker into the TV.",
       "For the TV, open Cashier → TV screen on a device connected to the TV. It shows the numbers being prepared and the numbers ready to claim, with no names or prices. Tap it once to turn sound on, then use Test sound.",
       "When the customer claims the order, tap Hand over. If they haven't paid yet, choose Cash or GCash. For cash, tap each bill they hand over and the change shows before you confirm. An order can't be handed over unpaid.",
       "Customers who ordered by phone also see each step on their phone, and their phone chimes when the food is ready.",

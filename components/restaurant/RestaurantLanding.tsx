@@ -25,18 +25,18 @@ const FEATURES = [
   { icon: QrCode, title: "QR Phone Ordering", desc: "Put one QR code on your counter, walls or tables. Customers scan it, browse your live menu, and order from their phone - no app to download and no login required. They show their order number at the counter and it goes straight to the kitchen." },
   { icon: Smartphone, title: "Live Order Tracking", desc: "After ordering, customers see a live status on their phone - Being prepared, then Ready to claim - and their phone chimes when the food is ready. Less asking \"is my food ready?\" and fewer interruptions for your staff." },
   { icon: ShoppingBag, title: "Cashier Screen", desc: "Take an order in under a minute: dine-in or take-out, notes on any item, paid now or at pickup. Preparing and Ready orders sit side by side, and scanning a customer's QR sends their phone order to the kitchen." },
-  { icon: ChefHat, title: "Kitchen Screen", desc: "Every order shows up on the kitchen screen, oldest first, with a chime and its notes. The cook puts the food on a tray and taps Ready, and the order moves to the counter with its tray letter." },
+  { icon: ChefHat, title: "Kitchen Screen", desc: "Every order shows up on the kitchen screen, oldest first, with a chime and its notes. The cook puts the food on a tray and taps Ready, and the order moves to the counter with its tray letter. Ran out of a dish? Mark it sold out right from the kitchen." },
   { icon: ClipboardList, title: "Order History", desc: "Filter orders by status, type, or date. View every order's items, total, and payment. Staff can cancel unpaid orders; a paid one needs an owner or admin." },
   { icon: BarChart3, title: "Sales Analytics", desc: "Today's revenue, order count, and status breakdown on one screen. A 7-day revenue trend and this month's best-sellers refresh with every order." },
   { icon: Banknote, title: "GCash & Payment Tracking", desc: "Show your own GCash QR right on the customer's phone so they can pay in seconds. Customers tap \"I've paid\" and your cashier confirms - money goes straight to your wallet, no payment-gateway fees or KYC. For cash, the change is worked out for you." },
-  { icon: Zap, title: "Order Numbers & TV Calling", desc: "Each order gets a number from 01 to 99, on a paper slip or the customer's phone. A \"Now serving\" page on your TV shows the numbers, and calls each one out when the cashier taps Announce." },
+  { icon: Zap, title: "Order Numbers & TV Calling", desc: "Each order gets a number from 01 to 99, on a paper slip or the customer's phone. A \"Now serving\" page on your TV shows the numbers, and calls each one out by itself as soon as the kitchen marks it ready." },
   { icon: CheckCircle2, title: "Team Access", desc: "Invite staff as Admin or Member and choose what each one sees - the cashier gets the Cashier screen, the cook gets the Kitchen screen, managers get analytics." },
 ]
 
 const STEPS = [
   { num: "01", title: "Build your menu", desc: "Create categories (Appetizers, Mains, Drinks, Desserts) and add items with photos, descriptions, and prices. Mark items available or sold-out at any time." },
   { num: "02", title: "Put up your store QR", desc: "Turn on phone ordering and print your store QR for the counter, walls or tables. Customers order on their phone and show their number at the counter, or your cashier takes the order. Either way it goes straight to the kitchen." },
-  { num: "03", title: "Cook, then call the number", desc: "The kitchen screen shows each order with its notes. The cook puts it on a tray and taps Ready, the cashier taps Announce, and your TV calls the number. Customers also watch the status on their phone." },
+  { num: "03", title: "Cook, then call the number", desc: "The kitchen screen shows each order with its notes. The cook puts it on a tray and taps Ready, and a few seconds later your TV calls the number by itself. Customers also watch the status on their phone." },
   { num: "04", title: "Get paid & track sales", desc: "Customers pay in cash or with your GCash QR, when they order or when they claim the food. Nothing is handed over unpaid. Your dashboard shows today's revenue, best-sellers, and a 7-day trend." },
 ]
 
