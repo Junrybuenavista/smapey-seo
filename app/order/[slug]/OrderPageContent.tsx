@@ -4,7 +4,7 @@ import { useEffect, useMemo, useState, useCallback, useRef } from "react"
 import {
   UtensilsCrossed, Plus, Minus, ShoppingBag, Loader2, AlertCircle,
   CheckCircle2, ChefHat, BellRing, X, ArrowLeft, Clock, XCircle, Wallet,
-  Download, Copy, Check, QrCode, StickyNote,
+  Download, Copy, Check, QrCode, StickyNote, Ban,
 } from "lucide-react"
 
 const API = process.env.NEXT_PUBLIC_API_URL || ""
@@ -16,6 +16,8 @@ interface MenuItem {
   price: number
   imageUrl: string | null
   categoryId: string | null
+  // false while it's sold out. Older menus don't send it: available.
+  isAvailable?: boolean
 }
 interface Category { id: string; name: string }
 interface Gcash {
@@ -63,11 +65,14 @@ const PAYMENT_LABEL: Record<string, string> = { CASH: "Cash", GCASH: "GCash", CA
 const orderNo = (o: { ticketNumber: number | null }) => (o.ticketNumber != null ? String(o.ticketNumber).padStart(2, "0") : "—")
 const money = (sym: string, n: number) => `${sym}${n.toFixed(2)}`
 const isActive = (s: PlacedOrder["status"]) => s === "PENDING" || s === "PREPARING" || s === "READY"
+const soldOut = (i: MenuItem) => i.isAvailable === false
 
 export default function OrderPageContent({ slug }: { slug: string }) {
   const [data, setData]       = useState<MenuData | null>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError]     = useState("")
+  // A sold-out dish the customer tapped: shown in a small message instead of added.
+  const [unavailable, setUnavailable] = useState<MenuItem | null>(null)
 
   const [cart, setCart]           = useState<Record<string, number>>({})
   const [lineNotes, setLineNotes] = useState<Record<string, string>>({})
@@ -175,6 +180,20 @@ export default function OrderPageContent({ slug }: { slug: string }) {
       .catch(e => { if (active) { setError(e.message || "Menu not available"); setLoading(false) } })
     return () => { active = false }
   }, [slug])
+
+  // Re-read the menu when the customer comes back to the page (and after a
+  // refused order), so a dish that sold out meanwhile shows as unavailable.
+  const refreshMenu = useCallback(() => {
+    fetch(`${API}/api/restaurant/public/${slug}`, { cache: "no-store" })
+      .then(r => (r.ok ? r.json() : null))
+      .then(d => { if (d) setData(d) })
+      .catch(() => {})
+  }, [slug])
+  useEffect(() => {
+    const onVisible = () => { if (document.visibilityState === "visible") refreshMenu() }
+    document.addEventListener("visibilitychange", onVisible)
+    return () => document.removeEventListener("visibilitychange", onVisible)
+  }, [refreshMenu])
 
   // ─── Orders placed from this phone ──────────────────────────────────────────
   const saveMyOrders = useCallback((ids: string[]) => {
@@ -304,7 +323,9 @@ export default function OrderPageContent({ slug }: { slug: string }) {
   const cartCount = cartLines.reduce((s, l) => s + l.qty, 0)
   const cartTotal = cartLines.reduce((s, l) => s + l.item.price * l.qty, 0)
 
-  const setQty = (id: string, delta: number) =>
+  const setQty = (id: string, delta: number) => {
+    const item = itemsById[id]
+    if (delta > 0 && item && soldOut(item)) { setUnavailable(item); return }
     setCart(c => {
       const next = Math.max(0, Math.min(99, (c[id] || 0) + delta))
       const copy = { ...c }
@@ -312,6 +333,7 @@ export default function OrderPageContent({ slug }: { slug: string }) {
       else copy[id] = next
       return copy
     })
+  }
 
   // ─── Place the order ─────────────────────────────────────────────────────────
   const placeOrder = async () => {
@@ -338,6 +360,7 @@ export default function OrderPageContent({ slug }: { slug: string }) {
       window.scrollTo({ top: 0, behavior: "smooth" })
     } catch (e: any) {
       setError(e.message || "Could not place order")
+      refreshMenu()
     } finally {
       setSubmitting(false)
     }
@@ -621,6 +644,25 @@ export default function OrderPageContent({ slug }: { slug: string }) {
             <div className="space-y-2.5">
               {g.items.map(item => {
                 const qty = cart[item.id] || 0
+                if (soldOut(item)) return (
+                  <button
+                    key={item.id}
+                    type="button"
+                    onClick={() => setUnavailable(item)}
+                    aria-label={`${item.name} is unavailable`}
+                    className="w-full text-left bg-white/60 rounded-2xl border-2 border-[#d6cfc2] p-3 flex gap-3 items-center"
+                  >
+                    {item.imageUrl && <img src={item.imageUrl} alt="" className="w-16 h-16 rounded-xl object-cover shrink-0 grayscale opacity-50" />}
+                    <div className="flex-1 min-w-0 opacity-60">
+                      <p className="font-semibold text-[#161616] text-sm leading-tight">{item.name}</p>
+                      {item.description && <p className="text-xs text-[#56524b] mt-0.5 line-clamp-2">{item.description}</p>}
+                      <p className="text-sm font-bold mt-1 text-[#9b9487]">{money(sym, item.price)}</p>
+                    </div>
+                    <span className="shrink-0 rounded-full border-2 border-[#d6cfc2] bg-[#f7f2e9] px-2.5 py-1 text-[11px] font-bold uppercase tracking-wide text-[#8a8173]">
+                      Unavailable
+                    </span>
+                  </button>
+                )
                 return (
                   <div key={item.id} className="bg-white rounded-2xl border-2 border-[#161616] shadow-[5px_5px_0_#161616] p-3 flex gap-3">
                     {item.imageUrl && <img src={item.imageUrl} alt="" className="w-16 h-16 rounded-xl object-cover shrink-0" />}
@@ -665,6 +707,32 @@ export default function OrderPageContent({ slug }: { slug: string }) {
         </div>
       )}
 
+      {/* A sold-out dish the customer tapped */}
+      {unavailable && (
+        <div className="fixed inset-0 z-40 flex items-center justify-center bg-black/40 px-6" onClick={() => setUnavailable(null)}>
+          <div
+            role="dialog" aria-modal="true" aria-labelledby="unavailable-title"
+            onClick={e => e.stopPropagation()}
+            className="w-full max-w-xs bg-white rounded-2xl border-2 border-[#161616] shadow-[5px_5px_0_#161616] p-5 text-center"
+          >
+            {unavailable.imageUrl ? (
+              <img src={unavailable.imageUrl} alt="" className="w-20 h-20 rounded-xl object-cover mx-auto grayscale opacity-70" />
+            ) : (
+              <div className="w-14 h-14 rounded-full bg-[#f7f2e9] mx-auto flex items-center justify-center"><Ban className="w-6 h-6 text-[#9b9487]" /></div>
+            )}
+            <p id="unavailable-title" className="mt-3 font-bold text-[#161616]">{unavailable.name} is unavailable</p>
+            <p className="mt-1 text-sm text-[#56524b]">Sorry, it&apos;s not available right now. Please choose something else.</p>
+            <button
+              onClick={() => setUnavailable(null)}
+              className="mt-4 w-full py-2.5 rounded-full text-white font-bold border-2 border-[#161616] active:translate-y-0.5"
+              style={{ background: accent }}
+            >
+              OK
+            </button>
+          </div>
+        </div>
+      )}
+
       {/* Cart sheet */}
       {showCart && (
         <div className="fixed inset-0 z-30 flex items-end justify-center bg-black/40" onClick={() => setShowCart(false)}>
@@ -681,6 +749,7 @@ export default function OrderPageContent({ slug }: { slug: string }) {
                     <div className="flex-1 min-w-0">
                       <p className="text-sm font-semibold text-[#161616]">{l.item.name}</p>
                       <p className="text-xs text-[#56524b]">{money(sym, l.item.price)}</p>
+                      {soldOut(l.item) && <p className="text-xs font-semibold text-[#e11d48]">Unavailable now. Remove it to order.</p>}
                     </div>
                     <button
                       onClick={() => setNoteOpen(n => ({ ...n, [l.item.id]: !n[l.item.id] }))}

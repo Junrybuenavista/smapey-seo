@@ -18,7 +18,7 @@ const SECTIONS = [
     body: [
       "Open Menu in the dashboard and start with Categories, like Rice Meals, Merienda and Drinks. Categories keep your menu organized for your staff and your customers.",
       "Inside each category, click Add Item. Give it a name, a description, a price, and optionally a photo (upload one or take it with the camera). Photos show on the cashier's order screen and on the customer's phone.",
-      "Tap Hide on any item that sells out and it disappears from ordering right away; the kitchen can do this too, from the kitchen screen. Switching off a whole category hides every item in it. You can delete an item even if it was ordered before; past orders keep its name and price.",
+      "Tap Mark unavailable on any item that sells out. It stays on the menu, greyed out as Unavailable, and nobody can order it until you mark it available again; the kitchen can do this too, from the kitchen screen. Switching off a whole category hides every item in it. You can delete an item even if it was ordered before; past orders keep its name and price.",
     ],
   },
   {
@@ -57,7 +57,7 @@ const SECTIONS = [
       "Open Kitchen on a tablet or phone in the kitchen. Every order being prepared shows up oldest first, with its item notes and how long it has waited. New orders chime; tap the screen once after opening it to turn sound on.",
       "When an order is done, tap Choose tray and pick the tray you're putting it on. Trays holding another order are greyed out, and a big order can take two.",
       "Tap Ready and the order leaves the kitchen screen and moves to the cashier's Ready column with its tray letter. A few seconds later your TV calls the number by itself. Tapped Ready by mistake? Tap Undo on the message that appears, and the number is never called.",
-      "Ran out of something? Tap Sold out at the top of the kitchen screen and mark the dish sold out. It disappears from New order and the customers' phones right away; tap Available when there's more.",
+      "Ran out of something? Tap Sold out at the top of the kitchen screen and mark the dish sold out. It shows as unavailable on New order and the customers' phones right away; tap Available when there's more.",
       "When the cashier changes an order, its card chimes, lights up again and says exactly what changed, so nothing gets missed.",
     ],
   },

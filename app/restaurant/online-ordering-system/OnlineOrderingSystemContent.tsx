@@ -31,7 +31,7 @@ const variant: RestaurantVariant = {
       },
       {
         h: "Your menu, updated live",
-        p: "The menu on the customer's phone is the one you edit in the dashboard. Toggle an item 86'd and it disappears from the customer's phone immediately, rather than being ordered and then apologised for.",
+        p: "The menu on the customer's phone is the one you edit in the dashboard. Mark an item sold out and it greys out on the customer's phone immediately, rather than being ordered and then apologised for.",
       },
       {
         h: "They can see where their food is",
