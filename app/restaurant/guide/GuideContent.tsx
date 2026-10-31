@@ -38,6 +38,7 @@ const SECTIONS = [
       "Open Cashier and tap New order. Choose Dine-in or Take-out, tap the items, and add a note on any item (\"no onions\") or on the whole order.",
       "Choose how the customer pays: Cash or GCash now, or At pickup. For cash, tap each bill the customer hands over (or type the amount) and the change appears.",
       "Tap Send to kitchen. The order number (01 to 99) fills the screen: write it on the customer's slip. Numbers start again at 01 every day, and a number still waiting at the counter is never given out twice.",
+      "Customer wants to add or change something? While the order is being prepared, tap Edit on it in the Preparing column: add dishes, change quantities or notes, or take dishes off. It keeps its number and its place in the kitchen. If it's already paid, collect the extra right there; giving money back needs an owner or admin.",
     ],
   },
   {
@@ -57,6 +58,7 @@ const SECTIONS = [
       "When an order is done, tap Choose tray and pick the tray you're putting it on. Trays holding another order are greyed out, and a big order can take two.",
       "Tap Ready and the order leaves the kitchen screen and moves to the cashier's Ready column with its tray letter. A few seconds later your TV calls the number by itself. Tapped Ready by mistake? Tap Undo on the message that appears, and the number is never called.",
       "Ran out of something? Tap Sold out at the top of the kitchen screen and mark the dish sold out. It disappears from New order and the customers' phones right away; tap Available when there's more.",
+      "When the cashier changes an order, its card chimes, lights up again and says exactly what changed, so nothing gets missed.",
     ],
   },
   {
