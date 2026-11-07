@@ -43,7 +43,12 @@ function useInView(options?: IntersectionObserverInit) {
     if (!el) return
     const observer = new IntersectionObserver(
       ([entry]) => { if (entry.isIntersecting) { setInView(true); observer.disconnect() } },
-      { threshold: 0.15, ...options }
+      // threshold 0, not a fraction: a target taller than viewport/threshold can
+      // never reach that fraction, so the callback never fires and the element
+      // stays at opacity 0 for good. A 7,747px article in a 900px viewport tops
+      // out at 11.6% visible and was invisible under the old 0.15. Revealing on
+      // any intersection cannot hide content; a fraction can.
+      { threshold: 0, ...options }
     )
     observer.observe(el)
     return () => observer.disconnect()
