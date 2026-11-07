@@ -20,10 +20,13 @@ export const REGISTER_URL = `${process.env.NEXT_PUBLIC_FRONTEND_URL}/register?pr
 export const LOGIN_URL = `${process.env.NEXT_PUBLIC_FRONTEND_URL}/login`
 export const NAV_LINKS = ["Features", "How it Works", "Pricing", "FAQ", "Guide"]
 
-const INK = "#161616"
-const BLUE = "#2f6bff"
-const AMBER = "#ff9e2c"
-const CREAM = "#fbf7f0"
+// Exported so pages that lay out their own cards (the name-ideas list) can
+// use the cluster's palette instead of repeating the hex values.
+export const INK = "#161616"
+export const BLUE = "#2f6bff"
+export const AMBER = "#ff9e2c"
+export const CREAM = "#fbf7f0"
+export const MUTED = "#8a857e"
 const display = { fontFamily: "'Hanken Grotesk', system-ui, sans-serif" }
 
 function useFont() {
