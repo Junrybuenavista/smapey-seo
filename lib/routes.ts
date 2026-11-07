@@ -361,6 +361,7 @@ export const CLUSTERS: Record<ClusterKey, RouteCluster> = {
       { path: "/restaurant/how-to-calculate-food-cost", title: "How to Calculate Food Cost", desc: "The food cost formula worked through a real recipe end to end - unit conversion, trim waste, and why theoretical and actual food cost differ." },
       { path: "/restaurant/food-cost-percentage-calculator", title: "Food Cost Percentage Calculator", desc: "Turn cost per portion and menu price into a food cost percentage, gross profit, and the band a kitchen like yours should sit in." },
       { path: "/restaurant/menu-price-calculator", title: "Menu Price Calculator", desc: "Work a menu price back from cost per portion and a target food cost percentage, with VAT and sensible rounding." },
+      { path: "/restaurant/food-business-name-ideas", title: "Food Business Name Ideas", desc: "Carinderia, street food, bakery, milk tea and bigasan names with every Filipino word explained, plus menu group names and how to check a name is free with the DTI." },
     ],
   },
 
